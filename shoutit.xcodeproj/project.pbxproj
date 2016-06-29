@@ -634,6 +634,7 @@
 		B2D19C561D1D47B4007CB6DF /* MyPageCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D19C551D1D47B4007CB6DF /* MyPageCellConfigurator.swift */; };
 		B2D19C581D1D4D83007CB6DF /* MyPagesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D19C571D1D4D83007CB6DF /* MyPagesCellViewModel.swift */; };
 		B2D2C9DB1D23CE590087E4FF /* RootControllerAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2C9DA1D23CE590087E4FF /* RootControllerAnimationDelegate.swift */; };
+		B2D2C9DD1D23DEE20087E4FF /* MyPageCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2C9DC1D23DEE20087E4FF /* MyPageCollectionViewModel.swift */; };
 		B2D372241CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */; };
 		B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D440DD1CB81466009782AF /* Filter.storyboard */; };
 		B2D441091CB81632009782AF /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D4410D1CB81632009782AF /* Root.storyboard */; };
@@ -1661,6 +1662,7 @@
 		B2D19C551D1D47B4007CB6DF /* MyPageCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPageCellConfigurator.swift; path = CellConfigurators/MyPageCellConfigurator.swift; sourceTree = "<group>"; };
 		B2D19C571D1D4D83007CB6DF /* MyPagesCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPagesCellViewModel.swift; path = ViewModel/MyPagesCellViewModel.swift; sourceTree = "<group>"; };
 		B2D2C9DA1D23CE590087E4FF /* RootControllerAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootControllerAnimationDelegate.swift; path = FlowControl/RootControllerAnimationDelegate.swift; sourceTree = "<group>"; };
+		B2D2C9DC1D23DEE20087E4FF /* MyPageCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyPageCollectionViewModel.swift; path = ViewModel/MyPageCollectionViewModel.swift; sourceTree = "<group>"; };
 		B2D372231CFEFE2E00CE1242 /* UIViewController+ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+ProgressHUD.swift"; path = "UIKitExtensions/UIViewController+ProgressHUD.swift"; sourceTree = "<group>"; };
 		B2D440DC1CB81466009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		B2D4410C1CB81632009782AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
@@ -3621,6 +3623,7 @@
 			isa = PBXGroup;
 			children = (
 				B211AAD01C89E5CA00C9E8DB /* MyProfileCollectionViewModel.swift */,
+				B2D2C9DC1D23DEE20087E4FF /* MyPageCollectionViewModel.swift */,
 				B211AAD21C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift */,
 				B211AAD41C89E5FB00C9E8DB /* PageProfileCollectionViewModel.swift */,
 				B2E107181C9700B200F7F4EF /* TagProfileCollectionViewModel.swift */,
@@ -5354,6 +5357,7 @@
 				B2B5D0321C7F878A0068A6AF /* ShoutDetailOtherShoutsCollectionViewDataSource.swift in Sources */,
 				249FD6D81C7DB4B100859851 /* DiscoverCollectionViewFlowLayout.swift in Sources */,
 				B2A849331C8458F400176EB0 /* PhotoBrowserPhotoViewController.swift in Sources */,
+				B2D2C9DD1D23DEE20087E4FF /* MyPageCollectionViewModel.swift in Sources */,
 				B2F5247D1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift in Sources */,
 				B2B540DB1C6A69320075EDA6 /* PostSignupSuggestionsSectionHeader.swift in Sources */,
 				2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */,

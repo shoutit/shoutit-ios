@@ -104,12 +104,13 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             switch event {
             case .Next(let tags):
                 self?.listSection = self?.listSectionWithModels(tags, isLoading: false)
+                self?.reloadSubject.onNext(())
             case .Error(let error):
                 self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
+                self?.reloadSubject.onNext(())
             default:
                 break
             }
-            self?.reloadSubject.onNext(())
         }.addDisposableTo(disposeBag)
     }
     

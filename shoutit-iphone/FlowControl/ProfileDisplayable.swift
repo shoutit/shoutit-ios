@@ -19,7 +19,7 @@ extension FlowController : ProfileDisplayable {
         
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        if profile.id == Account.sharedInstance.user?.id {
+        if case .Logged(let user)? = Account.sharedInstance.loginState where user.id == profile.id {
             controller.viewModel = MyProfileCollectionViewModel()
         } else {
             controller.viewModel = UserProfileCollectionViewModel(profile: profile)

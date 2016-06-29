@@ -17,8 +17,8 @@ final class ProfileFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        if case .Some(.Page(_, let page)) = Account.sharedInstance.loginState {
-            controller.viewModel = PageProfileCollectionViewModel(profile: Profile.profileWithUser(page))
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            controller.viewModel = MyPageCollectionViewModel()
         } else {
             controller.viewModel = MyProfileCollectionViewModel()
         }
