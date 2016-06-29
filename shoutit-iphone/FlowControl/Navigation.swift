@@ -69,7 +69,7 @@ enum NavigationItem : String {
     }
 }
 
-protocol Navigation {
+protocol Navigation: class {
     
     weak var rootController : RootController? {get set}
     var selectedNavigationItem : NavigationItem? {get set}

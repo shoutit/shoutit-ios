@@ -188,13 +188,13 @@ class ConversationInfoViewController: UITableViewController {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
-        let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
         switch cellViewModel {
         case .Shouts:
             showShouts()
         case .Media:
             showMedia()
         case .AddMember:
+            let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
             if isAdmin {
                 addMember()
             } else {

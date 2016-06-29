@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class ProfileFlowController: FlowController {
     
@@ -16,7 +17,11 @@ final class ProfileFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        controller.viewModel = MyProfileCollectionViewModel()
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            controller.viewModel = MyPageCollectionViewModel()
+        } else {
+            controller.viewModel = MyProfileCollectionViewModel()
+        }
 
         navigationController.showViewController(controller, sender: nil)
     }

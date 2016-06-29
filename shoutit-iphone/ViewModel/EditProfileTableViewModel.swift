@@ -31,8 +31,14 @@ final class EditProfileTableViewModel {
     }()
     
     init() {
-        guard case .Logged(let user)? = Account.sharedInstance.loginState else { preconditionFailure() }
-        self.user = user
+        switch Account.sharedInstance.loginState {
+        case .Logged(let logged)?:
+            self.user = logged
+        case .Page(_, let page)?:
+            self.user = page
+        default:
+            fatalError()
+        }
         cells = [EditProfileCellViewModel(firstname: user.firstName ?? ""),
                  EditProfileCellViewModel(lastname: user.lastName ?? ""),
                  EditProfileCellViewModel(username: user.username),

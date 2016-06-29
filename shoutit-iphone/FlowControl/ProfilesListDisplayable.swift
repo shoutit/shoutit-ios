@@ -10,15 +10,18 @@ import Foundation
 import ShoutitKit
 
 protocol ProfilesListDisplayable {
-    func showListenersForProfile(profile: Profile, withEventHandler eventHandler: ProfilesListEventHandler) -> Void
+    func showAddAdminChoiceViewControllerWithProfile(profile: Profile, withEventHandler eventHandler: ProfilesListEventHandler) -> Void
 }
 
 extension FlowController: ProfilesListDisplayable {
     
-    func showListenersForProfile(profile: Profile, withEventHandler eventHandler: ProfilesListEventHandler) {
+    func showAddAdminChoiceViewControllerWithProfile(profile: Profile, withEventHandler eventHandler: ProfilesListEventHandler) {
         let controller = Wireframe.profileListController()
+        controller.title = NSLocalizedString("Add Admin", comment: "New admin choice view header")
         controller.viewModel = ListenersProfilesListViewModel(username: profile.username, showListenButtons: true)
         controller.eventHandler = eventHandler
+        controller.autoDeselct = true
+        controller.dismissAfterSelection = true
         navigationController.showViewController(controller, sender: nil)
     }
 }

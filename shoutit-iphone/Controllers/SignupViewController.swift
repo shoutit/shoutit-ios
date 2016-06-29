@@ -80,6 +80,7 @@ final class SignupViewController: UITableViewController {
                 self.delegate?.presentCreatePage()
             }
             .addDisposableTo(disposeBag)
+        
         signupButton
             .rx_tap
             .filter(signupActionFilterClosure).subscribeNext{

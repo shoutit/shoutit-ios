@@ -378,7 +378,7 @@ extension ProfileCollectionViewController {
     func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView, disposeBag: DisposeBag) {
         
         for button in buttons {
-            switch button.defaultPosition {
+            switch button.position {
             case .SmallLeft:
                 hydrateButton(sView.notificationButton, withButtonModel: button, disposeBag: disposeBag)
             case .SmallRight:

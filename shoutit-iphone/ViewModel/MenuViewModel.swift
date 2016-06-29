@@ -10,6 +10,12 @@ import UIKit
 
 final class MenuViewModel: AnyObject {
     
+    let loginState: Account.LoginState?
+    
+    init(loginState: Account.LoginState?) {
+        self.loginState = loginState
+    }
+    
     enum MenuSection  {
         case UserSwitch
         case Main
@@ -23,16 +29,16 @@ final class MenuViewModel: AnyObject {
             }
         }
         
-        func menuItems() -> [NavigationItem] {
+        func menuItems(loginState: Account.LoginState?) -> [NavigationItem] {
             switch self {
             case .UserSwitch:
-                guard case .Some(.Page) = Account.sharedInstance.loginState else {
+                guard case .Some(.Page) = loginState else {
                     fatalError()
                 }
                 return [.SwitchFromPageToUser]
             case .Main:
                 let basicItems: [NavigationItem] = [.Home, .Discover, .Browse, .Chats]
-                switch Account.sharedInstance.loginState {
+                switch loginState {
                 case .Some(.Logged):
                     return basicItems + [.Pages]
                 case .Some(.Page):
@@ -47,14 +53,14 @@ final class MenuViewModel: AnyObject {
     
     func sections() -> [MenuSection] {
         let basicItems: [MenuSection] = [.Main, .Secondary]
-        if case .Some(.Page) = Account.sharedInstance.loginState {
+        if case .Some(.Page) = loginState {
             return [.UserSwitch] + basicItems
         }
         return basicItems
     }
     
     func numberOfRowsInSection(section: Int) -> Int {
-        return sections()[section].menuItems().count
+        return sections()[section].menuItems(loginState).count
     }
     
     func cellIdentifierForSection(section: Int) -> String {
@@ -62,7 +68,7 @@ final class MenuViewModel: AnyObject {
     }
     
     func navigationItemForIndexPath(indexPath: NSIndexPath) -> NavigationItem {
-        return sections()[indexPath.section].menuItems()[indexPath.row]
+        return sections()[indexPath.section].menuItems(loginState)[indexPath.row]
     }
     
 }

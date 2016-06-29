@@ -61,18 +61,24 @@ final class AdminsListParentViewController: UIViewController {
             controller.flowDelegate = flowDelegate
         }
     }
+    
+    // MARL: - Actions
+    
+    @IBAction func searchAction() {
+        flowDelegate?.showSearchInContext(.General)
+    }
 }
 
 private extension AdminsListParentViewController {
     
     func addAdmin() {
-        guard case .Some(.Logged(let page)) = Account.sharedInstance.loginState else {
+        guard case .Some(.Page(_, let page)) = Account.sharedInstance.loginState else {
             assertionFailure()
             return
         }
         let eventHandler = SelectProfileProfilesListEventHandler { [weak self] (profile) in
             self?.viewModel.addAdmin(profile)
         }
-        flowDelegate?.showListenersForProfile(Profile.profileWithUser(page), withEventHandler: eventHandler)
+        flowDelegate?.showAddAdminChoiceViewControllerWithProfile(Profile.profileWithUser(page), withEventHandler: eventHandler)
     }
 }

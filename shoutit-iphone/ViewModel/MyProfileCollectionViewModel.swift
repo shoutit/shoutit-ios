@@ -19,7 +19,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private var detailedUser: DetailedProfile?
     
     var user: DetailedProfile? {
-        return Account.sharedInstance.user as? DetailedProfile
+        guard case .Some(.Logged(let user)) = Account.sharedInstance.loginState else {
+            return nil
+        }
+        return user
     }
     
     var model: ProfileCollectionViewModelMainModel? {
@@ -32,13 +35,14 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     init() {
         gridSection = gridSectionWithModels([], isLoading: true)
-        let pages = (Account.sharedInstance.user as? DetailedProfile)?.pages ?? []
-        listSection = listSectionWithModels(pages, isLoading: true)
-        Account.sharedInstance.userSubject
+        listSection = listSectionWithModels([], isLoading: true)
+        Account.sharedInstance.loginStateSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (newUser) in
-                self?.detailedUser = newUser as? DetailedProfile
-                self?.reloadSubject.onNext()
+            .subscribeNext {[weak self] (loginState) in
+                if case .Some(.Logged(let user)) = loginState {
+                    self?.detailedUser = user
+                    self?.reloadSubject.onNext()
+                }
             }
             .addDisposableTo(disposeBag)
     }
@@ -51,12 +55,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 switch event {
                 case .Next(let detailedProfile):
                     self?.detailedUser = detailedProfile
-                    self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
                 case .Error:
-                    self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 }
                 })
@@ -69,10 +71,26 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
-                    self?.reloadSubject.onNext(())
-                case .Error(let error as NSError):
-                    self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
-                    self?.reloadSubject.onNext(())
+                    self?.reloadSubject.onNext()
+                case .Error(let error):
+                    self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
+                    self?.reloadSubject.onNext()
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
+        // fetch pages
+        fetchPages()?
+            .subscribe{ [weak self] (event) in
+                switch event {
+                case .Next(let value):
+                    self?.listSection = self?.listSectionWithModels(value, isLoading: false)
+                    self?.reloadSubject.onNext()
+                case .Error(let error):
+                    self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
+                    self?.reloadSubject.onNext()
                 default:
                     break
                 }
@@ -133,7 +151,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             interestsCountString = NumberFormatters.numberToShortString(listeningMetadata.tags)
         }
         
-        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification, .EditProfile]
+        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification(position: nil), .EditProfile]
     }
     
     var descriptionText: String? {
@@ -163,13 +181,19 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Fetch
     
-    func fetchShouts() -> Observable<[Shout]>? {
+    private func fetchShouts() -> Observable<[Shout]>? {
         guard let user = user else {return nil}
         let params = FilteredShoutsParams(username: user.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
-    func fetchUser() -> Observable<DetailedProfile>? {
+    private func fetchPages() -> Observable<[Profile]>? {
+        guard let user = user else { return nil }
+        let params = PageParams(page: 1, pageSize: 3)
+        return APIProfileService.getPagesForUsername(user.username, pageParams: params).map{ $0.results }
+    }
+    
+    private func fetchUser() -> Observable<DetailedProfile>? {
         guard let user = user else {return nil}
         return APIProfileService.retrieveProfileWithUsername(user.username)
     }
@@ -179,11 +203,6 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     // MARK: - Helpers
-    
-    private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = detailedUser?.pages ?? user?.pages ?? []
-        listSection = listSectionWithModels(pages, isLoading: loading)
-    }
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
