@@ -74,22 +74,28 @@ final class SettingsFlowController: FlowController {
     }
     
     private func accountSettingsOptions() -> Variable<[SettingsOption]> {
-        return Variable([
-            SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title")) {[unowned self] in
-                self.showEmailSettings()
-            },
-            SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title")) {[unowned self] in
-                self.showPasswordSettings()
-            },
-            SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
-                
-                do {
-                    try Account.sharedInstance.logout()
-                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
-                } catch let error {
-                    self.navigationController.showError(error)
+        var options: [SettingsOption] =
+            [
+                SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title")) {[unowned self] in
+                    self.showEmailSettings()
+                },
+                SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
+                    
+                    do {
+                        try Account.sharedInstance.logout()
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+                    } catch let error {
+                        self.navigationController.showError(error)
+                    }
                 }
-            }
-            ])
+            ]
+        
+        if case .Logged(_)? = Account.sharedInstance.loginState {
+            options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title")) {[unowned self] in
+                self.showPasswordSettings()
+                }, atIndex: 1)
+        }
+        
+        return Variable(options)
     }
 }

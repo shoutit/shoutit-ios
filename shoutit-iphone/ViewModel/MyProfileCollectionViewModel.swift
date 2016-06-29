@@ -151,7 +151,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             interestsCountString = NumberFormatters.numberToShortString(listeningMetadata.tags)
         }
         
-        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification, .EditProfile]
+        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification(position: nil), .EditProfile]
     }
     
     var descriptionText: String? {

@@ -32,7 +32,7 @@ enum ProfileCollectionInfoButton {
     case Interests(countString: String)
     case Chat
     case Listen(isListening: Bool)
-    case Notification
+    case Notification(position: ProfileCollectionInfoButtonPosition?)
     case EditProfile
     case More
     case Custom(title: String, icon: UIImage?)
@@ -90,7 +90,16 @@ enum ProfileCollectionInfoButton {
         }
     }
     
-    var defaultPosition: ProfileCollectionInfoButtonPosition {
+    var position: ProfileCollectionInfoButtonPosition {
+        switch self {
+        case .Notification(let position?):
+            return position
+        default:
+            return defaultPosition
+        }
+    }
+    
+    private var defaultPosition: ProfileCollectionInfoButtonPosition {
         switch self {
         case .Listeners:
             return .BigLeft
