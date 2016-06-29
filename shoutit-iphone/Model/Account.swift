@@ -134,7 +134,7 @@ final class Account {
         self.authData = authData
         loginSubject.onNext(authData)
         updateTokenWithAuthData(authData, user: user)
-        updateUserWithModel(user)
+        updateUserWithModel(user, force: true)
         configureTwilioAndPusherServices()
     }
     
@@ -159,15 +159,24 @@ final class Account {
         twilioManager.reconnect()
     }
     
-    func updateUserWithModel<T: User>(model: T) {
+    func updateUserWithModel<T: User>(model: T, force: Bool = false) {
         if let model = model as? DetailedProfile where model.type == .User {
-            loginState = .Logged(user: model)
+            switch (loginState, force) {
+            case (.Logged(_)?, _), (.None, _), (_, true): loginState = .Logged(user: model)
+            default: break
+            }
         }
         else if let model = model as? DetailedProfile, admin = model.admin where model.type == .Page {
-            loginState = .Page(user: admin.value, page: model)
+            switch (loginState, force) {
+            case (.Page(_)?, _), (.None, _), (_, true): loginState = .Page(user: admin.value, page: model)
+            default: break
+            }
         }
         else if let model = model as? GuestUser {
-            loginState = .Guest(user: model)
+            switch (loginState, force) {
+            case (.Guest(_)?, _), (.None, _), (_, true): loginState = .Guest(user: model)
+            default: break
+            }
         }
     }
     
