@@ -496,8 +496,9 @@ class ConversationInfoViewController: UITableViewController {
 
 extension ConversationInfoViewController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentsSelected(attachments: [MediaAttachment], mediaPicker: MediaPickerController) {
         
+        guard let attachment = attachments.first else { return }
         let task = viewModel.uploadImageAttachment(attachment)
         headerView.setChatImage(.Image(image: attachment.image))
         

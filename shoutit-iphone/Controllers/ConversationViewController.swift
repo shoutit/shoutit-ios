@@ -15,8 +15,12 @@ import ShoutitKit
 final class ConversationViewController: SLKTextViewController, ConversationPresenter, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate {
     weak var flowDelegate: FlowController?
     
-    var viewModel : ConversationViewModel!
-    let attachmentManager = ConversationAttachmentManager()
+    var viewModel : ConversationViewModel! {
+        didSet {
+            attachmentManager = ConversationAttachmentManager(viewModel: self.viewModel)
+        }
+    }
+    private(set) var attachmentManager: ConversationAttachmentManager!
     var loadMoreView : ConversationLoadMoreFooter?
     var titleView : ConversationTitleView!
     @IBOutlet var moreRightBarButtonItem: UIBarButtonItem!
@@ -152,9 +156,6 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     private func setupAttachmentManager() {
-        attachmentManager.attachmentSelected.subscribeNext { [weak self] (attachment) in
-            self?.viewModel.sendMessageWithAttachment(attachment)
-        }.addDisposableTo(disposeBag)
         
         attachmentManager.presentingSubject
             .subscribeNext { [weak self] (controller) in

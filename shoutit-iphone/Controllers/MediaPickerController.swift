@@ -11,7 +11,7 @@ import RxSwift
 import MobileCoreServices
 
 protocol MediaPickerControllerDelegate: class {
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController)
+    func attachmentsSelected(attachment: [MediaAttachment], mediaPicker: MediaPickerController)
 }
 
 final class MediaPickerController: NSObject, MediaPicker  {
@@ -53,6 +53,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     func photosMenuController(controller: PhotosMenuController, didPickPhotos photos: [PHAsset]) {
         
+        var attachments = [MediaAttachment]()
         for photo in photos {
             
             let options = PHImageRequestOptions()
@@ -67,9 +68,11 @@ final class MediaPickerController: NSObject, MediaPicker  {
                 resultHandler: { (result, info) -> Void in
                     
                     let attachment = photo.asMediaAttachment(result)
-                    self.attachmentSelected(attachment)
+                    attachments.append(attachment)
             })
         }
+        
+        handleSelectedAttachments(attachments)
     }
     
     func photosMenuControllerDidCancel(controller: PhotosMenuController) {
@@ -91,7 +94,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
                                              image: image,
                                              videoDuration: nil,
                                              originalData: image.dataRepresentation())
-            self.attachmentSelected(attachment)
+            self.handleSelectedAttachments([attachment])
         }
         
         if let type = info[UIImagePickerControllerMediaType] as? String where type == (kUTTypeMovie as String) {
@@ -138,15 +141,12 @@ final class MediaPickerController: NSObject, MediaPicker  {
                                              image: image,
                                              videoDuration: self.videoProcessor.videoDuration(url),
                                              originalData: data)
-            self.attachmentSelected(attachment)
+            self.handleSelectedAttachments([attachment])
         }
     }
     
-    func attachmentSelected(attachment: MediaAttachment) {
-        
-        self.selectedAttachments.append(attachment)
-        if let delegate = delegate {
-            delegate.attachmentSelected(attachment, mediaPicker: self)
-        }
+    func handleSelectedAttachments(attachments: [MediaAttachment]) {
+        selectedAttachments += attachments
+        delegate?.attachmentsSelected(attachments, mediaPicker: self)
     }
 }

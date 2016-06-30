@@ -287,8 +287,9 @@ extension EditProfileTableViewController {
 
 extension EditProfileTableViewController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentsSelected(attachments: [MediaAttachment], mediaPicker: MediaPickerController) {
         
+        guard let attachment = attachments.first else { return }
         guard let uploadType = uploadType else { return }
         
         let task = uploadType == .Cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)

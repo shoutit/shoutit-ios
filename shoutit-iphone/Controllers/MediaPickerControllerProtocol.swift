@@ -12,7 +12,6 @@ import ShoutitKit
 
 protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var pickerSettings : MediaPickerSettings { get set }
-    func attachmentSelected(attachment: MediaAttachment)
 }
 
 struct MediaPickerSettings {

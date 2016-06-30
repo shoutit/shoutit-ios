@@ -103,6 +103,12 @@ extension SelectShoutImagesController {
 
 extension SelectShoutImagesController: MediaPickerControllerDelegate {
     
+    func attachmentsSelected(attachments: [MediaAttachment], mediaPicker: MediaPickerController) {
+        for attachment in attachments {
+            attachmentSelected(attachment, mediaPicker: mediaPicker)
+        }
+    }
+    
     func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         if checkIfAttachmentCanBeAdded(attachment) == false {
             return
