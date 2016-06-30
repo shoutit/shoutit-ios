@@ -41,6 +41,14 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                 <color key="textColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yo-ep-sIT">
+                                <rect key="frame" x="158" y="-6" width="42" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="POE-4K-avz"/>
+                                    <constraint firstAttribute="width" constant="42" id="R88-NU-vLK"/>
+                                </constraints>
+                                <state key="normal" image="bookmark_off"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -49,6 +57,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <constraint firstAttribute="bottom" secondItem="joe-rP-fqw" secondAttribute="bottom" constant="4" id="9G6-xF-9zq"/>
                             <constraint firstItem="NfV-T6-UuN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="joe-rP-fqw" secondAttribute="trailing" constant="5" id="9MF-IY-6kE"/>
                             <constraint firstAttribute="bottom" secondItem="NfV-T6-UuN" secondAttribute="bottom" constant="4" id="KWN-ah-GG8"/>
+                            <constraint firstItem="7yo-ep-sIT" firstAttribute="top" secondItem="gT2-mx-Rmr" secondAttribute="top" constant="-6" id="Qvo-Vx-HIc"/>
                             <constraint firstAttribute="trailing" secondItem="gT2-mx-Rmr" secondAttribute="trailing" id="XCQ-21-NPA"/>
                             <constraint firstAttribute="bottom" secondItem="gT2-mx-Rmr" secondAttribute="bottom" constant="43" id="al6-aQ-uMD"/>
                             <constraint firstAttribute="trailing" secondItem="ex5-Jc-dfF" secondAttribute="trailing" constant="4" id="eex-6u-HBw"/>
@@ -57,6 +66,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <constraint firstItem="ex5-Jc-dfF" firstAttribute="leading" secondItem="wCq-Rd-hRc" secondAttribute="leading" constant="4" id="rna-kN-IeA"/>
                             <constraint firstItem="gT2-mx-Rmr" firstAttribute="top" secondItem="wCq-Rd-hRc" secondAttribute="top" id="t2c-tf-8Vo"/>
                             <constraint firstAttribute="trailing" secondItem="NfV-T6-UuN" secondAttribute="trailing" constant="4" id="xUw-dN-6x9"/>
+                            <constraint firstItem="7yo-ep-sIT" firstAttribute="trailing" secondItem="gT2-mx-Rmr" secondAttribute="trailing" id="zOV-yG-hmw"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -75,6 +85,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
             </constraints>
             <size key="customSize" width="200" height="242"/>
             <connections>
+                <outlet property="bookmarkButton" destination="7yo-ep-sIT" id="sb2-BE-fi5"/>
                 <outlet property="name" destination="joe-rP-fqw" id="b3j-WD-A0B"/>
                 <outlet property="shoutBackgroundView" destination="wCq-Rd-hRc" id="zYZ-vZ-CV2"/>
                 <outlet property="shoutImage" destination="gT2-mx-Rmr" id="Xxa-of-FyB"/>
@@ -83,4 +94,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="bookmark_off" width="20" height="29"/>
+    </resources>
 </document>

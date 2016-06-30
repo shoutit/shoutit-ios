@@ -91,6 +91,14 @@
                                 <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrO-nc-WXa">
+                                <rect key="frame" x="348" y="-6" width="36" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="8lT-hf-HLu"/>
+                                    <constraint firstAttribute="width" constant="36" id="vYF-3W-lDq"/>
+                                </constraints>
+                                <state key="normal" image="bookmark_off"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -100,6 +108,7 @@
                             <constraint firstAttribute="trailing" secondItem="IGK-0a-D2w" secondAttribute="trailing" constant="22" id="2rt-PT-FaH"/>
                             <constraint firstAttribute="trailing" secondItem="zkv-DC-83U" secondAttribute="trailing" constant="10" id="2uc-8e-wyw"/>
                             <constraint firstItem="Njb-KZ-4Un" firstAttribute="width" secondItem="zkv-DC-83U" secondAttribute="width" constant="10" id="4PX-ac-Os1"/>
+                            <constraint firstItem="NrO-nc-WXa" firstAttribute="top" secondItem="987-am-T0Y" secondAttribute="top" constant="-6" id="7e6-nK-iA8"/>
                             <constraint firstItem="IGK-0a-D2w" firstAttribute="leading" secondItem="qbO-FN-l8h" secondAttribute="trailing" constant="10" id="8hf-1r-LLg"/>
                             <constraint firstItem="Njb-KZ-4Un" firstAttribute="centerY" secondItem="zkv-DC-83U" secondAttribute="centerY" id="9FM-oW-Snm"/>
                             <constraint firstItem="qbO-FN-l8h" firstAttribute="top" secondItem="987-am-T0Y" secondAttribute="top" constant="5" id="Cys-Rc-T81"/>
@@ -112,6 +121,7 @@
                             <constraint firstItem="qbO-FN-l8h" firstAttribute="leading" secondItem="987-am-T0Y" secondAttribute="leading" constant="5" id="lAO-ni-KfC"/>
                             <constraint firstItem="IGK-0a-D2w" firstAttribute="top" secondItem="qbO-FN-l8h" secondAttribute="top" id="mcX-c6-Vor"/>
                             <constraint firstAttribute="trailing" secondItem="BJ3-s9-5ly" secondAttribute="trailing" constant="5" id="pAn-aq-LPc"/>
+                            <constraint firstAttribute="trailing" secondItem="NrO-nc-WXa" secondAttribute="trailing" id="pZR-MG-lyy"/>
                             <constraint firstAttribute="bottom" secondItem="cbs-lb-rtR" secondAttribute="bottom" constant="4" id="qXY-iI-w3E"/>
                             <constraint firstItem="zkv-DC-83U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FV2-zd-qKi" secondAttribute="trailing" constant="20" id="qng-od-rdb"/>
                             <constraint firstItem="FV2-zd-qKi" firstAttribute="top" secondItem="IGK-0a-D2w" secondAttribute="bottom" constant="10" id="qu9-0q-zlw"/>
@@ -130,6 +140,7 @@
             </constraints>
             <size key="customSize" width="384" height="110"/>
             <connections>
+                <outlet property="bookmarkButton" destination="NrO-nc-WXa" id="NAB-PD-zGu"/>
                 <outlet property="shoutBackgroundView" destination="987-am-T0Y" id="lI4-hf-lJu"/>
                 <outlet property="shoutCategoryImage" destination="zXr-OZ-e30" id="5jq-KV-Y8l"/>
                 <outlet property="shoutCountryImage" destination="r6e-yK-qi7" id="B2E-oh-kUH"/>
@@ -143,6 +154,7 @@
     </objects>
     <resources>
         <image name="US" width="64" height="64"/>
+        <image name="bookmark_off" width="20" height="29"/>
         <image name="shoutListMessage" width="25" height="25"/>
     </resources>
 </document>

@@ -15,6 +15,7 @@ protocol ShoutCell {
     weak var shoutTitle: UILabel? { get }
     weak var shoutPrice: UILabel? { get }
     weak var shoutType: UILabel? { get }
+    weak var bookmarkButton: UIButton? { get }
     weak var shoutSubtitle: UILabel? { get }
     weak var shoutCountryImage: UIImageView? { get }
     weak var shoutCategoryImage: UIImageView? { get }
@@ -70,6 +71,8 @@ extension ShoutCell where Self : UICollectionViewCell {
             setDefaultBackground()
             return
         }
+        
+        self.setBookmarked(shout.isBookmarked)
         
         self.shoutBackgroundView?.backgroundColor = promotion.backgroundUIColor()
         
@@ -129,5 +132,15 @@ extension ShoutCell where Self: UICollectionViewCell {
         self.addConstraints([leadingLabel, topLabel, bottomLabel, trailingLabel])
         
         return (promotionBackground, promotionLabel)
+    }
+}
+
+extension ShoutCell {
+    func setBookmarked(bookmarked: Bool) {
+        if bookmarked {
+            self.bookmarkButton?.setImage(UIImage(named:"bookmark_on"), forState: .Normal)
+        } else {
+            self.bookmarkButton?.setImage(UIImage(named:"bookmark_off"), forState: .Normal)
+        }
     }
 }

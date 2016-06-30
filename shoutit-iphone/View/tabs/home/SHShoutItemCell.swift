@@ -22,6 +22,7 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutBackgroundView: UIView?
     @IBOutlet weak var shoutPromotionBackground: UIView?
     @IBOutlet weak var shoutPromotionLabel: UILabel?
+    @IBOutlet weak var bookmarkButton: UIButton?
 }
 
 extension SHShoutItemCell {

@@ -42,6 +42,8 @@ public struct Shout: Decodable, Hashable, Equatable {
     public let mobile: String?
     public let promotion: Promotion?
     
+    public let isBookmarked: Bool
+    
     public static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
             <^> j <| "id"
@@ -67,7 +69,6 @@ public struct Shout: Decodable, Hashable, Equatable {
         let f = e
             <*> j <||? "images"
             <*> j <||? "videos"
-            //<*> j <|? "published_on"
             <*> j <|? "reply_url"
         let g = f
             <*> j <||? "related_requests"
@@ -77,6 +78,7 @@ public struct Shout: Decodable, Hashable, Equatable {
         let h = g
             <*> j <|? "mobile"
             <*> j <|? "promotion"
+            <*> j <| "is_bookmarked"
         return h
     }
     
@@ -165,6 +167,10 @@ public enum ShoutType : String {
 
 public extension Shout {
     public func copyShoutWithPromotion(newPromotion: Promotion) -> Shout {
-        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion)
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion, isBookmarked: self.isBookmarked)
+    }
+    
+    public func copyWithBookmark(bookmarked: Bool) -> Shout? {
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: self.promotion, isBookmarked: bookmarked)
     }
 }

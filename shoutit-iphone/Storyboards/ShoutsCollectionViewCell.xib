@@ -31,19 +31,27 @@
                             </mask>
                         </variation>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4K-vb-l3L">
+                        <rect key="frame" x="130" y="-6" width="42" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="29" id="O6G-8Z-Jss"/>
+                            <constraint firstAttribute="width" constant="42" id="jDw-VL-3I7"/>
+                        </constraints>
+                        <state key="normal" image="bookmark_off"/>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-XU-Ie9">
                         <rect key="frame" x="5" y="134" width="31" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAC-NA-H9N">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAC-NA-H9N">
                         <rect key="frame" x="5" y="153" width="31" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKZ-XP-tPO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKZ-XP-tPO">
                         <rect key="frame" x="136" y="153" width="31" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,6 +63,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="AAC-NA-H9N" firstAttribute="leading" secondItem="sZd-df-hJS" secondAttribute="leading" constant="5" id="0ra-j9-ssq"/>
+                <constraint firstAttribute="trailing" secondItem="n4K-vb-l3L" secondAttribute="trailing" id="6rc-Mv-g1K"/>
                 <constraint firstAttribute="bottom" secondItem="Ksa-8m-quI" secondAttribute="bottom" constant="43" id="CfA-9u-u1W"/>
                 <constraint firstItem="Ksa-8m-quI" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" id="HCB-g4-dS6"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w8U-XU-Ie9" secondAttribute="trailing" constant="5" id="Kix-da-P1M"/>
@@ -66,6 +75,7 @@
                 <constraint firstItem="w8U-XU-Ie9" firstAttribute="top" secondItem="Ksa-8m-quI" secondAttribute="bottom" constant="5" id="eE5-zs-SEs"/>
                 <constraint firstItem="gKZ-XP-tPO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AAC-NA-H9N" secondAttribute="trailing" constant="5" id="gcy-MZ-khY"/>
                 <constraint firstAttribute="bottom" secondItem="emt-C8-eiw" secondAttribute="bottom" id="hsb-yE-oAl"/>
+                <constraint firstItem="n4K-vb-l3L" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" constant="-6" id="kI1-Il-Gkx"/>
                 <constraint firstItem="emt-C8-eiw" firstAttribute="top" secondItem="sZd-df-hJS" secondAttribute="top" id="l1M-Zv-DDf"/>
                 <constraint firstAttribute="trailing" secondItem="emt-C8-eiw" secondAttribute="trailing" id="pxE-dm-5Ic"/>
                 <constraint firstAttribute="bottom" secondItem="AAC-NA-H9N" secondAttribute="bottom" constant="5" id="w1X-Ms-b5K"/>
@@ -81,4 +91,7 @@
             <point key="canvasLocation" x="348" y="288"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="bookmark_off" width="20" height="29"/>
+    </resources>
 </document>
