@@ -68,6 +68,7 @@ final class PhotoBrowserPhotoViewController: UIViewController {
                     #else
                         self?.showMessage(NSLocalizedString("Could not load photos", comment: ""))
                     #endif
+                    
                 }
                 
             }

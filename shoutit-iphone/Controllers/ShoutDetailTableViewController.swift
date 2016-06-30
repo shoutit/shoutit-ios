@@ -285,10 +285,30 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
     @IBAction func likeButtonAction(sender: UIButton) {
+        APIShoutsService.likeShout(viewModel.shout).subscribe { (event) in
+            switch event {
+            case .Next(let success):
+                self.showSuccessMessage(success.message)
+            case .Error(let error):
+                self.showError(error)
+            default: break
+            
+            }
+        }
+        APIShoutsService.unlikeShout(viewModel.shout).subscribe { (event) in
+            switch event {
+            case .Next(let success):
+                self.showSuccessMessage(success.message)
+            case .Error(let error):
+                self.showError(error)
+            default: break
+                
+            }
+        }
     }
     
     @IBAction func bookmarkButtonAction(sender: UIButton) {
+        
     }
     
 }
-

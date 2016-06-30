@@ -87,6 +87,14 @@ final class APIShoutsService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, responseJsonPath: ["promotion"], headers: ["Accept": "application/json"])
     }
     
+    static func likeShout(shout: Shout) -> Observable<Success> {
+        let url = shoutsURL + "/\(shout.id)/like"
+        return APIGenericService.requestWithMethod(.POST, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil, headers: ["Accept": "application/json"])
+    }
     
+    static func unlikeShout(shout: Shout) -> Observable<Success>{
+        let url = shoutsURL + "/\(shout.id)/unlike"
+        return APIGenericService.requestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil, headers: ["Accept": "application/json"])
+    }
     
 }
