@@ -20,8 +20,8 @@ enum DiscoverSection : Int {
     
     func cellIdentifier() -> String {
         switch self {
-        case SubItems: return DiscoverCollectionCellReuseIdentifier
-        default: return DiscoverCollectionShoutsCellReuseIdentifier
+        case SubItems: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
+        default: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
         }
     }
     

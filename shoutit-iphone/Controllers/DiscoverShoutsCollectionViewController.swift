@@ -10,4 +10,5 @@ import UIKit
 import RxSwift
 
 final class DiscoverShoutsCollectionViewController: HomeShoutsCollectionViewController {
+    
 }

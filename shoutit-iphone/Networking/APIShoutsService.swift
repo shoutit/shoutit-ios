@@ -92,5 +92,14 @@ final class APIShoutsService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
     }
     
+    static func bookmarkShout(shout: Shout) -> Observable<Success> {
+        let url = APIManager.baseURL + "/shouts/\(shout.id)/bookmark"
+        return APIGenericService.requestWithMethod(.POST, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
+    
+    static func removeFromBookmarksShout(shout: Shout) -> Observable<Success> {
+        let url = APIManager.baseURL + "/shouts/\(shout.id)/bookmark"
+        return APIGenericService.requestWithMethod(.POST, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+    }
     
 }

@@ -36,6 +36,13 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
 
         refreshControl.addTarget(self, action: #selector(HomeShoutsCollectionViewController.forceReloadData), forControlEvents: .ValueChanged)
         self.collectionView?.addSubview(refreshControl)
+        
+        registerCells()
+    }
+    
+    func registerCells() {
+        self.collectionView?.registerNib(UINib(nibName: "ShoutItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.ListReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "ShoutItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.GridReuseIdentifier.rawValue)
     }
     
     override func viewWillAppear(animated: Bool) {
