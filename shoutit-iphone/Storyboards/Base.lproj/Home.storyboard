@@ -243,7 +243,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutDiscoverTitleCell" reuseIdentifier="shoutDiscoverTitleCell" id="vvw-X9-c7O" customClass="SHShoutDiscoverTitleCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="249" width="377" height="41"/>
+                                        <rect key="frame" x="111.5" y="249" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>
@@ -288,7 +288,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="shoutMyFeedHeaderCell" reuseIdentifier="shoutMyFeedHeaderCell" id="Bv6-ya-z53" customClass="SHShoutMyFeedHeaderCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="300" width="377" height="41"/>
+                                        <rect key="frame" x="111.5" y="300" width="377" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="377" height="41"/>

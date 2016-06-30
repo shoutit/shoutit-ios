@@ -13,6 +13,8 @@ final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
     @IBOutlet var headerView: ShoutDetailTableHeaderView!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var bookmarkButton: UIButton!
     
     // view model
     var viewModel: ShoutDetailViewModel! {
@@ -281,5 +283,12 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
         // placeholder size
         return CGSize(width: collectionView.bounds.width - 20, height: 120)
     }
+    
+    @IBAction func likeButtonAction(sender: UIButton) {
+    }
+    
+    @IBAction func bookmarkButtonAction(sender: UIButton) {
+    }
+    
 }
 

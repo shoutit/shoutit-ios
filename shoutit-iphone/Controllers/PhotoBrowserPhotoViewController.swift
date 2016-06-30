@@ -55,8 +55,8 @@ final class PhotoBrowserPhotoViewController: UIViewController {
             showLoading()
         case .Error(let error):
             showMessage(error.sh_message)
-        case .NoContent(let message):
-            showMessage(message)
+        case .NoContent(let image):
+            showPlaceholderImage(image)
         case .Movie(let video):
             showLoading()
             imageView?.sh_setImageWithURL(NSURL(string: video.thumbnailPath), placeholderImage: nil, optionsInfo: nil) {[weak self] (image, error, _, _) in
@@ -82,6 +82,15 @@ final class PhotoBrowserPhotoViewController: UIViewController {
         label?.hidden = false
         label?.text = message
         playButton?.hidden = true
+    }
+    
+    func showPlaceholderImage(image: UIImage){
+        activityIndicator?.stopAnimating()
+        activityIndicator?.hidden = true
+        imageView?.hidden = false
+        label?.hidden = true
+        playButton?.hidden = true
+        imageView?.image = image
     }
     
     func showLoading() {
