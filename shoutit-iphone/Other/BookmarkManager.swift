@@ -17,7 +17,7 @@ protocol ShoutProvider {
 }
 
 protocol Bookmarking : ShoutProvider {
-    var bookmarksDisposeBag : DisposeBag! { get }
+    var bookmarksDisposeBag : DisposeBag? { get set }
     func switchShoutBookmarkShout(sender: UIButton)
 }
 
@@ -41,6 +41,10 @@ extension Bookmarking where Self : UICollectionViewController {
         }
         
         let wShout = shout
+        
+        guard let bookmarksDisposeBag = bookmarksDisposeBag else {
+            fatalError("Dispose Bag is Missing")
+        }
         
         if shout.isBookmarked {
             APIShoutsService.removeFromBookmarksShout(shout).subscribe({ [weak self] (event) in

@@ -41,6 +41,8 @@ extension ShoutCell where Self : UICollectionViewCell {
             self.shoutSubtitle?.text = user.name
         }
         
+        self.setBookmarked(shout.isBookmarked)
+        
         self.shoutPrice?.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
         
         if let country = shout.location?.country, countryImage = UIImage(named:  country), countryImageView = self.shoutCountryImage {
@@ -71,8 +73,6 @@ extension ShoutCell where Self : UICollectionViewCell {
             setDefaultBackground()
             return
         }
-        
-        self.setBookmarked(shout.isBookmarked)
         
         self.shoutBackgroundView?.backgroundColor = promotion.backgroundUIColor()
         

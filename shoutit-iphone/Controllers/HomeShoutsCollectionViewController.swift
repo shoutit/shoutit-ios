@@ -20,6 +20,9 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let refreshControl = UIRefreshControl()
     private var numberOfReloads = 0
     
+    
+    var bookmarksDisposeBag : DisposeBag?
+    
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     private let retry = Variable(false)
@@ -34,6 +37,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         setupDisplayable()
         setupDataSource()
 
+        bookmarksDisposeBag = DisposeBag()
+        
         refreshControl.addTarget(self, action: #selector(HomeShoutsCollectionViewController.forceReloadData), forControlEvents: .ValueChanged)
         self.collectionView?.addSubview(refreshControl)
         
@@ -71,6 +76,8 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         let element = items[indexPath.item]
         
         cell.bindWith(Shout: element)
+        cell.bookmarkButton?.tag = indexPath.item
+        cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
             
         return cell
     }
@@ -196,5 +203,40 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     private func hideActivityIndicatorView() {
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
+    }
+}
+
+extension HomeShoutsCollectionViewController : Bookmarking {
+    
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        return self.items[indexPath.item]
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        if let idx = self.items.indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 0)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        guard let indexPath = indexPathForShout(shout) else {
+            return
+        }
+        
+        if let idx = self.items.indexOf(shout) {
+            self.items[idx] = shout
+            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        }
+        
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
     }
 }
