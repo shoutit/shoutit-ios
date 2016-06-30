@@ -89,6 +89,24 @@ final class Account {
         }
     }
     
+    var profile: Profile? {
+        if let detailed = user as? DetailedProfile {
+            return Profile.profileWithUser(detailed)
+        }
+        
+        if let basic = user as? Profile {
+            return basic
+        }
+        
+        if let guest = user as? GuestUser {
+            return Profile.profileWithGuest(guest)
+        }
+        
+        assertionFailure("Account Profile is missing. Something went wrong")
+        
+        return nil
+    }
+    
     // convienience
     var isUserAuthenticated: Bool {
         return authData != nil && user != nil

@@ -18,6 +18,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         case TagShouts(tag: Tag)
         case DiscoverItemShouts(discoverItem: DiscoverItem)
         case ConversationShouts(conversation: Conversation)
+        case BookmarkedShouts(user: Profile)
     }
     
     // consts
@@ -54,7 +55,10 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             return discoverItem.title
         case .ConversationShouts:
             return NSLocalizedString("Conversation Shouts", comment: "")
+        case .BookmarkedShouts:
+            return NSLocalizedString("Bookmarked Shouts", comment: "")
         }
+        
     }
     
     func resultsCountString() -> String {
@@ -88,6 +92,9 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         case .ConversationShouts(let conversation):
             let params = PageParams(page: page, pageSize: pageSize)
             return APIChatsService.getShoutsForConversationWithId(conversation.id, params: params)
+        case .BookmarkedShouts(let user):
+            let params = PageParams(page: page, pageSize: pageSize)
+            return APIShoutsService.getBookmarkedShouts(user, params: params)
         }
     }
 }

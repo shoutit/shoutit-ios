@@ -52,6 +52,7 @@ final class VideoProcessor: AnyObject {
             exporter.outputFileType = AVFileTypeMPEG4
             exporter.shouldOptimizeForNetworkUse = true
             
+            
             exporter.exportAsynchronouslyWithCompletionHandler {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     if exporter.status == .Completed {

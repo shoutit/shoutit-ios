@@ -17,6 +17,7 @@ struct Wireframe {
         case HTML = "HTML"
         case Home = "Home"
         case Discover = "Discover"
+        case Bookmarks = "Bookmarks"
         case Credits = "Credits"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
@@ -177,6 +178,10 @@ struct Wireframe {
     
     static func creditPromotingShoutsInfoViewController() -> PromotingShoutsInfoController {
         return storyboard(.Credits).instantiateViewControllerWithIdentifier("PromotingShoutsInfoController") as! PromotingShoutsInfoController
+    }
+    
+    static func bookmarksViewController() -> BookmarksCollectionViewController {
+        return storyboard(.Bookmarks).instantiateViewControllerWithIdentifier("BookmarksCollectionViewController") as! BookmarksCollectionViewController
     }
     
     static func discoverViewController() -> DiscoverCollectionViewController {

@@ -87,6 +87,10 @@ final class APIShoutsService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, responseJsonPath: ["promotion"], headers: ["Accept": "application/json"])
     }
     
+    static func getBookmarkedShouts(profile: Profile, params: PageParams) -> Observable<PagedResults<Shout>> {
+        let url = APIManager.baseURL + "/profiles/\(profile.username)/bookmarks"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+    }
     
     
 }

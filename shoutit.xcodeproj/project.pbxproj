@@ -284,6 +284,7 @@
 		AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */; };
 		AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBB69861C6B359B00D48E4F /* CoreLocation.framework */; };
 		AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
+		AEC5CAFB1D24FBE9009168D7 /* BookmarksFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
 		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
@@ -1263,6 +1264,7 @@
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLGeocoder+RX.swift"; path = "Util/CLGeocoder+RX.swift"; sourceTree = "<group>"; };
+		AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarksFlowController.swift; path = FlowControl/BookmarksFlowController.swift; sourceTree = "<group>"; };
 		AED291751D08676D000F9DAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonS3RequestManager.framework; path = ../Carthage/Build/iOS/AmazonS3RequestManager.framework; sourceTree = "<group>"; };
 		AED291771D08676D000F9DAF /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ../Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
@@ -4080,6 +4082,7 @@
 				AEECB95D1C6490D800276E4A /* LocationFlowController.swift */,
 				B2D19C531D1D3F30007CB6DF /* PagesFlowController.swift */,
 				B2CA5C551D1D84CB009E164E /* AdminsFlowController.swift */,
+				AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */,
 			);
 			name = FlowControllers;
 			sourceTree = "<group>";
@@ -5665,6 +5668,7 @@
 				B20F47CE1CAEDAF70091899C /* LabeledSelectButtonFilterTableViewCell.swift in Sources */,
 				2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */,
 				AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */,
+				AEC5CAFB1D24FBE9009168D7 /* BookmarksFlowController.swift in Sources */,
 				B2AB73EA1CB567BA00C2C0C0 /* SettingsFormViewController.swift in Sources */,
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,
 				B2FA5CD31D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift in Sources */,
