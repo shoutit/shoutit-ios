@@ -11,7 +11,7 @@ import ShoutitKit
 
 enum ShoutDetailShoutImageViewModel {
     case Image(url: NSURL)
-    case NoContent(message: String)
+    case NoContent(image: UIImage)
     case Loading
     case Error(error: ErrorType)
     case Movie(video: Video)

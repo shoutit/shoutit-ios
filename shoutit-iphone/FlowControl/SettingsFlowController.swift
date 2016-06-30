@@ -59,6 +59,26 @@ final class SettingsFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
+    private func showLinkedAccountsSettings() {
+        let controller = Wireframe.settingsViewController()
+        controller.models = self.linkedAccountsOptions()
+        controller.title = NSLocalizedString("Linked Accounts", comment: "")
+        controller.ignoreMenuButton = true
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
+    private func showFacebookLinked() {
+        
+    }
+    
+    private func showFacebookPageLinked() {
+        
+    }
+    
+    private func showGoogleLinked() {
+        
+    }
+    
     private func settingsOptions() -> Variable<[SettingsOption]> {
         return Variable([
             SettingsOption(name: NSLocalizedString("Account", comment: "Settings cell title")) {[unowned self] in
@@ -74,28 +94,48 @@ final class SettingsFlowController: FlowController {
     }
     
     private func accountSettingsOptions() -> Variable<[SettingsOption]> {
-        var options: [SettingsOption] =
-            [
-                SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title")) {[unowned self] in
-                    self.showEmailSettings()
-                },
-                SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
-                    
-                    do {
-                        try Account.sharedInstance.logout()
-                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
-                    } catch let error {
-                        self.navigationController.showError(error)
-                    }
+        var options : [SettingsOption] = []
+        
+        
+        options.append(SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title")) {[unowned self] in
+            self.showEmailSettings()
+        })
+        
+
+        options.append(SettingsOption(name: NSLocalizedString("Linked Accounts", comment: "Settings cell title")) {[unowned self] in
+            self.showLinkedAccountsSettings()
+        })
+        
+        options.append(SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
+                
+                do {
+                    try Account.sharedInstance.logout()
+                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+                } catch let error {
+                    self.navigationController.showError(error)
                 }
-            ]
+        })
         
         if case .Logged(_)? = Account.sharedInstance.loginState {
             options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title")) {[unowned self] in
-                self.showPasswordSettings()
-                }, atIndex: 1)
+                    self.showPasswordSettings()
+            }, atIndex: 1)
         }
         
         return Variable(options)
+    }
+    
+    private func linkedAccountsOptions() -> Variable<[SettingsOption]> {
+        return Variable([
+            SettingsOption(name: NSLocalizedString("Facebook", comment: "Settings cell title")) {[unowned self] in
+                self.showFacebookLinked()
+            },
+            SettingsOption(name: NSLocalizedString("Facebook Page", comment: "Settings cell title")) {[unowned self] in
+                self.showFacebookPageLinked()
+            },
+            SettingsOption(name: NSLocalizedString("Google", comment: "Settings cell title")) {[unowned self] in
+                self.showGoogleLinked()
+            }
+            ])
     }
 }

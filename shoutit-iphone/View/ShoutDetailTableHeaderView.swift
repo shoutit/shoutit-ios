@@ -22,6 +22,7 @@ final class ShoutDetailTableHeaderView: UIView {
     @IBOutlet weak var addToCartButton: CustomUIButton!
     @IBOutlet weak var showProfileButton: UIButton!
     
+    
     // constraints
     @IBOutlet weak var titleLabelToBottomConstraints: NSLayoutConstraint!
     
