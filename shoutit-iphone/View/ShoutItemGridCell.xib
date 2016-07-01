@@ -32,7 +32,7 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joe-rP-fqw">
                                 <rect key="frame" x="4" y="220" width="77" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" white="0.53000000000000003" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="$44 USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfV-T6-UuN">
@@ -61,18 +61,12 @@ Hat, Chunky Textured Knit Hat and more text</string>
                             <constraint firstAttribute="trailing" secondItem="gT2-mx-Rmr" secondAttribute="trailing" id="XCQ-21-NPA"/>
                             <constraint firstAttribute="bottom" secondItem="gT2-mx-Rmr" secondAttribute="bottom" constant="43" id="al6-aQ-uMD"/>
                             <constraint firstAttribute="trailing" secondItem="ex5-Jc-dfF" secondAttribute="trailing" constant="4" id="eex-6u-HBw"/>
-                            <constraint firstItem="ex5-Jc-dfF" firstAttribute="top" secondItem="gT2-mx-Rmr" secondAttribute="bottom" constant="3" id="ewY-ig-i7m"/>
                             <constraint firstItem="joe-rP-fqw" firstAttribute="top" secondItem="ex5-Jc-dfF" secondAttribute="bottom" id="oxW-Yy-INK"/>
                             <constraint firstItem="ex5-Jc-dfF" firstAttribute="leading" secondItem="wCq-Rd-hRc" secondAttribute="leading" constant="4" id="rna-kN-IeA"/>
                             <constraint firstItem="gT2-mx-Rmr" firstAttribute="top" secondItem="wCq-Rd-hRc" secondAttribute="top" id="t2c-tf-8Vo"/>
                             <constraint firstAttribute="trailing" secondItem="NfV-T6-UuN" secondAttribute="trailing" constant="4" id="xUw-dN-6x9"/>
                             <constraint firstItem="7yo-ep-sIT" firstAttribute="trailing" secondItem="gT2-mx-Rmr" secondAttribute="trailing" id="zOV-yG-hmw"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ewY-ig-i7m"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
