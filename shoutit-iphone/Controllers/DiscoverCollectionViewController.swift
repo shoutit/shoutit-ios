@@ -8,16 +8,21 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class DiscoverCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var viewModel : DiscoverViewModel!
     var disposeBag = DisposeBag()
     weak var flowDelegate: FlowController?
+    
+    var bookmarksDisposeBag : DisposeBag?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bookmarksDisposeBag = DisposeBag()
+        
         registerNibs()
         loadItems()
     }
@@ -95,6 +100,8 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             if let element = self.viewModel?.shoutsItems()[indexPath.item] {
                 let shoutCell = cell as! SHShoutItemCell
                 shoutCell.bindWith(Shout: element)
+                shoutCell.bookmarkButton?.tag = indexPath.item
+                shoutCell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
             }
         }
         
@@ -179,5 +186,38 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             return
         }
         self.flowDelegate?.showShoutsForDiscoverItem(discoverItem)
+    }
+}
+
+extension DiscoverCollectionViewController : Bookmarking {
+    
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        return self.viewModel?.shoutsItems()[indexPath.item]
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        if let idx = self.viewModel?.shoutsItems().indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 1)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        guard let indexPath = indexPathForShout(shout) else {
+            return
+        }
+        
+        self.viewModel?.replaceShout(shout)
+        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
     }
 }

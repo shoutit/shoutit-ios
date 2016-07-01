@@ -61,6 +61,7 @@ extension SHShoutItemCell {
     
     override func prepareForReuse() {
         self.shoutImage?.image = nil
+        self.bookmarkButton?.hidden = false
     }
     
 }

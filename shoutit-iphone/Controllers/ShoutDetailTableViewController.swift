@@ -124,6 +124,14 @@ final class ShoutDetailTableViewController: UITableViewController {
         }
     }
     
+    func updateBookmarkButtonState() {
+        if viewModel.shout.isBookmarked {
+            self.bookmarkButton.setImage(UIImage(named: "bookmark_on"), forState: .Normal)
+        } else {
+            self.bookmarkButton.setImage(UIImage(named: "bookmark_off"), forState: .Normal)
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.reloadShoutDetails()
@@ -166,6 +174,7 @@ final class ShoutDetailTableViewController: UITableViewController {
         }
         
         updateLikeButtonState()
+        updateBookmarkButtonState()
     }
     
     // MARK: - Navigation
@@ -356,7 +365,43 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     
     
     @IBAction func bookmarkButtonAction(sender: UIButton) {
-        
+        if viewModel.shout.isBookmarked {
+            removeFromBookmarks()
+        } else {
+            bookMarkShout()
+        }
+    }
+    
+    func bookMarkShout() {
+        BookmarkManager.addShoutToBookmarks(viewModel.shout).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let success):
+                self?.showSuccessMessage(success.message)
+                if let newShout = self?.viewModel.shout.copyWithBookmark(true) {
+                    self?.viewModel.reloadShout(newShout)
+                }
+            case .Error(let error):
+                self?.showError(error)
+            default:
+                break
+            }
+            }.addDisposableTo(disposeBag)
+    }
+    
+    func removeFromBookmarks() {
+        BookmarkManager.removeFromBookmarks(viewModel.shout).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let success):
+                self?.showSuccessMessage(success.message)
+                if let newShout = self?.viewModel.shout.copyWithBookmark(false) {
+                    self?.viewModel.reloadShout(newShout)
+                }
+            case .Error(let error):
+                self?.showError(error)
+            default:
+                break
+            }
+        }.addDisposableTo(disposeBag)
     }
     
 }

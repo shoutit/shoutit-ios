@@ -43,7 +43,7 @@ extension Bookmarking where Self : UICollectionViewController {
         let wShout = shout
         
         guard let bookmarksDisposeBag = bookmarksDisposeBag else {
-            fatalError("Dispose Bag is Missing")
+            return
         }
         
         if shout.isBookmarked {

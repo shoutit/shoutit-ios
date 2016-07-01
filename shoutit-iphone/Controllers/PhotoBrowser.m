@@ -82,16 +82,25 @@
     
     MWPhoto *photo = [self.delegate photoBrowser:self photoAtIndex:self.currentIndex];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
-        [self savePhotoWithPhotosFramework: photo];
-        return;
-    }
-    
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     if ([photo isVideo]) {
-        [library writeVideoAtPathToSavedPhotosAlbum:photo.videoURL completionBlock:^(NSURL *assetURL, NSError *error) {
-            NSLog(@"asset: %@, error: %@", assetURL, error);
+        
+        NSURL *sourceURL = photo.videoURL;
+        
+        NSURLSessionTask *download = [[NSURLSession sharedSession] downloadTaskWithURL:sourceURL completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+            NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+            NSURL *tempURL = [documentsURL URLByAppendingPathComponent:[sourceURL lastPathComponent]];
+            [[NSFileManager defaultManager] moveItemAtURL:location toURL:tempURL error:nil];
+            
+            [library writeVideoAtPathToSavedPhotosAlbum:tempURL completionBlock:^(NSURL *assetURL, NSError *err) {
+                NSLog(@"asset: %@, error: %@", assetURL, error);
+            }];
+            
         }];
+        
+        [download resume];
+        
+        
     } else if ([photo image]) {
     
         [library writeImageToSavedPhotosAlbum:photo.image.CGImage metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
@@ -106,12 +115,12 @@
                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                 if (image) {
                                     // do something with image
-                                    [library writeImageToSavedPhotosAlbum:image.CGImage metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+                                    [library writeImageToSavedPhotosAlbum:image.CGImage metadata:nil completionBlock:^(NSURL *assetURL, NSError *errr) {
                                         NSLog(@"asset: %@, error: %@", assetURL, error);
                                     }];
                                     
                                 }
-                            }];
+        }];
     }
 }
 

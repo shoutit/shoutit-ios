@@ -99,6 +99,23 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         }
     }
     
+    func replaceShout(shout: Shout) {
+        do {
+        if let result = try self.shouts.value() {
+            var copy = result
+            
+            if let idx = copy.indexOf(shout) {
+                copy[idx] = shout
+                self.shouts.onNext(copy)
+            }
+            
+            
+        }
+        } catch {
+         
+        }
+    }
+    
     func headerSize(collectionView: UICollectionView, section: Int) -> CGSize {
         if section == 1 {
             return self.shoutsItems().count > 0 ? CGSize(width: collectionView.bounds.width - 20.0, height: 44.0) : CGSizeZero
