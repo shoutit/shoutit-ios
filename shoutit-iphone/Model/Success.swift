@@ -20,5 +20,3 @@ extension Success: Decodable {
             <^> j <| "success"
     }
 }
-
-
