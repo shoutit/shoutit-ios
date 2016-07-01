@@ -288,6 +288,7 @@
 		AEC5CAFE1D251387009168D7 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */; };
 		AEC5CB001D251526009168D7 /* ShoutItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC5CAFF1D251526009168D7 /* ShoutItemListCell.xib */; };
 		AEC5CB021D25153D009168D7 /* ShoutItemGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC5CB011D25153D009168D7 /* ShoutItemGridCell.xib */; };
+		AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
 		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
@@ -1271,6 +1272,7 @@
 		AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkManager.swift; path = Other/BookmarkManager.swift; sourceTree = "<group>"; };
 		AEC5CAFF1D251526009168D7 /* ShoutItemListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutItemListCell.xib; path = View/ShoutItemListCell.xib; sourceTree = "<group>"; };
 		AEC5CB011D25153D009168D7 /* ShoutItemGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutItemGridCell.xib; path = View/ShoutItemGridCell.xib; sourceTree = "<group>"; };
+		AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LikeButton.swift; path = View/LikeButton.swift; sourceTree = "<group>"; };
 		AED291751D08676D000F9DAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonS3RequestManager.framework; path = ../Carthage/Build/iOS/AmazonS3RequestManager.framework; sourceTree = "<group>"; };
 		AED291771D08676D000F9DAF /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ../Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
@@ -3604,6 +3606,7 @@
 				AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */,
 				AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */,
 				2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */,
+				AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -5667,6 +5670,7 @@
 				B2082D771C6298D8007EB2FB /* MaterialTextField+Validation.swift in Sources */,
 				B2F719DC1D0EF2EC002C1D74 /* TransformType.swift in Sources */,
 				B2F524841C9C7F5F00EA622F /* SearchShoutsResultsCategoriesHeaderSupplementeryView.swift in Sources */,
+				AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */,
 				B2B5D03C1C808A4E0068A6AF /* APIGenericService.swift in Sources */,
 				B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */,
 				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,

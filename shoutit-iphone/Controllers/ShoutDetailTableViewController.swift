@@ -13,7 +13,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
     @IBOutlet var headerView: ShoutDetailTableHeaderView!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: LikeButton!
     @IBOutlet weak var bookmarkButton: UIButton!
     
     // view model
@@ -113,6 +113,15 @@ final class ShoutDetailTableViewController: UITableViewController {
         
         // display data
         hydrateHeader()
+        
+    }
+    
+    func updateLikeButtonState() {
+        if viewModel.shout.isLiked {
+            self.likeButton.setLiked()
+        } else {
+            self.likeButton.setUnliked()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -155,6 +164,8 @@ final class ShoutDetailTableViewController: UITableViewController {
             headerView.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width, height: size.height)
             tableView.tableHeaderView = headerView
         }
+        
+        updateLikeButtonState()
     }
     
     // MARK: - Navigation
@@ -284,7 +295,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.bounds.width - 20, height: 120)
     }
     
-    @IBAction func likeButtonAction(sender: UIButton) {
+    @IBAction func likeButtonAction(sender: LikeButton) {
         
         if viewModel.shout.isLiked {
             unlikeShout()
@@ -295,29 +306,40 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func likeShout() {
-        APIShoutsService.likeShout(viewModel.shout).subscribe { (event) in
+        APIShoutsService.likeShout(viewModel.shout).subscribe { [weak self] (event) in
             switch event {
             case .Next(let success):
-                self.showSuccessMessage(success.message)
+                self?.showSuccessMessage(success.message)
+                
+                if let likedShout = self?.viewModel.shout.copyWithLiked(true) {
+                    self?.viewModel.reloadShout(likedShout)
+                    self?.updateLikeButtonState()
+                }
             case .Error(let error):
-                self.showError(error)
+                self?.showError(error)
             default: break
                 
             }
-        }
+        }.addDisposableTo(disposeBag)
     }
     
     func unlikeShout() {
-        APIShoutsService.unlikeShout(viewModel.shout).subscribe { (event) in
+        APIShoutsService.unlikeShout(viewModel.shout).subscribe { [weak self] (event) in
             switch event {
             case .Next(let success):
-                self.showSuccessMessage(success.message)
+                self?.showSuccessMessage(success.message)
+                
+                if let likedShout = self?.viewModel.shout.copyWithLiked(false) {
+                    self?.viewModel.reloadShout(likedShout)
+                    self?.updateLikeButtonState()
+                }
+                
             case .Error(let error):
-                self.showError(error)
+                self?.showError(error)
             default: break
                 
             }
-        }
+        }.addDisposableTo(disposeBag)
     }
     
     

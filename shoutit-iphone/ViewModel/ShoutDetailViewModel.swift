@@ -50,6 +50,10 @@ final class ShoutDetailViewModel {
     
     // MARK: - Actions
     
+    func reloadShout(newShout: Shout) {
+        shout = newShout
+    }
+    
     func reloadShoutDetails() {
         
         prepareCellViewModelsForLoading()

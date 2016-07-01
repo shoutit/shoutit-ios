@@ -109,7 +109,7 @@ final class APIShoutsService {
     }
     
     static func unlikeShout(shout: Shout) -> Observable<Success>{
-        let url = shoutsURL + "/\(shout.id)/unlike"
+        let url = shoutsURL + "/\(shout.id)/like"
         return APIGenericService.requestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .URL, responseJsonPath: nil, headers: ["Accept": "application/json"])
 
     }

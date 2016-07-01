@@ -14,6 +14,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self changeBackButtonImage];
+    [self changeRightBarButtonItem];
+}
+
+- (void)changeBackButtonImage {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     
     if ([UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
@@ -28,6 +33,10 @@
     UIBarButtonItem *barbutton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.leftBarButtonItem = barbutton;
+}
+
+- (void)changeRightBarButtonItem {
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
