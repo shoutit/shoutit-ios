@@ -39,8 +39,6 @@ class ProfilesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        InviteFriends.setTitle(NSLocalizedString("Friends not on the list? Send them an invite!", comment: "Ti invite FB friends"), forState: UIControlState.Normal)
-        
         precondition(viewModel != nil)
         assert(eventHandler != nil)
 

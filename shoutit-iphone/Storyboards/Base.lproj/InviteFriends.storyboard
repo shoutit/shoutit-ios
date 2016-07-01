@@ -336,18 +336,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="hai-cP-auI">
-                            <rect key="frame" x="0.0" y="111.5" width="600" height="40"/>
+                            <rect key="frame" x="0.0" y="111.5" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23R-hp-nGH">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="iwG-MY-wAN"/>
+                                        <constraint firstAttribute="height" constant="44" id="jza-sM-YTh"/>
                                     </constraints>
                                     <state key="normal">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="iwG-MY-wAN"/>
+                                        </mask>
+                                    </variation>
                                     <connections>
                                         <action selector="inviteFriendsAction:" destination="ztx-nu-eOw" eventType="touchUpInside" id="nLH-89-hop"/>
                                     </connections>
