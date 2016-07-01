@@ -56,6 +56,7 @@ extension SHShoutItemCell {
         self.shoutSubtitle?.hidden = true
         self.shoutPrice?.hidden = true
         self.name?.hidden = true
+        self.bookmarkButton?.hidden = true
     }
     
     override func prepareForReuse() {

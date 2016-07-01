@@ -7,6 +7,8 @@
 //
 
 #import "PhotoBrowser.h"
+#import <WebImage/WebImage.h>
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation PhotoBrowser
 
@@ -55,6 +57,62 @@
 
 - (BOOL)ignoresToggleMenu {
     return true;
+}
+
+- (void)shareAction:(UIButton *)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Media Options", nil) message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Save", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self saveCurrentPhoto];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)savePhotoWithPhotosFramework:(MWPhoto *)photo {
+    
+}
+
+- (void)saveCurrentPhoto {
+    
+    MWPhoto *photo = [self.delegate photoBrowser:self photoAtIndex:self.currentIndex];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        [self savePhotoWithPhotosFramework: photo];
+        return;
+    }
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    if ([photo isVideo]) {
+        [library writeVideoAtPathToSavedPhotosAlbum:photo.videoURL completionBlock:^(NSURL *assetURL, NSError *error) {
+            NSLog(@"asset: %@, error: %@", assetURL, error);
+        }];
+    } else if ([photo image]) {
+    
+        [library writeImageToSavedPhotosAlbum:photo.image.CGImage metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+            NSLog(@"asset: %@, error: %@", assetURL, error);
+        }];
+    } else {
+        
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        [manager downloadImageWithURL:photo.photoURL
+                              options:0
+                             progress:nil
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                if (image) {
+                                    // do something with image
+                                    [library writeImageToSavedPhotosAlbum:image.CGImage metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+                                        NSLog(@"asset: %@, error: %@", assetURL, error);
+                                    }];
+                                    
+                                }
+                            }];
+    }
 }
 
 @end

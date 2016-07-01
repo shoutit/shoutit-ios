@@ -177,7 +177,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     }
 }
 
-extension ShoutDetailTableViewController {
+extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
     private func showMediaPreviewWithSelectedMedia(selectedMedia: ShoutDetailShoutImageViewModel) {
         guard selectedMedia.canShowPreview() else {
             return
@@ -185,6 +185,8 @@ extension ShoutDetailTableViewController {
         
         let photoBrowser = PhotoBrowser(photos: imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()})
 
+        photoBrowser.delegate = self
+        
         let idx : UInt
         
         if self.photosPageViewController.pageControl.currentPage > 0 {
@@ -196,6 +198,16 @@ extension ShoutDetailTableViewController {
         photoBrowser.setCurrentPhotoIndex(idx)
         
         self.navigationController?.showViewController(photoBrowser, sender: nil)
+    }
+    
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(imagesDataSource.viewModel.imagesViewModels.count)
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        let photos = imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()}
+        
+        return photos[Int(index)]
     }
 }
 
