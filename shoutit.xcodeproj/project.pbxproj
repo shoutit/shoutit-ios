@@ -863,6 +863,9 @@
 		B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */; };
 		BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */; };
 		BF0B909F1D23F6EB006F8D8D /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */; };
+		BFA5AB671D2686B400778FC7 /* AdItemGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */; };
+		BFA5AB6C1D2694EA00778FC7 /* AdItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */; };
+		BFA5AB6F1D26A09000778FC7 /* AdItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5AB6D1D269FA000778FC7 /* AdItemCell.swift */; };
 		D7693A32243D3CABF701C656 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3825904D80F56CB69A751C /* BuddyBuildSDK.framework */; };
 		D9F64A74FDC3884B1ACF0627 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89CDA22E17F2A844DE048AE /* CoreMedia.framework */; };
 		E677ABF59E0B8081FF38E269 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F321E525C691DDCE65E75 /* QuartzCore.framework */; };
@@ -1988,6 +1991,9 @@
 		B89CDA22E17F2A844DE048AE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteContactsViewController.swift; path = Controllers/InviteContactsViewController.swift; sourceTree = "<group>"; };
 		BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
+		BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdItemGridCell.xib; path = View/AdItemGridCell.xib; sourceTree = "<group>"; };
+		BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdItemListCell.xib; path = View/AdItemListCell.xib; sourceTree = "<group>"; };
+		BFA5AB6D1D269FA000778FC7 /* AdItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdItemCell.swift; path = View/AdItemCell.swift; sourceTree = "<group>"; };
 		C89F2B1851D9065D1C86D52B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		D68426E4FF3671D9E8A8EFD7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F8317A321EB92E1F40C2A541 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -3587,6 +3593,7 @@
 		B227BFF71C57D9C8003A2D76 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFA5AB681D26910000778FC7 /* AdClasses */,
 				B24E29FB1CBD246800328503 /* TextEntry */,
 				B2778FB11CAD73EA00BBDD5F /* SelectButtons */,
 				B20EDBCA1CAABD0000AD9F2A /* XibBackedClasses */,
@@ -4409,6 +4416,8 @@
 				B2E53E991CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib */,
 				AEC5CAFF1D251526009168D7 /* ShoutItemListCell.xib */,
 				AEC5CB011D25153D009168D7 /* ShoutItemGridCell.xib */,
+				BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */,
+				BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */,
 			);
 			name = CollectionViewCommonCells;
 			sourceTree = "<group>";
@@ -4912,6 +4921,14 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		BFA5AB681D26910000778FC7 /* AdClasses */ = {
+			isa = PBXGroup;
+			children = (
+				BFA5AB6D1D269FA000778FC7 /* AdItemCell.swift */,
+			);
+			name = AdClasses;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -5172,6 +5189,7 @@
 				B2F7196D1D0EEEF5002C1D74 /* ImageSelectedSmallOff@3x.png in Resources */,
 				B2F7197D1D0EEEF5002C1D74 /* UIBarButtonItemGrid.png in Resources */,
 				B2D029451D1C1FF800A29D8B /* Pages.storyboard in Resources */,
+				BFA5AB6C1D2694EA00778FC7 /* AdItemListCell.xib in Resources */,
 				B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */,
 				B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
@@ -5189,6 +5207,7 @@
 				B2CA5C4C1D1D7DC9009E164E /* Admins.storyboard in Resources */,
 				B2F719761D0EEEF5002C1D74 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				B2F719661D0EEEF5002C1D74 /* ImageSelectedOff@2x.png in Resources */,
+				BFA5AB671D2686B400778FC7 /* AdItemGridCell.xib in Resources */,
 				B2F7193E1D0EEDA9002C1D74 /* GoogleSignIn.bundle in Resources */,
 				B27230681CE0F913003547EA /* OutgoingProfileCell.xib in Resources */,
 				AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */,
@@ -5380,6 +5399,7 @@
 				B24E29FD1CBD24A100328503 /* FormTextView.swift in Sources */,
 				B22CACD91CBD506600316E4B /* ConversationPictureCell.swift in Sources */,
 				B2F71A2B1D0EF643002C1D74 /* PTJSON.m in Sources */,
+				BFA5AB6F1D26A09000778FC7 /* AdItemCell.swift in Sources */,
 				B2C729B71C62216A006F7D29 /* APIManager.swift in Sources */,
 				24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */,
 				B2C729CF1C62224A006F7D29 /* AboutDisplayable.swift in Sources */,
