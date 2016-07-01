@@ -43,6 +43,7 @@ public struct Shout: Decodable, Hashable, Equatable {
     public let promotion: Promotion?
     
     public let isBookmarked: Bool
+    public let isLiked: Bool
     
     public static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -79,6 +80,7 @@ public struct Shout: Decodable, Hashable, Equatable {
             <*> j <|? "mobile"
             <*> j <|? "promotion"
             <*> j <| "is_bookmarked"
+            <*> j <| "is_liked"
         return h
     }
     
@@ -167,10 +169,14 @@ public enum ShoutType : String {
 
 public extension Shout {
     public func copyShoutWithPromotion(newPromotion: Promotion) -> Shout {
-        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion, isBookmarked: self.isBookmarked)
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion, isBookmarked: self.isBookmarked, isLiked: self.isLiked)
     }
     
     public func copyWithBookmark(bookmarked: Bool) -> Shout? {
-        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: self.promotion, isBookmarked: bookmarked)
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: self.promotion, isBookmarked: bookmarked, isLiked: self.isLiked)
+    }
+    
+    public func copyWithLiked(liked: Bool) -> Shout? {
+        return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: self.promotion, isBookmarked: self.isBookmarked, isLiked: liked)
     }
 }

@@ -285,6 +285,16 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
     @IBAction func likeButtonAction(sender: UIButton) {
+        
+        if viewModel.shout.isLiked {
+            unlikeShout()
+        } else {
+            likeShout()
+        }
+
+    }
+    
+    func likeShout() {
         APIShoutsService.likeShout(viewModel.shout).subscribe { (event) in
             switch event {
             case .Next(let success):
@@ -292,9 +302,12 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
             case .Error(let error):
                 self.showError(error)
             default: break
-            
+                
             }
         }
+    }
+    
+    func unlikeShout() {
         APIShoutsService.unlikeShout(viewModel.shout).subscribe { (event) in
             switch event {
             case .Next(let success):
@@ -306,6 +319,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
             }
         }
     }
+    
     
     @IBAction func bookmarkButtonAction(sender: UIButton) {
         
