@@ -30,6 +30,7 @@ final class Account {
     lazy var twilioManager: Twilio = {[unowned self] in Twilio(account: self) }()
     lazy var pusherManager: PusherClient = {[unowned self] in PusherClient(account: self) }()
     lazy var facebookManager: FacebookManager = {[unowned self] in FacebookManager(account: self) }()
+    lazy var linkedAccountsManager: LinkedAccountsManager = {[unowned self] in LinkedAccountsManager(account: self) }()
     lazy var userDirectory: String = self.createUserDirectory()
     
     // private consts
