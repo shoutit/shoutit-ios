@@ -8,6 +8,7 @@
 
 import UIKit
 import ShoutitKit
+import FBAudienceNetwork
 
 class SHShoutItemCell: UICollectionViewCell {
     

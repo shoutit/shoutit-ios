@@ -20,6 +20,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     let refreshControl = UIRefreshControl()
     private var numberOfReloads = 0
     
+    let adManager = AdManager()
     
     var bookmarksDisposeBag : DisposeBag?
     
@@ -29,7 +30,11 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     
     var selectedItem = BehaviorSubject<Shout?>(value: nil)
     
-    var items : [Shout] = []
+    var items : [Shout]? = [] {
+        didSet {
+            adManager.handleNewShouts(items)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +48,17 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         self.collectionView?.addSubview(refreshControl)
         
         registerCells()
+        
+        adManager.reloadCollection = {
+            self.collectionView?.reloadData()
+        }
     }
     
     func registerCells() {
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.ListReuseIdentifier.rawValue)
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.GridReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,24 +82,39 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
-    
-        let element = items[indexPath.item]
         
-        cell.bindWith(Shout: element)
-        cell.bookmarkButton?.tag = indexPath.item
-        cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
+        let element = adManager.items()[indexPath.item]
+        
+        if case let .Shout(shout) = element {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
+            cell.bindWith(Shout: shout)
+            cell.bookmarkButton?.tag = indexPath.item
+            cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
             
-        return cell
+            return cell
+        }
+        
+        if case let .Ad(ad) = element {
+            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
+            adCell.bindWithAd(ad)
+            
+            return adCell
+        }
+        
+        fatalError("Create cell for particular object")
+        
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let element = items[indexPath.item]
-        self.selectedItem.on(.Next(element))
+        let element = adManager.items()[indexPath.item]
+        
+        if case let .Shout(shout) = element {
+            self.selectedItem.on(.Next(shout))
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        return adManager.items().count
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -121,8 +147,10 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         }.addDisposableTo(disposeBag)
         
         viewModel.displayable.selectedIndexPath.asObservable().subscribeNext { [weak self] (indexPath) -> Void in
-            if let selectedIndexPath = indexPath, element = self?.items[selectedIndexPath.item] {
-                self?.selectedItem.on(.Next(element))
+            if let selectedIndexPath = indexPath, element = self?.adManager.items()[selectedIndexPath.item]{
+                if case let .Shout(shout) = element {
+                    self?.selectedItem.on(.Next(shout))
+                }
             }
         }.addDisposableTo(selectionDisposeBag)
     }
@@ -160,9 +188,9 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         
         viewModel.dataSubject.subscribeNext({ [weak self] (shouts) -> Void in
             
-            shouts.each({ (shout) -> () in
-                self?.items.append(shout)
-            })
+            if let oldShouts = self?.items {
+                self?.items = shouts + oldShouts
+            }
             
             if let itms = self?.items {
                 self?.items = itms.unique()
@@ -209,7 +237,13 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
 extension HomeShoutsCollectionViewController : Bookmarking {
     
     func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
-        return self.items[indexPath.item]
+        let item = self.adManager.items()[indexPath.item]
+
+        guard case let .Shout(shout) = item else {
+            return nil
+        }
+        
+        return shout
     }
     
     func indexPathForShout(shout: Shout?) -> NSIndexPath? {
@@ -217,7 +251,7 @@ extension HomeShoutsCollectionViewController : Bookmarking {
             return nil
         }
         
-        if let idx = self.items.indexOf(shout) {
+        if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
             return NSIndexPath(forItem: idx, inSection: 0)
         }
         
@@ -225,13 +259,12 @@ extension HomeShoutsCollectionViewController : Bookmarking {
     }
     
     func replaceShoutAndReload(shout: Shout) {
-        guard let indexPath = indexPathForShout(shout) else {
+        guard indexPathForShout(shout) != nil else {
             return
         }
         
-        if let idx = self.items.indexOf(shout) {
-            self.items[idx] = shout
-            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
+            self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
         }
         
     }
