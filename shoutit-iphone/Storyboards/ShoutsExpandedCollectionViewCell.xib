@@ -111,6 +111,14 @@
                             <constraint firstAttribute="trailing" secondItem="Vv4-SH-Exg" secondAttribute="trailing" constant="5" placeholder="YES" id="stO-ch-WCI"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFj-bJ-aI5">
+                        <rect key="frame" x="350" y="-6" width="34" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="5J3-zf-uU6"/>
+                            <constraint firstAttribute="height" constant="29" id="avY-jc-HH3"/>
+                        </constraints>
+                        <state key="normal" image="bookmark_off"/>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -118,10 +126,13 @@
                 <constraint firstItem="3e7-EG-kt3" firstAttribute="leading" secondItem="22M-RQ-srp" secondAttribute="leading" id="ABs-mx-4Zo"/>
                 <constraint firstAttribute="bottom" secondItem="3e7-EG-kt3" secondAttribute="bottom" id="Bt3-QA-qJu"/>
                 <constraint firstAttribute="trailing" secondItem="3e7-EG-kt3" secondAttribute="trailing" id="m6e-Wq-Msa"/>
+                <constraint firstItem="CFj-bJ-aI5" firstAttribute="top" secondItem="3e7-EG-kt3" secondAttribute="top" constant="-6" id="qIZ-YM-ffX"/>
+                <constraint firstItem="CFj-bJ-aI5" firstAttribute="trailing" secondItem="3e7-EG-kt3" secondAttribute="trailing" id="tDQ-AR-9Ns"/>
                 <constraint firstItem="3e7-EG-kt3" firstAttribute="top" secondItem="22M-RQ-srp" secondAttribute="top" id="uwd-cJ-FvG"/>
             </constraints>
             <size key="customSize" width="384" height="110"/>
             <connections>
+                <outlet property="bookmarkButton" destination="CFj-bJ-aI5" id="0al-aZ-ZYL"/>
                 <outlet property="imageView" destination="NBY-TC-c2d" id="K8r-YQ-G0x"/>
                 <outlet property="messageIconImageView" destination="aOt-dv-DUg" id="pqi-ck-gqO"/>
                 <outlet property="priceLabel" destination="Vv4-SH-Exg" id="EDb-FJ-sJ7"/>
@@ -137,6 +148,7 @@
     </objects>
     <resources>
         <image name="US" width="64" height="64"/>
+        <image name="bookmark_off" width="20" height="29"/>
         <image name="shoutListMessage" width="25" height="25"/>
     </resources>
 </document>

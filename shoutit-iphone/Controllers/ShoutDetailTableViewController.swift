@@ -13,6 +13,8 @@ final class ShoutDetailTableViewController: UITableViewController {
     
     // UI
     @IBOutlet var headerView: ShoutDetailTableHeaderView!
+    @IBOutlet weak var likeButton: LikeButton!
+    @IBOutlet weak var bookmarkButton: UIButton!
     
     // view model
     var viewModel: ShoutDetailViewModel! {
@@ -111,6 +113,23 @@ final class ShoutDetailTableViewController: UITableViewController {
         
         // display data
         hydrateHeader()
+        
+    }
+    
+    func updateLikeButtonState() {
+        if viewModel.shout.isLiked {
+            self.likeButton.setLiked()
+        } else {
+            self.likeButton.setUnliked()
+        }
+    }
+    
+    func updateBookmarkButtonState() {
+        if viewModel.shout.isBookmarked {
+            self.bookmarkButton.setImage(UIImage(named: "bookmark_on"), forState: .Normal)
+        } else {
+            self.bookmarkButton.setImage(UIImage(named: "bookmark_off"), forState: .Normal)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -153,6 +172,9 @@ final class ShoutDetailTableViewController: UITableViewController {
             headerView.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width, height: size.height)
             tableView.tableHeaderView = headerView
         }
+        
+        updateLikeButtonState()
+        updateBookmarkButtonState()
     }
     
     // MARK: - Navigation
@@ -164,7 +186,7 @@ final class ShoutDetailTableViewController: UITableViewController {
     }
 }
 
-extension ShoutDetailTableViewController {
+extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
     private func showMediaPreviewWithSelectedMedia(selectedMedia: ShoutDetailShoutImageViewModel) {
         guard selectedMedia.canShowPreview() else {
             return
@@ -172,6 +194,8 @@ extension ShoutDetailTableViewController {
         
         let photoBrowser = PhotoBrowser(photos: imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()})
 
+        photoBrowser.delegate = self
+        
         let idx : UInt
         
         if self.photosPageViewController.pageControl.currentPage > 0 {
@@ -183,6 +207,16 @@ extension ShoutDetailTableViewController {
         photoBrowser.setCurrentPhotoIndex(idx)
         
         self.navigationController?.showViewController(photoBrowser, sender: nil)
+    }
+    
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(imagesDataSource.viewModel.imagesViewModels.count)
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        let photos = imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()}
+        
+        return photos[Int(index)]
     }
 }
 
@@ -281,5 +315,93 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
         // placeholder size
         return CGSize(width: collectionView.bounds.width - 20, height: 120)
     }
-}
+    
+    @IBAction func likeButtonAction(sender: LikeButton) {
+        
+        if viewModel.shout.isLiked {
+            unlikeShout()
+        } else {
+            likeShout()
+        }
 
+    }
+    
+    func likeShout() {
+        APIShoutsService.likeShout(viewModel.shout).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let success):
+                self?.showSuccessMessage(success.message)
+                
+                if let likedShout = self?.viewModel.shout.copyWithLiked(true) {
+                    self?.viewModel.reloadShout(likedShout)
+                    self?.updateLikeButtonState()
+                }
+            case .Error(let error):
+                self?.showError(error)
+            default: break
+                
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+    func unlikeShout() {
+        APIShoutsService.unlikeShout(viewModel.shout).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let success):
+                self?.showSuccessMessage(success.message)
+                
+                if let likedShout = self?.viewModel.shout.copyWithLiked(false) {
+                    self?.viewModel.reloadShout(likedShout)
+                    self?.updateLikeButtonState()
+                }
+                
+            case .Error(let error):
+                self?.showError(error)
+            default: break
+                
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+    
+    @IBAction func bookmarkButtonAction(sender: UIButton) {
+        if viewModel.shout.isBookmarked {
+            removeFromBookmarks()
+        } else {
+            bookMarkShout()
+        }
+    }
+    
+    func bookMarkShout() {
+        BookmarkManager.addShoutToBookmarks(viewModel.shout).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let success):
+                self?.showSuccessMessage(success.message)
+                if let newShout = self?.viewModel.shout.copyWithBookmark(true) {
+                    self?.viewModel.reloadShout(newShout)
+                }
+            case .Error(let error):
+                self?.showError(error)
+            default:
+                break
+            }
+            }.addDisposableTo(disposeBag)
+    }
+    
+    func removeFromBookmarks() {
+        BookmarkManager.removeFromBookmarks(viewModel.shout).subscribe { [weak self] (event) in
+            switch event {
+            case .Next(let success):
+                self?.showSuccessMessage(success.message)
+                if let newShout = self?.viewModel.shout.copyWithBookmark(false) {
+                    self?.viewModel.reloadShout(newShout)
+                }
+            case .Error(let error):
+                self?.showError(error)
+            default:
+                break
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+}

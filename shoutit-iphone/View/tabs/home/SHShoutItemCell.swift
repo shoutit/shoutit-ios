@@ -22,6 +22,7 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutBackgroundView: UIView?
     @IBOutlet weak var shoutPromotionBackground: UIView?
     @IBOutlet weak var shoutPromotionLabel: UILabel?
+    @IBOutlet weak var bookmarkButton: UIButton?
 }
 
 extension SHShoutItemCell {
@@ -37,6 +38,10 @@ extension SHShoutItemCell {
         
         self.shoutPromotionBackground = promotionView
         self.shoutPromotionLabel = promotionLabel
+        
+        self.shoutSubtitle?.hidden = false
+        self.shoutPrice?.hidden = false
+        self.name?.hidden = false
     }
     
     func bindWith(DiscoverItem discoverItem: DiscoverItem) {
@@ -48,10 +53,15 @@ extension SHShoutItemCell {
             self.shoutImage?.image = UIImage(named:"auth_screen_bg_pattern")
         }
         
+        self.shoutSubtitle?.hidden = true
+        self.shoutPrice?.hidden = true
+        self.name?.hidden = true
+        self.bookmarkButton?.hidden = true
     }
     
     override func prepareForReuse() {
         self.shoutImage?.image = nil
+        self.bookmarkButton?.hidden = false
     }
     
 }

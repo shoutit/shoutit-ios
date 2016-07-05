@@ -63,6 +63,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoutCountryFlagImageView: UIImageView!
     @IBOutlet weak var shoutCategoryImageView: UIImageView!
     @IBOutlet weak var messageIconImageView: UIImageView!
+    @IBOutlet weak var bookmarkButton: UIButton?
     
     var currentConstraints: [NSLayoutConstraint] = []
     

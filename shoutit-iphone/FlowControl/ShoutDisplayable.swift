@@ -14,6 +14,7 @@ protocol ShoutDisplayable {
     func showEditShout(shout: Shout) -> Void
     func showDiscover() -> Void
     func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void
+    func showBookmarks(user: Profile) -> Void
 }
 
 extension FlowController : ShoutDisplayable {
@@ -63,6 +64,18 @@ extension FlowController : ShoutDisplayable {
         } else {
             controller.viewModel = DiscoverGeneralViewModel()
         }
+        
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
+    func showBookmarks(user: Profile) -> Void {
+        let controller = Wireframe.bookmarksViewController()
+        
+        let viewModel = ShoutsCollectionViewModel(context: .BookmarkedShouts(user: user))
+        
+        controller.viewModel = viewModel
+        
+        controller.flowDelegate = self
         
         navigationController.showViewController(controller, sender: nil)
     }

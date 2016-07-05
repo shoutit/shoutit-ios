@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class ShoutsCollectionViewController: UICollectionViewController {
+class ShoutsCollectionViewController: UICollectionViewController {
 
     enum CellType {
         case Shout

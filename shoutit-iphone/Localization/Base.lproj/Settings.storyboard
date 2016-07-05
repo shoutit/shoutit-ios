@@ -45,13 +45,21 @@
                                                 <constraint firstAttribute="height" constant="1" id="2hy-w5-LrW"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LR7-o1-XaS">
+                                            <rect key="frame" x="283" y="12" width="52" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="mx3-cb-Xah" secondAttribute="trailing" id="BTs-SQ-dAE"/>
                                         <constraint firstItem="aTs-Bq-b02" firstAttribute="centerY" secondItem="GNI-dq-beB" secondAttribute="centerY" id="C4N-Xq-vHu"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aTs-Bq-b02" secondAttribute="trailing" constant="54" id="C5d-nT-y6R"/>
                                         <constraint firstAttribute="bottom" secondItem="mx3-cb-Xah" secondAttribute="bottom" id="DxR-j8-hMX"/>
+                                        <constraint firstItem="mx3-cb-Xah" firstAttribute="leading" secondItem="LR7-o1-XaS" secondAttribute="trailing" constant="-4" id="GzS-FV-Ojo"/>
                                         <constraint firstItem="aTs-Bq-b02" firstAttribute="leading" secondItem="GNI-dq-beB" secondAttribute="leading" constant="10" id="LVp-lY-eOR"/>
+                                        <constraint firstItem="LR7-o1-XaS" firstAttribute="centerY" secondItem="GNI-dq-beB" secondAttribute="centerY" id="OS1-HN-X00"/>
                                         <constraint firstItem="mx3-cb-Xah" firstAttribute="top" secondItem="GNI-dq-beB" secondAttribute="top" id="U76-VB-o3K"/>
                                         <constraint firstItem="BxN-7j-6IS" firstAttribute="leading" secondItem="GNI-dq-beB" secondAttribute="leading" id="hOA-Tr-sgF"/>
                                         <constraint firstAttribute="bottom" secondItem="BxN-7j-6IS" secondAttribute="bottom" id="vNz-Fj-Ice"/>
@@ -63,6 +71,7 @@
                                     <outlet property="separatorHeightConstraint" destination="2hy-w5-LrW" id="row-oo-tIg"/>
                                     <outlet property="separatorMarginConstraint" destination="hOA-Tr-sgF" id="JTR-5Y-PCg"/>
                                     <outlet property="separatorView" destination="BxN-7j-6IS" id="ULG-0K-Iqe"/>
+                                    <outlet property="subtitleLabel" destination="LR7-o1-XaS" id="ROB-bS-6bY"/>
                                     <outlet property="titleLabel" destination="aTs-Bq-b02" id="xQC-RA-pZ7"/>
                                 </connections>
                             </tableViewCell>

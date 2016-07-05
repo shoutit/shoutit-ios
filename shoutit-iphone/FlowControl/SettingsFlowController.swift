@@ -14,6 +14,13 @@ import ShoutitKit
 struct SettingsOption {
     let name: String
     let action: (Void -> Void)
+    let detail: String?
+    
+    init(name: String, action: (Void -> Void), detail: String? = nil) {
+        self.name = name
+        self.action = action
+        self.detail = detail
+    }
 }
 
 final class SettingsFlowController: FlowController {
@@ -59,43 +66,99 @@ final class SettingsFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
+    private func showLinkedAccountsSettings() {
+        let controller = Wireframe.settingsViewController()
+        controller.models = self.linkedAccountsOptions()
+        controller.title = NSLocalizedString("Linked Accounts", comment: "")
+        controller.ignoreMenuButton = true
+        navigationController.showViewController(controller, sender: nil)
+    }
+    
     private func settingsOptions() -> Variable<[SettingsOption]> {
         return Variable([
-            SettingsOption(name: NSLocalizedString("Account", comment: "Settings cell title")) {[unowned self] in
+            SettingsOption(name: NSLocalizedString("Account", comment: "Settings cell title"), action: {[unowned self] in
                 self.showAccountSettings()
-            },
-            SettingsOption(name: NSLocalizedString("Notification", comment: "Settings cell title")) {[unowned self] in
+            }),
+            SettingsOption(name: NSLocalizedString("Notification", comment: "Settings cell title"), action: {[unowned self] in
                 self.showNotificationsSettings()
-            },
-            SettingsOption(name: NSLocalizedString("About", comment: "Settings cell title")) {[unowned self] in
+            }),
+            SettingsOption(name: NSLocalizedString("About", comment: "Settings cell title"), action: {[unowned self] in
                 self.showAboutInterface()
-            }
+            })
             ])
     }
     
     private func accountSettingsOptions() -> Variable<[SettingsOption]> {
-        var options: [SettingsOption] =
-            [
-                SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title")) {[unowned self] in
-                    self.showEmailSettings()
-                },
-                SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title")) {[unowned self] in
-                    
-                    do {
-                        try Account.sharedInstance.logout()
-                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
-                    } catch let error {
-                        self.navigationController.showError(error)
-                    }
+        var options : [SettingsOption] = []
+        
+        
+        options.append(SettingsOption(name: NSLocalizedString("Email", comment: "Settings cell title"), action: {[unowned self] in
+            self.showEmailSettings()
+        }))
+        
+
+        options.append(SettingsOption(name: NSLocalizedString("Linked Accounts", comment: "Settings cell title"), action: {[unowned self] in
+            self.showLinkedAccountsSettings()
+        }))
+        
+        options.append(SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title"), action: {[unowned self] in
+                
+                do {
+                    try Account.sharedInstance.logout()
+                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+                } catch let error {
+                    self.navigationController.showError(error)
                 }
-            ]
+        }))
         
         if case .Logged(_)? = Account.sharedInstance.loginState {
-            options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title")) {[unowned self] in
-                self.showPasswordSettings()
-                }, atIndex: 1)
+            options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title"), action: {[unowned self] in
+                    self.showPasswordSettings()
+            }), atIndex: 1)
         }
         
         return Variable(options)
+    }
+    
+    private func linkedAccountsOptions() -> Variable<[SettingsOption]> {
+        return Variable([
+            SettingsOption(name: NSLocalizedString("Facebook", comment: "Settings cell title"), action: {[unowned self] in
+                let manager  = Account.sharedInstance.linkedAccountsManager
+                
+                guard let controller = self.navigationController.visibleViewController as? SettingsTableViewController else {
+                    return
+                }
+                
+                if manager.isFacebookLinked() {
+                    let alert = manager.unlinkFacebookAlert({
+                        
+                        manager.unlinkFacebook(controller, disposeBag: controller.disposeBag)
+                    })
+                    
+                    self.navigationController.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    Account.sharedInstance.linkedAccountsManager.linkFacebook(controller, disposeBag: controller.disposeBag)
+                }
+            }, detail: Account.sharedInstance.linkedAccountsManager.nameForFacebookAccount()),
+            
+            SettingsOption(name: NSLocalizedString("Google", comment: "Settings cell title"), action: {[unowned self] in
+                let manager  = Account.sharedInstance.linkedAccountsManager
+                
+                guard let controller = self.navigationController.visibleViewController as? SettingsTableViewController else {
+                    return
+                }
+                
+                if manager.isGoogleLinked() {
+                    let alert = manager.unlinkGoogleAlert({
+                        
+                        manager.unlinkGoogle(controller, disposeBag: controller.disposeBag)
+                    })
+                    
+                    self.navigationController.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    manager.linkGoogle(controller, disposeBag: controller.disposeBag)
+                }
+            }, detail: Account.sharedInstance.linkedAccountsManager.nameForGoogleAccount())
+            ])
     }
 }

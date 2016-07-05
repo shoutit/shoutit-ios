@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import FBSDKShareKit
+import Social
 import RxSwift
+import ShoutitKit
 
 class ProfilesListTableViewController: UITableViewController {
+    
+    @IBOutlet weak var myView: UIView!
+    @IBOutlet weak var InviteFriends: UIButton!
     
     // UI
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
@@ -32,9 +38,10 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         precondition(viewModel != nil)
         assert(eventHandler != nil)
-        
+
         registerReusables()
         setupRX()
     }
@@ -157,4 +164,45 @@ class ProfilesListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.sectionTitle
     }
+    
+    
+    @IBAction func inviteFriendsAction(sender: UIButton) {
+        
+        self.showProgressHUD(true)
+        
+        APICreditsService.requestInvitationCode().subscribe { [weak self] (event) in
+            self?.hideProgressHUD(true)
+            
+            switch event {
+            case .Next(let code):
+                self?.inviteFriendsByFacebookUsingCode(code)
+            case .Error(let error):
+                self?.showError(error)
+            default: break
+            }
+            }.addDisposableTo(disposeBag)
+        
+    }
+    
+    private func inviteFriendsByFacebookUsingCode(code: InvitationCode) {
+        let inviteContent = FBSDKAppInviteContent()
+        
+        inviteContent.appLinkURL = NSURL(string: Constants.Invite.facebookURL)
+        inviteContent.promotionCode = code.code
+        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "")
+        
+        FBSDKAppInviteDialog.showFromViewController(self, withContent: inviteContent, delegate: self)
+    }
+    
+}
+
+extension ProfilesListTableViewController : FBSDKAppInviteDialogDelegate {
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+        
+    }
+    
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        
+    }
+
 }

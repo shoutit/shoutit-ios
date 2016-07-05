@@ -20,8 +20,8 @@ enum DiscoverSection : Int {
     
     func cellIdentifier() -> String {
         switch self {
-        case SubItems: return DiscoverCollectionCellReuseIdentifier
-        default: return DiscoverCollectionShoutsCellReuseIdentifier
+        case SubItems: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
+        default: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
         }
     }
     
@@ -96,6 +96,23 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
             return result ?? []
         } catch {
             return []
+        }
+    }
+    
+    func replaceShout(shout: Shout) {
+        do {
+        if let result = try self.shouts.value() {
+            var copy = result
+            
+            if let idx = copy.indexOf(shout) {
+                copy[idx] = shout
+                self.shouts.onNext(copy)
+            }
+            
+            
+        }
+        } catch {
+         
         }
     }
     

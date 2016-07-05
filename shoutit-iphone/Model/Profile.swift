@@ -45,6 +45,24 @@ public struct Profile {
                        stats:  user.stats
                 )
     }
+    
+    public static func profileWithGuest(guest: GuestUser) -> Profile {
+        return Profile(id: guest.id,
+                       type: .User,
+                       apiPath: guest.apiPath,
+                       webPath: nil,
+                       username: guest.username,
+                       name: guest.username,
+                       firstName: nil,
+                       lastName: nil,
+                       isActivated: false,
+                       imagePath: nil,
+                       coverPath: nil,
+                       isListening: nil,
+                       listenersCount: 0,
+                       location: guest.location,
+                       stats: nil)
+    }
 }
 
 extension Profile {

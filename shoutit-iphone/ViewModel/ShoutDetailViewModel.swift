@@ -27,7 +27,7 @@ final class ShoutDetailViewModel {
     }
     
     // messages
-    private let noImagesMessage = NSLocalizedString("No images are available", comment: "Message for shout with no images")
+    private let noImagesImage = UIImage.shoutsPlaceholderImage()
     private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
     // child view models
@@ -49,6 +49,10 @@ final class ShoutDetailViewModel {
     }
     
     // MARK: - Actions
+    
+    func reloadShout(newShout: Shout) {
+        shout = newShout
+    }
     
     func reloadShoutDetails() {
         
@@ -106,7 +110,7 @@ final class ShoutDetailViewModel {
     
     func reloadImages() {
         guard shout.imagePaths?.count > 0 || shout.videos?.count > 0 else {
-            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: self.noImagesMessage)]
+            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(image: self.noImagesImage)]
             return
         }
         

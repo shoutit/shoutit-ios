@@ -10,11 +10,14 @@ import UIKit
 import RxSwift
 import ShoutitKit
 
+enum ShoutCellsIdentifiers : String {
+    case ListReuseIdentifier = "shShoutItemListCell"
+    case GridReuseIdentifier = "shShoutItemGridCell"
+}
+
 class HomeShoutsViewModel: AnyObject {
     private var filtersState: FiltersState?
     var displayable = ShoutsDisplayable(layout: .VerticalGrid)
-    let listReuseIdentifier = "shShoutItemListCell"
-    let gridReuseIdentifier = "shShoutItemGridCell"
     
     let homeHeaderReuseIdentifier = "shoutMyFeedHeaderCell"
     
@@ -39,10 +42,10 @@ class HomeShoutsViewModel: AnyObject {
     
     func cellReuseIdentifier() -> String {
         if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
-            return gridReuseIdentifier
+            return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
         }
         
-        return listReuseIdentifier
+        return ShoutCellsIdentifiers.ListReuseIdentifier.rawValue
     }
     
     func changeDisplayModel() -> ShoutsLayout {
