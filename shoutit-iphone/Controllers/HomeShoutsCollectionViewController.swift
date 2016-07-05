@@ -51,6 +51,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         
         adManager.reloadCollection = {
             self.collectionView?.reloadData()
+            
         }
     }
     
@@ -232,6 +233,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()
     }
+    
 }
 
 extension HomeShoutsCollectionViewController : Bookmarking {

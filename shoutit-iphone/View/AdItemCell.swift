@@ -11,23 +11,18 @@ import FBAudienceNetwork
 
 class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
     
-    @IBOutlet weak var adIconImageView: UIImageView!
+    @IBOutlet weak var adIconImageView: UIImageView?
     @IBOutlet weak var adTitleLabel: UILabel!
     @IBOutlet weak var adBodyLabel: UILabel?
     @IBOutlet weak var adCallToActionButton: UIButton!
     @IBOutlet weak var sponsoredLabel: UILabel!
-    @IBOutlet weak var adCoverMediaView: FBMediaView?
+    @IBOutlet weak var adCoverMediaView: FBMediaView!
     @IBOutlet weak var adView: UIView!
-
+    @IBOutlet weak var adChoicesView: FBAdChoicesView!
     
-    var nativeAd: FBNativeAd!
-    var adChoicesView: FBAdChoicesView!
     
-//    func showNativeAd() {
-//        nativeAd = FBNativeAd(placementID: "YOUR_PLACEMENT_ID")
-//        nativeAd.delegate = self
-//        nativeAd.loadAd()
-//    }
+//    var nativeAd: FBNativeAd!
+//    var adChoices: FBAdChoicesView!
     
     func bindWithAd(ad: FBNativeAd) {
         
@@ -47,24 +42,30 @@ class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
         }
         
         ad.icon?.loadImageAsyncWithBlock({(image) -> Void in
-            self.adIconImageView.image = image
+            self.adIconImageView?.image = image
         })
-        self.adCoverMediaView?.nativeAd = ad
-        
+        self.adCoverMediaView.nativeAd = ad
+
 //         Add adChoicesView
-        if let nativeAd = nativeAd {
+//        if let nativeAd = nativeAd {
+//
+//            adChoices = FBAdChoicesView(nativeAd: nativeAd)
+//            self.adView.addSubview(adChoices)
+//            adChoices.updateFrameFromSuperview()
+//            adChoicesView = adChoices
             
-            let adChoices = FBAdChoicesView(nativeAd: nativeAd)
-            self.adView.addSubview(adChoices)
-            adChoices.updateFrameFromSuperview()
-            adChoicesView = adChoices
-        }
+            self.adChoicesView.nativeAd = ad
+            self.adChoicesView.corner = .TopRight
+            self.adChoicesView.hidden = false
+
+//        }
         
         // Register the native ad view and its view controller with the native ad instance
 //        nativeAd.registerViewForInteraction(self.adView, withViewController: self)
+        
     }
-    
-    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+
+    func nativeAd(ad: FBNativeAd, didFailWithError error: NSError) {
         NSLog("Ad failed to load with error: %@", error)
     }
     
