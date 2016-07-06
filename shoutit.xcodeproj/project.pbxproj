@@ -78,6 +78,8 @@
 		249FD6DD1C7DC39C00859851 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6DC1C7DC39C00859851 /* DiscoverHeaderView.swift */; };
 		249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E01C7DDB5000859851 /* BorderedButton.swift */; };
 		249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */; };
+		24A07B141D2CE57200FA68FC /* MediaProcessingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A07B131D2CE57200FA68FC /* MediaProcessingTask.swift */; };
+		24A07B161D2CE65300FA68FC /* MediaProcessingQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A07B151D2CE65300FA68FC /* MediaProcessingQueue.swift */; };
 		24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A843F81CA02107007FF9E8 /* ConversationShoutHeader.xib */; };
 		24A843FB1CA02733007FF9E8 /* ConversationShoutHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */; };
 		24AEF78E1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */; };
@@ -990,6 +992,8 @@
 		249FD6DC1C7DC39C00859851 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverHeaderView.swift; path = View/DiscoverHeaderView.swift; sourceTree = "<group>"; };
 		249FD6E01C7DDB5000859851 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderedButton.swift; path = View/BorderedButton.swift; sourceTree = "<group>"; };
 		249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutFooterView.swift; path = View/DiscoverShoutFooterView.swift; sourceTree = "<group>"; };
+		24A07B131D2CE57200FA68FC /* MediaProcessingTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaProcessingTask.swift; path = Other/MediaProcessingTask.swift; sourceTree = "<group>"; };
+		24A07B151D2CE65300FA68FC /* MediaProcessingQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaProcessingQueue.swift; path = Other/MediaProcessingQueue.swift; sourceTree = "<group>"; };
 		24A843F81CA02107007FF9E8 /* ConversationShoutHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationShoutHeader.xib; path = View/ConversationShoutHeader.xib; sourceTree = "<group>"; };
 		24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationShoutHeader.swift; path = View/ConversationShoutHeader.swift; sourceTree = "<group>"; };
 		24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsTableViewController.swift; path = Controllers/InviteFriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -2815,6 +2819,8 @@
 				246C18211C8D6C4200DD6DE0 /* MediaPickerController.swift */,
 				246C182D1C8EECE300DD6DE0 /* VideoProcessor.swift */,
 				B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */,
+				24A07B131D2CE57200FA68FC /* MediaProcessingTask.swift */,
+				24A07B151D2CE65300FA68FC /* MediaProcessingQueue.swift */,
 			);
 			name = MediaPicker;
 			sourceTree = "<group>";
@@ -5419,6 +5425,7 @@
 				B2B5D03E1C80AABC0068A6AF /* ShoutDisplayable.swift in Sources */,
 				246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */,
 				B272304E1CE0DE0F003547EA /* ReusableView.swift in Sources */,
+				24A07B161D2CE65300FA68FC /* MediaProcessingQueue.swift in Sources */,
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				B2F719B51D0EF12F002C1D74 /* ABContactRecord.swift in Sources */,
 				24826B471C96A34900032FC9 /* APINotificationsService.swift in Sources */,
@@ -5494,6 +5501,7 @@
 				B2778F971CAAF74C00BBDD5F /* UIViewController+BottomConstraintResize.swift in Sources */,
 				B2F719BA1D0EF12F002C1D74 /* CNContactRecord.swift in Sources */,
 				244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */,
+				24A07B141D2CE57200FA68FC /* MediaProcessingTask.swift in Sources */,
 				AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */,
 				B211F0821D12C9A7008DEEBC /* PromoteShoutViewModel.swift in Sources */,
 				B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */,
