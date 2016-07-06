@@ -46,19 +46,11 @@ class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
         })
         self.adCoverMediaView.nativeAd = ad
 
-//         Add adChoicesView
-//        if let nativeAd = nativeAd {
-//
-//            adChoices = FBAdChoicesView(nativeAd: nativeAd)
-//            self.adView.addSubview(adChoices)
-//            adChoices.updateFrameFromSuperview()
-//            adChoicesView = adChoices
             
             self.adChoicesView.nativeAd = ad
             self.adChoicesView.corner = .TopRight
             self.adChoicesView.hidden = false
 
-//        }
         
         // Register the native ad view and its view controller with the native ad instance
 //        nativeAd.registerViewForInteraction(self.adView, withViewController: self)

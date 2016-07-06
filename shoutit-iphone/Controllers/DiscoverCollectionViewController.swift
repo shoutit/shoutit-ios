@@ -20,11 +20,11 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
     
     let adManager = AdManager()
     
-//    var items : [Shout]? = [] {
-//        didSet {
-//            adManager.handleNewShouts(items)
-//        }
-//    }
+    var items : [Shout]? = [] {
+        didSet {
+            adManager.handleNewShouts(items)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,9 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         registerNibs()
         loadItems()
         
-//        adManager.reloadCollection = {
-//            self.collectionView?.reloadData()
-//        }
+        adManager.reloadCollection = {
+            self.collectionView?.reloadData()
+        }
         
     }
     
@@ -48,8 +48,8 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.ListReuseIdentifier.rawValue)
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.GridReuseIdentifier.rawValue)
         
-//        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
-//        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
     }
     
     func loadItems() {
@@ -131,32 +131,32 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
                 discoverCell.bindWith(DiscoverItem: element)
             }
             
-//            return cell
+            return cell
         }
-        return cell
         
-//        if indexPath.section == 1 {
-//        
-//        let element = adManager.items()[indexPath.item]
-//        
-//        if case let .Shout(shout) = element {
-//            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath) as! SHShoutItemCell
-//            cell.bindWith(Shout: shout)
-//            cell.bookmarkButton?.tag = indexPath.item
-//            cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
-//            
-//            return cell
-//        }
-//        
-//        if case let .Ad(ad) = element {
-//            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
-//            adCell.bindWithAd(ad)
-//            
-//            return adCell
-//            }
-//        }
-//        
-//        fatalError("Create cell for particular object")
+        
+        if indexPath.section == 1 {
+        
+        let element = adManager.items()[indexPath.item]
+        
+        if case let .Shout(shout) = element {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath) as! SHShoutItemCell
+            cell.bindWith(Shout: shout)
+            cell.bookmarkButton?.tag = indexPath.item
+            cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
+            
+            return cell
+        }
+        
+        if case let .Ad(ad) = element {
+            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
+            adCell.bindWithAd(ad)
+            
+            return adCell
+            }
+        }
+        
+        fatalError("Create cell for particular object")
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -258,9 +258,9 @@ extension DiscoverCollectionViewController : Bookmarking {
         self.viewModel?.replaceShout(shout)
         self.collectionView?.reloadItemsAtIndexPaths([indexPath])
         
-//        if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
-//            self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
-//        }
+        if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
+            self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
+        }
         
     }
     

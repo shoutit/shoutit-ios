@@ -73,10 +73,6 @@ class AdManager : NSObject, FBNativeAdDelegate  {
     }
     
     func shouldLoadNextAd() -> Bool {
-        
-        
-        
-        
         return true
     }
     
