@@ -32,6 +32,7 @@ enum ShoutAdItem {
 class AdManager : NSObject, FBNativeAdDelegate  {
     
     var reloadCollection : (() -> Void)?
+    var reloadIndexPath : (([NSIndexPath]) -> Void)?
     var loadedAds : [FBNativeAd]?
     var shouts : [Shout]?
     var adPositionCycle: Int = 25
@@ -51,6 +52,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
             if adPosition < allItems.count {
                 allItems.insert(.Ad(ad: ad), atIndex: adPosition)
             }
+            adPosition = adPosition + 1
         }
         
         self.loadedAds?.each({ (ad) in
@@ -110,12 +112,12 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         return nil
     }
     
-    func replaceItemAtIndex(idx: Int, withItem: ShoutAdItem) {
-        // we need to replace shout at index with incoming object
+    func replaceItemAtIndex(idx: Int, withItem newShout: ShoutAdItem) {
+        guard case .Shout(let shout) = newShout else { return }
         
+        self.shouts?[idx] = shout
         
-        // then call reload
-        reloadCollection?()
+        reloadIndexPath?([NSIndexPath(forItem: idx, inSection: 0)])
     }
     
     func nativeAdDidLoad(nativeAd: FBNativeAd) {

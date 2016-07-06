@@ -121,6 +121,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
                 shoutCell.bookmarkButton?.tag = indexPath.item
                 shoutCell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
             }
+            return cell
         }
         
         // Configure Discover cell
@@ -134,29 +135,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             return cell
         }
         
-        
-        if indexPath.section == 1 {
-        
-        let element = adManager.items()[indexPath.item]
-        
-        if case let .Shout(shout) = element {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath) as! SHShoutItemCell
-            cell.bindWith(Shout: shout)
-            cell.bookmarkButton?.tag = indexPath.item
-            cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
-            
-            return cell
-        }
-        
-        if case let .Ad(ad) = element {
-            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
-            adCell.bindWithAd(ad)
-            
-            return adCell
-            }
-        }
-        
-        fatalError("Create cell for particular object")
+        fatalError("Not supported section")
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {

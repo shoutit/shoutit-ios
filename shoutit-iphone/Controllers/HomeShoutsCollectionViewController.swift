@@ -51,7 +51,10 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         
         adManager.reloadCollection = {
             self.collectionView?.reloadData()
-            
+        }
+        
+        adManager.reloadIndexPath = { indexPaths in
+            self.collectionView?.reloadItemsAtIndexPaths(indexPaths)
         }
     }
     
