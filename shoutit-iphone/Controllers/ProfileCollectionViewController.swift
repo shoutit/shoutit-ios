@@ -27,8 +27,12 @@ final class ProfileCollectionViewController: UICollectionViewController {
     // rx
     let disposeBag = DisposeBag()
     
+    var bookmarksDisposeBag : DisposeBag?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bookmarksDisposeBag = DisposeBag()
         
         guard let viewModel = self.viewModel else {
             preconditionFailure("Pass view model to \(self.self) instance before presenting it")
@@ -583,3 +587,40 @@ extension ProfileCollectionViewController {
         flowDelegate?.showConversation(.NotCreated(type: .Chat, user: profile, aboutShout: nil))
     }
 }
+
+//extension ProfileCollectionViewController : Bookmarking {
+//    
+//    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+//        return self.viewModel?.shoutsItems()[indexPath.item]
+//    }
+//    
+//    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+//        guard let shout = shout else {
+//            return nil
+//        }
+//    
+//        if let idx = self.viewModel?.shoutsItems().indexOf(shout) {
+//            return NSIndexPath(forItem: idx, inSection: 1)
+//        }
+//        
+//        return nil
+//    }
+//    
+//    func replaceShoutAndReload(shout: Shout) {
+//        guard let indexPath = indexPathForShout(shout) else {
+//            return
+//        }
+//    
+//        self.viewModel?.replaceShout(shout)
+//        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+//        
+////                if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
+////                    self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
+////                }
+//        
+//    }
+//    
+//    @objc func switchBookmarkState(sender: UIButton) {
+//        switchShoutBookmarkShout(sender)
+//    }
+//}

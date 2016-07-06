@@ -13,6 +13,8 @@ import ShoutitKit
 enum ShoutCellsIdentifiers : String {
     case ListReuseIdentifier = "shShoutItemListCell"
     case GridReuseIdentifier = "shShoutItemGridCell"
+    case AdListReuseIdentifier = "adItemListCell"
+    case AdGridReuseIdentifier = "adItemGridCell"
 }
 
 class HomeShoutsViewModel: AnyObject {
@@ -46,6 +48,14 @@ class HomeShoutsViewModel: AnyObject {
         }
         
         return ShoutCellsIdentifiers.ListReuseIdentifier.rawValue
+    }
+    
+    func adCellReuseIdentifier() -> String {
+        if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
+            return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
+        }
+        
+        return ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue
     }
     
     func changeDisplayModel() -> ShoutsLayout {

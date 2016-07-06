@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class SearchShoutsResultsCollectionViewController: UICollectionViewController {
     
@@ -24,6 +25,13 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
                 return "PlaceholderCollectionViewCell"
                 
             }
+        }
+    }
+    
+    let adManager = AdManager()
+    var items : [Shout]? = [] {
+        didSet {
+            adManager.handleNewShouts(items)
         }
     }
     
@@ -49,6 +57,10 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         prepareReusables()
         setupRX()
         viewModel.reloadContent()
+        
+        adManager.reloadCollection = {
+            self.collectionView?.reloadData()
+        }
     }
     
     // MARK: - Setup
@@ -59,6 +71,9 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         
         collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
+        
+        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
     }
     
     private func setupRX() {
@@ -120,7 +135,8 @@ extension SearchShoutsResultsCollectionViewController {
         case .Refreshing(let cells, _):
             return cells.count
         case .Error, .NoContent, .Loading:
-            return 1
+//            return 1
+            return adManager.items().count
         }
     }
     
@@ -162,6 +178,15 @@ extension SearchShoutsResultsCollectionViewController {
             return placeholderCellWithMessage(message: NSLocalizedString("No results were found", comment: "Empty search results placeholder"), activityIndicator: false)
         case .Loading:
             return placeholderCellWithMessage(message: nil, activityIndicator: true)
+        }
+        
+        let element = adManager.items()[indexPath.item]
+        
+        if case let .Ad(ad) = element {
+            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
+            adCell.bindWithAd(ad)
+            
+            return adCell
         }
     }
     

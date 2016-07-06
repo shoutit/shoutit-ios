@@ -61,6 +61,11 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         return DiscoverSection(rawValue: section)!.cellIdentifier()
     }
     
+    func adCellReuseIdentifier() -> String {
+        
+        return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
+    }
+    
     func discoverItems() -> [DiscoverItem] {
         do {
             let result = try self.items.value()

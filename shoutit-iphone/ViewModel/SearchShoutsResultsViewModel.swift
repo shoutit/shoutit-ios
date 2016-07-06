@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 final class SearchShoutsResultsViewModel {
     
@@ -33,6 +34,14 @@ final class SearchShoutsResultsViewModel {
     func applyFilters(filtersState: FiltersState) {
         self.filtersState = filtersState
         reloadContent()
+    }
+    
+    func adCellReuseIdentifier() -> String {
+//        if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
+//            return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
+//        }
+        
+        return ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue
     }
     
     func getFiltersState() -> FiltersState {

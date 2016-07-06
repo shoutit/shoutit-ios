@@ -17,14 +17,27 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
     weak var flowDelegate: FlowController?
     
     var bookmarksDisposeBag : DisposeBag?
+    
+    let adManager = AdManager()
+    
+    var items : [Shout]? = [] {
+        didSet {
+            adManager.handleNewShouts(items)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bookmarksDisposeBag = DisposeBag()
         
         registerNibs()
         loadItems()
+        
+        adManager.reloadCollection = {
+            self.collectionView?.reloadData()
+        }
+        
     }
     
     func registerNibs() {
@@ -34,8 +47,10 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.ListReuseIdentifier.rawValue)
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.GridReuseIdentifier.rawValue)
+        
+        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
     }
-    
     
     func loadItems() {
         if viewModel == nil {
@@ -51,6 +66,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             }).addDisposableTo(disposeBag)
         
         viewModel.retriveDiscoverItems()
+        
     }
     
     // MARK: - Actions
@@ -90,6 +106,8 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         }
         
         return viewModel.shoutsItems().count
+        
+//        return adManager.items().count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -107,13 +125,38 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         // Configure Discover cell
         if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath)
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
                 let discoverCell = cell as! SHShoutItemCell
                 discoverCell.bindWith(DiscoverItem: element)
             }
+            
+            return cell
         }
         
-        return cell
+        
+        if indexPath.section == 1 {
+        
+        let element = adManager.items()[indexPath.item]
+        
+        if case let .Shout(shout) = element {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath) as! SHShoutItemCell
+            cell.bindWith(Shout: shout)
+            cell.bookmarkButton?.tag = indexPath.item
+            cell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
+            
+            return cell
+        }
+        
+        if case let .Ad(ad) = element {
+            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
+            adCell.bindWithAd(ad)
+            
+            return adCell
+            }
+        }
+        
+        fatalError("Create cell for particular object")
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -214,6 +257,10 @@ extension DiscoverCollectionViewController : Bookmarking {
         
         self.viewModel?.replaceShout(shout)
         self.collectionView?.reloadItemsAtIndexPaths([indexPath])
+        
+        if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
+            self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
+        }
         
     }
     
