@@ -7,17 +7,28 @@
 //
 
 import Foundation
+import RxSwift
 
-
-class MediaProcessingTask : Equatable, Hashable {
+class MediaProcessingTask : NSObject {
     
-    var finish : (Void -> Void)!
+    var finish : ((MediaAttachment) -> Void)!
    
     var isRunning : Bool = false
     
+    var isGroupTask : Bool = false
+    
     var uuid : String!
     
-    var hashValue: Int {
+    weak var presentingSubject: PublishSubject<UIViewController?>?
+    weak var errorSubject: PublishSubject<ErrorType?>?
+    
+    override init() {
+        super.init()
+        
+        uuid = self.generateUUID()
+    }
+    
+    override var hashValue: Int {
         get {
             return self.uuid.hashValue
         }
@@ -27,10 +38,17 @@ class MediaProcessingTask : Equatable, Hashable {
         isRunning = true
     }
     
+    func runWithMedias(medias : [MediaAttachment]) -> Void {
+        isRunning = true
+    }
+    
     func generateUUID() -> String {
         return NSUUID().UUIDString
     }
     
+    func errorWithMessage(message: String) {
+        self.errorSubject?.onNext(NSError(domain: "com.shoutit.mediaProcessing", code: 3002, userInfo: [NSLocalizedDescriptionKey: message]))
+    }
 }
 
 func ==(lhs: MediaProcessingTask, rhs: MediaProcessingTask) -> Bool {
