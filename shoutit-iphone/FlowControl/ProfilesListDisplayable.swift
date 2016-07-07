@@ -18,7 +18,12 @@ extension FlowController: ProfilesListDisplayable {
     func showAddAdminChoiceViewControllerWithProfile(profile: Profile, withEventHandler eventHandler: ProfilesListEventHandler) {
         let controller = Wireframe.profileListController()
         controller.title = NSLocalizedString("Add Admin", comment: "New admin choice view header")
-        controller.viewModel = ListenersProfilesListViewModel(username: profile.username, showListenButtons: true)
+        let viewModel = ListenersProfilesListViewModel(username: profile.username, showListenButtons: true)
+        viewModel.pager.itemExclusionRule = { (profile) in
+            return profile.type == .Page
+        }
+        
+        controller.viewModel = viewModel
         controller.eventHandler = eventHandler
         controller.autoDeselct = true
         controller.dismissAfterSelection = true
