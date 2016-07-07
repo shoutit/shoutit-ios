@@ -862,6 +862,7 @@
 		B2FA5CD31D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD21D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift */; };
 		B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD51D11C5EC007034F8 /* LocalizedString.swift */; };
 		B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */; };
+		BF06D1731D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */; };
 		BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */; };
 		BF0B909F1D23F6EB006F8D8D /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */; };
 		BF849AA81D2A45E00017D26F /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AA71D2A45E00017D26F /* FBAudienceNetwork.framework */; };
@@ -1995,6 +1996,7 @@
 		B2FA5CD51D11C5EC007034F8 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizedString.swift; path = Other/LocalizedString.swift; sourceTree = "<group>"; };
 		B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsViewModel.swift; path = ViewModel/SearchShoutsResultsViewModel.swift; sourceTree = "<group>"; };
 		B89CDA22E17F2A844DE048AE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListParentViewController.swift; path = Controllers/FacebookFriendsListParentViewController.swift; sourceTree = "<group>"; };
 		BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteContactsViewController.swift; path = Controllers/InviteContactsViewController.swift; sourceTree = "<group>"; };
 		BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
 		BF849AA71D2A45E00017D26F /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
@@ -2411,6 +2413,7 @@
 				24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */,
 				AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */,
 				BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */,
+				BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */,
 			);
 			name = InviteFriends;
 			sourceTree = "<group>";
@@ -5792,6 +5795,7 @@
 				B253A3401C691B3F00C8B8F9 /* APITagsService.swift in Sources */,
 				AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */,
 				2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */,
+				BF06D1731D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift in Sources */,
 				B2F719EE1D0EF4C7002C1D74 /* PlacesSharedTypes.swift in Sources */,
 				B2D9B1061C98805600924941 /* SearchCategoryTableViewCell.swift in Sources */,
 				B2F719B31D0EF12F002C1D74 /* ABAddressBookImpl.swift in Sources */,

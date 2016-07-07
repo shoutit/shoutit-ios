@@ -122,7 +122,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="ShoutDetailTableViewController" id="RnF-Sf-jf2" customClass="ShoutDetailTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dRc-Rn-XKo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1410"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="zcI-EG-H6f" customClass="ShoutDetailTableHeaderView" customModule="Shoutit" customModuleProvider="target">
@@ -306,6 +306,26 @@
                                 <outlet property="titleLabel" destination="3UM-EM-oSg" id="TUV-xe-nuI"/>
                                 <outlet property="titleLabelToBottomConstraints" destination="BjZ-xV-yyg" id="UH3-AB-7xE"/>
                             </connections>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="yEV-vY-koe">
+                            <rect key="frame" x="0.0" y="1234" width="600" height="110"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQD-0l-N9j">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="110" id="PBJ-UC-4zw"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="UQD-0l-N9j" secondAttribute="bottom" id="EV5-m1-RCq"/>
+                                <constraint firstItem="UQD-0l-N9j" firstAttribute="leading" secondItem="yEV-vY-koe" secondAttribute="leading" id="HQy-w9-yet"/>
+                                <constraint firstAttribute="trailing" secondItem="UQD-0l-N9j" secondAttribute="trailing" id="UPu-XI-f6i"/>
+                                <constraint firstItem="UQD-0l-N9j" firstAttribute="top" secondItem="yEV-vY-koe" secondAttribute="top" id="Wg1-5V-Cfy"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Description" rowHeight="100" id="2hL-jZ-fuN" customClass="ShoutDetailDescriptionTableViewCell" customModule="Shoutit" customModuleProvider="target">
@@ -636,7 +656,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1300"/>
+                    <size key="freeformSize" width="600" height="1410"/>
                     <connections>
                         <outlet property="bookmarkButton" destination="tY9-4D-Me7" id="kyc-pe-gbt"/>
                         <outlet property="headerView" destination="zcI-EG-H6f" id="cn8-kk-CGD"/>

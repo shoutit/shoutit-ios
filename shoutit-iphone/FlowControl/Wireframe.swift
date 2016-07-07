@@ -280,8 +280,8 @@ struct Wireframe {
         return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
     }
     
-    static func facebookProfileListController() -> FacebookFriendsListTableViewController {
-        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListTableViewController") as! FacebookFriendsListTableViewController
+    static func facebookProfileListController() -> FacebookFriendsListParentViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListParentViewController") as! FacebookFriendsListParentViewController
     }
     
     static func notificationsController() -> NotificationsTableViewController {

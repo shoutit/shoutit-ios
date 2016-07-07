@@ -18,8 +18,6 @@ class FacebookFriendsListTableViewController: ProfilesListTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        InviteFriends.setTitle(NSLocalizedString("Friends not on the list? Send them an invite!", comment: ""), forState: UIControlState.Normal)
-                
         self.fbRefreshControl.attributedTitle = NSAttributedString(string: "")
         self.fbRefreshControl.addTarget(self, action: #selector(fbRefresh), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(fbRefreshControl)

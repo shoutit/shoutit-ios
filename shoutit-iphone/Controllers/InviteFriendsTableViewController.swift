@@ -166,17 +166,10 @@ class InviteFriendsTableViewController: UITableViewController {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         let controller = Wireframe.facebookProfileListController()
         
-        controller.viewModel = MutualProfilesViewModel(showListenButtons: true)
-        
-        controller.viewModel.sectionTitle = NSLocalizedString("Facebook Friends", comment: "")
-        
         controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "")
-        
-        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
-            self?.flowDelegate?.showProfile(profile)
-        })
-        
+        controller.flowDelegate = self.flowDelegate
         self.navigationController?.showViewController(controller, sender: nil)
+        
     }
     
     private func findContactsFriends() {
