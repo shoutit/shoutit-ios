@@ -87,6 +87,29 @@ extension FacebookManager {
         }
     }
     
+    func linkWithReadPermissions(permissions: [FacebookPermissions] = FacebookPermissions.loginReadPermissions, viewController: UIViewController) -> Observable<Void> {
+        return hasBasicReadPermissionsObservable()
+            .flatMap{[unowned self] (hasReadPermissions) -> Observable<String> in
+                if !hasReadPermissions {
+                    return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+                }
+                
+                guard let currentAccessToken = FBSDKAccessToken.currentAccessToken(), token = currentAccessToken.tokenString else {
+                    return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+                }
+                
+                return Observable.just(token)
+            
+            }
+            .flatMap{ (token) in
+                return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))
+        }
+    }
+
+    func unlinkFacebookAccount() -> Observable<Void> {
+        return APIProfileService.unlinkSocialAccountWithParams(.Facebook(token: nil))
+    }
+    
     func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
         
         return hasBasicReadPermissionsObservable()

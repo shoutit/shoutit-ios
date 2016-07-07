@@ -12,6 +12,7 @@ final class SettingsTableViewCell: UITableViewCell {
     
     // views
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel?
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
     

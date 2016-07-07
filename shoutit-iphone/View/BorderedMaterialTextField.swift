@@ -563,12 +563,7 @@ public class BorderedMaterialTextField : UITextField {
     /// Hides and animates the titleLabel property.
     private func hideTitleLabel() {
         if let v: UILabel = titleLabel {
-            UIView.animateWithDuration(0.25, animations: {
-                v.alpha = 0
-                v.frame.origin.y = -v.frame.height
-            }) { _ in
-                v.hidden = true
-            }
+            v.hidden = true
         }
     }
     
