@@ -8,6 +8,7 @@
 
 import Foundation
 import ShoutitKit
+import FBAudienceNetwork
 
 protocol ShoutCell {
     weak var shoutImage: UIImageView? { get }
@@ -22,7 +23,7 @@ protocol ShoutCell {
     weak var shoutBackgroundView: UIView? { get }
     weak var shoutPromotionBackground: UIView? { get set }
     weak var shoutPromotionLabel: UILabel? { get set }
-    
+    weak var adChoicesView: FBAdChoicesView? { get set }
     
     func bindWith(Shout shout: Shout)
 }
@@ -31,13 +32,28 @@ extension SHShoutItemCell : ShoutCell {}
 extension ShoutsCollectionViewCell : ShoutCell {}
 
 extension ShoutCell where Self : UICollectionViewCell {
+    func bindWithAd(Ad ad: FBNativeAd) {
+        self.shoutTitle?.text = ad.title
+        self.name?.text = NSLocalizedString("Sponsored", comment: "")
+        self.shoutSubtitle?.text = ad.subtitle
+        
+        ad.coverImage?.loadImageAsyncWithBlock({(image) -> Void in
+            self.shoutImage?.image = image
+        })
+        
+        self.shoutPrice?.text = ad.callToAction
+        self.bookmarkButton?.hidden = true
+        self.shoutCategoryImage?.hidden = true
+        self.shoutCountryImage?.hidden = true
+        self.shoutType?.hidden = true
+        
+        hidePromotion()
+        setDefaultBackground()
+    }
+    
     func bindWith(Shout shout: Shout) {
         self.shoutTitle?.text = shout.title ?? ""
         self.name?.text = shout.user?.name ?? ""
-        
-        self.name?.hidden = false
-        self.shoutTitle?.hidden = false
-        self.shoutPrice?.hidden = false
         
         if let publishedAt = shout.publishedAtEpoch, user = shout.user {
             self.shoutSubtitle?.text = "\(user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"

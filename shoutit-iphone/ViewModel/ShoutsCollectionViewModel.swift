@@ -19,6 +19,11 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         case DiscoverItemShouts(discoverItem: DiscoverItem)
         case ConversationShouts(conversation: Conversation)
         case BookmarkedShouts(user: Profile)
+        
+        func showAds() -> Bool {
+            // turn of ads for given context if needed
+            return true
+        }
     }
     
     // consts
@@ -32,7 +37,8 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         self.context = context
         self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
                                        cellViewModelToItemBlock: {$0.shout!},
-                                       fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
+                                       fetchItemObservableFactory: {self.fetchShoutsAtPage($0)},
+                                       showAds: self.context.showAds()
         )
     }
     

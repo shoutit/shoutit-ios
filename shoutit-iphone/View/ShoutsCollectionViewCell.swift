@@ -8,6 +8,7 @@
 
 import UIKit
 import ShoutitKit
+import FBAudienceNetwork
 
 final class ShoutsCollectionViewCell: UICollectionViewCell {
     
@@ -64,7 +65,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoutCategoryImageView: UIImageView!
     @IBOutlet weak var messageIconImageView: UIImageView!
     @IBOutlet weak var bookmarkButton: UIButton?
-    
+    weak var adChoicesView: FBAdChoicesView?
     var currentConstraints: [NSLayoutConstraint] = []
     
     override func awakeFromNib() {
@@ -95,6 +96,15 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        
+        self.name?.hidden = false
+        self.shoutTitle?.hidden = false
+        self.shoutPrice?.hidden = false
+        self.bookmarkButton?.hidden = false
+        
+        self.shoutCountryImage?.hidden = false
+        self.shoutType?.hidden = false
+        self.messageIconImageView.hidden = true
     }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {

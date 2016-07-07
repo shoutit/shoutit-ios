@@ -28,13 +28,6 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         }
     }
     
-    let adManager = AdManager()
-    var items : [Shout]? = [] {
-        didSet {
-            adManager.handleNewShouts(items)
-        }
-    }
-    
     // view model
     var viewModel: SearchShoutsResultsViewModel!
     
@@ -57,10 +50,6 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         prepareReusables()
         setupRX()
         viewModel.reloadContent()
-        
-        adManager.reloadCollection = {
-            self.collectionView?.reloadData()
-        }
     }
     
     // MARK: - Setup
@@ -71,9 +60,6 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         
         collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
         collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
-        
-        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
-        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
     }
     
     private func setupRX() {
@@ -126,17 +112,12 @@ extension SearchShoutsResultsCollectionViewController {
         switch viewModel.shoutsSection.pager.state.value {
         case .Idle:
             return 0
-        case .Loaded(let cells, _, _):
-            return cells.count
-        case .LoadingMore(let cells, _, _):
-            return cells.count
-        case .LoadedAllContent(let cells, _):
-            return cells.count
-        case .Refreshing(let cells, _):
-            return cells.count
         case .Error, .NoContent, .Loading:
             return 1
+        default:
+            return viewModel.shoutsSection.pager.shoutCellViewModels().count
         }
+        
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -151,9 +132,15 @@ extension SearchShoutsResultsCollectionViewController {
         let shoutCellWithModel: (ShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
             
             let cell: ShoutsCollectionViewCell
+            
+            
+            
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             
-            if let shout = cellViewModel.shout {
+            
+            if let ad = cellViewModel.ad {
+                cell.bindWithAd(Ad: ad)
+            } else if let shout = cellViewModel.shout {
                 cell.bindWith(Shout: shout)
             }
             
@@ -163,33 +150,15 @@ extension SearchShoutsResultsCollectionViewController {
         switch viewModel.shoutsSection.pager.state.value {
         case .Idle:
             fatalError()
-        case .LoadedAllContent(let cells, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
-        case .Refreshing(let cells, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
-        case .Loaded(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
-        case .LoadingMore(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
         case .Error(let error):
             return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
         case .NoContent:
             return placeholderCellWithMessage(message: NSLocalizedString("No results were found", comment: "Empty search results placeholder"), activityIndicator: false)
         case .Loading:
             return placeholderCellWithMessage(message: nil, activityIndicator: true)
-        }
-        
-        let element = adManager.items()[indexPath.item]
-        
-        if case let .Ad(ad) = element {
-            let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
-            adCell.bindWithAd(ad)
-            
-            return adCell
+        default:
+            let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
+            return shoutCellWithModel(cellViewModel)
         }
     }
     
@@ -228,18 +197,18 @@ extension SearchShoutsResultsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         switch viewModel.shoutsSection.pager.state.value {
-        case .LoadedAllContent(let cells, _):
-            let cellViewModel = cells[indexPath.row]
+        case .LoadedAllContent(_, _):
+            let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             if let shout = cellViewModel.shout {
                 flowDelegate?.showShout(shout)
             }
-        case .Loaded(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
+        case .Loaded(_, _, _):
+            let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             if let shout = cellViewModel.shout {
                 flowDelegate?.showShout(shout)
             }
-        case .LoadingMore(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
+        case .LoadingMore(_, _, _):
+            let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             if let shout = cellViewModel.shout {
                 flowDelegate?.showShout(shout)
             }

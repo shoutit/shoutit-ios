@@ -24,7 +24,7 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutPromotionBackground: UIView?
     @IBOutlet weak var shoutPromotionLabel: UILabel?
     @IBOutlet weak var bookmarkButton: UIButton?
-    
+    weak var adChoicesView: FBAdChoicesView?
 }
 
 extension SHShoutItemCell {
@@ -61,9 +61,19 @@ extension SHShoutItemCell {
         self.bookmarkButton?.hidden = true
     }
     
+
+    
     override func prepareForReuse() {
-        self.shoutImage?.image = nil
+        super.prepareForReuse()
+        shoutImage?.image = nil
+        
+        self.name?.hidden = false
+        self.shoutTitle?.hidden = false
+        self.shoutPrice?.hidden = false
         self.bookmarkButton?.hidden = false
+        
+        self.shoutCountryImage?.hidden = false
+        self.shoutType?.hidden = false
     }
     
 }

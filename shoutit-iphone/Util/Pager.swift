@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import Argo
 import ShoutitKit
+import FBAudienceNetwork
 
 enum PagerError: ErrorType {
     case StateDoesNotAllowManipulation
@@ -22,7 +23,12 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     private(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.Idle)
     private(set) var numberOfResults: Int?
     
+    let showAds : Bool
+    var loadedAds : [FBNativeAd] = []
+    var adPositionCycle = 20
+    var adProvider : PagerAdProvider!
     let firstPageIndex: PageIndexType
+    private let disposeBag = DisposeBag()
     
     let itemToCellViewModelBlock: (ItemType -> CellViewModelType)
     let cellViewModelToItemBlock: (CellViewModelType -> ItemType)
@@ -36,22 +42,27 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
          fetchItemObservableFactory: (PageIndexType -> Observable<PagedResults<ItemType>>),
          nextPageComputerBlock: ((PageIndexType, PagedResults<ItemType>) -> PageIndexType),
          lastPageDidLoadExaminationBlock: (PagedResults<ItemType> -> Bool),
-         firstPageIndex: PageIndexType
-        )
-    {
+         firstPageIndex: PageIndexType,
+         showAds : Bool = false) {
         self.itemToCellViewModelBlock = itemToCellViewModelBlock
         self.cellViewModelToItemBlock = cellViewModelToItemBlock
         self.fetchItemObservableFactory = fetchItemObservableFactory
         self.nextPageComputerBlock = nextPageComputerBlock
         self.lastPageDidLoadExaminationBlock = lastPageDidLoadExaminationBlock
         self.firstPageIndex = firstPageIndex
+        self.showAds = showAds
+        
+        if self.showAds {
+            self.createAdProvider()
+            self.subscribeForChangesToInjectAds()
+        }
     }
     
     func loadContent() {
         state.value = .Loading
         fetchPage(firstPageIndex)
     }
-    
+
     func refreshContent() {
         switch state.value {
         case let .Loaded(cells, page, _):
@@ -172,5 +183,115 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
         default:
             throw PagerError.StateDoesNotAllowManipulation
         }
+    }
+}
+
+// Facebook Ads
+extension Pager {
+    
+    func createAdProvider() {
+        self.adProvider = PagerAdProvider(provide: { (ad) in
+            self.loadedAds.append(ad)
+            self.updateState()
+        })
+        
+        self.adProvider.loadNextAd()
+    }
+    
+    func subscribeForChangesToInjectAds() {
+        self.state.asDriver().driveNext { [weak self] state in
+            
+            var existingModels : [CellViewModelType] = []
+            
+            guard let sSelf = self else {
+                return
+            }
+            
+            if case .Loaded(let models, _, _) = sSelf.state.value {
+                existingModels = models
+            }
+            
+            if case .LoadedAllContent(let models, _) = sSelf.state.value {
+                existingModels = models
+            }
+            
+            if self?.shouldLoadAdsIfNeededForModels(existingModels) ?? false {
+                self?.adProvider.loadNextAd()
+            }
+            
+            }.addDisposableTo(disposeBag)
+    }
+    
+    func shouldLoadAdsIfNeededForModels(models: [CellViewModelType]) -> Bool {
+        return models.count / self.adPositionCycle > self.loadedAds.count
+    }
+    
+    func updateState() {
+        // Trigger state update to call collection reload
+        self.state.value = self.state.value
+    }
+}
+
+class PagerAdProvider : NSObject, FBNativeAdDelegate {
+    var provide : ((FBNativeAd) -> Void)?
+    
+    init(provide : ((FBNativeAd) -> Void)?) {
+        super.init()
+        self.provide = provide
+    }
+    
+    func loadNextAd() {
+        let ad = FBNativeAd(placementID: "1151546964858487_1245960432083806")
+        ad.delegate = self
+        ad.loadAd()
+    }
+    
+    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+        print(error)
+    }
+    
+    func nativeAdDidLoad(nativeAd: FBNativeAd) {
+        self.provide?(nativeAd)
+    }
+}
+
+// Collection View Helpers
+extension Pager {
+    func shoutCellViewModels() -> [ShoutCellViewModel] {
+        var result : [ShoutCellViewModel] = []
+        var existingCells : [CellViewModelType] = []
+        
+        switch state.value {
+        case let .Loaded(cells, _, _):
+            existingCells = cells
+        case let .LoadedAllContent(cells, _):
+            existingCells = cells
+        case let .LoadingMore(cells, _, _):
+            existingCells = cells
+        case .Refreshing:
+            break
+        default:
+            loadContent()
+        }
+        
+        existingCells.each { (cell) in
+            if let shoutCell = cell as? ShoutCellViewModel {
+                result.append(shoutCell)
+            }
+        }
+        
+        var adPosition: Int = 0
+        
+        for ad in self.loadedAds {
+            let position = (adPosition + 1) * adPositionCycle
+            
+            if position <= result.count {
+                result.insert(ShoutCellViewModel(ad: ad), atIndex: position)
+            }
+            
+            adPosition = adPosition + 1
+        }
+        
+        return result
     }
 }

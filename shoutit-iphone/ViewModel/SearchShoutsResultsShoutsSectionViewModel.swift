@@ -25,7 +25,8 @@ extension SearchShoutsResultsViewModel {
             self.parent = parent
             self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
                                            cellViewModelToItemBlock: {$0.shout!},
-                                           fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
+                                           fetchItemObservableFactory: {self.fetchShoutsAtPage($0)},
+                                           showAds: true
             )
         }
         
