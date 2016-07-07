@@ -150,8 +150,8 @@ extension LinkedAccountsManager {
             return NSLocalizedString("Not Linked", comment: "")
         }
         
-        if let facebook = user.linkedAccounts?.facebook {
-            return facebook.facebookId
+        if let _ = user.linkedAccounts?.facebook {
+            return NSLocalizedString("Linked", comment: "")
         }
         
         return NSLocalizedString("Not Linked", comment: "")
@@ -162,8 +162,8 @@ extension LinkedAccountsManager {
             return NSLocalizedString("Not Linked", comment: "")
         }
         
-        if let gplus = user.linkedAccounts?.gplus {
-            return gplus.gplusId
+        if let _ = user.linkedAccounts?.gplus {
+            return NSLocalizedString("Linked", comment: "")
         }
         
         return NSLocalizedString("Not Linked", comment: "")
