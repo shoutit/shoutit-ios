@@ -63,7 +63,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoutTypeLabel: UILabel!
     @IBOutlet weak var shoutCountryFlagImageView: UIImageView!
     @IBOutlet weak var shoutCategoryImageView: UIImageView!
-    @IBOutlet weak var messageIconImageView: UIImageView!
+    @IBOutlet weak var messageIconImageView: UIImageView?
     @IBOutlet weak var bookmarkButton: UIButton?
     weak var adChoicesView: FBAdChoicesView?
     var currentConstraints: [NSLayoutConstraint] = []
@@ -104,7 +104,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         
         self.shoutCountryImage?.hidden = false
         self.shoutType?.hidden = false
-        self.messageIconImageView.hidden = true
+        self.messageIconImageView?.hidden = true
     }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -121,7 +121,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         shoutTypeLabel.hidden = mode != .Expanded
         shoutCountryFlagImageView.hidden = mode != .Expanded
         shoutCategoryImageView.hidden = mode != .Expanded
-        messageIconImageView.hidden = mode != .Expanded
+        messageIconImageView?.hidden = mode != .Expanded
         setupConstraintsForMode(mode)
     }
     
@@ -135,7 +135,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
                                            "type" : shoutTypeLabel,
                                            "flag" : shoutCountryFlagImageView,
                                            "category" : shoutCategoryImageView,
-                                           "msg" : messageIconImageView]
+                                           "msg" : messageIconImageView!]
         currentConstraints.forEach { (constraint) in
             constraint.active = false
         }

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 class ShoutsCollectionViewController: UICollectionViewController {
 
@@ -34,6 +35,7 @@ class ShoutsCollectionViewController: UICollectionViewController {
     
     // RX
     let disposeBag = DisposeBag()
+    var bookmarksDisposeBag : DisposeBag?
     
     // MARK: - Lifecycle
     
@@ -49,6 +51,7 @@ class ShoutsCollectionViewController: UICollectionViewController {
         prepareReusables()
         setupRX()
         viewModel.reloadContent()
+        bookmarksDisposeBag = DisposeBag()
     }
     
     // MARK: - Setup
@@ -126,6 +129,8 @@ extension ShoutsCollectionViewController {
             
             if let shout = cellViewModel.shout {
                 cell.bindWith(Shout: shout)
+                cell.bookmarkButton?.tag = indexPath.item
+                cell.bookmarkButton?.addTarget(self, action: #selector(self.switchBookmarkState), forControlEvents: .TouchUpInside)
             } else if let ad = cellViewModel.ad {
                 cell.bindWithAd(Ad: ad)
             }
@@ -181,7 +186,7 @@ extension ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let cellViewModels = viewModel.pager.state.value.getCellViewModels() else { return }
-        let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.row]
+        let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.item]
         if let shout = cellViewModel.shout {
             flowDelegate?.showShout(shout)
         }
@@ -210,4 +215,36 @@ extension ShoutsCollectionViewController: SearchShoutsResultsCollectionViewLayou
             return .Placeholder
         }
     }
+}
+
+// MARK - Bookmarking
+
+extension ShoutsCollectionViewController : Bookmarking {
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.item]
+        return cellViewModel.shout
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        if let idx = self.viewModel.pager.indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 0)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        if let idx = self.viewModel.pager.indexInRealResultsOf(shout) {
+            _ = try? self.viewModel.pager.replaceItemAtIndex(idx, withItem: shout)
+        }
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
+    }
+
 }

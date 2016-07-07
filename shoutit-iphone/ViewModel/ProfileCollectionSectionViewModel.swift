@@ -16,7 +16,7 @@ final class ProfileCollectionSectionViewModel <T: ProfileCollectionCellViewModel
     let noContentMessage: String
     let footerButtonTitle: String?
     let footerButtonStyle: ProfileCollectionFooterButtonType?
-    let cells: [T]
+    var cells: [T]
     
     init(title: String,
          cells: [T],

@@ -50,6 +50,19 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
 // MARK: - Default implementations
 
 extension ProfileCollectionViewModelInterface {
+    func replaceShout(newShout: Shout) {
+        var cells : [ProfileCollectionShoutCellViewModel] = self.gridSection.cells
+        let shouts : [Shout] = cells.map{ $0.shout }
+        
+        if let idx = shouts.indexOf(newShout) {
+            cells[idx] = ProfileCollectionShoutCellViewModel(shout: newShout)
+        }
+        
+        self.gridSection.cells = cells
+    }
+}
+
+extension ProfileCollectionViewModelInterface {
     
     var hidesVerifyAccountButton: Bool {
         return true

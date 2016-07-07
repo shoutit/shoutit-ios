@@ -37,6 +37,8 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     // RX
     let disposeBag = DisposeBag()
     
+    var bookmarksDisposeBag : DisposeBag?
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -50,6 +52,7 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
         prepareReusables()
         setupRX()
         viewModel.reloadContent()
+        bookmarksDisposeBag = DisposeBag()
     }
     
     // MARK: - Setup
@@ -142,6 +145,8 @@ extension SearchShoutsResultsCollectionViewController {
                 cell.bindWithAd(Ad: ad)
             } else if let shout = cellViewModel.shout {
                 cell.bindWith(Shout: shout)
+                cell.bookmarkButton?.tag = indexPath.item
+                cell.bookmarkButton?.addTarget(self, action: #selector(self.switchBookmarkState), forControlEvents: .TouchUpInside)
             }
             
             return cell
@@ -240,4 +245,34 @@ extension SearchShoutsResultsCollectionViewController: SearchShoutsResultsCollec
             return .Placeholder
         }
     }
+}
+
+extension SearchShoutsResultsCollectionViewController : Bookmarking {
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        let cellViewModel = self.viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.item]
+        return cellViewModel.shout
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        if let idx = self.viewModel.shoutsSection.pager.indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 0)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        if let idx = self.viewModel.shoutsSection.pager.indexInRealResultsOf(shout) {
+            _ = try? self.viewModel.shoutsSection.pager.replaceItemAtIndex(idx, withItem: shout)
+        }
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
+    }
+    
 }

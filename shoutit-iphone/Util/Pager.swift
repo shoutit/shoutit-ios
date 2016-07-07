@@ -257,8 +257,47 @@ class PagerAdProvider : NSObject, FBNativeAdDelegate {
 
 // Collection View Helpers
 extension Pager {
-    func shoutCellViewModels() -> [ShoutCellViewModel] {
-        var result : [ShoutCellViewModel] = []
+    func indexOf(shout: Shout) -> Int? {
+        var i : Int = 0
+        var idx : Int?
+        
+        let copy = self.shoutCellViewModels()
+        
+        for cell in copy {
+            if cell.shout?.id == shout.id {
+                idx = i
+                break
+            }
+            i += 1
+        }
+        
+        return idx
+    }
+    
+    func indexInRealResultsOf(shout: Shout) -> Int? {
+        var i : Int = 0
+        var idx : Int?
+        
+        let copy = self.existingCellModels()
+        
+        for cellModel in copy {
+            guard let cell = cellModel as? ShoutCellViewModel else {
+                i += 1
+                continue
+            }
+            
+            if cell.shout?.id == shout.id {
+                idx = i
+                break
+            }
+            i += 1
+        }
+        
+        return idx
+        
+    }
+    
+    func existingCellModels() -> [CellViewModelType] {
         var existingCells : [CellViewModelType] = []
         
         switch state.value {
@@ -268,11 +307,18 @@ extension Pager {
             existingCells = cells
         case let .LoadingMore(cells, _, _):
             existingCells = cells
-        case .Refreshing:
-            break
+        case let .Refreshing(cells, _):
+            existingCells = cells
         default:
-            loadContent()
+            break
         }
+        
+        return existingCells
+    }
+    
+    func shoutCellViewModels() -> [ShoutCellViewModel] {
+        var result : [ShoutCellViewModel] = []
+        let existingCells : [CellViewModelType] = existingCellModels()
         
         existingCells.each { (cell) in
             if let shoutCell = cell as? ShoutCellViewModel {

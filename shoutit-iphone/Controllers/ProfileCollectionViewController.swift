@@ -202,7 +202,8 @@ extension ProfileCollectionViewController {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             let cellViewModel = viewModel.gridSection.cells[indexPath.row]
             cell.bindWith(Shout: cellViewModel.shout)
-            
+            cell.bookmarkButton?.tag = indexPath.row
+            cell.bookmarkButton?.addTarget(self, action: #selector(switchBookmarkState), forControlEvents: .TouchUpInside)
             return cell
         }
         
@@ -588,39 +589,33 @@ extension ProfileCollectionViewController {
     }
 }
 
-//extension ProfileCollectionViewController : Bookmarking {
-//    
-//    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
-//        return self.viewModel?.shoutsItems()[indexPath.item]
-//    }
-//    
-//    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
-//        guard let shout = shout else {
-//            return nil
-//        }
-//    
-//        if let idx = self.viewModel?.shoutsItems().indexOf(shout) {
-//            return NSIndexPath(forItem: idx, inSection: 1)
-//        }
-//        
-//        return nil
-//    }
-//    
-//    func replaceShoutAndReload(shout: Shout) {
-//        guard let indexPath = indexPathForShout(shout) else {
-//            return
-//        }
-//    
-//        self.viewModel?.replaceShout(shout)
-//        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
-//        
-////                if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
-////                    self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
-////                }
-//        
-//    }
-//    
-//    @objc func switchBookmarkState(sender: UIButton) {
-//        switchShoutBookmarkShout(sender)
-//    }
-//}
+extension ProfileCollectionViewController : Bookmarking {
+    
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        let cellViewModel = viewModel.gridSection.cells[indexPath.row]
+        return cellViewModel.shout
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        let shouts = viewModel.gridSection.cells.map{$0.shout}
+    
+        if let idx = shouts.indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 1)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        self.viewModel?.replaceShout(shout)
+        self.viewModel?.reloadSubject.onNext()
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
+    }
+}

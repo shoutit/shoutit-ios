@@ -82,6 +82,7 @@
                 <constraint firstAttribute="bottom" secondItem="gKZ-XP-tPO" secondAttribute="bottom" constant="5" id="wj3-qB-nF6"/>
             </constraints>
             <connections>
+                <outlet property="bookmarkButton" destination="n4K-vb-l3L" id="Rz8-Uh-KVp"/>
                 <outlet property="imageView" destination="Ksa-8m-quI" id="0Bb-sY-n8D"/>
                 <outlet property="priceLabel" destination="gKZ-XP-tPO" id="szV-vv-Aek"/>
                 <outlet property="shoutBackgroundView" destination="emt-C8-eiw" id="foY-Sb-erV"/>
