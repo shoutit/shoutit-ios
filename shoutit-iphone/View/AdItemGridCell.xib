@@ -40,31 +40,45 @@
                                     <constraint firstAttribute="height" constant="16" id="i30-ty-6wS"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OY-fi-Fy1">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-oo-CVs" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="121" y="218" width="75" height="20"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OY-fi-Fy1">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Jne-t2-N3Z"/>
+                                        </constraints>
+                                        <state key="normal" title="Install Now">
+                                            <color key="titleColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Jne-t2-N3Z"/>
+                                    <constraint firstAttribute="bottom" secondItem="2OY-fi-Fy1" secondAttribute="bottom" id="C5o-RM-m0T"/>
+                                    <constraint firstAttribute="height" constant="20" id="EfH-kl-xKy"/>
+                                    <constraint firstItem="2OY-fi-Fy1" firstAttribute="top" secondItem="6eR-oo-CVs" secondAttribute="top" id="Icv-Wz-2sn"/>
+                                    <constraint firstAttribute="trailing" secondItem="2OY-fi-Fy1" secondAttribute="trailing" id="cyD-ya-16i"/>
+                                    <constraint firstItem="2OY-fi-Fy1" firstAttribute="leading" secondItem="6eR-oo-CVs" secondAttribute="leading" id="dnX-z8-wGW"/>
+                                    <constraint firstAttribute="width" constant="75" id="yi3-ck-Wpx"/>
                                 </constraints>
-                                <state key="normal" title="Install Now">
-                                    <color key="titleColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1pR-hc-qyI" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" constant="4" id="0hq-1y-9gF"/>
-                            <constraint firstAttribute="trailing" secondItem="2OY-fi-Fy1" secondAttribute="trailing" constant="4" id="2YQ-NU-opc"/>
                             <constraint firstAttribute="trailing" secondItem="1pR-hc-qyI" secondAttribute="trailing" constant="4" id="8j0-jq-0LA"/>
                             <constraint firstItem="LAQ-Oc-c3s" firstAttribute="top" secondItem="1pR-hc-qyI" secondAttribute="bottom" id="EcX-SW-VFZ"/>
+                            <constraint firstAttribute="bottom" secondItem="6eR-oo-CVs" secondAttribute="bottom" constant="4" id="ElU-L4-A9X"/>
                             <constraint firstItem="tqF-0T-bq6" firstAttribute="top" secondItem="dVu-d9-0Bj" secondAttribute="top" id="IuX-2o-ND9"/>
                             <constraint firstAttribute="bottom" secondItem="8K3-Ob-b5q" secondAttribute="bottom" constant="43" id="Q8f-Xf-OlZ"/>
+                            <constraint firstAttribute="trailing" secondItem="6eR-oo-CVs" secondAttribute="trailing" constant="4" id="Tsj-zS-fMB"/>
                             <constraint firstItem="8K3-Ob-b5q" firstAttribute="top" secondItem="dVu-d9-0Bj" secondAttribute="top" id="cQx-pK-Fi4"/>
                             <constraint firstAttribute="trailing" secondItem="tqF-0T-bq6" secondAttribute="trailing" id="dkj-NM-hHd"/>
                             <constraint firstItem="8K3-Ob-b5q" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" id="gN8-tN-QKa"/>
                             <constraint firstAttribute="bottom" secondItem="LAQ-Oc-c3s" secondAttribute="bottom" constant="4" id="h2E-OM-8qJ"/>
                             <constraint firstItem="LAQ-Oc-c3s" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" constant="4" id="m32-Zr-cdO"/>
                             <constraint firstAttribute="trailing" secondItem="8K3-Ob-b5q" secondAttribute="trailing" id="nX6-v0-E7e"/>
-                            <constraint firstAttribute="bottom" secondItem="2OY-fi-Fy1" secondAttribute="bottom" constant="4" id="vne-ZY-VeW"/>
                         </constraints>
                     </view>
                 </subviews>
