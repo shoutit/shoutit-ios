@@ -126,6 +126,8 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         // display data
         hydrateHeader()
         showNativeAd()
+        
+        self.likeButton.hidden = Account.sharedInstance.user?.isGuest == true
     }
     
     func updateLikeButtonState() {
