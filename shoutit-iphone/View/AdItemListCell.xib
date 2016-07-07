@@ -47,7 +47,7 @@
                                 <rect key="frame" x="304" y="0.0" width="80" height="16"/>
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmF-no-HjW">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmF-no-HjW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="214" y="86" width="90" height="22"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oql-6P-O0I">

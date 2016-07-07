@@ -125,6 +125,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         
         // display data
         hydrateHeader()
+        showNativeAd()
     }
     
     func updateLikeButtonState() {
@@ -150,45 +151,55 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     
     //FBAudienceImplementaion
     
-    func bindWithAd(ad: FBNativeAd) {
+    func bindWithAd(nativeAd: FBNativeAd) {
         
-        if let title = ad.title {
+        if let title = nativeAd.title {
             self.adTitlelabel.text = title
         }
         
-        if let body = ad.body {
+        if let body = nativeAd.body {
             self.adBodyLabel.text = body
         }
         
-        if let callToAction = ad.callToAction {
+        if let callToAction = nativeAd.callToAction {
             self.adCallToActionButton.hidden = false
             self.adCallToActionButton.setTitle(callToAction, forState: .Normal)
         } else {
             self.adCallToActionButton.hidden = true
         }
         
-        ad.icon?.loadImageAsyncWithBlock({(image) -> Void in
+        nativeAd.icon?.loadImageAsyncWithBlock({(image) -> Void in
             self.adIconImageView?.image = image
         })
-        self.adCoverMediaView.nativeAd = ad
+        self.adCoverMediaView.nativeAd = nativeAd
         
-        self.adChoicesView.nativeAd = ad
+        self.adChoicesView.nativeAd = nativeAd
         self.adChoicesView.corner = .TopRight
         self.adChoicesView.hidden = false
         
-        ad.registerViewForInteraction(self.adUIView, withViewController: self)
+        nativeAd.registerViewForInteraction(self.adUIView, withViewController: self)
     }
     
-    func nativeAd(ad: FBNativeAd, didFailWithError error: NSError) {
-        NSLog("Ad failed to load with error: %@", error)
+    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+        print("Ad failed to load with error: %@", error)
+        adBGView.hidden = true
+        adUIView.hidden = true
     }
     
     var nativeAd: FBNativeAd!
     
     func showNativeAd() {
-        nativeAd = FBNativeAd(placementID: "1151546964858487_1245960432083806")
+        nativeAd = FBNativeAd(placementID: "1151546964858487_1249823215030861")
         nativeAd.delegate = self
         nativeAd.loadAd()
+    }
+    
+    func nativeAdDidLoad(nativeAd: FBNativeAd) {
+        
+        if nativeAd == "" {
+            adUIView.hidden = true
+        }
+        bindWithAd(nativeAd)
     }
     
     // MARK: - Setup
