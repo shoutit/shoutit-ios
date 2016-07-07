@@ -8,13 +8,25 @@
 
 import UIKit
 import RxSwift
+import FBAudienceNetwork
 
-final class ShoutDetailTableViewController: UITableViewController {
+final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDelegate {
     
     // UI
     @IBOutlet var headerView: ShoutDetailTableHeaderView!
     @IBOutlet weak var likeButton: LikeButton!
     @IBOutlet weak var bookmarkButton: UIButton!
+    
+    //AdUI
+    @IBOutlet weak var adIconImageView: UIImageView!
+    @IBOutlet weak var adCoverMediaView: FBMediaView!
+    @IBOutlet weak var adTitlelabel: UILabel!
+    @IBOutlet weak var adBodyLabel: UILabel!
+    @IBOutlet weak var sponsoredLabel: UILabel!
+    @IBOutlet weak var adChoicesView: FBAdChoicesView!
+    @IBOutlet weak var adCallToActionButton: UIButton!
+    @IBOutlet weak var adUIView: UIView!
+    @IBOutlet weak var adBGView: UIView!
     
     // view model
     var viewModel: ShoutDetailViewModel! {
@@ -113,7 +125,6 @@ final class ShoutDetailTableViewController: UITableViewController {
         
         // display data
         hydrateHeader()
-        
     }
     
     func updateLikeButtonState() {
@@ -135,6 +146,49 @@ final class ShoutDetailTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.reloadShoutDetails()
+    }
+    
+    //FBAudienceImplementaion
+    
+    func bindWithAd(ad: FBNativeAd) {
+        
+        if let title = ad.title {
+            self.adTitlelabel.text = title
+        }
+        
+        if let body = ad.body {
+            self.adBodyLabel.text = body
+        }
+        
+        if let callToAction = ad.callToAction {
+            self.adCallToActionButton.hidden = false
+            self.adCallToActionButton.setTitle(callToAction, forState: .Normal)
+        } else {
+            self.adCallToActionButton.hidden = true
+        }
+        
+        ad.icon?.loadImageAsyncWithBlock({(image) -> Void in
+            self.adIconImageView?.image = image
+        })
+        self.adCoverMediaView.nativeAd = ad
+        
+        self.adChoicesView.nativeAd = ad
+        self.adChoicesView.corner = .TopRight
+        self.adChoicesView.hidden = false
+        
+        ad.registerViewForInteraction(self.adUIView, withViewController: self)
+    }
+    
+    func nativeAd(ad: FBNativeAd, didFailWithError error: NSError) {
+        NSLog("Ad failed to load with error: %@", error)
+    }
+    
+    var nativeAd: FBNativeAd!
+    
+    func showNativeAd() {
+        nativeAd = FBNativeAd(placementID: "1151546964858487_1245960432083806")
+        nativeAd.delegate = self
+        nativeAd.loadAd()
     }
     
     // MARK: - Setup
@@ -185,6 +239,7 @@ final class ShoutDetailTableViewController: UITableViewController {
         }
     }
 }
+
 
 extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
     private func showMediaPreviewWithSelectedMedia(selectedMedia: ShoutDetailShoutImageViewModel) {
