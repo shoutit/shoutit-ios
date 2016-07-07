@@ -133,6 +133,7 @@ extension ShoutsCollectionViewController {
                 cell.bookmarkButton?.addTarget(self, action: #selector(self.switchBookmarkState), forControlEvents: .TouchUpInside)
             } else if let ad = cellViewModel.ad {
                 cell.bindWithAd(Ad: ad)
+                ad.registerViewForInteraction(cell, withViewController: self)
             }
             
             return cell

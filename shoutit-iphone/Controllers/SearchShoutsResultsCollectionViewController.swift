@@ -143,6 +143,7 @@ extension SearchShoutsResultsCollectionViewController {
             
             if let ad = cellViewModel.ad {
                 cell.bindWithAd(Ad: ad)
+                ad.registerViewForInteraction(cell, withViewController: self)
             } else if let shout = cellViewModel.shout {
                 cell.bindWith(Shout: shout)
                 cell.bookmarkButton?.tag = indexPath.item

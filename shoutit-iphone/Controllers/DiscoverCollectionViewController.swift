@@ -121,6 +121,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             if case .Ad(let ad) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
                 let adCell = cell as! AdItemCell
                 adCell.bindWithAd(ad)
+                ad.registerViewForInteraction(adCell, withViewController: self)
             }
             
             return cell
