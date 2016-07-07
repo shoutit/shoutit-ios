@@ -35,6 +35,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
     var reloadIndexPath : (([NSIndexPath]) -> Void)?
     var loadedAds : [FBNativeAd]?
     var shouts : [Shout]?
+    var shoutsSection : Int = 0
     var adPositionCycle: Int = 25
     
     func items() -> [ShoutAdItem] {
@@ -66,7 +67,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
     }
     
     func handleNewShouts(newShouts: [Shout]?) {
-        shouts = newShouts
+        self.shouts = newShouts
         
         if shouldLoadNextAd() {
             loadNextAd()
@@ -116,7 +117,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         
         self.shouts?[idx] = shout
         
-        reloadIndexPath?([NSIndexPath(forItem: idx, inSection: 0)])
+        reloadIndexPath?([NSIndexPath(forItem: idx, inSection: self.shoutsSection)])
     }
     
     func nativeAdDidLoad(nativeAd: FBNativeAd) {

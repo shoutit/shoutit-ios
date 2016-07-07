@@ -17,14 +17,6 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
     weak var flowDelegate: FlowController?
     
     var bookmarksDisposeBag : DisposeBag?
-    
-    let adManager = AdManager()
-    
-    var items : [Shout]? = [] {
-        didSet {
-            adManager.handleNewShouts(items)
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +26,15 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         registerNibs()
         loadItems()
         
-        adManager.reloadCollection = {
+        self.viewModel.adManager.reloadCollection = {
             self.collectionView?.reloadData()
         }
         
+        self.viewModel.adManager.reloadIndexPath = { indexPaths in
+            self.collectionView?.reloadItemsAtIndexPaths(indexPaths)
+        }
+        
+        self.viewModel.adManager.shoutsSection = 1
     }
     
     func registerNibs() {
@@ -89,7 +86,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             return
         }
         
-        if let shout = self.viewModel?.shoutsItems()[indexPath.item] {
+        if case .Shout(let shout) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
             flowDelegate?.showShout(shout)
         }
     }
@@ -105,28 +102,33 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             return viewModel.discoverItems().count
         }
         
-        return viewModel.shoutsItems().count
-        
-//        return adManager.items().count
+        return viewModel.shoutItemsWithAds().count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
     
+        
         // Configure Shout cell
         if indexPath.section == 1 {
-            if let element = self.viewModel?.shoutsItems()[indexPath.item] {
+            if case .Shout(let element) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
                 let shoutCell = cell as! SHShoutItemCell
                 shoutCell.bindWith(Shout: element)
                 shoutCell.bookmarkButton?.tag = indexPath.item
                 shoutCell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
             }
+            
+            if case .Ad(let ad) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
+                let adCell = cell as! AdItemCell
+                adCell.bindWithAd(ad)
+            }
+            
             return cell
         }
         
         // Configure Discover cell
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForSection(indexPath.section), forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
                 let discoverCell = cell as! SHShoutItemCell
                 discoverCell.bindWith(DiscoverItem: element)
@@ -214,7 +216,11 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
 extension DiscoverCollectionViewController : Bookmarking {
     
     func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
-        return self.viewModel?.shoutsItems()[indexPath.item]
+        guard case .Shout(let shout) = self.viewModel.shoutItemsWithAds()[indexPath.item] else {
+            return nil
+        }
+        
+        return shout
     }
     
     func indexPathForShout(shout: Shout?) -> NSIndexPath? {
@@ -222,7 +228,7 @@ extension DiscoverCollectionViewController : Bookmarking {
             return nil
         }
         
-        if let idx = self.viewModel?.shoutsItems().indexOf(shout) {
+        if let idx = self.viewModel.adManager.indexForItem(.Shout(shout: shout)) {
             return NSIndexPath(forItem: idx, inSection: 1)
         }
         
@@ -230,15 +236,8 @@ extension DiscoverCollectionViewController : Bookmarking {
     }
     
     func replaceShoutAndReload(shout: Shout) {
-        guard let indexPath = indexPathForShout(shout) else {
-            return
-        }
-        
-        self.viewModel?.replaceShout(shout)
-        self.collectionView?.reloadItemsAtIndexPaths([indexPath])
-        
-        if let idx = self.adManager.indexForItem(.Shout(shout: shout)) {
-            self.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
+        if let idx = self.viewModel.adManager.indexForItem(.Shout(shout: shout)) {
+            self.viewModel.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
         }
         
     }

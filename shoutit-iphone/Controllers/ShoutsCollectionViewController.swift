@@ -129,7 +129,11 @@ extension ShoutsCollectionViewController {
             
             let cell: ShoutsCollectionViewCell
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            cell.bindWith(Shout: cellViewModel.shout)
+            
+            if let shout = cellViewModel.shout {
+                cell.bindWith(Shout: shout)
+            }
+            
             return cell
         }
         
@@ -191,7 +195,9 @@ extension ShoutsCollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let cellViewModels = viewModel.pager.state.value.getCellViewModels() else { return }
         let cellViewModel = cellViewModels[indexPath.row]
-        flowDelegate?.showShout(cellViewModel.shout)
+        if let shout = cellViewModel.shout {
+            flowDelegate?.showShout(shout)
+        }
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {

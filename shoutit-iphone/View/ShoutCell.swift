@@ -35,6 +35,10 @@ extension ShoutCell where Self : UICollectionViewCell {
         self.shoutTitle?.text = shout.title ?? ""
         self.name?.text = shout.user?.name ?? ""
         
+        self.name?.hidden = false
+        self.shoutTitle?.hidden = false
+        self.shoutPrice?.hidden = false
+        
         if let publishedAt = shout.publishedAtEpoch, user = shout.user {
             self.shoutSubtitle?.text = "\(user.name) - \(DateFormatters.sharedInstance.stringFromDateEpoch(publishedAt))"
         } else if let user = shout.user {

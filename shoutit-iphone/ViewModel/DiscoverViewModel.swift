@@ -17,6 +17,7 @@ protocol DiscoverRequest {
 enum DiscoverSection : Int {
     case SubItems
     case Shouts
+    case Ads
     
     func cellIdentifier() -> String {
         switch self {
@@ -49,6 +50,8 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
     let shouts = BehaviorSubject<[Shout]?>(value: [])
     let displayable = DiscoverDisplayable()
     
+    let adManager = AdManager()
+    
     var isRootDiscoverView: Bool {
         return false
     }
@@ -57,13 +60,14 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         fatalError("Not implemented")
     }
     
-    func cellIdentifierForSection(section : Int) -> String {
-        return DiscoverSection(rawValue: section)!.cellIdentifier()
-    }
-    
-    func adCellReuseIdentifier() -> String {
+    func cellIdentifierForIndexPath(indexPath : NSIndexPath) -> String {
+        if indexPath.section == 1 {
+            if case .Ad(_) = self.shoutItemsWithAds()[indexPath.item] {
+                return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
+            }
+        }
         
-        return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
+        return DiscoverSection(rawValue: indexPath.section)!.cellIdentifier()
     }
     
     func discoverItems() -> [DiscoverItem] {
@@ -102,6 +106,10 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         } catch {
             return []
         }
+    }
+    
+    func shoutItemsWithAds() -> [ShoutAdItem] {
+        return adManager.items()
     }
     
     func replaceShout(shout: Shout) {

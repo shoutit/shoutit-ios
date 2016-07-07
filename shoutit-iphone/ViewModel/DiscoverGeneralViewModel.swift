@@ -17,7 +17,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
         return true
     }
     
-    override func retriveDiscoverItems() {
+    override func retriveDiscoverItems() {    
         let countryObservable : Observable<String?> = Account.sharedInstance
             .userSubject
             .flatMap({ (user) -> Observable<String?> in
@@ -50,6 +50,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                     .listShoutsWithParams(params)
                     .subscribeNext{[weak self] (shouts) -> Void in
                         self?.shouts.on(.Next(shouts))
+                        self?.adManager.handleNewShouts(shouts)
                     }
                     .addDisposableTo(self.disposeBag)
             }

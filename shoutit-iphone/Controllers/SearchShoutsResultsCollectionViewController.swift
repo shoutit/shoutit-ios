@@ -135,8 +135,7 @@ extension SearchShoutsResultsCollectionViewController {
         case .Refreshing(let cells, _):
             return cells.count
         case .Error, .NoContent, .Loading:
-//            return 1
-            return adManager.items().count
+            return 1
         }
     }
     
@@ -153,7 +152,11 @@ extension SearchShoutsResultsCollectionViewController {
             
             let cell: ShoutsCollectionViewCell
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            cell.bindWith(Shout: cellViewModel.shout)
+            
+            if let shout = cellViewModel.shout {
+                cell.bindWith(Shout: shout)
+            }
+            
             return cell
         }
         
@@ -227,13 +230,19 @@ extension SearchShoutsResultsCollectionViewController {
         switch viewModel.shoutsSection.pager.state.value {
         case .LoadedAllContent(let cells, _):
             let cellViewModel = cells[indexPath.row]
-            flowDelegate?.showShout(cellViewModel.shout)
+            if let shout = cellViewModel.shout {
+                flowDelegate?.showShout(shout)
+            }
         case .Loaded(let cells, _, _):
             let cellViewModel = cells[indexPath.row]
-            flowDelegate?.showShout(cellViewModel.shout)
+            if let shout = cellViewModel.shout {
+                flowDelegate?.showShout(shout)
+            }
         case .LoadingMore(let cells, _, _):
             let cellViewModel = cells[indexPath.row]
-            flowDelegate?.showShout(cellViewModel.shout)
+            if let shout = cellViewModel.shout {
+                flowDelegate?.showShout(shout)
+            }
         default:
             return
         }

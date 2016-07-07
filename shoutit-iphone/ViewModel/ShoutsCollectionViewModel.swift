@@ -31,7 +31,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     init(context: Context) {
         self.context = context
         self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
-                                       cellViewModelToItemBlock: {$0.shout},
+                                       cellViewModelToItemBlock: {$0.shout!},
                                        fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
         )
     }
