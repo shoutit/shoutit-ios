@@ -20,10 +20,6 @@ class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
     @IBOutlet weak var adView: UIView!
     @IBOutlet weak var adChoicesView: FBAdChoicesView!
     
-    
-//    var nativeAd: FBNativeAd!
-//    var adChoices: FBAdChoicesView!
-    
     func bindWithAd(ad: FBNativeAd) {
         
         if let title = ad.title {
@@ -46,19 +42,12 @@ class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
         })
         self.adCoverMediaView.nativeAd = ad
 
-            
             self.adChoicesView.nativeAd = ad
             self.adChoicesView.corner = .TopRight
             self.adChoicesView.hidden = false
-
-        
-        // Register the native ad view and its view controller with the native ad instance
-//        nativeAd.registerViewForInteraction(self.adView, withViewController: self)
-        
     }
 
     func nativeAd(ad: FBNativeAd, didFailWithError error: NSError) {
         NSLog("Ad failed to load with error: %@", error)
     }
-    
 }

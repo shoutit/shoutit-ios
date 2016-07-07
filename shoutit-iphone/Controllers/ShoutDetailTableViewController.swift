@@ -317,7 +317,6 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
     @IBAction func likeButtonAction(sender: LikeButton) {
-        
         if viewModel.shout.isLiked {
             unlikeShout()
         } else {
@@ -385,7 +384,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
             default:
                 break
             }
-            }.addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
     }
     
     func removeFromBookmarks() {
@@ -405,4 +404,3 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
-
