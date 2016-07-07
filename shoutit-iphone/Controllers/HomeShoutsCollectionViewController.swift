@@ -101,6 +101,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         if case let .Ad(ad) = element {
             let adCell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.adCellReuseIdentifier(), forIndexPath: indexPath) as! AdItemCell
             adCell.bindWithAd(ad)
+            ad.registerViewForInteraction(adCell, withViewController: self)
             
             return adCell
         }
