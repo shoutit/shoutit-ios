@@ -54,7 +54,6 @@ class LinkedAccountsManager : NSObject {
             }
             
             MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
-            controller.navigationController?.popViewControllerAnimated(true)
         }.addDisposableTo(disposeBag)
     }
     
@@ -69,7 +68,6 @@ class LinkedAccountsManager : NSObject {
             }
             
             MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
-            controller.navigationController?.popViewControllerAnimated(true)
         }.addDisposableTo(disposeBag)
 
     }

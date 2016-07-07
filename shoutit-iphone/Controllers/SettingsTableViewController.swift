@@ -35,6 +35,10 @@ final class SettingsTableViewController: UITableViewController {
     
     private func setupRX() {
         
+        Account.sharedInstance.userSubject.subscribeNext { (user) in
+            self.tableView.reloadData()
+        }.addDisposableTo(disposeBag)
+        
         // bind table view
         models.asObservable()
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
