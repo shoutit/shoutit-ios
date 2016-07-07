@@ -48,16 +48,15 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         var adPosition: Int = 0
         
         for ad in self.loadedAds! {
-            adPosition = (adPosition + 1) * adPositionCycle
-            if adPosition < allItems.count {
-                allItems.insert(.Ad(ad: ad), atIndex: adPosition)
+            let position = (adPosition + 1) * adPositionCycle
+            
+            if position < allItems.count {
+                allItems.insert(.Ad(ad: ad), atIndex: position)
             }
+            
             adPosition = adPosition + 1
         }
         
-        self.loadedAds?.each({ (ad) in
-            allItems.append(.Ad(ad: ad))
-        })
         return allItems
     }
     
