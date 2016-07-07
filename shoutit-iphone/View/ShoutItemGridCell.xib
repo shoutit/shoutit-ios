@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="242"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCq-Rd-hRc">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="239"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCq-Rd-hRc">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="242"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-mx-Rmr">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="199"/>

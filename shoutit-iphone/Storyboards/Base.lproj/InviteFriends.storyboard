@@ -327,49 +327,71 @@
             </objects>
             <point key="canvasLocation" x="2322" y="425"/>
         </scene>
+        <!--Facebook Friends List Parent View Controller-->
+        <scene sceneID="9Oo-v3-v4Q">
+            <objects>
+                <viewController storyboardIdentifier="FacebookFriendsListParentViewController" id="rv6-Vg-qSP" customClass="FacebookFriendsListParentViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OsX-xL-8yg"/>
+                        <viewControllerLayoutGuide type="bottom" id="zA0-Qr-Hb0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Lb-3E-N7B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnn-iz-FLk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <connections>
+                                    <segue destination="ztx-nu-eOw" kind="embed" id="sY2-sq-r9w"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68a-Am-cHv">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="MCv-DJ-5Af"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="inviteFriendsAction:" destination="rv6-Vg-qSP" eventType="touchUpInside" id="unh-H6-FLn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cnn-iz-FLk" firstAttribute="leading" secondItem="0Lb-3E-N7B" secondAttribute="leading" id="73o-CV-a23"/>
+                            <constraint firstItem="zA0-Qr-Hb0" firstAttribute="top" secondItem="cnn-iz-FLk" secondAttribute="bottom" constant="44" id="H7t-pc-g7G"/>
+                            <constraint firstItem="zA0-Qr-Hb0" firstAttribute="top" secondItem="68a-Am-cHv" secondAttribute="bottom" id="OuV-70-WSK"/>
+                            <constraint firstItem="68a-Am-cHv" firstAttribute="leading" secondItem="0Lb-3E-N7B" secondAttribute="leading" id="UEA-W0-DMF"/>
+                            <constraint firstItem="cnn-iz-FLk" firstAttribute="centerX" secondItem="0Lb-3E-N7B" secondAttribute="centerX" id="ZPH-WD-gSE"/>
+                            <constraint firstItem="68a-Am-cHv" firstAttribute="top" secondItem="cnn-iz-FLk" secondAttribute="bottom" id="bh0-mX-phj"/>
+                            <constraint firstAttribute="trailing" secondItem="68a-Am-cHv" secondAttribute="trailing" id="ekP-eW-52f"/>
+                            <constraint firstItem="cnn-iz-FLk" firstAttribute="top" secondItem="0Lb-3E-N7B" secondAttribute="top" id="im0-nT-VT7"/>
+                            <constraint firstAttribute="trailing" secondItem="cnn-iz-FLk" secondAttribute="trailing" id="sb2-II-NKT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="InviteFriends" destination="68a-Am-cHv" id="nm5-Ty-ZBe"/>
+                        <outlet property="inviteFriends" destination="68a-Am-cHv" id="ZME-bO-8eh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5UR-Zq-IDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2339" y="-267"/>
+        </scene>
         <!--Facebook Friends List Table View Controller-->
         <scene sceneID="Q5e-Hx-Eug">
             <objects>
-                <tableViewController storyboardIdentifier="FacebookFriendsListTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="ztx-nu-eOw" customClass="FacebookFriendsListTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="ztx-nu-eOw" customClass="FacebookFriendsListTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bcD-az-fm2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="hai-cP-auI">
-                            <rect key="frame" x="0.0" y="111.5" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23R-hp-nGH">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="iwG-MY-wAN"/>
-                                        <constraint firstAttribute="height" constant="44" id="jza-sM-YTh"/>
-                                    </constraints>
-                                    <state key="normal">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="iwG-MY-wAN"/>
-                                        </mask>
-                                    </variation>
-                                    <connections>
-                                        <action selector="inviteFriendsAction:" destination="ztx-nu-eOw" eventType="touchUpInside" id="nLH-89-hop"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="23R-hp-nGH" firstAttribute="leading" secondItem="hai-cP-auI" secondAttribute="leading" id="C8M-BS-5Ij"/>
-                                <constraint firstAttribute="trailing" secondItem="23R-hp-nGH" secondAttribute="trailing" id="ZBu-e9-cAd"/>
-                                <constraint firstItem="23R-hp-nGH" firstAttribute="top" secondItem="hai-cP-auI" secondAttribute="top" id="une-1B-UhG"/>
-                                <constraint firstAttribute="bottom" secondItem="23R-hp-nGH" secondAttribute="bottom" id="v8y-Yj-PsE"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yeo-wO-q4o">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yeo-wO-q4o" id="orB-IR-Zaz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -383,14 +405,10 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <connections>
-                        <outlet property="InviteFriends" destination="23R-hp-nGH" id="Kdd-vX-t2i"/>
-                        <outlet property="myView" destination="hai-cP-auI" id="rlC-c3-51J"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GyK-bl-iuo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2972" y="425"/>
+            <point key="canvasLocation" x="3170" y="-267"/>
         </scene>
     </scenes>
     <resources>

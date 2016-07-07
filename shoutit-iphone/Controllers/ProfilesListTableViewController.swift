@@ -14,9 +14,6 @@ import ShoutitKit
 
 class ProfilesListTableViewController: UITableViewController {
     
-    @IBOutlet weak var myView: UIView!
-    @IBOutlet weak var InviteFriends: UIButton!
-    
     // UI
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
         let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
@@ -163,25 +160,6 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.sectionTitle
-    }
-    
-    
-    @IBAction func inviteFriendsAction(sender: UIButton) {
-        
-        self.showProgressHUD(true)
-        
-        APICreditsService.requestInvitationCode().subscribe { [weak self] (event) in
-            self?.hideProgressHUD(true)
-            
-            switch event {
-            case .Next(let code):
-                self?.inviteFriendsByFacebookUsingCode(code)
-            case .Error(let error):
-                self?.showError(error)
-            default: break
-            }
-            }.addDisposableTo(disposeBag)
-        
     }
     
     private func inviteFriendsByFacebookUsingCode(code: InvitationCode) {
