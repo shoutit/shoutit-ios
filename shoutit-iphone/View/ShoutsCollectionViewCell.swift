@@ -17,6 +17,10 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         case Expanded
     }
     
+    enum Data {
+        case Ad
+        case Shout
+    }
     
     weak var shoutImage: UIImageView? {
         return imageView
@@ -67,6 +71,9 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkButton: UIButton?
     @IBOutlet weak var adChoicesView: FBAdChoicesView?
     
+    var currentMode : ShoutsCollectionViewCell.Mode = .Regular
+    var data : ShoutsCollectionViewCell.Data = .Shout
+    
     var currentConstraints: [NSLayoutConstraint] = []
     
     override func awakeFromNib() {
@@ -94,6 +101,16 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         
     }
     
+    func bindWithAd(Ad ad: FBNativeAd) {
+        self.data = .Ad
+        commonBindWithAd(Ad: ad)
+    }
+    
+    func bindWith(Shout shout: Shout) {
+        self.data = .Shout
+        commonBindWithShout(shout)
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
@@ -102,16 +119,17 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         self.shoutTitle?.hidden = false
         self.shoutPrice?.hidden = false
         self.bookmarkButton?.hidden = false
+        self.messageIconImageView?.hidden = false
         
         self.shoutCountryImage?.hidden = false
         self.shoutType?.hidden = false
-        self.messageIconImageView?.hidden = true
     }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
         if let attributes = layoutAttributes as? ShoutsCollectionViewLayoutAttributes {
             setupViewForMode(attributes.mode)
+            currentMode = attributes.mode
         }
     }
     
@@ -119,10 +137,10 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         titleLabel.numberOfLines = mode == .Regular ? 1 : 2
         userNameLabel.hidden = mode != .Regular
         subtitleLabel.hidden = mode != .Expanded
-        shoutTypeLabel.hidden = mode != .Expanded
-        shoutCountryFlagImageView.hidden = mode != .Expanded
-        shoutCategoryImageView.hidden = mode != .Expanded
-        messageIconImageView?.hidden = mode != .Expanded
+        shoutTypeLabel.hidden = (mode != .Expanded || data == .Ad)
+        shoutCountryFlagImageView.hidden =  (mode != .Expanded || data == .Ad)
+        shoutCategoryImageView.hidden =  (mode != .Expanded || data == .Ad)
+        messageIconImageView?.hidden = (mode != .Expanded || data == .Ad)
         setupConstraintsForMode(mode)
     }
     
