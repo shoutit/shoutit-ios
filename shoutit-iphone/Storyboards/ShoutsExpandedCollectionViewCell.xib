@@ -86,6 +86,14 @@
                                 <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpr-zp-FZm" customClass="FBAdChoicesView">
+                                <rect key="frame" x="304" y="0.0" width="80" height="16"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Olk-JF-l2p"/>
+                                    <constraint firstAttribute="height" constant="16" id="n6w-M1-EfN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -102,6 +110,7 @@
                             <constraint firstAttribute="bottom" secondItem="Vv4-SH-Exg" secondAttribute="bottom" constant="5" placeholder="YES" id="UlJ-oR-JHB"/>
                             <constraint firstItem="NBY-TC-c2d" firstAttribute="top" secondItem="3e7-EG-kt3" secondAttribute="top" constant="5" placeholder="YES" id="W6l-Pi-XJ7"/>
                             <constraint firstItem="Ukd-HQ-9Jb" firstAttribute="leading" secondItem="SHk-Jk-TAV" secondAttribute="leading" placeholder="YES" id="XIE-JP-8ys"/>
+                            <constraint firstItem="Dpr-zp-FZm" firstAttribute="top" secondItem="3e7-EG-kt3" secondAttribute="top" id="Zkw-qG-gKv"/>
                             <constraint firstItem="bHB-w9-rBW" firstAttribute="leading" secondItem="SHk-Jk-TAV" secondAttribute="leading" placeholder="YES" id="fj9-AU-DxT"/>
                             <constraint firstItem="rR3-u9-hnq" firstAttribute="centerY" secondItem="pE1-kN-AXM" secondAttribute="centerY" placeholder="YES" id="jBk-c6-9GR"/>
                             <constraint firstItem="T0N-J2-nXt" firstAttribute="leading" secondItem="bHB-w9-rBW" secondAttribute="trailing" constant="22" placeholder="YES" id="kpU-3w-ekP"/>
@@ -109,6 +118,7 @@
                             <constraint firstAttribute="bottom" secondItem="NBY-TC-c2d" secondAttribute="bottom" constant="5" placeholder="YES" id="o5n-2g-eR1"/>
                             <constraint firstItem="aOt-dv-DUg" firstAttribute="leading" secondItem="T0N-J2-nXt" secondAttribute="trailing" constant="22" placeholder="YES" id="rlY-I9-vqc"/>
                             <constraint firstAttribute="trailing" secondItem="Vv4-SH-Exg" secondAttribute="trailing" constant="5" placeholder="YES" id="stO-ch-WCI"/>
+                            <constraint firstAttribute="trailing" secondItem="Dpr-zp-FZm" secondAttribute="trailing" id="xUt-TF-rYl"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFj-bJ-aI5">
@@ -132,6 +142,7 @@
             </constraints>
             <size key="customSize" width="384" height="110"/>
             <connections>
+                <outlet property="adChoicesView" destination="Dpr-zp-FZm" id="64t-Xv-46Q"/>
                 <outlet property="bookmarkButton" destination="CFj-bJ-aI5" id="0al-aZ-ZYL"/>
                 <outlet property="imageView" destination="NBY-TC-c2d" id="K8r-YQ-G0x"/>
                 <outlet property="messageIconImageView" destination="aOt-dv-DUg" id="pqi-ck-gqO"/>

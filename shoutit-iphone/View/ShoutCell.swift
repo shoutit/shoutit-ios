@@ -41,6 +41,10 @@ extension ShoutCell where Self : UICollectionViewCell {
             self.shoutImage?.image = image
         })
         
+        self.adChoicesView?.nativeAd = ad
+        self.adChoicesView?.corner = .TopRight
+        self.adChoicesView?.hidden = false
+        
         self.shoutPrice?.text = ad.callToAction
         self.bookmarkButton?.hidden = true
         self.shoutCategoryImage?.hidden = true
@@ -100,6 +104,8 @@ extension ShoutCell where Self : UICollectionViewCell {
         self.shoutPromotionBackground?.backgroundColor = promotion.color()
         self.shoutPromotionLabel?.text = promotion.label?.name
         self.contentView.layoutIfNeeded()
+        
+        self.adChoicesView?.hidden = true
         
         if let shoutPromotionBackground = shoutPromotionBackground {
             self.contentView.bringSubviewToFront(shoutPromotionBackground)
