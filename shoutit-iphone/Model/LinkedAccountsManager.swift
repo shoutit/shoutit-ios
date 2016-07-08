@@ -16,6 +16,7 @@ class LinkedAccountsManager : NSObject {
     private let account: Account
     
     private weak var presentingController : UIViewController?
+    private weak var googleSettingsOption : SettingsOption?
     
     private let disposeBag = DisposeBag()
     
@@ -43,12 +44,12 @@ class LinkedAccountsManager : NSObject {
         return alert
     }
 
-    func unlinkFacebook(controller: UIViewController, disposeBag: DisposeBag) {
+    func unlinkFacebook(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         weak var wController = controller
         
         MBProgressHUD.showHUDAddedTo(controller.view, animated: true)
         
-        Account.sharedInstance.facebookManager.unlinkFacebookAccount().subscribe { (event) in
+        Account.sharedInstance.facebookManager.unlinkFacebookAccount().subscribe { [weak self] (event) in
             guard let controller = wController else {
                 return
             }
@@ -57,23 +58,26 @@ class LinkedAccountsManager : NSObject {
         }.addDisposableTo(disposeBag)
     }
     
-    func linkFacebook(controller: UIViewController, disposeBag: DisposeBag) {
+    func linkFacebook(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         weak var wController = controller
         
         MBProgressHUD.showHUDAddedTo(controller.view, animated: true)
         
-        Account.sharedInstance.facebookManager.linkWithReadPermissions(viewController: controller).subscribe { (event) in
+        Account.sharedInstance.facebookManager.linkWithReadPermissions(viewController: controller).subscribe { [weak self] (event) in
             guard let controller = wController else {
                 return
             }
             
             MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
+            
         }.addDisposableTo(disposeBag)
 
     }
     
-    func linkGoogle(controller: UIViewController, disposeBag: DisposeBag) {
+    func linkGoogle(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         presentingController = controller
+        
+        googleSettingsOption = option
         
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -81,7 +85,7 @@ class LinkedAccountsManager : NSObject {
         
     }
     
-    func unlinkGoogle(controller: UIViewController, disposeBag: DisposeBag) {
+    func unlinkGoogle(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         presentingController = controller
         
         GIDSignIn.sharedInstance().delegate = self
@@ -106,6 +110,10 @@ class LinkedAccountsManager : NSObject {
 
 extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
     @objc func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        
+        if error != nil {
+            return
+        }
         
         APIProfileService.linkSocialAccountWithParams(.Google(code: user.serverAuthCode)).subscribe { [weak self] (event) in
             switch event {
