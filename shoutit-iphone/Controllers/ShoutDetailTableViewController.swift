@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import FBAudienceNetwork
+import ShoutitKit
 
 final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDelegate {
     
@@ -27,6 +28,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     @IBOutlet weak var adCallToActionButton: UIButton!
     @IBOutlet weak var adUIView: UIView!
     @IBOutlet weak var adBGView: UIView!
+    
     
     // view model
     var viewModel: ShoutDetailViewModel! {

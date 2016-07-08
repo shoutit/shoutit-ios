@@ -41,10 +41,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-oo-CVs" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="121" y="218" width="75" height="20"/>
+                                <rect key="frame" x="111" y="218" width="85" height="20"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OY-fi-Fy1">
-                                        <rect key="frame" x="0.0" y="0.0" width="75" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Jne-t2-N3Z"/>
                                         </constraints>
@@ -53,14 +53,14 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="2OY-fi-Fy1" secondAttribute="bottom" id="C5o-RM-m0T"/>
                                     <constraint firstAttribute="height" constant="20" id="EfH-kl-xKy"/>
                                     <constraint firstItem="2OY-fi-Fy1" firstAttribute="top" secondItem="6eR-oo-CVs" secondAttribute="top" id="Icv-Wz-2sn"/>
                                     <constraint firstAttribute="trailing" secondItem="2OY-fi-Fy1" secondAttribute="trailing" id="cyD-ya-16i"/>
                                     <constraint firstItem="2OY-fi-Fy1" firstAttribute="leading" secondItem="6eR-oo-CVs" secondAttribute="leading" id="dnX-z8-wGW"/>
-                                    <constraint firstAttribute="width" constant="75" id="yi3-ck-Wpx"/>
+                                    <constraint firstAttribute="width" constant="85" id="yi3-ck-Wpx"/>
                                 </constraints>
                             </view>
                         </subviews>

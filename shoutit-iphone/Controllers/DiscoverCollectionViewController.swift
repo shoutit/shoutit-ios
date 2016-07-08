@@ -44,9 +44,6 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.ListReuseIdentifier.rawValue)
         self.collectionView?.registerNib(UINib(nibName: "ShoutItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.GridReuseIdentifier.rawValue)
-        
-        self.collectionView?.registerNib(UINib(nibName: "AdItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue)
-        self.collectionView?.registerNib(UINib(nibName: "AdItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue)
     }
     
     func loadItems() {
@@ -117,13 +114,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
                 shoutCell.bookmarkButton?.tag = indexPath.item
                 shoutCell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
             }
-            
-            if case .Ad(let ad) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
-                let adCell = cell as! AdItemCell
-                adCell.bindWithAd(ad)
-                ad.registerViewForInteraction(adCell, withViewController: self)
-            }
-            
+
             return cell
         }
         

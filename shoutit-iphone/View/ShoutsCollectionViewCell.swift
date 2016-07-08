@@ -65,7 +65,8 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoutCategoryImageView: UIImageView!
     @IBOutlet weak var messageIconImageView: UIImageView?
     @IBOutlet weak var bookmarkButton: UIButton?
-    weak var adChoicesView: FBAdChoicesView?
+    @IBOutlet weak var adChoicesView: FBAdChoicesView?
+    
     var currentConstraints: [NSLayoutConstraint] = []
     
     override func awakeFromNib() {
