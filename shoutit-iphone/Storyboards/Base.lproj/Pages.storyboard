@@ -238,7 +238,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Ocu-Yp-jgq">
-                            <rect key="frame" x="0.0" y="494" width="600" height="107"/>
+                            <rect key="frame" x="0.0" y="492.5" width="600" height="107"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qb-l6-XgU" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
@@ -291,7 +291,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                             <tableViewSection headerTitle="PAGE DETAILS" id="Vk4-3S-KEw">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="75" id="2Ik-1a-LAv" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ik-1a-LAv" id="a5T-eR-mz7">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -341,7 +341,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="75" id="KqF-90-1cH" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="125" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="124.5" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KqF-90-1cH" id="dPW-pv-hDn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -371,7 +371,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                             <tableViewSection headerTitle="YOUR INFO" id="P1z-GT-1LE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="75" id="NRz-RM-xHX" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="251" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="249.5" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NRz-RM-xHX" id="cAV-Hn-3JW">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -397,7 +397,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="75" id="N6w-yJ-f7f" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="326" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="324.5" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N6w-yJ-f7f" id="li0-fQ-V2P">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -423,7 +423,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="75" id="Kae-gX-lDf">
-                                        <rect key="frame" x="0.0" y="401" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="399.5" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kae-gX-lDf" id="i9e-5W-Xea">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -488,7 +488,7 @@ It’s free to set up. Just choose a Page type  to get started. </string>
                                     <rect key="frame" x="0.0" y="0.0" width="190" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0v-vr-4Nm">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0v-vr-4Nm">
                                             <rect key="frame" x="78" y="136" width="35" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

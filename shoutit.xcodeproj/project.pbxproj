@@ -868,6 +868,14 @@
 		BF06D1731D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */; };
 		BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */; };
 		BF0B909F1D23F6EB006F8D8D /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */; };
+		BF5FB26F1D2FC64E0078A57F /* EditPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF5FB26E1D2FC64E0078A57F /* EditPage.storyboard */; };
+		BF5FB2711D2FC72F0078A57F /* EditPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2701D2FC72F0078A57F /* EditPageTableViewController.swift */; };
+		BF5FB2751D2FCC190078A57F /* EditPageTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2741D2FCC190078A57F /* EditPageTableViewModel.swift */; };
+		BF5FB2771D2FCC370078A57F /* EditPageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2761D2FCC370078A57F /* EditPageCellViewModel.swift */; };
+		BF5FB27A1D2FCCE90078A57F /* EditPageTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2791D2FCCE90078A57F /* EditPageTableViewHeaderView.swift */; };
+		BF5FB27C1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB27B1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift */; };
+		BF5FB27E1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB27D1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift */; };
+		BF5FB2801D2FCE7B0078A57F /* EditPageSelectButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB27F1D2FCE7B0078A57F /* EditPageSelectButtonTableViewCell.swift */; };
 		BF849AA81D2A45E00017D26F /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AA71D2A45E00017D26F /* FBAudienceNetwork.framework */; };
 		BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AA91D2A46B10017D26F /* AdSupport.framework */; };
 		BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AAB1D2A46D00017D26F /* CoreMotion.framework */; };
@@ -2005,6 +2013,14 @@
 		BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListParentViewController.swift; path = Controllers/FacebookFriendsListParentViewController.swift; sourceTree = "<group>"; };
 		BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteContactsViewController.swift; path = Controllers/InviteContactsViewController.swift; sourceTree = "<group>"; };
 		BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
+		BF5FB26E1D2FC64E0078A57F /* EditPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = EditPage.storyboard; path = Storyboards/EditPage.storyboard; sourceTree = "<group>"; };
+		BF5FB2701D2FC72F0078A57F /* EditPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTableViewController.swift; path = Controllers/EditPageTableViewController.swift; sourceTree = "<group>"; };
+		BF5FB2741D2FCC190078A57F /* EditPageTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTableViewModel.swift; path = ViewModel/EditPageTableViewModel.swift; sourceTree = "<group>"; };
+		BF5FB2761D2FCC370078A57F /* EditPageCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageCellViewModel.swift; path = ViewModel/EditPageCellViewModel.swift; sourceTree = "<group>"; };
+		BF5FB2791D2FCCE90078A57F /* EditPageTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTableViewHeaderView.swift; path = View/EditPageTableViewHeaderView.swift; sourceTree = "<group>"; };
+		BF5FB27B1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTextFieldTableViewCell.swift; path = View/EditPageTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		BF5FB27D1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTextViewTableViewCell.swift; path = View/EditPageTextViewTableViewCell.swift; sourceTree = "<group>"; };
+		BF5FB27F1D2FCE7B0078A57F /* EditPageSelectButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageSelectButtonTableViewCell.swift; path = View/EditPageSelectButtonTableViewCell.swift; sourceTree = "<group>"; };
 		BF849AA71D2A45E00017D26F /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		BF849AA91D2A46B10017D26F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		BF849AAB1D2A46D00017D26F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -2631,6 +2647,7 @@
 				B2778F8C1CAAE75200BBDD5F /* VerifyEmail */,
 				B2E715431C6D02AF007F95CF /* Profile */,
 				B211AAD81C8A07CE00C9E8DB /* EditProfile */,
+				BF5FB2721D2FC7470078A57F /* EditPage */,
 				B209AC0D1C6CB38300EF2B8E /* Settings */,
 				B2AB73E41CB55ED900C2C0C0 /* SettingsForm */,
 				AE8351791C5F6E420055C71F /* RootController */,
@@ -2691,6 +2708,7 @@
 				B2D4413D1CB8169B009782AF /* Location.storyboard */,
 				B2D441461CB816B0009782AF /* ShoutDetail.storyboard */,
 				B2D4414F1CB816BD009782AF /* EditProfile.storyboard */,
+				BF5FB26E1D2FC64E0078A57F /* EditPage.storyboard */,
 				B2D441581CB816C8009782AF /* Notifications.storyboard */,
 				B2D441621CB816DA009782AF /* Search.storyboard */,
 				B2D4416B1CB816EE009782AF /* VerifyEmail.storyboard */,
@@ -4951,6 +4969,36 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		BF5FB2721D2FC7470078A57F /* EditPage */ = {
+			isa = PBXGroup;
+			children = (
+				BF5FB2701D2FC72F0078A57F /* EditPageTableViewController.swift */,
+				BF5FB2731D2FCB7C0078A57F /* ViewModel */,
+				BF5FB2781D2FCC970078A57F /* Views */,
+			);
+			name = EditPage;
+			sourceTree = "<group>";
+		};
+		BF5FB2731D2FCB7C0078A57F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF5FB2741D2FCC190078A57F /* EditPageTableViewModel.swift */,
+				BF5FB2761D2FCC370078A57F /* EditPageCellViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		BF5FB2781D2FCC970078A57F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF5FB2791D2FCCE90078A57F /* EditPageTableViewHeaderView.swift */,
+				BF5FB27B1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift */,
+				BF5FB27D1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift */,
+				BF5FB27F1D2FCE7B0078A57F /* EditPageSelectButtonTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		BF849AAD1D2A58E30017D26F /* AdManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5199,6 +5247,7 @@
 				AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */,
 				B2D442121CB81BE5009782AF /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
 				B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */,
+				BF5FB26F1D2FC64E0078A57F /* EditPage.storyboard in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				B2F719811D0EEEF5002C1D74 /* VideoOverlay@2x.png in Resources */,
 				B2F7196A1D0EEEF5002C1D74 /* ImageSelectedOn@3x.png in Resources */,
@@ -5479,6 +5528,7 @@
 				B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */,
 				B2F7199B1D0EEFAA002C1D74 /* MWPhoto.m in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
+				BF5FB27C1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift in Sources */,
 				AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
@@ -5668,6 +5718,7 @@
 				B2F719FF1D0EF53A002C1D74 /* NSMutableAttributedString+BoundChecker.m in Sources */,
 				B2F719B81D0EF12F002C1D74 /* CNAddressBookImpl.swift in Sources */,
 				B2A8493B1C8483E300176EB0 /* ShoutDetailShoutImageViewModel.swift in Sources */,
+				BF5FB27A1D2FCCE90078A57F /* EditPageTableViewHeaderView.swift in Sources */,
 				249FD6DA1C7DBE2700859851 /* ShadowView.swift in Sources */,
 				24826B451C969BA400032FC9 /* NotificationsDisplayable.swift in Sources */,
 				B2AB73F81CB56C2D00C2C0C0 /* SettingsFormButtonTableViewCell.swift in Sources */,
@@ -5720,6 +5771,7 @@
 				B2B345481CA5586E0066DF15 /* InternalParseError.swift in Sources */,
 				B2F71A5A1D0EF791002C1D74 /* DPLDeepLink.m in Sources */,
 				B2F524721C9AFBA200EA622F /* SearchUserResultsViewModel.swift in Sources */,
+				BF5FB2771D2FCC370078A57F /* EditPageCellViewModel.swift in Sources */,
 				AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */,
 				AE4DB35F1C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
 				B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */,
@@ -5735,6 +5787,7 @@
 				B2F524841C9C7F5F00EA622F /* SearchShoutsResultsCategoriesHeaderSupplementeryView.swift in Sources */,
 				AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */,
 				B2B5D03C1C808A4E0068A6AF /* APIGenericService.swift in Sources */,
+				BF5FB27E1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift in Sources */,
 				B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */,
 				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				B2F71A011D0EF53A002C1D74 /* ResponsiveLabel.m in Sources */,
@@ -5776,6 +5829,7 @@
 				244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */,
 				B2F71A2F1D0EF643002C1D74 /* PTPusherChannel.m in Sources */,
 				B2F719BD1D0EF12F002C1D74 /* DictionaryUtils.swift in Sources */,
+				BF5FB2711D2FC72F0078A57F /* EditPageTableViewController.swift in Sources */,
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
 				B2F719D21D0EF2EC002C1D74 /* EnumTransform.swift in Sources */,
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,
@@ -5811,6 +5865,7 @@
 				B2F719EE1D0EF4C7002C1D74 /* PlacesSharedTypes.swift in Sources */,
 				B2D9B1061C98805600924941 /* SearchCategoryTableViewCell.swift in Sources */,
 				B2F719B31D0EF12F002C1D74 /* ABAddressBookImpl.swift in Sources */,
+				BF5FB2751D2FCC190078A57F /* EditPageTableViewModel.swift in Sources */,
 				AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */,
 				240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */,
 				B2F71A351D0EF643002C1D74 /* PTTargetActionEventListener.m in Sources */,
@@ -5844,6 +5899,7 @@
 				B2B540CB1C6A45050075EDA6 /* PostSignupSuggestionsTableViewController.swift in Sources */,
 				B2F71A651D0EF791002C1D74 /* NSString+DPLQuery.m in Sources */,
 				AE2EB7CA1D057799000A324D /* ContactExtensions.swift in Sources */,
+				BF5FB2801D2FCE7B0078A57F /* EditPageSelectButtonTableViewCell.swift in Sources */,
 				B2D9B1121C98840E00924941 /* SearchRecentsHeaderView.swift in Sources */,
 				B2C729C31C6221B0006F7D29 /* Account.swift in Sources */,
 				6027CFA51BE75B7800124C28 /* SHNavigationViewController.swift in Sources */,

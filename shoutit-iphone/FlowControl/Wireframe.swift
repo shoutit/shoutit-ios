@@ -27,6 +27,7 @@ struct Wireframe {
         case Location = "Location"
         case InviteFriends = "InviteFriends"
         case EditProfile = "EditProfile"
+        case EditPage = "EditPage"
         case Notifications = "Notifications"
         case Search = "Search"
         case VerifyEmail = "VerifyEmail"
@@ -150,6 +151,12 @@ struct Wireframe {
     
     static func editProfileTableViewController() -> EditProfileTableViewController {
         return storyboard(.EditProfile).instantiateViewControllerWithIdentifier("EditProfileTableViewController") as! EditProfileTableViewController
+    }
+    
+    // MARK: - Edit page storyboard controllers
+    
+    static func editPageTableViewController() -> EditPageTableViewController {
+        return storyboard(.EditPage).instantiateViewControllerWithIdentifier("EditPageTableViewController") as! EditPageTableViewController
     }
     
     // MARK: - Verify email storyboard controllers
