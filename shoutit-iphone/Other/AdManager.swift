@@ -42,9 +42,9 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         // here you need to create array based on shouts and loadedAds
         var allItems : [ShoutAdItem] = []
         
-        self.shouts?.each({ (shout) in
-            allItems.append(.Shout(shout: shout))
-        })
+        if let old = self.shouts {
+            allItems.appendContentsOf(old.map{ShoutAdItem.Shout(shout:$0)})
+        }
         
         var adPosition: Int = 0
         

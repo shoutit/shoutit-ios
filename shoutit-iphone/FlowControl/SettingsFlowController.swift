@@ -97,11 +97,11 @@ final class SettingsFlowController: FlowController {
         }))
         
 
-        options.append(SettingsOption(name: NSLocalizedString("Linked Accounts", comment: "Settings cell title"), action: {[unowned self] in
+        options.append(SettingsOption(name: NSLocalizedString("Linked Accounts", comment: "Settings cell title"), action: {[unowned self] (option) in
             self.showLinkedAccountsSettings()
         }))
         
-        options.append(SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title"), action: {[unowned self] in
+        options.append(SettingsOption(name: NSLocalizedString("Log out", comment: "Settings cell title"), action: {[unowned self] (option) in
                 
                 do {
                     try Account.sharedInstance.logout()
@@ -112,7 +112,7 @@ final class SettingsFlowController: FlowController {
         }))
         
         if case .Logged(_)? = Account.sharedInstance.loginState {
-            options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title"), action: {[unowned self] in
+            options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title"), action: {[unowned self] (option) in
                     self.showPasswordSettings()
             }), atIndex: 1)
         }

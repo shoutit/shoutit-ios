@@ -61,6 +61,8 @@ final class SearchViewController: UIViewController {
         setupRX()
         registerReusables()
         viewModel.reloadContent()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {

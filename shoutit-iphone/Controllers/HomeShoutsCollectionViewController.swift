@@ -194,7 +194,7 @@ class HomeShoutsCollectionViewController: UICollectionViewController, UICollecti
         viewModel.dataSubject.subscribeNext({ [weak self] (shouts) -> Void in
             
             if let oldShouts = self?.items {
-                self?.items = shouts + oldShouts
+                self?.items = oldShouts + shouts
             }
             
             if let itms = self?.items {
