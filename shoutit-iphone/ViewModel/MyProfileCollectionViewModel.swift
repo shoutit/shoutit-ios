@@ -16,9 +16,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
-    private var detailedUser: DetailedProfile?
+    private var detailedUser: DetailedUserProfile?
     
-    var user: DetailedProfile? {
+    var user: DetailedUserProfile? {
         guard case .Some(.Logged(let user)) = Account.sharedInstance.loginState else {
             return nil
         }
@@ -193,7 +193,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return APIProfileService.getPagesForUsername(user.username, pageParams: params).map{ $0.results }
     }
     
-    private func fetchUser() -> Observable<DetailedProfile>? {
+    private func fetchUser() -> Observable<DetailedUserProfile>? {
         guard let user = user else {return nil}
         return APIProfileService.retrieveProfileWithUsername(user.username)
     }

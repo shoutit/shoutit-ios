@@ -472,7 +472,7 @@ extension ProfileCollectionViewController {
             if let btn = button as? BadgeButton {
                 var shouldShowFillProfileBadge = false
                 
-                if let profile = Account.sharedInstance.user as? DetailedProfile {
+                if let profile = Account.sharedInstance.user as? DetailedUserProfile {
                     if profile.hasAllRequiredFieldsFilled() == false {
                         shouldShowFillProfileBadge = true
                     }

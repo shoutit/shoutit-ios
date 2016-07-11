@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Ogra
 
-public struct DetailedProfile: DetailedProfileObject {
+public struct DetailedUserProfile: DetailedProfile {
     
     public var isGuest: Bool {
         return false
@@ -53,10 +53,10 @@ public struct DetailedProfile: DetailedProfileObject {
     public let birthday: String?
 }
 
-extension DetailedProfile: Decodable {
+extension DetailedUserProfile: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<DetailedProfile> {
-        let a =  curry(DetailedProfile.init)
+    public static func decode(j: JSON) -> Decoded<DetailedUserProfile> {
+        let a =  curry(DetailedUserProfile.init)
             <^> j <| "id"
             <*> j <| "type"
             <*> j <| "api_url"
@@ -103,7 +103,7 @@ extension DetailedProfile: Decodable {
     }
 }
 
-extension DetailedProfile: Encodable {
+extension DetailedUserProfile: Encodable {
     
     public func encode() -> JSON {
         return JSON.Object([
@@ -146,13 +146,13 @@ extension DetailedProfile: Encodable {
 }
 
 
-extension DetailedProfile {
-    public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedProfile {
-        return DetailedProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, conversation: self.conversation, stats: stts, birthday: self.birthday)
+extension DetailedUserProfile {
+    public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedUserProfile {
+        return DetailedUserProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, conversation: self.conversation, stats: stts, birthday: self.birthday)
     }
 }
 
-extension DetailedProfile {
+extension DetailedUserProfile {
     public func hasAllRequiredFieldsFilled() -> Bool {
         return (self.imagePath?.characters.count > 0) && (self.gender != nil) && (self.birthday != nil)
     }

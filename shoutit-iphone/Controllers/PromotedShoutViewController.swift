@@ -26,9 +26,10 @@ final class PromotedShoutViewController: UIViewController {
         precondition(viewModel != nil)
         configureViews()
         
-        if let user = Account.sharedInstance.user as? DetailedProfile {
+        if let user = Account.sharedInstance.user as? DetailedUserProfile {
             availableShoutitCreditLabel.text = "\(user.stats?.credit ?? 0)"
         }
+        
         Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
             self?.availableShoutitCreditLabel.text = "\(stats?.credit ?? 0)"
             }.addDisposableTo(disposeBag)

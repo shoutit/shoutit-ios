@@ -17,7 +17,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     let profile: Profile
-    private var detailedUser: DetailedProfile?
+    private var detailedUser: DetailedUserProfile?
     var model: ProfileCollectionViewModelMainModel? {
         return .ProfileModel(profile: profile)
     }
@@ -161,7 +161,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return APIProfileService.getPagesForUsername(profile.username, pageParams: params).map{ $0.results }
     }
     
-    func fetchProfile() -> Observable<DetailedProfile> {
+    func fetchProfile() -> Observable<DetailedUserProfile> {
         return APIProfileService.retrieveProfileWithUsername(profile.username)
     }
     

@@ -45,7 +45,7 @@ final class LoginWithEmailViewModel {
     
     func authenticateWithParameters(params: AuthParams) {
         
-        let observable: Observable<(AuthData, DetailedProfile)> = APIAuthService.getOAuthToken(params)
+        let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.getOAuthToken(params)
         observable
             .subscribe {[weak self] (event) in
                 switch event {

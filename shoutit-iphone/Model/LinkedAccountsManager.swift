@@ -159,7 +159,7 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
 // Helpers
 extension LinkedAccountsManager {
     func nameForFacebookAccount() -> String {
-        guard let user = self.account.user as? DetailedProfile else {
+        guard let user = self.account.user as? DetailedUserProfile else {
             return NSLocalizedString("Not Linked", comment: "")
         }
         
@@ -171,7 +171,7 @@ extension LinkedAccountsManager {
     }
     
     func nameForGoogleAccount() -> String {
-        guard let user = self.account.user as? DetailedProfile else {
+        guard let user = self.account.user as? DetailedUserProfile else {
             return NSLocalizedString("Not Linked", comment: "")
         }
         
@@ -183,7 +183,7 @@ extension LinkedAccountsManager {
     }
     
     func isFacebookLinked() -> Bool {
-        guard let user = self.account.user as? DetailedProfile else {
+        guard let user = self.account.user as? DetailedUserProfile else {
             return false
         }
         
@@ -195,7 +195,7 @@ extension LinkedAccountsManager {
     }
     
     func isGoogleLinked() -> Bool {
-        guard let user = self.account.user as? DetailedProfile else {
+        guard let user = self.account.user as? DetailedUserProfile else {
             return false
         }
         

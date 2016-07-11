@@ -16,7 +16,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
-    private var detailedPage: DetailedProfile?
+    private var detailedPage: DetailedPageProfile?
     
     var profile: DetailedPageProfile? {
         guard case .Some(.Page(_, let page)) = Account.sharedInstance.loginState else {
@@ -50,7 +50,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     func reloadContent() {
         
         // reload user
-        fetchProfile()?
+        fetchPageProfile()?
             .subscribe({[weak self] (event) in
                 switch event {
                 case .Next(let detailedProfile):
@@ -151,11 +151,11 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
             interestsCountString = NumberFormatters.numberToShortString(listeningMetadata.tags)
         }
         
-        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification(position: .SmallRight), .HiddenButton(position: .SmallLeft)]
+        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification(position: nil), .EditProfile]
     }
     
     var descriptionText: String? {
-        return detailedPage?.bio ?? profile?.bio
+        return detailedPage?.about ?? profile?.about
     }
     
     var descriptionIcon: UIImage? {
@@ -193,9 +193,9 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
         return APIPageService.getAdminsForPageWithUsername(page.username, pageParams: params).map{ $0.results }
     }
     
-    private func fetchProfile() -> Observable<DetailedProfile>? {
+    private func fetchPageProfile() -> Observable<DetailedPageProfile>? {
         guard let page = profile else {return nil}
-        return APIProfileService.retrieveProfileWithUsername(page.username)
+        return APIProfileService.retrievePageProfileWithUsername(page.username)
     }
     
     func listen() -> Observable<Void>? {

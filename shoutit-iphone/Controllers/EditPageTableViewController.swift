@@ -20,7 +20,13 @@ class EditPageTableViewController: UITableViewController {
         case Avatar
     }
     
-    var viewModel: EditPageTableViewModel!
+    var viewModel: EditPageTableViewModel! {
+        didSet {
+            if viewModel.basicProfile != nil {
+                loadDetailedProfile()
+            }
+        }
+    }
     
     // RX
     private let disposeBag = DisposeBag()
@@ -54,12 +60,39 @@ class EditPageTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // setup photos
-        headerView.avatarImageView.sh_setImageWithURL(viewModel.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
-        headerView.coverImageView.sh_setImageWithURL(viewModel.user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
+        fillHeader()
         
         self.tableView.keyboardDismissMode = .OnDrag
         
         setupRX()
+    }
+    
+    func fillHeader() {
+        guard let user = viewModel.user else {
+            return
+        }
+        
+        headerView.avatarImageView.sh_setImageWithURL(user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        headerView.coverImageView.sh_setImageWithURL(user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
+    }
+    
+    func loadDetailedProfile() {
+        self.tableView.userInteractionEnabled = false
+        self.showProgressHUD()
+        
+        self.viewModel.fetchPageProfile()?.subscribe({ [weak self] (event) in
+            self?.tableView.userInteractionEnabled = true
+            self?.hideProgressHUD()
+            switch event {
+                case .Next(let page):
+                    self?.viewModel = EditPageTableViewModel(page: page)
+                    self?.tableView.reloadData()
+                    self?.fillHeader()
+                case .Error(let erorr):
+                    self?.showError(erorr)
+            default: break
+            }
+        }).addDisposableTo(disposeBag)
     }
     
     // MARK: - Setup
@@ -137,7 +170,7 @@ extension EditPageTableViewController {
             cell.textField.placeholder = placeholder
             cell.textField.text = value
             cell.textField.inputView = nil
-            if case .Mobile = identity {
+            if case .Phone = identity {
                 cell.textField.keyboardType = .PhonePad
             }
             cell.textField
@@ -174,11 +207,12 @@ extension EditPageTableViewController {
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = {[weak indexPath](success, place) -> Void in
-                        if let place = place, indexPath = indexPath {
-                            let newViewModel = EditPageCellViewModel(location: place)
-                            self?.viewModel.cells[indexPath.row] = newViewModel
-                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                        }
+                        // TODO
+//                        if let place = place, indexPath = indexPath {
+//                            let newViewModel = EditPageCellViewModel(location: place)
+//                            self?.viewModel.cells[indexPath.row] = newViewModel
+//                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//                        }
                     }
                     
                     controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: #selector(controller.pop))
@@ -192,12 +226,6 @@ extension EditPageTableViewController {
     }
 }
 
-extension EditPageTableViewController {
-    func genderValues() -> [String] {
-        return [NSLocalizedString("Not specified", comment: ""), Gender.Male.rawValue, Gender.Female.rawValue, Gender.Other.rawValue]
-    }
-    
-}
 
 extension EditPageTableViewController {
     

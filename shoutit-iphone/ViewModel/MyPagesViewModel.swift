@@ -21,7 +21,7 @@ class MyPagesViewModel {
                                   pageSize: 20)
     }
     
-    func fetchPage(page: Profile) -> Observable<DetailedProfile> {
-        return APIProfileService.retrieveProfileWithUsername(page.username, additionalPageIdHeader: page.id)
+    func fetchPage(page: Profile) -> Observable<DetailedPageProfile> {
+        return APIProfileService.retrievePageProfileWithUsername(page.username, additionalPageIdHeader: page.id)
     }
 }

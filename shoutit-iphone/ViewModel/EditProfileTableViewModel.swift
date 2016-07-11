@@ -20,7 +20,7 @@ final class EditProfileTableViewModel {
     
     let charactersLimit = 150
     
-    let user: DetailedProfile
+    let user: DetailedUserProfile
     var cells: [EditProfileCellViewModel]
     
     private(set) var avatarUploadTask: MediaUploadingTask?

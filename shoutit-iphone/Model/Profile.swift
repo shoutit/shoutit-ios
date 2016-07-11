@@ -28,6 +28,12 @@ public struct Profile {
     public let stats: ProfileStats?
     
     public static func profileWithUser(user: DetailedProfile) -> Profile {
+        var stats : ProfileStats?
+        
+        if let detailedUser = user as? DetailedUserProfile {
+            stats = detailedUser.stats
+        }
+        
         return Profile(id: user.id,
                        type: user.type,
                        apiPath: user.apiPath,
@@ -40,9 +46,9 @@ public struct Profile {
                        imagePath: user.imagePath,
                        coverPath: user.coverPath,
                        isListening: user.isListening,
-                       listenersCount: user.listenersCount,
+                       listenersCount: 0,
                        location: user.location,
-                       stats:  user.stats
+                       stats:  stats
                 )
     }
     

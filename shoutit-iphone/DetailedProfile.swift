@@ -8,12 +8,9 @@
 
 import Foundation
 
-public protocol DetailedProfileObject : User {
-    var id: String { get }
-    var type: UserType { get }
-    var apiPath: String { get }
+public protocol DetailedProfile : User {
+    
     var webPath: String? { get }
-    var username: String { get }
     var name: String { get }
     var firstName: String? { get }
     var lastName: String? { get }
@@ -21,7 +18,6 @@ public protocol DetailedProfileObject : User {
     var imagePath: String? { get }
     var coverPath: String? { get }
     var isListening: Bool? { get }
-    var listenersCount: Int { get }
     var about: String? { get }
     var mobile: String? { get }
 }

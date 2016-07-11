@@ -17,7 +17,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     private let profile: Profile
-    private var detailedProfile: DetailedProfile?
+    private var detailedProfile: DetailedPageProfile?
     var model: ProfileCollectionViewModelMainModel? {
         return .ProfileModel(profile: profile)
     }
@@ -101,7 +101,8 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     var isListeningToYou: Bool? {
-        return detailedProfile?.isListener
+        // TODO
+        return false
     }
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
@@ -158,8 +159,8 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return APIPageService.getAdminsForPageWithUsername(profile.username, pageParams: params).map{ $0.results }
     }
     
-    private func fetchProfile() -> Observable<DetailedProfile> {
-        return APIProfileService.retrieveProfileWithUsername(profile.username)
+    private func fetchProfile() -> Observable<DetailedPageProfile> {
+        return APIProfileService.retrievePageProfileWithUsername(profile.username)
     }
     
     func listen() -> Observable<Void>? {

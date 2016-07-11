@@ -14,8 +14,8 @@ import KeychainAccess
 final class Account {
     
     enum LoginState {
-        case Logged(user: DetailedProfile)
-        case Page(user: DetailedProfile, page: DetailedPageProfile)
+        case Logged(user: DetailedUserProfile)
+        case Page(user: DetailedUserProfile, page: DetailedPageProfile)
         case Guest(user: GuestUser)
     }
     
@@ -123,11 +123,11 @@ final class Account {
         
         if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
             loginState = .Guest(user: guest)
-        } else if let model: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
+        } else if let model: DetailedUserProfile = SecureCoder.readObjectFromFile(archivePath) {
             loginState = .Logged(user: model)
         } else if let page : DetailedPageProfile = SecureCoder.readObjectFromFile(archivePath) {
-            if let admin = model.admin where model.type == .Page {
-                loginState = .Page(user: admin.value, page: model)
+            if let admin = page.admin where page.type == .Page {
+                loginState = .Page(user: admin.value, page: page)
             }
         }
         
@@ -138,7 +138,7 @@ final class Account {
         self.authData = authData
         loginSubject.onNext(authData)
         updateTokenWithAuthData(authData, user: user)
-        updateApplicationBadgeNumberWithStats((user as? DetailedProfile)?.stats)
+        updateApplicationBadgeNumberWithStats((user as? DetailedUserProfile)?.stats)
         configureTwilioAndPusherServices()
         userSubject.onNext(user)
     }
@@ -157,7 +157,7 @@ final class Account {
         configureTwilioAndPusherServices()
     }
     
-    func switchToPage(page: DetailedProfile) {
+    func switchToPage(page: DetailedPageProfile) {
         guard case .Some(.Logged(let user)) = loginState, let authData = authData where user.type == .User else {
             fatalError("User must be logged in to switch to page")
         }
@@ -179,13 +179,13 @@ final class Account {
     }
     
     func updateUserWithModel<T: User>(model: T, force: Bool = false) {
-        if let model = model as? DetailedProfile where model.type == .User {
+        if let model = model as? DetailedUserProfile where model.type == .User {
             switch (loginState, force) {
             case (.Logged(_)?, _), (.None, _), (_, true): loginState = .Logged(user: model)
             default: break
             }
         }
-        else if let model = model as? DetailedProfile, admin = model.admin where model.type == .Page {
+        else if let model = model as? DetailedPageProfile, admin = model.admin where model.type == .Page {
             switch (loginState, force) {
             case (.Page(_)?, _), (.None, _), (_, true): loginState = .Page(user: admin.value, page: model)
             default: break
@@ -239,7 +239,7 @@ extension Account {
     func fetchUserProfile() {
         guard case .Logged(let user)? = loginState where isUserLoggedIn else { return }
         
-        let observable: Observable<DetailedProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
+        let observable: Observable<DetailedUserProfile> = APIProfileService.retrieveProfileWithUsername(user.username)
         observable.subscribe{ (event) in
             switch event {
             case .Next(let profile):
@@ -306,7 +306,7 @@ private extension Account {
             
         }
         else if case .Logged(let user)? = loginState {
-            let observable: Observable<DetailedProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
+            let observable: Observable<DetailedUserProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
             observable
                 .subscribe{ (event) in
                     self.updatingAPNS = false

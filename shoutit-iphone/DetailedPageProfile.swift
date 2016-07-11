@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Ogra
 
-public struct DetailedPageProfile: DetailedProfileObject {
+public struct DetailedPageProfile: DetailedProfile {
     
     public var isGuest: Bool {
         return false
@@ -33,28 +33,22 @@ public struct DetailedPageProfile: DetailedProfileObject {
     public let about: String?
     public let is_published: Bool?
     public let stats: ProfileStats?
-    public let phone: String?
+    public let mobile: String?
     public let founded: String?
     public let description: String?
     public let impressum: String?
     public let overview: String?
     public let mission: String?
     public let general_info: String?
+    public let listeningMetadata: ListenersMetadata?
     
-    public var dateJoinedEpoch: Int {
-        return 0
-    }
+    public var dateJoinedEpoch: Int
+    public var location: Address
+    public var pushTokens: PushTokens?
     
-    public var location: Address {
-        return Address(address: nil, city: "", country: "", latitude: 0, longitude: 0, postalCode: "", state: "")
-    }
-    
-    public var pushTokens: PushTokens? {
-        return nil
-    }
-    
-    public let admin: Box<DetailedProfile>?
+    public let admin: Box<DetailedUserProfile>?
 }
+
 
 
 extension DetailedPageProfile: Decodable {
@@ -91,9 +85,13 @@ extension DetailedPageProfile: Decodable {
         let g = f
             <*> j <|? "mission"
             <*> j <|? "general_info"
+            <*> j <|? "listening_count"
+        let h = g
+            <*> j <| "date_joined"
+            <*> j <| "location"
+            <*> j <|? "push_tokens"
             <*> j <|? "admin"
-        
-        return g
+        return h
     }
 }
 
@@ -118,7 +116,7 @@ extension DetailedPageProfile {
             "about" : self.about.encode(),
             "is_published" : self.is_published.encode(),
             "stats" : self.stats.encode(),
-            "phone" : self.phone.encode(),
+            "phone" : self.mobile.encode(),
             "founded" : self.founded.encode(),
             "description" : self.description.encode(),
             "impressum" : self.impressum.encode(),
@@ -126,6 +124,7 @@ extension DetailedPageProfile {
             "mission" : self.mission.encode(),
             "general_info" : self.general_info.encode(),
             "admin" : self.admin.encode(),
+            "listening_count" : self.listeningMetadata.encode(),
             ])
     }
 }

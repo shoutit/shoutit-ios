@@ -135,7 +135,7 @@ final class PusherClient : NSObject {
             if event.eventType() == .ProfileChange {
                 switch self.account.loginState {
                 case .Some(.Logged):
-                    if let profile : DetailedProfile = event.object() {
+                    if let profile : DetailedUserProfile = event.object() {
                         self.account.updateUserWithModel(profile)
                     }
                 case .Some(.Guest):

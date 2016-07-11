@@ -27,7 +27,7 @@ class CreditsMainViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        if let profile = Account.sharedInstance.user as? DetailedProfile {
+        if let profile = Account.sharedInstance.user as? DetailedUserProfile {
             setupRx()
             fillWithLoggedUser(profile)
         }
@@ -42,7 +42,7 @@ class CreditsMainViewController: UITableViewController {
         
     }
     
-    func fillWithLoggedUser(user: DetailedProfile) {
+    func fillWithLoggedUser(user: DetailedUserProfile) {
         fillWithStats(user.stats)
     }
 

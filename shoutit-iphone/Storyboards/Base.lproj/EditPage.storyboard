@@ -9,13 +9,13 @@
         <!--Edit Profile-->
         <scene sceneID="8Nz-BA-Zub">
             <objects>
-                <tableViewController id="6HP-4F-W8g" customClass="EditPageTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditPageTableViewController" id="6HP-4F-W8g" customClass="EditPageTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6oe-on-izg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="0.87" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="PFI-OT-Hwj" customClass="EditPageTableViewHeaderView">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="PFI-OT-Hwj" customClass="EditPageTableViewHeaderView" customModule="Shoutit" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>

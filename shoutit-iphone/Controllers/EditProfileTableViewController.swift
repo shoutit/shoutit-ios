@@ -64,7 +64,11 @@ final class EditProfileTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     
-        if (NSUserDefaults.standardUserDefaults().boolForKey("CompleteProfileAlertWasShown") == false && !viewModel.user.hasAllRequiredFieldsFilled()) {
+        guard let detailedUser = viewModel.user as? DetailedUserProfile else {
+            return
+        }
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("CompleteProfileAlertWasShown") == false && !detailedUser.hasAllRequiredFieldsFilled()) {
             showCompleteProfileInfo()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CompleteProfileAlertWasShown")
             NSUserDefaults.standardUserDefaults().synchronize()

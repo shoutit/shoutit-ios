@@ -168,8 +168,8 @@ private extension MyPagesTableViewController {
     }
     
     func editPage(page: Profile) {
-        notImplemented()
         
-        var controller = Wireframe.editPageTableViewController()
+        self.flowDelegate?.showEditPage(page)
+        
     }
 }

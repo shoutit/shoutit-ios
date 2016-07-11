@@ -20,7 +20,8 @@ final class EditPageTableViewModel {
     
     let charactersLimit = 150
     
-    var user: DetailedPageProfile!
+    var user: DetailedPageProfile?
+    var basicProfile : Profile?
     var cells: [EditPageCellViewModel]
     
     private(set) var avatarUploadTask: MediaUploadingTask?
@@ -30,23 +31,50 @@ final class EditPageTableViewModel {
         return MediaUploader(bucket: .UserImage)
     }()
     
-    init(usr: DetailedPageProfile) {
-        user = usr
+    init(profile: Profile) {
+        basicProfile = profile
         
-        cells = [EditPageCellViewModel(name: user.name ?? ""),
-                 EditPageCellViewModel(about: user.about ?? ""),
-                 EditPageCellViewModel(phone: user.phone ?? ""),
-                 EditPageCellViewModel(founded: user.founded ?? ""),
-                 EditPageCellViewModel(description: user.description ?? ""),
-                 EditPageCellViewModel(impressum: user.impressum ?? ""),
-                 EditPageCellViewModel(overview: user.overview ?? ""),
-                 EditPageCellViewModel(mission: user.mission ?? ""),
-                 EditPageCellViewModel(general_info: user.general_info ?? "")
+        cells = [EditPageCellViewModel(name: basicProfile?.name ?? ""),
+                 EditPageCellViewModel(about:  ""),
+                 EditPageCellViewModel(phone:  ""),
+                 EditPageCellViewModel(founded:  ""),
+                 EditPageCellViewModel(description: ""),
+                 EditPageCellViewModel(impressum:  ""),
+                 EditPageCellViewModel(overview:  ""),
+                 EditPageCellViewModel(mission:  ""),
+                 EditPageCellViewModel(general_info: "")
+            //                 EditPageCellViewModel(is_published: user.is_published)
+            
+            
+        ]
+    }
+    
+    
+    
+    init(page: DetailedPageProfile) {
+        user = page
+        
+        
+        cells = [EditPageCellViewModel(name: page.name ?? ""),
+                 EditPageCellViewModel(about: page.about ?? ""),
+                 EditPageCellViewModel(phone: page.mobile ?? ""),
+                 EditPageCellViewModel(founded: page.founded ?? ""),
+                 EditPageCellViewModel(description: page.description ?? ""),
+                 EditPageCellViewModel(impressum: page.impressum ?? ""),
+                 EditPageCellViewModel(overview: page.overview ?? ""),
+                 EditPageCellViewModel(mission: page.mission ?? ""),
+                 EditPageCellViewModel(general_info: page.general_info ?? "")
 //                 EditPageCellViewModel(is_published: user.is_published)
             
             
         ]
     }
+    
+    func fetchPageProfile() -> Observable<DetailedPageProfile>? {
+        guard let page = basicProfile else {return nil}
+        return APIProfileService.retrievePageProfileWithUsername(page.username)
+    }
+
     
     // MARK: - Mutation
     
@@ -86,13 +114,19 @@ final class EditPageTableViewModel {
     
     func save() -> Observable<OperationStatus> {
         
+        guard let user = self.user else {
+            return Observable.just(.Ready)
+        }
+        
         return Observable.create{[unowned self] (observer) -> Disposable in
             
             do {
                 try self.contentReady()
                 
+                
+                
                 observer.onNext(.Progress(show: true))
-                return  APIProfileService.editUserWithUsername(self.user.username, withParams: self.composeParameters()).subscribe({ (event) in
+                return  APIProfileService.editPageWithUsername(user.username, withParams: self.composeParameters()).subscribe({ (event) in
                     observer.onNext(.Progress(show: false))
                     switch event {
                     case .Next(let loggedUser):
@@ -142,6 +176,7 @@ final class EditPageTableViewModel {
         
         var name: String?
         var about: String?
+        // TODO: Handle value for published
         var is_published: Bool?
         var description: String?
         var phone: String?
@@ -150,7 +185,7 @@ final class EditPageTableViewModel {
         var overview: String?
         var mission: String?
         var general_info: String?
-        var is_verified: Bool?
+        
         
         for cell in cells {
             switch cell {
@@ -181,16 +216,8 @@ final class EditPageTableViewModel {
             }
         }
         
-        return EditPageParams(name: name,
-                              about: about,
-                              description: description,
-                              phone: phone,
-                              imagePath: avatarUploadTask?.attachment.remoteURL?.absoluteString,
-                              coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString,
-                              founded: founded,
-                              impressum: impressum,
-                              overview: overview,
-                              mission: mission,
-                              general_info: general_info)
+        // TODO: Handle image editing
+        return EditPageParams(name: name, imagePath: nil, about: about, description: description, phone: phone, founded: founded, impressum: impressum, overview: overview, mission: mission, general_info: general_info, coverPath: nil, is_published: is_published)
+      
     }
 }

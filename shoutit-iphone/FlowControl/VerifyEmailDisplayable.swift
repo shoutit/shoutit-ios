@@ -10,12 +10,12 @@ import Foundation
 import ShoutitKit
 
 protocol VerifyEmailDisplayable {
-    func showVerifyEmailView(profile: DetailedProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) -> Void
+    func showVerifyEmailView(profile: DetailedUserProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) -> Void
 }
 
 extension FlowController : VerifyEmailDisplayable {
     
-    func showVerifyEmailView(profile: DetailedProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) {
+    func showVerifyEmailView(profile: DetailedUserProfile, successBlock: VerifyEmailViewController.VerifyEmailSuccessBlock) {
         let controller = Wireframe.verifyEmailViewController()
         controller.viewModel = VerifyEmailViewModel(profile: profile)
         controller.successBlock = successBlock

@@ -78,8 +78,8 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var adIconWidth : NSLayoutConstraint!
     @IBOutlet weak var adIconImage: UIImageView!
     
-    var currentMode : ShoutsCollectionViewCell.Mode = .Regular
-    var data : ShoutsCollectionViewCell.Data = .Shout {
+    var currentMode : ShoutsCollectionViewCell.Mode?
+    var data : ShoutsCollectionViewCell.Data?  {
         didSet {
             adjustChoicesView()
         }
@@ -99,6 +99,14 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         
         self.shoutPromotionBackground = promotionView
         self.shoutPromotionLabel = promotionLabel
+        
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        currentMode = .Regular
+        data = .Shout
     }
     
     func hydrateWithDiscoverItem(discoverItem: DiscoverItem) {
@@ -124,7 +132,9 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     }
     
     func adjustChoicesView() {
-        setupViewForMode(currentMode)
+        if let currentMode = currentMode {
+            setupViewForMode(currentMode)
+        }
         
         self.setNeedsDisplay()
     }
@@ -153,6 +163,10 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViewForMode(mode: Mode) {
+        guard let _ = shoutType else {
+            return
+        }
+        
         titleLabel.numberOfLines = mode == .Regular ? 1 : 2
         shoutSubtitle?.hidden = mode != .Expanded
         shoutTypeLabel.hidden = (mode != .Expanded || data == .Ad)
