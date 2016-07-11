@@ -75,6 +75,11 @@ extension SHShoutItemCell {
         
         self.shoutCountryImage?.hidden = false
         self.shoutType?.hidden = false
+        
+        if let add = self.adChoicesView?.nativeAd {
+            add.unregisterView()
+            adChoicesView?.nativeAd = nil
+        }
     }
     
 }

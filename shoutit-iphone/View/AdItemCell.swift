@@ -46,6 +46,15 @@ class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
         self.setNeedsDisplay()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        if let ad = adChoicesView.nativeAd {
+            ad.unregisterView()
+        }
+
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

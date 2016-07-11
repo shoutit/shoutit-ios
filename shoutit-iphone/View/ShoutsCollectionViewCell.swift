@@ -137,6 +137,11 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         imageView.image = nil
+        
+        if let add = self.adChoicesView?.nativeAd {
+            add.unregisterView()
+            adChoicesView?.nativeAd = nil
+        }
     }
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
