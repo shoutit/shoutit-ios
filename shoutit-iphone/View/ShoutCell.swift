@@ -23,7 +23,7 @@ protocol ShoutCell {
     weak var shoutBackgroundView: UIView? { get }
     weak var shoutPromotionBackground: UIView? { get set }
     weak var shoutPromotionLabel: UILabel? { get set }
-    weak var adChoicesView: FBAdChoicesView! { get set }
+    weak var adChoicesView: FBAdChoicesView? { get set }
     weak var adIconImage: UIImageView! { get set }
     
     func bindWith(Shout shout: Shout)
@@ -38,7 +38,9 @@ extension ShoutCell where Self : UICollectionViewCell {
     }
     
     func commonBindWithAd(Ad ad: FBNativeAd) {
-        ad.unregisterView()
+        if let add = self.adChoicesView?.nativeAd {
+            add.unregisterView()
+        }
         
         self.shoutTitle?.text = ad.title
         self.name?.text = NSLocalizedString("Sponsored", comment: "")
@@ -67,6 +69,11 @@ extension ShoutCell where Self : UICollectionViewCell {
     }
     
     func commonBindWithShout(shout: Shout) {
+        
+        if let ad = self.adChoicesView?.nativeAd {
+            ad.unregisterView()
+        }
+        
         self.shoutTitle?.text = shout.title ?? ""
         self.name?.text = shout.user?.name ?? ""
         

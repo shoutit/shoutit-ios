@@ -69,9 +69,9 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoutCategoryImageView: UIImageView!
     @IBOutlet weak var messageIconImageView: UIImageView?
     @IBOutlet weak var bookmarkButton: UIButton?
-    @IBOutlet weak var adChoicesView: FBAdChoicesView! {
+    @IBOutlet weak var adChoicesView: FBAdChoicesView? {
         didSet {
-            adChoicesView.translatesAutoresizingMaskIntoConstraints = true
+            adChoicesView?.translatesAutoresizingMaskIntoConstraints = true
         }
     }
     @IBOutlet weak var adIconImageView: UIImageView!
@@ -172,7 +172,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
                                            "sub" : subtitleLabel,
                                            "price" : priceLabel,
                                            "type" : shoutTypeLabel,
-                                           "choices" : adChoicesView,
+                                           "choices" : adChoicesView!,
                                            "flag" : shoutCountryFlagImageView,
                                            "category" : shoutCategoryImageView,
                                            "msg" : messageIconImageView!]
