@@ -24,7 +24,8 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutPromotionBackground: UIView?
     @IBOutlet weak var shoutPromotionLabel: UILabel?
     @IBOutlet weak var bookmarkButton: UIButton?
-    weak var adChoicesView: FBAdChoicesView?
+    weak var adChoicesView: FBAdChoicesView!
+    @IBOutlet weak var adIconImage: UIImageView!
 }
 
 extension SHShoutItemCell {

@@ -23,7 +23,8 @@ protocol ShoutCell {
     weak var shoutBackgroundView: UIView? { get }
     weak var shoutPromotionBackground: UIView? { get set }
     weak var shoutPromotionLabel: UILabel? { get set }
-    weak var adChoicesView: FBAdChoicesView? { get set }
+    weak var adChoicesView: FBAdChoicesView! { get set }
+    weak var adIconImage: UIImageView! { get set }
     
     func bindWith(Shout shout: Shout)
 }
@@ -43,6 +44,10 @@ extension ShoutCell where Self : UICollectionViewCell {
         
         ad.coverImage?.loadImageAsyncWithBlock({(image) -> Void in
             self.shoutImage?.image = image
+        })
+        
+        ad.icon?.loadImageAsyncWithBlock({ (image) in
+            self.adIconImage?.image = image
         })
         
         self.adChoicesView?.nativeAd = ad
