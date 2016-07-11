@@ -1,0 +1,12 @@
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "6Du-Jn-gqn"; */
+"6Du-Jn-gqn.title" = "Save";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "DYj-Hj-COT"; */
+"DYj-Hj-COT.title" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Location"; ObjectID = "KHV-gk-i75"; */
+"KHV-gk-i75.normalTitle" = "Location";
+
+/* Class = "UINavigationItem"; title = "Edit Profile"; ObjectID = "Wch-UH-hQX"; */
+"Wch-UH-hQX.title" = "Edit Profile";

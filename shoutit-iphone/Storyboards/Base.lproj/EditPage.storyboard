@@ -6,7 +6,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Edit Page Table View Controller-->
+        <!--Edit Profile-->
         <scene sceneID="8Nz-BA-Zub">
             <objects>
                 <tableViewController id="6HP-4F-W8g" customClass="EditPageTableViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
@@ -123,17 +123,17 @@
                             </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileTextFieldCell" rowHeight="70" id="uHl-iN-EyS" userLabel="EditPageTextFieldCell" customClass="EditPageTextFieldTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageTextFieldCell" rowHeight="70" id="9wX-yn-Soy" customClass="EditPageTextFieldTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="292" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uHl-iN-EyS" id="drF-1E-cSI">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9wX-yn-Soy" id="2t9-fp-Kdl">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Dp-VY-ebH" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t2g-JK-sgJ" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="28" y="30" width="544" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="lFr-Lk-6IH"/>
+                                                <constraint firstAttribute="height" constant="30" id="EhX-iD-zUL"/>
                                             </constraints>
                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -141,27 +141,27 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="1Dp-VY-ebH" firstAttribute="leading" secondItem="drF-1E-cSI" secondAttribute="leading" constant="28" id="DAb-3d-Vvd"/>
-                                        <constraint firstAttribute="trailing" secondItem="1Dp-VY-ebH" secondAttribute="trailing" constant="28" id="Nsk-t1-FU6"/>
-                                        <constraint firstItem="1Dp-VY-ebH" firstAttribute="top" secondItem="drF-1E-cSI" secondAttribute="top" constant="30" id="m1e-xU-5Mp"/>
-                                        <constraint firstAttribute="bottom" secondItem="1Dp-VY-ebH" secondAttribute="bottom" constant="10" id="vB0-WL-ySa"/>
+                                        <constraint firstAttribute="bottom" secondItem="t2g-JK-sgJ" secondAttribute="bottom" constant="10" id="MN6-qU-UoZ"/>
+                                        <constraint firstItem="t2g-JK-sgJ" firstAttribute="leading" secondItem="2t9-fp-Kdl" secondAttribute="leading" constant="28" id="Ru6-Hq-Pz1"/>
+                                        <constraint firstAttribute="trailing" secondItem="t2g-JK-sgJ" secondAttribute="trailing" constant="28" id="VDH-P6-3ms"/>
+                                        <constraint firstItem="t2g-JK-sgJ" firstAttribute="top" secondItem="2t9-fp-Kdl" secondAttribute="top" constant="30" id="eOR-qU-7DC"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textField" destination="1Dp-VY-ebH" id="1d0-Yp-ZNR"/>
+                                    <outlet property="textField" destination="t2g-JK-sgJ" id="R8E-UR-Ifs"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileDateTextFieldCell" rowHeight="70" id="q9O-sD-J5X" userLabel="EditPageTextFieldTableViewCell" customClass="EditPageTextFieldTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageDateTextFieldCell" rowHeight="70" id="UVL-EU-hiZ" customClass="EditPageTextFieldTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="362" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q9O-sD-J5X" id="PK3-cq-nlk">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVL-EU-hiZ" id="B5w-D4-z5I">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-y8-5eF" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wnf-Wz-iZz" customClass="BorderedMaterialTextField" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="28" y="30" width="544" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="OuE-yK-ZPI"/>
+                                                <constraint firstAttribute="height" constant="30" id="cTV-18-P2c"/>
                                             </constraints>
                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -169,27 +169,27 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="HMa-y8-5eF" firstAttribute="leading" secondItem="PK3-cq-nlk" secondAttribute="leading" constant="28" id="4Ha-eB-oJC"/>
-                                        <constraint firstAttribute="trailing" secondItem="HMa-y8-5eF" secondAttribute="trailing" constant="28" id="WAu-G1-ArE"/>
-                                        <constraint firstItem="HMa-y8-5eF" firstAttribute="top" secondItem="PK3-cq-nlk" secondAttribute="top" constant="30" id="mTq-lG-S5W"/>
-                                        <constraint firstAttribute="bottom" secondItem="HMa-y8-5eF" secondAttribute="bottom" constant="10" id="oNm-Xj-i1k"/>
+                                        <constraint firstItem="wnf-Wz-iZz" firstAttribute="top" secondItem="B5w-D4-z5I" secondAttribute="top" constant="30" id="4h6-uD-Tvt"/>
+                                        <constraint firstItem="wnf-Wz-iZz" firstAttribute="leading" secondItem="B5w-D4-z5I" secondAttribute="leading" constant="28" id="Jw6-wq-LtB"/>
+                                        <constraint firstAttribute="bottom" secondItem="wnf-Wz-iZz" secondAttribute="bottom" constant="10" id="P2D-wK-f6f"/>
+                                        <constraint firstAttribute="trailing" secondItem="wnf-Wz-iZz" secondAttribute="trailing" constant="28" id="WAf-fP-5GF"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textField" destination="HMa-y8-5eF" id="Io7-sm-dXb"/>
+                                    <outlet property="textField" destination="wnf-Wz-iZz" id="Hfa-lk-Zee"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileSelectButtonCell" rowHeight="70" id="FN2-Kh-xuP" userLabel="EditPageSelectButtonTableViewCell" customClass="EditPageSelectButtonTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageSelectButtonCell" rowHeight="70" id="6Fi-fC-RmD" customClass="EditPageSelectButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="432" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FN2-Kh-xuP" id="jF9-GB-1Wq">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Fi-fC-RmD" id="S8G-oI-7ci">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Di-Uj-KBg" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHV-gk-i75" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="20" y="10" width="560" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="5yS-08-E4g"/>
+                                                <constraint firstAttribute="height" constant="50" id="Kpv-Jr-1h7"/>
                                             </constraints>
                                             <state key="normal" title="Location">
                                                 <color key="titleColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
@@ -206,24 +206,24 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="3Di-Uj-KBg" firstAttribute="leading" secondItem="jF9-GB-1Wq" secondAttribute="leading" constant="20" id="9X6-dP-ZUO"/>
-                                        <constraint firstAttribute="trailing" secondItem="3Di-Uj-KBg" secondAttribute="trailing" constant="20" id="ZMO-yR-zEb"/>
-                                        <constraint firstAttribute="bottom" secondItem="3Di-Uj-KBg" secondAttribute="bottom" constant="10" id="nBO-Qb-9nn"/>
-                                        <constraint firstItem="3Di-Uj-KBg" firstAttribute="top" secondItem="jF9-GB-1Wq" secondAttribute="top" constant="10" id="qps-nm-81g"/>
+                                        <constraint firstAttribute="bottom" secondItem="KHV-gk-i75" secondAttribute="bottom" constant="10" id="4bF-eW-Jq1"/>
+                                        <constraint firstAttribute="trailing" secondItem="KHV-gk-i75" secondAttribute="trailing" constant="20" id="JCs-V6-ebp"/>
+                                        <constraint firstItem="KHV-gk-i75" firstAttribute="top" secondItem="S8G-oI-7ci" secondAttribute="top" constant="10" id="gZc-Ai-3gz"/>
+                                        <constraint firstItem="KHV-gk-i75" firstAttribute="leading" secondItem="S8G-oI-7ci" secondAttribute="leading" constant="20" id="zZo-0s-mZN"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="selectButton" destination="3Di-Uj-KBg" id="LwM-TV-Hq6"/>
+                                    <outlet property="selectButton" destination="KHV-gk-i75" id="sff-08-ent"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProfileTextViewCell" rowHeight="160" id="20t-qh-Sao" userLabel="EditPageTextViewTableViewCell" customClass="EditPageTextViewTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageTextViewCell" rowHeight="160" id="Bcb-DT-go8" customClass="EditPageTextViewTableViewCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="502" width="600" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20t-qh-Sao" id="DdW-k7-TOi">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bcb-DT-go8" id="0pI-Mb-QSR">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-sf-gJr" customClass="FormTextView" customModule="Shoutit" customModuleProvider="target">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a1v-IG-4V9" customClass="FormTextView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="29" y="30" width="542" height="100"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
@@ -232,14 +232,14 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="rCW-sf-gJr" secondAttribute="bottom" priority="990" constant="30" id="2jZ-wa-0ws"/>
-                                        <constraint firstAttribute="trailing" secondItem="rCW-sf-gJr" secondAttribute="trailing" constant="29" id="4qm-C7-uhe"/>
-                                        <constraint firstItem="rCW-sf-gJr" firstAttribute="top" secondItem="DdW-k7-TOi" secondAttribute="top" priority="990" constant="30" id="HQK-W1-Bay"/>
-                                        <constraint firstItem="rCW-sf-gJr" firstAttribute="leading" secondItem="DdW-k7-TOi" secondAttribute="leading" constant="29" id="o2b-WT-pcC"/>
+                                        <constraint firstItem="a1v-IG-4V9" firstAttribute="top" secondItem="0pI-Mb-QSR" secondAttribute="top" priority="990" constant="30" id="3RD-zs-Pe8"/>
+                                        <constraint firstAttribute="bottom" secondItem="a1v-IG-4V9" secondAttribute="bottom" priority="990" constant="30" id="Kf0-yz-joM"/>
+                                        <constraint firstAttribute="trailing" secondItem="a1v-IG-4V9" secondAttribute="trailing" constant="29" id="TwF-hH-C6N"/>
+                                        <constraint firstItem="a1v-IG-4V9" firstAttribute="leading" secondItem="0pI-Mb-QSR" secondAttribute="leading" constant="29" id="ffE-pL-ckK"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textView" destination="rCW-sf-gJr" id="PF9-3q-UgG"/>
+                                    <outlet property="textView" destination="a1v-IG-4V9" id="SUW-ga-xTk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -248,8 +248,14 @@
                             <outlet property="delegate" destination="6HP-4F-W8g" id="mjR-oK-4vL"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="Wch-UH-hQX">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="DYj-Hj-COT"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="6Du-Jn-gqn"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButtonItem" destination="DYj-Hj-COT" id="r7e-s0-4aG"/>
                         <outlet property="headerView" destination="PFI-OT-Hwj" id="NAv-VK-O3v"/>
+                        <outlet property="saveBarButtonItem" destination="6Du-Jn-gqn" id="CJH-b6-yVC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t25-MZ-5bm" userLabel="First Responder" sceneMemberID="firstResponder"/>

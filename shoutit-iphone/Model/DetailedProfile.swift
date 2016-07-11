@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Ogra
 
-public struct DetailedProfile: User {
+public struct DetailedProfile: DetailedProfileObject {
     
     public var isGuest: Bool {
         return false
@@ -48,7 +48,6 @@ public struct DetailedProfile: User {
     public let listeningPath: String?
     public let isOwner: Bool
     public let chatPath: String?
-    public let admin: Box<DetailedProfile>?
     public let conversation: MiniConversation?
     public let stats: ProfileStats?
     public let birthday: String?
@@ -97,7 +96,6 @@ extension DetailedProfile: Decodable {
             <*> j <| "is_owner"
         let h = g
             <*> j <|? "chat_url"
-            <*> j <|? "admin"
             <*> j <|? "conversation"
             <*> j <|? "stats"
             <*> j <|? "birthday"
@@ -141,7 +139,6 @@ extension DetailedProfile: Encodable {
             "listening_url" : self.listeningPath.encode(),
             "is_owner" : self.isOwner.encode(),
             "chat_url" : self.chatPath.encode(),
-            "admin" : self.admin.encode(),
             "stats" : self.stats.encode(),
             "birthday" : self.birthday.encode()
             ])
@@ -151,7 +148,7 @@ extension DetailedProfile: Encodable {
 
 extension DetailedProfile {
     public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedProfile {
-        return DetailedProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, admin: self.admin, conversation: self.conversation, stats: stts, birthday: self.birthday)
+        return DetailedProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, conversation: self.conversation, stats: stts, birthday: self.birthday)
     }
 }
 

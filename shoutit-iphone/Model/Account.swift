@@ -15,7 +15,7 @@ final class Account {
     
     enum LoginState {
         case Logged(user: DetailedProfile)
-        case Page(user: DetailedProfile, page: DetailedProfile)
+        case Page(user: DetailedProfile, page: DetailedPageProfile)
         case Guest(user: GuestUser)
     }
     
@@ -124,10 +124,10 @@ final class Account {
         if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
             loginState = .Guest(user: guest)
         } else if let model: DetailedProfile = SecureCoder.readObjectFromFile(archivePath) {
+            loginState = .Logged(user: model)
+        } else if let page : DetailedPageProfile = SecureCoder.readObjectFromFile(archivePath) {
             if let admin = model.admin where model.type == .Page {
                 loginState = .Page(user: admin.value, page: model)
-            } else {
-                loginState = .Logged(user: model)
             }
         }
         

@@ -18,7 +18,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private var detailedPage: DetailedProfile?
     
-    var profile: DetailedProfile? {
+    var profile: DetailedPageProfile? {
         guard case .Some(.Page(_, let page)) = Account.sharedInstance.loginState else {
             return nil
         }

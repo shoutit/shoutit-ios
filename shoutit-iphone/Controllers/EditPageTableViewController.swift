@@ -20,84 +20,231 @@ class EditPageTableViewController: UITableViewController {
         case Avatar
     }
     
+    var viewModel: EditPageTableViewModel!
     
     // RX
     private let disposeBag = DisposeBag()
     
     // UI
     @IBOutlet weak var headerView: EditPageTableViewHeaderView!
+    @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
     weak private var dateField : UITextField?
     
+    // children
+    lazy var mediaPickerController: MediaPickerController = {[unowned self] in
+        var pickerSettings = MediaPickerSettings()
+        pickerSettings.allowsVideos = false
+        let controller = MediaPickerController(delegate: self, settings: pickerSettings)
+        
+        controller.presentingSubject.observeOn(MainScheduler.instance).subscribeNext {[weak self] controller in
+            guard let controller = controller else { return }
+            self?.presentViewController(controller, animated: true, completion: nil)
+            }.addDisposableTo(self.disposeBag)
+        
+        return controller
+        }()
+    
+    var uploadType: UploadType?
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // setup photos
+        headerView.avatarImageView.sh_setImageWithURL(viewModel.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        headerView.coverImageView.sh_setImageWithURL(viewModel.user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
+        
+        self.tableView.keyboardDismissMode = .OnDrag
+        
+        setupRX()
     }
+    
+    // MARK: - Setup
+    
+    private func setupRX() {
+        
+        cancelBarButtonItem
+            .rx_tap
+            .asDriver()
+            .driveNext {[unowned self] in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
+        
+        headerView.coverButton
+            .rx_tap
+            .asDriver()
+            .driveNext {[unowned self] in
+                self.uploadType = .Cover
+                self.mediaPickerController.showMediaPickerController()
+            }
+            .addDisposableTo(disposeBag)
+        
+        headerView.avatarButton
+            .rx_tap
+            .asDriver()
+            .driveNext {[unowned self] in
+                self.uploadType = .Avatar
+                self.mediaPickerController.showMediaPickerController()
+            }
+            .addDisposableTo(disposeBag)
+        
+        saveBarButtonItem
+            .rx_tap
+            .flatMapFirst {[unowned self] () -> Observable<EditPageTableViewModel.OperationStatus> in
+                return self.viewModel.save()
+            }
+            .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
+                switch status {
+                case .Error(let error):
+                    self?.showError(error)
+                case .Progress(let show):
+                    if show {
+                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                    } else {
+                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                    }
+                case .Ready:
+                    self?.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
+}
 
+// MARK: - UITableViewDataSource
+
+extension EditPageTableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return viewModel.cells.count
     }
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cellViewModel = viewModel.cells[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
+        
+        switch cellViewModel {
+        case .BasicText(let value, let placeholder, let identity):
+            let cell = cell as! EditPageTextFieldTableViewCell
+            cell.textField.placeholder = placeholder
+            cell.textField.text = value
+            cell.textField.inputView = nil
+            if case .Mobile = identity {
+                cell.textField.keyboardType = .PhonePad
+            }
+            cell.textField
+                .rx_text
+                .asDriver()
+                .driveNext{[unowned self] (text) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
+                }
+                .addDisposableTo(cell.disposeBag)
+            
+        case .RichText(let value, let placeholder, _):
+            let cell = cell as! EditPageTextViewTableViewCell
+            cell.textView.placeholderLabel?.text = placeholder
+            cell.textView.text = value
+            cell.textView.delegate = self
+            cell.textView.rx_text
+                .observeOn(MainScheduler.instance)
+                .distinctUntilChanged()
+                .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
+                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
+                }
+                .addDisposableTo(cell.disposeBag)
+        case .Location(let value, let placeholder, _):
+            let cell = cell as! EditPageSelectButtonTableViewCell
+            cell.selectButton.fieldTitleLabel.text = placeholder
+            cell.selectButton.iconImageView.image = UIImage(named: value.country)
+            cell.selectButton.setTitle(value.address, forState: .Normal)
+            cell.selectButton
+                .rx_tap
+                .asDriver()
+                .driveNext({ [weak self] () -> Void in
+                    
+                    let controller = Wireframe.changeShoutLocationController()
+                    
+                    controller.finishedBlock = {[weak indexPath](success, place) -> Void in
+                        if let place = place, indexPath = indexPath {
+                            let newViewModel = EditPageCellViewModel(location: place)
+                            self?.viewModel.cells[indexPath.row] = newViewModel
+                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        }
+                    }
+                    
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: #selector(controller.pop))
+                    self?.navigationController?.showViewController(controller, sender: nil)
+                    
+                    })
+                .addDisposableTo(cell.disposeBag)
+        }
+        
         return cell
     }
-    */
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+extension EditPageTableViewController {
+    func genderValues() -> [String] {
+        return [NSLocalizedString("Not specified", comment: ""), Gender.Male.rawValue, Gender.Female.rawValue, Gender.Other.rawValue]
     }
-    */
+    
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+extension EditPageTableViewController {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let cellViewModel = viewModel.cells[indexPath.row]
+        switch cellViewModel {
+        case .BasicText: return 70
+        case .RichText: return 150
+        case .Location: return 70
+        }
     }
-    */
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+extension EditPageTableViewController: MediaPickerControllerDelegate {
+    
+    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+        
+        guard let uploadType = uploadType else { return }
+        
+        let task = uploadType == .Cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)
+        let progressType: EditPageTableViewHeaderView.ProgressType = uploadType == .Avatar ? .Avatar : .Cover
+        let progressView = uploadType == .Avatar ? self.headerView.avatarUploadProgressView : self.headerView.coverUploadProgressView
+        let imageView = uploadType == .Cover ? self.headerView.coverImageView : self.headerView.avatarImageView
+        imageView.image = attachment.image
+        
+        task.status
+            .asDriver()
+            .driveNext{[weak self] (status) in
+                self?.headerView.hydrateProgressView(progressType, withStatus: status)
+            }
+            .addDisposableTo(disposeBag)
+        
+        task.progress
+            .asDriver()
+            .driveNext{[weak progressView] (progress) in
+                progressView?.setProgress(progress, animated: true)
+            }
+            .addDisposableTo(disposeBag)
+        
+        self.uploadType = nil
     }
-    */
+}
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+extension EditPageTableViewController: UITextViewDelegate {
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return textView.text.utf16.count < viewModel.charactersLimit || text.utf16.count == 0
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
