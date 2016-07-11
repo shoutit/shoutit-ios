@@ -59,7 +59,7 @@ final class SettingsTableViewController: UITableViewController {
         tableView
             .rx_modelSelected(SettingsOption.self)
             .subscribeNext { (option) in
-                option.action()
+                option.action(option)
             }
             .addDisposableTo(disposeBag)
     }

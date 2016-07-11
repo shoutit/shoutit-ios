@@ -16,7 +16,7 @@ class LinkedAccountsManager : NSObject {
     private let account: Account
     
     private weak var presentingController : UIViewController?
-    private weak var googleSettingsOption : SettingsOption?
+    private var googleSettingsOption : SettingsOption?
     
     private let disposeBag = DisposeBag()
     
@@ -92,9 +92,13 @@ class LinkedAccountsManager : NSObject {
         
         GIDSignIn.sharedInstance().signOut()
         
+        googleSettingsOption = option
+        
         APIProfileService.unlinkSocialAccountWithParams(.Google(code: nil)).subscribe { [weak self] (event) in
+            self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
             switch event {
             case .Next(_):
+                Account.sharedInstance.fetchUserProfile()
                 self?.presentingController?.showSuccessMessage(NSLocalizedString("Google Account Unlinked", comment: ""))
             case .Error(let error):
                 self?.presentingController?.showError(error)
@@ -112,6 +116,7 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
     @objc func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         
         if error != nil {
+            self.presentingController?.showError(error)
             return
         }
         
@@ -120,6 +125,8 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
             case .Next(_):
                 print("Google Connected")
                 self?.presentingController?.showSuccessMessage(NSLocalizedString("Google Account Linked", comment: ""))
+                self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
+                Account.sharedInstance.fetchUserProfile()
             case .Error(let error):
                 self?.presentingController?.showError(error)
             

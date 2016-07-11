@@ -999,6 +999,7 @@
 		2496715A1C873C8A0011B078 /* CreateShoutTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTextCell.swift; path = View/CreateShoutTextCell.swift; sourceTree = "<group>"; };
 		2496715D1C874F9F0011B078 /* ShoutConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutConfirmationViewController.swift; path = Controllers/ShoutConfirmationViewController.swift; sourceTree = "<group>"; };
 		249671601C8758650011B078 /* EditShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutTableViewController.swift; path = Controllers/EditShoutTableViewController.swift; sourceTree = "<group>"; };
+		2499D4121D33FED70071125B /* shoutit-Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "shoutit-Production.xcconfig"; path = "OtherSources/shoutit-Production.xcconfig"; sourceTree = "<group>"; };
 		2499EA6A1C8093970086DEA9 /* CreateShoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutTableViewController.swift; path = Controllers/CreateShoutTableViewController.swift; sourceTree = "<group>"; };
 		2499EA6C1C8094F80086DEA9 /* CreateShoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutViewModel.swift; path = ViewModel/CreateShoutViewModel.swift; sourceTree = "<group>"; };
 		249F78241C9963CF00FCB9A6 /* ConversationDayHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationDayHeader.xib; path = View/ConversationDayHeader.xib; sourceTree = "<group>"; };
@@ -3602,6 +3603,7 @@
 				B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */,
 				B227BFBB1C579597003A2D76 /* shoutit.xcconfig */,
 				B209AC051C6B93A200EF2B8E /* shoutit-Staging.xcconfig */,
+				2499D4121D33FED70071125B /* shoutit-Production.xcconfig */,
 				B227BFAF1C579577003A2D76 /* External */,
 			);
 			name = xcconfig;
