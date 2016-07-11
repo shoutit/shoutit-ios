@@ -24,6 +24,7 @@ protocol ShoutCell {
     weak var shoutPromotionBackground: UIView? { get set }
     weak var shoutPromotionLabel: UILabel? { get set }
     weak var adChoicesView: FBAdChoicesView? { get set }
+    weak var adIconImage: UIImageView! { get set }
     
     func bindWith(Shout shout: Shout)
 }
@@ -33,12 +34,20 @@ extension ShoutsCollectionViewCell : ShoutCell {}
 
 extension ShoutCell where Self : UICollectionViewCell {
     func bindWithAd(Ad ad: FBNativeAd) {
+        commonBindWithAd(Ad: ad)
+    }
+    
+    func commonBindWithAd(Ad ad: FBNativeAd) {
         self.shoutTitle?.text = ad.title
         self.name?.text = NSLocalizedString("Sponsored", comment: "")
         self.shoutSubtitle?.text = ad.subtitle
         
         ad.coverImage?.loadImageAsyncWithBlock({(image) -> Void in
             self.shoutImage?.image = image
+        })
+        
+        ad.icon?.loadImageAsyncWithBlock({ (image) in
+            self.adIconImage?.image = image
         })
         
         self.adChoicesView?.nativeAd = ad
@@ -55,7 +64,7 @@ extension ShoutCell where Self : UICollectionViewCell {
         setDefaultBackground()
     }
     
-    func bindWith(Shout shout: Shout) {
+    func commonBindWithShout(shout: Shout) {
         self.shoutTitle?.text = shout.title ?? ""
         self.name?.text = shout.user?.name ?? ""
         
@@ -85,13 +94,13 @@ extension ShoutCell where Self : UICollectionViewCell {
         }
         
         self.shoutType?.text = shout.type()?.title()
- 
+        
         guard let promotion = shout.promotion else {
             hidePromotion()
             setDefaultBackground()
             return
         }
-    
+        
         guard promotion.isExpired == false else {
             hidePromotion()
             setDefaultBackground()
@@ -110,6 +119,11 @@ extension ShoutCell where Self : UICollectionViewCell {
         if let shoutPromotionBackground = shoutPromotionBackground {
             self.contentView.bringSubviewToFront(shoutPromotionBackground)
         }
+
+    }
+    
+    func bindWith(Shout shout: Shout) {
+        commonBindWithShout(shout)
     }
     
     func hidePromotion() {

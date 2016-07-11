@@ -35,10 +35,15 @@ final class SettingsTableViewController: UITableViewController {
     
     private func setupRX() {
         
-        Account.sharedInstance.userSubject.subscribeNext { (user) in
+        Account.sharedInstance.userSubject.subscribeNext{ (user) in
+            for option in self.models.value {
+                if let refresh = option.refresh {
+                    refresh(option)
+                }
+            }
             self.tableView.reloadData()
+            
         }.addDisposableTo(disposeBag)
-        
         // bind table view
         models.asObservable()
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
@@ -54,7 +59,7 @@ final class SettingsTableViewController: UITableViewController {
         tableView
             .rx_modelSelected(SettingsOption.self)
             .subscribeNext { (option) in
-                option.action()
+                option.action(option)
             }
             .addDisposableTo(disposeBag)
     }

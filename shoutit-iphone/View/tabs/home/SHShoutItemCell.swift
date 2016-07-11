@@ -25,6 +25,7 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var shoutPromotionLabel: UILabel?
     @IBOutlet weak var bookmarkButton: UIButton?
     weak var adChoicesView: FBAdChoicesView?
+    @IBOutlet weak var adIconImage: UIImageView!
 }
 
 extension SHShoutItemCell {
@@ -74,6 +75,11 @@ extension SHShoutItemCell {
         
         self.shoutCountryImage?.hidden = false
         self.shoutType?.hidden = false
+        
+        if let add = self.adChoicesView?.nativeAd {
+            add.unregisterView()
+            adChoicesView?.nativeAd = nil
+        }
     }
     
 }
