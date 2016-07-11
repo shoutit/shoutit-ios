@@ -16,10 +16,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwR-Ck-Aoj">
                         <rect key="frame" x="0.0" y="0.0" width="384" height="110"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KRV-5r-rQw">
-                                <rect key="frame" x="115" y="46" width="261" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRV-5r-rQw">
+                                <rect key="frame" x="115" y="42" width="261" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="EHR-ka-gT0"/>
                                     <constraint firstAttribute="height" constant="40" id="Wh9-4B-fOA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -33,19 +32,23 @@
                                     <constraint firstAttribute="height" constant="24" id="jaZ-CM-757"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="RsU-UB-HWl">
-                                <rect key="frame" x="147" y="0.0" width="130" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsU-UB-HWl">
+                                <rect key="frame" x="147" y="4" width="130" height="18"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="Nmc-Hb-QDt"/>
                                     <constraint firstAttribute="width" constant="130" id="nEl-yJ-FRA"/>
-                                    <constraint firstAttribute="height" constant="36" id="oHA-qx-HrG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLE-I4-b9q" customClass="FBAdChoicesView">
-                                <rect key="frame" x="304" y="0.0" width="80" height="16"/>
+                                <rect key="frame" x="324" y="0.0" width="60" height="16"/>
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="7Je-pm-Rg5"/>
+                                    <constraint firstAttribute="height" constant="16" id="B4p-Ax-0Ax"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmF-no-HjW" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="214" y="86" width="90" height="22"/>
@@ -87,7 +90,7 @@
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sponsored" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lx-Ja-c2k">
-                                <rect key="frame" x="147" y="36" width="229" height="15"/>
+                                <rect key="frame" x="147" y="19" width="229" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="4Kb-BP-LZn"/>
                                 </constraints>
@@ -99,14 +102,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TZl-ML-maa" firstAttribute="top" secondItem="qwR-Ck-Aoj" secondAttribute="top" constant="5" id="3li-7t-vVD"/>
-                            <constraint firstItem="qmF-no-HjW" firstAttribute="top" secondItem="KRV-5r-rQw" secondAttribute="bottom" id="54y-03-gTg"/>
+                            <constraint firstItem="qmF-no-HjW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KRV-5r-rQw" secondAttribute="bottom" id="54y-03-gTg"/>
                             <constraint firstItem="JLE-I4-b9q" firstAttribute="top" secondItem="qwR-Ck-Aoj" secondAttribute="top" id="5Ph-LD-ygW"/>
                             <constraint firstItem="s3F-hm-MiY" firstAttribute="top" secondItem="qwR-Ck-Aoj" secondAttribute="top" constant="8" id="CM2-Wv-GVU"/>
                             <constraint firstItem="TZl-ML-maa" firstAttribute="leading" secondItem="qwR-Ck-Aoj" secondAttribute="leading" constant="5" id="Dar-rB-hPR"/>
-                            <constraint firstItem="1lx-Ja-c2k" firstAttribute="top" secondItem="RsU-UB-HWl" secondAttribute="bottom" id="Dy5-aH-OQN"/>
+                            <constraint firstItem="1lx-Ja-c2k" firstAttribute="top" secondItem="RsU-UB-HWl" secondAttribute="bottom" constant="-3" id="Dy5-aH-OQN"/>
                             <constraint firstAttribute="trailing" secondItem="qmF-no-HjW" secondAttribute="trailing" constant="80" id="FZ8-Av-7WU"/>
                             <constraint firstItem="RsU-UB-HWl" firstAttribute="leading" secondItem="s3F-hm-MiY" secondAttribute="trailing" constant="8" id="Hha-it-RlU"/>
                             <constraint firstAttribute="trailing" secondItem="KRV-5r-rQw" secondAttribute="trailing" constant="8" id="J1J-O6-Mww"/>
+                            <constraint firstItem="KRV-5r-rQw" firstAttribute="leading" secondItem="s3F-hm-MiY" secondAttribute="leading" id="PvT-UX-TNe"/>
                             <constraint firstAttribute="bottom" secondItem="qmF-no-HjW" secondAttribute="bottom" constant="2" id="R6z-2l-7hU"/>
                             <constraint firstItem="1lx-Ja-c2k" firstAttribute="top" secondItem="JLE-I4-b9q" secondAttribute="bottom" constant="20" id="RQO-kP-gqS"/>
                             <constraint firstAttribute="trailing" secondItem="JLE-I4-b9q" secondAttribute="trailing" id="SYb-qQ-DT4"/>
@@ -117,11 +121,19 @@
                             <constraint firstItem="TZl-ML-maa" firstAttribute="leading" secondItem="qwR-Ck-Aoj" secondAttribute="leading" constant="5" id="dMA-UZ-9fk"/>
                             <constraint firstAttribute="bottom" secondItem="TZl-ML-maa" secondAttribute="bottom" constant="5" id="dMW-Bm-a4s"/>
                             <constraint firstItem="RsU-UB-HWl" firstAttribute="top" secondItem="qwR-Ck-Aoj" secondAttribute="top" id="dU4-I2-3Tq"/>
-                            <constraint firstItem="JLE-I4-b9q" firstAttribute="leading" secondItem="RsU-UB-HWl" secondAttribute="trailing" constant="27" id="iT4-fR-RHQ"/>
-                            <constraint firstItem="KRV-5r-rQw" firstAttribute="top" secondItem="s3F-hm-MiY" secondAttribute="bottom" constant="14" id="kR0-ZB-BsO"/>
+                            <constraint firstItem="RsU-UB-HWl" firstAttribute="top" secondItem="s3F-hm-MiY" secondAttribute="top" constant="-4" id="hAp-rX-E4N"/>
+                            <constraint firstItem="JLE-I4-b9q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RsU-UB-HWl" secondAttribute="trailing" constant="5" id="iT4-fR-RHQ"/>
+                            <constraint firstItem="KRV-5r-rQw" firstAttribute="top" secondItem="s3F-hm-MiY" secondAttribute="bottom" constant="10" id="kR0-ZB-BsO"/>
                             <constraint firstAttribute="trailing" secondItem="1lx-Ja-c2k" secondAttribute="trailing" constant="8" id="qAW-K1-W46"/>
                             <constraint firstAttribute="bottom" secondItem="TZl-ML-maa" secondAttribute="bottom" constant="5" id="wg7-ZO-fg9"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VEA-bw-Bh3"/>
+                                <exclude reference="dU4-I2-3Tq"/>
+                                <exclude reference="RQO-kP-gqS"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

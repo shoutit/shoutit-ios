@@ -37,17 +37,18 @@ class AdItemCell: UICollectionViewCell, FBNativeAdDelegate {
             self.adCallToActionButton.hidden = true
         }
         
-        ad.icon?.loadImageAsyncWithBlock({(image) -> Void in
+        ad.icon?.loadImageAsyncWithBlock({ (image) -> Void in
             self.adIconImageView?.image = image
         })
+        
         self.adCoverMediaView.nativeAd = ad
-
-            self.adChoicesView.nativeAd = ad
-            self.adChoicesView.corner = .TopRight
-            self.adChoicesView.hidden = false
+        self.adChoicesView.nativeAd = ad
+        self.setNeedsDisplay()
     }
-
-    func nativeAd(ad: FBNativeAd, didFailWithError error: NSError) {
-        NSLog("Ad failed to load with error: %@", error)
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.adChoicesView.updateFrameFromSuperview()
     }
 }
