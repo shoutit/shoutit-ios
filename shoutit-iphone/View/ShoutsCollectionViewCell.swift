@@ -71,7 +71,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkButton: UIButton?
     @IBOutlet weak var adChoicesView: FBAdChoicesView! {
         didSet {
-            adChoicesView.translatesAutoresizingMaskIntoConstraints = false
+            adChoicesView.translatesAutoresizingMaskIntoConstraints = true
         }
     }
     @IBOutlet weak var adIconImageView: UIImageView!
@@ -176,6 +176,7 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
                                            "flag" : shoutCountryFlagImageView,
                                            "category" : shoutCategoryImageView,
                                            "msg" : messageIconImageView!]
+        
         currentConstraints.forEach { (constraint) in
             constraint.active = false
         }
@@ -192,23 +193,19 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
             currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[price]-5-|", options: [], metrics: nil, views: views)
             currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[img]-10-[adIcon(0)]", options: [], metrics: nil, views: views)
         case .Expanded:
-            currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[img(100)]", options: [], metrics: nil, views: views)
             currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-5-[img]-5-|", options: [], metrics: nil, views: views)
-            currentConstraints += [NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal, toItem: adIconImageView, attribute: .Top, multiplier: 1, constant: 5)]
-            currentConstraints += [NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: imageView, attribute: .Trailing, multiplier: 1, constant: 94)]
-            currentConstraints += [NSLayoutConstraint(item: subtitleLabel, attribute: .Leading, relatedBy: .Equal, toItem: adIconImageView, attribute: .Leading, multiplier: 1.0, constant: 30)]
-            currentConstraints += [NSLayoutConstraint(item: userNameLabel, attribute: .Leading, relatedBy: .Equal, toItem: adIconImageView, attribute: .Leading, multiplier: 1.0, constant: 30)]
-            currentConstraints += [NSLayoutConstraint(item: shoutCountryFlagImageView, attribute: .Leading, relatedBy: .Equal, toItem: titleLabel, attribute: .Leading, multiplier: 1.0, constant: 0)]
-            currentConstraints += [NSLayoutConstraint(item: subtitleLabel, attribute: .Top, relatedBy: .Equal, toItem: titleLabel, attribute: .Bottom, multiplier: 1, constant: 10)]
+            currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-4-[title(20)]-(-7)-[usr(20)]-10-[sub]", options: [], metrics: nil, views: views)
             currentConstraints += [NSLayoutConstraint(item: shoutTypeLabel, attribute: .CenterY, relatedBy: .Equal, toItem: subtitleLabel, attribute: .CenterY, multiplier: 1, constant: 0)]
             currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[sub]-(>=20)-[type]-10-|", options: [], metrics: nil, views: views)
             currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[price]-5-|", options: [], metrics: nil, views: views)
-            currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[img]-10-[adIcon(24)]", options: [], metrics: nil, views: views)
-            currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[title]-0-[usr]", options: [], metrics: nil, views: views)
+            currentConstraints += [NSLayoutConstraint(item: subtitleLabel, attribute: .Leading, relatedBy: .Equal, toItem: adIconImageView, attribute: .Leading, multiplier: 1.0, constant: 10)]
+            currentConstraints += [NSLayoutConstraint(item: userNameLabel, attribute: .Leading, relatedBy: .Equal, toItem: adIconImageView, attribute: .Trailing, multiplier: 1.0, constant: 10)]
             
             if data == .Ad {
+                currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[img(100)]-10-[adIcon(24)]-10-[title]-5-|", options: [], metrics: nil, views: views)
                 currentConstraints += [NSLayoutConstraint(item: priceLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 50)]
             } else {
+                currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[img(100)]-10-[adIcon(0)]-0-[title]-5-|", options: [], metrics: nil, views: views)
                 currentConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[price]-5-|", options: [], metrics: nil, views: views)
             }
             

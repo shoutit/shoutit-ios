@@ -131,10 +131,12 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="x9X-k2-Cjx"/>
-                                <exclude reference="tXY-5W-at7"/>
                                 <exclude reference="LmS-b6-as6"/>
                                 <exclude reference="Nc1-Ry-8xc"/>
                                 <exclude reference="yfk-md-Onv"/>
+                                <exclude reference="8nw-UQ-5tk"/>
+                                <exclude reference="9UP-aQ-6e3"/>
+                                <exclude reference="tXY-5W-at7"/>
                             </mask>
                         </variation>
                     </view>

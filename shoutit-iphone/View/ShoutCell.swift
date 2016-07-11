@@ -38,6 +38,8 @@ extension ShoutCell where Self : UICollectionViewCell {
     }
     
     func commonBindWithAd(Ad ad: FBNativeAd) {
+        ad.unregisterView()
+        
         self.shoutTitle?.text = ad.title
         self.name?.text = NSLocalizedString("Sponsored", comment: "")
         self.shoutSubtitle?.text = ad.subtitle
