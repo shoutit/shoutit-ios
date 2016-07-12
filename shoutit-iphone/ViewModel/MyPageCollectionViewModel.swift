@@ -129,7 +129,25 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     var conversation: MiniConversation? { return nil }
     
     var hidesVerifyAccountButton: Bool {
-        return detailedPage?.isActivated ?? profile?.isActivated ?? true
+        if let activated = detailedPage?.isActivated {
+            if activated == false {
+                return false
+            }
+            
+            if let verified = detailedPage?.isVerified {
+                return verified
+            }
+        }
+        return true
+    }
+    
+    var verifyButtonTitle: String {
+        if let activated = detailedPage?.isActivated {
+            if activated == false {
+                return NSLocalizedString("Activate your Page!", comment: "")
+            }
+        }
+        return NSLocalizedString("Verify your account!", comment: "")
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {

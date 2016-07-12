@@ -120,15 +120,18 @@ final class Account {
     // MARK - Lifecycle
     
     private init() {
+        if let page : DetailedPageProfile = SecureCoder.readObjectFromFile(archivePath) {
+            if let admin = page.admin {
+                loginState = .Page(user: admin.value, page: page)
+            }
+        }
+        
+        if let model: DetailedUserProfile = SecureCoder.readObjectFromFile(archivePath) {
+            loginState = .Logged(user: model)
+        }
         
         if let guest: GuestUser = SecureCoder.readObjectFromFile(archivePath) {
             loginState = .Guest(user: guest)
-        } else if let model: DetailedUserProfile = SecureCoder.readObjectFromFile(archivePath) {
-            loginState = .Logged(user: model)
-        } else if let page : DetailedPageProfile = SecureCoder.readObjectFromFile(archivePath) {
-            if let admin = page.admin where page.type == .Page {
-                loginState = .Page(user: admin.value, page: page)
-            }
         }
         
         guard let user = user else { return }
@@ -143,6 +146,8 @@ final class Account {
         userSubject.onNext(user)
     }
     
+
+        
     func loginUser<T: User>(user: T, withAuthData authData: AuthData) throws {
         
         // save

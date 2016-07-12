@@ -25,13 +25,14 @@ public struct DetailedPageProfile: DetailedProfile {
     public let firstName: String?
     public let lastName: String?
     public let isActivated: Bool
+    public let isVerified: Bool
     public let imagePath: String?
     public let coverPath: String?
     public let isListening: Bool?
     public let listenersCount: Int
     public let website: String?
     public let about: String?
-    public let is_published: Bool?
+    public let isPublished: Bool?
     public let stats: ProfileStats?
     public let mobile: String?
     public let founded: String?
@@ -66,6 +67,7 @@ extension DetailedPageProfile: Decodable {
             <*> j <|? "last_name"
         let c = b
             <*> j <| "is_activated"
+            <*> j <| "is_verified"
             <*> j <|? "image"
             <*> j <|? "cover"
             <*> j <|? "is_listening"
@@ -108,13 +110,14 @@ extension DetailedPageProfile {
             "first_name" : self.firstName.encode(),
             "last_name" : self.lastName.encode(),
             "is_activated" : self.isActivated.encode(),
+            "is_verified" : self.isVerified.encode(),
             "image" : self.imagePath.encode(),
             "cover" : self.coverPath.encode(),
             "is_listening" : self.isListening.encode(),
             "listeners_count" : self.listenersCount.encode(),
             "website" : self.website.encode(),
             "about" : self.about.encode(),
-            "is_published" : self.is_published.encode(),
+            "is_published" : self.isPublished.encode(),
             "stats" : self.stats.encode(),
             "phone" : self.mobile.encode(),
             "founded" : self.founded.encode(),
@@ -125,6 +128,8 @@ extension DetailedPageProfile {
             "general_info" : self.general_info.encode(),
             "admin" : self.admin.encode(),
             "listening_count" : self.listeningMetadata.encode(),
+            "date_joined" : self.dateJoinedEpoch.encode(),
+            "location" : self.location.encode(),
             ])
     }
 }

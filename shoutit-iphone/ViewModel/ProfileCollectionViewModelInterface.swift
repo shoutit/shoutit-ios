@@ -33,6 +33,8 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var conversation: MiniConversation? {get}
     var reportable: Reportable? {get}
     
+    var verifyButtonTitle: String { get }
+    
     // sections
     var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}
     var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}

@@ -64,7 +64,7 @@ final class EditPageTableViewModel {
                  EditPageCellViewModel(overview: page.overview ?? ""),
                  EditPageCellViewModel(mission: page.mission ?? ""),
                  EditPageCellViewModel(general_info: page.general_info ?? ""),
-                 EditPageCellViewModel(published: page.is_published ?? false)
+                 EditPageCellViewModel(published: page.isPublished ?? false)
             
             
         ]

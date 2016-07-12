@@ -149,6 +149,10 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return UIImage(named: (detailedUser?.location.country ?? "country_placeholder"))
     }
 
+    var verifyButtonTitle: String {
+        return NSLocalizedString("Verify your account!", comment: "")
+    }
+    
     // MARK: - Fetch
     
     private func fetchShouts() -> Observable<[Shout]> {

@@ -306,6 +306,7 @@ extension ProfileCollectionViewController {
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
+            infoView.verifyAccountButton.setTitle(viewModel.verifyButtonTitle, forState: .Normal)
             setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag)
             infoView.verifyAccountButton
                 .rx_tap.asDriver()

@@ -132,6 +132,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return detailedUser?.isActivated ?? user?.isActivated ?? true
     }
     
+    var verifyButtonTitle: String {
+        return NSLocalizedString("Verify your account!", comment: "")
+    }
+    
     var infoButtons: [ProfileCollectionInfoButton] {
         
         guard let user = user else {

@@ -186,7 +186,13 @@ extension ShoutsCollectionViewController {
 extension ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.item]
+        let models = self.viewModel.pager.shoutCellViewModels()
+        
+        guard indexPath.item < models.count else {
+            return
+        }
+        
+        let cellViewModel = models[indexPath.item]
         
         if let shout = cellViewModel.shout {
             flowDelegate?.showShout(shout)

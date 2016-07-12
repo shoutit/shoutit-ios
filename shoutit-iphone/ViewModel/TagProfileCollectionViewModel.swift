@@ -149,6 +149,9 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var locationString: String? {return nil}
     var locationFlag: UIImage? {return nil}
     var conversation: MiniConversation? {return nil}
+    var verifyButtonTitle: String {
+        return NSLocalizedString("Verify your account!", comment: "")
+    }
     // MARK: - Helpers
     
     private func fetchTag() -> Observable<Tag>? {
