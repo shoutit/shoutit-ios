@@ -27,20 +27,16 @@ public struct EditPageParams: Params {
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["name"] = name
-        
-        
+        p["image"] = imagePath
+        p["about"] = about
         p["phone"] = phone
         p["founded"] = founded
         p["impressum"] = impressum
+        p["description"] = description
         p["overview"] = overview
         p["mission"] = mission
         p["general_info"] = general_info
-        
-        
-        
-        p["image"] = imagePath
         p["cover"] = coverPath
-        
         p["is_published"] = is_published
         
         return p

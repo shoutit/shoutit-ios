@@ -299,6 +299,7 @@
 		AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
 		AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
 		AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
+		AED864A11D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
 		AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */; };
@@ -1318,6 +1319,7 @@
 		AED291871D08676E000F9DAF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		AED291881D08676E000F9DAF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		AED291891D08676E000F9DAF /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = ../Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
+		AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageSwitchTableViewCell.swift; path = View/EditPageSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -5009,6 +5011,7 @@
 				BF5FB27B1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift */,
 				BF5FB27D1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift */,
 				BF5FB27F1D2FCE7B0078A57F /* EditPageSelectButtonTableViewCell.swift */,
+				AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -5833,6 +5836,7 @@
 				AE1D73901CFD826E0030E2ED /* SuggestedUsersViewModel.swift in Sources */,
 				B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */,
 				AE8351971C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
+				AED864A11D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift in Sources */,
 				B2F719B71D0EF12F002C1D74 /* AddressBookRecord.swift in Sources */,
 				B2B5D0111C7F28E50068A6AF /* ShoutDetailKeyValueTableViewCell.swift in Sources */,
 				B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */,

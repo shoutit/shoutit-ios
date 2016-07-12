@@ -1,8 +1,8 @@
 //
-//  EditPageTextFieldTableViewCell.swift
+//  EditPageSwitchTableViewCell.swift
 //  shoutit
 //
-//  Created by Abhijeet Chaudhary on 08/07/16.
+//  Created by Piotr Bernad on 12/07/16.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import RxSwift
 
-final class EditPageTextFieldTableViewCell: UITableViewCell {
+final class EditPageSwitchTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var switchButton: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()

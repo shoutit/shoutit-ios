@@ -14,7 +14,15 @@ final class EditPageTextViewTableViewCell: UITableViewCell {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var textView: FormTextView!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var placeholderLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.textView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.textView.layer.borderWidth = 1.0/UIScreen.mainScreen().nativeScale
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
