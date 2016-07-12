@@ -38,6 +38,6 @@ public func ==(lhs: FilterValue, rhs: FilterValue) -> Bool {
 
 extension FilterValue: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["slug": slug.encode()])
+        return JSON.Object(["slug": slug.encode(), "name": name.encode(), "id": id.encode()])
     }
 }

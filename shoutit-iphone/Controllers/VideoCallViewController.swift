@@ -27,6 +27,7 @@ final class VideoCallViewController: UIViewController {
     @IBOutlet weak var endCallButton: UIButton!
     @IBOutlet weak var transparentLogoImageView: UIImageView!
     @IBOutlet weak var callerAvatarImageView: UIImageView!
+    @IBOutlet weak var switchCameraButton: UIButton!
     private var hideableViews: [UIView] {
         return [chatInfoHeaderView, statusBarBackgroundView, audioButton, videoButton, endCallButton]
     }
@@ -61,6 +62,7 @@ final class VideoCallViewController: UIViewController {
         createCapturer()
         setupRX()
         setupGestureRecognizer()
+        switchCameraButton.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -204,6 +206,11 @@ final class VideoCallViewController: UIViewController {
     @IBAction func endCall() {
         viewModel.endCall()
     }
+    
+    @IBAction func switchCamera(sender: UIButton) {
+        self.camera.flipCamera()
+    }
+   
     
     func toggleControlsHidden() {
         guard case .InCall = viewModel.state.value else { return }
