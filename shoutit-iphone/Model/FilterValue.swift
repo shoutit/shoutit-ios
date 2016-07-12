@@ -13,6 +13,7 @@ import Ogra
 public struct FilterValue: Hashable, Equatable {
     public let name: String
     public let slug: String
+    public let id: String
     
     public var hashValue: Int {
         get {
@@ -27,6 +28,7 @@ extension FilterValue: Decodable {
         return curry(FilterValue.init)
             <^> j <| "name"
             <*> j <| "slug"
+            <*> j <| "id"
     }
 }
 

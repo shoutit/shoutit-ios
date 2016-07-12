@@ -354,7 +354,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="bcr-Mb-2JU">
-                                            <rect key="frame" x="115" y="58" width="477" height="40"/>
+                                            <rect key="frame" x="115" y="56" width="477" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="f2b-dV-P0g"/>
                                             </constraints>
@@ -363,7 +363,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wI4-UR-4kY" customClass="CustomUIView" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="430" y="98" width="90" height="22"/>
+                                            <rect key="frame" x="430" y="96" width="90" height="22"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUe-my-fmP">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="22"/>
@@ -414,6 +414,7 @@
                                         <constraint firstItem="m5B-TQ-cHC" firstAttribute="leading" secondItem="llo-Me-GDw" secondAttribute="trailing" constant="8" symbolic="YES" id="VTN-ob-F4f"/>
                                         <constraint firstItem="Kvv-hV-i1u" firstAttribute="top" secondItem="m5B-TQ-cHC" secondAttribute="bottom" id="ao9-0U-IKs"/>
                                         <constraint firstItem="Kvv-hV-i1u" firstAttribute="leading" secondItem="yFI-vZ-JDE" secondAttribute="trailing" constant="39" id="b2W-Fh-2TS"/>
+                                        <constraint firstAttribute="bottom" secondItem="wI4-UR-4kY" secondAttribute="bottom" id="bBD-eY-Cro"/>
                                         <constraint firstItem="m5B-TQ-cHC" firstAttribute="top" secondItem="ILS-57-0fo" secondAttribute="top" id="eoK-h2-f8q"/>
                                         <constraint firstItem="m5B-TQ-cHC" firstAttribute="leading" secondItem="Kvv-hV-i1u" secondAttribute="leading" id="hg0-eH-X2Z"/>
                                         <constraint firstItem="llo-Me-GDw" firstAttribute="top" secondItem="g0A-vq-WeY" secondAttribute="bottom" constant="14" id="j9T-ec-wOC"/>
@@ -424,6 +425,11 @@
                                         <constraint firstAttribute="bottom" secondItem="yFI-vZ-JDE" secondAttribute="bottom" constant="2" id="wP2-6v-cpr"/>
                                         <constraint firstItem="ILS-57-0fo" firstAttribute="leading" secondItem="m5B-TQ-cHC" secondAttribute="trailing" constant="8" id="wWI-Ef-igq"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="mSz-DD-XFE"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
