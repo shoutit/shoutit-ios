@@ -138,7 +138,6 @@ final class VideoCallViewController: UIViewController {
                 case .CallFailed:
                     self.messageLabel.text = NSLocalizedString("Call Failed", comment: "Video call status message")
                     self.restartPreview()
-                    //self.dismissViewControllerAnimated(true, completion: nil)
                 case .CallEnded:
                     self.messageLabel.text = NSLocalizedString("Call Ended", comment: "Video call status message")
                     self.dismissViewControllerAnimated(true, completion: nil)
@@ -248,8 +247,6 @@ final class VideoCallViewController: UIViewController {
 private extension VideoCallViewController {
     
     private func createCapturer() {
-        self.viewModel.reloadLocalMedia()
-        
         guard !Platform.isSimulator else { return }
         do {
             try camera = viewModel.localMedia.sh_addCameraTrack()
@@ -298,6 +295,7 @@ private extension VideoCallViewController {
     }
     
     func restartPreview() {
+        self.viewModel.reloadLocalMedia()
         stopPreview()
         createCapturer()
         startPreview()
@@ -416,11 +414,7 @@ extension VideoCallViewController: TWCVideoTrackDelegate {
     }
 }
 
-extension VideoCallViewController: TWCCameraCapturerDelegate {
-    func cameraCapturerPreviewDidStart(capturer: TWCCameraCapturer) {
-        print("Start")
-    }
-}
+extension VideoCallViewController: TWCCameraCapturerDelegate {}
 
 private extension VideoCallViewController {
     
@@ -479,8 +473,4 @@ private extension VideoCallViewController {
         videoTrack.addRenderer(renderer)
         return renderer
     }
-}
-
-private extension VideoCallViewController {
-    
 }
