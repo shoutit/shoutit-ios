@@ -168,7 +168,6 @@ private extension MyPagesTableViewController {
     }
     
     func editPage(page: Profile) {
-        
         self.flowDelegate?.showEditPage(page)
         
     }

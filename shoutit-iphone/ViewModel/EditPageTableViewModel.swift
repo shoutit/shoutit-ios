@@ -42,8 +42,8 @@ final class EditPageTableViewModel {
                  EditPageCellViewModel(impressum:  ""),
                  EditPageCellViewModel(overview:  ""),
                  EditPageCellViewModel(mission:  ""),
-                 EditPageCellViewModel(general_info: "")
-            //                 EditPageCellViewModel(is_published: user.is_published)
+                 EditPageCellViewModel(general_info: ""),
+                 EditPageCellViewModel(published: false)
             
             
         ]
@@ -63,8 +63,8 @@ final class EditPageTableViewModel {
                  EditPageCellViewModel(impressum: page.impressum ?? ""),
                  EditPageCellViewModel(overview: page.overview ?? ""),
                  EditPageCellViewModel(mission: page.mission ?? ""),
-                 EditPageCellViewModel(general_info: page.general_info ?? "")
-//                 EditPageCellViewModel(is_published: user.is_published)
+                 EditPageCellViewModel(general_info: page.general_info ?? ""),
+                 EditPageCellViewModel(published: page.is_published ?? false)
             
             
         ]
@@ -81,7 +81,9 @@ final class EditPageTableViewModel {
     func mutateModelForIndex(index: Int, object: AnyObject) {
         
         guard let string = object as? String else {
-            
+            if let published = object as? Bool {
+                cells[index] = EditPageCellViewModel(published: published)
+            }
             return
         }
         
@@ -176,7 +178,6 @@ final class EditPageTableViewModel {
         
         var name: String?
         var about: String?
-        // TODO: Handle value for published
         var is_published: Bool?
         var description: String?
         var phone: String?
@@ -191,33 +192,31 @@ final class EditPageTableViewModel {
             switch cell {
             case .BasicText(let value, _, .Name):
                 name = value
-            case .BasicText(let value, _, .About):
+            case .RichText(let value, _, .About):
                 about = value
-//            case .IsPublished(let value, _, .IsPublished):
-//                is_published = value
-            case .BasicText(let value, _, .Description):
+            case .Switch(let value, _, .IsPublished):
+                is_published = value
+            case .RichText(let value, _, .Description):
                 description = value
             case .BasicText(let value, _, .Phone):
                 phone = value
             case .BasicText(let value, _, .Founded):
                 founded = value
-            case .BasicText(let value, _, .Impressum):
+            case .RichText(let value, _, .Impressum):
                 impressum = value
-            case .BasicText(let value, _, .Overview):
+            case .RichText(let value, _, .Overview):
                 overview = value
-            case .BasicText(let value, _, .Mission):
+            case .RichText(let value, _, .Mission):
                 mission = value
-            case .BasicText(let value, _, .GeneralInfo):
+            case .RichText(let value, _, .GeneralInfo):
                 general_info = value
-//            case .BasicText(let value, _, .IsVerified):
-//                is_verified = value
             default:
                 break
             }
         }
         
         // TODO: Handle image editing
-        return EditPageParams(name: name, imagePath: nil, about: about, description: description, phone: phone, founded: founded, impressum: impressum, overview: overview, mission: mission, general_info: general_info, coverPath: nil, is_published: is_published)
+        return EditPageParams(name: name, imagePath: avatarUploadTask?.attachment.remoteURL?.absoluteString, about: about, description: description, phone: phone, founded: founded, impressum: impressum, overview: overview, mission: mission, general_info: general_info, coverPath: coverUploadTask?.attachment.remoteURL?.absoluteString, is_published: is_published)
       
     }
 }

@@ -85,6 +85,7 @@ class EditPageTableViewController: UITableViewController {
             self?.hideProgressHUD()
             switch event {
                 case .Next(let page):
+                    Account.sharedInstance.switchToPage(page)
                     self?.viewModel = EditPageTableViewModel(page: page)
                     self?.tableView.reloadData()
                     self?.fillHeader()
@@ -167,7 +168,8 @@ extension EditPageTableViewController {
         switch cellViewModel {
         case .BasicText(let value, let placeholder, let identity):
             let cell = cell as! EditPageTextFieldTableViewCell
-            cell.textField.placeholder = placeholder
+            cell.placeholderLabel.text = placeholder
+            cell.textField.placeholder = nil
             cell.textField.text = value
             cell.textField.inputView = nil
             if case .Phone = identity {
@@ -183,15 +185,15 @@ extension EditPageTableViewController {
             
         case .RichText(let value, let placeholder, _):
             let cell = cell as! EditPageTextViewTableViewCell
-            cell.textView.placeholderLabel?.text = placeholder
+            
             cell.textView.text = value
             cell.textView.delegate = self
+            cell.placeholderLabel.text = placeholder
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Location(let value, let placeholder, _):
@@ -208,7 +210,7 @@ extension EditPageTableViewController {
                     
                     controller.finishedBlock = {[weak indexPath](success, place) -> Void in
                         // TODO
-//                        if let place = place, indexPath = indexPath {
+//                        if let place = place, indexPath = indexPath {s
 //                            let newViewModel = EditPageCellViewModel(location: place)
 //                            self?.viewModel.cells[indexPath.row] = newViewModel
 //                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
@@ -220,7 +222,17 @@ extension EditPageTableViewController {
                     
                     })
                 .addDisposableTo(cell.disposeBag)
+            
+            case .Switch(let value, let placeholder, _):
+                let cell = cell as! EditPageSwitchTableViewCell
+                cell.switchButton.on = value
+                cell.placeholderLabel.text = placeholder
+            
+                cell.switchButton.rx_controlEvent(.ValueChanged).asDriver().driveNext({ (x) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: cell.switchButton.on)
+                }).addDisposableTo(cell.disposeBag)
         }
+    
         
         return cell
     }
@@ -234,8 +246,9 @@ extension EditPageTableViewController {
         let cellViewModel = viewModel.cells[indexPath.row]
         switch cellViewModel {
         case .BasicText: return 70
-        case .RichText: return 150
+        case .RichText: return 120
         case .Location: return 70
+        case .Switch: return 50
         }
     }
 }
