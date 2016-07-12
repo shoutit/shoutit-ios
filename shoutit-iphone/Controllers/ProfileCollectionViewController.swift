@@ -311,7 +311,25 @@ extension ProfileCollectionViewController {
             infoView.verifyAccountButton
                 .rx_tap.asDriver()
                 .driveNext{ [weak self] in
-                    guard case .Logged(let user)? = Account.sharedInstance.loginState else { assertionFailure(); return; }
+                    guard let loginState = Account.sharedInstance.loginState else {
+                        return
+                    }
+                    
+                    if case .Page(_, let page) = loginState {
+                        if page.isActivated == false {
+                            self?.showActivateAccountAlert()
+                            return
+                        }
+                        
+                        if page.isVerified == false {
+                            self?.flowDelegate?.showVerifyBussiness(page)
+                            return
+                        }
+                        
+                        return
+                    }
+                    
+                    guard case .Logged(let user) = loginState else { assertionFailure(); return; }
                     self?.flowDelegate?.showVerifyEmailView(user, successBlock: { (message) in
                         self?.showSuccessMessage(message)
                     })
@@ -618,5 +636,14 @@ extension ProfileCollectionViewController : Bookmarking {
     
     @objc func switchBookmarkState(sender: UIButton) {
         switchShoutBookmarkShout(sender)
+    }
+}
+
+extension ProfileCollectionViewController {
+    func showActivateAccountAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Activate your page", comment: ""), message: NSLocalizedString("To activate your page, your personal account should be verified first. Click the activation link in the email you have received when you signed up.", comment: ""), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
 }

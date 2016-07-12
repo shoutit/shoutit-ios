@@ -165,6 +165,11 @@ struct Wireframe {
         return storyboard(.VerifyEmail).instantiateViewControllerWithIdentifier("VerifyEmailViewController") as! VerifyEmailViewController
     }
     
+    static func verifyPageViewController() -> VerifyPageViewController {
+        return storyboard(.VerifyEmail).instantiateViewControllerWithIdentifier("VerifyPageViewController") as! VerifyPageViewController
+    }
+    
+    
     // MARK: - Home storyboard view controllers
 
     static func homeViewController() -> HomeViewController {

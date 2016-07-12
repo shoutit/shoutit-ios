@@ -299,6 +299,9 @@
 		AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
 		AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
 		AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
+		AED6361D1D356C700005E1A5 /* VerifyBussinessDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */; };
+		AED636221D356CF40005E1A5 /* VerifyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */; };
+		AED636251D3582C50005E1A5 /* PageVerificationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED636241D3582C50005E1A5 /* PageVerificationParams.swift */; };
 		AED864A11D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
@@ -1319,6 +1322,9 @@
 		AED291871D08676E000F9DAF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		AED291881D08676E000F9DAF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		AED291891D08676E000F9DAF /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = ../Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
+		AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBussinessDisplayable.swift; sourceTree = "<group>"; };
+		AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyPageViewController.swift; path = Controllers/VerifyPageViewController.swift; sourceTree = "<group>"; };
+		AED636241D3582C50005E1A5 /* PageVerificationParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageVerificationParams.swift; path = Model/PageVerificationParams.swift; sourceTree = "<group>"; };
 		AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageSwitchTableViewCell.swift; path = View/EditPageSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
@@ -2604,6 +2610,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AED6361E1D356CAF0005E1A5 /* VerifyPage */,
 				AE3DC4011D211FF900C460CC /* PagesCategories */,
 				2474E0081D1C15900085D9DD /* CreatePage */,
 				B211F07B1D12C929008DEEBC /* PromotedShoutViewController */,
@@ -3267,6 +3274,23 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
+		AED6361E1D356CAF0005E1A5 /* VerifyPage */ = {
+			isa = PBXGroup;
+			children = (
+				AED636231D3582AB0005E1A5 /* Params */,
+				AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */,
+			);
+			name = VerifyPage;
+			sourceTree = "<group>";
+		};
+		AED636231D3582AB0005E1A5 /* Params */ = {
+			isa = PBXGroup;
+			children = (
+				AED636241D3582C50005E1A5 /* PageVerificationParams.swift */,
+			);
+			name = Params;
+			sourceTree = "<group>";
+		};
 		AEDE15941C6DF071002D2AF7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -3847,6 +3871,7 @@
 				B211F06D1D12C73C008DEEBC /* PromoteDisplayable.swift */,
 				B2CA5C571D1D99EF009E164E /* ProfilesListDisplayable.swift */,
 				AE32EA1C1D2139EF00545F72 /* CreatePageDisplayable.swift */,
+				AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -5489,6 +5514,7 @@
 				B211AAD31C89E5E500C9E8DB /* UserProfileCollectionViewModel.swift in Sources */,
 				AE18BACF1CA2DCF4001C73EC /* ConversationAttachmentManager.swift in Sources */,
 				240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */,
+				AED6361D1D356C700005E1A5 /* VerifyBussinessDisplayable.swift in Sources */,
 				AE180F851C7F8EB20069BB1A /* HomeShoutsCollectionViewController.swift in Sources */,
 				B2AE6B7D1C7CE79100370276 /* ShoutDetailTableViewController.swift in Sources */,
 				B2CA5C461D1D7BFF009E164E /* AdminsListTableViewController.swift in Sources */,
@@ -5805,6 +5831,7 @@
 				AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */,
 				B2B5D03C1C808A4E0068A6AF /* APIGenericService.swift in Sources */,
 				BF5FB27E1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift in Sources */,
+				AED636221D356CF40005E1A5 /* VerifyPageViewController.swift in Sources */,
 				B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */,
 				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				B2F71A011D0EF53A002C1D74 /* ResponsiveLabel.m in Sources */,
@@ -5956,6 +5983,7 @@
 				B2F719EC1D0EF4C7002C1D74 /* PlaceAutocompleteResponse.swift in Sources */,
 				B2F71A2A1D0EF643002C1D74 /* PTBlockEventListener.m in Sources */,
 				B209C5231CF3181E00727095 /* PhotosMenuController.swift in Sources */,
+				AED636251D3582C50005E1A5 /* PageVerificationParams.swift in Sources */,
 				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
 				B27230781CE238A9003547EA /* ListenersDisplaybale.swift in Sources */,
 				AE54A6B61D11674A002F1430 /* ShoutCell.swift in Sources */,
