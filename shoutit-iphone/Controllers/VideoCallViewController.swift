@@ -199,7 +199,6 @@ final class VideoCallViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @IBAction func startCalling() {
         viewModel.startCall()
     }
@@ -259,6 +258,7 @@ private extension VideoCallViewController {
         }
         
         videoTrack.delegate = self
+        camera.delegate = self
     }
     
     private func adjustPreviewSize(dimensions: CMVideoDimensions) {
@@ -352,6 +352,7 @@ extension VideoCallViewController: TWCLocalMediaDelegate {
     
     func localMedia(media: TWCLocalMedia, didRemoveVideoTrack videoTrack: TWCVideoTrack) {
         removeLocalCallRendererFromVideoTrack(videoTrack)
+        restartPreview()
     }
 }
 
