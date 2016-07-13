@@ -64,6 +64,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
             s = NumberFormatters.numberToShortString(profile.listenersCount)
         case .TagModel(let tag):
             s = NumberFormatters.numberToShortString(tag.listenersCount ?? 0)
+
         }
         return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), s)
     }
