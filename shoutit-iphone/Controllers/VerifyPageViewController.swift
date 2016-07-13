@@ -15,8 +15,6 @@ import ACPDownload
 
 class VerifyPageViewController: UITableViewController {
 
-    var page: DetailedPageProfile!
-
     var viewModel: VerifyPageViewModel!
     
     // RX
@@ -75,6 +73,7 @@ class VerifyPageViewController: UITableViewController {
         precondition(viewModel != nil)
         
         setupRX()
+        viewModel.updateVerification()
     }
     
     func setupRX() {
@@ -108,6 +107,15 @@ class VerifyPageViewController: UITableViewController {
                 self?.navigationController?.showViewController(controller, sender: nil)
             })
             .addDisposableTo(disposeBag)
+        
+        viewModel.updateVerificationSubject
+            .observeOn(MainScheduler.instance)
+            .subscribeNext({[weak self] (verification) in
+                    self?.populateWithVerification(verification)
+                })
+            .addDisposableTo(disposeBag)
+        
+
         
         viewModel.progressSubject
             .distinctUntilChanged()
@@ -151,6 +159,23 @@ class VerifyPageViewController: UITableViewController {
         contactPersonTextField.rx_text.bindTo(viewModel.contactPerson).addDisposableTo(disposeBag)
         contactNumberTextfield.rx_text.bindTo(viewModel.contactNumber).addDisposableTo(disposeBag)
         businessNameTextField.rx_text.bindTo(viewModel.businessName).addDisposableTo(disposeBag)
+    }
+    
+    private func populateWithVerification(verification: PageVerification) {
+        self.businessEmail.text = verification.businessEmail
+        self.businessNameTextField.text = verification.businessName
+        self.contactNumberTextfield.text = verification.contactNumber
+        self.contactPersonTextField.text = verification.contactPerson
+        
+        if let images = verification.images {
+            for (index, imageURLString) in images.enumerate() where index < imageViews.count {
+                guard let imageURL = NSURL(string: imageURLString) else { continue }
+                
+                let imageView = imageViews[index]
+                
+                imageView.sd_setImageWithURL(imageURL)
+            }
+        }
     }
 }
 

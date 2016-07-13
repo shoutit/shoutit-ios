@@ -17,8 +17,6 @@ final class VerifyPageViewModel {
     
     private(set) var page: DetailedPageProfile
 
-    var verification: PageVerification?
-
     var email: Variable<String>
     var contactPerson: Variable<String>
     var contactNumber: Variable<String>
@@ -27,16 +25,17 @@ final class VerifyPageViewModel {
     
     init(page: DetailedPageProfile) {
         self.page = page
-        self.email = Variable(verification?.businessEmail ?? "")
-        self.contactNumber = Variable(verification?.contactNumber ?? "")
-        self.businessName = Variable(verification?.businessName ?? "")
-        self.contactPerson = Variable(verification?.contactPerson ?? "")
+        self.email = Variable("")
+        self.contactNumber = Variable("")
+        self.businessName = Variable("")
+        self.contactPerson = Variable("")
         self.location = Variable(nil)
     }
     
     let successSubject: PublishSubject<ResponseType> = PublishSubject()
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
+    let updateVerificationSubject: PublishSubject<ResponseType> = PublishSubject()
     
     private let disposeBag = DisposeBag()
 
@@ -52,6 +51,12 @@ final class VerifyPageViewModel {
         let params = self.buildParams()
                 
         return APIPageService.verifyPage(params, forPageWithUsername: username)
+    }
+    
+    func verifiedPageStatusObservable() -> Observable<ResponseType> {
+        let username = self.page.username
+        
+        return APIPageService.getPageVerificationStatus(username)
     }
     
     func verifyPage() {
@@ -76,8 +81,26 @@ final class VerifyPageViewModel {
             errorSubject.onError(error)
         }
     }
+    
+    func updateVerification() {
+        progressSubject.onNext(true)
         
-       
+        verifiedPageStatusObservable()
+            .subscribe {[weak self] event in
+                self?.progressSubject.onNext(false)
+                switch event {
+                case .Next((let pageVerification)):
+                    self?.populateWithVerification(pageVerification)
+                    self?.updateVerificationSubject.onNext(pageVerification)
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
+            }.addDisposableTo(disposeBag)
+    }
+    
+    
     
     func uploadAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
@@ -89,6 +112,13 @@ final class VerifyPageViewModel {
         for task in mediaUploadTasks where task.status.value == .Uploading {
             throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
         }
+    }
+    
+    private func populateWithVerification(verification: PageVerification) {
+        self.email.value = verification.businessEmail
+        self.contactPerson.value = verification.contactPerson
+        self.contactNumber.value = verification.contactNumber
+        self.businessName.value = verification.businessName
     }
     
     private func buildParams() -> PageVerificationParams {
