@@ -210,6 +210,10 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="hHd-v5-JWm" appends="YES" id="g5J-gi-Reo"/>
+                                            </connections>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SgD-sh-y1P">
                                             <rect key="frame" x="23" y="23" width="28" height="28"/>
@@ -256,6 +260,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.20392156859999999" green="0.86666666670000003" blue="0.40784313729999999" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="sNK-1o-k16" firstAttribute="centerY" secondItem="yam-5F-c0u" secondAttribute="centerY" id="8ky-FQ-aNF"/>
                                         <constraint firstItem="Hho-7X-CAF" firstAttribute="width" secondItem="yam-5F-c0u" secondAttribute="width" id="LnW-ny-hJK"/>
@@ -270,6 +275,9 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                         <constraint firstItem="4TX-in-HT3" firstAttribute="centerX" secondItem="yam-5F-c0u" secondAttribute="centerX" id="xcc-pf-7HJ"/>
                                         <constraint firstItem="sNK-1o-k16" firstAttribute="height" secondItem="yam-5F-c0u" secondAttribute="height" id="xpm-Q9-LxC"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="K7c-3d-LVq" appends="YES" id="45f-TN-hBs"/>
+                                    </connections>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Your information including any legal documents will be securley saved and will be used only for the verification process." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mly-fK-bL2">
                                     <rect key="frame" x="20" y="125" width="560" height="60"/>
@@ -317,6 +325,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.20392156859999999" green="0.86666666670000003" blue="0.40784313729999999" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="VBW-ec-Yj6" firstAttribute="centerY" secondItem="RIU-ep-lJ0" secondAttribute="centerY" id="56p-aV-ikT"/>
                                         <constraint firstItem="tiU-VO-prP" firstAttribute="centerX" secondItem="RIU-ep-lJ0" secondAttribute="centerX" id="8ba-OS-buY"/>
@@ -331,6 +340,9 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                         <constraint firstItem="QDf-Ia-sKg" firstAttribute="centerX" secondItem="RIU-ep-lJ0" secondAttribute="centerX" id="pe6-nw-UQu"/>
                                         <constraint firstItem="QDf-Ia-sKg" firstAttribute="width" secondItem="RIU-ep-lJ0" secondAttribute="width" id="rRU-PD-ItJ"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="wpD-mQ-8Fk" appends="YES" id="3gT-ak-C11"/>
+                                    </connections>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -342,16 +354,24 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                 <constraint firstAttribute="trailing" secondItem="HEy-cg-EK3" secondAttribute="trailing" constant="20" id="Cgx-f2-muT"/>
                                 <constraint firstItem="mly-fK-bL2" firstAttribute="top" secondItem="EPs-57-PuA" secondAttribute="bottom" constant="10" id="HKO-1I-Atu"/>
                                 <constraint firstItem="mly-fK-bL2" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="Swu-c1-fzb"/>
+                                <constraint firstItem="yam-5F-c0u" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="19.5" id="ab9-AW-EkA"/>
                                 <constraint firstAttribute="bottom" secondItem="HEy-cg-EK3" secondAttribute="bottom" constant="20" id="cj1-Og-djv"/>
                                 <constraint firstItem="ej3-5S-jlj" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="cpd-uo-F0B"/>
                                 <constraint firstItem="oUh-1K-vMU" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="20" id="gCN-Hh-flc"/>
                                 <constraint firstAttribute="trailing" secondItem="ej3-5S-jlj" secondAttribute="trailing" constant="20" id="gNa-lB-pTq"/>
                                 <constraint firstItem="HEy-cg-EK3" firstAttribute="top" secondItem="mly-fK-bL2" secondAttribute="bottom" constant="8" id="hVs-D4-2Xn"/>
+                                <constraint firstItem="RIU-ep-lJ0" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="19.5" id="p31-CA-f1r"/>
                                 <constraint firstItem="ej3-5S-jlj" firstAttribute="top" secondItem="h6R-nL-U04" secondAttribute="top" constant="5" id="s6S-uG-rnF"/>
                                 <constraint firstItem="yam-5F-c0u" firstAttribute="leading" secondItem="EPs-57-PuA" secondAttribute="trailing" constant="50" id="sCq-YN-DxE"/>
                                 <constraint firstItem="EPs-57-PuA" firstAttribute="leading" secondItem="RIU-ep-lJ0" secondAttribute="trailing" constant="50" id="vel-zZ-kRe"/>
                                 <constraint firstItem="HEy-cg-EK3" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="w9t-ob-HTF"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="0xo-6H-8Ab"/>
+                                    <exclude reference="6If-fm-oMC"/>
+                                </mask>
+                            </variation>
                         </view>
                         <sections>
                             <tableViewSection id="WAm-7w-84k">
@@ -504,7 +524,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ib_fieldTitleLabelType">
-                                                            <integer key="value" value="2"/>
+                                                            <integer key="value" value="0"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="fieldTitleLabelFontColor">
                                                             <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -525,8 +545,8 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="Xuk-cN-9oI"/>
                                                     <exclude reference="5sf-yb-Wgm"/>
+                                                    <exclude reference="Xuk-cN-9oI"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -543,7 +563,11 @@ Pages verification doesn’t take long time and will give your Page more legitma
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Business Verification" id="6M5-z5-sGQ">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="WyX-3t-HXi"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="WyX-3t-HXi">
+                            <connections>
+                                <action selector="dismiss" destination="x9j-qN-ciR" id="uPn-rg-0WO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="businessEmail" destination="Xvb-UV-wK1" id="ytZ-dE-dRm"/>
@@ -554,6 +578,21 @@ Pages verification doesn’t take long time and will give your Page more legitma
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSC-G3-8fK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wpD-mQ-8Fk">
+                    <connections>
+                        <action selector="addPhotoAction:" destination="x9j-qN-ciR" id="ADS-np-O13"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="hHd-v5-JWm">
+                    <connections>
+                        <action selector="addPhotoAction:" destination="x9j-qN-ciR" id="Ehr-Y1-dsE"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="K7c-3d-LVq">
+                    <connections>
+                        <action selector="addPhotoAction:" destination="x9j-qN-ciR" id="hzG-nH-RLq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1088" y="364"/>
         </scene>

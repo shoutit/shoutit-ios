@@ -36,6 +36,9 @@ class VerifyPageViewController: UITableViewController {
     @IBAction func changeLocationAction(sender: AnyObject) {
     }
 
+    @IBAction func addPhotoAction(sender: AnyObject) {
+    }
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
