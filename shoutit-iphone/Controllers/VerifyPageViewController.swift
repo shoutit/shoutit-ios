@@ -101,6 +101,7 @@ class VerifyPageViewController: UITableViewController {
                 let controller = Wireframe.changeShoutLocationController()
                 
                 controller.finishedBlock = { (success, place) -> Void in
+                    self?.locationButton.setTitle(place?.address, forState: .Normal)
                     self?.viewModel.location.value = place
                 }
                 
@@ -176,7 +177,6 @@ extension VerifyPageViewController: MediaPickerControllerDelegate {
                 case .Uploaded:
                     progressView?.hidden = true
                 }
-                progressView?.hidden = false
             }
             .addDisposableTo(disposeBag)
         

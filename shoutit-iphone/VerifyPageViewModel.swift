@@ -46,39 +46,36 @@ final class VerifyPageViewModel {
     
     
     func verifyPageObservable() -> Observable<ResponseType> {
-        return Observable.create { [unowned self] (observer) -> Disposable in
-            do {
-                try self.contentReady()
+        let username = self.page.username
+        let params = self.buildParams()
                 
-                let username = self.page.username
-                let params = self.buildParams()
-                
-                APIPageService.verifyPage(params, forPageWithUsername: username)
-                
-            } catch (let error) {
-                observer.onError(error)
-                observer.onCompleted()
-            }
-            
-            return NopDisposable.instance
-        }
+        return APIPageService.verifyPage(params, forPageWithUsername: username)
     }
     
     func verifyPage() {
         progressSubject.onNext(true)
-        verifyPageObservable()
-            .subscribe {[weak self] event in
-            self?.progressSubject.onNext(false)
-            switch event {
-            case .Next((let pageVerification)):
-                self?.successSubject.onNext(pageVerification)
-            case .Error(let error):
-                self?.errorSubject.onNext(error)
-            default:
-                break
-            }
-        }.addDisposableTo(disposeBag)
+        do {
+            try self.contentReady()
+        
+            verifyPageObservable()
+                .subscribe {[weak self] event in
+                    self?.progressSubject.onNext(false)
+                    switch event {
+                    case .Next((let pageVerification)):
+                        self?.successSubject.onNext(pageVerification)
+                    case .Error(let error):
+                        self?.errorSubject.onNext(error)
+                    default:
+                        break
+                    }
+                }.addDisposableTo(disposeBag)
+        
+        } catch (let error) {
+            errorSubject.onError(error)
+        }
     }
+        
+       
     
     func uploadAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
