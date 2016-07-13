@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -78,7 +78,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEr-yM-prp">
                                 <rect key="frame" x="-1" y="0.0" width="600" height="536"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="If you have already clicked on the link that was sent to you, you may click “Verify” now." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-kw-tkU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have already clicked on the link that was sent to you, you may click “Verify” now." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-kw-tkU">
                                         <rect key="frame" x="20" y="153" width="560" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
@@ -187,7 +187,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="h6R-nL-U04">
-                            <rect key="frame" x="0.0" y="399" width="600" height="299"/>
+                            <rect key="frame" x="0.0" y="398" width="600" height="299"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Add Official Documents with Business information for faster verification" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ej3-5S-jlj">
@@ -240,7 +240,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yam-5F-c0u">
-                                    <rect key="frame" x="387" y="70" width="74" height="74"/>
+                                    <rect key="frame" x="362" y="70" width="74" height="74"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sNK-1o-k16">
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -279,8 +279,8 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                         <outletCollection property="gestureRecognizers" destination="K7c-3d-LVq" appends="YES" id="45f-TN-hBs"/>
                                     </connections>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="Your information including any legal documents will be securley saved and will be used only for the verification process." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mly-fK-bL2">
-                                    <rect key="frame" x="20" y="125" width="560" height="60"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your information including any legal documents will be securley saved and will be used only for the verification process." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mly-fK-bL2">
+                                    <rect key="frame" x="20" y="150" width="560" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="TKU-yM-Qdk"/>
                                     </constraints>
@@ -288,8 +288,8 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEy-cg-EK3" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="193" width="560" height="44"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEy-cg-EK3" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="218" width="560" height="44"/>
                                     <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="nL6-ex-Ti9"/>
@@ -305,7 +305,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIU-ep-lJ0">
-                                    <rect key="frame" x="139" y="70" width="74" height="74"/>
+                                    <rect key="frame" x="164" y="70" width="74" height="74"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tiU-VO-prP">
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -350,6 +350,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                 <constraint firstItem="RIU-ep-lJ0" firstAttribute="centerY" secondItem="EPs-57-PuA" secondAttribute="centerY" id="0xo-6H-8Ab"/>
                                 <constraint firstItem="yam-5F-c0u" firstAttribute="centerY" secondItem="EPs-57-PuA" secondAttribute="centerY" id="6If-fm-oMC"/>
                                 <constraint firstAttribute="trailing" secondItem="mly-fK-bL2" secondAttribute="trailing" constant="20" id="830-8O-KCp"/>
+                                <constraint firstItem="mly-fK-bL2" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="100" id="BZ1-By-xeO"/>
                                 <constraint firstItem="oUh-1K-vMU" firstAttribute="centerX" secondItem="h6R-nL-U04" secondAttribute="centerX" id="BtP-oW-pmF"/>
                                 <constraint firstAttribute="trailing" secondItem="HEy-cg-EK3" secondAttribute="trailing" constant="20" id="Cgx-f2-muT"/>
                                 <constraint firstItem="mly-fK-bL2" firstAttribute="top" secondItem="EPs-57-PuA" secondAttribute="bottom" constant="10" id="HKO-1I-Atu"/>
@@ -368,6 +369,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="HKO-1I-Atu"/>
                                     <exclude reference="0xo-6H-8Ab"/>
                                     <exclude reference="6If-fm-oMC"/>
                                 </mask>
@@ -501,7 +503,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                             <tableViewSection headerTitle="LOCATION" id="cHN-D5-C6g">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" id="NjL-Bi-BPU" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="337" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="336" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NjL-Bi-BPU" id="2qY-Di-bOY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -522,9 +524,9 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
                                                             <integer key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="NO"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="ib_fieldTitleLabelType">
-                                                            <integer key="value" value="0"/>
+                                                            <integer key="value" value="3"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="fieldTitleLabelFontColor">
                                                             <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
