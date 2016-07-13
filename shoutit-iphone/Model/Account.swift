@@ -78,6 +78,9 @@ final class Account {
                 statsSubject.onNext(nil)
                 updateApplicationBadgeNumberWithStats(nil)
             }
+            
+            checkTwilioConnection()
+            checkPusherConnection()
         }
     }
     
@@ -171,6 +174,7 @@ final class Account {
         loginSubject.onNext(authData)
         loginState = .Page(user: user, page: page)
         twilioManager.reconnect()
+        configureTwilioAndPusherServices()
     }
     
     func switchToUser() {
@@ -256,9 +260,27 @@ extension Account {
     }
     
     func updateStats(stats: ProfileStats) {
+        if case .Page(let admin, let page)? = loginState {
+            
+            self.loginState = .Page(user: admin.updatedProfileWithStats(stats), page: page)
+            self.statsSubject.onNext(stats)
+            
+            return
+        }
+        
         guard case .Logged(let user)? = loginState else { return }
         self.loginState = .Logged(user: user.updatedProfileWithStats(stats))
         self.statsSubject.onNext(stats)
+    }
+    
+    func updatePageStats(stats: ProfileStats) {
+        if case .Page(let admin, let page)? = loginState {
+            
+            self.loginState = .Page(user: admin, page: page.updatedProfileWithStats(stats))
+            self.statsSubject.onNext(stats)
+            
+            return
+        }
     }
 }
 
@@ -275,8 +297,29 @@ private extension Account {
             guard let authData = authData else { assertionFailure(); return; }
             pusherManager.setAuthorizationToken(authData.apiToken)
             _ = twilioManager
+        case .Some(.Page(_, _)):
+            guard let authData = authData else { assertionFailure(); return; }
+            pusherManager.setAuthorizationToken(authData.apiToken)
+            _ = twilioManager
         default:
             pusherManager.disconnect()
+        }
+    }
+    
+    private func checkTwilioConnection() {
+        
+        guard let currentProfileId = self.user?.id else {
+            return
+        }
+        
+        twilioManager.checkIfNeedsToReconnectForNewId()
+    }
+    
+    private func checkPusherConnection() {
+        if case .Page(let admin, let page)? = loginState {
+            pusherManager.subscribeToPageMainChannel(page)
+        } else {
+            pusherManager.unsubscribePages()
         }
     }
     
@@ -319,6 +362,14 @@ private extension Account {
                     case .Next(let profile): self.updateUserWithModel(profile)
                     default: break
                     }
+                }
+                .addDisposableTo(disposeBag)
+        } else if case .Page(let user, _)? = loginState {
+            let observable: Observable<DetailedUserProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
+            observable
+                .subscribe{ (event) in
+                    self.updatingAPNS = false
+                    // do nothing, admin is updated
                 }
                 .addDisposableTo(disposeBag)
         }

@@ -36,6 +36,7 @@ final class PusherClient : NSObject {
     // RX
     private let disposeBag = DisposeBag()
     var mainChannelSubject = PublishSubject<PTPusherEvent>()
+    var subscribedPage : DetailedPageProfile?
     
     init(account: Account) {
         self.account = account
@@ -75,6 +76,10 @@ final class PusherClient : NSObject {
         var userLoggedIn = false
         
         if case .Logged(_)? = account.loginState {
+            userLoggedIn = true
+        }
+        
+        if case .Page(_,_)? = account.loginState {
             userLoggedIn = true
         }
         
@@ -132,6 +137,10 @@ final class PusherClient : NSObject {
                 }
             }
             
+            if self.subscribedPage != nil {
+                return
+            }
+            
             if event.eventType() == .ProfileChange {
                 switch self.account.loginState {
                 case .Some(.Logged):
@@ -149,6 +158,57 @@ final class PusherClient : NSObject {
             
         }.addDisposableTo(disposeBag)
     }
+    
+    func unsubscribePages() {
+        
+        guard let subscribedPage = self.subscribedPage else {
+            return
+        }
+        
+        unsubscribeFromPageMainChannel(subscribedPage)
+        self.subscribedPage = nil
+    }
+    
+    func subscribeToPageMainChannel(page: DetailedPageProfile) {
+        mainPageChannelObservable(page).subscribeNext { (event) -> Void in
+            
+            log.info("PUSHER: PAGE CHANNEL EVENT: \(event.name) --- \n ---- \(event.data)")
+            
+            self.mainChannelSubject.onNext(event)
+            
+            if event.eventType() == .StatsUpdate {
+                if let stats : ProfileStats = event.object() {
+                    self.account.updateStats(stats)
+                }
+            }
+            
+            if event.eventType() == .ProfileChange {
+                switch self.account.loginState {
+                case .Some(.Logged):
+                    if let profile : DetailedPageProfile = event.object() {
+                        self.account.updateUserWithModel(profile)
+                    }
+                case .Some(.Guest):
+                    if let guest : GuestUser = event.object() {
+                        self.account.updateUserWithModel(guest)
+                    }
+                default: break
+                }
+            }
+            
+            
+            }.addDisposableTo(disposeBag)
+    }
+    
+    func unsubscribeFromPageMainChannel(page: DetailedPageProfile) {
+        let channelName = "presence-v3-p-\(page.id)"
+
+        self.mainChannelIdentifier = channelName
+        
+        if let ch = self.pusherInstance?.channelNamed(channelName) {
+            ch.unsubscribe()
+        }
+    }
 }
 
 extension PusherClient : PTPusherDelegate {
@@ -159,6 +219,10 @@ extension PusherClient : PTPusherDelegate {
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
         log.verbose("PUSHER: CONNECTED")
         subscribeToMainChannel()
+        
+        if case .Page(_,let page)? = account.loginState {
+            subscribeToPageMainChannel(page)
+        }
     }
     
     func pusher(pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
@@ -207,6 +271,38 @@ extension PusherClient {
                 observer.onError(PusherError.WrongChannelName)
                 return AnonymousDisposable { }
             }
+            
+            let channel : PTPusherChannel
+            self.mainChannelIdentifier = channelName
+            
+            if let ch = self.pusherInstance?.channelNamed(channelName) {
+                channel = ch
+            } else {
+                guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
+                    return AnonymousDisposable { }
+                }
+                
+                self.subscribedChannels.append(channelName)
+                
+                channel = ch
+            }
+            
+            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.NewListen.rawValue) {observer.onNext($0)}
+            channel.bindToEventNamed(PusherEventType.NewNotification.rawValue) {observer.onNext($0)}
+            
+            return AnonymousDisposable {
+                channel.unsubscribe()
+            }
+        }
+    }
+    
+    private func mainPageChannelObservable(page: DetailedPageProfile) -> Observable<PTPusherEvent> {
+        return Observable.create { (observer) -> Disposable in
+            
+            let channelName = "presence-v3-p-\(page.id)"
             
             let channel : PTPusherChannel
             self.mainChannelIdentifier = channelName

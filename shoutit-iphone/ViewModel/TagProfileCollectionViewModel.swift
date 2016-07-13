@@ -63,6 +63,10 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return tag?.name ?? filter?.value?.name ?? category?.name
     }
     
+    var verified: Bool {
+        return false
+    }
+    
     var username: String? { return nil }
     var isListeningToYou: Bool? { return nil }
     var coverURL: NSURL? {return nil}

@@ -301,6 +301,7 @@ extension ProfileCollectionViewController {
                 infoView.listeningToYouLabel.hidden = true
             }
             infoView.bioLabel.text = viewModel.descriptionText
+            infoView.verifiedIcon.hidden = !viewModel.verified
             infoView.bioIconImageView.image = viewModel.descriptionIcon
             infoView.websiteLabel.text = viewModel.websiteString
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString

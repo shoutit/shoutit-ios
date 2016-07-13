@@ -136,6 +136,10 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return detailedUser?.website
     }
     
+    var verified: Bool {
+        return false
+    }
+    
     var dateJoinedString: String? {
         guard let epoch = detailedUser?.dateJoinedEpoch else {return nil}
         return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(epoch)

@@ -30,6 +30,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return .ProfileModel(profile: Profile.profileWithUser(user))
     }
     
+    var verified: Bool {
+        return false
+    }
+    
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     

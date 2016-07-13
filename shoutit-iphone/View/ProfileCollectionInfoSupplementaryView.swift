@@ -43,6 +43,7 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var rightmostButton: UIButton!
     
+    @IBOutlet weak var verifiedIcon: UIImageView!
     // section 2
     @IBOutlet weak var buttonSectionLeftButton: ProfileInfoHeaderButton!
     @IBOutlet weak var buttonSectionCenterButton: ProfileInfoHeaderButton!

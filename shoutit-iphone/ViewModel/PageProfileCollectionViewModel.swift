@@ -134,6 +134,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return detailedProfile?.website
     }
     
+    var verified: Bool {
+        return detailedProfile?.isVerified ?? false
+    }
+    
     var dateJoinedString: String? {
         guard let epoch = detailedProfile?.dateJoinedEpoch else {return nil}
         return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(epoch)

@@ -48,6 +48,39 @@ public struct DetailedPageProfile: DetailedProfile {
     public var pushTokens: PushTokens?
     
     public let admin: Box<DetailedUserProfile>?
+    
+    public init(id: String, type: UserType, apiPath: String, webPath: String?, username: String, name: String, firstName: String?, lastName: String?, isActivated: Bool, isVerified: Bool, imagePath: String?, coverPath: String?, isListening: Bool?, listnersCount: Int, website: String?, about: String?, isPublished: Bool?, stats: ProfileStats?, mobile: String?, founded: String?, description: String?, impressum: String?, overview: String?, mission: String?, general_info: String?, listeningMetadata: ListenersMetadata?, dateJoinedEpoch: Int, location: Address, pushTokens: PushTokens?, admin: Box<DetailedUserProfile>?) {
+        self.id = id
+        self.type = type
+        self.apiPath = apiPath
+        self.webPath = webPath
+        self.username = username
+        self.name = name
+        self.firstName = firstName
+        self.lastName = lastName
+        self.isActivated = isActivated
+        self.isVerified = isVerified
+        self.isPublished = isPublished
+        self.stats = stats
+        self.mobile = mobile
+        self.founded = founded
+        self.listeningMetadata = listeningMetadata
+        self.dateJoinedEpoch = dateJoinedEpoch
+        self.location = location
+        self.imagePath = imagePath
+        self.coverPath = coverPath
+        self.isListening = isListening
+        self.listenersCount = listnersCount
+        self.website = website
+        self.pushTokens = pushTokens
+        self.admin = admin
+        self.about = about
+        self.description = description
+        self.impressum = impressum
+        self.overview = overview
+        self.mission = mission
+        self.general_info = general_info
+    }
 }
 
 
@@ -131,5 +164,11 @@ extension DetailedPageProfile {
             "date_joined" : self.dateJoinedEpoch.encode(),
             "location" : self.location.encode(),
             ])
+    }
+}
+
+extension DetailedPageProfile {
+    public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedPageProfile {
+        return DetailedPageProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, isVerified: self.isVerified, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listnersCount: self.listenersCount, website: self.website, about: self.about, isPublished: self.isPublished, stats: stts, mobile: self.mobile, founded: self.founded, description: self.description, impressum: self.impressum, overview: self.overview, mission: self.mission, general_info: self.general_info, listeningMetadata: self.listeningMetadata, dateJoinedEpoch: self.dateJoinedEpoch, location: self.location, pushTokens: self.pushTokens, admin: self.admin)
     }
 }

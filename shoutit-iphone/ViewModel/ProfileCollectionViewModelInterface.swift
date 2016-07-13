@@ -34,7 +34,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var reportable: Reportable? {get}
     
     var verifyButtonTitle: String { get }
-    
+    var verified: Bool { get }
     // sections
     var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}
     var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}

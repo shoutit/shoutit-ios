@@ -138,6 +138,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
             
+            guard let currentUserId = Account.sharedInstance.user?.id else {
+                return
+            }
+            
+            guard data["pushed_for"] as? String == currentUserId else {
+                return
+            }
+            
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
             
             dispatch_after(delayTime, dispatch_get_main_queue()) {

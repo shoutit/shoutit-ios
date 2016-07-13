@@ -118,6 +118,10 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
         return nil
     }
     
+    var verified: Bool {
+        return self.detailedPage?.isVerified ?? false
+    }
+    
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
         return .Remote(url: profile?.imagePath?.toURL())
     }
