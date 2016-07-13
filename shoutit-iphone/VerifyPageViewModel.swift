@@ -101,7 +101,7 @@ final class VerifyPageViewModel {
                                contactPerson: contactPersonParam,
                                contactNumber: contactNumberParam,
                                businessEmail: emailParam,
-                               location: nil, images: imageURLs)
+                               location: location.value, images: imageURLs)
     }
 }
 

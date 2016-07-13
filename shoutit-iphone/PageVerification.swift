@@ -31,7 +31,7 @@ extension PageVerification: Decodable {
         return function
             <^> j <| "business_name"
             <*> j <| "business_email"
-            <*> j <| "message"
+            <*> j <| "success"
             <*> j <| "status"
             <*> j <| "contact_number"
             <*> j <| "contact_person"

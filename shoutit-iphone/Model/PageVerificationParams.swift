@@ -21,23 +21,23 @@ struct PageVerificationParams : Params {
         var commonParams : [String : AnyObject] = [:]
         
         if let businessName = businessName {
-            commonParams[""] = businessName
+            commonParams["business_name"] = businessName
         }
         
         if let contactPerson = contactPerson {
-            commonParams[""] = contactPerson
+            commonParams["contact_person"] = contactPerson
         }
         
         if let contactNumber = contactNumber {
-            commonParams[""] = contactNumber
+            commonParams["contact_number"] = contactNumber
         }
         
         if let businessEmail = businessEmail {
-            commonParams[""] = businessEmail
+            commonParams["business_email"] = businessEmail
         }
         
         if let location = location {
-            commonParams[""] = location.encode().JSONObject()
+            commonParams["location"] = location.encode().JSONObject()
         }
         
         if let images = images {
