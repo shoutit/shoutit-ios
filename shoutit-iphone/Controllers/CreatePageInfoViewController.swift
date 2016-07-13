@@ -131,8 +131,9 @@ class CreatePageInfoViewController: UITableViewController {
             switch event {
             case .Next(let page):
                 self?.navigationController?.popToRootViewControllerAnimated(true)
-                Account.sharedInstance.switchToPage(page)
-            
+                if case .Some(.Logged(let _)) = Account.sharedInstance.loginState {
+                    Account.sharedInstance.switchToPage(page)
+                }
             case .Error(let error):
                 self?.showError(error)
             
@@ -173,7 +174,7 @@ class CreatePageInfoViewController: UITableViewController {
         
         let params = PageSignupParams(category: category, name: name, email: email, userFullName: fullname, password: password, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
         
-        viewModel.authenticateWithParameters(params)
+        viewModel.authenticatePageWithParameters(params)
     }
     
 }

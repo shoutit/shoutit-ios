@@ -22,7 +22,12 @@ final class PostSignupSuggestionViewModel {
     func fetchSections() {
         
         state.value = .Loading
-        let params = SuggestionsParams(address: Account.sharedInstance.user!.location, pageSize: 6, type: [.Users, .Pages], page: 0)
+        
+        guard let location = Account.sharedInstance.user?.location else {
+            return
+        }
+        
+        let params = SuggestionsParams(address: location, pageSize: 6, type: [.Users, .Pages], page: 0)
         APIMiscService
             .requestSuggestionsWithParams(params)
             .subscribe { (event) in

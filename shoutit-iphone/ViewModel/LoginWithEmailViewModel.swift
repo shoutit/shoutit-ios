@@ -60,4 +60,22 @@ final class LoginWithEmailViewModel {
             }
             .addDisposableTo(disposeBag)
     }
+    
+    func authenticatePageWithParameters(params: AuthParams) {
+        
+        let observable: Observable<(AuthData, DetailedPageProfile)> = APIAuthService.getOAuthToken(params)
+        observable
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let authData, let user):
+                    try! Account.sharedInstance.loginUser(user, withAuthData: authData)
+                    self?.loginSuccessSubject.onNext(authData.isNewSignUp)
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
 }

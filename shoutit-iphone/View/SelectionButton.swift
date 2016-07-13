@@ -89,6 +89,7 @@ final class SelectionButton: UIButton, UIGestureRecognizerDelegate {
         case .None: topInset = 19
         case .Big: topInset = 31
         case .Small: topInset = 23
+        case .VerySmall: topInset = 0
         }
         
         switch (isImageVisible, iconImageType) {
@@ -243,12 +244,14 @@ private extension SelectionButton {
         case None = 0
         case Small = 1
         case Big = 2
+        case VerySmall = 3
         
         var fontSize: CGFloat {
             switch self {
             case .None: return 0
             case .Small: return 12
             case .Big: return 18
+            case .VerySmall: return 12
             }
         }
     }
@@ -272,6 +275,7 @@ private extension SelectionButton {
         case .Big: return 12
         case .Small: return 18
         case .None: return 18
+        case .VerySmall: return 12
         }
     }
 }

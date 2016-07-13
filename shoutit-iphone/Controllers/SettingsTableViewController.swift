@@ -47,6 +47,7 @@ final class SettingsTableViewController: UITableViewController {
         // bind table view
         models.asObservable()
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
+                
                 cell.titleLabel.text = option.name
                 cell.subtitleLabel?.text = option.detail
                 let isLastCell = self?.models.value.count == row + 1

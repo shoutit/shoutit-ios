@@ -60,6 +60,11 @@
 }
 
 - (void)shareAction:(UIButton *)sender {
+    
+    if ([self.delegate numberOfPhotosInPhotoBrowser:self] < 1) {
+        return;
+    }
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Media Options", nil) message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Save", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
