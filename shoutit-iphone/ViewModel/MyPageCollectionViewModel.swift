@@ -169,7 +169,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
         var interestsCountString = ""
         
         if let listeningMetadata = listeningMetadata {
-            listeningCountString = NumberFormatters.numberToShortString(listeningMetadata.users)
+            listeningCountString = NumberFormatters.numberToShortString(listeningMetadata.users + listeningMetadata.pages)
             interestsCountString = NumberFormatters.numberToShortString(listeningMetadata.tags)
         }
         

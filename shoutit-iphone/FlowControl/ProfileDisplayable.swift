@@ -21,6 +21,8 @@ extension FlowController : ProfileDisplayable {
         controller.flowDelegate = self
         if case .Logged(let user)? = Account.sharedInstance.loginState where user.id == profile.id {
             controller.viewModel = MyProfileCollectionViewModel()
+        } else if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            controller.viewModel = MyPageCollectionViewModel()
         } else {
             controller.viewModel = UserProfileCollectionViewModel(profile: profile)
         }
