@@ -193,7 +193,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     var nativeAd: FBNativeAd!
     
     func showNativeAd() {
-        nativeAd = FBNativeAd(placementID: "1151546964858487_1249823215030861")
+        nativeAd = FBNativeAd(placementID: Constants.FacebookAudience.detailAdID)
         nativeAd.delegate = self
         nativeAd.loadAd()
     }

@@ -21,6 +21,16 @@ public struct Constants {
         public static let clientID = "31c7e2be6b374423a80966a3489a93e2"
     }
     
+    public struct FacebookAudience {
+        #if STAGING
+        public static let detailAdID = "1151546964858487_1249823215030861"
+        public static let collectionAdID = "1151546964858487_1245960432083806"
+        #else
+        public static let detailAdID = "353625811317277_1249824038364112"
+        public static let collectionAdID = "353625811317277_1245942718752244"
+        #endif
+    }
+    
     public struct URL {
         public static let ShoutItWebsite = "http://www.shoutit.com"
     }

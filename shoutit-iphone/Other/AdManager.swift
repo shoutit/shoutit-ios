@@ -79,9 +79,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
     }
     
     func loadNextAd() {
-        // place here code for fetching ad, when its loaded pass it to loadedAds array
-
-        let nativeAd = FBNativeAd(placementID: "1151546964858487_1245960432083806")
+        let nativeAd = FBNativeAd(placementID: Constants.FacebookAudience.collectionAdID)
         nativeAd.delegate = self
         nativeAd.loadAd()
     }

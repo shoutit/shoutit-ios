@@ -241,7 +241,7 @@ class PagerAdProvider : NSObject, FBNativeAdDelegate {
     }
     
     func loadNextAd() {
-        let ad = FBNativeAd(placementID: "1151546964858487_1245960432083806")
+        let ad = FBNativeAd(placementID: Constants.FacebookAudience.collectionAdID)
         ad.delegate = self
         ad.loadAd()
     }
