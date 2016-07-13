@@ -17,8 +17,9 @@ extension FlowController : VerifyPageDisplayable {
     
     func showVerifyBussiness(page: DetailedPageProfile) -> Void {
         let controller = Wireframe.verifyPageViewController()
-    
-        controller.page = page
+        
+        let viewModel = VerifyPageViewModel(page: page)
+        controller.viewModel = viewModel
     
         let nav = ModalNavigationController(rootViewController: controller)
         navigationController.presentViewController(nav, animated: true, completion: nil)

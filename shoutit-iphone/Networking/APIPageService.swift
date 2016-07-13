@@ -41,4 +41,15 @@ final class APIPageService {
         let url = APIManager.baseURL + "/pages"
         return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
+    
+    static func verifyPage(params: PageVerificationParams, forPageWithUsername username: String) -> Observable<PageVerification> {
+        let url = APIManager.baseURL + "/pages/\(username)/verification"
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
+    }
+    
+    static func getPageVerificationStatus(username: String) -> Observable<PageVerification> {
+        let url = APIManager.baseURL + "/pages/\(username)/verification"
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .JSON)
+    }
+
 }
