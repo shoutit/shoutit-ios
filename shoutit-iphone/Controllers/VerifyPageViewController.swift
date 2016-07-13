@@ -16,7 +16,7 @@ import ACPDownload
 class VerifyPageViewController: UITableViewController {
 
     var page: DetailedPageProfile!
-    
+
     var viewModel: VerifyPageViewModel!
     
     // RX

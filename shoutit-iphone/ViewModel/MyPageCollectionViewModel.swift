@@ -16,6 +16,8 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
+    private(set) var verification: PageVerification?
+    
     private var detailedPage: DetailedPageProfile?
     
     var profile: DetailedPageProfile? {
@@ -96,6 +98,20 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                 }
             }
             .addDisposableTo(disposeBag)
+        
+        fetchVerification()?
+            .subscribe { [weak self] (event) in
+                switch event {
+                case .Next(let value):
+                    self?.verification = value
+                    self?.reloadSubject.onNext()
+                case .Error(_):
+                    self?.reloadSubject.onNext()
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - ProfileCollectionViewModelInterface
@@ -151,6 +167,11 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                 return NSLocalizedString("Activate your Page!", comment: "")
             }
         }
+        
+        if let status = verification?.status {
+            return "Verification status: \(status)"
+        }
+        
         return NSLocalizedString("Verify your account!", comment: "")
     }
     
@@ -219,6 +240,12 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
         guard let page = profile else {return nil}
         return APIProfileService.retrievePageProfileWithUsername(page.username)
     }
+    
+    private func fetchVerification() -> Observable<PageVerification>? {
+        guard let page = profile else {return nil}
+        return APIPageService.getPageVerificationStatus(page.username)
+    }
+
     
     func listen() -> Observable<Void>? {
         return nil

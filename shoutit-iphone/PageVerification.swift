@@ -14,7 +14,7 @@ public struct PageVerification {
     public let businessName: String
     public let businessEmail: String
     
-    public let message: String
+    public let message: String?
     public let status: String
     
     public let contactNumber: String
@@ -31,7 +31,7 @@ extension PageVerification: Decodable {
         return function
             <^> j <| "business_name"
             <*> j <| "business_email"
-            <*> j <| "success"
+            <*> j <|? "success"
             <*> j <| "status"
             <*> j <| "contact_number"
             <*> j <| "contact_person"

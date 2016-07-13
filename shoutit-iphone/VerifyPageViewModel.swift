@@ -17,6 +17,8 @@ final class VerifyPageViewModel {
     
     private(set) var page: DetailedPageProfile
 
+    var verification: PageVerification?
+
     var email: Variable<String>
     var contactPerson: Variable<String>
     var contactNumber: Variable<String>
@@ -25,10 +27,10 @@ final class VerifyPageViewModel {
     
     init(page: DetailedPageProfile) {
         self.page = page
-        self.email = Variable("")
-        self.contactNumber = Variable("")
-        self.businessName = Variable("")
-        self.contactPerson = Variable("")
+        self.email = Variable(verification?.businessEmail ?? "")
+        self.contactNumber = Variable(verification?.contactNumber ?? "")
+        self.businessName = Variable(verification?.businessName ?? "")
+        self.contactPerson = Variable(verification?.contactPerson ?? "")
         self.location = Variable(nil)
     }
     
