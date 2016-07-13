@@ -164,6 +164,18 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         let coordinates = CLLocationCoordinate2D(latitude: address.latitude ?? 0, longitude: address.longitude ?? 0)
         let params = CoordinateParams(coordinates: coordinates)
         
+        if case .Some(.Page(_,_)) = Account.sharedInstance.loginState {
+            APILocationService.updateLocationForPage(username, withParams: params).subscribeNext {[weak self] (_) in
+                if let finish = self?.finishedBlock {
+                    self?.searchBar.text = ""
+                    self?.hideProgressHUD()
+                    finish(true, address)
+                }
+                }.addDisposableTo(disposeBag)
+            
+            return
+        }
+        
         APILocationService.updateLocationForUser(username, withParams: params).subscribeNext {[weak self] (_) in
             if let finish = self?.finishedBlock {
                 self?.searchBar.text = ""

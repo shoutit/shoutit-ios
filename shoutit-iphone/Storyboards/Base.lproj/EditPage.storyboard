@@ -124,7 +124,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageTextFieldCell" rowHeight="122" id="9wX-yn-Soy" customClass="EditPageTextFieldTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="314" width="600" height="122"/>
+                                <rect key="frame" x="0.0" y="313.5" width="600" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9wX-yn-Soy" id="2t9-fp-Kdl">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="122"/>
@@ -161,7 +161,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageSwitchTableViewCell" rowHeight="50" id="qOO-sq-qEH" customClass="EditPageSwitchTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="436" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="435.5" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qOO-sq-qEH" id="loB-Va-bEJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
@@ -190,7 +190,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageTextViewCell" rowHeight="111" id="N42-UM-xKO" customClass="EditPageTextViewTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="486" width="600" height="111"/>
+                                <rect key="frame" x="0.0" y="485.5" width="600" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N42-UM-xKO" id="MBy-u9-Q7h">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="111"/>
@@ -232,7 +232,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageDateTextFieldCell" rowHeight="70" id="UVL-EU-hiZ" customClass="EditPageTextFieldTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="597" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="596.5" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVL-EU-hiZ" id="B5w-D4-z5I">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
@@ -260,7 +260,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditPageSelectButtonCell" rowHeight="70" id="6Fi-fC-RmD" customClass="EditPageSelectButtonTableViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="667" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="666.5" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Fi-fC-RmD" id="S8G-oI-7ci">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>

@@ -190,7 +190,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                             <rect key="frame" x="0.0" y="398" width="600" height="299"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Add Official Documents with Business information for faster verification" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ej3-5S-jlj">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Add Official Documents with Business information for faster verification" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ej3-5S-jlj">
                                     <rect key="frame" x="20" y="5" width="560" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="8a5-Qt-z37"/>
@@ -240,7 +240,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yam-5F-c0u">
-                                    <rect key="frame" x="387" y="69.5" width="74" height="74"/>
+                                    <rect key="frame" x="362" y="69.5" width="74" height="74"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sNK-1o-k16">
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -305,7 +305,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIU-ep-lJ0">
-                                    <rect key="frame" x="139" y="69.5" width="74" height="74"/>
+                                    <rect key="frame" x="164" y="69.5" width="74" height="74"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tiU-VO-prP">
                                             <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
@@ -362,8 +362,8 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                 <constraint firstItem="HEy-cg-EK3" firstAttribute="top" secondItem="mly-fK-bL2" secondAttribute="bottom" constant="8" id="hVs-D4-2Xn"/>
                                 <constraint firstItem="RIU-ep-lJ0" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="19.5" id="p31-CA-f1r"/>
                                 <constraint firstItem="ej3-5S-jlj" firstAttribute="top" secondItem="h6R-nL-U04" secondAttribute="top" constant="5" id="s6S-uG-rnF"/>
-                                <constraint firstItem="yam-5F-c0u" firstAttribute="leading" secondItem="EPs-57-PuA" secondAttribute="trailing" constant="50" id="sCq-YN-DxE"/>
-                                <constraint firstItem="EPs-57-PuA" firstAttribute="leading" secondItem="RIU-ep-lJ0" secondAttribute="trailing" constant="50" id="vel-zZ-kRe"/>
+                                <constraint firstItem="yam-5F-c0u" firstAttribute="leading" secondItem="EPs-57-PuA" secondAttribute="trailing" constant="25" id="sCq-YN-DxE"/>
+                                <constraint firstItem="EPs-57-PuA" firstAttribute="leading" secondItem="RIU-ep-lJ0" secondAttribute="trailing" constant="25" id="vel-zZ-kRe"/>
                                 <constraint firstItem="HEy-cg-EK3" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="w9t-ob-HTF"/>
                             </constraints>
                             <variation key="default">
