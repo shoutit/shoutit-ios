@@ -278,6 +278,7 @@ private extension VideoCallViewController {
     }
     
     private func startPreview() {
+        guard let camera = camera else { return }
         guard camera.capturing == false else { return }
         camera.startPreview()
         guard let previewView = camera.previewView else {

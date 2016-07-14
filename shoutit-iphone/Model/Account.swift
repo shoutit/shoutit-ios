@@ -78,9 +78,6 @@ final class Account {
                 statsSubject.onNext(nil)
                 updateApplicationBadgeNumberWithStats(nil)
             }
-            
-            checkTwilioConnection()
-            checkPusherConnection()
         }
     }
     
@@ -173,8 +170,8 @@ final class Account {
         APIManager.setAuthToken(authData.apiToken, pageId: page.id)
         loginSubject.onNext(authData)
         loginState = .Page(user: user, page: page)
-        twilioManager.reconnect()
-        configureTwilioAndPusherServices()
+        checkTwilioConnection()
+        checkPusherConnection()
     }
     
     func switchToUser() {
@@ -184,7 +181,8 @@ final class Account {
         APIManager.setAuthToken(authData.apiToken, pageId: nil)
         loginSubject.onNext(authData)
         loginState = .Logged(user: user)
-        twilioManager.reconnect()
+        checkTwilioConnection()
+        checkPusherConnection()
     }
     
     func updateUserWithModel<T: User>(model: T, force: Bool = false) {
@@ -209,7 +207,7 @@ final class Account {
     }
     
     private func updateTokenWithAuthData(authData: AuthData, user: User) {
-        if let page = user as? DetailedProfile where page.type == .Page {
+        if let page = user as? DetailedPageProfile {
             APIManager.setAuthToken(authData.apiToken, pageId: page.id)
         } else {
             APIManager.setAuthToken(authData.apiToken, pageId: nil)
