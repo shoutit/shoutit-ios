@@ -29,6 +29,7 @@ final class SettingsTableViewController: UITableViewController {
         
         applyNavigationItems()
         setupRX()
+        
     }
     
     // MARK: - Setup
@@ -54,6 +55,7 @@ final class SettingsTableViewController: UITableViewController {
                 cell.separatorMarginConstraint.constant = isLastCell ? 0.0 : 10.0
                 cell.separatorHeightConstraint.constant = isLastCell ? 1.0 : 1.0 / UIScreen.mainScreen().scale
                 cell.separatorView.backgroundColor = isLastCell ? UIColor(shoutitColor: .SeparatorGray) : UIColor.blackColor().colorWithAlphaComponent(0.12)
+                cell.selectionStyle = .None
             }
             .addDisposableTo(disposeBag)
         
@@ -73,5 +75,9 @@ final class SettingsTableViewController: UITableViewController {
     
     override func ignoresToggleMenu() -> Bool {
         return ignoreMenuButton
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .None
     }
 }

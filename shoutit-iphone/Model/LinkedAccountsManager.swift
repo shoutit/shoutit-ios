@@ -55,6 +55,11 @@ class LinkedAccountsManager : NSObject {
             }
             
             MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
+            
+            switch event {
+            case .Error(let error): controller.showError(error)
+            default: break
+            }
         }.addDisposableTo(disposeBag)
     }
     
@@ -63,18 +68,25 @@ class LinkedAccountsManager : NSObject {
         
         MBProgressHUD.showHUDAddedTo(controller.view, animated: true)
         
-        Account.sharedInstance.facebookManager.linkWithReadPermissions(viewController: controller).subscribe { [weak self] (event) in
+        Account.sharedInstance.facebookManager.linkWithReadPermissions(viewController: controller).subscribe { (event) in
             guard let controller = wController else {
                 return
             }
             
             MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
             
+            switch event {
+            case .Error(let error): controller.showError(error)
+            default: break
+            }
+            
         }.addDisposableTo(disposeBag)
 
     }
     
     func linkGoogle(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+        GIDSignIn.sharedInstance().signOut()
+        
         presentingController = controller
         
         googleSettingsOption = option
