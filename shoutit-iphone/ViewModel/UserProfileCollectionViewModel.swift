@@ -160,7 +160,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     // MARK: - Fetch
     
     private func fetchShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
+        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     

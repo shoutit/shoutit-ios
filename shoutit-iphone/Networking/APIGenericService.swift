@@ -105,6 +105,8 @@ final class APIGenericService {
                 request.cancel()
             }
             
+//            debugPrint(request)
+            
             request.responseJSON{ (response) in
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)

@@ -47,7 +47,8 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          sort: SortType? = nil,
          filters: [(Filter, [FilterValue])]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
-         currentUserLocation: Address?) {
+         currentUserLocation: Address? = nil,
+         skipLocation: Bool? = false) {
         
         self.searchPhrase = searchPhrase
         self.discoverId = discoverId
@@ -65,6 +66,14 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.filters = filters
         self.currentUserLocation = currentUserLocation
         
+        if let skipLocation = skipLocation {
+            if skipLocation == true {
+                self.country = nil
+                self.city = nil
+                self.state = nil
+                return
+            }
+        }
         // location
         let location = currentUserLocation
         if country == nil && location?.country == nil && useLocaleBasedCountryCodeWhenNil {
