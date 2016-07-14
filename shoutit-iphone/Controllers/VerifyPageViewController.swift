@@ -25,7 +25,6 @@ class VerifyPageViewController: UITableViewController {
     @IBOutlet weak var contactNumberTextfield: UITextField!
     @IBOutlet weak var businessEmail: UITextField!
     
-    @IBOutlet weak var locationButton: SelectionButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     
@@ -37,6 +36,7 @@ class VerifyPageViewController: UITableViewController {
     @IBOutlet weak var secondDownloadView: ACPDownloadView!
     @IBOutlet weak var thirdDownloadView: ACPDownloadView!
     
+    @IBOutlet weak var verificationStatusLabel: UILabel!
     @IBOutlet var firstTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var secondTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var thirdTapGestureRecognizer: UITapGestureRecognizer!
@@ -93,21 +93,6 @@ class VerifyPageViewController: UITableViewController {
                 })
             .addDisposableTo(disposeBag)
         
-        locationButton
-            .rx_tap
-            .asDriver()
-            .driveNext({[weak self] in
-                let controller = Wireframe.changeShoutLocationController()
-                
-                controller.finishedBlock = { (success, place) -> Void in
-                    self?.locationButton.setTitle(place?.address, forState: .Normal)
-                    self?.viewModel.location.value = place
-                }
-                
-                self?.navigationController?.showViewController(controller, sender: nil)
-            })
-            .addDisposableTo(disposeBag)
-        
         viewModel.updateVerificationSubject
             .observeOn(MainScheduler.instance)
             .subscribeNext({[weak self] (verification) in
@@ -159,6 +144,9 @@ class VerifyPageViewController: UITableViewController {
         contactPersonTextField.rx_text.bindTo(viewModel.contactPerson).addDisposableTo(disposeBag)
         contactNumberTextfield.rx_text.bindTo(viewModel.contactNumber).addDisposableTo(disposeBag)
         businessNameTextField.rx_text.bindTo(viewModel.businessName).addDisposableTo(disposeBag)
+        viewModel.verificationStatus.asDriver().driveNext { (status) in
+            self.verificationStatusLabel.text = status
+        }.addDisposableTo(disposeBag)
     }
     
     private func populateWithVerification(verification: PageVerification) {
@@ -166,6 +154,7 @@ class VerifyPageViewController: UITableViewController {
         self.businessNameTextField.text = verification.businessName
         self.contactNumberTextfield.text = verification.contactNumber
         self.contactPersonTextField.text = verification.contactPerson
+        self.verificationStatusLabel.text = NSLocalizedString("Verification Status: ", comment: "") + verification.status
         
         if let images = verification.images {
             for (index, imageURLString) in images.enumerate() where index < imageViews.count {

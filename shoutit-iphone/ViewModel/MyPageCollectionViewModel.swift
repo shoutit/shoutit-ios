@@ -167,12 +167,8 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                 return NSLocalizedString("Activate your Page!", comment: "")
             }
         }
-        
-        if let status = verification?.status {
-            return "Verification status: \(status)"
-        }
-        
-        return NSLocalizedString("Verify your account!", comment: "")
+            
+        return NSLocalizedString("Verify your business!", comment: "")
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {

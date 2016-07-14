@@ -160,7 +160,7 @@
         <scene sceneID="ccj-e8-PFH">
             <objects>
                 <tableViewController storyboardIdentifier="VerifyPageViewController" id="x9j-qN-ciR" customClass="VerifyPageViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RPm-ZQ-6aU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RPm-ZQ-6aU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -187,7 +187,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="h6R-nL-U04">
-                            <rect key="frame" x="0.0" y="398" width="600" height="299"/>
+                            <rect key="frame" x="0.0" y="304" width="600" height="299"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Add Official Documents with Business information for faster verification" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="ej3-5S-jlj">
@@ -289,7 +289,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEy-cg-EK3" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="218" width="560" height="44"/>
+                                    <rect key="frame" x="20" y="245" width="560" height="44"/>
                                     <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="nL6-ex-Ti9"/>
@@ -344,28 +344,40 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                         <outletCollection property="gestureRecognizers" destination="wpD-mQ-8Fk" appends="YES" id="3gT-ak-C11"/>
                                     </connections>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Verification Status: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8YG-qM-NbZ">
+                                    <rect key="frame" x="15" y="210" width="570" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="PVg-JQ-i7Y"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="RIU-ep-lJ0" firstAttribute="centerY" secondItem="EPs-57-PuA" secondAttribute="centerY" id="0xo-6H-8Ab"/>
                                 <constraint firstItem="yam-5F-c0u" firstAttribute="centerY" secondItem="EPs-57-PuA" secondAttribute="centerY" id="6If-fm-oMC"/>
                                 <constraint firstAttribute="trailing" secondItem="mly-fK-bL2" secondAttribute="trailing" constant="20" id="830-8O-KCp"/>
+                                <constraint firstItem="8YG-qM-NbZ" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="15" id="90j-8C-nca"/>
                                 <constraint firstItem="mly-fK-bL2" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="100" id="BZ1-By-xeO"/>
                                 <constraint firstItem="oUh-1K-vMU" firstAttribute="centerX" secondItem="h6R-nL-U04" secondAttribute="centerX" id="BtP-oW-pmF"/>
                                 <constraint firstAttribute="trailing" secondItem="HEy-cg-EK3" secondAttribute="trailing" constant="20" id="Cgx-f2-muT"/>
                                 <constraint firstItem="mly-fK-bL2" firstAttribute="top" secondItem="EPs-57-PuA" secondAttribute="bottom" constant="10" id="HKO-1I-Atu"/>
                                 <constraint firstItem="mly-fK-bL2" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="Swu-c1-fzb"/>
                                 <constraint firstItem="yam-5F-c0u" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="19.5" id="ab9-AW-EkA"/>
+                                <constraint firstItem="8YG-qM-NbZ" firstAttribute="top" secondItem="mly-fK-bL2" secondAttribute="bottom" id="b8A-Qr-imd"/>
                                 <constraint firstAttribute="bottom" secondItem="HEy-cg-EK3" secondAttribute="bottom" constant="20" id="cj1-Og-djv"/>
                                 <constraint firstItem="ej3-5S-jlj" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="cpd-uo-F0B"/>
                                 <constraint firstItem="oUh-1K-vMU" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="20" id="gCN-Hh-flc"/>
                                 <constraint firstAttribute="trailing" secondItem="ej3-5S-jlj" secondAttribute="trailing" constant="20" id="gNa-lB-pTq"/>
-                                <constraint firstItem="HEy-cg-EK3" firstAttribute="top" secondItem="mly-fK-bL2" secondAttribute="bottom" constant="8" id="hVs-D4-2Xn"/>
                                 <constraint firstItem="RIU-ep-lJ0" firstAttribute="top" secondItem="ej3-5S-jlj" secondAttribute="bottom" constant="19.5" id="p31-CA-f1r"/>
+                                <constraint firstItem="HEy-cg-EK3" firstAttribute="top" secondItem="8YG-qM-NbZ" secondAttribute="bottom" constant="10" id="qv9-Vv-aoW"/>
                                 <constraint firstItem="ej3-5S-jlj" firstAttribute="top" secondItem="h6R-nL-U04" secondAttribute="top" constant="5" id="s6S-uG-rnF"/>
                                 <constraint firstItem="yam-5F-c0u" firstAttribute="leading" secondItem="EPs-57-PuA" secondAttribute="trailing" constant="25" id="sCq-YN-DxE"/>
                                 <constraint firstItem="EPs-57-PuA" firstAttribute="leading" secondItem="RIU-ep-lJ0" secondAttribute="trailing" constant="25" id="vel-zZ-kRe"/>
                                 <constraint firstItem="HEy-cg-EK3" firstAttribute="leading" secondItem="h6R-nL-U04" secondAttribute="leading" constant="20" id="w9t-ob-HTF"/>
+                                <constraint firstAttribute="trailing" secondItem="8YG-qM-NbZ" secondAttribute="trailing" constant="15" id="zau-J9-u0n"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -500,61 +512,6 @@ Pages verification doesn’t take long time and will give your Page more legitma
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="LOCATION" id="cHN-D5-C6g">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" id="NjL-Bi-BPU" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="336" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NjL-Bi-BPU" id="2qY-Di-bOY">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KW5-u0-ROB" customClass="SelectionButton" customModule="Shoutit" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="5" width="570" height="35"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="Ize-a3-aPS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <inset key="contentEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="Location">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="ib_disclosureType">
-                                                            <integer key="value" value="2"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isImageVisible" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="ib_fieldTitleLabelType">
-                                                            <integer key="value" value="3"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="fieldTitleLabelFontColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="KW5-u0-ROB" secondAttribute="bottom" id="5sf-yb-Wgm"/>
-                                                <constraint firstAttribute="trailing" secondItem="KW5-u0-ROB" secondAttribute="trailing" constant="15" id="TIL-lO-9mP"/>
-                                                <constraint firstItem="KW5-u0-ROB" firstAttribute="top" secondItem="2qY-Di-bOY" secondAttribute="topMargin" id="Xuk-cN-9oI"/>
-                                                <constraint firstItem="KW5-u0-ROB" firstAttribute="centerY" secondItem="2qY-Di-bOY" secondAttribute="centerY" id="lIV-3j-IhD"/>
-                                                <constraint firstItem="KW5-u0-ROB" firstAttribute="leading" secondItem="2qY-Di-bOY" secondAttribute="leading" constant="15" id="skZ-XE-FiJ"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="5sf-yb-Wgm"/>
-                                                    <exclude reference="Xuk-cN-9oI"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="selectButton" destination="KW5-u0-ROB" id="CuX-I9-85i"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="x9j-qN-ciR" id="mze-1q-qXe"/>
@@ -577,7 +534,6 @@ Pages verification doesn’t take long time and will give your Page more legitma
                         <outlet property="firstDownloadView" destination="QDf-Ia-sKg" id="F4x-dD-TKg"/>
                         <outlet property="firstImageView" destination="tiU-VO-prP" id="iys-Sx-rwy"/>
                         <outlet property="firstTapGestureRecognizer" destination="wpD-mQ-8Fk" id="Zhk-H2-UFf"/>
-                        <outlet property="locationButton" destination="KW5-u0-ROB" id="7yi-nr-Dw3"/>
                         <outlet property="saveButton" destination="HEy-cg-EK3" id="0c9-XV-SyU"/>
                         <outlet property="secondDownloadView" destination="Wwg-1Y-ooc" id="sRH-MH-yrm"/>
                         <outlet property="secondImageView" destination="EPs-57-PuA" id="xIy-x8-a1U"/>
@@ -585,6 +541,7 @@ Pages verification doesn’t take long time and will give your Page more legitma
                         <outlet property="thirdDownloadView" destination="Hho-7X-CAF" id="Lbz-wu-eqv"/>
                         <outlet property="thirdImageView" destination="sNK-1o-k16" id="upd-Jh-C3U"/>
                         <outlet property="thirdTapGestureRecognizer" destination="K7c-3d-LVq" id="0EV-hd-cgt"/>
+                        <outlet property="verificationStatusLabel" destination="8YG-qM-NbZ" id="0Oh-8j-h15"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSC-G3-8fK" userLabel="First Responder" sceneMemberID="firstResponder"/>

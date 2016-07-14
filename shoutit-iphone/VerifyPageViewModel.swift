@@ -21,6 +21,7 @@ final class VerifyPageViewModel {
     var contactPerson: Variable<String>
     var contactNumber: Variable<String>
     var businessName: Variable<String>
+    var verificationStatus: Variable<String?>
     var location: Variable<Address?>
     
     init(page: DetailedPageProfile) {
@@ -30,6 +31,7 @@ final class VerifyPageViewModel {
         self.businessName = Variable("")
         self.contactPerson = Variable("")
         self.location = Variable(nil)
+        self.verificationStatus = Variable(nil)
     }
     
     let successSubject: PublishSubject<ResponseType> = PublishSubject()
@@ -119,6 +121,10 @@ final class VerifyPageViewModel {
         self.contactPerson.value = verification.contactPerson
         self.contactNumber.value = verification.contactNumber
         self.businessName.value = verification.businessName
+        
+        if self.page.isVerified {
+            self.verificationStatus.value = verification.status
+        }
     }
     
     private func buildParams() -> PageVerificationParams {
