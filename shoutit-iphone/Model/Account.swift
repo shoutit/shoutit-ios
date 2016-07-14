@@ -188,8 +188,8 @@ final class Account {
     func updateUserWithModel<T: User>(model: T, force: Bool = false) {
         if let model = model as? DetailedUserProfile where model.type == .User {
             switch (loginState, force) {
-            case (.Logged(_)?, _): loginState = .Logged(user: model)
             case (.Page(_, let page)?, _): loginState = .Page(user: model, page: page)
+            case (.Logged(_)?, _), (.None, _), (_, true): loginState = .Logged(user: model)
             default: break
             }
         }
