@@ -139,9 +139,9 @@ class ProfilesListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
-        let cellViewModel = cells[indexPath.row]
-        eventHandler.handleUserDidTapProfile(cellViewModel.profile)
+            guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
+            let cellViewModel = cells[indexPath.row]
+            eventHandler.handleUserDidTapProfile(cellViewModel.profile)
         
         if autoDeselct {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)

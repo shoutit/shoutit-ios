@@ -871,6 +871,7 @@
 		B2FA5CD31D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD21D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift */; };
 		B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD51D11C5EC007034F8 /* LocalizedString.swift */; };
 		B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */; };
+		BF02B4391D37792300DDFBCE /* UISearchBarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BF02B4381D37792300DDFBCE /* UISearchBarAppearance.m */; };
 		BF06D1731D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */; };
 		BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */; };
 		BF0B909F1D23F6EB006F8D8D /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */; };
@@ -2026,6 +2027,8 @@
 		B2FA5CD51D11C5EC007034F8 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizedString.swift; path = Other/LocalizedString.swift; sourceTree = "<group>"; };
 		B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchShoutsResultsViewModel.swift; path = ViewModel/SearchShoutsResultsViewModel.swift; sourceTree = "<group>"; };
 		B89CDA22E17F2A844DE048AE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		BF02B4371D37791100DDFBCE /* UISearchBarAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UISearchBarAppearance.h; path = Util/UISearchBarAppearance.h; sourceTree = "<group>"; };
+		BF02B4381D37792300DDFBCE /* UISearchBarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISearchBarAppearance.m; path = Util/UISearchBarAppearance.m; sourceTree = "<group>"; };
 		BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListParentViewController.swift; path = Controllers/FacebookFriendsListParentViewController.swift; sourceTree = "<group>"; };
 		BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteContactsViewController.swift; path = Controllers/InviteContactsViewController.swift; sourceTree = "<group>"; };
 		BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
@@ -3283,6 +3286,8 @@
 			children = (
 				BF0B909E1D23F6EB006F8D8D /* MessageComposer.swift */,
 				AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */,
+				BF02B4371D37791100DDFBCE /* UISearchBarAppearance.h */,
+				BF02B4381D37792300DDFBCE /* UISearchBarAppearance.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -5925,6 +5930,7 @@
 				B2F719EE1D0EF4C7002C1D74 /* PlacesSharedTypes.swift in Sources */,
 				B2D9B1061C98805600924941 /* SearchCategoryTableViewCell.swift in Sources */,
 				B2F719B31D0EF12F002C1D74 /* ABAddressBookImpl.swift in Sources */,
+				BF02B4391D37792300DDFBCE /* UISearchBarAppearance.m in Sources */,
 				BF5FB2751D2FCC190078A57F /* EditPageTableViewModel.swift in Sources */,
 				AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */,
 				240F50A21C71D9E700AE4A76 /* HomeShoutsViewModel.swift in Sources */,

@@ -65,6 +65,9 @@ final class SearchViewController: UIViewController {
         if #available(iOS 9.0, *) {
             (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor(red: 64/255, green: 196/255, blue: 255/255, alpha: 1.0)
         }
+        
+        UIBarButtonItem.my_appearanceWhenContainedIn(UISearchBar.self).tintColor = UIColor(red: 64/255, green: 196/255, blue: 255/255, alpha: 1.0)
+        
     }
     
     override func viewWillAppear(animated: Bool) {

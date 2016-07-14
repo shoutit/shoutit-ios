@@ -22,8 +22,8 @@
                             <constraint firstAttribute="height" constant="48" id="fiI-ps-t0Y"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWX-3j-RjK">
-                        <rect key="frame" x="70" y="12" width="40" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="dWX-3j-RjK">
+                        <rect key="frame" x="70" y="12" width="217" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,12 +50,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjE-c5-wwi">
-                        <rect key="frame" x="334" y="16" width="31" height="14"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIE-8i-AEf">
                         <rect key="frame" x="70" y="71" width="305" height="1"/>
                         <color key="backgroundColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,9 +57,19 @@
                             <constraint firstAttribute="height" constant="1" id="eKf-Gl-LsH"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjE-c5-wwi">
+                        <rect key="frame" x="295" y="16" width="70" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="eiQ-8J-lbL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="UIE-8i-AEf" secondAttribute="bottom" id="0wH-He-Ihr"/>
+                    <constraint firstItem="SjE-c5-wwi" firstAttribute="leading" secondItem="dWX-3j-RjK" secondAttribute="trailing" constant="8" id="6a8-Zl-wDq"/>
                     <constraint firstItem="Vwu-iw-iBJ" firstAttribute="trailing" secondItem="SjE-c5-wwi" secondAttribute="trailing" id="FGK-rB-jEx"/>
                     <constraint firstAttribute="trailing" secondItem="SjE-c5-wwi" secondAttribute="trailing" constant="10" id="OaV-gB-7wI"/>
                     <constraint firstItem="ULs-Ds-XBS" firstAttribute="leading" secondItem="2NO-n7-Ixl" secondAttribute="leading" constant="10" id="S8T-ch-YjU"/>
