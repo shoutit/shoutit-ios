@@ -15,7 +15,7 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
     
     override func configureCell(cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
         
-        let profile : Profile = cellViewModel.profile 
+        let profile : Profile = cellViewModel.profile
         
         cell.nameLabel.text = profile.name
         

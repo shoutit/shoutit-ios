@@ -1104,16 +1104,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAm-RH-VLe">
                                 <rect key="frame" x="0.0" y="0.0" width="314" height="316"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy and Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soz-bA-Q3z">
-                                        <rect key="frame" x="47" y="244" width="220" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="WFe-Uv-XfB"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="x9B-iv-dWa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutit_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="fAa-pr-u55">
                                         <rect key="frame" x="7" y="22" width="300" height="100"/>
                                         <constraints>
@@ -1121,9 +1111,14 @@
                                             <constraint firstAttribute="height" constant="100" id="l03-GD-sfd"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Shoutit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gv6-Vf-08z">
-                                        <rect key="frame" x="36" y="202" width="243" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy &amp; Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soz-bA-Q3z">
+                                        <rect key="frame" x="17" y="193" width="281" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="281" id="8eX-Gw-194"/>
+                                            <constraint firstAttribute="height" constant="31" id="WFe-Uv-XfB"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="x9B-iv-dWa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1131,12 +1126,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="fAa-pr-u55" firstAttribute="centerX" secondItem="iAm-RH-VLe" secondAttribute="centerX" id="B22-Tm-KdX"/>
-                                    <constraint firstItem="Gv6-Vf-08z" firstAttribute="centerX" secondItem="iAm-RH-VLe" secondAttribute="centerX" id="GZi-kx-Bcl"/>
                                     <constraint firstItem="fAa-pr-u55" firstAttribute="top" secondItem="iAm-RH-VLe" secondAttribute="top" constant="22" id="NGb-di-h4L"/>
-                                    <constraint firstItem="Gv6-Vf-08z" firstAttribute="top" secondItem="fAa-pr-u55" secondAttribute="bottom" priority="700" constant="80" id="asK-zU-9Ze"/>
+                                    <constraint firstItem="Soz-bA-Q3z" firstAttribute="top" secondItem="fAa-pr-u55" secondAttribute="bottom" constant="71" id="iqL-mr-vt9"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Soz-bA-Q3z" secondAttribute="bottom" constant="10" id="nUj-cV-Hum"/>
-                                    <constraint firstItem="Soz-bA-Q3z" firstAttribute="top" secondItem="Gv6-Vf-08z" secondAttribute="bottom" constant="8" id="tqM-NV-MxX"/>
-                                    <constraint firstItem="Gv6-Vf-08z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fAa-pr-u55" secondAttribute="bottom" constant="10" id="wHM-pe-6tw"/>
                                     <constraint firstItem="Soz-bA-Q3z" firstAttribute="centerX" secondItem="iAm-RH-VLe" secondAttribute="centerX" id="zg8-zd-m1Q"/>
                                 </constraints>
                             </view>
@@ -1680,7 +1672,7 @@
         <image name="intro_videochat" width="94" height="52"/>
         <image name="launch_background" width="375" height="667"/>
         <image name="login_screen_overlay" width="1080" height="1920"/>
-        <image name="logoColor" width="200" height="64"/>
-        <image name="shoutit_logo_white" width="200" height="64"/>
+        <image name="logoColor" width="200" height="62"/>
+        <image name="shoutit_logo_white" width="200" height="62"/>
     </resources>
 </document>

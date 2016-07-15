@@ -1143,7 +1143,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="89" id="DQ8-5W-d82" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="319.5" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="320" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DQ8-5W-d82" id="FhP-c3-g2g">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -1191,7 +1191,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="59" id="Sd6-kJ-fTz" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="408.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="409" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sd6-kJ-fTz" id="KrO-iQ-auC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -1236,7 +1236,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="59" id="fCa-m3-aZf" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="467.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="468" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fCa-m3-aZf" id="a4p-Eh-gPr">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -1262,7 +1262,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="uOW-Yj-HhU" customClass="CreateShoutTextViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="526.5" width="600" height="119"/>
+                                <rect key="frame" x="0.0" y="527" width="600" height="119"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uOW-Yj-HhU" id="xdf-CR-z5e">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
@@ -1287,7 +1287,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="4XR-xv-08w" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="645.5" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="646" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4XR-xv-08w" id="tEU-yM-GzF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -1333,7 +1333,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreateShoutSelectableCell" rowHeight="59" id="sAH-G8-BwU" customClass="CreateShoutSelectableCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="734.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="735" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sAH-G8-BwU" id="SWL-t9-nVQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
