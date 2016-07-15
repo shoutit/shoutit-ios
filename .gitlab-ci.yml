@@ -1,5 +1,6 @@
 before_script:
   - export LANG=en_US.UTF-8
+  - echo $PATH
   - brew update
   - brew outdated carthage || brew upgrade carthage
   # download and load envs
