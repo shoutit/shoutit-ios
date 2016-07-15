@@ -43,6 +43,10 @@ class ConversationMemberCellConfigurator: ProfileCellConfigurator {
         
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
+        }
+        
         cell.listenButton.hidden = true
         
         if canAdministrate {

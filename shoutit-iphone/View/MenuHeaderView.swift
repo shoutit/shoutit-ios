@@ -48,7 +48,7 @@ final class MenuHeaderView: UIView {
     private func fillWithLoggedUser(user: DetailedUserProfile) {
         
         if let path = user.imagePath, profileURL = NSURL(string: path) {
-            profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
+            profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "default_profile"))
         }
         
         if let path = user.coverPath, coverURL = NSURL(string: path) {
@@ -68,7 +68,7 @@ final class MenuHeaderView: UIView {
     private func fillWithPage(page: DetailedProfile) {
         
         if let path = page.imagePath, profileURL = NSURL(string: path) {
-            profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
+            profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "default_page"))
         }
         
         if let path = page.coverPath, coverURL = NSURL(string: path) {
@@ -85,7 +85,7 @@ final class MenuHeaderView: UIView {
     }
     
     private func fillAsGuest() {
-        profileImageView?.image = UIImage(named: "guest avatar")
+        profileImageView?.image = UIImage(named: "default_profile")
         profileNameLabel?.text = NSLocalizedString("Guest", comment: "")
         coverImageView?.image = UIImage(named: "auth_screen_bg_pattern")
         

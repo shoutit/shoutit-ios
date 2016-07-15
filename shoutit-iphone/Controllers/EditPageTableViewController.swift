@@ -72,7 +72,11 @@ class EditPageTableViewController: UITableViewController {
             return
         }
         
-        headerView.avatarImageView.sh_setImageWithURL(user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            headerView.avatarImageView.sh_setImageWithURL(user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
+        }
+        
+        headerView.avatarImageView.sh_setImageWithURL(user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
         headerView.coverImageView.sh_setImageWithURL(user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
     }
     

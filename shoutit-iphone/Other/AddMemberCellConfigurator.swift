@@ -31,6 +31,10 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
             cell.thumbnailImageView.alpha = 1.0
         }
         
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
+        }
+        
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
         cell.listenButton.hidden = true
