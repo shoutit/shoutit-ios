@@ -90,6 +90,10 @@ class CreateShoutTableViewController: UITableViewController {
         headerView.priceTextField
             .rx_text
             .flatMap{ (stringValue) -> Observable<Double?> in
+                if stringValue.characters.count == 0 {
+                    return Observable.just(nil)
+                }
+                
                 return Observable.just(stringValue.doubleValue)
             }
             .bindTo(viewModel.shoutParams.price)
