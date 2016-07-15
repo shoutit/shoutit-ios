@@ -30,7 +30,12 @@ final class PusherClient : NSObject {
     
     private var authToken : String?
     private var mainChannelIdentifier: String?
-    private var subscribedChannels : [String] = []
+    private var mainPageChannelIdentifier: String?
+    private var subscribedChannels : [String] = [] {
+        didSet {
+            print(subscribedChannels)
+        }
+    }
     private var keepDisconnected = false
     
     // RX
@@ -203,7 +208,7 @@ final class PusherClient : NSObject {
     func unsubscribeFromPageMainChannel(page: DetailedPageProfile) {
         let channelName = "presence-v3-p-\(page.id)"
 
-        self.mainChannelIdentifier = channelName
+        self.mainPageChannelIdentifier = channelName
         
         if let ch = self.pusherInstance?.channelNamed(channelName) {
             ch.unsubscribe()
@@ -237,6 +242,7 @@ extension PusherClient : PTPusherDelegate {
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
         log.info("PUSHER: didUnsubscribeFromChannel: \(channel.name)")
+        self.subscribedChannels.removeElementIfExists(channel.name)
     }
     
     // Error handling
@@ -305,7 +311,7 @@ extension PusherClient {
             let channelName = "presence-v3-p-\(page.id)"
             
             let channel : PTPusherChannel
-            self.mainChannelIdentifier = channelName
+            self.mainPageChannelIdentifier = channelName
             
             if let ch = self.pusherInstance?.channelNamed(channelName) {
                 channel = ch
@@ -380,6 +386,10 @@ extension PusherClient {
     }
     
     private func generateMainChannelIdentifier() -> String? {
+        if case .Some(.Page(let admin, _)) = account.loginState {
+            return "presence-v3-p-\(admin.id)"
+        }
+        
         if let user = account.user {
             return "presence-v3-p-\(user.id)"
         }
