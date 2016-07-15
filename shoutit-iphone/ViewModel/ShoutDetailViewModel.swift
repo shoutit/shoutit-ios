@@ -301,7 +301,7 @@ private extension ShoutDetailViewModel {
         }
         
         // category
-        details.append((NSLocalizedString("Categorie", comment: "Shout details"), shout.category.name, nil, nil, shout.category))
+        details.append((NSLocalizedString("Category", comment: "Shout details"), shout.category.name, nil, nil, shout.category))
         
         // add filters
         shout.filters?.forEach{ (filter) in

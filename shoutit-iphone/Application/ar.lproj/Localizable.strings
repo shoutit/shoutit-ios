@@ -127,7 +127,7 @@
 "Cannot add more videos" = "لا يمكن إضافة مزيد من الفيديو";
 
 /* Shout details */
-"Categorie" = "التصنيف";
+"Category" = "التصنيف";
 
 /* Main search screen categories header */
 "Categories" = "التصنيفات";
