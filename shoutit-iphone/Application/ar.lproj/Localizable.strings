@@ -424,6 +424,9 @@
 "Incoming Call" = "مكالمة واردة";
 
 /* No comment provided by engineer. */
+"Incoming Call from " = "مكالمة واردة من ";
+
+/* No comment provided by engineer. */
 "Interests" = "إهتمامات";
 
 /* No comment provided by engineer. */
@@ -878,6 +881,9 @@
 
 /* Edit profile placeholder text */
 "Username" = "إسم المستخدم";
+
+/* No comment provided by engineer. */
+"Verification Status: " = "حالة التحقق:";
 
 /* No comment provided by engineer. */
 "Verify New Password" = "تأكيد كلمة المرور الجديدة";

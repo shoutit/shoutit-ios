@@ -37,6 +37,9 @@
 /* Class = "UIButton"; normalTitle = "Category"; ObjectID = "ai0-rG-h0y"; */
 "ai0-rG-h0y.normalTitle" = "التصنيف";
 
+/* Class = "UILabel"; text = "Give your brand, product or business a voice on Shoutit and connect easily with your current and potential customers."; ObjectID = "fGk-Ud-Bq2"; */
+"fGk-Ud-Bq2.text" = "اعطي صوتا لشركتك او عملك على شاوت ات و كن قريبا من عملائك الحاليين و الجدد.";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "g0v-vr-4Nm"; */
 "g0v-vr-4Nm.text" = "Label";
 
@@ -45,4 +48,7 @@
 
 /* Class = "UIButton"; normalTitle = "Create Page"; ObjectID = "zUR-4J-XYz"; */
 "zUR-4J-XYz.normalTitle" = "إنشاء صفحة";
+
+/*  It's free to set up. Just choose a Page type  to get started. */
+"2h9-5i-6BM.text" = "التسجيل و انشاء الصفحات مجاني. اختر تصنيف عملك او شركتك وسجل الآن.";
 

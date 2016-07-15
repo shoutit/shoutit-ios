@@ -202,14 +202,14 @@
                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-zC-4ac">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-zC-4ac">
                                 <rect key="frame" x="0.0" y="107" width="600" height="493"/>
                                 <connections>
                                     <segue destination="3RB-KY-1rv" kind="embed" id="4QT-KB-Eo4"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" It's free to set up. Just choose a Page type  to get started. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h9-5i-6BM">
-                                <rect key="frame" x="20" y="73.5" width="560" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text=" It's free to set up. Just choose a Page type  to get started. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h9-5i-6BM">
+                                <rect key="frame" x="20" y="73" width="560" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -224,10 +224,16 @@
                             <constraint firstItem="jf5-zC-4ac" firstAttribute="leading" secondItem="Q46-CE-7fk" secondAttribute="leading" id="anv-iZ-bEZ"/>
                             <constraint firstItem="fGk-Ud-Bq2" firstAttribute="leading" secondItem="Q46-CE-7fk" secondAttribute="leading" constant="20" id="dKs-Or-wCP"/>
                             <constraint firstItem="2h9-5i-6BM" firstAttribute="top" secondItem="fGk-Ud-Bq2" secondAttribute="bottom" constant="15" id="fCN-9K-oTf"/>
+                            <constraint firstItem="jf5-zC-4ac" firstAttribute="top" secondItem="2h9-5i-6BM" secondAttribute="bottom" constant="16.5" id="kDx-xy-Jnt"/>
                             <constraint firstItem="jf5-zC-4ac" firstAttribute="top" secondItem="fGk-Ud-Bq2" secondAttribute="bottom" id="nI6-48-dDG"/>
                             <constraint firstAttribute="trailing" secondItem="2h9-5i-6BM" secondAttribute="trailing" constant="20" id="oVk-wM-g2S"/>
                             <constraint firstItem="fGk-Ud-Bq2" firstAttribute="top" secondItem="hZg-rd-YIf" secondAttribute="bottom" constant="5" id="qeU-bc-U1C"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="nI6-48-dDG"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Create Page" id="ICO-h4-1Bg"/>
                 </viewController>

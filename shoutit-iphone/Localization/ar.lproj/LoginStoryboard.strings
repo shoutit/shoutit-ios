@@ -100,6 +100,9 @@
 /* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
 "ff2-Jg-zkJ.text" = "بواسطة غوغل";
 
+/* Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc"; */
+"fg0-TH-CXc.text" = "سجل دخولك واكتشف ماذا يقوم الآخرين بالبيع في منطقتك أو قم بالبيع في ثوان ";
+
 /* Class = "UIButton"; normalTitle = "Create a Page for brand or business."; ObjectID = "gmD-j1-B34"; */
 "gmD-j1-B34.normalTitle" = "إنشاء صفحة لعلامتك التجارية أو عملك";
 
