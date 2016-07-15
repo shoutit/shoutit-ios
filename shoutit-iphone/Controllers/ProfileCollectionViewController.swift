@@ -291,9 +291,11 @@ extension ProfileCollectionViewController {
             case .Remote(let url):
                 infoView.avatarImageView.contentMode = .ScaleAspectFill
                 infoView.avatarImageView.sh_setImageWithURL(url, placeholderImage: UIImage.squareAvatarPlaceholder())
+                
                 if case .Some(.Page(_)) = Account.sharedInstance.loginState {
                 infoView.avatarImageView.sh_setImageWithURL(url, placeholderImage: UIImage.squareAvatarPagePlaceholder())
                 }
+                
                 
             }
             

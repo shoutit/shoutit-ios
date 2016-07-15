@@ -49,6 +49,8 @@ final class MenuHeaderView: UIView {
         
         if let path = user.imagePath, profileURL = NSURL(string: path) {
             profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "default_profile"))
+        } else {
+            profileImageView?.image = UIImage.squareAvatarPlaceholder()
         }
         
         if let path = user.coverPath, coverURL = NSURL(string: path) {
@@ -69,6 +71,8 @@ final class MenuHeaderView: UIView {
         
         if let path = page.imagePath, profileURL = NSURL(string: path) {
             profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "default_page"))
+        } else {
+            profileImageView?.image = UIImage.squareAvatarPagePlaceholder()
         }
         
         if let path = page.coverPath, coverURL = NSURL(string: path) {
