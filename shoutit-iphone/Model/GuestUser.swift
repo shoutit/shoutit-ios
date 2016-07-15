@@ -20,6 +20,9 @@ public struct GuestUser: User {
     public let dateJoinedEpoch: Int
     public let location: Address
     public let pushTokens: PushTokens?
+    public var name: String {
+        return username
+    }
 }
 
 extension GuestUser: Decodable {
