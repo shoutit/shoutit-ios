@@ -44,7 +44,7 @@ translations:
   type: build
   script: "bundle exec fastlane ios localizations"
   tags:
-    - artifacts
+    - swift2.2
   only:
     - develop
     - /^translations-.*$/
