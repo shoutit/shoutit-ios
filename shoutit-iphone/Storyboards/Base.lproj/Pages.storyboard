@@ -199,8 +199,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGk-Ud-Bq2">
                                 <rect key="frame" x="20" y="40" width="560" height="67"/>
                                 <string key="text">Give your brand, product or business a voice on Shoutit and connect easily with your current and potential customers.
-                                    
-It’s free to set up. Just choose a Page type  to get started. </string>
+              
+              It's free to set up. Just choose a Page type  to get started. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

@@ -1,1 +1,6 @@
+/* Class = "UINavigationItem"; title = "Admins"; ObjectID = "BUV-Z6-DzV"; */
+"BUV-Z6-DzV.title" = "المدراء";
+
+/* Class = "UIButton"; normalTitle = "Add Admin"; ObjectID = "IOe-7Z-ZXa"; */
+"IOe-7Z-ZXa.normalTitle" = "إضافة مدير";
 

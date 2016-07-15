@@ -879,6 +879,10 @@
 		BF0CB0051D33A4E500EC96FB /* EditPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0CB0071D33A4E500EC96FB /* EditPage.storyboard */; };
 		BF0CB0101D33AF7F00EC96FB /* DetailedPageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0CB00E1D33AF6600EC96FB /* DetailedPageProfile.swift */; };
 		BF0CB0121D33CFAE00EC96FB /* DetailedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0CB0111D33CFAE00EC96FB /* DetailedProfile.swift */; };
+		BF1098E21D38EDE100118C70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF1098E41D38EDE100118C70 /* Localizable.strings */; };
+		BF1098E71D38EDE400118C70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF1098E91D38EDE400118C70 /* InfoPlist.strings */; };
+		BF1098EC1D38EDE700118C70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF1098EE1D38EDE700118C70 /* InfoPlist.strings */; };
+		BF1098F11D38EDE900118C70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF1098F31D38EDE900118C70 /* InfoPlist.strings */; };
 		BF5FB2711D2FC72F0078A57F /* EditPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2701D2FC72F0078A57F /* EditPageTableViewController.swift */; };
 		BF5FB2751D2FCC190078A57F /* EditPageTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2741D2FCC190078A57F /* EditPageTableViewModel.swift */; };
 		BF5FB2771D2FCC370078A57F /* EditPageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2761D2FCC370078A57F /* EditPageCellViewModel.swift */; };
@@ -2039,6 +2043,10 @@
 		BF0CB00D1D33A4F300EC96FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EditPage.strings; sourceTree = "<group>"; };
 		BF0CB00E1D33AF6600EC96FB /* DetailedPageProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedPageProfile.swift; sourceTree = "<group>"; };
 		BF0CB0111D33CFAE00EC96FB /* DetailedProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedProfile.swift; sourceTree = "<group>"; };
+		BF1098E31D38EDE100118C70 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BF1098E81D38EDE400118C70 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF1098ED1D38EDE700118C70 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF1098F21D38EDE900118C70 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF5FB2701D2FC72F0078A57F /* EditPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTableViewController.swift; path = Controllers/EditPageTableViewController.swift; sourceTree = "<group>"; };
 		BF5FB2741D2FCC190078A57F /* EditPageTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageTableViewModel.swift; path = ViewModel/EditPageTableViewModel.swift; sourceTree = "<group>"; };
 		BF5FB2761D2FCC370078A57F /* EditPageCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageCellViewModel.swift; path = ViewModel/EditPageCellViewModel.swift; sourceTree = "<group>"; };
@@ -2850,6 +2858,7 @@
 		AE2EB7D21D057A48000A324D /* shoutitTests */ = {
 			isa = PBXGroup;
 			children = (
+				BF1098F31D38EDE900118C70 /* InfoPlist.strings */,
 				AE2EB7D31D057A48000A324D /* shoutitTests.swift */,
 				AE2EB7D51D057A48000A324D /* Info.plist */,
 			);
@@ -2859,6 +2868,8 @@
 		AE32C5361D055BFB009A49C5 /* ShoutitKit */ = {
 			isa = PBXGroup;
 			children = (
+				BF1098E91D38EDE400118C70 /* InfoPlist.strings */,
+				BF1098E41D38EDE100118C70 /* Localizable.strings */,
 				B20BFFC21D102B6F00D90729 /* Info.plist */,
 				AE32C5371D055BFB009A49C5 /* ShoutitKit.h */,
 			);
@@ -2868,6 +2879,7 @@
 		AE32C5441D055BFD009A49C5 /* ShoutitKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				BF1098EE1D38EDE700118C70 /* InfoPlist.strings */,
 				AE32C5451D055BFD009A49C5 /* ShoutitKitTests.swift */,
 				AE32C5471D055BFD009A49C5 /* Info.plist */,
 			);
@@ -5377,6 +5389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1098F11D38EDE900118C70 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5384,6 +5397,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1098E21D38EDE100118C70 /* Localizable.strings in Resources */,
+				BF1098E71D38EDE400118C70 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5391,6 +5406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1098EC1D38EDE700118C70 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6731,6 +6747,38 @@
 			);
 			name = EditPage.storyboard;
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		BF1098E41D38EDE100118C70 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF1098E31D38EDE100118C70 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BF1098E91D38EDE400118C70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF1098E81D38EDE400118C70 /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BF1098EE1D38EDE700118C70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF1098ED1D38EDE700118C70 /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BF1098F31D38EDE900118C70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF1098F21D38EDE900118C70 /* ar */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

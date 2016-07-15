@@ -1,11 +1,20 @@
+/* Class = "UITextField"; placeholder = "Business Name"; ObjectID = "2mx-GP-QV0"; */
+"2mx-GP-QV0.placeholder" = "اسم الشركة";
+
 /* Class = "UILabel"; text = "If you have already clicked on the link that was sent to you, you may click “Verify” now."; ObjectID = "3n1-kw-tkU"; */
 "3n1-kw-tkU.text" = "اذا كنت قد ضغط على الرابط المرسل اليك, يرجى الضغط على \"تحقق الآن\"";
+
+/* Class = "UINavigationItem"; title = "Business Verification"; ObjectID = "6M5-z5-sGQ"; */
+"6M5-z5-sGQ.title" = "التحقق من العمل / الشركة";
 
 /* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "9i5-7q-LZP"; */
 "9i5-7q-LZP.normalTitle" = "تحقق الآن";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "COw-Qu-b4n"; */
 "COw-Qu-b4n.title" = "إلغاء";
+
+/* Class = "UIButton"; normalTitle = "Submit Verification Requst"; ObjectID = "HEy-cg-EK3"; */
+"HEy-cg-EK3.normalTitle" = "إرسال طلب التحقق";
 
 /* Class = "UINavigationItem"; title = "Email Verification"; ObjectID = "LOQ-XF-eq2"; */
 "LOQ-XF-eq2.title" = "التحقق من الإيميل";
@@ -16,6 +25,24 @@
 /* Class = "UILabel"; text = "We have sent you a verification link on this email. Please check your inbox and click on it to verify your account. You can also change the email and click “Resend” for us to send you the verification link again."; ObjectID = "QyQ-mg-M4d"; */
 "QyQ-mg-M4d.text" = "تم إرسال رابط التفعيل على بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني والضغط على الرابط للتحقق من الحساب. تستطيع ايضاً تبديل البريد الإلكتروني من خلال الضغط على \"إعادة إرسال\" وسنرسل لك رابط التحقق مرة اخرى";
 
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "WyX-3t-HXi"; */
+"WyX-3t-HXi.title" = "إلغاء";
+
+/* Class = "UITextField"; placeholder = "Business Email"; ObjectID = "Xvb-UV-wK1"; */
+"Xvb-UV-wK1.placeholder" = "Business Email";
+
+/* Class = "UILabel"; text = "Add Official Documents with Business information for faster verification"; ObjectID = "ej3-5S-jlj"; */
+"ej3-5S-jlj.text" = "أضف وثائق رسمية تحوي على معلومات شركتك من أجل عملية تحقق أسرع.";
+
+/* Class = "UILabel"; text = "Your information including any legal documents will be securley saved and will be used only for the verification process."; ObjectID = "mly-fK-bL2"; */
+"mly-fK-bL2.text" = "معلوماتك المتضمنة أي وثائق رسمية ستحفظ بأمان وستستخدم فقط من أجل عملية التحقق.";
+
+/* Class = "UITextField"; placeholder = "Contact Person"; ObjectID = "vHk-3p-bQa"; */
+"vHk-3p-bQa.placeholder" = "شخص يمكن الإتصال به";
+
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "wQK-uY-5kn"; */
 "wQK-uY-5kn.placeholder" = "البريد الإلكتروني";
+
+/* Class = "UITextField"; placeholder = "Contact Number"; ObjectID = "yFo-lY-XSG"; */
+"yFo-lY-XSG.placeholder" = "الرقم";
 

@@ -10,8 +10,11 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "IVW-DI-OK5"; */
 "IVW-DI-OK5.text" = "Label";
 
+/* Class = "UILabel"; text = "Sponsored"; ObjectID = "Kvv-hV-i1u"; */
+"Kvv-hV-i1u.text" = "إعلان خارجي";
+
 /* Class = "UILabel"; text = "Name"; ObjectID = "OF4-56-wbL"; */
-"OF4-56-wbL.text" = "الإسم ";
+"OF4-56-wbL.text" = "الإسم";
 
 /* Class = "UILabel"; text = "Price"; ObjectID = "RFV-cQ-2AI"; */
 "RFV-cQ-2AI.text" = "السعر";
@@ -29,7 +32,10 @@
 "ZvU-8u-sz5.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Add to Cart"; ObjectID = "bMb-en-aRa"; */
-"bMb-en-aRa.normalTitle" = "اضافة إلى السلة ";
+"bMb-en-aRa.normalTitle" = "اضافة إلى السلة";
+
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "bcr-Mb-2JU"; */
+"bcr-Mb-2JU.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
 
 /* Class = "UIButton"; normalTitle = "More"; ObjectID = "cS6-vn-fHD"; */
 "cS6-vn-fHD.normalTitle" = "المزيد";
@@ -37,11 +43,17 @@
 /* Class = "UIButton"; normalTitle = "Call"; ObjectID = "dlw-u9-I8B"; */
 "dlw-u9-I8B.normalTitle" = "مكالمة";
 
+/* Class = "UIButton"; normalTitle = "Install Now"; ObjectID = "fUe-my-fmP"; */
+"fUe-my-fmP.normalTitle" = "حمل الآن";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "ibG-bb-S7x"; */
 "ibG-bb-S7x.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Chat"; ObjectID = "kqz-M3-3o4"; */
 "kqz-M3-3o4.normalTitle" = "محادثة";
+
+/* Class = "UILabel"; text = "Ad Title"; ObjectID = "m5B-TQ-cHC"; */
+"m5B-TQ-cHC.text" = "عنوان الإعلان";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "mYl-ac-2Q9"; */
 "mYl-ac-2Q9.text" = "Label";
