@@ -170,7 +170,7 @@ extension ProfileCollectionViewController {
             
             cell.nameLabel.text = cellViewModel.name()
             cell.listenersCountLabel.text = cellViewModel.listeningCountString()
-            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.thumbnailURL(), placeholderImage: UIImage(named: "image_placeholder"))
+            cell.thumnailImageView.sh_setImageWithURL(cellViewModel.thumbnailURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
             let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
             cell.listenButton.setImage(listenButtonImage, forState: .Normal)
             cell.listenButton.hidden = cellViewModel.hidesListeningButton()
