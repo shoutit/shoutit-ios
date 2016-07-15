@@ -3,7 +3,7 @@
 "41h-vW-IAU.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Search within: "; ObjectID = "9RO-3f-vYA"; */
-"9RO-3f-vYA.text" = "Search within: ";
+"9RO-3f-vYA.text" = "Search within:";
 
 /* Class = "UILabel"; text = "Location"; ObjectID = "B22-b0-hjV"; */
 "B22-b0-hjV.text" = "Location";

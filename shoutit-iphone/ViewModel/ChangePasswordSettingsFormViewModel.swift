@@ -27,7 +27,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
         let verifyPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .VerifyPassword)
         let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change password", comment: ""), action: changePassword)
         
-        if case .Logged(let user)? = Account.sharedInstance.userModel where user.isPasswordSet == true {
+        if case .Logged(let user)? = Account.sharedInstance.loginState where user.isPasswordSet == true {
             cellViewModels = [oldPasswordCell, newPasswordCell, verifyPasswordCell, changeButtonCell]
         } else {
             cellViewModels = [newPasswordCell, verifyPasswordCell, changeButtonCell]

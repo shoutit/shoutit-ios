@@ -137,6 +137,11 @@ class CreateShoutParentViewController: UIViewController {
                     urls.append(path)
                 }
                 if let video = videoAttachmentObject(task.attachment) {
+                    
+                    if (videos.contains{$0.path == video.path}) {
+                           continue
+                    }
+                    
                     videos.append(video)
                 }
             }

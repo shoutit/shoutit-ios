@@ -232,21 +232,27 @@ final class ConversationViewModel {
     }
     
     func cellIdentifierForMessage(msg: Message) -> String {
-        guard let attachmentType = msg.attachment()?.type() else {
-            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
+        
+        let isOugoingMessage: Bool
+        if let currentUserId = Account.sharedInstance.user?.id {
+            isOugoingMessage = msg.isOutgoing(forUserWithId: currentUserId)
+        } else {
+            isOugoingMessage = false
         }
         
-        switch attachmentType {
-        case .ImageAttachment:
-            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
-        case .VideoAttachment:
-            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Video.outgoing : ConversationCellIdentifier.Video.incoming
-        case .LocationAttachment:
-            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Location.outgoing : ConversationCellIdentifier.Location.incoming
-        case .ShoutAttachment:
-            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
-        case .ProfileAttachment:
-            return msg.isOutgoingCell(Account.sharedInstance.user?.id) ? ConversationCellIdentifier.Profile.outgoing : ConversationCellIdentifier.Profile.incoming
+        switch msg.attachment()?.type() {
+        case .None:
+            return isOugoingMessage ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
+        case .Some(.ImageAttachment):
+            return isOugoingMessage ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
+        case .Some(.VideoAttachment):
+            return isOugoingMessage ? ConversationCellIdentifier.Video.outgoing : ConversationCellIdentifier.Video.incoming
+        case .Some(.LocationAttachment):
+            return isOugoingMessage ? ConversationCellIdentifier.Location.outgoing : ConversationCellIdentifier.Location.incoming
+        case .Some(.ShoutAttachment):
+            return isOugoingMessage ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
+        case .Some(.ProfileAttachment):
+            return isOugoingMessage ? ConversationCellIdentifier.Profile.outgoing : ConversationCellIdentifier.Profile.incoming
         }
     }
     

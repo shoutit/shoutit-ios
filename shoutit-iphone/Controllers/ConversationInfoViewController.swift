@@ -186,34 +186,28 @@ class ConversationInfoViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        switch (indexPath.section, indexPath.row, isAdmin, self.viewModel.conversation.isPublicChat()) {
-        case (0, 0, _, _):
+        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        switch cellViewModel {
+        case .Shouts:
             showShouts()
-        case (0, 1, _, _):
+        case .Media:
             showMedia()
-        case (1, 0, true, _):
-            addMember()
-        case (1, 0, false, _):
-            showNotAuthorizedMessage()
-        case (1, 1, _, _):
+        case .AddMember:
+            let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
+            if isAdmin {
+                addMember()
+            } else {
+                showNotAuthorizedMessage()
+            }
+        case .Participants:
             showParticipants()
-        case (1, 2, true, _):
+        case .Blocked:
             showBlocked()
-        case (1, 2, false, _):
-            showNotAuthorizedMessage()
-        case (2, 0, _, true):
+        case .ReportChat:
             reportChat()
-        case (2, 0, _, false):
+        case .ExitChat:
             exitChat()
-        case (2, 1, _, _):
-            exitChat()
-        default:
-            assertionFailure()
-            break
         }
     }
     
@@ -300,12 +294,11 @@ class ConversationInfoViewController: UITableViewController {
         controller.autoDeselct = true
         
         
-        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
-            if !isAdmin {
-                return
-            }
+        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: {[weak self] (profile) in
             
-            if profile.id == Account.sharedInstance.user?.id {
+            guard let `self` = self else { return }
+            guard isAdmin && profile.id != Account.sharedInstance.user?.id else {
+                self.flowDelegate?.showProfile(profile)
                 return
             }
             
@@ -321,22 +314,24 @@ class ConversationInfoViewController: UITableViewController {
             }
             
             if !isBlocked {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: ""), style: .Default, handler: { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: ""), style: .Default) { (action) in
                     self.block(profile)
-                }))
+                })
             } else {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default, handler: { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default) { (action) in
                     self.unblock(profile)
-                }))
+                })
             }
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive, handler: { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive) { (action) in
                 self.remove(profile)
-            }))
+            })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            }))
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: ""), style: .Destructive) { (action) in
+                self.flowDelegate?.showProfile(profile)
+            })
             
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
         })
         
@@ -427,19 +422,22 @@ class ConversationInfoViewController: UITableViewController {
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { (profile) in
             
-            
-            if profile.id == Account.sharedInstance.user?.id {
+            guard profile.id != Account.sharedInstance.user?.id else {
+                self.flowDelegate?.showProfile(profile)
                 return
             }
             
             let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: ""), preferredStyle: .ActionSheet)
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default, handler: { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default) { (action) in
                 self.unblock(profile)
-            }))
+            })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
-            }))
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: ""), style: .Destructive) { (action) in
+                self.flowDelegate?.showProfile(profile)
+            })
+            
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             
             self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
         })

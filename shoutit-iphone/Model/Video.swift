@@ -11,12 +11,14 @@ import Argo
 
 import Ogra
 
-public struct Video {
+public struct Video: Hashable, Equatable {
     public let path: String
     public let thumbnailPath: String
     public let provider: String
     public let idOnProvider: String
     public let duration: Int
+    
+    public var hashValue: Int {return path.hashValue}
     
     public init(path: String, thumbnailPath: String, provider: String, idOnProvider: String, duration: Int) {
         self.path = path
@@ -49,4 +51,8 @@ extension Video: Encodable {
             "duration"  : self.duration.encode()
             ])
     }
+}
+
+public func ==(lhs: Video, rhs: Video) -> Bool {
+    return lhs.path == rhs.path
 }

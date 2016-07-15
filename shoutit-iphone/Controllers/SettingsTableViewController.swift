@@ -22,34 +22,47 @@ final class SettingsTableViewController: UITableViewController {
     var ignoreMenuButton = false
     
     // RX
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         applyNavigationItems()
         setupRX()
+        
     }
     
     // MARK: - Setup
     
     private func setupRX() {
         
+        Account.sharedInstance.userSubject.subscribeNext{ (user) in
+            for option in self.models.value {
+                if let refresh = option.refresh {
+                    refresh(option)
+                }
+            }
+            self.tableView.reloadData()
+            
+        }.addDisposableTo(disposeBag)
         // bind table view
         models.asObservable()
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
+                
                 cell.titleLabel.text = option.name
+                cell.subtitleLabel?.text = option.detail
                 let isLastCell = self?.models.value.count == row + 1
                 cell.separatorMarginConstraint.constant = isLastCell ? 0.0 : 10.0
                 cell.separatorHeightConstraint.constant = isLastCell ? 1.0 : 1.0 / UIScreen.mainScreen().scale
                 cell.separatorView.backgroundColor = isLastCell ? UIColor(shoutitColor: .SeparatorGray) : UIColor.blackColor().colorWithAlphaComponent(0.12)
+                cell.selectionStyle = .None
             }
             .addDisposableTo(disposeBag)
         
         tableView
             .rx_modelSelected(SettingsOption.self)
             .subscribeNext { (option) in
-                option.action()
+                option.action(option)
             }
             .addDisposableTo(disposeBag)
     }
@@ -62,5 +75,9 @@ final class SettingsTableViewController: UITableViewController {
     
     override func ignoresToggleMenu() -> Bool {
         return ignoreMenuButton
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .None
     }
 }

@@ -64,10 +64,10 @@ extension Message {
         return NSCalendar.currentCalendar().dateFromComponents(comps)!
     }
     
-    public func isOutgoingCell(currentUserId: String?) -> Bool {
+    public func isOutgoing(forUserWithId id: String) -> Bool {
         
-        if let user = user, currentUserId = currentUserId {
-            return user.id == currentUserId
+        if let user = user {
+            return user.id == id
         }
         
         return false

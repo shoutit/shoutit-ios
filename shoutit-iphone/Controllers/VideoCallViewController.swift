@@ -27,6 +27,7 @@ final class VideoCallViewController: UIViewController {
     @IBOutlet weak var endCallButton: UIButton!
     @IBOutlet weak var transparentLogoImageView: UIImageView!
     @IBOutlet weak var callerAvatarImageView: UIImageView!
+    @IBOutlet weak var switchCameraButton: UIButton!
     private var hideableViews: [UIView] {
         return [chatInfoHeaderView, statusBarBackgroundView, audioButton, videoButton, endCallButton]
     }
@@ -61,6 +62,7 @@ final class VideoCallViewController: UIViewController {
         createCapturer()
         setupRX()
         setupGestureRecognizer()
+        switchCameraButton.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -135,6 +137,7 @@ final class VideoCallViewController: UIViewController {
                     self.messageLabel.text = NSLocalizedString("calling...", comment: "Video call status message")
                 case .CallFailed:
                     self.messageLabel.text = NSLocalizedString("Call Failed", comment: "Video call status message")
+                    self.restartPreview()
                 case .CallEnded:
                     self.messageLabel.text = NSLocalizedString("Call Ended", comment: "Video call status message")
                     self.dismissViewControllerAnimated(true, completion: nil)
@@ -196,7 +199,6 @@ final class VideoCallViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @IBAction func startCalling() {
         viewModel.startCall()
     }
@@ -204,6 +206,11 @@ final class VideoCallViewController: UIViewController {
     @IBAction func endCall() {
         viewModel.endCall()
     }
+    
+    @IBAction func switchCamera(sender: UIButton) {
+        self.camera.flipCamera()
+    }
+   
     
     func toggleControlsHidden() {
         guard case .InCall = viewModel.state.value else { return }
@@ -239,7 +246,6 @@ final class VideoCallViewController: UIViewController {
 private extension VideoCallViewController {
     
     private func createCapturer() {
-        
         guard !Platform.isSimulator else { return }
         do {
             try camera = viewModel.localMedia.sh_addCameraTrack()
@@ -252,6 +258,7 @@ private extension VideoCallViewController {
         }
         
         videoTrack.delegate = self
+        camera.delegate = self
     }
     
     private func adjustPreviewSize(dimensions: CMVideoDimensions) {
@@ -271,6 +278,7 @@ private extension VideoCallViewController {
     }
     
     private func startPreview() {
+        guard let camera = camera else { return }
         guard camera.capturing == false else { return }
         camera.startPreview()
         guard let previewView = camera.previewView else {
@@ -285,6 +293,13 @@ private extension VideoCallViewController {
         cameraPreviewViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[preview]|", options: [], metrics: nil, views: views)
         cameraPreviewViewConstraints!.forEach{ $0.active = true }
         setPreviewOnFullScreen()
+    }
+    
+    func restartPreview() {
+        self.viewModel.reloadLocalMedia()
+        stopPreview()
+        createCapturer()
+        startPreview()
     }
     
     private func stopPreview() {
@@ -338,6 +353,7 @@ extension VideoCallViewController: TWCLocalMediaDelegate {
     
     func localMedia(media: TWCLocalMedia, didRemoveVideoTrack videoTrack: TWCVideoTrack) {
         removeLocalCallRendererFromVideoTrack(videoTrack)
+        restartPreview()
     }
 }
 
@@ -400,9 +416,7 @@ extension VideoCallViewController: TWCVideoTrackDelegate {
     }
 }
 
-extension VideoCallViewController: TWCCameraCapturerDelegate {
-    
-}
+extension VideoCallViewController: TWCCameraCapturerDelegate {}
 
 private extension VideoCallViewController {
     

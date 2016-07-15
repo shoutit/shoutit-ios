@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let router = DPLDeepLinkRouter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        BuddyBuildSDK.setup()
+        
         
         applyAppearance()
         configureLoggingServices()
@@ -112,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
         MixpanelHelper.handleUserDidOpenApp()
-        if case .Logged(let user)? = Account.sharedInstance.userModel {
+        if case .Logged(let user)? = Account.sharedInstance.loginState {
             Account.sharedInstance.pusherManager.tryToConnect()
             Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
         }
@@ -135,6 +137,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
         
         if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+            
+            guard let currentUserId = Account.sharedInstance.user?.id else {
+                return
+            }
+            
+            guard data["pushed_for"] as? String == currentUserId else {
+                return
+            }
             
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
             
@@ -198,13 +208,9 @@ private extension AppDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
                                                             NSFontAttributeName : UIFont.systemFontOfSize(20)]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        
-        if #available(iOS 9.0, *) {
-            UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).tintColor = UIColor(shoutitColor: .PrimaryGreen)
-            UINavigationBar.appearanceWhenContainedInInstancesOfClasses([LoginNavigationViewController.self]).titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
-        } else {
-            SHAppearanceBridge.applyNavigationBarAppearanceWithColor(UIColor(shoutitColor: .PrimaryGreen))
-        }
+        UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
+        UINavigationBar.appearance().barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
     }
     
     func configureAPS(application: UIApplication) {

@@ -32,9 +32,9 @@ final class PromoteShoutTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         precondition(viewModel != nil)
-        setupRx()
-        
-        if let user = Account.sharedInstance.user as? DetailedProfile {
+       
+        if let user = Account.sharedInstance.user as? DetailedUserProfile {
+            setupRx()
             creditsBalanceLabel.text = "\(user.stats?.credit ?? 0)"
         }
         
@@ -132,4 +132,6 @@ final class PromoteShoutTableViewController: UITableViewController {
             self?.flowDelegate?.showPromotedViewWithShout(shout)
         }
     }
+    
+    
 }

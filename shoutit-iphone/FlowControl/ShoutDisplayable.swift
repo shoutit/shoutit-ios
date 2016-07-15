@@ -14,17 +14,23 @@ protocol ShoutDisplayable {
     func showEditShout(shout: Shout) -> Void
     func showDiscover() -> Void
     func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void
+    func showBookmarks(user: Profile) -> Void
 }
 
 extension FlowController : ShoutDisplayable {
     
     func showShout(shout: Shout) {
         
+        if shout.id == "" {
+            navigationController.showErrorMessage(NSLocalizedString("This shout has been deleted", comment: "Deleted Shout"))
+        } else {
         let controller = Wireframe.shoutDetailContainerViewController()
         controller.viewModel = ShoutDetailViewModel(shout: shout)
         controller.flowDelegate = self
         
         navigationController.showViewController(controller, sender: nil)
+        }
+        
     }
     
     func showEditShout(shout: Shout) -> Void {
@@ -61,5 +67,16 @@ extension FlowController : ShoutDisplayable {
         
         navigationController.showViewController(controller, sender: nil)
     }
+    
+    func showBookmarks(user: Profile) -> Void {
+        let controller = Wireframe.bookmarksViewController()
+        
+        let viewModel = ShoutsCollectionViewModel(context: .BookmarkedShouts(user: user))
+        
+        controller.viewModel = viewModel
+        
+        controller.flowDelegate = self
+        
+        navigationController.showViewController(controller, sender: nil)
+    }
 }
-

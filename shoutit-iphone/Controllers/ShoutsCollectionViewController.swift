@@ -8,8 +8,9 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
-final class ShoutsCollectionViewController: UICollectionViewController {
+class ShoutsCollectionViewController: UICollectionViewController {
 
     enum CellType {
         case Shout
@@ -34,6 +35,7 @@ final class ShoutsCollectionViewController: UICollectionViewController {
     
     // RX
     let disposeBag = DisposeBag()
+    var bookmarksDisposeBag : DisposeBag?
     
     // MARK: - Lifecycle
     
@@ -49,6 +51,7 @@ final class ShoutsCollectionViewController: UICollectionViewController {
         prepareReusables()
         setupRX()
         viewModel.reloadContent()
+        bookmarksDisposeBag = DisposeBag()
     }
     
     // MARK: - Setup
@@ -103,16 +106,10 @@ extension ShoutsCollectionViewController {
         switch viewModel.pager.state.value {
         case .Idle:
             return 0
-        case .Loaded(let cells, _, _):
-            return cells.count
-        case .LoadingMore(let cells, _, _):
-            return cells.count
-        case .LoadedAllContent(let cells, _):
-            return cells.count
-        case .Refreshing(let cells, _):
-            return cells.count
         case .Error, .NoContent, .Loading:
             return 1
+        default:
+            return self.viewModel.pager.shoutCellViewModels().count
         }
     }
     
@@ -129,31 +126,31 @@ extension ShoutsCollectionViewController {
             
             let cell: ShoutsCollectionViewCell
             cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
-            cell.bindWith(Shout: cellViewModel.shout)
+            
+            if let shout = cellViewModel.shout {
+                cell.bindWith(Shout: shout)
+                cell.bookmarkButton?.tag = indexPath.item
+                cell.bookmarkButton?.addTarget(self, action: #selector(self.switchBookmarkState), forControlEvents: .TouchUpInside)
+            } else if let ad = cellViewModel.ad {
+                cell.bindWithAd(Ad: ad)
+                ad.registerViewForInteraction(cell, withViewController: self)
+            }
+            
             return cell
         }
         
         switch viewModel.pager.state.value {
         case .Idle:
             fatalError()
-        case .LoadedAllContent(let cells, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
-        case .Refreshing(let cells, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
-        case .Loaded(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
-        case .LoadingMore(let cells, _, _):
-            let cellViewModel = cells[indexPath.row]
-            return shoutCellWithModel(cellViewModel)
         case .Error(let error):
             return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
         case .NoContent:
             return placeholderCellWithMessage(message: NSLocalizedString("No results were found", comment: "Empty search results placeholder"), activityIndicator: false)
         case .Loading:
             return placeholderCellWithMessage(message: nil, activityIndicator: true)
+        default:
+            let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.row]
+            return shoutCellWithModel(cellViewModel)
         }
     }
     
@@ -189,9 +186,17 @@ extension ShoutsCollectionViewController {
 extension ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cellViewModels = viewModel.pager.state.value.getCellViewModels() else { return }
-        let cellViewModel = cellViewModels[indexPath.row]
-        flowDelegate?.showShout(cellViewModel.shout)
+        let models = self.viewModel.pager.shoutCellViewModels()
+        
+        guard indexPath.item < models.count else {
+            return
+        }
+        
+        let cellViewModel = models[indexPath.item]
+        
+        if let shout = cellViewModel.shout {
+            flowDelegate?.showShout(shout)
+        }
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -217,4 +222,36 @@ extension ShoutsCollectionViewController: SearchShoutsResultsCollectionViewLayou
             return .Placeholder
         }
     }
+}
+
+// MARK - Bookmarking
+
+extension ShoutsCollectionViewController : Bookmarking {
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.item]
+        return cellViewModel.shout
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        if let idx = self.viewModel.pager.indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 0)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        if let idx = self.viewModel.pager.indexInRealResultsOf(shout) {
+            _ = try? self.viewModel.pager.replaceItemAtIndex(idx, withItem: shout)
+        }
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
+    }
+
 }

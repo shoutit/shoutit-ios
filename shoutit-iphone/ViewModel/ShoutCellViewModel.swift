@@ -8,15 +8,27 @@
 
 import Foundation
 import ShoutitKit
+import FBAudienceNetwork
 
 struct ShoutCellViewModel {
-    let shout: Shout
+    let shout: Shout?
+    let ad: FBNativeAd?
     
     init(shout: Shout) {
         self.shout = shout
+        self.ad = nil
+    }
+    
+    init(ad: FBNativeAd) {
+        self.ad = ad
+        self.shout = nil
     }
     
     func priceString() -> String? {
-        return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+        if let shout = shout {
+            return NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
+        }
+        
+        return nil
     }
 }

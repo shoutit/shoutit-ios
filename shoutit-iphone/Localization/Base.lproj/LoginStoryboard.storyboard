@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -294,7 +294,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1k-1E-QQr" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="335" height="44"/>
-                                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="3Tl-9Y-IsV"/>
                                                     </constraints>
@@ -428,7 +428,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiB-S8-6Dt" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="335" height="44"/>
-                                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="xdC-7T-0uv"/>
                                                     </constraints>
@@ -655,7 +655,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What interests you the most?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcV-kC-fXX">
-                                <rect key="frame" x="70" y="190" width="236" height="21"/>
+                                <rect key="frame" x="70" y="154" width="236" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="4Yx-Uz-mPi"/>
                                     <constraint firstAttribute="height" constant="21" id="vfN-pV-FSe"/>
@@ -669,12 +669,12 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoColor" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-Ms-OHH">
-                                <rect key="frame" x="137" y="80" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoColor" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-Ms-OHH">
+                                <rect key="frame" x="87" y="80" width="200" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="990" constant="100" id="ChM-17-cy0"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="QHw-Hz-DGM"/>
-                                    <constraint firstAttribute="width" secondItem="FYH-Ms-OHH" secondAttribute="height" multiplier="1:1" id="bcV-m4-BdF"/>
+                                    <constraint firstAttribute="width" secondItem="FYH-Ms-OHH" secondAttribute="height" multiplier="25:8" id="4Ce-C8-3CJ"/>
+                                    <constraint firstAttribute="height" priority="990" constant="64" id="ChM-17-cy0"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="QHw-Hz-DGM"/>
                                     <constraint firstAttribute="width" constant="100" id="jHI-xA-b5t"/>
                                 </constraints>
                                 <variation key="default">
@@ -701,10 +701,10 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8o-Cf-bkr">
-                                <rect key="frame" x="30" y="248" width="315" height="319"/>
+                                <rect key="frame" x="30" y="212" width="315" height="355"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CSG-mV-mtv">
-                                        <rect key="frame" x="0.0" y="0.0" width="315" height="319"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="355"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="cu9-mT-RsK"/>
@@ -889,7 +889,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0w1-iB-LJP" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="277" y="613" width="88" height="44"/>
-                                <color key="backgroundColor" red="0.29803921568627451" green="0.72549019607843135" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Ilf-48-ADw"/>
                                     <constraint firstAttribute="height" constant="44" id="e1G-XR-vPI"/>
@@ -968,7 +968,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yzK-Y7-EC8" id="UoK-Ky-HbO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1045,7 +1045,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Log in">
-                                    <color key="titleColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1115,9 +1115,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutit_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="fAa-pr-u55">
-                                        <rect key="frame" x="107" y="22" width="100" height="100"/>
+                                        <rect key="frame" x="7" y="22" width="300" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="ebG-Ow-OeS"/>
+                                            <constraint firstAttribute="width" constant="300" id="ebG-Ow-OeS"/>
                                             <constraint firstAttribute="height" constant="100" id="l03-GD-sfd"/>
                                         </constraints>
                                     </imageView>
@@ -1557,7 +1557,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stm-aj-Lud" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="335" height="44"/>
-                                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="hGi-LQ-6Kg"/>
                                                     </constraints>
@@ -1622,6 +1622,28 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="BGZ-RK-BbD">
+                                        <rect key="frame" x="0.0" y="414" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BGZ-RK-BbD" id="Rwe-l1-qAq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmD-j1-B34">
+                                                    <rect key="frame" x="20" y="7" width="335" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <state key="normal" title="Create a Page for brand or business.">
+                                                        <color key="titleColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gmD-j1-B34" secondAttribute="trailing" constant="20" id="JC5-IR-9Pd"/>
+                                                <constraint firstItem="gmD-j1-B34" firstAttribute="leading" secondItem="Rwe-l1-qAq" secondAttribute="leading" constant="20" id="SUi-IR-7yA"/>
+                                                <constraint firstItem="gmD-j1-B34" firstAttribute="top" secondItem="Rwe-l1-qAq" secondAttribute="top" constant="7" id="adp-ib-U2T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1633,6 +1655,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="500"/>
                     <connections>
+                        <outlet property="createPageButton" destination="gmD-j1-B34" id="lKh-Ja-prF"/>
                         <outlet property="emailTextField" destination="N11-JB-SIw" id="MhT-s4-dZH"/>
                         <outlet property="nameTextField" destination="RaH-ti-Eac" id="zAz-iP-WWU"/>
                         <outlet property="passwordTextField" destination="iKX-Fx-ZOg" id="W7U-GL-B9d"/>
@@ -1657,7 +1680,7 @@
         <image name="intro_videochat" width="94" height="52"/>
         <image name="launch_background" width="375" height="667"/>
         <image name="login_screen_overlay" width="1080" height="1920"/>
-        <image name="logoColor" width="100" height="100"/>
-        <image name="shoutit_logo_white" width="100" height="100"/>
+        <image name="logoColor" width="200" height="64"/>
+        <image name="shoutit_logo_white" width="200" height="64"/>
     </resources>
 </document>

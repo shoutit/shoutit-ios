@@ -143,7 +143,7 @@
     </objects>
     <resources>
         <image name="backThin" width="24" height="24"/>
-        <image name="logo_navbar_white" width="93" height="24"/>
+        <image name="logo_navbar_white" width="101" height="24"/>
         <image name="navMenu" width="24" height="24"/>
         <image name="profile_cover_placeholder" width="375" height="211"/>
         <image name="search" width="25" height="24"/>

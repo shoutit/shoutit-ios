@@ -19,8 +19,11 @@ extension FlowController : PageDisplayable {
         
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        controller.viewModel = PageProfileCollectionViewModel(profile: page)
-        
+        if case .Page(_, let userPage)? = Account.sharedInstance.loginState where userPage.id == page.id {
+            controller.viewModel = MyPageCollectionViewModel()
+        } else {
+            controller.viewModel = PageProfileCollectionViewModel(profile: page)
+        }
         navigationController.showViewController(controller, sender: nil)
     }
 }

@@ -11,7 +11,7 @@ import Argo
 import Ogra
 
 public struct GoogleAccount {
-    let gplusId: String
+    public let gplusId: String
 }
 
 extension GoogleAccount: Decodable {

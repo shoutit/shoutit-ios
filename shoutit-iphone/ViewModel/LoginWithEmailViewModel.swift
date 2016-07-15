@@ -43,9 +43,27 @@ final class LoginWithEmailViewModel {
         }.addDisposableTo(disposeBag)
     }
     
-    private func authenticateWithParameters(params: AuthParams) {
+    func authenticateWithParameters(params: AuthParams) {
         
-        let observable: Observable<(AuthData, DetailedProfile)> = APIAuthService.getOAuthToken(params)
+        let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.getOAuthToken(params)
+        observable
+            .subscribe {[weak self] (event) in
+                switch event {
+                case .Next(let authData, let user):
+                    try! Account.sharedInstance.loginUser(user, withAuthData: authData)
+                    self?.loginSuccessSubject.onNext(authData.isNewSignUp)
+                case .Error(let error):
+                    self?.errorSubject.onNext(error)
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
+    func authenticatePageWithParameters(params: AuthParams) {
+        
+        let observable: Observable<(AuthData, DetailedPageProfile)> = APIAuthService.getOAuthToken(params)
         observable
             .subscribe {[weak self] (event) in
                 switch event {

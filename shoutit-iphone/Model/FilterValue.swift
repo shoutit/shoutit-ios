@@ -13,6 +13,7 @@ import Ogra
 public struct FilterValue: Hashable, Equatable {
     public let name: String
     public let slug: String
+    public let id: String
     
     public var hashValue: Int {
         get {
@@ -27,6 +28,7 @@ extension FilterValue: Decodable {
         return curry(FilterValue.init)
             <^> j <| "name"
             <*> j <| "slug"
+            <*> j <| "id"
     }
 }
 
@@ -36,6 +38,6 @@ public func ==(lhs: FilterValue, rhs: FilterValue) -> Bool {
 
 extension FilterValue: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["slug": slug.encode()])
+        return JSON.Object(["slug": slug.encode(), "name": name.encode(), "id": id.encode()])
     }
 }

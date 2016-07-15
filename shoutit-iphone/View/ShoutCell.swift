@@ -8,6 +8,7 @@
 
 import Foundation
 import ShoutitKit
+import FBAudienceNetwork
 
 protocol ShoutCell {
     weak var shoutImage: UIImageView? { get }
@@ -15,13 +16,15 @@ protocol ShoutCell {
     weak var shoutTitle: UILabel? { get }
     weak var shoutPrice: UILabel? { get }
     weak var shoutType: UILabel? { get }
+    weak var bookmarkButton: UIButton? { get }
     weak var shoutSubtitle: UILabel? { get }
     weak var shoutCountryImage: UIImageView? { get }
     weak var shoutCategoryImage: UIImageView? { get }
     weak var shoutBackgroundView: UIView? { get }
     weak var shoutPromotionBackground: UIView? { get set }
     weak var shoutPromotionLabel: UILabel? { get set }
-    
+    weak var adChoicesView: FBAdChoicesView? { get set }
+    weak var adIconImage: UIImageView! { get set }
     
     func bindWith(Shout shout: Shout)
 }
@@ -30,7 +33,38 @@ extension SHShoutItemCell : ShoutCell {}
 extension ShoutsCollectionViewCell : ShoutCell {}
 
 extension ShoutCell where Self : UICollectionViewCell {
-    func bindWith(Shout shout: Shout) {
+    func bindWithAd(Ad ad: FBNativeAd) {
+        commonBindWithAd(Ad: ad)
+    }
+    
+    func commonBindWithAd(Ad ad: FBNativeAd) {
+        self.shoutTitle?.text = ad.title
+        self.name?.text = NSLocalizedString("Sponsored", comment: "")
+        self.shoutSubtitle?.text = ad.subtitle
+        
+        ad.coverImage?.loadImageAsyncWithBlock({(image) -> Void in
+            self.shoutImage?.image = image
+        })
+        
+        ad.icon?.loadImageAsyncWithBlock({ (image) in
+            self.adIconImage?.image = image
+        })
+        
+        self.adChoicesView?.nativeAd = ad
+        self.adChoicesView?.corner = .TopRight
+        self.adChoicesView?.hidden = false
+        
+        self.shoutPrice?.text = ad.callToAction
+        self.bookmarkButton?.hidden = true
+        self.shoutCategoryImage?.hidden = true
+        self.shoutCountryImage?.hidden = true
+        self.shoutType?.hidden = true
+        
+        hidePromotion()
+        setDefaultBackground()
+    }
+    
+    func commonBindWithShout(shout: Shout) {
         self.shoutTitle?.text = shout.title ?? ""
         self.name?.text = shout.user?.name ?? ""
         
@@ -39,6 +73,8 @@ extension ShoutCell where Self : UICollectionViewCell {
         } else if let user = shout.user {
             self.shoutSubtitle?.text = user.name
         }
+        
+        self.setBookmarked(shout.isBookmarked)
         
         self.shoutPrice?.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
         
@@ -58,14 +94,13 @@ extension ShoutCell where Self : UICollectionViewCell {
         }
         
         self.shoutType?.text = shout.type()?.title()
- 
- 
+        
         guard let promotion = shout.promotion else {
             hidePromotion()
             setDefaultBackground()
             return
         }
-    
+        
         guard promotion.isExpired == false else {
             hidePromotion()
             setDefaultBackground()
@@ -79,9 +114,16 @@ extension ShoutCell where Self : UICollectionViewCell {
         self.shoutPromotionLabel?.text = promotion.label?.name
         self.contentView.layoutIfNeeded()
         
+        self.adChoicesView?.hidden = true
+        
         if let shoutPromotionBackground = shoutPromotionBackground {
             self.contentView.bringSubviewToFront(shoutPromotionBackground)
         }
+
+    }
+    
+    func bindWith(Shout shout: Shout) {
+        commonBindWithShout(shout)
     }
     
     func hidePromotion() {
@@ -130,5 +172,15 @@ extension ShoutCell where Self: UICollectionViewCell {
         self.addConstraints([leadingLabel, topLabel, bottomLabel, trailingLabel])
         
         return (promotionBackground, promotionLabel)
+    }
+}
+
+extension ShoutCell {
+    func setBookmarked(bookmarked: Bool) {
+        if bookmarked {
+            self.bookmarkButton?.setImage(UIImage(named:"bookmark_on"), forState: .Normal)
+        } else {
+            self.bookmarkButton?.setImage(UIImage(named:"bookmark_off"), forState: .Normal)
+        }
     }
 }

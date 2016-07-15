@@ -12,11 +12,11 @@ import ShoutitKit
 
 final class VerifyEmailViewModel {
     
-    private(set) var profile: DetailedProfile
+    private(set) var profile: DetailedUserProfile
     
     var email: Variable<String>
     
-    init(profile: DetailedProfile) {
+    init(profile: DetailedUserProfile) {
         self.profile = profile
         self.email = Variable(profile.email ?? "")
     }
@@ -74,21 +74,21 @@ final class VerifyEmailViewModel {
     
     // MARK: - Helpers
     
-    func verifyEmailObservable() -> Observable<(Success, DetailedProfile)> {
+    func verifyEmailObservable() -> Observable<(Success, DetailedUserProfile)> {
         let emailParam: String? = email.value == profile.email ? nil : email.value
         let params = EmailParams(email: emailParam)
         return APIAuthService
             .verifyEmail(params)
-            .flatMap{[unowned self] (success) -> Observable<(Success, DetailedProfile)> in
+            .flatMap{[unowned self] (success) -> Observable<(Success, DetailedUserProfile)> in
                 return APIProfileService
                     .retrieveProfileWithUsername(self.profile.username)
-                    .map{ (detailedProfile) -> (Success, DetailedProfile) in
+                    .map{ (detailedProfile) -> (Success, DetailedUserProfile) in
                         return (success, detailedProfile)
                 }
         }
     }
     
-    func updateUserObservable() -> Observable<DetailedProfile> {
+    func updateUserObservable() -> Observable<DetailedUserProfile> {
         return APIProfileService.retrieveProfileWithUsername(profile.username)
     }
 }

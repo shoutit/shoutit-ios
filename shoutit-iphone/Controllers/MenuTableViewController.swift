@@ -12,14 +12,14 @@ import RxSwift
 final class MenuTableViewController: UITableViewController, Navigation {
     
     var rootController : RootController?
-    let viewModel = MenuViewModel()
+    var viewModel: MenuViewModel!
     private let disposeBag = DisposeBag()
     
     var selectedNavigationItem : NavigationItem?
     
     private let kTablePrimaryCellHeight: CGFloat = 48.0
     private let kTableSecondaryCellHeight: CGFloat = 44.0
-    private let kTableHeaderHeight: CGFloat = 240.0
+    private let kTableHeaderHeight: CGFloat = 288.0
     private let kTableFooterHeight: CGFloat = 44.0
     
     @IBOutlet var headerView : MenuHeaderView?
@@ -41,21 +41,13 @@ final class MenuTableViewController: UITableViewController, Navigation {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        precondition(viewModel != nil)
         
         // add border
         tableView.layer.borderColor = UIColor.darkGrayColor().CGColor
         tableView.layer.borderWidth = 1
         
-        // lock scroll
-        let contentHeight = kTableHeaderHeight + kTableFooterHeight + 5 * kTablePrimaryCellHeight + 3 * kTableSecondaryCellHeight
-        tableView.scrollEnabled = contentHeight > tableView.frame.height
-        
-        Account.sharedInstance.userSubject.subscribeNext { (user) in
-            self.headerView?.fillWith(user)
-        }.addDisposableTo(disposeBag)
-        
-        let user = Account.sharedInstance.user
-        headerView?.fillWith(user)
+        headerView?.fillWith(viewModel.loginState)
         
         if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String, build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String {
             
@@ -67,7 +59,11 @@ final class MenuTableViewController: UITableViewController, Navigation {
             
             versionLabel?.text = "\(appName) \(version) (\(build))"
         }
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        setScrollEnabledAccordinglyToTableViewContentHeight()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -89,7 +85,10 @@ final class MenuTableViewController: UITableViewController, Navigation {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! MenuCell
         let item = viewModel.navigationItemForIndexPath(indexPath)
         
-        cell.bindWith(item, current: item == self.selectedNavigationItem)
+        let isNotLastSection = indexPath.section + 1 != viewModel.sections().count
+        let itemIsLastInSection = indexPath.row + 1 == viewModel.numberOfRowsInSection(indexPath.section)
+        cell.bindWith(item, current: item == selectedNavigationItem)
+        cell.setSeparatorVisible(isNotLastSection && itemIsLastInSection)
         
         return cell
     }
@@ -100,13 +99,8 @@ final class MenuTableViewController: UITableViewController, Navigation {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if case (0..<5) = indexPath.row {
-            return kTablePrimaryCellHeight
-        }
-        return kTableSecondaryCellHeight
+        return heightForRowAtSection(indexPath.section)
     }
-    
-
     
     // MARK: User Interactions
     
@@ -126,7 +120,6 @@ final class MenuTableViewController: UITableViewController, Navigation {
         triggerActionWithItem(.Credits)
     }
     
-    
     override func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -134,8 +127,27 @@ final class MenuTableViewController: UITableViewController, Navigation {
     // MARK: Bussines Logic
     
     func triggerActionWithItem(navigationItem: NavigationItem) {
-        if let root = self.rootController {
-            root.openItem(navigationItem)
+        guard let rootController = rootController else { return }
+        if case .SwitchFromPageToUser = navigationItem {
+            Account.sharedInstance.switchToUser()
+        } else {
+            rootController.openItem(navigationItem)
         }
+    }
+}
+
+private extension MenuTableViewController {
+    
+    private func setScrollEnabledAccordinglyToTableViewContentHeight() {
+        let cellsHeight = Array(viewModel.sections().indices).reduce(CGFloat()) { $0 + CGFloat(viewModel.numberOfRowsInSection($1)) * heightForRowAtSection($1) }
+        let contentHeight = kTableHeaderHeight + kTableFooterHeight + cellsHeight
+        tableView.scrollEnabled = contentHeight > tableView.frame.height
+    }
+    
+    private func heightForRowAtSection(section: Int) -> CGFloat {
+        if case .Main = viewModel.sections()[section] {
+            return kTablePrimaryCellHeight
+        }
+        return kTableSecondaryCellHeight
     }
 }

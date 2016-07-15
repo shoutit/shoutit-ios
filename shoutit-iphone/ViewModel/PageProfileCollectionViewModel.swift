@@ -17,7 +17,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
     private let profile: Profile
-    private var detailedProfile: DetailedProfile?
+    private var detailedProfile: DetailedPageProfile?
     var model: ProfileCollectionViewModelMainModel? {
         return .ProfileModel(profile: profile)
     }
@@ -39,12 +39,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 switch event {
                 case .Next(let detailedProfile):
                     self?.detailedProfile = detailedProfile
-                    self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 case .Completed:
                     break
                 case .Error:
-                    self?.reloadPages()
                     self?.reloadSubject.onNext(())
                 }
                 })
@@ -57,12 +55,29 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 case .Next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
+                    self?.reloadSubject.onNext()
                 case .Error(let error as NSError):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
+                    self?.reloadSubject.onNext()
                 default:
                     break
                 }
-                self?.reloadSubject.onNext(())
+            }
+            .addDisposableTo(disposeBag)
+        
+        // reload admins
+        fetchAdmins()
+            .subscribe { [weak self] (event) in
+                switch event {
+                case .Next(let value):
+                    self?.listSection = self?.listSectionWithModels(value, isLoading: false)
+                    self?.reloadSubject.onNext()
+                case .Error(let error):
+                    self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
+                    self?.reloadSubject.onNext()
+                default:
+                    break
+                }
             }
             .addDisposableTo(disposeBag)
     }
@@ -86,7 +101,8 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     var isListeningToYou: Bool? {
-        return detailedProfile?.isListener
+        // TODO
+        return false
     }
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
@@ -118,6 +134,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return detailedProfile?.website
     }
     
+    var verified: Bool {
+        return detailedProfile?.isVerified ?? false
+    }
+    
     var dateJoinedString: String? {
         guard let epoch = detailedProfile?.dateJoinedEpoch else {return nil}
         return NSLocalizedString("Joined", comment: "User profile date foined cell") + " " + DateFormatters.sharedInstance.stringFromDateEpoch(epoch)
@@ -131,15 +151,24 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return UIImage(named: (detailedProfile?.location.country ?? "country_placeholder"))
     }
     
+    var verifyButtonTitle: String {
+        return NSLocalizedString("Verify your account!", comment: "")
+    }
+    
     // MARK: - Fetch
     
-    func fetchShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
+    private func fetchShouts() -> Observable<[Shout]> {
+        let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
-    func fetchProfile() -> Observable<DetailedProfile> {
-        return APIProfileService.retrieveProfileWithUsername(profile.username)
+    private func fetchAdmins() -> Observable<[Profile]> {
+        let params = PageParams(page: 1, pageSize: 3)
+        return APIPageService.getAdminsForPageWithUsername(profile.username, pageParams: params).map{ $0.results }
+    }
+    
+    private func fetchProfile() -> Observable<DetailedPageProfile> {
+        return APIProfileService.retrievePageProfileWithUsername(profile.username)
     }
     
     func listen() -> Observable<Void>? {
@@ -157,11 +186,6 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     // MARK: - Helpers
-    
-    private func reloadPages(currentlyLoading loading: Bool = false) {
-        let pages = detailedProfile?.admins ?? []
-        listSection = listSectionWithModels(pages, isLoading: loading)
-    }
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}

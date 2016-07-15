@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import FBSDKShareKit
+import Social
 import RxSwift
+import ShoutitKit
 
 class ProfilesListTableViewController: UITableViewController {
     
@@ -32,9 +35,10 @@ class ProfilesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         precondition(viewModel != nil)
         assert(eventHandler != nil)
-        
+
         registerReusables()
         setupRX()
     }
@@ -106,20 +110,22 @@ class ProfilesListTableViewController: UITableViewController {
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
-            cellModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
-                switch event {
-                case .Next(let (listening, successMessage, error)):
-                    let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
-                    cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
-                    if let message = successMessage {
-                        self.showSuccessMessage(message)
-                        self.viewModel.pager.reloadItemAtIndex(indexPath.row)
-                    } else if let error = error {
-                        self.showError(error)
+            cellModel?.toggleIsListening()
+                .observeOn(MainScheduler.instance)
+                .subscribe({[weak cell] (event) in
+                    switch event {
+                    case .Next(let (listening, successMessage, error)):
+                        let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
+                        cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                        if let message = successMessage {
+                            self.showSuccessMessage(message)
+                            self.viewModel.pager.reloadItemAtIndex(indexPath.row)
+                        } else if let error = error {
+                            self.showError(error)
+                        }
+                    default:
+                        break
                     }
-                default:
-                    break
-                }
                 }).addDisposableTo(cell.reuseDisposeBag)
         }.addDisposableTo(cell.reuseDisposeBag)
         
@@ -133,9 +139,9 @@ class ProfilesListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
-        let cellViewModel = cells[indexPath.row]
-        eventHandler.handleUserDidTapProfile(cellViewModel.profile)
+            guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
+            let cellViewModel = cells[indexPath.row]
+            eventHandler.handleUserDidTapProfile(cellViewModel.profile)
         
         if autoDeselct {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -155,4 +161,26 @@ class ProfilesListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.sectionTitle
     }
+    
+    private func inviteFriendsByFacebookUsingCode(code: InvitationCode) {
+        let inviteContent = FBSDKAppInviteContent()
+        
+        inviteContent.appLinkURL = NSURL(string: Constants.Invite.facebookURL)
+        inviteContent.promotionCode = code.code
+        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "")
+        
+        FBSDKAppInviteDialog.showFromViewController(self, withContent: inviteContent, delegate: self)
+    }
+    
+}
+
+extension ProfilesListTableViewController : FBSDKAppInviteDialogDelegate {
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+        
+    }
+    
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        
+    }
+
 }

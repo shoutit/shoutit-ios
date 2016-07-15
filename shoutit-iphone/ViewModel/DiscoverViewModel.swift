@@ -17,11 +17,12 @@ protocol DiscoverRequest {
 enum DiscoverSection : Int {
     case SubItems
     case Shouts
+    case Ads
     
     func cellIdentifier() -> String {
         switch self {
-        case SubItems: return DiscoverCollectionCellReuseIdentifier
-        default: return DiscoverCollectionShoutsCellReuseIdentifier
+        case SubItems: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
+        default: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
         }
     }
     
@@ -49,6 +50,8 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
     let shouts = BehaviorSubject<[Shout]?>(value: [])
     let displayable = DiscoverDisplayable()
     
+    let adManager = AdManager()
+    
     var isRootDiscoverView: Bool {
         return false
     }
@@ -57,8 +60,14 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         fatalError("Not implemented")
     }
     
-    func cellIdentifierForSection(section : Int) -> String {
-        return DiscoverSection(rawValue: section)!.cellIdentifier()
+    func cellIdentifierForIndexPath(indexPath : NSIndexPath) -> String {
+        if indexPath.section == 1 {
+            if case .Ad(_) = self.shoutItemsWithAds()[indexPath.item] {
+                return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
+            }
+        }
+        
+        return DiscoverSection(rawValue: indexPath.section)!.cellIdentifier()
     }
     
     func discoverItems() -> [DiscoverItem] {
@@ -96,6 +105,27 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
             return result ?? []
         } catch {
             return []
+        }
+    }
+    
+    func shoutItemsWithAds() -> [ShoutAdItem] {
+        return adManager.items()
+    }
+    
+    func replaceShout(shout: Shout) {
+        do {
+        if let result = try self.shouts.value() {
+            var copy = result
+            
+            if let idx = copy.indexOf(shout) {
+                copy[idx] = shout
+                self.shouts.onNext(copy)
+            }
+            
+            
+        }
+        } catch {
+         
         }
     }
     

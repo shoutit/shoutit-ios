@@ -24,15 +24,15 @@ extension FlowController : AboutDisplayable {
     
     private func aboutOptions() -> Variable<[SettingsOption]> {
         return Variable([
-            SettingsOption(name: NSLocalizedString("Terms of Service", comment: "Settings cell title")) {[unowned self] in
+            SettingsOption(name: NSLocalizedString("Terms of Service", comment: "Settings cell title"), action: {[unowned self] (option) in
                 self.showTermsAndConditions()
-            },
-            SettingsOption(name: NSLocalizedString("Privacy Policy", comment: "Settings cell title")) {[unowned self] in
+            }),
+            SettingsOption(name: NSLocalizedString("Privacy Policy", comment: "Settings cell title"), action: {[unowned self] (option) in
                 self.showPrivacyPolicy()
-            },
-            SettingsOption(name: NSLocalizedString("Legal", comment: "Settings cell title")) {[unowned self] in
+            }),
+            SettingsOption(name: NSLocalizedString("Legal", comment: "Settings cell title"), action: {[unowned self] (option) in
                 self.showRules()
-            }
+            })
             ])
     }
 }

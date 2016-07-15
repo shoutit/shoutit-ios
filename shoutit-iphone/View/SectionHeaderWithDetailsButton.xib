@@ -19,7 +19,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRs-1Y-ceC">
                     <rect key="frame" x="51" y="289" width="22" height="22"/>
-                    <color key="tintColor" red="0.08235294118" green="0.64313725489999995" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

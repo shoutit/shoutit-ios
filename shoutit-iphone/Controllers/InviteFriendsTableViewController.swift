@@ -11,6 +11,8 @@ import FBSDKShareKit
 import Social
 import RxSwift
 import ShoutitKit
+import AddressBook
+import Contacts
 
 class InviteFriendsTableViewController: UITableViewController {
     
@@ -40,7 +42,7 @@ class InviteFriendsTableViewController: UITableViewController {
             findContactsFriends()
         case (2,0):
             inviteFacebookFriends()
-        case (2,1):
+        case (2,2):
             inviteTwitterFriends()
         default:
             break
@@ -164,17 +166,10 @@ class InviteFriendsTableViewController: UITableViewController {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         let controller = Wireframe.facebookProfileListController()
         
-        controller.viewModel = MutualProfilesViewModel(showListenButtons: true)
-        
-        controller.viewModel.sectionTitle = NSLocalizedString("Facebook Friends", comment: "")
-        
         controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "")
-        
-        controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
-            self?.flowDelegate?.showProfile(profile)
-        })
-        
+        controller.flowDelegate = self.flowDelegate
         self.navigationController?.showViewController(controller, sender: nil)
+        
     }
     
     private func findContactsFriends() {
@@ -192,7 +187,7 @@ class InviteFriendsTableViewController: UITableViewController {
                 queryBuilder?.queryAsync({ (results, error) in
                     guard let contacts = results else {
                         self?.hideProgressHUD()
-                        self?.showErrorMessage(NSLocalizedString("We couldnt find any contacts in your address book", comment: ""))
+                        self?.showErrorMessage(NSLocalizedString("We couldn't find any contacts in your address book", comment: ""))
                         return
                     }
                     

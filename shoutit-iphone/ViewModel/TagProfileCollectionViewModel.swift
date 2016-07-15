@@ -63,6 +63,10 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return tag?.name ?? filter?.value?.name ?? category?.name
     }
     
+    var verified: Bool {
+        return false
+    }
+    
     var username: String? { return nil }
     var isListeningToYou: Bool? { return nil }
     var coverURL: NSURL? {return nil}
@@ -104,12 +108,13 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             switch event {
             case .Next(let tags):
                 self?.listSection = self?.listSectionWithModels(tags, isLoading: false)
+                self?.reloadSubject.onNext(())
             case .Error(let error):
                 self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
+                self?.reloadSubject.onNext(())
             default:
                 break
             }
-            self?.reloadSubject.onNext(())
         }.addDisposableTo(disposeBag)
     }
     
@@ -148,6 +153,9 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var locationString: String? {return nil}
     var locationFlag: UIImage? {return nil}
     var conversation: MiniConversation? {return nil}
+    var verifyButtonTitle: String {
+        return NSLocalizedString("Verify your account!", comment: "")
+    }
     // MARK: - Helpers
     
     private func fetchTag() -> Observable<Tag>? {
@@ -163,7 +171,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let name = nameParameter else { return nil }
-        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: Account.sharedInstance.user?.location)
+        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     

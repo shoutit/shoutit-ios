@@ -30,6 +30,10 @@ final class SecureCoder {
         }
         
         let decoded: Decoded<T> = Argo.decode(contents)
+        
+        print(contents)
+        print(decoded.value)
+        
         return decoded.value
     }
     

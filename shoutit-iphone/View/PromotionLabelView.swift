@@ -14,7 +14,7 @@ class PromotionLabelView: UIView {
     @IBOutlet weak var sentenceLabel : UILabel?
     @IBOutlet weak var topLabel : UILabel?
     @IBOutlet weak var topLabelBackground : UIView?
-    @IBOutlet weak var daysLeftLabel: UIView?
+    @IBOutlet weak var daysLeftLabel: UILabel?
     @IBOutlet weak var backgroundView : UIView?
     
     class func instanceFromNib() -> PromotionLabelView {
@@ -27,5 +27,5 @@ class PromotionLabelView: UIView {
         self.topLabelBackground?.backgroundColor = label.color()
         self.backgroundView?.backgroundColor = label.backgroundUIColor()
     }
-}
 
+}

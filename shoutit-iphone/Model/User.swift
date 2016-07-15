@@ -21,14 +21,14 @@ public protocol User: Encodable {
     var dateJoinedEpoch: Int {get}
     var location: Address {get}
     var pushTokens: PushTokens? {get}
-    
+    var name: String { get }
 }
 
 extension User {
     
     public func basicEncodedProfile() -> [String: AnyObject]! {
 
-        return ["username": self.username.encode(), "id": self.id.encode()].encode().JSONObject() as! [String : AnyObject]
+        return ["username": self.name.encode(), "id": self.id.encode()].encode().JSONObject() as! [String : AnyObject]
     }
 }
 

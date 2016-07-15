@@ -27,7 +27,7 @@ final class ShoutDetailViewModel {
     }
     
     // messages
-    private let noImagesMessage = NSLocalizedString("No images are available", comment: "Message for shout with no images")
+    private let noImagesImage = UIImage.shoutsPlaceholderImage()
     private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
     // child view models
@@ -50,6 +50,10 @@ final class ShoutDetailViewModel {
     
     // MARK: - Actions
     
+    func reloadShout(newShout: Shout) {
+        shout = newShout
+    }
+    
     func reloadShoutDetails() {
         
         prepareCellViewModelsForLoading()
@@ -59,13 +63,10 @@ final class ShoutDetailViewModel {
                 defer { self?.reloadSubject.onNext() }
                 switch event {
                 case .Next(let shout):
-                    guard let strongSelf = self else { return }
                     self?.shout = shout
                     self?.reloadImages()
                 case .Error(let error):
-                    if let sSelf = self {
-                        sSelf.imagesViewModels = [ShoutDetailShoutImageViewModel.Error(error: error)]
-                    }
+                    self?.imagesViewModels = [ShoutDetailShoutImageViewModel.Error(error: error)]
                 case .Completed:
                     break
                 }
@@ -81,9 +82,7 @@ final class ShoutDetailViewModel {
                         strongSelf.otherShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(otherShouts.prefix(4)), withSeeAllCell: false)
                     }
                 case .Error(let error):
-                    if let strongSelf = self {
-                        strongSelf.otherShoutsCellModels = [ShoutDetailShoutCellViewModel.Error(error: error)]
-                    }
+                    self?.otherShoutsCellModels = [ShoutDetailShoutCellViewModel.Error(error: error)]
                 case .Completed:
                     break
                 }
@@ -111,7 +110,7 @@ final class ShoutDetailViewModel {
     
     func reloadImages() {
         guard shout.imagePaths?.count > 0 || shout.videos?.count > 0 else {
-            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(message: self.noImagesMessage)]
+            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(image: self.noImagesImage)]
             return
         }
         
@@ -237,12 +236,12 @@ private extension ShoutDetailViewModel {
     }
     
     private func fetchOtherShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
+        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
     private func fetchRelatedShouts() -> Observable<[Shout]> {
-        let params = RelatedShoutsParams(shout: shout, page: 1, pageSize: 6, type: nil)
+        let params = RelatedShoutsParams(shout: shout, page: 1, pageSize: 6)
         return APIShoutsService.relatedShoutsWithParams(params).map{$0.results}
     }
 }
@@ -271,10 +270,17 @@ private extension ShoutDetailViewModel {
         }
         
         // other
-        let firstname = shout.user?.firstName ?? NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
-        models.append(.SectionHeader(title: String.localizedStringWithFormat(NSLocalizedString("More shouts from %@", comment: ""), firstname)))
+        let creatorDisplayName: String
+        if let firstname = shout.user?.firstName where firstname.utf16.count > 0 {
+            creatorDisplayName = firstname
+        } else if let name = shout.user?.name where name.utf16.count > 0 {
+            creatorDisplayName = name
+        } else {
+            creatorDisplayName = NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
+        }
+        models.append(.SectionHeader(title: String.localizedStringWithFormat(NSLocalizedString("More shouts from %@", comment: ""), creatorDisplayName)))
         models.append(.OtherShouts)
-        models.append(.Button(title: String.localizedStringWithFormat(NSLocalizedString("Visit %@'s profile", comment: ""), firstname), type: .VisitProfile))
+        models.append(.Button(title: String.localizedStringWithFormat(NSLocalizedString("Visit %@'s profile", comment: ""), creatorDisplayName), type: .VisitProfile))
         if (hasRelatedShouts()) {
             models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
             models.append(.RelatedShouts)

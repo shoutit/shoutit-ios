@@ -27,7 +27,11 @@ enum NavigationItem : String {
     case InviteFriends = "inviteFriends"
     case Search = "search"
     case Credits = "credits"
-    case CreditsTransations = "credit_transaction"
+    case CreditsTransations = "credit_transactions"
+    case Pages = "pages"
+    case Bookmarks = "bookmarks"
+    case Admins = "admins"
+    case SwitchFromPageToUser = "switch_to_user"
     
     func title() -> String {
         switch self {
@@ -37,10 +41,18 @@ enum NavigationItem : String {
         case .PublicChats: return NSLocalizedString("Public Chats",comment: "")
         case .Conversation: return NSLocalizedString("Conversation",comment: "")
         case .Chats: return NSLocalizedString("Chats",comment: "")
+        case .Bookmarks: return NSLocalizedString("Bookmarks",comment: "")
         case .Orders: return NSLocalizedString("Orders",comment: "")
         case .Settings: return NSLocalizedString("Settings",comment: "")
         case .Help: return NSLocalizedString("Help",comment: "")
         case .InviteFriends: return NSLocalizedString("Invite Friends",comment: "")
+        case .Pages: return NSLocalizedString("Pages",comment: "Menu item")
+        case .Admins: return NSLocalizedString("Admins",comment: "Menu item")
+        case .SwitchFromPageToUser:
+            guard case .Some(.Page(let user, _)) = Account.sharedInstance.loginState else {
+                fallthrough
+            }
+            return String.localizedStringWithFormat(NSLocalizedString("Use Shoutit as %@", comment: ""), user.name)
         default: return NSLocalizedString("Unsupported Title",comment: "")
         }
     }
@@ -52,12 +64,15 @@ enum NavigationItem : String {
         case .Browse: return UIImage(named: "sidemenu_browse")
         case .Chats: return UIImage(named: "sidemenu_chats")
         case .Orders: return UIImage(named: "sidemenu_orders")
+        case .Admins: return UIImage(named: "sidemenu_admins")
+        case .Pages: return UIImage(named: "sidemenu_pages")
+        case .Bookmarks: return UIImage(named: "sidemenu_bookmarks")
         default: return nil
         }
     }
 }
 
-protocol Navigation {
+protocol Navigation: class {
     
     weak var rootController : RootController? {get set}
     var selectedNavigationItem : NavigationItem? {get set}

@@ -45,13 +45,13 @@ class FacebookManager {
 extension FacebookManager {
     
     func hasPermissions(permissions: FacebookPermissions) -> Bool {
-        guard case .Some(.Logged(let user)) = account.userModel else { return false }
+        guard case .Some(.Logged(let user)) = account.loginState else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
         guard let currentAccessToken = FBSDKAccessToken.currentAccessToken() else { return false }
         return facebookAccount.scopes.contains(permissions.rawValue) && currentAccessToken.hasGranted(permissions.rawValue)
     }
     
-    func checkExpiryDateWithProfile(profile: DetailedProfile) {
+    func checkExpiryDateWithProfile(profile: DetailedUserProfile) {
         guard let facebookAccount = profile.linkedAccounts?.facebook else { return }
         
         if NSDate().timeIntervalSince1970 >= NSTimeInterval(facebookAccount.expiresAtEpoch) {
@@ -85,6 +85,29 @@ extension FacebookManager {
             
             return NopDisposable.instance
         }
+    }
+    
+    func linkWithReadPermissions(permissions: [FacebookPermissions] = FacebookPermissions.loginReadPermissions, viewController: UIViewController) -> Observable<Void> {
+        return hasBasicReadPermissionsObservable()
+            .flatMap{[unowned self] (hasReadPermissions) -> Observable<String> in
+                if !hasReadPermissions {
+                    return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+                }
+                
+                guard let currentAccessToken = FBSDKAccessToken.currentAccessToken(), token = currentAccessToken.tokenString else {
+                    return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+                }
+                
+                return Observable.just(token)
+            
+            }
+            .flatMap{ (token) in
+                return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))
+        }
+    }
+
+    func unlinkFacebookAccount() -> Observable<Void> {
+        return APIProfileService.unlinkSocialAccountWithParams(.Facebook(token: nil))
     }
     
     func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {

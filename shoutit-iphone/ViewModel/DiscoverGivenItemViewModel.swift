@@ -29,6 +29,7 @@ final class DiscoverGivenItemViewModel: DiscoverViewModel {
                 APIShoutsService.listShoutsWithParams(params)
                     .subscribeNext{ [weak self] (shouts) -> Void in
                         self?.shouts.on(.Next(shouts))
+                        self?.adManager.handleNewShouts(shouts)
                     }
                     .addDisposableTo((self?.disposeBag)!)
             }

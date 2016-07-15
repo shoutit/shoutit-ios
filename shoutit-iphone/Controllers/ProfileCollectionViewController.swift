@@ -27,8 +27,12 @@ final class ProfileCollectionViewController: UICollectionViewController {
     // rx
     let disposeBag = DisposeBag()
     
+    var bookmarksDisposeBag : DisposeBag?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bookmarksDisposeBag = DisposeBag()
         
         guard let viewModel = self.viewModel else {
             preconditionFailure("Pass view model to \(self.self) instance before presenting it")
@@ -198,7 +202,8 @@ extension ProfileCollectionViewController {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ProfileCollectionViewSection.Shouts.cellReuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
             let cellViewModel = viewModel.gridSection.cells[indexPath.row]
             cell.bindWith(Shout: cellViewModel.shout)
-            
+            cell.bookmarkButton?.tag = indexPath.row
+            cell.bookmarkButton?.addTarget(self, action: #selector(switchBookmarkState), forControlEvents: .TouchUpInside)
             return cell
         }
         
@@ -296,16 +301,36 @@ extension ProfileCollectionViewController {
                 infoView.listeningToYouLabel.hidden = true
             }
             infoView.bioLabel.text = viewModel.descriptionText
+            infoView.verifiedIcon.hidden = !viewModel.verified
             infoView.bioIconImageView.image = viewModel.descriptionIcon
             infoView.websiteLabel.text = viewModel.websiteString
             infoView.dateJoinedLabel.text = viewModel.dateJoinedString
             infoView.locationLabel.text = viewModel.locationString
             infoView.locationFlagImageView.image = viewModel.locationFlag
+            infoView.verifyAccountButton.setTitle(viewModel.verifyButtonTitle, forState: .Normal)
             setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag)
             infoView.verifyAccountButton
                 .rx_tap.asDriver()
                 .driveNext{ [weak self] in
-                    guard case .Logged(let user)? = Account.sharedInstance.userModel else { assertionFailure(); return; }
+                    guard let loginState = Account.sharedInstance.loginState else {
+                        return
+                    }
+                    
+                    if case .Page(_, let page) = loginState {
+                        if page.isActivated == false {
+                            self?.showActivateAccountAlert()
+                            return
+                        }
+                        
+                        if page.isVerified == false {
+                            self?.flowDelegate?.showVerifyBussiness(page)
+                            return
+                        }
+                        
+                        return
+                    }
+                    
+                    guard case .Logged(let user) = loginState else { assertionFailure(); return; }
                     self?.flowDelegate?.showVerifyEmailView(user, successBlock: { (message) in
                         self?.showSuccessMessage(message)
                     })
@@ -378,7 +403,7 @@ extension ProfileCollectionViewController {
     func setButtons(buttons:[ProfileCollectionInfoButton], inSupplementaryView sView: ProfileCollectionInfoSupplementaryView, disposeBag: DisposeBag) {
         
         for button in buttons {
-            switch button.defaultPosition {
+            switch button.position {
             case .SmallLeft:
                 hydrateButton(sView.notificationButton, withButtonModel: button, disposeBag: disposeBag)
             case .SmallRight:
@@ -467,7 +492,7 @@ extension ProfileCollectionViewController {
             if let btn = button as? BadgeButton {
                 var shouldShowFillProfileBadge = false
                 
-                if let profile = Account.sharedInstance.user as? DetailedProfile {
+                if let profile = Account.sharedInstance.user as? DetailedUserProfile {
                     if profile.hasAllRequiredFieldsFilled() == false {
                         shouldShowFillProfileBadge = true
                     }
@@ -581,5 +606,45 @@ extension ProfileCollectionViewController {
         }
         
         flowDelegate?.showConversation(.NotCreated(type: .Chat, user: profile, aboutShout: nil))
+    }
+}
+
+extension ProfileCollectionViewController : Bookmarking {
+    
+    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+        let cellViewModel = viewModel.gridSection.cells[indexPath.row]
+        return cellViewModel.shout
+    }
+    
+    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+        guard let shout = shout else {
+            return nil
+        }
+        
+        let shouts = viewModel.gridSection.cells.map{$0.shout}
+    
+        if let idx = shouts.indexOf(shout) {
+            return NSIndexPath(forItem: idx, inSection: 1)
+        }
+        
+        return nil
+    }
+    
+    func replaceShoutAndReload(shout: Shout) {
+        self.viewModel?.replaceShout(shout)
+        self.viewModel?.reloadSubject.onNext()
+    }
+    
+    @objc func switchBookmarkState(sender: UIButton) {
+        switchShoutBookmarkShout(sender)
+    }
+}
+
+extension ProfileCollectionViewController {
+    func showActivateAccountAlert() {
+        let alert = UIAlertController(title: NSLocalizedString("Activate your page", comment: ""), message: NSLocalizedString("To activate your page, your personal account should be verified first. Click the activation link in the email you have received when you signed up.", comment: ""), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        
+        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
 }

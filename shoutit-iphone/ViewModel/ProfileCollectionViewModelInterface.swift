@@ -33,6 +33,8 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var conversation: MiniConversation? {get}
     var reportable: Reportable? {get}
     
+    var verifyButtonTitle: String { get }
+    var verified: Bool { get }
     // sections
     var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>! {get}
     var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>! {get}
@@ -48,6 +50,19 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
 }
 
 // MARK: - Default implementations
+
+extension ProfileCollectionViewModelInterface {
+    func replaceShout(newShout: Shout) {
+        var cells : [ProfileCollectionShoutCellViewModel] = self.gridSection.cells
+        let shouts : [Shout] = cells.map{ $0.shout }
+        
+        if let idx = shouts.indexOf(newShout) {
+            cells[idx] = ProfileCollectionShoutCellViewModel(shout: newShout)
+        }
+        
+        self.gridSection.cells = cells
+    }
+}
 
 extension ProfileCollectionViewModelInterface {
     

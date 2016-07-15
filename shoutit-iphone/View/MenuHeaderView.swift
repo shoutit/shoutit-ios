@@ -31,18 +31,21 @@ final class MenuHeaderView: UIView {
         self.profileNameLabel?.layer.shadowOpacity = 0.5;
     }
     
-    func fillWith(user: User?){
+    func fillWith(loginState: Account.LoginState?){
         
-        if let user = user as? DetailedProfile {
+        switch loginState {
+        case .Some(.Logged(let user)):
             fillWithLoggedUser(user)
-        } else {
+        case .Some(.Page(_, let page)):
+            fillWithPage(page)
+        default:
             fillAsGuest()
         }
         
         fillLocation()
     }
     
-    private func fillWithLoggedUser(user: DetailedProfile) {
+    private func fillWithLoggedUser(user: DetailedUserProfile) {
         
         if let path = user.imagePath, profileURL = NSURL(string: path) {
             profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
@@ -60,6 +63,25 @@ final class MenuHeaderView: UIView {
         
         creditsCountLabel?.hidden = false
         creditsCountLabel?.text = "\(user.stats?.credit ?? 0)"
+    }
+    
+    private func fillWithPage(page: DetailedProfile) {
+        
+        if let path = page.imagePath, profileURL = NSURL(string: path) {
+            profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "guest avatar"))
+        }
+        
+        if let path = page.coverPath, coverURL = NSURL(string: path) {
+            coverImageView?.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        }
+        
+        profileNameLabel?.text = page.name
+        
+        profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView?.layer.borderWidth = 1.0
+        profileImageView?.layer.masksToBounds = true
+        
+        creditsCountLabel?.hidden = true
     }
     
     private func fillAsGuest() {

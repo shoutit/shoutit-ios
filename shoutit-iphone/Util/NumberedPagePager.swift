@@ -11,16 +11,18 @@ import RxSwift
 import Argo
 import ShoutitKit
 
+
 class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType>: Pager<Int, CellViewModelType, ItemType> {
     
     let pageSize: Int
-    var cellViewModelsComparisonBlock: ((lhs: CellViewModelType, rhs: CellViewModelType) -> Bool)?
     
+    var cellViewModelsComparisonBlock: ((lhs: CellViewModelType, rhs: CellViewModelType) -> Bool)?
     init(
         itemToCellViewModelBlock: ItemType -> CellViewModelType,
         cellViewModelToItemBlock: CellViewModelType -> ItemType,
         fetchItemObservableFactory: (Int -> Observable<PagedResults<ItemType>>),
-        pageSize: Int = 20)
+        pageSize: Int = 20,
+        showAds: Bool = false)
     {
         self.pageSize = pageSize
         super.init(
@@ -31,7 +33,8 @@ class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.De
             lastPageDidLoadExaminationBlock: { (results) -> Bool in
                 return results.nextPath == nil
             },
-            firstPageIndex: 1)
+            firstPageIndex: 1,
+            showAds: showAds)
     }
     
     func reloadItemAtIndex(index: Int) {

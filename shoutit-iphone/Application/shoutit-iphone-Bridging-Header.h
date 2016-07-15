@@ -16,3 +16,5 @@
 #import "PTPusherEvent.h"
 #import "PTPusherChannel.h"
 #import "SHAppearanceBridge.h"
+#import <BuddyBuildSDK/BuddyBuildSDK.h>
+#import "UISearchBarAppearance.h"

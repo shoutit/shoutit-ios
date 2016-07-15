@@ -19,7 +19,7 @@ final class Twilio: NSObject {
     }
     
     // vars
-    private var authData: TwilioAuth? {
+    var authData: TwilioAuth? {
         didSet {
             log.info("TWILIO: TOKEN RETRIVED")
             createTwilioClient()
@@ -28,6 +28,7 @@ final class Twilio: NSObject {
     private unowned var account: Account
     private var client: TwilioConversationsClient?
     private var accessManager: TwilioAccessManager?
+    private var authenticatedId : String?
     
     // helpers vars
     private var connecting : Bool = false
@@ -67,14 +68,21 @@ final class Twilio: NSObject {
     // MARK: - Public
     
     func connectIfNeeded() {
-        if case .Logged(_)? = account.userModel {
+        switch account.loginState {
+        case .Logged(_)?, .Page(_)?:
             retriveToken()
-        } else {
+        default:
             disconnect()
         }
     }
     
+    func reconnect() {
+        disconnect()
+        connectIfNeeded()
+    }
+    
     func disconnect() {
+        self.authenticatedId = nil
         if client?.listening == true {
             self.client?.unlisten()
         }
@@ -103,7 +111,7 @@ final class Twilio: NSObject {
                             }
                         })
                     }
-                    .doOnError({ (error) in
+                    .doOnError { (error) in
                         APIChatsService.twilioVideoCallWithParams(VideoCallParams(identity: identity.identity, missed: true))
                             .subscribe{ (event) in
                                 switch event {
@@ -113,7 +121,7 @@ final class Twilio: NSObject {
                                 }
                             }
                             .addDisposableTo(self.disposeBag)
-                    })
+                    }
         }
     }
     
@@ -137,6 +145,12 @@ final class Twilio: NSObject {
             return NopDisposable.instance
         }
     }
+    
+    func checkIfNeedsToReconnectForNewId() {
+        if self.authenticatedId != account.user?.id {
+            reconnect()
+        }
+    }
 }
 
 private extension Twilio {
@@ -150,6 +164,8 @@ private extension Twilio {
         connecting = true
         
         log.verbose("TWILIO: TRYING TO RETRIVE TOKEN")
+        
+        self.authenticatedId = account.user?.id
         
         APIChatsService.twilioVideoAuth().subscribeOn(MainScheduler.instance).subscribe { [weak self] (event) in
             self?.connecting = false

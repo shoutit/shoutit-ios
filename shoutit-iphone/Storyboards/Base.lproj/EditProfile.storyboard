@@ -25,33 +25,6 @@
                                         <constraint firstAttribute="height" constant="211" id="dYK-UO-e0U"/>
                                     </constraints>
                                 </imageView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nw9-vy-db6">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="211"/>
-                                    <subviews>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTd-vg-eQa" customClass="ACPDownloadView">
-                                            <rect key="frame" x="260" y="66" width="80" height="80"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <color key="tintColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                        </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvp-Qm-jyI">
-                                            <rect key="frame" x="260" y="66" width="80" height="80"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="eLL-by-912"/>
-                                                <constraint firstAttribute="height" constant="80" id="m0X-Gj-Sbo"/>
-                                            </constraints>
-                                            <state key="normal" image="photo_icon_big_white"/>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerX" secondItem="Nw9-vy-db6" secondAttribute="centerX" id="5H8-9H-z6e"/>
-                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="centerY" secondItem="mvp-Qm-jyI" secondAttribute="centerY" id="5ct-Mu-uYg"/>
-                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="width" secondItem="mvp-Qm-jyI" secondAttribute="width" id="CWh-h0-PCx"/>
-                                        <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerY" secondItem="Nw9-vy-db6" secondAttribute="centerY" id="T4U-qD-VJ7"/>
-                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="height" secondItem="mvp-Qm-jyI" secondAttribute="height" id="fpg-o3-H5y"/>
-                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="centerX" secondItem="mvp-Qm-jyI" secondAttribute="centerX" id="hAF-Fq-5F3"/>
-                                    </constraints>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ned-CQ-4gm">
                                     <rect key="frame" x="10" y="178" width="76" height="76"/>
                                     <subviews>
@@ -96,6 +69,33 @@
                                         <constraint firstAttribute="trailing" secondItem="ToL-cJ-4wd" secondAttribute="trailing" id="TbI-VX-IzW"/>
                                         <constraint firstAttribute="height" constant="76" id="qeQ-ms-k0Q"/>
                                         <constraint firstAttribute="trailing" secondItem="XRy-QQ-Qcz" secondAttribute="trailing" id="t0e-zo-yI2"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nw9-vy-db6">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="211"/>
+                                    <subviews>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTd-vg-eQa" customClass="ACPDownloadView">
+                                            <rect key="frame" x="260" y="66" width="80" height="80"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvp-Qm-jyI">
+                                            <rect key="frame" x="260" y="66" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="eLL-by-912"/>
+                                                <constraint firstAttribute="height" constant="80" id="m0X-Gj-Sbo"/>
+                                            </constraints>
+                                            <state key="normal" image="photo_icon_big_white"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerX" secondItem="Nw9-vy-db6" secondAttribute="centerX" id="5H8-9H-z6e"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="centerY" secondItem="mvp-Qm-jyI" secondAttribute="centerY" id="5ct-Mu-uYg"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="width" secondItem="mvp-Qm-jyI" secondAttribute="width" id="CWh-h0-PCx"/>
+                                        <constraint firstItem="mvp-Qm-jyI" firstAttribute="centerY" secondItem="Nw9-vy-db6" secondAttribute="centerY" id="T4U-qD-VJ7"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="height" secondItem="mvp-Qm-jyI" secondAttribute="height" id="fpg-o3-H5y"/>
+                                        <constraint firstItem="FTd-vg-eQa" firstAttribute="centerX" secondItem="mvp-Qm-jyI" secondAttribute="centerX" id="hAF-Fq-5F3"/>
                                     </constraints>
                                 </view>
                             </subviews>

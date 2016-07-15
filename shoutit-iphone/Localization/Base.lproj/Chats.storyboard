@@ -233,7 +233,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGH-Jc-OeH" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
                                         <rect key="frame" x="21" y="10" width="558" height="44"/>
-                                        <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.20784313725490194" green="0.8666666666666667" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="oPH-nr-BID"/>
                                         </constraints>
@@ -1122,7 +1122,7 @@
                                             <segment title="My Chats"/>
                                             <segment title="Public Chats"/>
                                         </segments>
-                                        <color key="tintColor" red="0.27843137254901962" green="0.69019607843137254" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXS-ys-HHh">
                                         <rect key="frame" x="0.0" y="43" width="600" height="1"/>
@@ -1191,13 +1191,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8Z-R8-ot2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umo-qy-IbY">
-                                        <rect key="frame" x="0.0" y="43" width="600" height="1"/>
-                                        <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="co9-3o-eGj"/>
-                                        </constraints>
-                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure_indicator_green" translatesAutoresizingMaskIntoConstraints="NO" id="5ay-N4-H2b">
                                         <rect key="frame" x="572" y="13" width="18" height="18"/>
                                         <constraints>
@@ -1209,7 +1202,7 @@
                                         <rect key="frame" x="10" y="6" width="552" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Create Public Chat">
-                                            <color key="titleColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
@@ -1217,13 +1210,10 @@
                                 <constraints>
                                     <constraint firstItem="Ovn-5P-fJ1" firstAttribute="leading" secondItem="S8Z-R8-ot2" secondAttribute="leading" constant="10" id="2ca-nj-Y50"/>
                                     <constraint firstItem="5ay-N4-H2b" firstAttribute="centerY" secondItem="S8Z-R8-ot2" secondAttribute="centerY" id="99u-uJ-VGn"/>
-                                    <constraint firstAttribute="bottom" secondItem="umo-qy-IbY" secondAttribute="bottom" id="MWq-WK-m4n"/>
                                     <constraint firstItem="Ovn-5P-fJ1" firstAttribute="centerY" secondItem="S8Z-R8-ot2" secondAttribute="centerY" id="RNE-hE-Ym9"/>
                                     <constraint firstAttribute="trailing" secondItem="5ay-N4-H2b" secondAttribute="trailing" constant="10" id="YBy-yh-EXN"/>
                                     <constraint firstItem="5ay-N4-H2b" firstAttribute="leading" secondItem="Ovn-5P-fJ1" secondAttribute="trailing" constant="10" id="aLc-yn-mMk"/>
-                                    <constraint firstItem="umo-qy-IbY" firstAttribute="leading" secondItem="S8Z-R8-ot2" secondAttribute="leading" id="jz6-Cp-q4B"/>
                                     <constraint firstAttribute="height" constant="44" id="usb-QO-sTb"/>
-                                    <constraint firstAttribute="trailing" secondItem="umo-qy-IbY" secondAttribute="trailing" id="yML-c2-DJM"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvd-7o-fZM">
@@ -1232,6 +1222,13 @@
                                     <segue destination="rdm-hj-mhG" kind="embed" id="Ied-iX-ICt"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umo-qy-IbY">
+                                <rect key="frame" x="0.0" y="43" width="600" height="1"/>
+                                <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="co9-3o-eGj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

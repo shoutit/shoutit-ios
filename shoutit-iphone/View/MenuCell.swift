@@ -15,21 +15,23 @@ final class MenuCell: UITableViewCell {
     @IBOutlet weak var bottomSeparator: UIView?
     @IBOutlet weak var bottomSeparatorHeight: NSLayoutConstraint?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        adjustSeparatorHeight()
+    }
+    
     func bindWith(item: NavigationItem!, current: Bool) {
-        self.iconImageView?.image = NavigationItem.icon(item)()
-        self.titleLabel.text = NavigationItem.title(item)()
-        
-        self.bottomSeparatorHeight?.constant = 1.0/UIScreen.mainScreen().scale
-        self.backgroundColor = current ? UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1) : UIColor.whiteColor()
-        self.layoutIfNeeded()
-        
-        setSeparatorVisible(item == .Chats || current)
-        
-//        self.accessoryType = ((item == .InviteFriends) ? .DetailButton : .None)
-//        self.tintColor = UIColor(shoutitColor: .PrimaryGreen)
+        iconImageView?.image = NavigationItem.icon(item)()
+        titleLabel.text = NavigationItem.title(item)()
+        backgroundColor = current ? UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1) : UIColor.whiteColor()
     }
     
     func setSeparatorVisible(visible: Bool) {
-        self.bottomSeparator?.backgroundColor = visible ? UIColor.lightGrayColor().colorWithAlphaComponent(0.4) : UIColor.clearColor()
+        bottomSeparator?.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(visible ? 0.4 : 0.0)
+    }
+    
+    private func adjustSeparatorHeight() {
+        bottomSeparatorHeight?.constant = 1.0/UIScreen.mainScreen().scale
+        layoutIfNeeded()
     }
 }

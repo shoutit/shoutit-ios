@@ -18,6 +18,12 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         case TagShouts(tag: Tag)
         case DiscoverItemShouts(discoverItem: DiscoverItem)
         case ConversationShouts(conversation: Conversation)
+        case BookmarkedShouts(user: Profile)
+        
+        func showAds() -> Bool {
+            // turn of ads for given context if needed
+            return true
+        }
     }
     
     // consts
@@ -30,8 +36,9 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     init(context: Context) {
         self.context = context
         self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},
-                                       cellViewModelToItemBlock: {$0.shout},
-                                       fetchItemObservableFactory: {self.fetchShoutsAtPage($0)}
+                                       cellViewModelToItemBlock: {$0.shout!},
+                                       fetchItemObservableFactory: {self.fetchShoutsAtPage($0)},
+                                       showAds: self.context.showAds()
         )
     }
     
@@ -54,7 +61,10 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             return discoverItem.title
         case .ConversationShouts:
             return NSLocalizedString("Conversation Shouts", comment: "")
+        case .BookmarkedShouts:
+            return NSLocalizedString("Bookmarked Shouts", comment: "")
         }
+        
     }
     
     func resultsCountString() -> String {
@@ -71,14 +81,14 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
         switch context {
         case .RelatedShouts(let shout):
-            let params = RelatedShoutsParams(shout: shout, page: page, pageSize: pageSize, type: nil)
+            let params = RelatedShoutsParams(shout: shout, page: page, pageSize: pageSize)
             return APIShoutsService.relatedShoutsWithParams(params)
         case .ProfileShouts(let profile):
-            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
+            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize, currentUserLocation: nil, skipLocation: true)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .TagShouts(let tag):
-            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
+            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: nil, skipLocation: true)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .DiscoverItemShouts(let discoverItem):
@@ -88,6 +98,9 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         case .ConversationShouts(let conversation):
             let params = PageParams(page: page, pageSize: pageSize)
             return APIChatsService.getShoutsForConversationWithId(conversation.id, params: params)
+        case .BookmarkedShouts(let user):
+            let params = PageParams(page: page, pageSize: pageSize)
+            return APIShoutsService.getBookmarkedShouts(user, params: params)
         }
     }
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 import Argo
-
 import Ogra
 
 public struct Profile {
@@ -25,8 +24,16 @@ public struct Profile {
     public let coverPath: String?
     public let isListening: Bool?
     public let listenersCount: Int
+    public let location: Address?
+    public let stats: ProfileStats?
     
     public static func profileWithUser(user: DetailedProfile) -> Profile {
+        var stats : ProfileStats?
+        
+        if let detailedUser = user as? DetailedUserProfile {
+            stats = detailedUser.stats
+        }
+        
         return Profile(id: user.id,
                        type: user.type,
                        apiPath: user.apiPath,
@@ -39,7 +46,28 @@ public struct Profile {
                        imagePath: user.imagePath,
                        coverPath: user.coverPath,
                        isListening: user.isListening,
-                       listenersCount: user.listenersCount)
+                       listenersCount: 0,
+                       location: user.location,
+                       stats:  stats
+                )
+    }
+    
+    public static func profileWithGuest(guest: GuestUser) -> Profile {
+        return Profile(id: guest.id,
+                       type: .User,
+                       apiPath: guest.apiPath,
+                       webPath: nil,
+                       username: guest.username,
+                       name: guest.username,
+                       firstName: nil,
+                       lastName: nil,
+                       isActivated: false,
+                       imagePath: nil,
+                       coverPath: nil,
+                       isListening: nil,
+                       listenersCount: 0,
+                       location: guest.location,
+                       stats: nil)
     }
 }
 
@@ -73,6 +101,8 @@ extension Profile: Decodable {
             <*> j <|? "is_listening"
         return c
             <*> j <| "listeners_count"
+            <*> j <|? "location"
+            <*> j <|? "stats"
     }
 }
 
@@ -93,6 +123,8 @@ extension Profile: Encodable {
             "cover" : self.coverPath.encode(),
             "is_listening" : self.isListening.encode(),
             "listeners_count" : self.listenersCount.encode(),
+            "location" : self.location.encode(),
+            "stats" : self.stats.encode()
             ])
     }
 }

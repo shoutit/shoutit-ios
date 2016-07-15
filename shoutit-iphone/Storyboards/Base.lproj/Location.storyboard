@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -29,7 +30,7 @@
                                             <rect key="frame" x="290" y="5" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="gjs-nB-bdC" firstAttribute="centerX" secondItem="Ofa-r4-aEz" secondAttribute="centerX" id="THt-xe-iG1"/>
                                         <constraint firstItem="Ofa-r4-aEz" firstAttribute="leading" secondItem="Gw0-et-70e" secondAttribute="leading" constant="10" id="fJ8-PE-k6v"/>
@@ -135,7 +136,7 @@
                                             <rect key="frame" x="290" y="5" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="UfO-yi-Vvc" firstAttribute="centerY" secondItem="aHh-Ln-nDS" secondAttribute="centerY" id="77n-BB-7eD"/>
                                         <constraint firstItem="ACH-rC-wWj" firstAttribute="centerX" secondItem="UfO-yi-Vvc" secondAttribute="centerX" id="O95-f8-Kc7"/>

@@ -8,8 +8,9 @@
 
 import Foundation
 import Argo
+import Ogra
 
-public final class Box<T: Decodable where T.DecodedType == T>  : Decodable {
+public final class Box<T: Decodable where T: Encodable, T.DecodedType == T> : Decodable, Encodable {
     public var value: T
     public init(_ value: T) {
         self.value = value
@@ -19,12 +20,14 @@ public final class Box<T: Decodable where T.DecodedType == T>  : Decodable {
         let value : Decoded<T.DecodedType> = T.decode(j)
 
         switch value {
-
         case .Success(let val):
-                return Decoded.Success(Box(val))
+            return Decoded.Success(Box(val))
         case .Failure(let error):
-                return Decoded.Failure(error)
-            
+            return Decoded.Failure(error)
         }
+    }
+    
+    public func encode() -> JSON {
+        return value.encode()
     }
 }

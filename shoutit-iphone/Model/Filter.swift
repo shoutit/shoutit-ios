@@ -13,6 +13,7 @@ public struct Filter: Hashable, Equatable {
     public let slug: String
     public let values: [FilterValue]?
     public let value: FilterValue?
+    public let id: String?
     
     public var hashValue: Int {
         get {
@@ -31,6 +32,7 @@ extension Filter: Decodable {
             <*> j <||? "values"
         return f
             <*> j <|? "value"
+            <*> j <|? "id"
     }
 }
 

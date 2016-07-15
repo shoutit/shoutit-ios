@@ -63,6 +63,7 @@ final class ConversationListTableViewController: UITableViewController {
     
     private func subscribeToPusherChannel() {
         
+        
         Account.sharedInstance
             .pusherManager
             .mainChannelSubject

@@ -24,7 +24,7 @@ class VideoCallViewModel {
     let conversation: Variable<TWCConversation?>
     let audioMuted: Variable<Bool>
     let videoDisabled: Variable<Bool>
-    let localMedia: TWCLocalMedia
+    private(set) var localMedia: TWCLocalMedia
     let state: Variable<State>
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     private let disposeBag = DisposeBag()
@@ -53,6 +53,10 @@ class VideoCallViewModel {
         } else if let identity = invitation?.from {
             fetchCallingProfileWithIdentity(identity)
         }
+    }
+    
+    func reloadLocalMedia() {
+        self.localMedia = TWCLocalMedia()
     }
     
     // MARK: - Actions

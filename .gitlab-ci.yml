@@ -21,7 +21,7 @@ production:
   type: build
   script: "bundle exec fastlane ios production --env production"
   tags:
-    - s4
+    - swift2.2
   only:
     - develop
     - /^production-.*$/
@@ -29,19 +29,17 @@ alpha:
   type: build
   script: "bundle exec fastlane ios stage --env staging"
   tags:
-    - s4
+    - swift2.2
   except:
     - /^local-.*$/ # any git refs (e.g. tag) starting with "appstore-"
     - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
-    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 local:
   type: build
   script: "bundle exec fastlane ios local --env local"
   tags:
-    - s4
+    - swift2.2
   except:
     - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
-    - /^testflight-.*$/ # any git refs (e.g. tag) starting with "appstore-"
 translations:
   type: build
   script: "bundle exec fastlane ios localizations"

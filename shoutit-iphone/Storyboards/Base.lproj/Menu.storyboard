@@ -70,7 +70,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGW-q7-n9X">
                                             <rect key="frame" x="572" y="87" width="11" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -117,7 +117,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm0-dm-zPw" customClass="CreateShoutButton" customModule="Shoutit" customModuleProvider="target">
                                     <rect key="frame" x="90" y="148" width="420" height="44"/>
-                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="HE6-3c-Zwh"/>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="985" constant="180" id="K9h-IT-cmy"/>
@@ -291,7 +291,7 @@
                             </connections>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="KfA-dd-ooM">
-                            <rect key="frame" x="0.0" y="404" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="448" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shoutit 2.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2H-0n-97D">
@@ -364,7 +364,7 @@
                                     <outlet property="titleLabel" destination="pFm-S1-gZk" id="cZ0-rq-m6v"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuHelpCellIdentifier" id="1Ix-0Z-gLQ" customClass="MenuCell" customModule="Shoutit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuSecondarySectionCellIdentifier" id="1Ix-0Z-gLQ" customClass="MenuCell" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="360" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ix-0Z-gLQ" id="BjJ-gS-Nni">
@@ -399,6 +399,41 @@
                                     <outlet property="titleLabel" destination="XRT-0N-mv4" id="XcY-39-YKE"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserSwitchCellIdentifier" id="dgb-53-FCJ" customClass="MenuCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="404" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dgb-53-FCJ" id="zBn-xg-REt">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i91-3m-Xsd">
+                                            <rect key="frame" x="17" y="14" width="36" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5M-wE-TP5">
+                                            <rect key="frame" x="0.0" y="43" width="600" height="1"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="llI-pS-mJn"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="v5M-wE-TP5" firstAttribute="leading" secondItem="zBn-xg-REt" secondAttribute="leading" id="Cjg-5g-8RZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="v5M-wE-TP5" secondAttribute="bottom" id="JSg-43-0hI"/>
+                                        <constraint firstItem="i91-3m-Xsd" firstAttribute="centerY" secondItem="zBn-xg-REt" secondAttribute="centerY" id="M1c-gj-4yI"/>
+                                        <constraint firstItem="i91-3m-Xsd" firstAttribute="leading" secondItem="zBn-xg-REt" secondAttribute="leading" constant="17" id="mZN-0I-NR3"/>
+                                        <constraint firstAttribute="trailing" secondItem="v5M-wE-TP5" secondAttribute="trailing" id="pKb-Yq-tvd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bottomSeparator" destination="v5M-wE-TP5" id="Tg0-Ym-4h5"/>
+                                    <outlet property="bottomSeparatorHeight" destination="llI-pS-mJn" id="70R-4e-9Lf"/>
+                                    <outlet property="titleLabel" destination="i91-3m-Xsd" id="FVl-FP-G1I"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="S5g-qW-Noj" id="Gts-Tt-us1"/>
@@ -428,7 +463,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="734" y="412"/>
+            <point key="canvasLocation" x="426" y="414"/>
         </scene>
     </scenes>
     <resources>

@@ -17,6 +17,7 @@ struct Wireframe {
         case HTML = "HTML"
         case Home = "Home"
         case Discover = "Discover"
+        case Bookmarks = "Bookmarks"
         case Credits = "Credits"
         case Shout = "Shout"
         case ShoutDetail = "ShoutDetail"
@@ -26,6 +27,7 @@ struct Wireframe {
         case Location = "Location"
         case InviteFriends = "InviteFriends"
         case EditProfile = "EditProfile"
+        case EditPage = "EditPage"
         case Notifications = "Notifications"
         case Search = "Search"
         case VerifyEmail = "VerifyEmail"
@@ -33,6 +35,8 @@ struct Wireframe {
         case Filter = "Filter"
         case SeeAllShouts = "SeeAllShouts"
         case Promote = "Promote"
+        case Pages = "Pages"
+        case Admins = "Admins"
     }
     
     // General
@@ -149,11 +153,22 @@ struct Wireframe {
         return storyboard(.EditProfile).instantiateViewControllerWithIdentifier("EditProfileTableViewController") as! EditProfileTableViewController
     }
     
+    // MARK: - Edit page storyboard controllers
+    
+    static func editPageTableViewController() -> EditPageTableViewController {
+        return storyboard(.EditPage).instantiateViewControllerWithIdentifier("EditPageTableViewController") as! EditPageTableViewController
+    }
+    
     // MARK: - Verify email storyboard controllers
     
     static func verifyEmailViewController() -> VerifyEmailViewController {
         return storyboard(.VerifyEmail).instantiateViewControllerWithIdentifier("VerifyEmailViewController") as! VerifyEmailViewController
     }
+    
+    static func verifyPageViewController() -> VerifyPageViewController {
+        return storyboard(.VerifyEmail).instantiateViewControllerWithIdentifier("VerifyPageViewController") as! VerifyPageViewController
+    }
+    
     
     // MARK: - Home storyboard view controllers
 
@@ -175,6 +190,10 @@ struct Wireframe {
     
     static func creditPromotingShoutsInfoViewController() -> PromotingShoutsInfoController {
         return storyboard(.Credits).instantiateViewControllerWithIdentifier("PromotingShoutsInfoController") as! PromotingShoutsInfoController
+    }
+    
+    static func bookmarksViewController() -> BookmarksCollectionViewController {
+        return storyboard(.Bookmarks).instantiateViewControllerWithIdentifier("BookmarksCollectionViewController") as! BookmarksCollectionViewController
     }
     
     static func discoverViewController() -> DiscoverCollectionViewController {
@@ -273,8 +292,8 @@ struct Wireframe {
         return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("ProfilesListTableViewController") as! ProfilesListTableViewController
     }
     
-    static func facebookProfileListController() -> FacebookFriendsListTableViewController {
-        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListTableViewController") as! FacebookFriendsListTableViewController
+    static func facebookProfileListController() -> FacebookFriendsListParentViewController {
+        return storyboard(.InviteFriends).instantiateViewControllerWithIdentifier("FacebookFriendsListParentViewController") as! FacebookFriendsListParentViewController
     }
     
     static func notificationsController() -> NotificationsTableViewController {
@@ -313,5 +332,37 @@ struct Wireframe {
     
     static func promotedShoutViewController() -> PromotedShoutViewController {
         return storyboard(.Promote).instantiateViewControllerWithIdentifier("PromotedShoutViewController") as! PromotedShoutViewController
+    }
+    
+    // MARK: - Pages storyboard
+    
+    static func pagesListParentViewController() -> PagesListParentViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("PagesListParentViewController") as! PagesListParentViewController
+    }
+    
+    static func myPagesTableViewController() -> MyPagesTableViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("MyPagesTableViewController") as! MyPagesTableViewController
+    }
+    
+    static func publicPagesTableViewController() -> PublicPagesTableViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("PublicPagesTableViewController") as! PublicPagesTableViewController
+    }
+
+    static func createPageViewController() -> CreatePageViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageViewController") as! CreatePageViewController
+    }
+    
+    static func createPageInfoViewController() -> CreatePageInfoViewController {
+        return storyboard(.Pages).instantiateViewControllerWithIdentifier("CreatePageInfoViewController") as! CreatePageInfoViewController
+    }
+    
+    // MARK: - Admins storyboard
+    
+    static func adminsListParentViewController() -> AdminsListParentViewController {
+        return storyboard(.Admins).instantiateViewControllerWithIdentifier("AdminsListParentViewController") as! AdminsListParentViewController
+    }
+    
+    static func adminsListTableViewController() -> AdminsListTableViewController {
+        return storyboard(.Admins).instantiateViewControllerWithIdentifier("AdminsListTableViewController") as! AdminsListTableViewController
     }
 }

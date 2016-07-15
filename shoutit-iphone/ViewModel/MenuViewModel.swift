@@ -9,39 +9,66 @@
 import UIKit
 
 final class MenuViewModel: AnyObject {
-    enum MenuSection : Int {
-        case Main = 0
-        case Help = 1
+    
+    let loginState: Account.LoginState?
+    
+    init(loginState: Account.LoginState?) {
+        self.loginState = loginState
+    }
+    
+    enum MenuSection  {
+        case UserSwitch
+        case Main
+        case Secondary
         
         func cellIdentifier() -> String {
             switch self {
+            case .UserSwitch: return "UserSwitchCellIdentifier"
             case .Main: return "MenuBasicCellIdentifier"
-            case .Help: return "MenuHelpCellIdentifier"
+            case .Secondary: return "MenuSecondarySectionCellIdentifier"
             }
         }
         
-        func menuItems() -> [NavigationItem] {
+        func menuItems(loginState: Account.LoginState?) -> [NavigationItem] {
             switch self {
-            case .Main: return [.Home, .Discover, .Browse, .Chats]
-            case .Help: return [.InviteFriends, .Settings, .Help]
+            case .UserSwitch:
+                guard case .Some(.Page) = loginState else {
+                    fatalError()
+                }
+                return [.SwitchFromPageToUser]
+            case .Main:
+                let basicItems: [NavigationItem] = [.Home, .Discover, .Browse, .Chats, .Bookmarks]
+                switch loginState {
+                case .Some(.Logged):
+                    return basicItems + [.Pages]
+                case .Some(.Page):
+                    return basicItems + [.Admins]
+                default:
+                    return basicItems
+                }
+            case .Secondary: return [.InviteFriends, .Settings, .Help]
             }
         }
     }
     
     func sections() -> [MenuSection] {
-        return [MenuSection.Main, MenuSection.Help]
+        let basicItems: [MenuSection] = [.Main, .Secondary]
+        if case .Some(.Page) = loginState {
+            return [.UserSwitch] + basicItems
+        }
+        return basicItems
     }
     
     func numberOfRowsInSection(section: Int) -> Int {
-        return MenuSection.menuItems(MenuSection(rawValue: section)!)().count
+        return sections()[section].menuItems(loginState).count
     }
     
     func cellIdentifierForSection(section: Int) -> String {
-        return MenuSection.cellIdentifier(MenuSection(rawValue: section)!)()
+        return sections()[section].cellIdentifier()
     }
     
     func navigationItemForIndexPath(indexPath: NSIndexPath) -> NavigationItem {
-        return MenuSection.menuItems(MenuSection(rawValue: indexPath.section)!)()[indexPath.row]
+        return sections()[indexPath.section].menuItems(loginState)[indexPath.row]
     }
     
 }
