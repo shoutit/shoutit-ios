@@ -363,12 +363,15 @@ private extension Account {
                     }
                 }
                 .addDisposableTo(disposeBag)
-        } else if case .Page(let user, _)? = loginState {
-            let observable: Observable<DetailedUserProfile> = APIProfileService.updateAPNsWithUsername(user.username, withParams: params)
+        } else if case .Page(let _, let page)? = loginState {
+            let observable: Observable<DetailedPageProfile> = APIProfileService.updateAPNsWithUsername(page.username, withParams: params)
             observable
                 .subscribe{ (event) in
                     self.updatingAPNS = false
-                    // do nothing, admin is updated
+                    switch event {
+                    case .Next(let profile): self.updateUserWithModel(profile)
+                    default: break
+                    }
                 }
                 .addDisposableTo(disposeBag)
         }
