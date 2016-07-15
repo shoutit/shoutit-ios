@@ -236,7 +236,7 @@ private extension ShoutDetailViewModel {
     }
     
     private func fetchOtherShouts() -> Observable<[Shout]> {
-        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
+        let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     

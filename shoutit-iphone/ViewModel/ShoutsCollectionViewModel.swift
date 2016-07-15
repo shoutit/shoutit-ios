@@ -84,11 +84,11 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             let params = RelatedShoutsParams(shout: shout, page: page, pageSize: pageSize, type: nil)
             return APIShoutsService.relatedShoutsWithParams(params)
         case .ProfileShouts(let profile):
-            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
+            var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize, currentUserLocation: nil, skipLocation: true)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .TagShouts(let tag):
-            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location)
+            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: nil, skipLocation: true)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .DiscoverItemShouts(let discoverItem):
