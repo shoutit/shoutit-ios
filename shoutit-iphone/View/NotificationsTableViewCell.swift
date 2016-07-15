@@ -19,6 +19,10 @@ final class NotificationsTableViewCell: UITableViewCell {
         self.titleLabel.attributedText = message.attributedText()
         self.notificationImage.sh_setImageWithURL(message.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            self.notificationImage.sh_setImageWithURL(message.imageURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
+        }
+        
         if message.read == true {
             self.contentView.backgroundColor = UIColor.whiteColor()
         } else {

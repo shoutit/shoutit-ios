@@ -47,6 +47,6 @@
     </scenes>
     <resources>
         <image name="launch_background" width="375" height="667"/>
-        <image name="shoutit_logo_white" width="200" height="64"/>
+        <image name="shoutit_logo_white" width="200" height="62"/>
     </resources>
 </document>

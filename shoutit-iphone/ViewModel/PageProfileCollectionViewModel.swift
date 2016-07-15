@@ -106,7 +106,11 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
-        return .Remote(url: profile.imagePath?.toURL())
+        if let imgpath = profile.imagePath {
+            return .Remote(url: imgpath.toURL())
+        } else {
+            return .Local(image:UIImage.squareAvatarPagePlaceholder())
+        }
     }
     
     var coverURL: NSURL? {

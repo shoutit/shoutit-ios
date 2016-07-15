@@ -28,7 +28,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ned-CQ-4gm">
                                     <rect key="frame" x="10" y="178" width="76" height="76"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XRy-QQ-Qcz">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="XRy-QQ-Qcz">
                                             <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToL-cJ-4wd">
@@ -265,6 +265,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="default_profile" width="100" height="100"/>
         <image name="photo_icon_big_white" width="58" height="52"/>
         <image name="photo_icon_small_white" width="30" height="27"/>
     </resources>
