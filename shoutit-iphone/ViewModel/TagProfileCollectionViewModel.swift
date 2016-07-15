@@ -171,7 +171,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let name = nameParameter else { return nil }
-        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: Account.sharedInstance.user?.location)
+        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
