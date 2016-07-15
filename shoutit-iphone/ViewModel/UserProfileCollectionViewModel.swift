@@ -31,6 +31,10 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         listSection = listSectionWithModels([], isLoading: true)
     }
     
+    var placeholderImage: UIImage {
+        return UIImage.squareAvatarPlaceholder()
+    }
+    
     func reloadContent() {
         
         // reload user

@@ -12,10 +12,8 @@ class ProfileCellConfigurator: AnyObject {
     func configureCell(cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
         cell.nameLabel.text = cellViewModel.profile.name
         cell.listenersCountLabel.text = cellViewModel.listeningCountString()
-        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
-        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
-            cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
-        }
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: cellViewModel.profile.type == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
+        
         
         guard showsListenButton else {
             cell.listenButton.hidden = true

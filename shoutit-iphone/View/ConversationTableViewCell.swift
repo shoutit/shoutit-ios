@@ -26,10 +26,6 @@ final class ConversationTableViewCell: UITableViewCell {
         }
         self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
-        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
-            self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
-        }
-        
         if conversation.isRead() {
             self.backgroundColor = UIColor.whiteColor()
         } else {

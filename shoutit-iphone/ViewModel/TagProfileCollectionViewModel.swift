@@ -19,6 +19,11 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let filter: Filter?
     let category: ShoutitKit.Category?
     private(set) var tag: Tag?
+    
+    var placeholderImage: UIImage {
+        return UIImage.squareAvatarTagPlaceholder()
+    }
+    
     var model: ProfileCollectionViewModelMainModel? {
         guard let tag = tag else { return nil }
         return .TagModel(tag: tag)

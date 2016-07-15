@@ -32,7 +32,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var coverURL: NSURL? {get}
     var conversation: MiniConversation? {get}
     var reportable: Reportable? {get}
-    
+    var placeholderImage: UIImage { get }
     var verifyButtonTitle: String { get }
     var verified: Bool { get }
     // sections

@@ -34,6 +34,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return false
     }
     
+    var placeholderImage: UIImage {
+        return UIImage.squareAvatarPlaceholder()
+    }
+    
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     

@@ -210,10 +210,8 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     
     private func hydrateHeader() {
         headerView.authorNameLabel.text = viewModel.shout.user?.name
-        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user?.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
-        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
-            headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user?.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
-        }
+        headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user?.imagePath?.toURL(), placeholderImage: viewModel.shout.user?.type == .Page ? UIImage.squareAvatarPlaceholder() : UIImage.squareAvatarPagePlaceholder())
+        
         headerView.locationLabel.text = viewModel.locationString()
         headerView.shoutTypeLabel.text = viewModel.shout.type()?.title()
         headerView.titleLabel.text = viewModel.shout.title

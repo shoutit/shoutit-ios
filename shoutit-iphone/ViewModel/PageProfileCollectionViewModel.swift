@@ -31,6 +31,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         listSection = listSectionWithModels([], isLoading: true)
     }
     
+    var placeholderImage: UIImage {
+        return UIImage.squareAvatarPagePlaceholder()
+    }
+    
     func reloadContent() {
         
         // reload user

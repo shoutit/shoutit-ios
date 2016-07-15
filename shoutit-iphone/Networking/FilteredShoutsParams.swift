@@ -26,6 +26,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     public let withinDistance: Int?
     public let entireCountry: Bool
     public let sort: SortType?
+    public let excludeId: String?
     public let filters: [(Filter, [FilterValue])]?
     public let currentUserLocation: Address?
     
@@ -48,7 +49,8 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          filters: [(Filter, [FilterValue])]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
          currentUserLocation: Address? = nil,
-         skipLocation: Bool? = false) {
+         skipLocation: Bool? = false,
+         excludeId: String? = nil) {
         
         self.searchPhrase = searchPhrase
         self.discoverId = discoverId
@@ -65,6 +67,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.sort = sort
         self.filters = filters
         self.currentUserLocation = currentUserLocation
+        self.excludeId = excludeId
         
         if let skipLocation = skipLocation {
             if skipLocation == true {
@@ -119,6 +122,11 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         p["max_price"] = maximumPrice
         p["sort"] = sort?.type
         p["within"] = withinDistance
+        
+        if self.excludeId != nil {
+            p["exclude"] = self.excludeId
+        }
+        
         filters?.forEach({ (filter, values) in
             let valuesString = values.map{$0.slug}.joinWithSeparator(",")
             if valuesString.utf16.count > 0 {

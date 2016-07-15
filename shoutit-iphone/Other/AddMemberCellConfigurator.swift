@@ -31,9 +31,8 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
             cell.thumbnailImageView.alpha = 1.0
         }
         
-        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
-            cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
-        }
+        
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: cellViewModel.profile.type == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
         
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         

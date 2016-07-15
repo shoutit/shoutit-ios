@@ -14,6 +14,7 @@ public protocol Suggestable {
     var suggestionId: String {get} // user for api requests
     var thumbnailURL: NSURL? {get}
     var listenersCount: Int {get}
+    var userType: UserType { get }
 }
 
 extension Profile: Suggestable {
@@ -29,5 +30,8 @@ extension Profile: Suggestable {
     }
     public var thumbnailURL: NSURL? {
         return (self.imagePath != nil) ? NSURL(string: self.imagePath!) : nil
+    }
+    public var userType: UserType {
+        return self.type
     }
 }

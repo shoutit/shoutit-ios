@@ -117,11 +117,9 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         let cellViewModel = sectionViewModel.cells[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("PostSignupSuggestionsTableViewCell", forIndexPath: indexPath) as! PostSignupSuggestionsTableViewCell
         cell.nameLabel.text = cellViewModel.item.suggestionTitle
-        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: UIImage.squareAvatarPlaceholder())
         
-        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
-            cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: UIImage.squareAvatarPagePlaceholder())
-        }
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: cellViewModel.item.userType == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
+        
         
         let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
         cell.listenButton.setImage(image, forState: .Normal)
