@@ -76,8 +76,17 @@ extension ConversationCell where Self: UIView {
         if let imagePath = path, imgUrl = NSURL(string: imagePath) {
             imageView.sh_setImageWithURL(imgUrl, placeholderImage: UIImage.squareAvatarPlaceholder())
         } else {
+            if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+                if let imagePath = path, imgUrl = NSURL(string: imagePath) {
+                    imageView.sh_setImageWithURL(imgUrl, placeholderImage: UIImage.squareAvatarPagePlaceholder())
+            }
+                
+                if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+                    imageView.image = UIImage.squareAvatarPagePlaceholder()
+                }
             imageView.image = UIImage.squareAvatarPlaceholder()
         }
+      }
     }
     
     func hideImageView() {

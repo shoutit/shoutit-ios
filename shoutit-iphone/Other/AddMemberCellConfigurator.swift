@@ -15,7 +15,7 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
     
     override func configureCell(cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
         
-        let profile : Profile = cellViewModel.profile 
+        let profile : Profile = cellViewModel.profile
         
         cell.nameLabel.text = profile.name
         
@@ -29,6 +29,10 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
             cell.nameLabel.alpha = 1.0
             cell.listenersCountLabel.alpha = 1.0
             cell.thumbnailImageView.alpha = 1.0
+        }
+        
+        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+            cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
         }
         
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())

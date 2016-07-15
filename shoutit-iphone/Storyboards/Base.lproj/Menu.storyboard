@@ -83,7 +83,7 @@
                                         <constraint firstItem="ezm-0g-8MK" firstAttribute="leading" secondItem="joN-Uc-tki" secondAttribute="leading" constant="17" id="y7D-SS-d7o"/>
                                     </constraints>
                                 </view>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guest avatar" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-MR-boY">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="cEt-MR-boY">
                                     <rect key="frame" x="268" y="34" width="64" height="64"/>
                                     <gestureRecognizers/>
                                     <constraints>
@@ -471,6 +471,6 @@
         <image name="auth_screen_bg_pattern" width="333" height="552"/>
         <image name="create_shout_menu" width="22" height="22"/>
         <image name="credits_icon_menu" width="24" height="24"/>
-        <image name="guest avatar" width="66" height="66"/>
+        <image name="default_profile" width="100" height="100"/>
     </resources>
 </document>

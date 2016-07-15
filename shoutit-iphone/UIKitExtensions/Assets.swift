@@ -191,7 +191,7 @@ extension UIImage {
     }
     
     static func profileTagAvatar() -> UIImage {
-        return UIImage(named: "profile_avatar_tag")!
+        return UIImage(named: "default_tag")!
     }
     
     static func cameraIconWhite() -> UIImage {
@@ -209,7 +209,15 @@ extension UIImage {
     // MARK: - Placeholders
     
     static func squareAvatarPlaceholder() -> UIImage {
-        return UIImage(named: "profile")!
+        return UIImage(named: "default_profile")!
+    }
+    
+    static func squareAvatarPagePlaceholder() -> UIImage {
+        return UIImage(named: "default_page")!
+    }
+    
+    static func squareAvatarTagPlaceholder() -> UIImage {
+        return UIImage(named: "default_tag")!
     }
     
     static func backgroundPattern() -> UIImage {
