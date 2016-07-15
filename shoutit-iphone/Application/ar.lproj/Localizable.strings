@@ -126,9 +126,6 @@
 /* Alert title - user tries to pick more than allowed number of videos in media picker */
 "Cannot add more videos" = "لا يمكن إضافة مزيد من الفيديو";
 
-/* Shout details */
-"Category" = "التصنيف";
-
 /* Main search screen categories header */
 "Categories" = "التصنيفات";
 
@@ -138,7 +135,7 @@
 /* Post signup 1 placeholder */
 "Categories unavilable" = "التصنيفات غير متاحة";
 
-/* No comment provided by engineer. */
+/* Shout details */
 "Category" = "التصنيف";
 
 /* No comment provided by engineer. */
