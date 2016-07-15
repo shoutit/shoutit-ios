@@ -1,8 +1,8 @@
 /* Class = "UILabel"; text = "Contacts"; ObjectID = "Fub-9R-HLo"; */
 "Fub-9R-HLo.text" = "جهات الاتصال";
 
-/* Class = "UILabel"; text = "Twitter"; ObjectID = "MqY-uT-KeA"; */
-"MqY-uT-KeA.text" = "تويتر";
+/* Class = "UILabel"; text = "Contacts"; ObjectID = "MqY-uT-KeA"; */
+"MqY-uT-KeA.text" = "جهات الاتصال";
 
 /* Class = "UILabel"; text = "Pages"; ObjectID = "Uip-f1-UcD"; */
 "Uip-f1-UcD.text" = "الصفحات";
@@ -15,6 +15,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "INVITE FRIENDS"; ObjectID = "XFT-yx-Zs1"; */
 "XFT-yx-Zs1.headerTitle" = "دعوة الأصدقاء";
+
+/* Class = "UILabel"; text = "Twitter"; ObjectID = "d2I-3e-rlO"; */
+"d2I-3e-rlO.text" = "تويتر";
 
 /* Class = "UITableViewSection"; headerTitle = "SUGGESTIONS"; ObjectID = "dFB-2V-zC5"; */
 "dFB-2V-zC5.headerTitle" = "الاقتراحات";

@@ -2,7 +2,7 @@
 "0w1-iB-LJP.normalTitle" = "تم";
 
 /* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "2hM-uG-45m"; */
-"2hM-uG-45m.normalTitle" = "هل نسيت كلمة المرور؟ ";
+"2hM-uG-45m.normalTitle" = "هل نسيت كلمة المرور؟";
 
 /* Class = "UILabel"; text = "Search"; ObjectID = "2sy-bq-ms4"; */
 "2sy-bq-ms4.text" = "ابحث";
@@ -14,7 +14,7 @@
 "14e-Rq-a3Y.text" = "يمكنك وضع صور وفيديو في إعلاناتك.";
 
 /* Class = "UILabel"; text = "Join Now!"; ObjectID = "A0X-MT-0sG"; */
-"A0X-MT-0sG.text" = "اشترك الآن! ";
+"A0X-MT-0sG.text" = "اشترك الآن!";
 
 /* Class = "UITextField"; placeholder = "Email or Username"; ObjectID = "A5j-dd-Kjd"; */
 "A5j-dd-Kjd.placeholder" = "البريد الإلكتروني أو إسم المستخدم";
@@ -99,6 +99,9 @@
 
 /* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
 "ff2-Jg-zkJ.text" = "بواسطة غوغل";
+
+/* Class = "UIButton"; normalTitle = "Create a Page for brand or business."; ObjectID = "gmD-j1-B34"; */
+"gmD-j1-B34.normalTitle" = "إنشاء صفحة لعلامتك التجارية أو عملك";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "iKX-Fx-ZOg"; */
 "iKX-Fx-ZOg.placeholder" = "كلمة المرور";

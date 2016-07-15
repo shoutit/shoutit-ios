@@ -1,12 +1,27 @@
-
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "6Du-Jn-gqn"; */
 "6Du-Jn-gqn.title" = "Save";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "DYj-Hj-COT"; */
 "DYj-Hj-COT.title" = "Cancel";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ezn-jN-ETG"; */
+"Ezn-jN-ETG.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "Location"; ObjectID = "KHV-gk-i75"; */
 "KHV-gk-i75.normalTitle" = "Location";
 
+/* Class = "UILabel"; text = "Placeholder"; ObjectID = "L6G-zO-iZL"; */
+"L6G-zO-iZL.text" = "Placeholder";
+
+/* Class = "UITextView"; text = "Placeholder TextView"; ObjectID = "Q8P-0C-e8e"; */
+"Q8P-0C-e8e.text" = "Placeholder TextView";
+
 /* Class = "UINavigationItem"; title = "Edit Profile"; ObjectID = "Wch-UH-hQX"; */
 "Wch-UH-hQX.title" = "Edit Profile";
+
+/* Class = "UILabel"; text = "Placeholder"; ObjectID = "drL-vq-bwc"; */
+"drL-vq-bwc.text" = "Placeholder";
+
+/* Class = "UITextField"; placeholder = "Placeholder"; ObjectID = "t2g-JK-sgJ"; */
+"t2g-JK-sgJ.placeholder" = "Placeholder";
+

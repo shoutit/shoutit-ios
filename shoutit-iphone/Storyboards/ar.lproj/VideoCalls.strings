@@ -14,7 +14,7 @@
 "IHn-L1-0lT.text" = "يتصل";
 
 /* Class = "UILabel"; text = "Incoming call from XX"; ObjectID = "Otg-mn-IP0"; */
-"Otg-mn-IP0.text" = "مكالمة واردة من XX ";
+"Otg-mn-IP0.text" = "مكالمة واردة من XX";
 
 /* Class = "UILabel"; text = "Call"; ObjectID = "WrL-1Z-BUo"; */
 "WrL-1Z-BUo.text" = "مكالمة";

@@ -11,7 +11,7 @@
 "E9i-u2-qRC.title" = "معلومات المحادثة";
 
 /* Class = "UILabel"; text = "Message Preview"; ObjectID = "Ejl-rm-dWM"; */
-"Ejl-rm-dWM.text" = "عرض الرسالة ";
+"Ejl-rm-dWM.text" = "عرض الرسالة";
 
 /* Class = "UIButton"; normalTitle = "Create"; ObjectID = "FGH-Jc-OeH"; */
 "FGH-Jc-OeH.normalTitle" = "إنشاء";

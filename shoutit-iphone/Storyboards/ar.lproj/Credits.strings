@@ -1,1 +1,63 @@
+/* Class = "UILabel"; text = "TOP"; ObjectID = "7SZ-Eq-X2U"; */
+"7SZ-Eq-X2U.text" = "TOP";
+
+/* Class = "UIViewController"; title = "Promoting Shouts"; ObjectID = "86M-iv-Kia"; */
+"86M-iv-Kia.title" = "تمييز الإعلانات";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "841-4j-GcV"; */
+"841-4j-GcV.text" = "0";
+
+/* Class = "UILabel"; text = "Your shout will appear on top of search results."; ObjectID = "Ey9-HH-idy"; */
+"Ey9-HH-idy.text" = "سيظهر إعلانك في أعلى نتائج البحث.";
+
+/* Class = "UILabel"; text = "Mon at 12:30"; ObjectID = "HgX-b3-Tgq"; */
+"HgX-b3-Tgq.text" = "Mon at 12:30";
+
+/* Class = "UILabel"; text = "Promoting Shouts"; ObjectID = "Kiv-iB-awB"; */
+"Kiv-iB-awB.text" = "تمييز الإعلانات";
+
+/* Class = "UITableViewSection"; headerTitle = "SPEND ON"; ObjectID = "Lpp-I9-XDM"; */
+"Lpp-I9-XDM.headerTitle" = "SPEND ON";
+
+/* Class = "UITableViewSection"; headerTitle = "EARN BY"; ObjectID = "PNg-u2-Wgl"; */
+"PNg-u2-Wgl.headerTitle" = "EARN BY";
+
+/* Class = "UILabel"; text = "Draw more attention to your Shouts by promoting them!"; ObjectID = "QUT-cr-OFn"; */
+"QUT-cr-OFn.text" = "أجذب المزيد من الإنتباه لإعلاناتك من خلال تمييزها!";
+
+/* Class = "UINavigationItem"; title = "Credit Transactions"; ObjectID = "TG4-P8-1Uw"; */
+"TG4-P8-1Uw.title" = "معاملات شاوت ات كريديت";
+
+/* Class = "UILabel"; text = "TOP PREMIUM"; ObjectID = "XXp-Kg-qKw"; */
+"XXp-Kg-qKw.text" = "TOP PREMIUM";
+
+/* Class = "UILabel"; text = "Sharing on Facebook"; ObjectID = "ZGJ-7s-yVu"; */
+"ZGJ-7s-yVu.text" = "مشاركة الإعلانات على الفيس بوك";
+
+/* Class = "UILabel"; text = "Listening to friends"; ObjectID = "cr0-G8-B2b"; */
+"cr0-G8-B2b.text" = "الإستماع إلى الأصدقاء";
+
+/* Class = "UILabel"; text = "Completing your Profile"; ObjectID = "dkT-uQ-tx8"; */
+"dkT-uQ-tx8.text" = "إكمال ملفك الشخصي";
+
+/* Class = "UILabel"; text = "Your shout will be highlighted and appear on top of all searches."; ObjectID = "gtr-CS-389"; */
+"gtr-CS-389.text" = "سيتم تسليط الضوء على إعلانك وسيظهر في أعلى نتائج البحث.";
+
+/* Class = "UILabel"; text = "Your Balance"; ObjectID = "iX0-Vh-n3K"; */
+"iX0-Vh-n3K.text" = "رصيدك";
+
+/* Class = "UILabel"; text = "PREMIUM"; ObjectID = "jyD-3D-xj3"; */
+"jyD-3D-xj3.text" = "مميز";
+
+/* Class = "UITableViewController"; title = "Shoutit Credit"; ObjectID = "lPD-rW-x3U"; */
+"lPD-rW-x3U.title" = "شاوت ات كريدت";
+
+/* Class = "UILabel"; text = "Inviting friends"; ObjectID = "seH-h4-gWI"; */
+"seH-h4-gWI.text" = "دعوة الأصدقاء";
+
+/* Class = "UILabel"; text = "Your shout will be highlighted in all searches."; ObjectID = "tRh-Ov-QUH"; */
+"tRh-Ov-QUH.text" = "سيتم تسليط الضوء على إعلانك في جميع نتائج البحث.";
+
+/* Class = "UILabel"; text = "New Shout from Lenovo"; ObjectID = "zQV-Ow-m5M"; */
+"zQV-Ow-m5M.text" = "New Shout from Lenovo";
 
