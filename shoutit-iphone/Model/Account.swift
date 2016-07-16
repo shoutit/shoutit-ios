@@ -335,6 +335,12 @@ private extension Account {
         
         guard let user = self.user, apnsToken = self.apnsToken where apnsToken != user.pushTokens?.apns && !updatingAPNS else { return }
         
+        if case .Page(let admin, let page)? = loginState {
+            if admin.pushTokens?.apns == self.apnsToken {
+                return
+            }
+        }
+        
         updatingAPNS = true
         
         let params = APNParams(tokens: PushTokens(apns: apnsToken, gcm: nil))
