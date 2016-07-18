@@ -125,6 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Push notifications
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+        UIAlertView(title: "push received", message: userInfo.description, delegate: nil, cancelButtonTitle: "ok", otherButtonTitles: "ok").show()
+        
         guard let userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
             return
         }
