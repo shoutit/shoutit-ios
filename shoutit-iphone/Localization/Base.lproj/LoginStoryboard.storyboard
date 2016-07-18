@@ -252,7 +252,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="bCx-YO-TOL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -409,7 +409,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="f5V-rM-zo8"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -999,16 +999,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_background" translatesAutoresizingMaskIntoConstraints="NO" id="pil-ay-7Iq">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="667"/>
                             </imageView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-GK-zH8">
-                                <rect key="frame" x="28" y="58" width="544" height="316"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="316" id="dkb-r8-1Hn"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="35h-VE-FzJ" kind="embed" id="oU3-vl-qhJ"/>
-                                </connections>
-                            </containerView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="iTA-ZQ-EcW">
                                 <rect key="frame" x="265" y="382" width="71" height="37"/>
                             </pageControl>
@@ -1053,15 +1043,25 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-GK-zH8">
+                                <rect key="frame" x="22" y="58" width="556" height="316"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="316" id="dkb-r8-1Hn"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="35h-VE-FzJ" kind="embed" id="oU3-vl-qhJ"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Wk4-LN-gj4" secondAttribute="trailing" id="7Ew-Ge-rjq"/>
                             <constraint firstItem="pil-ay-7Iq" firstAttribute="top" secondItem="s2I-E1-NyD" secondAttribute="top" id="BFW-1A-DnU"/>
-                            <constraint firstItem="BBl-GK-zH8" firstAttribute="leading" secondItem="s2I-E1-NyD" secondAttribute="leading" constant="28" id="JB0-Ay-bfg"/>
+                            <constraint firstItem="BBl-GK-zH8" firstAttribute="leading" secondItem="s2I-E1-NyD" secondAttribute="leading" constant="22" id="JB0-Ay-bfg"/>
                             <constraint firstItem="iTA-ZQ-EcW" firstAttribute="top" secondItem="BBl-GK-zH8" secondAttribute="bottom" constant="8" id="JVF-29-E62"/>
                             <constraint firstItem="kCg-f5-fVS" firstAttribute="top" secondItem="FeT-P1-QuZ" secondAttribute="bottom" priority="800" constant="100" id="RPY-2J-Zun"/>
-                            <constraint firstAttribute="trailing" secondItem="BBl-GK-zH8" secondAttribute="trailing" constant="28" id="WnZ-Wh-yfP"/>
+                            <constraint firstAttribute="trailing" secondItem="BBl-GK-zH8" secondAttribute="trailing" constant="22" id="WnZ-Wh-yfP"/>
                             <constraint firstItem="tVc-LS-ZZw" firstAttribute="leading" secondItem="s2I-E1-NyD" secondAttribute="leading" id="aZw-ZD-Zeu"/>
                             <constraint firstItem="pil-ay-7Iq" firstAttribute="leading" secondItem="s2I-E1-NyD" secondAttribute="leading" id="gzg-A8-9Ki"/>
                             <constraint firstItem="FeT-P1-QuZ" firstAttribute="centerX" secondItem="s2I-E1-NyD" secondAttribute="centerX" id="h9D-QL-YJl"/>
@@ -1111,14 +1111,14 @@
                                             <constraint firstAttribute="height" constant="100" id="l03-GD-sfd"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy &amp; Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soz-bA-Q3z">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy &amp; Sell while Chatting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="Soz-bA-Q3z">
                                         <rect key="frame" x="17" y="193" width="281" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="281" id="8eX-Gw-194"/>
                                             <constraint firstAttribute="height" constant="31" id="WFe-Uv-XfB"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="x9B-iv-dWa"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1507,7 +1507,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="Y06-Yl-uCD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
