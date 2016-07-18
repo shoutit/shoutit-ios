@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import ShoutitKit
 
 final class MenuTableViewController: UITableViewController, Navigation {
     
@@ -24,6 +25,8 @@ final class MenuTableViewController: UITableViewController, Navigation {
     
     @IBOutlet var headerView : MenuHeaderView?
     @IBOutlet var versionLabel : UILabel?
+    
+    private let badgeLabel = CustomUILabel()
     
     var overlayView : UIView? {
         didSet {
