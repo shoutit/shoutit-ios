@@ -25,7 +25,7 @@ final class DiscoverGivenItemViewModel: DiscoverViewModel {
             .discoverItems(forDiscoverItem: self.itemToShow)
             .subscribeNext { [weak self] detailedItem -> Void in
                 self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
-                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
+                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, skipLocation: true)
                 APIShoutsService.listShoutsWithParams(params)
                     .subscribeNext{ [weak self] (shouts) -> Void in
                         self?.shouts.on(.Next(shouts))

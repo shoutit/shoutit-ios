@@ -44,7 +44,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                 
                 guard let `self` = self else { return }
                 self.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
-                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location)
+                let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, skipLocation: true)
                 
                 APIShoutsService
                     .listShoutsWithParams(params)

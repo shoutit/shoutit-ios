@@ -169,7 +169,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     private func fetchPages() -> Observable<[Profile]> {
-        let params = PageParams(page: 1, pageSize: 3)
+        let params = PageParams(page: 1, pageSize:  3)
         return APIProfileService.getPagesForUsername(profile.username, pageParams: params).map{ $0.results }
     }
     

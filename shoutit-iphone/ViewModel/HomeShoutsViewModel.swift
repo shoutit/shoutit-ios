@@ -145,7 +145,7 @@ class HomeShoutsViewModel: AnyObject {
             }
             return APIProfileService.homeShoutsWithParams(params)
         } else {
-            var params = FilteredShoutsParams(page: page, pageSize: 20, useLocaleBasedCountryCodeWhenNil: true, currentUserLocation: Account.sharedInstance.user?.location)
+            var params = FilteredShoutsParams(page: page, pageSize: 20, useLocaleBasedCountryCodeWhenNil: true, skipLocation: true)
             if let filtersState = filtersState {
                 let filterParams = filtersState.composeParams()
                 params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)

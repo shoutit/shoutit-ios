@@ -73,6 +73,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
+        guard let currentUserId = Account.sharedInstance.user?.id else {
+            return true
+        }
+        
+        guard userInfo["pushed_for"] as? String == currentUserId else {
+            return true
+        }
+        
         handlePushNotificationData(userInfoData, dispatchAfter: 2)
         
         return true
@@ -125,8 +133,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Push notifications
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    
+        guard let currentUserId = Account.sharedInstance.user?.id else {
+            return
+        }
         
-        UIAlertView(title: "push received", message: userInfo.description, delegate: nil, cancelButtonTitle: "ok", otherButtonTitles: "ok").show()
+        guard userInfo["pushed_for"] as? String == currentUserId else {
+            return
+        }
         
         guard let userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
             return
@@ -140,14 +154,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
         
         if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
-            
-            guard let currentUserId = Account.sharedInstance.user?.id else {
-                return
-            }
-            
-            guard data["pushed_for"] as? String == currentUserId else {
-                return
-            }
             
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
             

@@ -23,7 +23,7 @@ final class ConversationSelectShoutController: UITableViewController {
         
         navigationItem.title = NSLocalizedString("Select Shout", comment: "")
         
-        let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30, currentUserLocation: Account.sharedInstance.user?.location)
+        let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30, skipLocation: true)
         
         APIShoutsService.listShoutsWithParams(params).asDriver(onErrorJustReturn: []).driveNext { [weak self] (shouts) in
             self?.shouts = shouts

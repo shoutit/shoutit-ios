@@ -31,6 +31,8 @@ final class APIAuthService {
                 request.cancel()
             }
             
+            debugPrint(request)
+            
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)

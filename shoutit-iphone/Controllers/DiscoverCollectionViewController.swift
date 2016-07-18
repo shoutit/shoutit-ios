@@ -52,11 +52,11 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         }
         
         viewModel.items.asObservable().observeOn(MainScheduler.instance).subscribeNext {[weak self] (result) in
-            self?.collectionView?.reloadSections(NSIndexSet(index: 0))
+            self?.collectionView?.reloadData()
         }.addDisposableTo(disposeBag)
         
         viewModel.shouts.asObservable().observeOn(MainScheduler.instance).subscribeNext({ [weak self] (result) -> Void in
-            self?.collectionView?.reloadSections(NSIndexSet(index: 1))
+            self?.collectionView?.reloadData()
             }).addDisposableTo(disposeBag)
         
         viewModel.retriveDiscoverItems()
