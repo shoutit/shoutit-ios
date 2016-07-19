@@ -130,6 +130,7 @@ final class PusherClient : NSObject {
     }
     
     private func subscribeToMainChannel() {
+        
         mainChannelObservable().subscribeNext { (event) -> Void in
         
             log.info("PUSHER: MAIN CHANNEL EVENT: \(event.name) --- \n ---- \(event.data)")
@@ -214,6 +215,14 @@ final class PusherClient : NSObject {
             ch.unsubscribe()
         }
     }
+    
+    func connectToMainChannels() {
+        subscribeToMainChannel()
+        
+        if case .Page(_,let page)? = account.loginState {
+            subscribeToPageMainChannel(page)
+        }
+    }
 }
 
 extension PusherClient : PTPusherDelegate {
@@ -223,11 +232,18 @@ extension PusherClient : PTPusherDelegate {
     
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
         log.verbose("PUSHER: CONNECTED")
-        subscribeToMainChannel()
         
-        if case .Page(_,let page)? = account.loginState {
-            subscribeToPageMainChannel(page)
+        // WARNING //
+        
+        // There is issue with Pusher Library everytime pusher did connect it calls this delegate method and after that it calls subscribeAll.
+        // If we do our subscription immediately it is added to internal `channels` dictionary and in subscribeAll that causes duplicate subscription.
+        // So we want to add small delay before subscribing to avoid this situation.
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.connectToMainChannels()
         }
+        
     }
     
     func pusher(pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
