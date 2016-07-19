@@ -61,6 +61,8 @@ final class MenuTableViewController: UITableViewController, Navigation {
             #endif
             
             versionLabel?.text = "\(appName) \(version) (\(build))"
+            
+            subscribeForStatsChange()
         }
     }
     
@@ -93,6 +95,15 @@ final class MenuTableViewController: UITableViewController, Navigation {
         cell.bindWith(item, current: item == selectedNavigationItem)
         cell.setSeparatorVisible(isNotLastSection && itemIsLastInSection)
         
+            if case .Some(.Page(let admin, _)) = Account.sharedInstance.loginState {
+                if item == NavigationItem.SwitchFromPageToUser {
+                    cell.setBadgeNumber(admin.stats?.totalUnreadCount ?? 0)
+                } else {
+                   cell.setBadgeNumber(0)
+                }
+            } else {
+                cell.setBadgeNumber(0)
+        }
         return cell
     }
     
@@ -136,6 +147,13 @@ final class MenuTableViewController: UITableViewController, Navigation {
         } else {
             rootController.openItem(navigationItem)
         }
+    }
+    
+    func subscribeForStatsChange(){
+        
+        Account.sharedInstance.statsSubject.subscribeNext{ (stats) in
+            self.tableView.reloadData()
+            }.addDisposableTo(disposeBag)
     }
 }
 
