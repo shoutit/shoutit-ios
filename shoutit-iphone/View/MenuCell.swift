@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 final class MenuCell: UITableViewCell {
 
@@ -14,6 +15,7 @@ final class MenuCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bottomSeparator: UIView?
     @IBOutlet weak var bottomSeparatorHeight: NSLayoutConstraint?
+    @IBOutlet weak var badgeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,5 +35,10 @@ final class MenuCell: UITableViewCell {
     private func adjustSeparatorHeight() {
         bottomSeparatorHeight?.constant = 1.0/UIScreen.mainScreen().scale
         layoutIfNeeded()
+    }
+    
+    func setBadgeNumber(badgeNumber: Int) {
+        badgeLabel.hidden = badgeNumber < 1
+        badgeLabel.text = NumberFormatters.badgeCountStringWithNumber(badgeNumber)
     }
 }
