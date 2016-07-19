@@ -23,11 +23,11 @@ public struct Constants {
     
     public struct FacebookAudience {
         #if STAGING
-        public static let detailAdID = "1151546964858487_1249823215030861"
-        public static let collectionAdID = "1151546964858487_1245960432083806"
+        public static let detailAdID = "1151546964858487_1259641220715727"
+        public static let collectionAdID = "1151546964858487_1245960495417133"
         #else
-        public static let detailAdID = "353625811317277_1249824038364112"
-        public static let collectionAdID = "353625811317277_1245942718752244"
+        public static let detailAdID = "353625811317277_1259608590718990"
+        public static let collectionAdID = "353625811317277_1245949345418248"
         #endif
     }
     
