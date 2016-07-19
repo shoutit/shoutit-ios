@@ -97,7 +97,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         
             if case .Some(.Page(let admin, _)) = Account.sharedInstance.loginState {
                 if item == NavigationItem.SwitchFromPageToUser {
-                    cell.setBadgeNumber(admin.stats?.unreadNotificationsCount ?? 0)
+                    cell.setBadgeNumber(admin.stats?.totalUnreadCount ?? 0)
                 } else {
                    cell.setBadgeNumber(0)
                 }
