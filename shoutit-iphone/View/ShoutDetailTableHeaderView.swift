@@ -33,6 +33,10 @@ final class ShoutDetailTableHeaderView: UIView {
         internalContainerView.layer.cornerRadius = 4
         internalContainerView.layer.borderWidth = 1 / UIScreen.mainScreen().scale
         internalContainerView.layer.borderColor = UIColor(shoutitColor: .CellBackgroundGrayColor).CGColor
+        
+        
+        
+        
     }
     
     func setConstraintForPriceLabelVisible(visible: Bool) {
