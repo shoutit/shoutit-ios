@@ -104,7 +104,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
             case .ProfileModel(let profile):
                 APIProfileService.listen(self.isListening, toProfileWithUsername: profile.username).subscribe(subscribeBlock).addDisposableTo(self.disposeBag)
             case .TagModel(let tag):
-                APITagsService.listen(self.isListening, toTagWithName: tag.name).subscribe(subscribeBlock).addDisposableTo(self.disposeBag)
+                APITagsService.listen(self.isListening, toTagWithSlug: tag.slug).subscribe(subscribeBlock).addDisposableTo(self.disposeBag)
             }
             
             return NopDisposable.instance

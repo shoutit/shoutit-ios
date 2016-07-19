@@ -14,6 +14,7 @@ public struct Tag {
     
     // basic fields
     public let id: String
+    public let slug: String
     public let name: String
     public let apiPath: String
     public let imagePath: String?
@@ -31,14 +32,15 @@ extension Tag: Decodable {
     public static func decode(j: JSON) -> Decoded<Tag> {
         let a = curry(Tag.init)
             <^> j <| "id"
+            <*> j <| "slug"
             <*> j <| "name"
             <*> j <| "api_url"
-            <*> j <|? "image"
         let b = a
+            <*> j <|? "image"
             <*> j <|? "web_path"
             <*> j <|? "listeners_count"
-            <*> j <|? "listeners_url"
         return b
+            <*> j <|? "listeners_url"
             <*> j <|? "is_listening"
             <*> j <|? "shouts_url"
     }

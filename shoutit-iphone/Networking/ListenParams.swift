@@ -10,15 +10,15 @@ import Foundation
 
 public struct BatchListenParams: Params {
     
-    public let tagNames: [String]
+    public let tagSlugs: [String]
     
     public var params: [String : AnyObject] {
         return [
-            "tags" : tagNames.map{["name" : $0]}
+            "tags" : tagSlugs.map{["slug" : $0]}
         ]
     }
     
-    public init(tagNames: [String]) {
-        self.tagNames = tagNames
+    public init(tagSlugs: [String]) {
+        self.tagSlugs = tagSlugs
     }
 }

@@ -27,6 +27,6 @@ final class TagsListCellViewModel: Listenable {
     }
     
     func listenRequestObservable() -> Observable<Void> {
-        return APITagsService.listen(self.isListening, toTagWithName: self.tag.name)
+        return APITagsService.listen(self.isListening, toTagWithSlug: self.tag.slug)
     }
 }

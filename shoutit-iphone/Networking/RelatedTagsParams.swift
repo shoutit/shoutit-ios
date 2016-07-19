@@ -10,7 +10,7 @@ import Foundation
 
 public struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
     
-    public let tagName: String
+    public let tagSlug: String
     public let pageSize: Int?
     public let page: Int?
     public let category: String?
@@ -33,8 +33,8 @@ public struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
         return p
     }
     
-    public init(tagName: String, pageSize: Int?, page: Int?, category: String?, city: String?, state: String?, country: String?) {
-        self.tagName = tagName
+    public init(tagSlug: String, pageSize: Int?, page: Int?, category: String?, city: String?, state: String?, country: String?) {
+        self.tagSlug = tagSlug
         self.pageSize = pageSize
         self.page = page
         self.category = category

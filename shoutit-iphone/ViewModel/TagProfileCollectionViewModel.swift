@@ -59,8 +59,8 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
     private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
-    var nameParameter: String? {
-        return tag?.name ?? filter?.value?.slug ?? category?.slug
+    var slugParameter: String? {
+        return tag?.slug ?? filter?.value?.slug ?? category?.slug
     }
     
     // user data
@@ -124,7 +124,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     func listen() -> Observable<Void>? {
-        guard let listening = tag?.isListening, name = nameParameter else {return nil}
+        guard let listening = tag?.isListening, slug = slugParameter else {return nil}
         let listen = !listening
         let reloadTag = fetchTag()!.map {[weak self] (tag) -> Void in
             self?.tag = tag
@@ -132,7 +132,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             let message = listen ? UserMessages.startedListeningMessageWithName(tag.name) : UserMessages.stoppedListeningMessageWithName(tag.name)
             self?.successMessageSubject.onNext(message)
         }
-        return APITagsService.listen(listen, toTagWithName: name).flatMap{ () -> Observable<Void> in
+        return APITagsService.listen(listen, toTagWithSlug: slug).flatMap{ () -> Observable<Void> in
             return reloadTag
         }
     }
@@ -164,19 +164,19 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     // MARK: - Helpers
     
     private func fetchTag() -> Observable<Tag>? {
-        guard let name = nameParameter else { return nil }
-        return APITagsService.retrieveTagWithName(name)
+        guard let slug = slugParameter else { return nil }
+        return APITagsService.retrieveTagWithSlug(slug)
     }
     
     private func fetchRelatedTags() -> Observable<[Tag]>? {
-        guard let name = nameParameter else { return nil }
-        let params = RelatedTagsParams(tagName: name, pageSize: 3, page: 1, category: nil, city: nil, state: nil, country: nil)
-        return APITagsService.retrieveRelatedTagsForTagWithName(name, params: params)
+        guard let slug = slugParameter else { return nil }
+        let params = RelatedTagsParams(tagSlug: slug, pageSize: 3, page: 1, category: nil, city: nil, state: nil, country: nil)
+        return APITagsService.retrieveRelatedTagsForTagWithSlug(slug, params: params)
     }
     
     private func fetchShouts() -> Observable<[Shout]>? {
-        guard let name = nameParameter else { return nil }
-        let params = FilteredShoutsParams(tag: name, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: nil, skipLocation: true)
+        guard let slug = slugParameter else { return nil }
+        let params = FilteredShoutsParams(tag: slug, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     

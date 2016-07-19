@@ -89,7 +89,7 @@ extension SearchShoutsResultsViewModel {
                                               skipLocation: false)
             case .TagShouts(let tag):
                 params = FilteredShoutsParams(searchPhrase: phrase,
-                                              tag: tag.name,
+                                              tag: tag.slug,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,

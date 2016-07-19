@@ -37,7 +37,7 @@ final class PostSignupInterestsViewModel {
     
     func listenToSelectedCategories() -> Observable<Void> {
         let tagNames = categories.value.filter{$0.selected}.map{$0.category.slug}
-        let params = BatchListenParams(tagNames: tagNames)
+        let params = BatchListenParams(tagSlugs: tagNames)
         return APITagsService.requestBatchListenTagWithParams(params)
     }
 }

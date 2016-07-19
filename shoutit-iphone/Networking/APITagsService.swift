@@ -16,19 +16,19 @@ final class APITagsService {
     
     private static let batchTagListenURL = APIManager.baseURL + "/tags/batch_listen"
     
-    static func listen(listen: Bool, toTagWithName name: String) -> Observable<Void> {
-        let url = APIManager.baseURL + "/tags/\(name)/listen"
+    static func listen(listen: Bool, toTagWithSlug slug: String) -> Observable<Void> {
+        let url = APIManager.baseURL + "/tags/\(slug)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE
         return APIGenericService.basicRequestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
-    static func retrieveTagWithName(name: String) -> Observable<Tag> {
-        let url = APIManager.baseURL + "/tags/\(name)"
+    static func retrieveTagWithSlug(slug: String) -> Observable<Tag> {
+        let url = APIManager.baseURL + "/tags/\(slug)"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
     }
     
-    static func retrieveRelatedTagsForTagWithName(name: String, params: RelatedTagsParams) -> Observable<[Tag]> {
-        let url = APIManager.baseURL + "/tags/\(name)/related"
+    static func retrieveRelatedTagsForTagWithSlug(slug: String, params: RelatedTagsParams) -> Observable<[Tag]> {
+        let url = APIManager.baseURL + "/tags/\(slug)/related"
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: ["results"])
     }
     
