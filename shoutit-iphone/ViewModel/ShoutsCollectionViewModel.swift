@@ -88,7 +88,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .TagShouts(let tag):
-            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: nil, skipLocation: true)
+            var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location, skipLocation: false)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.searchShoutsWithParams(params)
         case .DiscoverItemShouts(let discoverItem):

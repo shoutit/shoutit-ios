@@ -16,7 +16,7 @@ extension UIImageView {
             if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             } else {
-                kf_setImageWithURL(url, placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
+                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(.Large), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             }
         } else if let placeholderImage = placeholderImage {
             self.image = placeholderImage
@@ -30,7 +30,7 @@ extension UIImageView {
             if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage)
             } else {
-                kf_setImageWithURL(url, placeholderImage: placeholderImage)
+                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(.Large), placeholderImage: placeholderImage)
             }
         } else if let placeholderImage = placeholderImage {
             self.image = placeholderImage
