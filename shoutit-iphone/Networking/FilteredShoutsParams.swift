@@ -27,6 +27,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     public let entireCountry: Bool
     public let sort: SortType?
     public let excludeId: String?
+    public let skipLocation: Bool?
     public let filters: [(Filter, [FilterValue])]?
     public let currentUserLocation: Address?
     
@@ -49,7 +50,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          filters: [(Filter, [FilterValue])]? = nil,
          useLocaleBasedCountryCodeWhenNil: Bool = false,
          currentUserLocation: Address? = nil,
-         skipLocation: Bool? = false,
+         skipLocation: Bool?,
          excludeId: String? = nil) {
         
         self.searchPhrase = searchPhrase
@@ -68,6 +69,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.filters = filters
         self.currentUserLocation = currentUserLocation
         self.excludeId = excludeId
+        self.skipLocation = skipLocation
         
         if let skipLocation = skipLocation {
             if skipLocation == true {
@@ -106,7 +108,8 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
                                     entireCountry: entireCountry,
                                     sort: sort ?? other.sort,
                                     filters: filters ?? other.filters,
-                                    currentUserLocation: currentUserLocation)
+                                    currentUserLocation: currentUserLocation,
+                                    skipLocation: other.skipLocation)
     }
     
     public var params: [String : AnyObject] {
@@ -116,7 +119,11 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         p["discover"] = discoverId
         p["profile"] = username
         p["tags"] = tag
-        p["shout_type"] = shoutType?.rawValue ?? "all"
+        
+        if let shoutTypeValue =  shoutType?.rawValue {
+            p["shout_type"] = shoutTypeValue
+        }
+    
         p["category"] = category
         p["min_price"] = minimumPrice
         p["max_price"] = maximumPrice
@@ -136,6 +143,12 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         
         for (key, value) in pagedParams {
             p[key] = value
+        }
+        
+        if let skipLocation = self.skipLocation {
+            if skipLocation == true {
+                return p
+            }
         }
         
         if entireCountry {

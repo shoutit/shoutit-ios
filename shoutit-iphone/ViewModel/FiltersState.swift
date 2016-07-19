@@ -76,7 +76,7 @@ struct FiltersState {
                                     entireCountry: entireCountry,
                                     sort: sortType.0,
                                     filters: filters,
-                                    currentUserLocation: Account.sharedInstance.user?.location)
+                                    currentUserLocation: Account.sharedInstance.user?.location, skipLocation: false)
     }
 }
 

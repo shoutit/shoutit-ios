@@ -69,35 +69,40 @@ extension SearchShoutsResultsViewModel {
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              currentUserLocation: Account.sharedInstance.user?.location)
+                                              currentUserLocation: Account.sharedInstance.user?.location,
+                                              skipLocation: false)
             case .DiscoverShouts(let item):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               discoverId: item.id,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              currentUserLocation: Account.sharedInstance.user?.location)
+                                              currentUserLocation: Account.sharedInstance.user?.location,
+                                              skipLocation: false)
             case .ProfileShouts(let profile):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               username: profile.username,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              currentUserLocation: Account.sharedInstance.user?.location)
+                                              currentUserLocation: Account.sharedInstance.user?.location,
+                                              skipLocation: false)
             case .TagShouts(let tag):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               tag: tag.name,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              currentUserLocation: Account.sharedInstance.user?.location)
+                                              currentUserLocation: Account.sharedInstance.user?.location,
+                                              skipLocation: false)
             case .CategoryShouts(let category):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               category: category.slug,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
-                                              currentUserLocation: Account.sharedInstance.user?.location)
+                                              currentUserLocation: Account.sharedInstance.user?.location,
+                                              skipLocation: false)
             }
             
             applyParamsToFilterParamsIfAny(&params)
