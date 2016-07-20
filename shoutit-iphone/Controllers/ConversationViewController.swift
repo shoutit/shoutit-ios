@@ -324,7 +324,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         switch attachmentType {
         case .LocationAttachment(let location): flowDelegate?.showLocation(location.coordinate())
         case .ImageAttachment(let path): flowDelegate?.showImagePreview(path.toURL()!)
-        case .VideoAttachment(let video): flowDelegate?.showVideoPreview(video.path.toURL()!)
+        case .VideoAttachment(let video):
+            guard let videoURL = video.path.toURL(), thumbURL = video.thumbnailPath.toURL() else { return }
+            flowDelegate?.showVideoPreview(videoURL, thumbnailURL: thumbURL)
         case .ShoutAttachment(let shout): flowDelegate?.showShout(shout)
         case .ProfileAttachment(let profile): flowDelegate?.showProfile(profile)
         }

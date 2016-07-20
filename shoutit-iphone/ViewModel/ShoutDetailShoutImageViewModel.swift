@@ -31,10 +31,10 @@ extension ShoutDetailShoutImageViewModel {
     func mwPhoto() -> MWPhoto? {
         switch self {
         case .Image(let url):
-            return MWPhoto(URL: url)
+            return MWPhoto(URL: url.imageUrlByAppendingVaraitionComponent(.Large))
         case .Movie(let video):
-            guard let url = video.path.toURL() else { return nil }
-            return MWPhoto(videoURL: url)
+            guard let url = video.path.toURL(), thumbURL = video.thumbnailPath.toURL() else { return nil }
+            return MWPhoto(videoURL: url, thumbnailURL: thumbURL.imageUrlByAppendingVaraitionComponent(.Large))
         default:
             return nil
         }

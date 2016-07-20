@@ -47,8 +47,8 @@
     return [[MWPhoto alloc] initWithAsset:asset targetSize:targetSize];
 }
 
-+ (MWPhoto *)videoWithURL:(NSURL *)url {
-    return [[MWPhoto alloc] initWithVideoURL:url];
++ (MWPhoto *)videoWithURL:(NSURL *)url thumbnailURL:(NSURL*)thumbURL {
+    return [[MWPhoto alloc] initWithVideoURL:url thumbnailURL:thumbURL];
 }
 
 #pragma mark - Init
@@ -83,9 +83,10 @@
     return self;
 }
 
-- (id)initWithVideoURL:(NSURL *)url {
+- (id)initWithVideoURL:(NSURL *)url thumbnailURL:(NSURL *)thumbURL {
     if ((self = [super init])) {
         self.videoURL = url;
+        self.photoURL = thumbURL;
         self.isVideo = YES;
         self.emptyImage = YES;
     }

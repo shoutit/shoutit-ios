@@ -15,7 +15,7 @@ protocol ChatDisplayable {
     func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((type: PickerAttachmentType) -> Void)) -> Void
     func showLocation(coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(imageURL: NSURL) -> Void
-    func showVideoPreview(videoURL: NSURL) -> Void
+    func showVideoPreview(videoURL: NSURL, thumbnailURL: NSURL) -> Void
     func startVideoCallWithProfile(profile: Profile) -> Void
 }
 
@@ -71,8 +71,8 @@ extension FlowController : ChatDisplayable {
         self.navigationController.showViewController(controller, sender: nil)
     }
     
-    func showVideoPreview(videoURL: NSURL) -> Void {
-        let controller = PhotoBrowser(photos: [MWPhoto(videoURL: videoURL)])
+    func showVideoPreview(videoURL: NSURL, thumbnailURL: NSURL) -> Void {
+        let controller = PhotoBrowser(photos: [MWPhoto(videoURL: videoURL, thumbnailURL: thumbnailURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
     }
