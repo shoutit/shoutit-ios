@@ -14,8 +14,6 @@ public struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
     public let pageSize: Int?
     public let page: Int?
     public let category: String?
-    public let city: String?
-    public let state: String?
     public let country: String?
     
     public var params: [String : AnyObject] {
@@ -33,13 +31,11 @@ public struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
         return p
     }
     
-    public init(tagSlug: String, pageSize: Int?, page: Int?, category: String?, city: String?, state: String?, country: String?) {
+    public init(tagSlug: String, pageSize: Int?, page: Int?, category: String?, country: String?) {
         self.tagSlug = tagSlug
         self.pageSize = pageSize
         self.page = page
         self.category = category
-        self.city = city
-        self.state = state
         self.country = country
     }
 }

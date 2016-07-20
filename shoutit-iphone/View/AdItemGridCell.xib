@@ -60,9 +60,6 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Sponsored" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAQ-Oc-c3s">
                                 <rect key="frame" x="4" y="220" width="62" height="14"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="62" id="0IO-be-pHG"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -72,30 +69,18 @@
                         <constraints>
                             <constraint firstItem="1pR-hc-qyI" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" constant="4" id="0hq-1y-9gF"/>
                             <constraint firstAttribute="trailing" secondItem="1pR-hc-qyI" secondAttribute="trailing" constant="4" id="8j0-jq-0LA"/>
-                            <constraint firstItem="LAQ-Oc-c3s" firstAttribute="top" secondItem="1pR-hc-qyI" secondAttribute="bottom" id="EcX-SW-VFZ"/>
                             <constraint firstAttribute="bottom" secondItem="6eR-oo-CVs" secondAttribute="bottom" constant="4" id="ElU-L4-A9X"/>
-                            <constraint firstItem="LAQ-Oc-c3s" firstAttribute="top" secondItem="1pR-hc-qyI" secondAttribute="bottom" constant="4" id="FoZ-in-LjG"/>
                             <constraint firstItem="tqF-0T-bq6" firstAttribute="top" secondItem="dVu-d9-0Bj" secondAttribute="top" id="IuX-2o-ND9"/>
                             <constraint firstAttribute="bottom" secondItem="8K3-Ob-b5q" secondAttribute="bottom" constant="43" id="Q8f-Xf-OlZ"/>
                             <constraint firstAttribute="trailing" secondItem="6eR-oo-CVs" secondAttribute="trailing" constant="4" id="Tsj-zS-fMB"/>
                             <constraint firstItem="8K3-Ob-b5q" firstAttribute="top" secondItem="dVu-d9-0Bj" secondAttribute="top" id="cQx-pK-Fi4"/>
                             <constraint firstAttribute="trailing" secondItem="tqF-0T-bq6" secondAttribute="trailing" id="dkj-NM-hHd"/>
                             <constraint firstItem="8K3-Ob-b5q" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" id="gN8-tN-QKa"/>
-                            <constraint firstAttribute="bottom" secondItem="LAQ-Oc-c3s" secondAttribute="bottom" constant="4" id="h2E-OM-8qJ"/>
                             <constraint firstItem="LAQ-Oc-c3s" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" constant="4" id="m32-Zr-cdO"/>
                             <constraint firstAttribute="trailing" secondItem="8K3-Ob-b5q" secondAttribute="trailing" id="nX6-v0-E7e"/>
-                            <constraint firstAttribute="bottom" secondItem="LAQ-Oc-c3s" secondAttribute="bottom" constant="7" id="oGr-Gk-Jtq"/>
                             <constraint firstAttribute="bottom" secondItem="LAQ-Oc-c3s" secondAttribute="bottom" constant="8" id="oii-C5-CG2"/>
                             <constraint firstItem="LAQ-Oc-c3s" firstAttribute="top" secondItem="1pR-hc-qyI" secondAttribute="bottom" id="zJS-2P-XQI"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="EcX-SW-VFZ"/>
-                                <exclude reference="FoZ-in-LjG"/>
-                                <exclude reference="h2E-OM-8qJ"/>
-                                <exclude reference="oGr-Gk-Jtq"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
