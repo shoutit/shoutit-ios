@@ -29,16 +29,12 @@ extension PagedParams {
 
 public protocol LocalizedParams {
     var country: String? {get}
-    var state: String? {get}
-    var city: String? {get}
 }
 
 extension LocalizedParams {
     public var localizedParams: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         p["country"] = country
-        p["state"] = state
-        p["city"] = city
         return p
 
     }

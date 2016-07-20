@@ -170,7 +170,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func fetchRelatedTags() -> Observable<[Tag]>? {
         guard let slug = slugParameter else { return nil }
-        let params = RelatedTagsParams(tagSlug: slug, pageSize: 3, page: 1, category: nil, city: nil, state: nil, country: nil)
+        let params = RelatedTagsParams(tagSlug: slug, pageSize: 3, page: 1, category: nil, country: nil)
         return APITagsService.retrieveRelatedTagsForTagWithSlug(slug, params: params)
     }
     
