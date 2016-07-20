@@ -161,6 +161,26 @@ final class SettingsFlowController: FlowController {
             }
             }, detail: Account.sharedInstance.linkedAccountsManager.nameForGoogleAccount())
         
+        let facebookPageOption = SettingsOption(name: NSLocalizedString("Facebook Page", comment: ""), action: { (option) in
+            let manager  = Account.sharedInstance.linkedAccountsManager
+            
+            guard let controller = self.navigationController.visibleViewController as? SettingsTableViewController else {
+                return
+            }
+            
+            if manager.isFacebookPageLinked() {
+                let alert = manager.unlinkFacebookPageAlert({
+                    
+                    manager.unlinkFacebookPage(controller, disposeBag: controller.disposeBag)
+                })
+                
+                self.navigationController.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                manager.linkFacebookPage(controller, disposeBag: controller.disposeBag)
+            }
+            
+        }, detail: Account.sharedInstance.linkedAccountsManager.nameForFacebookPageAccount())
+        
         facebookOption.refresh = { (option) in
             option.detail = Account.sharedInstance.linkedAccountsManager.nameForFacebookAccount()
         }
@@ -169,6 +189,6 @@ final class SettingsFlowController: FlowController {
             option.detail = Account.sharedInstance.linkedAccountsManager.nameForGoogleAccount()
         }
         
-            return Variable([ facebookOption, googleOption])
+            return Variable([ facebookOption, googleOption, facebookPageOption])
         }
 }

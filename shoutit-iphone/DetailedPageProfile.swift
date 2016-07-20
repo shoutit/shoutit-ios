@@ -41,6 +41,7 @@ public struct DetailedPageProfile: DetailedProfile {
     public let overview: String?
     public let mission: String?
     public let general_info: String?
+    
     public let listeningMetadata: ListenersMetadata?
     
     public var dateJoinedEpoch: Int
@@ -48,8 +49,9 @@ public struct DetailedPageProfile: DetailedProfile {
     public var pushTokens: PushTokens?
     
     public let admin: Box<DetailedUserProfile>?
+    public let linkedAccounts: LoginAccounts?
     
-    public init(id: String, type: UserType, apiPath: String, webPath: String?, username: String, name: String, firstName: String?, lastName: String?, isActivated: Bool, isVerified: Bool, imagePath: String?, coverPath: String?, isListening: Bool?, listnersCount: Int, website: String?, about: String?, isPublished: Bool?, stats: ProfileStats?, mobile: String?, founded: String?, description: String?, impressum: String?, overview: String?, mission: String?, general_info: String?, listeningMetadata: ListenersMetadata?, dateJoinedEpoch: Int, location: Address, pushTokens: PushTokens?, admin: Box<DetailedUserProfile>?) {
+    public init(id: String, type: UserType, apiPath: String, webPath: String?, username: String, name: String, firstName: String?, lastName: String?, isActivated: Bool, isVerified: Bool, imagePath: String?, coverPath: String?, isListening: Bool?, listnersCount: Int, website: String?, about: String?, isPublished: Bool?, stats: ProfileStats?, mobile: String?, founded: String?, description: String?, impressum: String?, overview: String?, mission: String?, general_info: String?, listeningMetadata: ListenersMetadata?, dateJoinedEpoch: Int, location: Address, pushTokens: PushTokens?, admin: Box<DetailedUserProfile>?, linkedAccounts: LoginAccounts?) {
         self.id = id
         self.type = type
         self.apiPath = apiPath
@@ -80,6 +82,7 @@ public struct DetailedPageProfile: DetailedProfile {
         self.overview = overview
         self.mission = mission
         self.general_info = general_info
+        self.linkedAccounts = linkedAccounts
     }
 }
 
@@ -126,6 +129,7 @@ extension DetailedPageProfile: Decodable {
             <*> j <| "location"
             <*> j <|? "push_tokens"
             <*> j <|? "admin"
+            <*> j <|? "linked_accounts"
         return h
     }
 }
@@ -163,12 +167,13 @@ extension DetailedPageProfile {
             "listening_count" : self.listeningMetadata.encode(),
             "date_joined" : self.dateJoinedEpoch.encode(),
             "location" : self.location.encode(),
+            "linked_accounts": self.linkedAccounts.encode()
             ])
     }
 }
 
 extension DetailedPageProfile {
     public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedPageProfile {
-        return DetailedPageProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, isVerified: self.isVerified, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listnersCount: self.listenersCount, website: self.website, about: self.about, isPublished: self.isPublished, stats: stts, mobile: self.mobile, founded: self.founded, description: self.description, impressum: self.impressum, overview: self.overview, mission: self.mission, general_info: self.general_info, listeningMetadata: self.listeningMetadata, dateJoinedEpoch: self.dateJoinedEpoch, location: self.location, pushTokens: self.pushTokens, admin: self.admin)
+        return DetailedPageProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, isVerified: self.isVerified, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listnersCount: self.listenersCount, website: self.website, about: self.about, isPublished: self.isPublished, stats: stts, mobile: self.mobile, founded: self.founded, description: self.description, impressum: self.impressum, overview: self.overview, mission: self.mission, general_info: self.general_info, listeningMetadata: self.listeningMetadata, dateJoinedEpoch: self.dateJoinedEpoch, location: self.location, pushTokens: self.pushTokens, admin: self.admin, linkedAccounts: self.linkedAccounts)
     }
 }

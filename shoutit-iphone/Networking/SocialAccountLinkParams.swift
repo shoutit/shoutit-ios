@@ -12,6 +12,7 @@ public enum SocialAccountLinkParams: Params {
     
     case Facebook(token: String?)
     case Google(code: String?)
+    case FacebookPage(pageId: String?)
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
@@ -22,6 +23,8 @@ public enum SocialAccountLinkParams: Params {
         case .Google(let code):
             p["account"] = "gplus"
             p["gplus_code"] = code
+        case .FacebookPage(let pageId):
+            p["facebook_page_id"] = pageId
         }
         return p
     }

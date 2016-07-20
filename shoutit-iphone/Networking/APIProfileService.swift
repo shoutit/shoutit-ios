@@ -105,6 +105,16 @@ final class APIProfileService {
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
+    static func unlinkFacebookPage() -> Observable<Void> {
+        let url = APIManager.baseURL + "/profiles/me/facebook_page"
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON, headers: ["Accept": "application/json"])
+    }
+    
+    static func linkFacebookPage(params: SocialAccountLinkParams) -> Observable<Void> {
+        let url = APIManager.baseURL + "/profiles/me/facebook_page"
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+    }
+    
     static func getMutualProfiles(params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles/me/mutual_friends"
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])

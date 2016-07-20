@@ -13,6 +13,7 @@ import Ogra
 public struct LoginAccounts {
     public let facebook: FacebookAccount?
     public let gplus: GoogleAccount?
+    public let facebookPage: FacebookPage?
 }
 
 extension LoginAccounts: Decodable {
@@ -21,6 +22,7 @@ extension LoginAccounts: Decodable {
         return curry(LoginAccounts.init)
             <^> j <|? "facebook"
             <*> j <|? "gplus"
+            <*> j <|? "facebook_page"
     }
 }
 
@@ -29,7 +31,8 @@ extension LoginAccounts: Encodable {
     public func encode() -> JSON {
         return JSON.Object([
             "facebook"  : self.facebook.encode(),
-            "gplus"    : self.gplus.encode()
+            "gplus"    : self.gplus.encode(),
+            "facebook_page" : self.facebookPage.encode()
             ])
     }
 }

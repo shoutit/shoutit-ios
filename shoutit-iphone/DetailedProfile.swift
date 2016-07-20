@@ -20,4 +20,5 @@ public protocol DetailedProfile : User {
     var isListening: Bool? { get }
     var about: String? { get }
     var mobile: String? { get }
+    var linkedAccounts: LoginAccounts? { get }
 }

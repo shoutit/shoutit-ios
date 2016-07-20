@@ -18,6 +18,8 @@ enum FacebookPermissions: String {
     case UserBirthday = "user_birthday"
     case PublishActions = "publish_actions"
     case UserFriends = "user_friends"
+    case ManagePages = "manage_pages"
+    case PublishPages = "publish_pages"
     
     static var loginReadPermissions: [FacebookPermissions] {
         return [.Email, .PublicProfile]
@@ -131,6 +133,27 @@ extension FacebookManager {
             }
     }
     
+    func requestManagePermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
+        
+        return hasBasicReadPermissionsObservable()
+            .flatMap{[unowned self] (hasReadPermissions) -> Observable<Void> in
+                if hasReadPermissions {
+                    return Observable.just()
+                } else {
+                    return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
+                        .map{ (_) -> Void in
+                            return Void()
+                    }
+                }
+            }
+            .flatMap {[unowned self](_) -> Observable<String> in
+                return self.facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
+            }
+            .flatMap{ (token) in
+                return Observable.just(Void())
+        }
+    }
+    
     func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
         return hasBasicReadPermissionsObservable()
             .flatMap{(hasBasicReadPermissions) -> Observable<[FacebookPermissions]> in
@@ -145,6 +168,7 @@ extension FacebookManager {
             }
             .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
     }
+    
     
     func logout() {
         loginManager.logOut()

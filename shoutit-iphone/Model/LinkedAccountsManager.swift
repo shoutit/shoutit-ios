@@ -10,6 +10,7 @@ import Foundation
 import ShoutitKit
 import MBProgressHUD
 import RxSwift
+import FBSDKCoreKit
 
 class LinkedAccountsManager : NSObject {
     
@@ -26,6 +27,10 @@ class LinkedAccountsManager : NSObject {
     
     func unlinkFacebookAlert(success: (Void -> Void)) -> UIAlertController {
         return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook account?", comment: ""), success: success)
+    }
+    
+    func unlinkFacebookPageAlert(success: (Void -> Void)) -> UIAlertController {
+        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook Page account?", comment: ""), success: success)
     }
     
     func unlinkGoogleAlert(success: (Void -> Void)) -> UIAlertController {
@@ -122,6 +127,70 @@ class LinkedAccountsManager : NSObject {
         }.addDisposableTo(disposeBag)
         
     }
+    
+    func linkFacebookPage(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+        if !account.facebookManager.hasPermissions(.ManagePages) {
+            account.facebookManager.requestManagePermissions([.ManagePages, .PublishPages], viewController: controller).subscribe { [weak self] (event) in
+                switch event {
+                case .Next(_):
+                    debugPrint("permissionsGranted")
+                    self?.showPagesSelectionActionSheetFrom(controller, disposeBag: disposeBag, option: option)
+                case .Error(LocalError.Cancelled):
+                    break
+                case .Error(let error):
+                    controller.showError(error)
+                default:
+                    break
+                }
+                }.addDisposableTo(disposeBag)
+            return
+        }
+        
+        self.showPagesSelectionActionSheetFrom(controller, disposeBag: disposeBag, option: option)
+    }
+    
+    func showPagesSelectionActionSheetFrom(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+        controller.showProgressHUD()
+        
+        let request = FBSDKGraphRequest(graphPath: "me/accounts", parameters: nil)
+        
+        request.startWithCompletionHandler {[weak self] (requestConnection, result, error) in
+            controller.hideProgressHUD()
+            
+            if let error = error {
+                controller.showError(error)
+                return
+            }
+            
+            if let result = result as? NSDictionary, data = result["data"] as? [NSDictionary] {
+                self?.presentPagesSelection(controller, disposeBag: disposeBag, option: option, pages: data)
+            }
+            
+            
+        }
+    }
+    
+    func presentPagesSelection(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil, pages: [NSDictionary]) {
+        
+    }
+    
+    func unlinkFacebookPage(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+        presentingController = controller
+        
+        APIProfileService.unlinkFacebookPage().subscribe { [weak self] (event) in
+            switch event {
+            case .Next(_):
+                Account.sharedInstance.fetchUserProfile()
+                self?.presentingController?.showSuccessMessage(NSLocalizedString("Facebook Page Unlinked", comment: ""))
+            case .Error(let error):
+                self?.presentingController?.showError(error)
+                
+            default: break
+            }
+            
+            self?.presentingController = nil
+        }.addDisposableTo(disposeBag)
+    }
 }
 
 extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
@@ -171,7 +240,7 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
 // Helpers
 extension LinkedAccountsManager {
     func nameForFacebookAccount() -> String {
-        guard let user = self.account.user as? DetailedUserProfile else {
+        guard let user = self.account.user as? DetailedProfile else {
             return NSLocalizedString("Not Linked", comment: "")
         }
         
@@ -182,8 +251,20 @@ extension LinkedAccountsManager {
         return NSLocalizedString("Not Linked", comment: "")
     }
     
+    func nameForFacebookPageAccount() -> String {
+        guard let user = self.account.user as? DetailedProfile else {
+            return NSLocalizedString("Not Linked", comment: "")
+        }
+        
+        if let page = user.linkedAccounts?.facebookPage {
+            return page.name
+        }
+        
+        return NSLocalizedString("Not Linked", comment: "")
+    }
+    
     func nameForGoogleAccount() -> String {
-        guard let user = self.account.user as? DetailedUserProfile else {
+        guard let user = self.account.user as? DetailedProfile else {
             return NSLocalizedString("Not Linked", comment: "")
         }
         
@@ -195,7 +276,7 @@ extension LinkedAccountsManager {
     }
     
     func isFacebookLinked() -> Bool {
-        guard let user = self.account.user as? DetailedUserProfile else {
+        guard let user = self.account.user as? DetailedProfile else {
             return false
         }
         
@@ -207,11 +288,23 @@ extension LinkedAccountsManager {
     }
     
     func isGoogleLinked() -> Bool {
-        guard let user = self.account.user as? DetailedUserProfile else {
+        guard let user = self.account.user as? DetailedProfile else {
             return false
         }
         
         if let _ = user.linkedAccounts?.gplus {
+            return true
+        }
+        
+        return false
+    }
+    
+    func isFacebookPageLinked() -> Bool {
+        guard let user = self.account.user as? DetailedProfile else {
+            return false
+        }
+        
+        if let _ = user.linkedAccounts?.facebookPage {
             return true
         }
         

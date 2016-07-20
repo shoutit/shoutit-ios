@@ -235,6 +235,7 @@
 		AE4DB3631C648B66001EB84B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3621C648B66001EB84B /* MenuViewModel.swift */; };
 		AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */; };
 		AE5140051C8B172C00663A0C /* MediaPickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */; };
+		AE52F0211D3F7AB4009551EB /* FacebookPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52F0201D3F7AB4009551EB /* FacebookPage.swift */; };
 		AE54A6B61D11674A002F1430 /* ShoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE54A6B51D11674A002F1430 /* ShoutCell.swift */; };
 		AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */; };
 		AE5BF3931CBBB30600EB22B0 /* CreateShoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BF3921CBBB30600EB22B0 /* CreateShoutButton.swift */; };
@@ -1134,6 +1135,7 @@
 		AE4E2EDF1CB272A4001153E0 /* PhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoBrowser.h; path = Controllers/PhotoBrowser.h; sourceTree = "<group>"; };
 		AE4E2EE01CB272A4001153E0 /* PhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoBrowser.m; path = Controllers/PhotoBrowser.m; sourceTree = "<group>"; };
 		AE5140041C8B172C00663A0C /* MediaPickerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaPickerControllerProtocol.swift; path = Controllers/MediaPickerControllerProtocol.swift; sourceTree = "<group>"; };
+		AE52F0201D3F7AB4009551EB /* FacebookPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookPage.swift; path = Model/FacebookPage.swift; sourceTree = "<group>"; };
 		AE54A6B51D11674A002F1430 /* ShoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutCell.swift; path = View/ShoutCell.swift; sourceTree = "<group>"; };
 		AE54A6B71D1173D9002F1430 /* Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promotion.swift; path = Model/Promotion.swift; sourceTree = "<group>"; };
 		AE5A5DB81CAAF33F003BE604 /* VideoCallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoCallViewController.swift; path = Controllers/VideoCallViewController.swift; sourceTree = "<group>"; };
@@ -2613,6 +2615,7 @@
 				246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */,
 				AE3DC4041D21206900C460CC /* PageCategory.swift */,
 				0263721A1D3685AA0071B179 /* PageVerification.swift */,
+				AE52F0201D3F7AB4009551EB /* FacebookPage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -6142,6 +6145,7 @@
 				AE32C5D11D0564C5009A49C5 /* EditProfileParams.swift in Sources */,
 				AE32C5991D055C33009A49C5 /* JSONWriteable.swift in Sources */,
 				AE32C5D91D0564C5009A49C5 /* EmailParams.swift in Sources */,
+				AE52F0211D3F7AB4009551EB /* FacebookPage.swift in Sources */,
 				AE32C5C61D055C33009A49C5 /* ConversationDescription.swift in Sources */,
 				AE32C5D01D0564C5009A49C5 /* RelatedShoutsParams.swift in Sources */,
 				AE32C5B01D055C33009A49C5 /* Video.swift in Sources */,
