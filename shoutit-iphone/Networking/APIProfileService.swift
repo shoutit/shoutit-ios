@@ -105,9 +105,9 @@ final class APIProfileService {
         return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
-    static func unlinkFacebookPage() -> Observable<Void> {
+    static func unlinkFacebookPage(params: SocialAccountLinkParams) -> Observable<Void> {
         let url = APIManager.baseURL + "/profiles/me/facebook_page"
-        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
     static func linkFacebookPage(params: SocialAccountLinkParams) -> Observable<Void> {

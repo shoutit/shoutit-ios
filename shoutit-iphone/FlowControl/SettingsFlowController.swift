@@ -181,6 +181,10 @@ final class SettingsFlowController: FlowController {
             
         }, detail: Account.sharedInstance.linkedAccountsManager.nameForFacebookPageAccount())
         
+        facebookPageOption.refresh = { (option) in
+            option.detail = Account.sharedInstance.linkedAccountsManager.nameForFacebookPageAccount()
+        }
+        
         facebookOption.refresh = { (option) in
             option.detail = Account.sharedInstance.linkedAccountsManager.nameForFacebookAccount()
         }

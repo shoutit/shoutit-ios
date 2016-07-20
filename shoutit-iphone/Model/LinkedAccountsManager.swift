@@ -152,7 +152,7 @@ class LinkedAccountsManager : NSObject {
     func showPagesSelectionActionSheetFrom(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         controller.showProgressHUD()
         
-        let request = FBSDKGraphRequest(graphPath: "me/accounts", parameters: nil)
+        let request = FBSDKGraphRequest(graphPath: "me/accounts", parameters: ["fields": "id, name"], HTTPMethod: "GET")
         
         request.startWithCompletionHandler {[weak self] (requestConnection, result, error) in
             controller.hideProgressHUD()
@@ -163,6 +163,7 @@ class LinkedAccountsManager : NSObject {
             }
             
             if let result = result as? NSDictionary, data = result["data"] as? [NSDictionary] {
+                print(data)
                 self?.presentPagesSelection(controller, disposeBag: disposeBag, option: option, pages: data)
             }
             
@@ -171,13 +172,44 @@ class LinkedAccountsManager : NSObject {
     }
     
     func presentPagesSelection(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil, pages: [NSDictionary]) {
+        let alert = UIAlertController(title: NSLocalizedString("Please select a page:", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        
+        for page in pages {
+            guard let name = page["name"] as? String, uid = page["id"] as? String else {
+                continue
+            }
+            
+            alert.addAction(UIAlertAction(title: name, style: .Default, handler: { (action) in
+                APIProfileService.linkFacebookPage(.FacebookPage(pageId: uid)).subscribe { [weak self] (event) in
+                    switch event {
+                    case .Next(_):
+                        Account.sharedInstance.fetchUserProfile()
+                        controller.showSuccessMessage(NSLocalizedString("Facebook Page linked", comment: ""))
+                    case .Error(let error):
+                        controller.showError(error)
+                    default: break
+                    }
+                    
+                    self?.presentingController = nil
+                }.addDisposableTo(disposeBag)
+            }))
+            
+        }
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
         
     }
     
     func unlinkFacebookPage(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         presentingController = controller
         
-        APIProfileService.unlinkFacebookPage().subscribe { [weak self] (event) in
+        guard let user = self.account.user as? DetailedProfile, pageId = user.linkedAccounts?.facebookPage?.facebookId else {
+            return
+        }
+        
+        APIProfileService.unlinkFacebookPage(.FacebookPage(pageId: pageId)).subscribe { [weak self] (event) in
             switch event {
             case .Next(_):
                 Account.sharedInstance.fetchUserProfile()
