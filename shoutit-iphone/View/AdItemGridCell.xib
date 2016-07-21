@@ -16,7 +16,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVu-d9-0Bj">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="242"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pR-hc-qyI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Ad Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pR-hc-qyI">
                                 <rect key="frame" x="4" y="202" width="192" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,7 +59,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Sponsored" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAQ-Oc-c3s">
-                                <rect key="frame" x="4" y="220" width="62" height="14"/>
+                                <rect key="frame" x="4" y="222" width="62" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.52941176470588236" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -71,6 +71,7 @@
                             <constraint firstAttribute="trailing" secondItem="1pR-hc-qyI" secondAttribute="trailing" constant="4" id="8j0-jq-0LA"/>
                             <constraint firstAttribute="bottom" secondItem="6eR-oo-CVs" secondAttribute="bottom" constant="4" id="ElU-L4-A9X"/>
                             <constraint firstItem="tqF-0T-bq6" firstAttribute="top" secondItem="dVu-d9-0Bj" secondAttribute="top" id="IuX-2o-ND9"/>
+                            <constraint firstItem="LAQ-Oc-c3s" firstAttribute="top" secondItem="1pR-hc-qyI" secondAttribute="bottom" constant="2" id="Kab-6r-MBk"/>
                             <constraint firstAttribute="bottom" secondItem="8K3-Ob-b5q" secondAttribute="bottom" constant="43" id="Q8f-Xf-OlZ"/>
                             <constraint firstAttribute="trailing" secondItem="6eR-oo-CVs" secondAttribute="trailing" constant="4" id="Tsj-zS-fMB"/>
                             <constraint firstItem="8K3-Ob-b5q" firstAttribute="top" secondItem="dVu-d9-0Bj" secondAttribute="top" id="cQx-pK-Fi4"/>
@@ -79,8 +80,14 @@
                             <constraint firstItem="LAQ-Oc-c3s" firstAttribute="leading" secondItem="dVu-d9-0Bj" secondAttribute="leading" constant="4" id="m32-Zr-cdO"/>
                             <constraint firstAttribute="trailing" secondItem="8K3-Ob-b5q" secondAttribute="trailing" id="nX6-v0-E7e"/>
                             <constraint firstAttribute="bottom" secondItem="LAQ-Oc-c3s" secondAttribute="bottom" constant="8" id="oii-C5-CG2"/>
+                            <constraint firstItem="1pR-hc-qyI" firstAttribute="top" secondItem="8K3-Ob-b5q" secondAttribute="bottom" constant="3" id="tk0-70-sLx"/>
                             <constraint firstItem="LAQ-Oc-c3s" firstAttribute="top" secondItem="1pR-hc-qyI" secondAttribute="bottom" id="zJS-2P-XQI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zJS-2P-XQI"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
