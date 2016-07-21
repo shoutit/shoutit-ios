@@ -39,12 +39,4 @@ local:
     - swift2.2
   except:
     - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
-translations:
-  type: build
-  script: "bundle exec fastlane ios localizations"
-  tags:
-    - swift2.2
-  only:
-    - develop
-    - /^translations-.*$/
   
