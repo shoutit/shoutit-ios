@@ -58,7 +58,8 @@ final class SettingsFormViewController: UITableViewController {
         viewModel
             .successSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] in
+            .subscribeNext { [weak self] (success) in
+                self?.showSuccessMessage(success.message)
                 self?.pop()
             }.addDisposableTo(disposeBag)
     }

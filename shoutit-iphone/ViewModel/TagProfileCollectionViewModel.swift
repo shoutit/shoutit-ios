@@ -128,11 +128,10 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         let listen = !listening
         let reloadTag = fetchTag()!.map {[weak self] (tag) -> Void in
             self?.tag = tag
-            self?.reloadSubject.onNext()
-            let message = listen ? UserMessages.startedListeningMessageWithName(tag.name) : UserMessages.stoppedListeningMessageWithName(tag.name)
-            self?.successMessageSubject.onNext(message)
+            self?.reloadSubject.onNext()            
         }
-        return APITagsService.listen(listen, toTagWithSlug: slug).flatMap{ () -> Observable<Void> in
+        return APITagsService.listen(listen, toTagWithSlug: slug).flatMap{ (success) -> Observable<Void> in
+            self.successMessageSubject.onNext(success.message)
             return reloadTag
         }
     }

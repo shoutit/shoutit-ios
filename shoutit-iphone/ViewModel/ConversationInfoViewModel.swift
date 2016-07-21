@@ -143,11 +143,11 @@ private extension ConversationInfoViewModel {
 
 extension ConversationInfoViewModel {
     
-    func addParticipantToConversation(profile: Profile) -> Observable<Void> {
+    func addParticipantToConversation(profile: Profile) -> Observable<Success> {
         return APIChatsService.addMemberToConversationWithId(self.conversation.id, profile: profile)
     }
     
-    func removeParticipantFromConversation(profile: Profile) -> Observable<Void> {
+    func removeParticipantFromConversation(profile: Profile) -> Observable<Success> {
         return APIChatsService.removeMemberFromConversationWithId(self.conversation.id, profile: profile)
     }
 }

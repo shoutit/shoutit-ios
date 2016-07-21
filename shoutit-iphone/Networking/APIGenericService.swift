@@ -40,6 +40,9 @@ final class APIGenericService {
                 do {
                     let dataObject = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers)
                     
+                    print(dataObject)
+                    
+                    
                     let result : Result<AnyObject, NSError> = Result.Success(dataObject)
                     let resp : Response<AnyObject, NSError> = Response(request: response.request, response: response.response, data: responseData, result: result)
                     

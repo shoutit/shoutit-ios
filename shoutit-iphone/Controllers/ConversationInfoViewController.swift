@@ -232,9 +232,8 @@ class ConversationInfoViewController: UITableViewController {
             self.viewModel.addParticipantToConversation(profile).subscribe({ (event) in
                 
                 switch event {
-                    case .Next(_):
-                        let profileName = profile.fullName()
-                        self.showSuccessMessage(NSLocalizedString("You've successfully added \(profileName) to chat.", comment: ""))
+                    case .Next(let success):
+                        self.showSuccessMessage(success.message)
                     case .Error(let error):
                         self.showError(error)
                     default:
@@ -342,9 +341,8 @@ class ConversationInfoViewController: UITableViewController {
         self.viewModel.removeParticipantFromConversation(profile).subscribe({ (event) in
             
             switch event {
-            case .Next(_):
-                let profileName = profile.fullName()
-                self.showSuccessMessage(NSLocalizedString("You've successfully removed \(profileName) from chat.", comment: ""))
+            case .Next(let success):
+                self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)
@@ -375,9 +373,8 @@ class ConversationInfoViewController: UITableViewController {
     func block(profile: Profile) {
         APIChatsService.blockProfileInConversationWithId(viewModel.conversation.id, profile: profile).subscribe { (event) in
             switch event {
-            case .Next(_):
-                let profileName = profile.fullName()
-                self.showSuccessMessage(NSLocalizedString("You've successfully blocked \(profileName)", comment: ""))
+            case .Next(let success):
+                self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)
@@ -390,9 +387,8 @@ class ConversationInfoViewController: UITableViewController {
     func unblock(profile: Profile) {
         APIChatsService.unblockProfileInConversationWithId(viewModel.conversation.id, profile: profile).subscribe { (event) in
             switch event {
-            case .Next(_):
-                let profileName = profile.fullName()
-                self.showSuccessMessage(NSLocalizedString("You've successfully unblocked \(profileName)", comment: ""))
+            case .Next(let success):
+                self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)

@@ -8,11 +8,12 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 protocol SettingsFormViewModel {
     
     var progressSubject: PublishSubject<Bool> {get}
-    var successSubject: PublishSubject<Void> {get}
+    var successSubject: PublishSubject<Success> {get}
     var errorSubject: PublishSubject<ErrorType> {get}
     
     var title: String {get}

@@ -8,12 +8,13 @@
 
 import Foundation
 import RxSwift
+import ShoutitKit
 
 protocol Listenable: class {
     var isListening: Bool { get set }
     var startedListeningMessage: String { get }
     var stoppedListeningMessage: String { get }
-    func listenRequestObservable() -> Observable<Void>
+    func listenRequestObservable() -> Observable<Success>
 }
 
 extension Listenable {
@@ -29,7 +30,7 @@ extension Listenable {
             self.isListening = !self.isListening
             observer.onNext((listening: self.isListening, successMessage: nil, error: nil))
             
-            let subscribeBlock: (RxSwift.Event<Void> -> Void) = {(event) in
+            let subscribeBlock: (RxSwift.Event<Success> -> Void) = {(event) in
                 switch event {
                 case .Completed:
                     let message = self.isListening ? self.startedListeningMessage : self.stoppedListeningMessage

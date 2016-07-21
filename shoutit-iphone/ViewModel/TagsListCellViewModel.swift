@@ -26,7 +26,7 @@ final class TagsListCellViewModel: Listenable {
         return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.numberToShortString(tag.listenersCount ?? 0))
     }
     
-    func listenRequestObservable() -> Observable<Void> {
+    func listenRequestObservable() -> Observable<Success> {
         return APITagsService.listen(self.isListening, toTagWithSlug: self.tag.slug)
     }
 }

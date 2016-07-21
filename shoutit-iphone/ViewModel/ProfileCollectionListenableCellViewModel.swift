@@ -85,11 +85,10 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
             self.isListening = !self.isListening
             observer.onNext((listening: self.isListening, successMessage: nil, error: nil))
             
-            let subscribeBlock: (RxSwift.Event<Void> -> Void) = {(event) in
+            let subscribeBlock: (RxSwift.Event<Success> -> Void) = {(event) in
                 switch event {
-                case .Completed:
-                    let message = self.isListening ? UserMessages.startedListeningMessageWithName(self.model.name) : UserMessages.stoppedListeningMessageWithName(self.model.name)
-                    observer.onNext((listening: self.isListening, successMessage: message, error: nil))
+                case .Next(let success):
+                    observer.onNext((listening: self.isListening, successMessage: success.message, error: nil))
                     observer.onCompleted()
                 case .Error(let error):
                     self.isListening = !self.isListening

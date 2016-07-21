@@ -185,10 +185,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedProfile = profile
             self?.reloadSubject.onNext()
-            let message = listen ? UserMessages.startedListeningMessageWithName(profile.name) : UserMessages.stoppedListeningMessageWithName(profile.name)
-            self?.successMessageSubject.onNext(message)
         }
-        return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{() -> Observable<Void> in
+        
+        return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{ (success) -> Observable<Void> in
+            self.successMessageSubject.onNext(success.message)
             return retrieveUser
         }
     }

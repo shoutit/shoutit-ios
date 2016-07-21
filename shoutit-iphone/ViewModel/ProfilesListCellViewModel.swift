@@ -30,7 +30,7 @@ final class ProfilesListCellViewModel: Listenable {
         return Account.sharedInstance.user?.id == profile.id
     }
     
-    func listenRequestObservable() -> Observable<Void> {
+    func listenRequestObservable() -> Observable<Success> {
         return APIProfileService.listen(self.isListening, toProfileWithUsername: self.profile.username)
     }
 }

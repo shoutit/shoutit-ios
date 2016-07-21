@@ -112,24 +112,24 @@ final class APIChatsService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }
     
-    static func addMemberToConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+    static func addMemberToConversationWithId(conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationAddProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
-    static func removeMemberFromConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+    static func removeMemberFromConversationWithId(conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationRemoveProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
-    static func blockProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+    static func blockProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationBlockProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
-    static func unblockProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+    static func unblockProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationUnblockProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
     static func promoteToAdminProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {

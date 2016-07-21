@@ -178,15 +178,15 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
     
     func listen() -> Observable<Void>? {
-        guard let listening = detailedUser?.isListening ?? profile.isListening else {return nil}
-        let listen = !listening
+        guard let isListening = detailedUser?.isListening ?? profile.isListening else {return nil}
+        let listen = !isListening
         let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
             self?.detailedUser = profile
             self?.reloadSubject.onNext()
-            let message = listen ? UserMessages.startedListeningMessageWithName(profile.name) : UserMessages.stoppedListeningMessageWithName(profile.name)
-            self?.successMessageSubject.onNext(message)
         }
-        return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{() -> Observable<Void> in
+        
+        return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{ (success) -> Observable<Void> in
+            self.successMessageSubject.onNext(success.message)
             return retrieveUser
         }
     }

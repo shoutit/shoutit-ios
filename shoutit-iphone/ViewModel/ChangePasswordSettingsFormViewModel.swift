@@ -14,7 +14,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
     
     private let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
-    let successSubject: PublishSubject<Void> = PublishSubject()
+    let successSubject: PublishSubject<Success> = PublishSubject()
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     
     let title = NSLocalizedString("Change password", comment: "")
@@ -63,8 +63,8 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
         APIAuthService.changePasswordWithParams(params)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next:
-                    self?.successSubject.onNext()
+                case .Next(let success):
+                    self?.successSubject.onNext(success)
                 case .Error(let error):
                     self?.errorSubject.onNext(error)
                 default:

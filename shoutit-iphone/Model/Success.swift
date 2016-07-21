@@ -12,6 +12,10 @@ import Argo
 
 public struct Success {
     public let message: String
+
+    public init(message: String) {
+        self.message = message
+    }
 }
 
 extension Success: Decodable {

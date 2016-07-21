@@ -19,10 +19,10 @@ final class APIProfileService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<Void> {
+    static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/\(username)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE
-        return APIGenericService.basicRequestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
+        return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
     static func retrieveProfileWithUsername(username: String, additionalPageIdHeader: String? = nil) -> Observable<DetailedUserProfile> {
@@ -105,14 +105,14 @@ final class APIProfileService {
         return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
-    static func unlinkFacebookPage(params: SocialAccountLinkParams) -> Observable<Void> {
+    static func unlinkFacebookPage(params: SocialAccountLinkParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/me/facebook_page"
-        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
-    static func linkFacebookPage(params: SocialAccountLinkParams) -> Observable<Void> {
+    static func linkFacebookPage(params: SocialAccountLinkParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/me/facebook_page"
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
     static func getMutualProfiles(params: PageParams) -> Observable<PagedResults<Profile>> {

@@ -16,10 +16,10 @@ final class APITagsService {
     
     private static let batchTagListenURL = APIManager.baseURL + "/tags/batch_listen"
     
-    static func listen(listen: Bool, toTagWithSlug slug: String) -> Observable<Void> {
+    static func listen(listen: Bool, toTagWithSlug slug: String) -> Observable<Success> {
         let url = APIManager.baseURL + "/tags/\(slug)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE
-        return APIGenericService.basicRequestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
+        return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
     }
     
     static func retrieveTagWithSlug(slug: String) -> Observable<Tag> {
