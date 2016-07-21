@@ -175,6 +175,7 @@ final class Account {
         checkTwilioConnection()
         checkPusherConnection()
         checkPaperTrailLogger()
+        facebookManager.logout()
     }
     
     func switchToUser() {
@@ -187,6 +188,7 @@ final class Account {
         checkTwilioConnection()
         checkPusherConnection()
         checkPaperTrailLogger()
+        facebookManager.logout()
     }
     
     func updateUserWithModel<T: User>(model: T, force: Bool = false) {

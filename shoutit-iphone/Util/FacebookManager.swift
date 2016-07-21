@@ -89,7 +89,7 @@ extension FacebookManager {
         }
     }
     
-    func linkWithReadPermissions(permissions: [FacebookPermissions] = FacebookPermissions.loginReadPermissions, viewController: UIViewController) -> Observable<Void> {
+    func linkWithReadPermissions(permissions: [FacebookPermissions] = FacebookPermissions.loginReadPermissions, viewController: UIViewController) -> Observable<Success> {
         return hasBasicReadPermissionsObservable()
             .flatMap{[unowned self] (hasReadPermissions) -> Observable<String> in
                 if !hasReadPermissions {
@@ -108,11 +108,11 @@ extension FacebookManager {
         }
     }
 
-    func unlinkFacebookAccount() -> Observable<Void> {
+    func unlinkFacebookAccount() -> Observable<Success> {
         return APIProfileService.unlinkSocialAccountWithParams(.Facebook(token: nil))
     }
     
-    func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
+    func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Success> {
         
         return hasBasicReadPermissionsObservable()
             .flatMap{[unowned self] (hasReadPermissions) -> Observable<Void> in
@@ -140,7 +140,7 @@ extension FacebookManager {
         }
     }
     
-    func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
+    func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Success> {
         return hasBasicReadPermissionsObservable()
             .flatMap{(hasBasicReadPermissions) -> Observable<[FacebookPermissions]> in
                 if hasBasicReadPermissions {

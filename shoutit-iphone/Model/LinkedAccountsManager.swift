@@ -114,9 +114,9 @@ class LinkedAccountsManager : NSObject {
         APIProfileService.unlinkSocialAccountWithParams(.Google(code: nil)).subscribe { [weak self] (event) in
             self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
             switch event {
-            case .Next(_):
+            case .Next(let success):
                 Account.sharedInstance.fetchUserProfile()
-                self?.presentingController?.showSuccessMessage(NSLocalizedString("Google Account Unlinked", comment: ""))
+                self?.presentingController?.showSuccessMessage(success.message)
             case .Error(let error):
                 self?.presentingController?.showError(error)
                 
@@ -235,9 +235,8 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
         
         APIProfileService.linkSocialAccountWithParams(.Google(code: user.serverAuthCode)).subscribe { [weak self] (event) in
             switch event {
-            case .Next(_):
-                print("Google Connected")
-                self?.presentingController?.showSuccessMessage(NSLocalizedString("Google Account Linked", comment: ""))
+            case .Next(let success):
+                self?.presentingController?.showSuccessMessage(success.message)
                 self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
                 Account.sharedInstance.fetchUserProfile()
             case .Error(let error):
