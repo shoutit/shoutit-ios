@@ -20,3 +20,5 @@ github "facebook/SocketRocket"
 github "kishikawakatsumi/KeychainAccess"
 github "adamwaite/Validator"
 github "drmohundro/SWXMLHash"
+
+git "https://bitbucket.org/rmonkey/papertraillumberjack.git"

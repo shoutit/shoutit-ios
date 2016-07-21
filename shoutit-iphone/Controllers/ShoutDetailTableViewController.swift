@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import FBAudienceNetwork
 import ShoutitKit
+import CocoaLumberjackSwift
 
 final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDelegate {
     
@@ -188,6 +189,8 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         print("Ad failed to load with error: %@", error)
         adBGView.hidden = true
         adUIView.hidden = true
+        
+        DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     
     var nativeAd: FBNativeAd!
@@ -199,7 +202,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     }
     
     func nativeAdDidLoad(nativeAd: FBNativeAd) {
-        
+        DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
         if nativeAd == "" {
             adUIView.hidden = true
         }

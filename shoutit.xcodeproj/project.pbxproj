@@ -112,6 +112,10 @@
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
+		AE146E951D40D266000B0FC6 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E931D40CF96000B0FC6 /* CocoaLumberjackSwift.framework */; };
+		AE146E961D40D266000B0FC6 /* PaperTrailLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */; };
+		AE146E991D40D267000B0FC6 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */; };
+		AE146E9A1D40D267000B0FC6 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E981D40D267000B0FC6 /* CocoaLumberjack.framework */; };
 		AE1516761D059688009E8357 /* LightError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B345451CA5584D0066DF15 /* LightError.swift */; };
 		AE1516781D05A908009E8357 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
 		AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */; };
@@ -1089,6 +1093,10 @@
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		AE0CD3591CFC6647006B05FD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ViewModel/Contact.swift; sourceTree = "<group>"; };
 		AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListTableViewController.swift; path = Controllers/FacebookFriendsListTableViewController.swift; sourceTree = "<group>"; };
+		AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaperTrailLumberjack.framework; path = Carthage/Build/iOS/PaperTrailLumberjack.framework; sourceTree = SOURCE_ROOT; };
+		AE146E931D40CF96000B0FC6 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = SOURCE_ROOT; };
+		AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = SOURCE_ROOT; };
+		AE146E981D40D267000B0FC6 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/iOS/CocoaLumberjack.framework; sourceTree = SOURCE_ROOT; };
 		AE18BACC1CA2D3AD001C73EC /* MessageAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageAttachment.swift; path = Model/MessageAttachment.swift; sourceTree = "<group>"; };
 		AE18BACE1CA2DCF4001C73EC /* ConversationAttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentManager.swift; path = Other/ConversationAttachmentManager.swift; sourceTree = "<group>"; };
 		AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationLocationCell.swift; path = View/ConversationLocationCell.swift; sourceTree = "<group>"; };
@@ -2073,6 +2081,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE146E991D40D267000B0FC6 /* CocoaAsyncSocket.framework in Frameworks */,
+				AE146E9A1D40D267000B0FC6 /* CocoaLumberjack.framework in Frameworks */,
+				AE146E951D40D266000B0FC6 /* CocoaLumberjackSwift.framework in Frameworks */,
+				AE146E961D40D266000B0FC6 /* PaperTrailLumberjack.framework in Frameworks */,
 				BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
 				BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */,
@@ -4973,6 +4985,10 @@
 		B2F719031D0ECCB1002C1D74 /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
+				AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */,
+				AE146E981D40D267000B0FC6 /* CocoaLumberjack.framework */,
+				AE146E931D40CF96000B0FC6 /* CocoaLumberjackSwift.framework */,
+				AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */,
 				B212D1291D0B0B0100E9E19D /* WebImage.framework */,
 				B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */,
 				B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */,
@@ -5450,6 +5466,12 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Bolts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Validator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ACPDownload.framework",
+				"${SRCROOT}/Carthage/Build/iOS/CocoaAsyncSocket.framework",
+				"${SRCROOT}/Carthage/Build/iOS/CocoaLumberjack.framework",
+				"${SRCROOT}/Carthage/Build/iOS/PaperTrailLumberjack.framework",
+				"${SRCROOT}/Carthage/Build/iOS/CocoaLumberjackSwift.framework",
+				"${SRCROOT}/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks/CocoaAsyncSocket.framework",
+				"${SRCROOT}/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks/CocoaLumberjack.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (

@@ -10,6 +10,8 @@ import Foundation
 import RxSwift
 import ShoutitKit
 import KeychainAccess
+import CocoaLumberjackSwift
+import PaperTrailLumberjack
 
 final class Account {
     
@@ -172,6 +174,7 @@ final class Account {
         loginState = .Page(user: user, page: page)
         checkTwilioConnection()
         checkPusherConnection()
+        checkPaperTrailLogger()
     }
     
     func switchToUser() {
@@ -183,6 +186,7 @@ final class Account {
         loginState = .Logged(user: user)
         checkTwilioConnection()
         checkPusherConnection()
+        checkPaperTrailLogger()
     }
     
     func updateUserWithModel<T: User>(model: T, force: Bool = false) {
@@ -302,6 +306,12 @@ private extension Account {
             _ = twilioManager
         default:
             pusherManager.disconnect()
+        }
+    }
+    
+    private func checkPaperTrailLogger() {
+        if let paperTrailLogger = RMPaperTrailLogger.sharedInstance() {
+            paperTrailLogger.machineName = self.user?.id
         }
     }
     

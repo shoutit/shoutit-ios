@@ -9,6 +9,7 @@
 import Foundation
 import FBAudienceNetwork
 import ShoutitKit
+import CocoaLumberjackSwift
 
 enum ShoutAdItemType {
     case Shout
@@ -122,6 +123,11 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         self.loadedAds?.append(nativeAd)
         
         reloadCollection?()
+        DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
+    }
+    
+    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+        DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     
 }

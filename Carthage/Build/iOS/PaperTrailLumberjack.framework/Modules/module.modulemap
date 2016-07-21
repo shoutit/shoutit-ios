@@ -1,0 +1,6 @@
+framework module PaperTrailLumberjack {
+  umbrella header "PaperTrailLumberjack.h"
+
+  export *
+  module * { export * }
+}

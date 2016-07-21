@@ -11,6 +11,7 @@ import RxSwift
 import Argo
 import ShoutitKit
 import FBAudienceNetwork
+import CocoaLumberjackSwift
 
 enum PagerError: ErrorType {
     case StateDoesNotAllowManipulation
@@ -248,9 +249,11 @@ class PagerAdProvider : NSObject, FBNativeAdDelegate {
     
     func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
         print(error)
+        DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     
     func nativeAdDidLoad(nativeAd: FBNativeAd) {
+        DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
         self.provide?(nativeAd)
     }
 }
