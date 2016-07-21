@@ -30,6 +30,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     public let skipLocation: Bool?
     public let filters: [(Filter, [FilterValue])]?
     public let currentUserLocation: Address?
+    public let passCountryOnly: Bool?
     
     public init(searchPhrase: String? = nil,
          discoverId: String? = nil,
@@ -51,6 +52,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          useLocaleBasedCountryCodeWhenNil: Bool = false,
          currentUserLocation: Address? = nil,
          skipLocation: Bool?,
+         passCountryOnly: Bool? = false,
          excludeId: String? = nil) {
         
         self.searchPhrase = searchPhrase
@@ -70,6 +72,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.currentUserLocation = currentUserLocation
         self.excludeId = excludeId
         self.skipLocation = skipLocation
+        self.passCountryOnly = passCountryOnly
         
         if let skipLocation = skipLocation {
             if skipLocation == true {
@@ -88,6 +91,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         }
         self.state = state ?? location?.state
         self.city = city ?? location?.city
+        
     }
     
     public func paramsByReplacingEmptyFieldsWithFieldsFrom(other: FilteredShoutsParams) -> FilteredShoutsParams {
@@ -109,7 +113,8 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
                                     sort: sort ?? other.sort,
                                     filters: filters ?? other.filters,
                                     currentUserLocation: currentUserLocation,
-                                    skipLocation: other.skipLocation)
+                                    skipLocation: other.skipLocation,
+                                    passCountryOnly: other.passCountryOnly)
     }
     
     public var params: [String : AnyObject] {
@@ -143,6 +148,10 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         
         for (key, value) in pagedParams {
             p[key] = value
+        }
+        
+        if passCountryOnly == true && self.country?.characters.count > 0 {
+            p["country"] = self.country
         }
         
         if let skipLocation = self.skipLocation {
