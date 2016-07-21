@@ -6922,6 +6922,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -7065,6 +7066,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -9162,6 +9164,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -9344,6 +9347,7 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -9530,6 +9534,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -9716,6 +9721,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -9903,6 +9909,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -10083,6 +10090,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -10263,6 +10271,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -10444,6 +10453,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -10626,6 +10636,7 @@
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -10806,6 +10817,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/shoutit-iphone",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-deep";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
