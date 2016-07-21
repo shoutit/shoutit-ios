@@ -23,7 +23,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     var placeholderImage: UIImage {
         return UIImage.squareAvatarTagPlaceholder()
     }
-    
+
     var model: ProfileCollectionViewModelMainModel? {
         guard let tag = tag else { return nil }
         return .TagModel(tag: tag)
@@ -176,7 +176,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let slug = slugParameter else { return nil }
-        let params = FilteredShoutsParams(tag: slug, page: 1, pageSize: 4, country: nil, state: nil, city: nil, currentUserLocation: nil, skipLocation: true)
+        let params = FilteredShoutsParams(tag: slug, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location, skipLocation: false, passCountryOnly: true)
         return APIShoutsService.listShoutsWithParams(params)
     }
     
