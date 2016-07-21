@@ -155,9 +155,6 @@ extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate
     }
     
     func photoEditorCanceled(editor: AdobeUXImageEditorViewController) {
-        if let editingAttachment = editingAttachment, editingCompletion = editingCompletion {
-            editingCompletion(attachment: editingAttachment)
-        }
         self.editingAttachment = nil
         self.editingCompletion = nil
         editingController?.dismissViewControllerAnimated(true, completion: nil)
