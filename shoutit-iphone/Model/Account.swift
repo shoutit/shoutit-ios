@@ -314,10 +314,7 @@ private extension Account {
     
     private func checkPaperTrailLogger() {
         if let paperTrailLogger = RMPaperTrailLogger.sharedInstance() {
-            let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-            let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
-            
-            paperTrailLogger.programName = "\(version)-\(build)-\(self.user?.id ?? "guest")"
+            paperTrailLogger.programName = self.user?.id ?? "guest"
         }
     }
     

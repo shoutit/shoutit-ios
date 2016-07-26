@@ -22,14 +22,14 @@ final class APIPageService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
     }
     
-    static func addProfileAsAdminWithParams(params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Void> {
+    static func addProfileAsAdminWithParams(params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Success> {
         let url = APIManager.baseURL + "/pages/\(username)/admin"
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
-    static func removeProfileAsAdminWithParams(params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Void> {
+    static func removeProfileAsAdminWithParams(params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Success> {
         let url = APIManager.baseURL + "/pages/\(username)/admin"
-        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
     static func getPageCategories() -> Observable<[PageCategory]> {

@@ -132,9 +132,9 @@ final class APIChatsService {
         return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
-    static func promoteToAdminProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Void> {
+    static func promoteToAdminProfileInConversationWithId(conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationPromoteAdminProfileURL.stringByReplacingOccurrencesOfString("*", withString: conversationId)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .JSON)
     }
     
     static func getBlockedProfilesForConversation(conversationId: String, params: PageParams) -> Observable<PagedResults<Profile>> {

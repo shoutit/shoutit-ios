@@ -212,14 +212,10 @@ private extension AppDelegate {
         // Disable AutoLayout Constraints Warnings
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
-        
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
-        
         let paperTrailLogger = RMPaperTrailLogger.sharedInstance() as RMPaperTrailLogger!
         paperTrailLogger.host = "logs4.papertrailapp.com" //Your host here
         paperTrailLogger.port = 33179 //Your port number here
-        paperTrailLogger.programName = "\(version)-\(build)"
+        paperTrailLogger.programName = "guest"
         
         DDLog.addLogger(paperTrailLogger)
         

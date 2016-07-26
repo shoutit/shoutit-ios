@@ -98,7 +98,11 @@ static NSString* const RMAppUUIDKey = @"RMAppUUIDKey";
 - (NSString*)machineName
 {
     if (_machineName == nil) {
-        _machineName = [[NSBundle mainBundle] bundleIdentifier];
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:kCFBundleVersionKey];
+        NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+        
+        _machineName = [NSString stringWithFormat:@"%@-%@-%@", bundleId, version, build];
     }
     
     return _machineName;

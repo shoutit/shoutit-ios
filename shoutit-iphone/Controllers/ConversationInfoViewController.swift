@@ -357,9 +357,8 @@ class ConversationInfoViewController: UITableViewController {
         APIChatsService.promoteToAdminProfileInConversationWithId(viewModel.conversation.id, profile: profile).subscribe { (event) in
             
             switch event {
-            case .Next(_):
-                let profileName = profile.fullName()
-                self.showSuccessMessage(NSLocalizedString("\(profileName) can now administrate this chat", comment: ""))
+            case .Next(let success):
+                self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
                 self.showError(error)

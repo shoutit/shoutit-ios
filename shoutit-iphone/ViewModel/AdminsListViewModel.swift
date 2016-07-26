@@ -39,11 +39,11 @@ final class AdminsListViewModel {
         triggerObservableAndRefreshUsersList(observable)
     }
     
-    private func triggerObservableAndRefreshUsersList(observable: Observable<Void>) {
+    private func triggerObservableAndRefreshUsersList(observable: Observable<Success>) {
         observable
             .subscribe { [weak self] (event) in
                 switch event {
-                case .Next:
+                case .Next(let _):
                     self?.pager.refreshContent()
                 case .Error(let error):
                     self?.errorSubject.onNext(error)
