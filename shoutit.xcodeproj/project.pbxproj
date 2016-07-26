@@ -112,10 +112,6 @@
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
-		AE146E951D40D266000B0FC6 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E931D40CF96000B0FC6 /* CocoaLumberjackSwift.framework */; };
-		AE146E961D40D266000B0FC6 /* PaperTrailLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */; };
-		AE146E991D40D267000B0FC6 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */; };
-		AE146E9A1D40D267000B0FC6 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E981D40D267000B0FC6 /* CocoaLumberjack.framework */; };
 		AE1516761D059688009E8357 /* LightError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B345451CA5584D0066DF15 /* LightError.swift */; };
 		AE1516781D05A908009E8357 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
 		AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */; };
@@ -252,6 +248,21 @@
 		AE69C4C51D13F51400DB2D76 /* PromoteShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
+		AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */; };
+		AE76E33A1D47506800C7F2CB /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3381D47506800C7F2CB /* GCDAsyncUdpSocket.m */; };
+		AE76E34D1D47507600C7F2CB /* CocoaLumberjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E33C1D47507600C7F2CB /* CocoaLumberjack.swift */; };
+		AE76E34E1D47507600C7F2CB /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E33E1D47507600C7F2CB /* DDAbstractDatabaseLogger.m */; };
+		AE76E34F1D47507600C7F2CB /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3401D47507600C7F2CB /* DDASLLogCapture.m */; };
+		AE76E3501D47507600C7F2CB /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3421D47507600C7F2CB /* DDASLLogger.m */; };
+		AE76E3511D47507600C7F2CB /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3451D47507600C7F2CB /* DDFileLogger.m */; };
+		AE76E3521D47507600C7F2CB /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3481D47507600C7F2CB /* DDLog.m */; };
+		AE76E3531D47507600C7F2CB /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E34C1D47507600C7F2CB /* DDTTYLogger.m */; };
+		AE76E35B1D47509D00C7F2CB /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3561D47509D00C7F2CB /* DDContextFilterLogFormatter.m */; };
+		AE76E35C1D47509D00C7F2CB /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3581D47509D00C7F2CB /* DDDispatchQueueLogFormatter.m */; };
+		AE76E35D1D47509D00C7F2CB /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E35A1D47509D00C7F2CB /* DDMultiFormatter.m */; };
+		AE76E3681D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E35F1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m */; };
+		AE76E3691D4750B700C7F2CB /* RMPaperTrailLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3641D4750B700C7F2CB /* RMPaperTrailLogger.m */; };
+		AE76E36A1D4750B700C7F2CB /* RMSyslogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3661D4750B700C7F2CB /* RMSyslogFormatter.m */; };
 		AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
 		AE7FFFE01CAC55A7009F3FBC /* TWCLocalMedia+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */; };
 		AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
@@ -1266,6 +1277,47 @@
 		AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutParams.swift; path = Networking/PromoteShoutParams.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
+		AE76E3331D47506800C7F2CB /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CocoaAsyncSocket-umbrella.h"; path = "CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/CocoaAsyncSocket-umbrella.h"; sourceTree = SOURCE_ROOT; };
+		AE76E3341D47506800C7F2CB /* CocoaAsyncSocket.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = CocoaAsyncSocket.modulemap; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/CocoaAsyncSocket.modulemap; sourceTree = SOURCE_ROOT; };
+		AE76E3351D47506800C7F2CB /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncSocket.h; sourceTree = SOURCE_ROOT; };
+		AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncSocket.m; sourceTree = SOURCE_ROOT; };
+		AE76E3371D47506800C7F2CB /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncUdpSocket.h; sourceTree = SOURCE_ROOT; };
+		AE76E3381D47506800C7F2CB /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
+		AE76E33B1D47507600C7F2CB /* CocoaLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CocoaLumberjack.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/CocoaLumberjack.h; sourceTree = SOURCE_ROOT; };
+		AE76E33C1D47507600C7F2CB /* CocoaLumberjack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaLumberjack.swift; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/CocoaLumberjack.swift; sourceTree = SOURCE_ROOT; };
+		AE76E33D1D47507600C7F2CB /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDAbstractDatabaseLogger.h; sourceTree = SOURCE_ROOT; };
+		AE76E33E1D47507600C7F2CB /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDAbstractDatabaseLogger.m; sourceTree = SOURCE_ROOT; };
+		AE76E33F1D47507600C7F2CB /* DDASLLogCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDASLLogCapture.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDASLLogCapture.h; sourceTree = SOURCE_ROOT; };
+		AE76E3401D47507600C7F2CB /* DDASLLogCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDASLLogCapture.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDASLLogCapture.m; sourceTree = SOURCE_ROOT; };
+		AE76E3411D47507600C7F2CB /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDASLLogger.h; sourceTree = SOURCE_ROOT; };
+		AE76E3421D47507600C7F2CB /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDASLLogger.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDASLLogger.m; sourceTree = SOURCE_ROOT; };
+		AE76E3431D47507600C7F2CB /* DDAssertMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAssertMacros.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDAssertMacros.h; sourceTree = SOURCE_ROOT; };
+		AE76E3441D47507600C7F2CB /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDFileLogger.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDFileLogger.h; sourceTree = SOURCE_ROOT; };
+		AE76E3451D47507600C7F2CB /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDFileLogger.m; sourceTree = SOURCE_ROOT; };
+		AE76E3461D47507600C7F2CB /* DDLegacyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDLegacyMacros.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDLegacyMacros.h; sourceTree = SOURCE_ROOT; };
+		AE76E3471D47507600C7F2CB /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDLog.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDLog.h; sourceTree = SOURCE_ROOT; };
+		AE76E3481D47507600C7F2CB /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDLog.m; sourceTree = SOURCE_ROOT; };
+		AE76E3491D47507600C7F2CB /* DDLog+LOGV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DDLog+LOGV.h"; path = "CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDLog+LOGV.h"; sourceTree = SOURCE_ROOT; };
+		AE76E34A1D47507600C7F2CB /* DDLogMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDLogMacros.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDLogMacros.h; sourceTree = SOURCE_ROOT; };
+		AE76E34B1D47507600C7F2CB /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDTTYLogger.h; sourceTree = SOURCE_ROOT; };
+		AE76E34C1D47507600C7F2CB /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Classes/DDTTYLogger.m; sourceTree = SOURCE_ROOT; };
+		AE76E3541D47507C00C7F2CB /* CocoaLumberjack.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = CocoaLumberjack.modulemap; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/CocoaLumberjack.modulemap; sourceTree = SOURCE_ROOT; };
+		AE76E3551D47509D00C7F2CB /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDContextFilterLogFormatter.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Extensions/DDContextFilterLogFormatter.h; sourceTree = SOURCE_ROOT; };
+		AE76E3561D47509D00C7F2CB /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDContextFilterLogFormatter.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Extensions/DDContextFilterLogFormatter.m; sourceTree = SOURCE_ROOT; };
+		AE76E3571D47509D00C7F2CB /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDDispatchQueueLogFormatter.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Extensions/DDDispatchQueueLogFormatter.h; sourceTree = SOURCE_ROOT; };
+		AE76E3581D47509D00C7F2CB /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDDispatchQueueLogFormatter.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Extensions/DDDispatchQueueLogFormatter.m; sourceTree = SOURCE_ROOT; };
+		AE76E3591D47509D00C7F2CB /* DDMultiFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDMultiFormatter.h; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Extensions/DDMultiFormatter.h; sourceTree = SOURCE_ROOT; };
+		AE76E35A1D47509D00C7F2CB /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDMultiFormatter.m; path = CopiedFilesFrameworks/PaperTrail/CocoaLumberjack/Extensions/DDMultiFormatter.m; sourceTree = SOURCE_ROOT; };
+		AE76E35E1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+RMPaperTrailLumberjack.h"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/NSString+RMPaperTrailLumberjack.h"; sourceTree = SOURCE_ROOT; };
+		AE76E35F1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+RMPaperTrailLumberjack.m"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/NSString+RMPaperTrailLumberjack.m"; sourceTree = SOURCE_ROOT; };
+		AE76E3601D4750B700C7F2CB /* PaperTrailLumberjack-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PaperTrailLumberjack-umbrella.h"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/PaperTrailLumberjack-umbrella.h"; sourceTree = SOURCE_ROOT; };
+		AE76E3611D4750B700C7F2CB /* PaperTrailLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaperTrailLumberjack.h; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/PaperTrailLumberjack.h; sourceTree = SOURCE_ROOT; };
+		AE76E3621D4750B700C7F2CB /* PaperTrailLumberjack.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = PaperTrailLumberjack.modulemap; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/PaperTrailLumberjack.modulemap; sourceTree = SOURCE_ROOT; };
+		AE76E3631D4750B700C7F2CB /* RMPaperTrailLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMPaperTrailLogger.h; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMPaperTrailLogger.h; sourceTree = SOURCE_ROOT; };
+		AE76E3641D4750B700C7F2CB /* RMPaperTrailLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMPaperTrailLogger.m; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMPaperTrailLogger.m; sourceTree = SOURCE_ROOT; };
+		AE76E3651D4750B700C7F2CB /* RMSyslogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSyslogFormatter.h; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMSyslogFormatter.h; sourceTree = SOURCE_ROOT; };
+		AE76E3661D4750B700C7F2CB /* RMSyslogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSyslogFormatter.m; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMSyslogFormatter.m; sourceTree = SOURCE_ROOT; };
+		AE76E3671D4750B700C7F2CB /* RMSyslogFormatter+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RMSyslogFormatter+Private.h"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/RMSyslogFormatter+Private.h"; sourceTree = SOURCE_ROOT; };
 		AE7AC1661CB3FBB400C9DEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		AE7FFFDE1CAC55A7009F3FBC /* TWCLocalMedia+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TWCLocalMedia+Additions.h"; path = "Other/TWCLocalMedia+Additions.h"; sourceTree = "<group>"; };
 		AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TWCLocalMedia+Additions.m"; path = "Other/TWCLocalMedia+Additions.m"; sourceTree = "<group>"; };
@@ -2081,10 +2133,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE146E991D40D267000B0FC6 /* CocoaAsyncSocket.framework in Frameworks */,
-				AE146E9A1D40D267000B0FC6 /* CocoaLumberjack.framework in Frameworks */,
-				AE146E951D40D266000B0FC6 /* CocoaLumberjackSwift.framework in Frameworks */,
-				AE146E961D40D266000B0FC6 /* PaperTrailLumberjack.framework in Frameworks */,
 				BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
 				BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */,
@@ -2966,6 +3014,94 @@
 				B2E43C901D103BA1006C6AD2 /* VideoCallViewController */,
 			);
 			name = VideoCalls;
+			sourceTree = "<group>";
+		};
+		AE76E2A41D4749DC00C7F2CB /* PaperTrail */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E2D61D474A7000C7F2CB /* CocoaAsyncSocket */,
+				AE76E2B11D474A3A00C7F2CB /* CocoaLumberJack */,
+				AE76E2A51D4749E900C7F2CB /* PaperTrail */,
+			);
+			name = PaperTrail;
+			sourceTree = "<group>";
+		};
+		AE76E2A51D4749E900C7F2CB /* PaperTrail */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E35E1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.h */,
+				AE76E35F1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m */,
+				AE76E3601D4750B700C7F2CB /* PaperTrailLumberjack-umbrella.h */,
+				AE76E3611D4750B700C7F2CB /* PaperTrailLumberjack.h */,
+				AE76E3621D4750B700C7F2CB /* PaperTrailLumberjack.modulemap */,
+				AE76E3631D4750B700C7F2CB /* RMPaperTrailLogger.h */,
+				AE76E3641D4750B700C7F2CB /* RMPaperTrailLogger.m */,
+				AE76E3651D4750B700C7F2CB /* RMSyslogFormatter.h */,
+				AE76E3661D4750B700C7F2CB /* RMSyslogFormatter.m */,
+				AE76E3671D4750B700C7F2CB /* RMSyslogFormatter+Private.h */,
+			);
+			name = PaperTrail;
+			sourceTree = "<group>";
+		};
+		AE76E2B11D474A3A00C7F2CB /* CocoaLumberJack */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E3541D47507C00C7F2CB /* CocoaLumberjack.modulemap */,
+				AE76E2B31D474A4C00C7F2CB /* Extensions */,
+				AE76E2B21D474A4700C7F2CB /* Classes */,
+			);
+			name = CocoaLumberJack;
+			sourceTree = "<group>";
+		};
+		AE76E2B21D474A4700C7F2CB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E33B1D47507600C7F2CB /* CocoaLumberjack.h */,
+				AE76E33C1D47507600C7F2CB /* CocoaLumberjack.swift */,
+				AE76E33D1D47507600C7F2CB /* DDAbstractDatabaseLogger.h */,
+				AE76E33E1D47507600C7F2CB /* DDAbstractDatabaseLogger.m */,
+				AE76E33F1D47507600C7F2CB /* DDASLLogCapture.h */,
+				AE76E3401D47507600C7F2CB /* DDASLLogCapture.m */,
+				AE76E3411D47507600C7F2CB /* DDASLLogger.h */,
+				AE76E3421D47507600C7F2CB /* DDASLLogger.m */,
+				AE76E3431D47507600C7F2CB /* DDAssertMacros.h */,
+				AE76E3441D47507600C7F2CB /* DDFileLogger.h */,
+				AE76E3451D47507600C7F2CB /* DDFileLogger.m */,
+				AE76E3461D47507600C7F2CB /* DDLegacyMacros.h */,
+				AE76E3471D47507600C7F2CB /* DDLog.h */,
+				AE76E3481D47507600C7F2CB /* DDLog.m */,
+				AE76E3491D47507600C7F2CB /* DDLog+LOGV.h */,
+				AE76E34A1D47507600C7F2CB /* DDLogMacros.h */,
+				AE76E34B1D47507600C7F2CB /* DDTTYLogger.h */,
+				AE76E34C1D47507600C7F2CB /* DDTTYLogger.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		AE76E2B31D474A4C00C7F2CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E3551D47509D00C7F2CB /* DDContextFilterLogFormatter.h */,
+				AE76E3561D47509D00C7F2CB /* DDContextFilterLogFormatter.m */,
+				AE76E3571D47509D00C7F2CB /* DDDispatchQueueLogFormatter.h */,
+				AE76E3581D47509D00C7F2CB /* DDDispatchQueueLogFormatter.m */,
+				AE76E3591D47509D00C7F2CB /* DDMultiFormatter.h */,
+				AE76E35A1D47509D00C7F2CB /* DDMultiFormatter.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		AE76E2D61D474A7000C7F2CB /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				AE76E3331D47506800C7F2CB /* CocoaAsyncSocket-umbrella.h */,
+				AE76E3341D47506800C7F2CB /* CocoaAsyncSocket.modulemap */,
+				AE76E3351D47506800C7F2CB /* GCDAsyncSocket.h */,
+				AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */,
+				AE76E3371D47506800C7F2CB /* GCDAsyncUdpSocket.h */,
+				AE76E3381D47506800C7F2CB /* GCDAsyncUdpSocket.m */,
+			);
+			name = CocoaAsyncSocket;
 			sourceTree = "<group>";
 		};
 		AE7FFFDA1CAC550C009F3FBC /* twilio wrapper */ = {
@@ -4956,6 +5092,7 @@
 		B2F719011D0ECC99002C1D74 /* CopiedFilesFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE76E2A41D4749DC00C7F2CB /* PaperTrail */,
 				B2F71A681D0EF7BF002C1D74 /* Curry.swift */,
 				AEB3F3921D0995E800393428 /* DeeplinkKit */,
 				AEB3F3021D09950B00393428 /* Pusher */,
@@ -5466,12 +5603,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Bolts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Validator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ACPDownload.framework",
-				"${SRCROOT}/Carthage/Build/iOS/CocoaAsyncSocket.framework",
-				"${SRCROOT}/Carthage/Build/iOS/CocoaLumberjack.framework",
-				"${SRCROOT}/Carthage/Build/iOS/PaperTrailLumberjack.framework",
-				"${SRCROOT}/Carthage/Build/iOS/CocoaLumberjackSwift.framework",
-				"${SRCROOT}/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks/CocoaAsyncSocket.framework",
-				"${SRCROOT}/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks/CocoaLumberjack.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
@@ -5581,6 +5712,7 @@
 				B2CA5C461D1D7BFF009E164E /* AdminsListTableViewController.swift in Sources */,
 				24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */,
 				B2B4AADB1CB53D2900926474 /* DiscoverShoutsDisplayable.swift in Sources */,
+				AE76E35D1D47509D00C7F2CB /* DDMultiFormatter.m in Sources */,
 				B2D029601D1C30CC00A29D8B /* MyPageTableViewCell.swift in Sources */,
 				B2702C341CCFA63100236B5A /* IntroContentViewController.swift in Sources */,
 				2463B6991C984A5E00BFE6BA /* ConversationViewModel.swift in Sources */,
@@ -5597,6 +5729,7 @@
 				24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */,
 				B2C729CF1C62224A006F7D29 /* AboutDisplayable.swift in Sources */,
 				AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */,
+				AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */,
 				248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */,
 				B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */,
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */,
@@ -5634,6 +5767,7 @@
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				BF5FB27C1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift in Sources */,
 				AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */,
+				AE76E3691D4750B700C7F2CB /* RMPaperTrailLogger.m in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
 				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
@@ -5674,14 +5808,17 @@
 				B2F71A2E1D0EF643002C1D74 /* PTPusherAPI.m in Sources */,
 				AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */,
 				B2B5D03E1C80AABC0068A6AF /* ShoutDisplayable.swift in Sources */,
+				AE76E34F1D47507600C7F2CB /* DDASLLogCapture.m in Sources */,
 				246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */,
 				B272304E1CE0DE0F003547EA /* ReusableView.swift in Sources */,
+				AE76E3531D47507600C7F2CB /* DDTTYLogger.m in Sources */,
 				B2190D871C5A41C6007FF33B /* UnwrapOperators.swift in Sources */,
 				B2F719B51D0EF12F002C1D74 /* ABContactRecord.swift in Sources */,
 				24826B471C96A34900032FC9 /* APINotificationsService.swift in Sources */,
 				B294BC941CEB7A9A00131B31 /* MessageAttachmentPhotoBrowserCellViewModel.swift in Sources */,
 				AE32EA1F1D213A8000545F72 /* CreatePageInfoViewController.swift in Sources */,
 				B2ACBDF51C68D81C000FA302 /* PostSignupInterestCellViewModel.swift in Sources */,
+				AE76E34E1D47507600C7F2CB /* DDAbstractDatabaseLogger.m in Sources */,
 				B2A144231C651C26002CD70A /* PostSignupInterestsViewModel.swift in Sources */,
 				B272306A1CE0FAB0003547EA /* ConversationProfileCell.swift in Sources */,
 				B2B889A21D183ED900C38808 /* ConversationInfoCellViewModel.swift in Sources */,
@@ -5694,6 +5831,7 @@
 				B2F719E91D0EF4C7002C1D74 /* GoogleMapsService.swift in Sources */,
 				B260819E1CB6C73C0025DA26 /* ShoutsCollectionViewModel.swift in Sources */,
 				B2F7199F1D0EEFAA002C1D74 /* MWZoomingScrollView.m in Sources */,
+				AE76E35C1D47509D00C7F2CB /* DDDispatchQueueLogFormatter.m in Sources */,
 				B201A1E91CB406D8009DA966 /* CategoryFiltersViewController.swift in Sources */,
 				B2B5D0421C80C2C30068A6AF /* ShoutDetailTableViewCellViewModel.swift in Sources */,
 				AE4DB3471C636508001EB84B /* MenuDismissAnimationController.swift in Sources */,
@@ -5706,6 +5844,7 @@
 				B2E107171C96D68200F7F4EF /* UIViewController+NavigationBar.swift in Sources */,
 				B2A144251C651C45002CD70A /* PostSignupSuggestionViewModel.swift in Sources */,
 				AE83517B1C5F6E620055C71F /* RootController.swift in Sources */,
+				AE76E35B1D47509D00C7F2CB /* DDContextFilterLogFormatter.m in Sources */,
 				B2F71A5F1D0EF791002C1D74 /* DPLMutableDeepLink+AppLinks.m in Sources */,
 				AEC8529D1D2E7FE90060A32D /* FBNativeAdExtension.swift in Sources */,
 				AE83518B1C5F7DD50055C71F /* ChatsFlowController.swift in Sources */,
@@ -5835,6 +5974,7 @@
 				B2D9B0FF1C9849CB00924941 /* SearchViewModel.swift in Sources */,
 				B2CA5C581D1D99EF009E164E /* ProfilesListDisplayable.swift in Sources */,
 				B2B540D11C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift in Sources */,
+				AE76E34D1D47507600C7F2CB /* CocoaLumberjack.swift in Sources */,
 				B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */,
 				B2F719991D0EEFAA002C1D74 /* MWGridCell.m in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
@@ -5854,6 +5994,7 @@
 				AE1F3FE21CEB3CD300C3432F /* AddMemberCellConfigurator.swift in Sources */,
 				B2C729DC1C6223FF006F7D29 /* SignupViewController.swift in Sources */,
 				B2E7155D1C6E11F4007F95CF /* ProfileReusableViewKind.swift in Sources */,
+				AE76E3521D47507600C7F2CB /* DDLog.m in Sources */,
 				B2AB73F31CB569BE00C2C0C0 /* SettingsFormViewModel.swift in Sources */,
 				B272305A1CE0E691003547EA /* ProfilesListCellViewModel.swift in Sources */,
 				B2D0295C1D1C2C6500A29D8B /* PublicPagesViewModel.swift in Sources */,
@@ -5881,6 +6022,7 @@
 				B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */,
 				B2F719D81D0EF2EC002C1D74 /* NSDecimalNumberTransform.swift in Sources */,
 				AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */,
+				AE76E36A1D4750B700C7F2CB /* RMSyslogFormatter.m in Sources */,
 				B2F719FE1D0EF53A002C1D74 /* NSAttributedString+Processing.m in Sources */,
 				24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
@@ -5930,6 +6072,8 @@
 				B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */,
 				244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */,
 				B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */,
+				AE76E3681D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m in Sources */,
+				AE76E33A1D47506800C7F2CB /* GCDAsyncUdpSocket.m in Sources */,
 				B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */,
 				B22D908E1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift in Sources */,
 				244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */,
@@ -5980,6 +6124,7 @@
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,
 				B209C5301CF3411200727095 /* TagsListTableViewController.swift in Sources */,
 				BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */,
+				AE76E3501D47507600C7F2CB /* DDASLLogger.m in Sources */,
 				B2956F031CDCEE020041C6CD /* PHAsset+MediaAttachment.swift in Sources */,
 				B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */,
 				B2B4AAD21CB43CB400926474 /* CategoryFiltersViewModel.swift in Sources */,
@@ -6030,6 +6175,7 @@
 				249324841C7F203600A1AB6A /* DiscoverShoutsParentViewController.swift in Sources */,
 				AE180F881C7F8F910069BB1A /* APIAuthService.swift in Sources */,
 				B28379A51C738898009AFF01 /* ProfileCollectionCellViewModel.swift in Sources */,
+				AE76E3511D47507600C7F2CB /* DDFileLogger.m in Sources */,
 				B2D19C581D1D4D83007CB6DF /* MyPagesCellViewModel.swift in Sources */,
 				B2F719D61D0EF2EC002C1D74 /* Mappable.swift in Sources */,
 				B2E43CA51D1042ED006C6AD2 /* CreditsDisplayable.swift in Sources */,
@@ -6910,6 +7056,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -7053,6 +7200,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9150,6 +9298,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9330,6 +9479,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9518,6 +9668,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9704,6 +9855,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -9891,6 +10043,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10071,6 +10224,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10251,6 +10405,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10431,6 +10586,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10612,6 +10768,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10794,6 +10951,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Fabric/iOS",
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,

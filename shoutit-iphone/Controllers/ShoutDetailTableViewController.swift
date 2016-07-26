@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import FBAudienceNetwork
 import ShoutitKit
-import CocoaLumberjackSwift
 
 final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDelegate {
     
