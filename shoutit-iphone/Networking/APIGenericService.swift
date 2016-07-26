@@ -22,7 +22,7 @@ final class APIGenericService {
         encoding: ParameterEncoding = .URL,
         headers: [String: String]? = nil) -> Observable<Void> {
         
-        return Observable.create {(observer) -> Disposable in
+        let observable : Observable<Void> = Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
                 .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
@@ -57,6 +57,10 @@ final class APIGenericService {
             
             return cancel
         }
+        
+        return refreshTokenObservable().flatMap { (_) -> Observable<Void> in
+            return observable
+        }
     }
     
     static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
@@ -67,13 +71,15 @@ final class APIGenericService {
         responseJsonPath: [String]? = nil,
         headers: [String: String]? = nil) -> Observable<T> {
         
-        return Observable.create {(observer) -> Disposable in
+        let observable : Observable<T> = Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
                 .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
+            
+            debugPrint(request)
             
             request.responseJSON{ (response) in
                 do {
@@ -90,6 +96,10 @@ final class APIGenericService {
             
             return cancel
         }
+        
+        return refreshTokenObservable().flatMap { (_) -> Observable<T> in
+            return observable
+        }
     }
     
     static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
@@ -100,7 +110,7 @@ final class APIGenericService {
         responseJsonPath: [String]? = nil,
         headers: [String: String]? = nil) -> Observable<[T]> {
         
-        return Observable.create {(observer) -> Disposable in
+        let observable : Observable<[T]> = Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
                 .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
@@ -124,7 +134,72 @@ final class APIGenericService {
             
             return cancel
         }
+        
+        return refreshTokenObservable().flatMap { (_) -> Observable<[T]> in
+            return observable
+        }
     }
+    
+    private static func refreshTokenObservable() -> Observable<Void> {
+        guard let tokenExpires = APIManager.tokenExpiresAt else {
+            return Observable.just(Void())
+            
+        }
+        
+        if tokenExpires < Int(NSDate().timeIntervalSince1970) {
+            debugPrint("Refreshing Access Token")
+
+            guard let refreshToken =  APIManager.authData?.refreshToken else {
+                return Observable.just(Void())
+            }
+            
+            let params = RefreshTokenParams(refreshToken: refreshToken)
+            
+            if case .Some(.Page(_,_)) = Account.sharedInstance.loginState {
+                let observable: Observable<(AuthData, DetailedPageProfile)> = APIAuthService.refreshAuthToken(params)
+                
+                return observable.flatMap({ (authData, page) -> Observable<Void> in
+                    
+                    do {
+                        try Account.sharedInstance.loginUser(page, withAuthData: authData)
+                        return Observable.just(Void())
+                    } catch let error {
+                        return Observable.error(error)
+                    }
+                })
+                
+            } else if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
+                let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
+                
+                return observable.flatMap({ (authData, page) -> Observable<Void> in
+                    
+                    do {
+                        try Account.sharedInstance.loginUser(page, withAuthData: authData)
+                        return Observable.just(Void())
+                    } catch let error {
+                        return Observable.error(error)
+                    }
+                })
+            } else {
+                let observable: Observable<(AuthData, GuestUser)> = APIAuthService.refreshAuthToken(params)
+                
+                return observable.flatMap({ (authData, page) -> Observable<Void> in
+                    
+                    do {
+                        try Account.sharedInstance.loginUser(page, withAuthData: authData)
+                        return Observable.just(Void())
+                    } catch let error {
+                        return Observable.error(error)
+                    }
+                })
+            }
+                        
+        }
+        
+        return Observable.just(Void())
+    }
+    
+    
     
     // MARK: - Helpers
     

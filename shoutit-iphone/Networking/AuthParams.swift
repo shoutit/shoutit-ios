@@ -186,3 +186,19 @@ public struct ResetPasswordParams: Params {
         self.email = email
     }
 }
+
+public struct RefreshTokenParams: Params {
+    public var refreshToken: String
+
+    public var params: [String : AnyObject] {
+        return ["client_id": Constants.Authentication.clientID,
+        "client_secret": Constants.Authentication.clientSecret,
+        "grant_type": "refresh_token",
+        "refresh_token": refreshToken]
+        
+    }
+    
+    public init(refreshToken: String) {
+        self.refreshToken = refreshToken
+    }
+}

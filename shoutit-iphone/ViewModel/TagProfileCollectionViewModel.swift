@@ -65,7 +65,9 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // user data
     var name: String? {
-        return tag?.name ?? filter?.value?.name ?? category?.name
+        let val =  tag?.name ?? filter?.value?.name ?? category?.name
+        
+        return val
     }
     
     var verified: Bool {

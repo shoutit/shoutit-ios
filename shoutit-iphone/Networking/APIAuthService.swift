@@ -50,6 +50,32 @@ final class APIAuthService {
         }
     }
     
+    static func refreshAuthToken<T: User where T: Decodable, T == T.DecodedType>(params: RefreshTokenParams) -> Observable<(AuthData, T)> {
+        
+        return Observable.create({ (observer) -> Disposable in
+            let request = APIManager.manager()
+                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON)
+            let cancel = AnonymousDisposable {
+                request.cancel()
+            }
+            
+            request.responseJSON{ (response) in
+                do {
+                    let json = try APIGenericService.validateResponseAndExtractJson(response)
+                    let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["profile"])
+                    let authData: AuthData = try APIGenericService.parseJson(json)
+                    let user: T = try APIGenericService.parseJson(userJson)
+                    observer.onNext((authData, user))
+                    observer.onCompleted()
+                } catch let error {
+                    observer.onError(error)
+                }
+            }
+            
+            return cancel
+        })
+    }
+    
     static func verifyEmail(params: EmailParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/auth/verify_email"
         return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)

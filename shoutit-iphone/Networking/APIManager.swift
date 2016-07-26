@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Reachability
 import Kingfisher
+import ShoutitKit
 
 final class APIManager {
 
@@ -22,6 +23,9 @@ final class APIManager {
     #else
         static let baseURL = "https://api.shoutit.com/v3"
     #endif
+    
+    static var tokenExpiresAt : Int?
+    static var authData : AuthData?
     
     static func manager() -> Alamofire.Manager {
         if apiManager == nil {
@@ -37,15 +41,17 @@ final class APIManager {
     
     // MARK: - Token
     
-    static func setAuthToken(token: String, pageId: String?) {
-        _setAuthToken(token, pageId: pageId)
+    static func setAuthToken(token: String, expiresAt: Int?, pageId: String?) {
+        _setAuthToken(token, expiresAt: expiresAt, pageId: pageId)
     }
     
     static func eraseAuthToken() {
-        _setAuthToken(nil, pageId: nil)
+        _setAuthToken(nil, expiresAt: nil, pageId: nil)
     }
     
-    private static func _setAuthToken(token: String?, pageId: String?) {
+    private static func _setAuthToken(token: String?, expiresAt: Int?, pageId: String?) {
+        self.tokenExpiresAt = expiresAt
+        
         var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
         defaultHeaders["Authorization-Page-Id"] = pageId

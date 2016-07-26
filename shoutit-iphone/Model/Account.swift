@@ -141,6 +141,7 @@ final class Account {
         guard let authData: AuthData = SecureCoder.objectWithData(data) else { return }
         
         self.authData = authData
+        APIManager.authData = authData
         loginSubject.onNext(authData)
         updateTokenWithAuthData(authData, user: user)
         updateApplicationBadgeNumberWithStats((user as? DetailedUserProfile)?.stats)
@@ -159,18 +160,23 @@ final class Account {
         
         // auth
         self.authData = authData
+        APIManager.authData = authData
         loginSubject.onNext(authData)
         updateTokenWithAuthData(authData, user: user)
         updateUserWithModel(user, force: true)
         configureTwilioAndPusherServices()
     }
     
+    
+    
+    
     func switchToPage(page: DetailedPageProfile) {
         guard case .Some(.Logged(let user)) = loginState, let authData = authData where user.type == .User else {
             fatalError("User must be logged in to switch to page")
         }
         precondition(page.type == .Page)
-        APIManager.setAuthToken(authData.apiToken, pageId: page.id)
+        APIManager.setAuthToken(authData.apiToken, expiresAt: authData.expiresAt(), pageId: page.id)
+        APIManager.authData = authData
         loginSubject.onNext(authData)
         loginState = .Page(user: user, page: page)
         checkTwilioConnection()
@@ -183,8 +189,9 @@ final class Account {
         guard case .Some(.Page(let user , _)) = loginState, let authData = authData else {
             fatalError("User must use app as page to switch back to user")
         }
-        APIManager.setAuthToken(authData.apiToken, pageId: nil)
+        APIManager.setAuthToken(authData.apiToken, expiresAt: authData.expiresAt(), pageId: nil)
         loginSubject.onNext(authData)
+        APIManager.authData = authData
         loginState = .Logged(user: user)
         checkTwilioConnection()
         checkPusherConnection()
@@ -216,9 +223,9 @@ final class Account {
     
     private func updateTokenWithAuthData(authData: AuthData, user: User) {
         if let page = user as? DetailedPageProfile {
-            APIManager.setAuthToken(authData.apiToken, pageId: page.id)
+            APIManager.setAuthToken(authData.apiToken, expiresAt: authData.expiresAt(), pageId: page.id)
         } else {
-            APIManager.setAuthToken(authData.apiToken, pageId: nil)
+            APIManager.setAuthToken(authData.apiToken, expiresAt: authData.expiresAt(), pageId: nil)
         }
     }
     
@@ -234,6 +241,7 @@ final class Account {
         try keychain.remove(self.authDataKey)
         loginState = nil
         authData = nil
+        APIManager.authData = nil
         loginSubject.onNext(nil)
         APIManager.eraseAuthToken()
         pusherManager.disconnect()
