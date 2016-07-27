@@ -63,6 +63,7 @@ class EditPageTableViewController: UITableViewController {
         fillHeader()
         
         self.tableView.keyboardDismissMode = .OnDrag
+        self.tableView.estimatedRowHeight = 80.0
         
         setupRX()
     }
@@ -187,7 +188,6 @@ extension EditPageTableViewController {
             let cell = cell as! EditPageTextViewTableViewCell
             
             cell.textView.text = value
-            cell.textView.delegate = self
             cell.placeholderLabel.text = placeholder
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
@@ -196,34 +196,7 @@ extension EditPageTableViewController {
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
                 }
                 .addDisposableTo(cell.disposeBag)
-        case .Location(let value, let placeholder, _):
-            let cell = cell as! EditPageSelectButtonTableViewCell
-            cell.selectButton.fieldTitleLabel.text = placeholder
-            cell.selectButton.iconImageView.image = UIImage(named: value.country)
-            cell.selectButton.setTitle(value.address, forState: .Normal)
-            cell.selectButton
-                .rx_tap
-                .asDriver()
-                .driveNext({ [weak self] () -> Void in
-                    
-                    let controller = Wireframe.changeShoutLocationController()
-                    
-                    controller.finishedBlock = {[weak indexPath](success, place) -> Void in
-                        // TODO
-//                        if let place = place, indexPath = indexPath {s
-//                            let newViewModel = EditPageCellViewModel(location: place)
-//                            self?.viewModel.cells[indexPath.row] = newViewModel
-//                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-//                        }
-                    }
-                    
-                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: #selector(controller.pop))
-                    self?.navigationController?.showViewController(controller, sender: nil)
-                    
-                    })
-                .addDisposableTo(cell.disposeBag)
-            
-            case .Switch(let value, let placeholder, _):
+        case .Switch(let value, let placeholder, _):
                 let cell = cell as! EditPageSwitchTableViewCell
                 cell.switchButton.on = value
                 cell.placeholderLabel.text = placeholder
@@ -231,7 +204,10 @@ extension EditPageTableViewController {
                 cell.switchButton.rx_controlEvent(.ValueChanged).asDriver().driveNext({ (x) in
                     self.viewModel.mutateModelForIndex(indexPath.row, object: cell.switchButton.on)
                 }).addDisposableTo(cell.disposeBag)
+        default:
+            return cell
         }
+        
     
         
         return cell
@@ -246,7 +222,7 @@ extension EditPageTableViewController {
         let cellViewModel = viewModel.cells[indexPath.row]
         switch cellViewModel {
         case .BasicText: return 70
-        case .RichText: return 120
+        case .RichText: return UITableViewAutomaticDimension
         case .Location: return 70
         case .Switch: return 50
         }
