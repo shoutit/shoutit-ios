@@ -15,6 +15,8 @@ import ShoutitKit
 
 final class APIGenericService {
     
+    static var refreshTokenObservableStore : Observable<Void>?
+    
     static func basicRequestWithMethod<P: Params>(
         method: Alamofire.Method,
         url: URLStringConvertible,
@@ -153,15 +155,21 @@ final class APIGenericService {
                 return Observable.just(Void())
             }
             
+            if let refreshTokenObservableStore = refreshTokenObservableStore {
+                return refreshTokenObservableStore.share()
+            }
+            
             let params = RefreshTokenParams(refreshToken: refreshToken)
             
             if case .Some(.Page(_,_)) = Account.sharedInstance.loginState {
                 let observable: Observable<(AuthData, DetailedPageProfile)> = APIAuthService.refreshAuthToken(params)
                 
-                return observable.flatMap({ (authData, page) -> Observable<Void> in
+                refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
+                    
+                    refreshTokenObservableStore = nil
                     
                     do {
-                        try Account.sharedInstance.loginUser(page, withAuthData: authData)
+                        try Account.sharedInstance.refreshUser(page, withAuthData: authData)
                         return Observable.just(Void())
                     } catch let error {
                         return Observable.error(error)
@@ -171,10 +179,12 @@ final class APIGenericService {
             } else if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
                 let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
                 
-                return observable.flatMap({ (authData, page) -> Observable<Void> in
+                refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
+                    
+                    refreshTokenObservableStore = nil
                     
                     do {
-                        try Account.sharedInstance.loginUser(page, withAuthData: authData)
+                        try Account.sharedInstance.refreshUser(page, withAuthData: authData)
                         return Observable.just(Void())
                     } catch let error {
                         return Observable.error(error)
@@ -183,15 +193,21 @@ final class APIGenericService {
             } else {
                 let observable: Observable<(AuthData, GuestUser)> = APIAuthService.refreshAuthToken(params)
                 
-                return observable.flatMap({ (authData, page) -> Observable<Void> in
+                refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
+                    
+                    refreshTokenObservableStore = nil
                     
                     do {
-                        try Account.sharedInstance.loginUser(page, withAuthData: authData)
+                        try Account.sharedInstance.refreshUser(page, withAuthData: authData)
                         return Observable.just(Void())
                     } catch let error {
                         return Observable.error(error)
                     }
                 })
+            }
+            
+            if let refreshTokenObservableStore = refreshTokenObservableStore {
+                return refreshTokenObservableStore.share()
             }
                         
         }

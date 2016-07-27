@@ -167,7 +167,19 @@ final class Account {
         configureTwilioAndPusherServices()
     }
     
-    
+    func refreshUser<T: User>(user: T, withAuthData authData: AuthData) throws {
+        
+        // save
+        let data = SecureCoder.dataWithJsonConvertible(authData)
+        try keychain.set(data, key: authDataKey)
+        
+        // auth
+        self.authData = authData
+        APIManager.authData = authData
+        updateTokenWithAuthData(authData, user: user)
+        updateUserWithModel(user, force: true)
+        configureTwilioAndPusherServices()
+    }
     
     
     func switchToPage(page: DetailedPageProfile) {

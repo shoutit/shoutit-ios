@@ -17,7 +17,7 @@ public struct ExpirationDate : Decodable {
         switch json {
         case .Number(let timeStamp):
             let date : Int = Int(NSDate().timeIntervalSince1970)
-            let expiresAt = date + 10 // Int(timeStamp)
+            let expiresAt = date + Int(timeStamp)
             return .Success(ExpirationDate(expireTimeStamp: expiresAt))
         default:
             
