@@ -10,23 +10,19 @@ import UIKit
 import FBSDKCoreKit
 import Fabric
 import Crashlytics
-import SwiftyBeaver
 import FBSDKCoreKit
 import ShoutitKit
 import Bolts
 import PaperTrailLumberjack
 
-let log = SwiftyBeaver.self
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
     let router = DPLDeepLinkRouter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        BuddyBuildSDK.setup()
-        
         
         applyAppearance()
         configureLoggingServices()
@@ -35,15 +31,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Account.sharedInstance.fetchUserProfile()
         
         configureGoogleLogin()
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions ?? [:])
-        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
-        PlacesGeocoder.setup()
+        
         MixpanelHelper.handleUserDidOpenApp()
+        
         LocationManager.sharedInstance.startUpdatingLocation()
         
-        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
+        // Configure Third Parties With Small Delay
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            PlacesGeocoder.setup()
+            AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
+        }
         
         configureAPS(application)
+        
         configureURLCache()
         
         var firstLaunch = false
@@ -122,7 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocation()
         LocationManager.sharedInstance.triggerLocationUpdate()
+        
         MixpanelHelper.handleUserDidOpenApp()
+        
         if case .Logged(let user)? = Account.sharedInstance.loginState {
             Account.sharedInstance.pusherManager.tryToConnect()
             Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
@@ -201,14 +206,6 @@ private extension AppDelegate {
         UserVoice.initialize(config)
         UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
         
-        
-        // Configure Swift Beaver
-        let console = ConsoleDestination()  // log to Xcode Console
-        let cloud = SBPlatformDestination(appID: "v6ggaZ", appSecret: "ckaIkfmgycLdD78fofhrc48Q6K7Rzpps", encryptionKey: "p8br20ubgBcorJlmlFiortCqtv1wnztd") // to cloud
-        
-        assert(log.addDestination(console))
-        assert(log.addDestination(cloud))
-    
         // Disable AutoLayout Constraints Warnings
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         

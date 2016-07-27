@@ -21,7 +21,6 @@ final class Twilio: NSObject {
     // vars
     var authData: TwilioAuth? {
         didSet {
-            log.info("TWILIO: TOKEN RETRIVED")
             createTwilioClient()
         }
     }
@@ -163,8 +162,6 @@ private extension Twilio {
         
         connecting = true
         
-        log.verbose("TWILIO: TRYING TO RETRIVE TOKEN")
-        
         self.authenticatedId = account.user?.id
         
         APIChatsService.twilioVideoAuth().subscribeOn(MainScheduler.instance).subscribe { [weak self] (event) in
@@ -174,7 +171,7 @@ private extension Twilio {
             case .Next(let authData):
                 self?.authData = authData
             case .Error(let error):
-                log.error(error)
+                break
             default: break
             }
             }.addDisposableTo(disposeBag)
@@ -182,7 +179,6 @@ private extension Twilio {
     
     private func createTwilioClient() {
         guard let authData = authData else {
-            log.error("Twilio cannot be initialized before requesting an access token from Shoutit API")
             return
         }
         
@@ -263,22 +259,17 @@ extension Twilio: TwilioConversationsClientDelegate {
     
     func conversationsClientDidStartListeningForInvites(conversationsClient: TwilioConversationsClient) {
         retryScheduler.resetAttemptsCount()
-        log.info("TWILIO: DID START LISTNING FOR INVITES")
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
-        log.info("TWILIO: DID CANCEL INVITE")
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
-        log.info("TWILIO: DID RECEIVE INVITE")
-        
         let notification = NSNotification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     func conversationsClientDidStopListeningForInvites(conversationsClient: TwilioConversationsClient, error: NSError?) {
-        log.warning("TWILIO: DID STOP LISTENING FOR INVITES \(error)")
     }
     
     func conversationsClient(conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {

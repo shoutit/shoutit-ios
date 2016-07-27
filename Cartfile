@@ -2,7 +2,6 @@ github "ReactiveX/RxSwift" == 2.3.1
 github "thoughtbot/Argo"
 github "edwardaux/Ogra" == 3.0.0
 github "mixpanel/mixpanel-iphone" == 2.9
-github "SwiftyBeaver/SwiftyBeaver"
 github "aws/aws-sdk-ios"
 github "AnthonyMDev/AmazonS3RequestManager"
 github "Alamofire/Alamofire" ==  3.3.0

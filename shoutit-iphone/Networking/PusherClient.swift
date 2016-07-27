@@ -132,9 +132,6 @@ final class PusherClient : NSObject {
     private func subscribeToMainChannel() {
         
         mainChannelObservable().subscribeNext { (event) -> Void in
-        
-            log.info("PUSHER: MAIN CHANNEL EVENT: \(event.name) --- \n ---- \(event.data)")
-            
             self.mainChannelSubject.onNext(event)
             
             if event.eventType() == .StatsUpdate {
@@ -178,7 +175,7 @@ final class PusherClient : NSObject {
     func subscribeToPageMainChannel(page: DetailedPageProfile) {
         mainPageChannelObservable(page).subscribeNext { (event) -> Void in
             
-            log.info("PUSHER: PAGE CHANNEL EVENT: \(event.name) --- \n ---- \(event.data)")
+            
             
             self.mainChannelSubject.onNext(event)
             
@@ -231,8 +228,6 @@ extension PusherClient : PTPusherDelegate {
     // Connection Delegates
     
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
-        log.verbose("PUSHER: CONNECTED")
-        
         // WARNING //
         
         // There is issue with Pusher Library everytime pusher did connect it calls this delegate method and after that it calls subscribeAll.
@@ -253,26 +248,26 @@ extension PusherClient : PTPusherDelegate {
     // Subscriptions
     
     func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
-        log.info("PUSHER: didSubscribeToChannel: \(channel.name)")
+      
     }
     
     func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
-        log.info("PUSHER: didUnsubscribeFromChannel: \(channel.name)")
+      
         self.subscribedChannels.removeElementIfExists(channel.name)
     }
     
     // Error handling
     
     func pusher(pusher: PTPusher!, didReceiveErrorEvent errorEvent: PTPusherErrorEvent!) {
-        log.error("PUSHER: DID RECEIVE ERROR EVENT: | \(errorEvent.data["message"])")
+       
     }
     
     func pusher(pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
-        log.error("PUSHER: DID FAIL TO SUBSCRIBE TO CHANNEL: \(channel) --- \n ---- \(error)")
+       
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
-        log.error("PUSHER: DID DISCONNECT WITH ERROR: \(error)")
+       
     
         if !keepDisconnected {
             reconnect()
@@ -280,7 +275,7 @@ extension PusherClient : PTPusherDelegate {
     }
     
     func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
-        log.error("PUSHER: FAILED WITH ERROR: \(error)")
+        
     }
 }
 

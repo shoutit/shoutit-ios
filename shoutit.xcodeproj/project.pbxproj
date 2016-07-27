@@ -764,7 +764,6 @@
 		B2F5248A1C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F524891C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib */; };
 		B2F719251D0ECFC9002C1D74 /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */; };
 		B2F719271D0ECFF7002C1D74 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */; };
-		B2F719291D0ED008002C1D74 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */; };
 		B2F7193E1D0EEDA9002C1D74 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2F7193D1D0EEDA9002C1D74 /* GoogleSignIn.bundle */; };
 		B2F719621D0EEEF5002C1D74 /* ImageError.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F719411D0EEEF5002C1D74 /* ImageError.png */; };
 		B2F719631D0EEEF5002C1D74 /* ImageError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2F719421D0EEEF5002C1D74 /* ImageError@2x.png */; };
@@ -913,7 +912,6 @@
 		BFA5AB671D2686B400778FC7 /* AdItemGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */; };
 		BFA5AB6C1D2694EA00778FC7 /* AdItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */; };
 		BFA5AB6F1D26A09000778FC7 /* AdItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5AB6D1D269FA000778FC7 /* AdItemCell.swift */; };
-		D7693A32243D3CABF701C656 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3825904D80F56CB69A751C /* BuddyBuildSDK.framework */; };
 		D9F64A74FDC3884B1ACF0627 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89CDA22E17F2A844DE048AE /* CoreMedia.framework */; };
 		E677ABF59E0B8081FF38E269 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F321E525C691DDCE65E75 /* QuartzCore.framework */; };
 		E910099B479E740834964E32 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28AA5808B4049585E32D125D /* AVFoundation.framework */; };
@@ -1062,7 +1060,6 @@
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		24E298911CF1F23700FDB055 /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Display.swift; path = Model/Display.swift; sourceTree = "<group>"; };
 		28AA5808B4049585E32D125D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		5B3825904D80F56CB69A751C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCell.swift; path = View/tabs/home/SHShoutItemCell.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
@@ -1895,7 +1892,6 @@
 		B2F524891C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchShoutsResultsShoutsHeaderSupplementeryView.xib; path = Storyboards/SearchShoutsResultsShoutsHeaderSupplementeryView.xib; sourceTree = "<group>"; };
 		B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlackTextViewController.framework; path = Carthage/Build/iOS/SlackTextViewController.framework; sourceTree = SOURCE_ROOT; };
 		B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = SOURCE_ROOT; };
-		B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = SOURCE_ROOT; };
 		B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = External/GoogleMaps/Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
 		B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = External/AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
 		B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = External/AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
@@ -2189,7 +2185,6 @@
 				B21D8A8C1D0B3D6400EE1549 /* Alamofire.framework in Frameworks */,
 				B2985F961C72953800EEA9A2 /* CoreText.framework in Frameworks */,
 				B2985F941C72953100EEA9A2 /* CoreGraphics.framework in Frameworks */,
-				B2F719291D0ED008002C1D74 /* SwiftyBeaver.framework in Frameworks */,
 				B21D8A951D0B3E3200EE1549 /* Material.framework in Frameworks */,
 				B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
@@ -2208,7 +2203,6 @@
 				B2463C5D1D1025E00006BD6E /* FBSDKShareKit.framework in Frameworks */,
 				B2463C581D10259B0006BD6E /* Crashlytics.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
-				D7693A32243D3CABF701C656 /* BuddyBuildSDK.framework in Frameworks */,
 				F3D553D4DE1D62D562D1788A /* AssetsLibrary.framework in Frameworks */,
 				6D66575F91DE9ADE619CA06B /* CoreText.framework in Frameworks */,
 				0285D0C72D806F0A18285E6B /* CoreTelephony.framework in Frameworks */,
@@ -3977,7 +3971,6 @@
 				B2F719031D0ECCB1002C1D74 /* Carthage */,
 				B2F719021D0ECCA7002C1D74 /* EmbeddedFrameworks */,
 				B2F719011D0ECC99002C1D74 /* CopiedFilesFrameworks */,
-				5B3825904D80F56CB69A751C /* BuddyBuildSDK.framework */,
 				D68426E4FF3671D9E8A8EFD7 /* AssetsLibrary.framework */,
 				9C0FB754506806CFD2A18E2F /* CoreText.framework */,
 				9376F28A446969569A86D217 /* CoreTelephony.framework */,
@@ -5128,7 +5121,6 @@
 				AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */,
 				B212D1291D0B0B0100E9E19D /* WebImage.framework */,
 				B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */,
-				B2F719281D0ED008002C1D74 /* SwiftyBeaver.framework */,
 				B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */,
 				B212D1381D0B27DF00E9E19D /* SocketRocket.framework */,
 				B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */,
@@ -5593,7 +5585,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SWXMLHash.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyBeaver.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SocketRocket.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SlackTextViewController.framework",
@@ -7160,8 +7151,6 @@
 					"-framework",
 					"\"SocketRocket\"",
 					"-framework",
-					"\"SwiftyBeaver\"",
-					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"TwilioCommon\"",
@@ -7303,8 +7292,6 @@
 					"\"SlackTextViewController\"",
 					"-framework",
 					"\"SocketRocket\"",
-					"-framework",
-					"\"SwiftyBeaver\"",
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
@@ -9402,8 +9389,6 @@
 					"-framework",
 					"\"SocketRocket\"",
 					"-framework",
-					"\"SwiftyBeaver\"",
-					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"TwilioCommon\"",
@@ -9584,8 +9569,6 @@
 					"\"SlackTextViewController\"",
 					"-framework",
 					"\"SocketRocket\"",
-					"-framework",
-					"\"SwiftyBeaver\"",
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
@@ -9772,8 +9755,6 @@
 					"-framework",
 					"\"SocketRocket\"",
 					"-framework",
-					"\"SwiftyBeaver\"",
-					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"TwilioCommon\"",
@@ -9958,8 +9939,6 @@
 					"\"SlackTextViewController\"",
 					"-framework",
 					"\"SocketRocket\"",
-					"-framework",
-					"\"SwiftyBeaver\"",
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
@@ -10147,8 +10126,6 @@
 					"-framework",
 					"\"SocketRocket\"",
 					"-framework",
-					"\"SwiftyBeaver\"",
-					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"TwilioCommon\"",
@@ -10327,8 +10304,6 @@
 					"\"SlackTextViewController\"",
 					"-framework",
 					"\"SocketRocket\"",
-					"-framework",
-					"\"SwiftyBeaver\"",
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
@@ -10509,8 +10484,6 @@
 					"-framework",
 					"\"SocketRocket\"",
 					"-framework",
-					"\"SwiftyBeaver\"",
-					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"TwilioCommon\"",
@@ -10690,8 +10663,6 @@
 					"\"SlackTextViewController\"",
 					"-framework",
 					"\"SocketRocket\"",
-					"-framework",
-					"\"SwiftyBeaver\"",
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
@@ -10874,8 +10845,6 @@
 					"-framework",
 					"\"SocketRocket\"",
 					"-framework",
-					"\"SwiftyBeaver\"",
-					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
 					"\"TwilioCommon\"",
@@ -11054,8 +11023,6 @@
 					"\"SlackTextViewController\"",
 					"-framework",
 					"\"SocketRocket\"",
-					"-framework",
-					"\"SwiftyBeaver\"",
 					"-framework",
 					"\"SystemConfiguration\"",
 					"-framework",
