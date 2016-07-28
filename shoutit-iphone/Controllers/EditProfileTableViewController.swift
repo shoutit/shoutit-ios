@@ -216,7 +216,7 @@ extension EditProfileTableViewController {
                 .addDisposableTo(cell.disposeBag)
         case .RichText(let value, let placeholder, _):
             let cell = cell as! EditProfileTextViewTableViewCell
-            cell.textView.placeholderLabel?.text = placeholder
+//            cell.textView.placeholderLabel?.text = placeholder
             cell.textView.text = value
             cell.textView.delegate = self
             cell.textView.rx_text
@@ -224,7 +224,7 @@ extension EditProfileTableViewController {
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
+//                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Location(let value, let placeholder, _):

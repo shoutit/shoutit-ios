@@ -34,6 +34,8 @@ class CreateShoutTableViewController: UITableViewController {
         createViewModel()
         setupRX()
         
+        self.tableView.estimatedRowHeight = 100.0
+        self.tableView.rowHeight = 100.0
         self.tableView.registerNib(UINib(nibName: "SectionHeaderWithDetailsButton", bundle: nil), forHeaderFooterViewReuseIdentifier: "SectionHeaderWithDetailsButton")
     }
     
@@ -174,16 +176,18 @@ extension CreateShoutTableViewController {
             cell.textView
                 .rx_text
                 .flatMap{ (text) -> Observable<String?> in
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
                     return Observable.just(text)
                 }
                 .bindTo(viewModel.shoutParams.text)
                 .addDisposableTo(cell.reuseDisposeBag)
             
-            cell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
+//            cell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
             
             if let shout = self.viewModel.shoutParams.shout {
                 if cell.textView.text == "" {
-                    cell.textView.text = shout.text
+                    cell.setContent(shout.text ?? "")
                 }
             }
             return cell
@@ -279,13 +283,14 @@ extension CreateShoutTableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
-        switch cellViewModel {
-        case .Mobile: return 80
-        case .Description: return 160
-        case .Facebook: return 44
-        default: return 70
-        }
+        return UITableViewAutomaticDimension
+//        let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+//        switch cellViewModel {
+//        case .Mobile: return 80
+//        case .Description: return UITableViewAutomaticDimension
+//        case .Facebook: return 44
+//        default: return 70
+//        }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
