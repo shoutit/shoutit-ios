@@ -188,12 +188,12 @@ extension EditPageTableViewController {
         case .RichText(let value, let placeholder, _):
             let cell = cell as! EditPageTextViewTableViewCell
             
-            cell.textView.text = value
+            cell.setContent(value)
             cell.placeholderLabel.text = placeholder
             cell.textView.rx_text
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
-                .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
+                .subscribeNext{[unowned self] (text) in
                     if cell.isEditingText == false { return }
                     self.tableView.beginUpdates()
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)

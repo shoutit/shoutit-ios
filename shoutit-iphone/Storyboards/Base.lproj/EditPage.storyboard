@@ -201,7 +201,7 @@
                                             <rect key="frame" x="10" y="30" width="580" height="76"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="PMs-ao-yNz"/>
+                                                <constraint firstAttribute="height" constant="35" id="PMs-ao-yNz"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="vc0-f3-31A"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

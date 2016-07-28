@@ -26,7 +26,8 @@ final class EditPageTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
         self.textView.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.textView.layer.borderWidth = 1.0/UIScreen.mainScreen().nativeScale
         self.textView.delegate = self
-        self.textView.scrollEnabled = false
+        
+        self.textView.contentInset = UIEdgeInsets(top: -3, left: 0, bottom: 0, right: 0)
         
         self.contentView.clipsToBounds = true
     }
@@ -35,6 +36,13 @@ final class EditPageTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         isEditingText = false
+    }
+    
+    func setContent(text: String) {
+        self.textView.text = text
+        self.textView.invalidateIntrinsicContentSize()
+        self.textViewHeight.constant = max(textView.intrinsicContentSize().height, textView.contentSize.height) + (text.characters.count > 0 ? 10.0 : 0)
+        self.layoutIfNeeded()
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -48,5 +56,9 @@ final class EditPageTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func textViewDidEndEditing(textView: UITextView) {
         isEditingText = false
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return textView.text.utf16.count < 150 || text.utf16.count == 0
     }
 }
