@@ -64,6 +64,7 @@ class EditPageTableViewController: UITableViewController {
         
         self.tableView.keyboardDismissMode = .OnDrag
         self.tableView.estimatedRowHeight = 80.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         setupRX()
     }
@@ -193,7 +194,10 @@ extension EditPageTableViewController {
                 .observeOn(MainScheduler.instance)
                 .distinctUntilChanged()
                 .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
+                    if cell.isEditingText == false { return }
+                    self.tableView.beginUpdates()
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
+                    self.tableView.endUpdates()
                 }
                 .addDisposableTo(cell.disposeBag)
         case .Switch(let value, let placeholder, _):
@@ -218,14 +222,15 @@ extension EditPageTableViewController {
 extension EditPageTableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
         
-        let cellViewModel = viewModel.cells[indexPath.row]
-        switch cellViewModel {
-        case .BasicText: return 70
-        case .RichText: return UITableViewAutomaticDimension
-        case .Location: return 70
-        case .Switch: return 50
-        }
+//        let cellViewModel = viewModel.cells[indexPath.row]
+//        switch cellViewModel {
+//        case .BasicText: return 70
+//        case .RichText: return 50.0
+//        case .Location: return 70
+//        case .Switch: return 50
+//        }
     }
 }
 
