@@ -14,6 +14,9 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
 
     var shout : Shout!
  
+    @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
     override func createViewModel() {
         viewModel = CreateShoutViewModel(shout: shout)
         tableView.reloadData()
@@ -22,6 +25,7 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillWithShoutData()
+        adjustDescriptionHeight()
     }
     
     func fillWithShoutData() {
@@ -91,5 +95,28 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
         dispatch_group_notify(group, dispatch_get_main_queue()) { 
             completionBlock(attachments)
         }
+    }
+}
+
+extension EditShoutTableViewController : UITextViewDelegate {
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        adjustDescriptionHeight()
+    }
+    
+    func adjustDescriptionHeight() {
+        self.descriptionTextViewHeight.constant = self.descriptionTextView.contentSize.height
+        
+        if let frame = self.tableView.tableHeaderView?.frame {
+            self.tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: self.descriptionTextViewHeight.constant + 300.0)
+        }
+        
     }
 }

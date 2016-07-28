@@ -42,7 +42,7 @@ final class CreateShoutViewModel: NSObject {
                                   shout: shout,
                                   mobile: shout.mobile)
         super.init()
-        detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category, .Description], parent: self, hideFilters: false)
+        detailsSectionViewModel = CreateShoutDetailsSectionViewModel(cellViewModels: [.Category], parent: self, hideFilters: false)
         locationSectionViewModel = CreateShoutLocationSectionViewModel(cellViewModels: [.Location, .Mobile], parent: self)
         sharingSectionViewModel = CreateShoutSocialSharingSectionViewModel(cellViewModels: [.Facebook], parent: self)
     }

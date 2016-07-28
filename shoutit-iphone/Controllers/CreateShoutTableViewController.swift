@@ -169,24 +169,24 @@ extension CreateShoutTableViewController {
                 .addDisposableTo(cell.reuseDisposeBag)
             
             return cell
-        case .Description:
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellDescription", forIndexPath: indexPath) as! CreateShoutTextViewCell
-            cell.textView
-                .rx_text
-                .flatMap{ (text) -> Observable<String?> in
-                    return Observable.just(text)
-                }
-                .bindTo(viewModel.shoutParams.text)
-                .addDisposableTo(cell.reuseDisposeBag)
-            
-            cell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
-            
-            if let shout = self.viewModel.shoutParams.shout {
-                if cell.textView.text == "" {
-                    cell.textView.text = shout.text
-                }
-            }
-            return cell
+//        case .Description:
+//            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellDescription", forIndexPath: indexPath) as! CreateShoutTextViewCell
+//            cell.textView
+//                .rx_text
+//                .flatMap{ (text) -> Observable<String?> in
+//                    return Observable.just(text)
+//                }
+//                .bindTo(viewModel.shoutParams.text)
+//                .addDisposableTo(cell.reuseDisposeBag)
+//            
+//            cell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
+//            
+//            if let shout = self.viewModel.shoutParams.shout {
+//                if cell.textView.text == "" {
+//                    cell.textView.text = shout.text
+//                }
+//            }
+//            return cell
         case .FilterChoice(let filter):
             let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellOption", forIndexPath: indexPath) as! CreateShoutSelectCell
             viewModel.fillFilterCell(cell, withFilter: filter)
@@ -282,7 +282,7 @@ extension CreateShoutTableViewController {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         switch cellViewModel {
         case .Mobile: return 80
-        case .Description: return 160
+//        case .Description: return 160
         case .Facebook: return 44
         default: return 70
         }

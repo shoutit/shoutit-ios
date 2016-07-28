@@ -11,7 +11,7 @@ import ShoutitKit
 
 enum CreateShoutCellViewModel {    
     case Category
-    case Description
+//    case Description
     case Location
     case Mobile
     case FilterChoice(filter: Filter)
