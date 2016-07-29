@@ -167,7 +167,7 @@ final class Account {
         configureTwilioAndPusherServices()
     }
     
-    func refreshUser<T: User>(user: T, withAuthData authData: AuthData) throws {
+    func refreshAuthData(authData: AuthData) throws {
         
         // save
         let data = SecureCoder.dataWithJsonConvertible(authData)
@@ -176,8 +176,11 @@ final class Account {
         // auth
         self.authData = authData
         APIManager.authData = authData
-        updateTokenWithAuthData(authData, user: user)
-        updateUserWithModel(user, force: true)
+        
+        if let user = self.user {
+            updateTokenWithAuthData(authData, user: user)
+        }
+        
         configureTwilioAndPusherServices()
     }
     

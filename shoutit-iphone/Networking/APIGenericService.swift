@@ -15,7 +15,10 @@ import ShoutitKit
 
 final class APIGenericService {
     
+    static var isRefreshingToken : Bool = false
+    static var refreshTokenSubject : PublishSubject<Bool> = PublishSubject()
     static var refreshTokenObservableStore : Observable<Void>?
+    static let disposeBag = DisposeBag()
     
     static func basicRequestWithMethod<P: Params>(
         method: Alamofire.Method,
@@ -60,9 +63,21 @@ final class APIGenericService {
             return cancel
         }
         
-        return refreshTokenObservable().flatMap { (_) -> Observable<Void> in
-            return observable
+        if isRefreshingToken {
+            return self.refreshTokenSubject.asObservable().take(1).filter{$0 == true}.flatMap({ (bool) -> Observable<Void> in
+                return observable
+            })
         }
+        
+        if isTokenValid() == false {
+            startRefreshingToken()
+            return self.refreshTokenSubject.asObservable().take(1).filter{$0 == true}.flatMap({ (bool) -> Observable<Void> in
+                return observable
+            })
+        }
+        
+        
+        return observable
     }
     
     static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
@@ -99,9 +114,21 @@ final class APIGenericService {
             return cancel
         }
         
-        return refreshTokenObservable().flatMap { (_) -> Observable<T> in
-            return observable
+        if isRefreshingToken {
+            return self.refreshTokenSubject.asObservable().take(1).filter{$0 == true}.flatMap({ (bool) -> Observable<T> in
+                return observable
+            })
         }
+        
+        if isTokenValid() == false {
+            startRefreshingToken()
+            return self.refreshTokenSubject.asObservable().take(1).filter{$0 == true}.flatMap({ (bool) -> Observable<T> in
+                return observable
+            })
+        }
+        
+        
+        return observable
     }
     
     static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
@@ -137,85 +164,111 @@ final class APIGenericService {
             return cancel
         }
         
-        return refreshTokenObservable().flatMap { (_) -> Observable<[T]> in
-            return observable
+        if isRefreshingToken {
+            return self.refreshTokenSubject.asObservable().take(1).filter{$0 == true}.flatMap({ (bool) -> Observable<[T]> in
+                return observable
+            })
         }
+        
+        if isTokenValid() == false {
+            startRefreshingToken()
+            return self.refreshTokenSubject.asObservable().take(1).filter{$0 == true}.flatMap({ (bool) -> Observable<[T]> in
+                return observable
+            })
+        }
+        
+        
+        return observable
     }
     
-    private static func refreshTokenObservable() -> Observable<Void> {
+    
+    static func isTokenValid() -> Bool {
         guard let tokenExpires = APIManager.tokenExpiresAt else {
-            return Observable.just(Void())
+            return true
             
         }
         
-        if tokenExpires < Int(NSDate().timeIntervalSince1970) {
-            debugPrint("Refreshing Access Token")
-
-            guard let refreshToken =  APIManager.authData?.refreshToken else {
-                return Observable.just(Void())
-            }
-            
-            if let refreshTokenObservableStore = refreshTokenObservableStore {
-                return refreshTokenObservableStore.share()
-            }
-            
-            let params = RefreshTokenParams(refreshToken: refreshToken)
-            
-            if case .Some(.Page(_,_)) = Account.sharedInstance.loginState {
-                let observable: Observable<(AuthData, DetailedPageProfile)> = APIAuthService.refreshAuthToken(params)
-                
-                refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
-                    
-                    refreshTokenObservableStore = nil
-                    
-                    do {
-                        try Account.sharedInstance.refreshUser(page, withAuthData: authData)
-                        return Observable.just(Void())
-                    } catch let error {
-                        return Observable.error(error)
-                    }
-                })
-                
-            } else if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
-                let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
-                
-                refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
-                    
-                    refreshTokenObservableStore = nil
-                    
-                    do {
-                        try Account.sharedInstance.refreshUser(page, withAuthData: authData)
-                        return Observable.just(Void())
-                    } catch let error {
-                        return Observable.error(error)
-                    }
-                })
-            } else {
-                let observable: Observable<(AuthData, GuestUser)> = APIAuthService.refreshAuthToken(params)
-                
-                refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
-                    
-                    refreshTokenObservableStore = nil
-                    
-                    do {
-                        try Account.sharedInstance.refreshUser(page, withAuthData: authData)
-                        return Observable.just(Void())
-                    } catch let error {
-                        return Observable.error(error)
-                    }
-                })
-            }
-            
-            if let refreshTokenObservableStore = refreshTokenObservableStore {
-                return refreshTokenObservableStore.share()
-            }
-                        
-        }
-        
-        return Observable.just(Void())
+        return tokenExpires < Int(NSDate().timeIntervalSince1970)
     }
     
+    static func startRefreshingToken() {
+        isRefreshingToken = true
+        
+        guard let refreshToken =  APIManager.authData?.refreshToken else {
+            self.refreshTokenSubject.onNext(true)
+            return
+        }
+        
+        
+        let params = RefreshTokenParams(refreshToken: refreshToken)
+        
+        let observable: Observable<AuthData> = APIAuthService.refreshAuthToken(params)
+        
+        refreshTokenObservableStore = observable.flatMap({ authData -> Observable<Void> in
+            
+            do {
+                try Account.sharedInstance.refreshAuthData(authData)
+                return Observable.just(Void())
+            } catch let error {
+                return Observable.error(error)
+            }
+        })
+
+        
+       /* if case .Some(.Page(_,let page)) = Account.sharedInstance.loginState {
+            let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
+            
+            refreshTokenObservableStore = observable.flatMap({ (authData, user) -> Observable<Void> in
+                
+                refreshTokenObservableStore = nil
+                
+                do {
+                    try Account.sharedInstance.refreshUser(page, withAuthData: authData)
+                    return Observable.just(Void())
+                } catch let error {
+                    return Observable.error(error)
+                }
+            })
+            
+        } else if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
+            let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
+            
+            refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
+                
+                do {
+                    try Account.sharedInstance.refreshUser(page, withAuthData: authData)
+                    return Observable.just(Void())
+                } catch let error {
+                    return Observable.error(error)
+                }
+            })
+        } else {
+            let observable: Observable<(AuthData, GuestUser)> = APIAuthService.refreshAuthToken(params)
+            
+            refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
+                
+                refreshTokenObservableStore = nil
+                
+                do {
+                    try Account.sharedInstance.refreshUser(page, withAuthData: authData)
+                    return Observable.just(Void())
+                } catch let error {
+                    return Observable.error(error)
+                }
+            })
+        } */
+        
+        refreshTokenObservableStore?.subscribe({ (event) in
+            self.isRefreshingToken = false
+            switch event {
+            case .Next(_): self.refreshTokenSubject.onNext(true)
+            case .Error(let error):
+                debugPrint(error)
+            default: break
+            }
+        }).addDisposableTo(disposeBag)
     
+    }
     
     // MARK: - Helpers
     

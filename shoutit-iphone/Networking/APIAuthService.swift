@@ -50,7 +50,7 @@ final class APIAuthService {
         }
     }
     
-    static func refreshAuthToken<T: User where T: Decodable, T == T.DecodedType>(params: RefreshTokenParams) -> Observable<(AuthData, T)> {
+    static func refreshAuthToken(params: RefreshTokenParams) -> Observable<AuthData> {
         
         return Observable.create({ (observer) -> Disposable in
             let request = APIManager.manager()
@@ -62,10 +62,8 @@ final class APIAuthService {
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["profile"])
                     let authData: AuthData = try APIGenericService.parseJson(json)
-                    let user: T = try APIGenericService.parseJson(userJson)
-                    observer.onNext((authData, user))
+                    observer.onNext(authData)
                     observer.onCompleted()
                 } catch let error {
                     observer.onError(error)
