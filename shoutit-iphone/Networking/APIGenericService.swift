@@ -187,11 +187,16 @@ final class APIGenericService {
             return true
             
         }
+        let currentTime = Int(NSDate().timeIntervalSince1970)
         
-        return tokenExpires < Int(NSDate().timeIntervalSince1970)
+        print("\(tokenExpires) > \(currentTime)")
+        
+        return tokenExpires > currentTime
     }
     
     static func startRefreshingToken() {
+        print("REFRESH TOKEN")
+        
         isRefreshingToken = true
         
         guard let refreshToken =  APIManager.authData?.refreshToken else {
@@ -213,50 +218,6 @@ final class APIGenericService {
                 return Observable.error(error)
             }
         })
-
-        
-       /* if case .Some(.Page(_,let page)) = Account.sharedInstance.loginState {
-            let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
-            
-            refreshTokenObservableStore = observable.flatMap({ (authData, user) -> Observable<Void> in
-                
-                refreshTokenObservableStore = nil
-                
-                do {
-                    try Account.sharedInstance.refreshUser(page, withAuthData: authData)
-                    return Observable.just(Void())
-                } catch let error {
-                    return Observable.error(error)
-                }
-            })
-            
-        } else if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
-            let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.refreshAuthToken(params)
-            
-            refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
-                
-                do {
-                    try Account.sharedInstance.refreshUser(page, withAuthData: authData)
-                    return Observable.just(Void())
-                } catch let error {
-                    return Observable.error(error)
-                }
-            })
-        } else {
-            let observable: Observable<(AuthData, GuestUser)> = APIAuthService.refreshAuthToken(params)
-            
-            refreshTokenObservableStore = observable.flatMap({ (authData, page) -> Observable<Void> in
-                
-                refreshTokenObservableStore = nil
-                
-                do {
-                    try Account.sharedInstance.refreshUser(page, withAuthData: authData)
-                    return Observable.just(Void())
-                } catch let error {
-                    return Observable.error(error)
-                }
-            })
-        } */
         
         refreshTokenObservableStore?.subscribe({ (event) in
             self.isRefreshingToken = false
