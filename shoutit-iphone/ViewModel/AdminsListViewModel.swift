@@ -14,6 +14,7 @@ import ShoutitKit
 final class AdminsListViewModel {
     
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
+    let successSubject: PublishSubject<Success> = PublishSubject()
     let pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
     
     let disposeBag = DisposeBag()
@@ -43,7 +44,8 @@ final class AdminsListViewModel {
         observable
             .subscribe { [weak self] (event) in
                 switch event {
-                case .Next(let _):
+                case .Next(let success):
+                    self?.successSubject.onNext(success)
                     self?.pager.refreshContent()
                 case .Error(let error):
                     self?.errorSubject.onNext(error)

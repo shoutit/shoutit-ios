@@ -63,6 +63,7 @@ class LinkedAccountsManager : NSObject {
             
             switch event {
             case .Error(let error): controller.showError(error)
+            case .Next (let success): controller.showSuccessMessage(success.message)
             default: break
             }
         }.addDisposableTo(disposeBag)
@@ -82,6 +83,7 @@ class LinkedAccountsManager : NSObject {
             
             switch event {
             case .Error(let error): controller.showError(error)
+            case .Next (let success): controller.showSuccessMessage(success.message)
             default: break
             }
             
@@ -184,9 +186,9 @@ class LinkedAccountsManager : NSObject {
             alert.addAction(UIAlertAction(title: name, style: .Default, handler: { (action) in
                 APIProfileService.linkFacebookPage(.FacebookPage(pageId: uid)).subscribe { [weak self] (event) in
                     switch event {
-                    case .Next(_):
+                    case .Next(let success):
                         Account.sharedInstance.fetchUserProfile()
-                        controller.showSuccessMessage(NSLocalizedString("Facebook Page linked", comment: ""))
+                        controller.showSuccessMessage(success.message)
                     case .Error(let error):
                         controller.showError(error)
                     default: break

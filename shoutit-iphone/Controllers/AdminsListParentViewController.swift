@@ -50,6 +50,13 @@ final class AdminsListParentViewController: UIViewController {
                 self?.showError(error)
             }
             .addDisposableTo(disposeBag)
+        
+        viewModel
+            .successSubject
+            .observeOn(MainScheduler.instance).subscribeNext { [weak self] (success) in
+                self?.showSuccessMessage(success.message)
+            }
+            .addDisposableTo(disposeBag)
     }
     
     // MARK: - Navigation
