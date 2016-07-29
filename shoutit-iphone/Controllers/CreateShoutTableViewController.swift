@@ -34,6 +34,7 @@ class CreateShoutTableViewController: UITableViewController {
         createViewModel()
         setupRX()
         
+        tableView.allowsSelection = true
         self.tableView.registerNib(UINib(nibName: "SectionHeaderWithDetailsButton", bundle: nil), forHeaderFooterViewReuseIdentifier: "SectionHeaderWithDetailsButton")
     }
     
@@ -128,6 +129,14 @@ class CreateShoutTableViewController: UITableViewController {
                 }
                 .addDisposableTo(disposeBag)
         }
+        
+        if let descriptionViewController = segue.destinationViewController as? ShoutDescriptionViewController {
+            descriptionViewController.initialText = self.viewModel.shoutParams.text.value
+            descriptionViewController.completionSubject.asObservable().subscribeNext({ (description) in
+                self.viewModel.shoutParams.text.value = description
+                self.tableView.reloadData()
+            }).addDisposableTo(disposeBag)
+        }
     }
 
     // MARK: Select Currency
@@ -170,22 +179,13 @@ extension CreateShoutTableViewController {
             
             return cell
         case .Description:
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellDescription", forIndexPath: indexPath) as! CreateShoutTextViewCell
-            cell.textView
-                .rx_text
-                .flatMap{ (text) -> Observable<String?> in
-                    return Observable.just(text)
-                }
-                .bindTo(viewModel.shoutParams.text)
-                .addDisposableTo(cell.reuseDisposeBag)
+            let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell", forIndexPath: indexPath) as! CreateShoutDescriptionTableViewCell
+            cell.textLabel?.text = NSLocalizedString("Description", comment: "")
             
-            cell.textView.placeholderLabel?.text = NSLocalizedString("Description", comment: "Description cell placeholder text")
+            cell.detailTextLabel?.text = self.viewModel.shoutParams.text.value
             
-            if let shout = self.viewModel.shoutParams.shout {
-                if cell.textView.text == "" {
-                    cell.textView.text = shout.text
-                }
-            }
+            cell.selectionStyle = .None
+            
             return cell
         case .FilterChoice(let filter):
             let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellOption", forIndexPath: indexPath) as! CreateShoutSelectCell
@@ -282,17 +282,28 @@ extension CreateShoutTableViewController {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         switch cellViewModel {
         case .Mobile: return 80
-        case .Description: return 160
-        case .Facebook: return 44
+        case .Description: return 60.0
+        case .Facebook: return 70.0
         default: return 70
         }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
+        
+        if case .Description = cellViewModel {
+            showDescriptionViewController()
+        }
+        
         guard case .Facebook = cellViewModel else { return }
         facebookTappedSubject.onNext()
     }
+    
+    func showDescriptionViewController() {
+        self.performSegueWithIdentifier("shoutDescription", sender: nil)
+    }
+    
+    
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let sectionHeader = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("SectionHeaderWithDetailsButton") as? SectionHeaderWithDetailsButton {
@@ -309,6 +320,9 @@ extension CreateShoutTableViewController {
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         if case .Facebook = cellViewModel {
+            return true
+        }
+        if case .Description = cellViewModel {
             return true
         }
         return false

@@ -126,7 +126,15 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         cell.nameLabel.text = cellViewModel.item.suggestionTitle
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: UIImage.squareAvatarPlaceholder())
         
-        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: cellViewModel.item.userType == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
+        let placeholder : UIImage?
+        
+        if cellViewModel.item.userType == .Page {
+            placeholder = UIImage.squareAvatarPagePlaceholder()
+        } else {
+            placeholder = UIImage.squareAvatarPlaceholder()
+        }
+        
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: placeholder)
         
         let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
         cell.listenButton.setImage(image, forState: .Normal)

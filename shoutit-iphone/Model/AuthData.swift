@@ -25,14 +25,6 @@ public struct ExpirationDate : Decodable {
         }
     }
     
-    public func isExpired() -> Bool {
-        if (expireTimeStamp - 10) > Int(NSDate().timeIntervalSince1970) {
-            return true
-        }
-        
-        return false
-    }
-    
 }
 
 public struct AuthData {
@@ -84,10 +76,6 @@ extension AuthData {
     
     public var apiToken: String {
         return "\(tokenType) \(accessToken)"
-    }
-    
-    public func isExpired() -> Bool {
-        return expireAt.isExpired()
     }
     
     public func expiresAt() -> Int {

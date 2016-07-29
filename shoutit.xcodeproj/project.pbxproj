@@ -112,6 +112,8 @@
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
+		AE11DAE11D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11DAE01D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift */; };
+		AE11DAE31D4B85B900EE4CCA /* ShoutDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11DAE21D4B85B900EE4CCA /* ShoutDescriptionViewController.swift */; };
 		AE1516761D059688009E8357 /* LightError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B345451CA5584D0066DF15 /* LightError.swift */; };
 		AE1516781D05A908009E8357 /* ShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249671561C86E7B30011B078 /* ShoutParams.swift */; };
 		AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */; };
@@ -321,6 +323,7 @@
 		AED636221D356CF40005E1A5 /* VerifyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */; };
 		AED636251D3582C50005E1A5 /* PageVerificationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED636241D3582C50005E1A5 /* PageVerificationParams.swift */; };
 		AED864A11D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */; };
+		AEDC78FE1D4BAA9100C3B174 /* CopyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC78FD1D4BAA9100C3B174 /* CopyLabel.swift */; };
 		AEDE15961C6DF088002D2AF7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */; };
 		AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEDE159D1C6E0DB9002D2AF7 /* HomeShouts.storyboard */; };
 		AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE030741CFC34C600700FF2 /* MutualProfilesViewModel.swift */; };
@@ -1101,6 +1104,8 @@
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		AE0CD3591CFC6647006B05FD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ViewModel/Contact.swift; sourceTree = "<group>"; };
 		AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListTableViewController.swift; path = Controllers/FacebookFriendsListTableViewController.swift; sourceTree = "<group>"; };
+		AE11DAE01D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutDescriptionTableViewCell.swift; path = View/CreateShoutDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		AE11DAE21D4B85B900EE4CCA /* ShoutDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDescriptionViewController.swift; path = Controllers/ShoutDescriptionViewController.swift; sourceTree = "<group>"; };
 		AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaperTrailLumberjack.framework; path = Carthage/Build/iOS/PaperTrailLumberjack.framework; sourceTree = SOURCE_ROOT; };
 		AE146E931D40CF96000B0FC6 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = SOURCE_ROOT; };
 		AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = SOURCE_ROOT; };
@@ -1394,6 +1399,7 @@
 		AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyPageViewController.swift; path = Controllers/VerifyPageViewController.swift; sourceTree = "<group>"; };
 		AED636241D3582C50005E1A5 /* PageVerificationParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageVerificationParams.swift; path = Model/PageVerificationParams.swift; sourceTree = "<group>"; };
 		AED864A01D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPageSwitchTableViewCell.swift; path = View/EditPageSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		AEDC78FD1D4BAA9100C3B174 /* CopyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CopyLabel.swift; path = View/CopyLabel.swift; sourceTree = "<group>"; };
 		AEDDCC701CB6467800B98A94 /* Reportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reportable.swift; path = Model/Reportable.swift; sourceTree = "<group>"; };
 		AEDE15951C6DF088002D2AF7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		AEDE159A1C6E0C28002D2AF7 /* DiscoverPreviewCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewCollectionViewController.swift; path = Controllers/DiscoverPreviewCollectionViewController.swift; sourceTree = "<group>"; };
@@ -2452,6 +2458,7 @@
 				AE194DD91CB5022F004A44CA /* CreateShoutMobileCell.swift */,
 				B24E29F91CBD237500328503 /* CreateShoutTextViewCell.swift */,
 				B2C8C2671CF89CCA00E80C6A /* CreateShoutSelectableCell.swift */,
+				AE11DAE01D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2493,6 +2500,7 @@
 				248328F81C8425980042B0DB /* ShoutImageController */,
 				248328F51C8423990042B0DB /* Protocols */,
 				B2C8C2641CF86CBB00E80C6A /* ViewModel */,
+				AE11DAE21D4B85B900EE4CCA /* ShoutDescriptionViewController.swift */,
 			);
 			name = CreateShout;
 			sourceTree = "<group>";
@@ -3871,6 +3879,7 @@
 				AE19FCEB1CC667CF00162C92 /* BadgeButton.swift */,
 				2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */,
 				AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */,
+				AEDC78FD1D4BAA9100C3B174 /* CopyLabel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -5724,6 +5733,7 @@
 				248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */,
 				B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */,
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */,
+				AE11DAE31D4B85B900EE4CCA /* ShoutDescriptionViewController.swift in Sources */,
 				B2B5D0361C7F89EB0068A6AF /* ShoutDetailImagesPageViewControllerDataSource.swift in Sources */,
 				B2F71A5D1D0EF791002C1D74 /* DPLMatchResult.m in Sources */,
 				B2F71A601D0EF791002C1D74 /* DPLRegularExpression.m in Sources */,
@@ -5883,6 +5893,7 @@
 				B2F719BA1D0EF12F002C1D74 /* CNContactRecord.swift in Sources */,
 				244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */,
 				AE4E2EE11CB272A4001153E0 /* PhotoBrowser.m in Sources */,
+				AEDC78FE1D4BAA9100C3B174 /* CopyLabel.swift in Sources */,
 				B211F0821D12C9A7008DEEBC /* PromoteShoutViewModel.swift in Sources */,
 				B27AF9471C7B7BBF00527306 /* BorderedMaterialTextField.swift in Sources */,
 				B2B9AA8D1C8DC8DF00AFE67E /* EditProfileTableViewModel.swift in Sources */,
@@ -6082,6 +6093,7 @@
 				249FD6E11C7DDB5000859851 /* BorderedButton.swift in Sources */,
 				B2F71A621D0EF791002C1D74 /* DPLRouteMatcher.m in Sources */,
 				240F509C1C71C8F100AE4A76 /* ShoutsHorizontalGridLayoutDelegate.swift in Sources */,
+				AE11DAE11D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift in Sources */,
 				B2B889A01D183EC400C38808 /* ConversationInfoSectionViewModel.swift in Sources */,
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
 				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,

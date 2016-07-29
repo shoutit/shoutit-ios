@@ -335,7 +335,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="96" id="3NB-Gg-FJh" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="319.5" width="600" height="96"/>
+                                <rect key="frame" x="0.0" y="320" width="600" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3NB-Gg-FJh" id="nHj-Xf-F24">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
@@ -375,7 +375,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="59" id="Czx-jM-0bA" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="415.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="416" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Czx-jM-0bA" id="IoV-81-pXc">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -419,33 +419,8 @@
                                     <outlet property="selectButton" destination="ygX-W4-fss" id="i6c-dy-KJ6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="HFJ-Ts-iX9" customClass="CreateShoutTextViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="474.5" width="600" height="119"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HFJ-Ts-iX9" id="Vc0-S2-Qkf">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5UR-jV-d6H" customClass="FormTextView" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="29" y="30" width="542" height="59"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="5UR-jV-d6H" secondAttribute="trailing" constant="29" id="V5c-BJ-pwb"/>
-                                        <constraint firstItem="5UR-jV-d6H" firstAttribute="leading" secondItem="Vc0-S2-Qkf" secondAttribute="leading" constant="29" id="XtF-Mj-BCI"/>
-                                        <constraint firstAttribute="bottom" secondItem="5UR-jV-d6H" secondAttribute="bottom" constant="30" id="ZR4-cV-8QR"/>
-                                        <constraint firstItem="5UR-jV-d6H" firstAttribute="top" secondItem="Vc0-S2-Qkf" secondAttribute="top" constant="30" id="uGS-bq-dyP"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="textView" destination="5UR-jV-d6H" id="cT2-Sx-t3H"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="EhJ-Zj-X2z" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="593.5" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="475" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EhJ-Zj-X2z" id="FRE-Wk-clz">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -491,7 +466,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="59" id="8fc-as-Csv" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="682.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="564" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8fc-as-Csv" id="Tr2-IM-qUF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -517,7 +492,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreateShoutSelectableCell" rowHeight="59" id="h2r-uU-zUM" customClass="CreateShoutSelectableCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="741.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="623" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h2r-uU-zUM" id="BME-0M-uCN">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -526,7 +501,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuC-Yi-RWb" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="20" y="0.0" width="560" height="59"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8a7-SP-t4R">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8a7-SP-t4R">
                                                     <rect key="frame" x="10" y="19" width="44" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -570,6 +545,23 @@
                                     <outlet property="tickImageView" destination="qsQ-8h-mvb" id="imQ-yw-wWU"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutDescriptionTableViewCell" textLabel="AQt-zR-dLg" style="IBUITableViewCellStyleDefault" id="GG5-Zo-q5T" customClass="CreateShoutDescriptionTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="682" width="600" height="89"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GG5-Zo-q5T" id="T7g-5j-jxg">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AQt-zR-dLg">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="89"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="vi7-2B-9jh" id="FJR-ae-yOU"/>
@@ -590,6 +582,7 @@
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
                         <outlet property="headerView" destination="Rdk-TL-ayt" id="nq5-xf-mGk"/>
+                        <segue destination="OWm-R4-IVO" kind="show" identifier="shoutDescription" id="kkd-QO-pX1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M3e-hk-IXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -883,6 +876,49 @@
             </objects>
             <point key="canvasLocation" x="265" y="-929"/>
         </scene>
+        <!--Description-->
+        <scene sceneID="Xz9-WX-KjX">
+            <objects>
+                <viewController storyboardIdentifier="ShoutDescriptionViewController" automaticallyAdjustsScrollViewInsets="NO" id="OWm-R4-IVO" customClass="ShoutDescriptionViewController" customModule="Shoutit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1xZ-wu-TBz"/>
+                        <viewControllerLayoutGuide type="bottom" id="jQw-mw-3dz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="plI-HV-LS6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="516"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E1Y-Oc-Hzi">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E1Y-Oc-Hzi" firstAttribute="leading" secondItem="plI-HV-LS6" secondAttribute="leading" id="RxJ-Ni-Oz7"/>
+                            <constraint firstItem="E1Y-Oc-Hzi" firstAttribute="top" secondItem="1xZ-wu-TBz" secondAttribute="bottom" id="aU6-Is-ZQf"/>
+                            <constraint firstAttribute="trailing" secondItem="E1Y-Oc-Hzi" secondAttribute="trailing" id="f8f-Q9-Dtp"/>
+                            <constraint firstItem="jQw-mw-3dz" firstAttribute="top" secondItem="E1Y-Oc-Hzi" secondAttribute="bottom" id="kNj-NU-oZY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Description" id="T9V-Wd-mEo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Bnd-pd-NRR">
+                            <connections>
+                                <action selector="save" destination="OWm-R4-IVO" id="EXk-aU-5Et"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bottomTextViewConstraint" destination="kNj-NU-oZY" id="4mu-XF-L69"/>
+                        <outlet property="textView" destination="E1Y-Oc-Hzi" id="VA4-Yt-dJB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M1D-Mf-T7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1732" y="-1144"/>
+        </scene>
         <!--Location Selection View Controller-->
         <scene sceneID="9oL-uQ-clQ">
             <objects>
@@ -1143,7 +1179,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellCategory" rowHeight="89" id="DQ8-5W-d82" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="319.5" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="320" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DQ8-5W-d82" id="FhP-c3-g2g">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -1191,7 +1227,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="59" id="Sd6-kJ-fTz" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="408.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="409" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sd6-kJ-fTz" id="KrO-iQ-auC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -1236,7 +1272,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="59" id="fCa-m3-aZf" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="467.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="468" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fCa-m3-aZf" id="a4p-Eh-gPr">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -1261,33 +1297,8 @@
                                     <outlet property="mobileTextField" destination="5lF-qh-668" id="TWY-xd-ezV"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellDescription" rowHeight="119" id="uOW-Yj-HhU" customClass="CreateShoutTextViewCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="526.5" width="600" height="119"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uOW-Yj-HhU" id="xdf-CR-z5e">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JLu-12-n8J" customClass="FormTextView" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="29" y="30" width="542" height="59"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="JLu-12-n8J" secondAttribute="bottom" constant="30" id="0ct-8B-qXP"/>
-                                        <constraint firstAttribute="trailing" secondItem="JLu-12-n8J" secondAttribute="trailing" constant="29" id="1tp-ab-mG0"/>
-                                        <constraint firstItem="JLu-12-n8J" firstAttribute="top" secondItem="xdf-CR-z5e" secondAttribute="top" constant="30" id="KzD-NP-Jl0"/>
-                                        <constraint firstItem="JLu-12-n8J" firstAttribute="leading" secondItem="xdf-CR-z5e" secondAttribute="leading" constant="29" id="wUX-Jo-41B"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="textView" destination="JLu-12-n8J" id="Sun-jD-f6J"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellOption" rowHeight="89" id="4XR-xv-08w" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="645.5" width="600" height="89"/>
+                                <rect key="frame" x="0.0" y="527" width="600" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4XR-xv-08w" id="tEU-yM-GzF">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -1333,7 +1344,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreateShoutSelectableCell" rowHeight="59" id="sAH-G8-BwU" customClass="CreateShoutSelectableCell" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="734.5" width="600" height="59"/>
+                                <rect key="frame" x="0.0" y="616" width="600" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sAH-G8-BwU" id="SWL-t9-nVQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -1342,7 +1353,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHq-Ia-GJe" customClass="BorderedView" customModule="Shoutit" customModuleProvider="target">
                                             <rect key="frame" x="20" y="0.0" width="560" height="59"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jo-f6-Mqf">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jo-f6-Mqf">
                                                     <rect key="frame" x="10" y="19" width="44" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1386,6 +1397,30 @@
                                     <outlet property="tickImageView" destination="4PM-1D-65W" id="hdg-Bu-AnK"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DescriptionCell" textLabel="ZV0-fq-V7s" detailTextLabel="XJ5-iN-ha5" style="IBUITableViewCellStyleValue1" id="JrB-mf-yVI" customClass="CreateShoutDescriptionTableViewCell" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="675" width="600" height="89"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JrB-mf-yVI" id="NVM-dM-Xhe">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZV0-fq-V7s">
+                                            <rect key="frame" x="15" y="35" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XJ5-iN-ha5">
+                                            <rect key="frame" x="543" y="35" width="42" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Cc8-TZ-xhW" id="jEC-k5-Rr6"/>
@@ -1404,6 +1439,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="headerView" destination="F5F-Ya-gZn" id="iha-99-dw7"/>
+                        <segue destination="OWm-R4-IVO" kind="show" identifier="shoutDescription" id="SDH-Ri-FC8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TtL-tv-oBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1513,4 +1549,7 @@
         <image name="tick" width="15" height="13"/>
         <image name="video_play_small" width="36" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SDH-Ri-FC8"/>
+    </inferredMetricsTieBreakers>
 </document>
