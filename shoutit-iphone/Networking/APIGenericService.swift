@@ -147,8 +147,6 @@ final class APIGenericService {
                 request.cancel()
             }
             
-//            debugPrint(request)
-            
             request.responseJSON{ (response) in
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)
@@ -224,7 +222,12 @@ final class APIGenericService {
             switch event {
             case .Next(_): self.refreshTokenSubject.onNext(true)
             case .Error(let error):
-                debugPrint(error)
+                print(error)
+                do {
+                    try Account.sharedInstance.logout()
+                } catch {
+                    assertionFailure("Could not log out user")
+                }
             default: break
             }
         }).addDisposableTo(disposeBag)

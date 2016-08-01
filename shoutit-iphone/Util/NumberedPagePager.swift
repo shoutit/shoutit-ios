@@ -62,6 +62,29 @@ class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.De
     
     // MARK: - Helpers
     
+    func replaceCellViewModels(atIndex idx: Int, withItem item: ItemType) {
+        let newViewModel = itemToCellViewModelBlock(item)
+        
+        switch state.value {
+        case .Loaded(let models, let numberOfPages, let lastResults):
+            var newModels : [CellViewModelType] = models
+            
+            newModels.removeAtIndex(idx)
+            newModels.insert(newViewModel, atIndex: idx)
+            
+            state.value = .Loaded(cells: newModels, page: numberOfPages, lastPageResults: lastResults)
+        case .LoadedAllContent(let models, let numberOfPages):
+            var newModels : [CellViewModelType] = models
+            
+            newModels.removeAtIndex(idx)
+            newModels.insert(newViewModel, atIndex: idx)
+            
+            state.value = .LoadedAllContent(cells: newModels, page: numberOfPages)
+        default: break
+        }
+        
+    }
+    
     private func replaceItemsAtPage(page: Int, withResults results: PagedResults<ItemType>) {
         
         switch state.value {

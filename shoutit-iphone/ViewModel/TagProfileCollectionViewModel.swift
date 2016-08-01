@@ -128,13 +128,12 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     func listen() -> Observable<Void>? {
         guard let listening = tag?.isListening, slug = slugParameter else {return nil}
         let listen = !listening
-        let reloadTag = fetchTag()!.map {[weak self] (tag) -> Void in
-            self?.tag = tag
-            self?.reloadSubject.onNext()            
-        }
+        
         return APITagsService.listen(listen, toTagWithSlug: slug).flatMap{ (success) -> Observable<Void> in
             self.successMessageSubject.onNext(success.message)
-            return reloadTag
+        
+            self.reloadWithNewListnersCount(success.newListnersCount, isListening: listen)
+            return Observable.just(Void())
         }
     }
     
@@ -209,5 +208,16 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                                                  footerButtonStyle: .Gray,
                                                  noContentMessage: noContentMessage,
                                                  errorMessage: errorMessage)
+    }
+    
+    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool) {
+        guard let newListnersCount = newListnersCount else {
+            return
+        }
+        
+        if let newTag = self.tag?.copyWithListnersCount(newListnersCount, isListening: isListening) {
+            self.tag = newTag
+            self.reloadSubject.onNext()
+        }
     }
 }

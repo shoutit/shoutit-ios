@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import ShoutitKit
 
 class PublicPagesTableViewController: UITableViewController {
     
@@ -100,12 +101,28 @@ class PublicPagesTableViewController: UITableViewController {
                 .observeOn(MainScheduler.instance)
                 .subscribe({[weak cell] (event) in
                     switch event {
-                    case .Next(let (listening, successMessage, error)):
+                    case .Next(let (listening, successMessage, newListnersCount, error)):
                         let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
                         cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                        
                         if let message = successMessage {
                             self.showSuccessMessage(message)
-                            self.viewModel.pager.reloadItemAtIndex(indexPath.row)
+
+                            guard let newListnersCount =  newListnersCount, profile = cellModel?.profile  else {
+                                return
+                            }
+                            
+                            do {
+                                let newProfile : Profile = profile.copyWithListnersCount(newListnersCount)
+                                
+                                try self.viewModel.pager.replaceItemAtIndex(indexPath.row, withItem: newProfile)
+                            
+                                self.tableView.beginUpdates()
+                                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                                self.tableView.endUpdates()
+                            } catch let error {
+                                print(error)
+                            }
                         } else if let error = error {
                             self.showError(error)
                         }

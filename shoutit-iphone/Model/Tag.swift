@@ -45,3 +45,9 @@ extension Tag: Decodable {
             <*> j <|? "shouts_url"
     }
 }
+
+extension Tag {
+    public func copyWithListnersCount(newListnersCount: Int, isListening: Bool? = nil) -> Tag {
+        return Tag(id: self.id, slug: self.slug, name: self.name, apiPath: self.apiPath, imagePath: self.imagePath, webPath: self.webPath, listenersCount: newListnersCount, listenersPath: self.listenersPath, isListening: isListening != nil ? isListening : self.isListening, shoutsPath: self.shoutsPath)
+    }
+}

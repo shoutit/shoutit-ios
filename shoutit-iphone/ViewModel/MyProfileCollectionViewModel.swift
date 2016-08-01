@@ -191,6 +191,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage(named: (user?.location.country ?? "country_placeholder"))
     }
     
+    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool) {
+    }
+    
     // MARK: - Fetch
     
     private func fetchShouts() -> Observable<[Shout]>? {

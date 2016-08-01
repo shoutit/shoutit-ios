@@ -129,6 +129,12 @@ extension Profile: Encodable {
     }
 }
 
+extension Profile {
+    public func copyWithListnersCount(newListnersCount: Int, isListening: Bool? = nil) -> Profile {
+        return Profile(id: self.id, type: self.userType, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: isListening != nil ? isListening : self.isListening, listenersCount: newListnersCount, location: self.location, stats: self.stats)
+    }
+}
+
 extension Profile: Reportable {
     public func attachedObjectJSON() -> JSON {
         return ["profile" : ["id" : self.id.encode()].encode()].encode()

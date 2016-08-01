@@ -251,6 +251,17 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
         return nil
     }
     
+    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool) {
+        guard let newListnersCount = newListnersCount else {
+            return
+        }
+        
+        if let newProfile = self.detailedPage?.updatedProfileWithNewListnersCount(newListnersCount, isListening: isListening) {
+            self.detailedPage = newProfile
+            self.reloadSubject.onNext()
+        }
+    }
+    
     // MARK: - Helpers
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {

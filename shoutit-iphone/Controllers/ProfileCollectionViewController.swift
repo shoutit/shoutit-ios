@@ -179,16 +179,23 @@ extension ProfileCollectionViewController {
                 guard self != nil && self!.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
-                    case .Next(let (listening, successMessage, error)):
+                    case .Next(let (listening, successMessage, newListnersCount, error)):
                         let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
                         cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+
                         if let message = successMessage {
                             self?.showSuccessMessage(message)
+                            
+                            guard let newListnersCount = newListnersCount, cellViewModel = cellViewModel else {
+                                return
+                            }
+                            
+                            cellViewModel.updateListnersCount(newListnersCount, isListening: listening)
+                            cell?.listenersCountLabel.text = cellViewModel.listeningCountString()
+                            
                         } else if let error =  error {
                             self?.showError(error)
                         }
-                    case .Completed:
-                        self?.viewModel.reloadContent()
                     default:
                         break
                     }

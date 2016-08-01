@@ -24,7 +24,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
         }
     }
     
-    let model: Model
+    var model: Model
     private(set) var isListening: Bool
     
     private let disposeBag = DisposeBag()
@@ -69,6 +69,16 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
         return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), s)
     }
     
+    func updateListnersCount(newListnersCount: Int, isListening: Bool) {
+        switch model {
+        case .ProfileModel(let profile):
+            self.model = .ProfileModel(profile: profile.copyWithListnersCount(newListnersCount, isListening: isListening))
+        case .TagModel(let tag):
+            self.model = .TagModel(tag: tag.copyWithListnersCount(newListnersCount, isListening: isListening))
+            
+        }
+    }
+    
     func hidesListeningButton() -> Bool {
         switch model {
         case .ProfileModel(let profile):
@@ -78,21 +88,21 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
         }
     }
     
-    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, error: ErrorType?)> {
+    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, listnersCount: Int?, error: ErrorType?)> {
         
         return Observable.create{ (observer) -> Disposable in
             
             self.isListening = !self.isListening
-            observer.onNext((listening: self.isListening, successMessage: nil, error: nil))
+            observer.onNext((listening: self.isListening, successMessage: nil, listnersCount: nil, error: nil))
             
-            let subscribeBlock: (RxSwift.Event<Success> -> Void) = {(event) in
+            let subscribeBlock: (RxSwift.Event<ListenSuccess> -> Void) = {(event) in
                 switch event {
                 case .Next(let success):
-                    observer.onNext((listening: self.isListening, successMessage: success.message, error: nil))
+                    observer.onNext((listening: self.isListening, successMessage: success.message, listnersCount: success.newListnersCount, error: nil))
                     observer.onCompleted()
                 case .Error(let error):
                     self.isListening = !self.isListening
-                    observer.onNext((listening: self.isListening, successMessage: nil, error: error))
+                    observer.onNext((listening: self.isListening, successMessage: nil, listnersCount: nil, error: error))
                     observer.onError(error)
                 default:
                     break

@@ -44,6 +44,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var reloadSubject: PublishSubject<Void> {get}
     var successMessageSubject: PublishSubject<String> {get}
     func listen() -> Observable<Void>?
+    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool)
     
     // more handling
     func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController?

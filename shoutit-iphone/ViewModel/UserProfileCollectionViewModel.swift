@@ -177,17 +177,26 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         return APIProfileService.retrieveProfileWithUsername(profile.username)
     }
     
+    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool) {
+        guard let newListnersCount = newListnersCount else {
+            return
+        }
+    
+        if let newProfile = self.detailedUser?.updatedProfileWithNewListnersCount(newListnersCount, isListening: isListening) {
+            self.detailedUser = newProfile
+            self.reloadSubject.onNext()
+        }
+    }
+    
     func listen() -> Observable<Void>? {
         guard let isListening = detailedUser?.isListening ?? profile.isListening else {return nil}
         let listen = !isListening
-        let retrieveUser = fetchProfile().map {[weak self] (profile) -> Void in
-            self?.detailedUser = profile
-            self?.reloadSubject.onNext()
-        }
-        
+      
         return APIProfileService.listen(listen, toProfileWithUsername: profile.username).flatMap{ (success) -> Observable<Void> in
             self.successMessageSubject.onNext(success.message)
-            return retrieveUser
+            self.reloadWithNewListnersCount(success.newListnersCount, isListening: listen)
+            return Observable.just(Void())
+        
         }
     }
     

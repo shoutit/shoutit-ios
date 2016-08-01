@@ -305,6 +305,7 @@
 		AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */; };
 		AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBB69861C6B359B00D48E4F /* CoreLocation.framework */; };
 		AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */; };
+		AEBDDF0A1D4F6C1B0070D84F /* ListenSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBDDF091D4F6C1B0070D84F /* ListenSuccess.swift */; };
 		AEC5CAFB1D24FBE9009168D7 /* BookmarksFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */; };
 		AEC5CAFE1D251387009168D7 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */; };
 		AEC5CB001D251526009168D7 /* ShoutItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC5CAFF1D251526009168D7 /* ShoutItemListCell.xib */; };
@@ -1370,6 +1371,7 @@
 		AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationViewModel.swift; path = ViewModel/ChangeLocationViewModel.swift; sourceTree = "<group>"; };
 		AEBB69861C6B359B00D48E4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AEBB69881C6B35D200D48E4F /* CLGeocoder+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLGeocoder+RX.swift"; path = "Util/CLGeocoder+RX.swift"; sourceTree = "<group>"; };
+		AEBDDF091D4F6C1B0070D84F /* ListenSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenSuccess.swift; path = Model/ListenSuccess.swift; sourceTree = "<group>"; };
 		AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarksFlowController.swift; path = FlowControl/BookmarksFlowController.swift; sourceTree = "<group>"; };
 		AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkManager.swift; path = Other/BookmarkManager.swift; sourceTree = "<group>"; };
 		AEC5CAFF1D251526009168D7 /* ShoutItemListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutItemListCell.xib; path = View/ShoutItemListCell.xib; sourceTree = "<group>"; };
@@ -2639,6 +2641,7 @@
 				B2B93F651CF5DD4F004934B1 /* GoogleAccount.swift */,
 				B2A144171C64BE68002CD70A /* PushTokens.swift */,
 				B2C729C11C6221B0006F7D29 /* Success.swift */,
+				AEBDDF091D4F6C1B0070D84F /* ListenSuccess.swift */,
 				B2ACBDEE1C68BDE2000FA302 /* Category.swift */,
 				B2ACBDF01C68BE0C000FA302 /* Tag.swift */,
 				B2B5D0371C80691E0068A6AF /* Filter.swift */,
@@ -6246,6 +6249,7 @@
 				AE32C5CF1D0564C5009A49C5 /* ListenParams.swift in Sources */,
 				AE32C5A01D055C33009A49C5 /* Notification.swift in Sources */,
 				AE1BE17C1D06DD5300C196EE /* PagedResults.swift in Sources */,
+				AEBDDF0A1D4F6C1B0070D84F /* ListenSuccess.swift in Sources */,
 				AE32C5AD1D055C33009A49C5 /* ReadBy.swift in Sources */,
 				AE32C5AB1D055C33009A49C5 /* AttachedObject.swift in Sources */,
 				BF0CB0121D33CFAE00EC96FB /* DetailedProfile.swift in Sources */,

@@ -19,7 +19,7 @@ final class APIProfileService {
         return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
     }
     
-    static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<Success> {
+    static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<ListenSuccess> {
         let url = APIManager.baseURL + "/profiles/\(username)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE
         return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)

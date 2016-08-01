@@ -145,6 +145,7 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         }).subscribeNext({[weak self] (let successMessage, let error) in
             if let successMessage = successMessage {
                 self?.showSuccessMessage(successMessage)
+                
             } else if let error = error {
                 self?.showError(error)
             }
