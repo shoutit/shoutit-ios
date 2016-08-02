@@ -141,7 +141,7 @@ final class ShoutDetailViewModel {
     
     func locationString() -> String? {
         if let location = shout.location {
-            return NSLocalizedString("\(location.city), \(location.country)", comment: "Shout detail location string")
+            return "\(location.city), \(location.country)"
         }
         return nil
     }

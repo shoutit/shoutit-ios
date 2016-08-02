@@ -16,12 +16,6 @@
 /* Search results count string */
 "%d Shouts" = "%d إعلانات";
 
-/* Shout detail location string */
-"(location.city), (location.country)" = "(location.city), (location.country)";
-
-/* No comment provided by engineer. */
-"(profileName) can now administrate this chat" = "(profileName) يستطيع الآن إدارة المحادثة";
-
 /* No comment provided by engineer. */
 "ATTACHMENTS" = "المرفقات";
 
@@ -395,12 +389,6 @@
 
 /* Settings cell title */
 "Google" = "غوغل";
-
-/* No comment provided by engineer. */
-"Google Account Linked" = "تم ربط حساب غوغل";
-
-/* No comment provided by engineer. */
-"Google Account Unlinked" = "تم إلغاء إرتباط حساب غوغل";
 
 /* No comment provided by engineer. */
 "Got it" = "موافقة";
@@ -953,18 +941,6 @@
 
 /* No comment provided by engineer. */
 "You must be logged in to perform this action" = "يجب أن تكون مسجل لتنفيذ هذا الإجراء";
-
-/* No comment provided by engineer. */
-"You've successfully added (profileName) to chat." = "لقد قمت بإضافة (profileName) إلى المحادثة بنجاح";
-
-/* No comment provided by engineer. */
-"You've successfully blocked (profileName)" = "لقد قمت بحظر (profileName) من المحادثة بنجاح";
-
-/* No comment provided by engineer. */
-"You've successfully removed (profileName) from chat." = "لقد قمت بإزالة (profileName) من المحادثة بنجاح";
-
-/* No comment provided by engineer. */
-"You've successfully unblocked (profileName)" = "لقد قمت بإلغاء حظر(profileName) بنجاح";
 
 /* Verify email user message */
 "Your account has been successfully verified" = "تم تفعيل حسابك بنجاح";

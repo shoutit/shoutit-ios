@@ -331,6 +331,7 @@
 		AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */; };
 		AEECB95E1C6490D800276E4A /* LocationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEECB95D1C6490D800276E4A /* LocationFlowController.swift */; };
 		AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */; };
+		AEF65DAA1D50AA9400B5FF18 /* AdItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEF65DAC1D50AA9400B5FF18 /* AdItemListCell.xib */; };
 		AEFA91FE1D1958EF00D7AD46 /* ShoutitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE32C5351D055BFA009A49C5 /* ShoutitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFB8E571CF86667003D82A0 /* Social.framework */; };
 		B201A1E91CB406D8009DA966 /* CategoryFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */; };
@@ -914,7 +915,6 @@
 		BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AAB1D2A46D00017D26F /* CoreMotion.framework */; };
 		BF849AAF1D2A58F80017D26F /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF849AAE1D2A58F80017D26F /* AdManager.swift */; };
 		BFA5AB671D2686B400778FC7 /* AdItemGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */; };
-		BFA5AB6C1D2694EA00778FC7 /* AdItemListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */; };
 		BFA5AB6F1D26A09000778FC7 /* AdItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5AB6D1D269FA000778FC7 /* AdItemCell.swift */; };
 		D9F64A74FDC3884B1ACF0627 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89CDA22E17F2A844DE048AE /* CoreMedia.framework */; };
 		E677ABF59E0B8081FF38E269 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F321E525C691DDCE65E75 /* QuartzCore.framework */; };
@@ -1411,6 +1411,10 @@
 		AEE924B81C68AEE300EFBF43 /* LoginNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginNavigationViewController.swift; path = Controllers/LoginNavigationViewController.swift; sourceTree = "<group>"; };
 		AEECB95D1C6490D800276E4A /* LocationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationFlowController.swift; path = FlowControl/LocationFlowController.swift; sourceTree = "<group>"; };
 		AEF1E66D1CA1D3780054640C /* ConversationAttachmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationAttachmentViewController.swift; path = Controllers/ConversationAttachmentViewController.swift; sourceTree = "<group>"; };
+		AEF65DAB1D50AA9400B5FF18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AdItemListCell.xib; sourceTree = "<group>"; };
+		AEF65DAE1D50AA9D00B5FF18 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AdItemListCell.strings; sourceTree = "<group>"; };
+		AEF65DB01D50AA9F00B5FF18 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AdItemListCell.strings; sourceTree = "<group>"; };
+		AEF65DB21D50AAA100B5FF18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AdItemListCell.strings; sourceTree = "<group>"; };
 		AEFB8E551CF86612003D82A0 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		AEFB8E571CF86667003D82A0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B201A1E81CB406D8009DA966 /* CategoryFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersViewController.swift; path = Controllers/CategoryFiltersViewController.swift; sourceTree = "<group>"; };
@@ -2125,7 +2129,6 @@
 		BF849AAB1D2A46D00017D26F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		BF849AAE1D2A58F80017D26F /* AdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdManager.swift; path = Other/AdManager.swift; sourceTree = "<group>"; };
 		BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdItemGridCell.xib; path = View/AdItemGridCell.xib; sourceTree = "<group>"; };
-		BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdItemListCell.xib; path = View/AdItemListCell.xib; sourceTree = "<group>"; };
 		BFA5AB6D1D269FA000778FC7 /* AdItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdItemCell.swift; path = View/AdItemCell.swift; sourceTree = "<group>"; };
 		C89F2B1851D9065D1C86D52B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		D68426E4FF3671D9E8A8EFD7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -4693,7 +4696,7 @@
 				AEC5CAFF1D251526009168D7 /* ShoutItemListCell.xib */,
 				AEC5CB011D25153D009168D7 /* ShoutItemGridCell.xib */,
 				BFA5AB651D2686B400778FC7 /* AdItemGridCell.xib */,
-				BFA5AB6A1D2694EA00778FC7 /* AdItemListCell.xib */,
+				AEF65DAC1D50AA9400B5FF18 /* AdItemListCell.xib */,
 			);
 			name = CollectionViewCommonCells;
 			sourceTree = "<group>";
@@ -5509,7 +5512,7 @@
 				B2F7196D1D0EEEF5002C1D74 /* ImageSelectedSmallOff@3x.png in Resources */,
 				B2F7197D1D0EEEF5002C1D74 /* UIBarButtonItemGrid.png in Resources */,
 				B2D029451D1C1FF800A29D8B /* Pages.storyboard in Resources */,
-				BFA5AB6C1D2694EA00778FC7 /* AdItemListCell.xib in Resources */,
+				AEF65DAA1D50AA9400B5FF18 /* AdItemListCell.xib in Resources */,
 				B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */,
 				B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
@@ -6392,6 +6395,18 @@
 			);
 			name = Bookmarks.storyboard;
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AEF65DAC1D50AA9400B5FF18 /* AdItemListCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AEF65DAB1D50AA9400B5FF18 /* Base */,
+				AEF65DAE1D50AA9D00B5FF18 /* ar */,
+				AEF65DB01D50AA9F00B5FF18 /* de */,
+				AEF65DB21D50AAA100B5FF18 /* en */,
+			);
+			name = AdItemListCell.xib;
+			path = View;
 			sourceTree = "<group>";
 		};
 		B211F0731D12C858008DEEBC /* Promote.storyboard */ = {
