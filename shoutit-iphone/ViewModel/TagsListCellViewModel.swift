@@ -14,8 +14,6 @@ final class TagsListCellViewModel: Listenable {
     
     let tag: Tag
     var isListening: Bool
-    var startedListeningMessage: String { return UserMessages.startedListeningMessageWithName(self.tag.name) }
-    var stoppedListeningMessage: String { return UserMessages.stoppedListeningMessageWithName(self.tag.name) }
     
     init(tag: Tag) {
         self.tag = tag

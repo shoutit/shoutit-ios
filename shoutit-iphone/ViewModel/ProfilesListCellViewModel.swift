@@ -14,8 +14,6 @@ final class ProfilesListCellViewModel: Listenable {
     
     let profile: Profile
     var isListening: Bool
-    var startedListeningMessage: String { return UserMessages.startedListeningMessageWithName(self.profile.name) }
-    var stoppedListeningMessage: String { return UserMessages.stoppedListeningMessageWithName(self.profile.name) }
     
     init(profile: Profile) {
         self.profile = profile

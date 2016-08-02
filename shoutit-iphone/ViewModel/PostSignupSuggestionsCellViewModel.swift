@@ -36,10 +36,8 @@ final class PostSignupSuggestionsCellViewModel {
                     self?.selected = !selected
                     observer.onNext((successMessage: nil, error: error))
                     observer.onCompleted()
-                case .Next:
-                    guard let `self` = self else { return }
-                    let message = self.selected ? UserMessages.startedListeningMessageWithName(self.item.suggestionTitle) : UserMessages.stoppedListeningMessageWithName(self.item.suggestionTitle)
-                    observer.onNext((successMessage: message, error: nil))
+                case .Next(let success):
+                    observer.onNext((successMessage: success.message, error: nil))
                 }
             }.addDisposableTo(self.disposeBag)
             
