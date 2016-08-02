@@ -31,9 +31,12 @@ extension FlowController : ChatDisplayable {
         let previousControllersCount = (self.navigationController.viewControllers.count - 2)
         
         if previousControllersCount >= 0 {
-            if let conversation = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController {
-                self.navigationController.popToViewController(conversation, animated: true)
-                return
+            if let conversationController = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController, conversationId = conversationController.viewModel.conversation.value.conversationId {
+                
+                if conversationId == conversation.conversationId {
+                    self.navigationController.popToViewController(conversationController, animated: true)
+                    return
+                }
             }
         }
         

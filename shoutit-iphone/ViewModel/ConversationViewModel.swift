@@ -46,9 +46,15 @@ final class ConversationViewModel {
             default: return nil
             }
         }
+        
+        var conversationId : String? {
+            return conversationInterface?.id
+        }
     }
     
     let conversation: Variable<ConversationExistance>
+    
+    
     
     let messages : Variable<[NSDate:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
