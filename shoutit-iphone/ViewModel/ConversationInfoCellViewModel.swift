@@ -36,13 +36,13 @@ enum ConversationInfoCellViewModel {
     
     func title() -> String {
         switch self {
-        case .Shouts: return NSLocalizedString("Shouts", comment: "")
-        case .Media: return NSLocalizedString("Media", comment: "")
-        case .AddMember: return NSLocalizedString("Add Member", comment: "")
-        case .Participants: return NSLocalizedString("Participants", comment: "")
-        case .Blocked: return NSLocalizedString("Blocked", comment: "")
-        case .ReportChat: return NSLocalizedString("Report Chat", comment: "")
-        case .ExitChat: return NSLocalizedString("Exit Chat", comment: "")
+        case .Shouts: return NSLocalizedString("Shouts", comment: "Conversation Info Screen Cell Title")
+        case .Media: return NSLocalizedString("Media", comment: "Conversation Info Screen Cell Title")
+        case .AddMember: return NSLocalizedString("Add Member", comment: "Conversation Info Screen Cell Title")
+        case .Participants: return NSLocalizedString("Participants", comment: "Conversation Info Screen Cell Title")
+        case .Blocked: return NSLocalizedString("Blocked", comment: "Conversation Info Screen Cell Title")
+        case .ReportChat: return NSLocalizedString("Report Chat", comment: "Conversation Info Screen Cell Title")
+        case .ExitChat: return NSLocalizedString("Exit Chat", comment: "Conversation Info Screen Cell Title")
         }
     }
     

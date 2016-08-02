@@ -63,7 +63,7 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
                     self?.placeholderView.showActivity()
                     self?.tableView.tableHeaderView = self?.placeholderView
                 case .ContentUnavailable:
-                    self?.placeholderView.label.text = NSLocalizedString("Categories unavailable", comment: "")
+                    self?.placeholderView.label.text = NSLocalizedString("Categories unavailable", comment: "Could not load categories placeholder")
                     self?.tableView.tableHeaderView = self?.placeholderView
                 case .Error(let error):
                     self?.placeholderView.showMessage(error.sh_message)

@@ -20,12 +20,12 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
         cell.nameLabel.text = profile.name
         
         if (members.contains{$0.id == profile.id}) {
-            cell.listenersCountLabel.text = NSLocalizedString("Already a member", comment: "")
+            cell.listenersCountLabel.text = NSLocalizedString("Already a member", comment: "Add Chat Member subtitle")
             cell.nameLabel.alpha = 0.5
             cell.listenersCountLabel.alpha = 0.5
             cell.thumbnailImageView.alpha = 0.5
         } else {
-            cell.listenersCountLabel.text = NSLocalizedString("Tap to add to chat", comment: "")
+            cell.listenersCountLabel.text = NSLocalizedString("Tap to add to chat", comment: "Add Chat Member subtitle")
             cell.nameLabel.alpha = 1.0
             cell.listenersCountLabel.alpha = 1.0
             cell.thumbnailImageView.alpha = 1.0

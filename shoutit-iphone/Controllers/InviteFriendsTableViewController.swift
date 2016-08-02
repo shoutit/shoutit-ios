@@ -70,9 +70,9 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     func showFindFriendsAlert() {
-        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn up to 10 Shoutit Credits for finding your friends and listening to them", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Invite Friends Alert Title"), message: NSLocalizedString("Earn up to 10 Shoutit Credits for finding your friends and listening to them", comment: "Invite Friends Alert Message"), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: { (alertaction) in
             
         }))
         
@@ -80,9 +80,9 @@ class InviteFriendsTableViewController: UITableViewController {
     }
     
     func showInviteFriendsAlert() {
-        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit whenever a friend you invited signs up", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Invite Friends Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit whenever a friend you invited signs up", comment: "Invite Friends Alert Message"), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: { (alertaction) in
             
         }))
         
@@ -109,9 +109,9 @@ class InviteFriendsTableViewController: UITableViewController {
         
         controller.viewModel = SuggestedUsersViewModel(showListenButtons: true)
         
-        controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "")
+        controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "Suggested Users Section Title")
         
-        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "Suggested Users Screen Title")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)
@@ -127,9 +127,9 @@ class InviteFriendsTableViewController: UITableViewController {
         
         controller.viewModel = SuggestedPagesViewModel(showListenButtons: true)
         
-        controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "")
+        controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "Suggested Users Section Title")
         
-        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "Suggested Users Screen Title")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)
@@ -166,7 +166,7 @@ class InviteFriendsTableViewController: UITableViewController {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         let controller = Wireframe.facebookProfileListController()
         
-        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "Find Friends Screen Title")
         controller.flowDelegate = self.flowDelegate
         self.navigationController?.showViewController(controller, sender: nil)
         
@@ -187,7 +187,7 @@ class InviteFriendsTableViewController: UITableViewController {
                 queryBuilder?.queryAsync({ (results, error) in
                     guard let contacts = results else {
                         self?.hideProgressHUD()
-                        self?.showErrorMessage(NSLocalizedString("We couldn't find any contacts in your address book", comment: ""))
+                        self?.showErrorMessage(NSLocalizedString("We couldn't find any contacts in your address book", comment: "Find Contacts error message"))
                         return
                     }
                     
@@ -197,7 +197,7 @@ class InviteFriendsTableViewController: UITableViewController {
             })
         } catch {
             hideProgressHUD()
-            showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: ""))
+            showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: "Find Contacts error message"))
         }
     }
     
@@ -223,9 +223,9 @@ class InviteFriendsTableViewController: UITableViewController {
         
         controller.viewModel = MutualContactsViewModel(showListenButtons: true)
         
-        controller.viewModel.sectionTitle = NSLocalizedString("Contacts Friends", comment: "")
+        controller.viewModel.sectionTitle = NSLocalizedString("Contacts Friends", comment: "Find Contacts Section Title")
         
-        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "Find Contacts Screen Title")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)
@@ -256,7 +256,7 @@ class InviteFriendsTableViewController: UITableViewController {
         
         inviteContent.appLinkURL = NSURL(string: Constants.Invite.facebookURL)
         inviteContent.promotionCode = code.code
-        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "")
+        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "Invite By Facebok promotion Text")
         
         FBSDKAppInviteDialog.showFromViewController(self, withContent: inviteContent, delegate: self)
     }

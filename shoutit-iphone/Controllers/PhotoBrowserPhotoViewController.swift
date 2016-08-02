@@ -47,7 +47,7 @@ final class PhotoBrowserPhotoViewController: UIViewController {
                     #if DEBUG
                     self?.showMessage(error.localizedDescription)
                     #else
-                    self?.showMessage(NSLocalizedString("Could not load photos", comment: ""))
+                    self?.showMessage(NSLocalizedString("Could not load photos", comment: "Photo Browser Error Message"))
                     #endif
                 }
             }
@@ -66,7 +66,7 @@ final class PhotoBrowserPhotoViewController: UIViewController {
                     #if DEBUG
                         self?.showMessage(error.localizedDescription)
                     #else
-                        self?.showMessage(NSLocalizedString("Could not load photos", comment: ""))
+                        self?.showMessage(NSLocalizedString("Could not load photos", comment: "Photo Browser Error Message"))
                     #endif
                     
                 }

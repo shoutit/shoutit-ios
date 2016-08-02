@@ -168,11 +168,11 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     var verifyButtonTitle: String {
         if let activated = detailedPage?.isActivated {
             if activated == false {
-                return NSLocalizedString("Activate your Page!", comment: "")
+                return NSLocalizedString("Activate your Page!", comment: "Profile Message")
             }
         }
             
-        return NSLocalizedString("Verify your business!", comment: "")
+        return NSLocalizedString("Verify your business!", comment: "Profile Message")
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
@@ -266,8 +266,8 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
-        let title = profile == nil ? NSLocalizedString("Admins", comment: "") : String.localizedStringWithFormat(NSLocalizedString("%@ Admins", comment: ""), profile!.name)
-        let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
+        let title = profile == nil ? NSLocalizedString("Admins", comment: "Page Admins Section Title") : String.localizedStringWithFormat(NSLocalizedString("%@ Admins", comment: "Number of admins"), profile!.name)
+        let noContentMessage = NSLocalizedString("No pages available yet", comment: "No pages placeholder")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
                                                  isLoading: loading,
@@ -277,9 +277,9 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
-        let title = profile == nil ? NSLocalizedString("Shouts", comment: "") : String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), profile!.name)
-        let footerTitle = NSLocalizedString("See All Shouts", comment: "")
-        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
+        let title = profile == nil ? NSLocalizedString("Shouts", comment: "Profile Shouts Section Title") : String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Profile Name - Shouts"), profile!.name)
+        let footerTitle = NSLocalizedString("See All Shouts", comment: "See all shouts button title")
+        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "No Shouts placeholder")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
                                                  isLoading: loading,

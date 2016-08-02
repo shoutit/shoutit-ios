@@ -26,21 +26,21 @@ class LinkedAccountsManager : NSObject {
     }
     
     func unlinkFacebookAlert(success: (Void -> Void)) -> UIAlertController {
-        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook account?", comment: ""), success: success)
+        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook account?", comment: "Link Account Confirmation Message"), success: success)
     }
     
     func unlinkFacebookPageAlert(success: (Void -> Void)) -> UIAlertController {
-        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook Page account?", comment: ""), success: success)
+        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook Page account?", comment: "Link Account Confirmation Message"), success: success)
     }
     
     func unlinkGoogleAlert(success: (Void -> Void)) -> UIAlertController {
-        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Google account?", comment: ""), success: success)
+        return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Google account?", comment: "Link Account Confirmation Message"), success: success)
     }
     
     private func unlinkAccountAlertWithTitle(title: String, success: (Void -> Void)) -> UIAlertController {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Unlink", comment: ""), style: .Destructive, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Unlink", comment: "Link Account Confirmation Button"), style: .Destructive, handler: { (action) in
             success()
         }))
         
@@ -174,9 +174,9 @@ class LinkedAccountsManager : NSObject {
     }
     
     func presentPagesSelection(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil, pages: [NSDictionary]) {
-        let alert = UIAlertController(title: NSLocalizedString("Please select a page:", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Please select a page:", comment: "Link Page Action Sheet"), message: nil, preferredStyle: .ActionSheet)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
         
         for page in pages {
             guard let name = page["name"] as? String, uid = page["id"] as? String else {
@@ -215,7 +215,7 @@ class LinkedAccountsManager : NSObject {
             switch event {
             case .Next(_):
                 Account.sharedInstance.fetchUserProfile()
-                self?.presentingController?.showSuccessMessage(NSLocalizedString("Facebook Page Unlinked", comment: ""))
+                self?.presentingController?.showSuccessMessage(NSLocalizedString("Facebook Page Unlinked", comment: "UnLink Page Message"))
             case .Error(let error):
                 self?.presentingController?.showError(error)
                 
@@ -274,38 +274,38 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
 extension LinkedAccountsManager {
     func nameForFacebookAccount() -> String {
         guard let user = self.account.user as? DetailedProfile else {
-            return NSLocalizedString("Not Linked", comment: "")
+            return LocalizedString.notLinked
         }
         
         if let _ = user.linkedAccounts?.facebook {
-            return NSLocalizedString("Linked", comment: "")
+            return LocalizedString.linked
         }
         
-        return NSLocalizedString("Not Linked", comment: "")
+        return LocalizedString.notLinked
     }
     
     func nameForFacebookPageAccount() -> String {
         guard let user = self.account.user as? DetailedProfile else {
-            return NSLocalizedString("Not Linked", comment: "")
+            return LocalizedString.notLinked
         }
         
         if let page = user.linkedAccounts?.facebookPage {
             return page.name
         }
         
-        return NSLocalizedString("Not Linked", comment: "")
+        return LocalizedString.notLinked
     }
     
     func nameForGoogleAccount() -> String {
         guard let user = self.account.user as? DetailedProfile else {
-            return NSLocalizedString("Not Linked", comment: "")
+            return LocalizedString.notLinked
         }
         
         if let _ = user.linkedAccounts?.gplus {
-            return NSLocalizedString("Linked", comment: "")
+            return LocalizedString.linked
         }
         
-        return NSLocalizedString("Not Linked", comment: "")
+        return LocalizedString.notLinked
     }
     
     func isFacebookLinked() -> Bool {

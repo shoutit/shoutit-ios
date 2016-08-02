@@ -234,7 +234,7 @@ private extension SelectShoutImagesController {
         
         let title = NSLocalizedString("Cannot add more images", comment: "Alert title - user tries to pick more than allowed number of images in media picker")
         let message = NSLocalizedString("You can select only 5 images", comment: "Alert message - user tries to pick more than allowed number of images in media picker")
-        let buttonTitle = NSLocalizedString("OK", comment: "Alert button")
+        let buttonTitle = LocalizedString.ok
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
@@ -245,7 +245,7 @@ private extension SelectShoutImagesController {
         
         let title = NSLocalizedString("Cannot add more videos", comment: "Alert title - user tries to pick more than allowed number of videos in media picker")
         let message = NSLocalizedString("You can select only 1 video", comment: "Alert message - user tries to pick more than allowed number of videos in media picker")
-        let buttonTitle = NSLocalizedString("OK", comment: "Alert button")
+        let buttonTitle = LocalizedString.ok
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
@@ -258,9 +258,9 @@ private extension SelectShoutImagesController {
         }
         
         let title = NSLocalizedString("Edit Shout Media", comment: "Edit media alert title")
-        let cancelButtonTitle = NSLocalizedString("Cancel", comment: "Edit photo action sheet option")
-        let changeButtonTitle = NSLocalizedString("Edit", comment: "Edit photo action sheet option")
-        let deleteButtonTitle = NSLocalizedString("Delete", comment: "Edit photo action sheet option")
+        let cancelButtonTitle = LocalizedString.cancel
+        let changeButtonTitle = LocalizedString.edit
+        let deleteButtonTitle = LocalizedString.delete
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
         alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: {[weak self] (alertAction) in

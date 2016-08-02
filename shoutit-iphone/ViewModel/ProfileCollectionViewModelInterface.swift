@@ -114,7 +114,7 @@ extension ProfileCollectionViewModelInterface {
             }))
         }
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in
             
         }))
         

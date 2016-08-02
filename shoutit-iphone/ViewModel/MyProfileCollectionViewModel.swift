@@ -141,7 +141,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var verifyButtonTitle: String {
-        return NSLocalizedString("Verify your account!", comment: "")
+        return NSLocalizedString("Verify your account!", comment: "Profile Message")
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
@@ -221,9 +221,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
-        let title = NSLocalizedString("My Pages", comment: "")
-        let footerTitle = NSLocalizedString("Create Page", comment: "")
-        let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
+        let title = NSLocalizedString("My Pages", comment: "Profile Section Title")
+        let footerTitle = NSLocalizedString("Create Page", comment: "My Profile Footer Title")
+        let noContentMessage = NSLocalizedString("No pages available yet", comment: "Profile placeholder")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
                                                  isLoading: loading,
@@ -235,9 +235,9 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
-        let title = NSLocalizedString("My Shouts", comment: "")
-        let footerTitle = NSLocalizedString("See All Shouts", comment: "")
-        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
+        let title = NSLocalizedString("My Shouts", comment: "Profile Section Title")
+        let footerTitle = NSLocalizedString("See All Shouts", comment: "Profile Section Footer")
+        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "Profile Shouts placeholder")
         return ProfileCollectionSectionViewModel(title: title, cells: cells, isLoading: loading, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage)
     }
 }

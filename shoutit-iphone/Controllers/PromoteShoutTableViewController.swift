@@ -98,13 +98,13 @@ final class PromoteShoutTableViewController: UITableViewController {
     }
     
     func showPromoteAlert(option: PromotionOption) {
-        let alert = UIAlertController(title: NSLocalizedString("Promote Shout", comment: ""), message: NSLocalizedString("Confirm buying \(option.name) for \(option.credits) credits", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Promote Shout", comment: "Promote Shout"), message: NSLocalizedString("Confirm buying \(option.name) for \(option.credits) credits", comment: ""), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Buy", comment: ""), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Buy", comment: "Promote Shout"), style: .Default, handler: { (action) in
             self.selectedOption = option
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in
         }))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
@@ -114,7 +114,7 @@ final class PromoteShoutTableViewController: UITableViewController {
         self.viewModel.promoteShoutWithOption(option).subscribe { [weak self] (event) in
             switch event {
                 case .Next(let promotion):
-                    self?.navigationController?.showSuccessMessage(NSLocalizedString("Shout Promoted successfully", comment: ""))
+                    self?.navigationController?.showSuccessMessage(NSLocalizedString("Shout Promoted successfully", comment: "Promoted Shout Success Message"))
                     self?.shoutPromoted(promotion)
                 case .Error(let error):
                     self?.showError(error)

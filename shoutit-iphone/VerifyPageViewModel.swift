@@ -112,7 +112,7 @@ final class VerifyPageViewModel {
     
     private func contentReady() throws {
         for task in mediaUploadTasks where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
     }
     

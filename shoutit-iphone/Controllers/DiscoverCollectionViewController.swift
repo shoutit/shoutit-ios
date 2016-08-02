@@ -147,7 +147,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         
         if let discoverHeader = header as? DiscoverHeaderView {
-            let title = viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "")
+            let title = viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "Discover Header")
             discoverHeader.setText(title, whiteWithShadow: !viewModel.isRootDiscoverView)
                         
             if let coverPath = self.viewModel.mainItem()?.cover, coverURL = NSURL(string: coverPath) {
@@ -159,9 +159,9 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         if let discoverShoutsHeader = header as? DiscoverShoutsHeaderView {
             if let discoverItem = viewModel.mainItem()?.title {
-                discoverShoutsHeader.titleLabel.text = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), discoverItem)
+                discoverShoutsHeader.titleLabel.text = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Number of discover Shouts"), discoverItem)
             } else {
-                discoverShoutsHeader.titleLabel.text = NSLocalizedString("Discover Shouts", comment: "")
+                discoverShoutsHeader.titleLabel.text = NSLocalizedString("Discover Shouts", comment: "Discover Shouts Title Placeholder")
             }
         }
         

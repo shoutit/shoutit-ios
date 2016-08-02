@@ -90,7 +90,7 @@ final class MenuHeaderView: UIView {
     
     private func fillAsGuest() {
         profileImageView?.image = UIImage(named: "default_profile")
-        profileNameLabel?.text = NSLocalizedString("Guest", comment: "")
+        profileNameLabel?.text = NSLocalizedString("Guest", comment: "Menu Header Title")
         coverImageView?.image = UIImage(named: "auth_screen_bg_pattern")
         
         profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor

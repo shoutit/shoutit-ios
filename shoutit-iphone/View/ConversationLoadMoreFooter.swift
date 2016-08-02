@@ -35,10 +35,10 @@ final class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
         }
 
         if state == .NoMore {
-            loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: ""), forState: .Normal)
+            loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: "No More messages placeholder"), forState: .Normal)
             loadMoreButton.enabled = false
         } else {
-            loadMoreButton.setTitle(NSLocalizedString("Tap to load archive messages", comment: ""), forState: .Normal)
+            loadMoreButton.setTitle(NSLocalizedString("Tap to load archive messages", comment: "Load more messages button title"), forState: .Normal)
             loadMoreButton.enabled = true
         }
         

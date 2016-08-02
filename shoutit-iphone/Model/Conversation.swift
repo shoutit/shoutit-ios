@@ -95,15 +95,15 @@ extension Conversation {
         }
         
         guard let attachmentType = msg.attachment()?.type() else {
-            return NSLocalizedString("Attachment", comment: "")
+            return NSLocalizedString("Attachment", comment: "Last Message Text")
         }
         
         switch attachmentType {
-        case .LocationAttachment: return NSLocalizedString("Location", comment: "")
-        case .ImageAttachment: return NSLocalizedString("Image", comment: "")
-        case .VideoAttachment: return NSLocalizedString("Video", comment: "")
-        case .ShoutAttachment: return NSLocalizedString("Shout", comment: "")
-        case .ProfileAttachment: return NSLocalizedString("Profile", comment: "")
+        case .LocationAttachment: return NSLocalizedString("Location", comment: "Last Message Text")
+        case .ImageAttachment: return NSLocalizedString("Image", comment: "Last Message Text")
+        case .VideoAttachment: return NSLocalizedString("Video", comment: "Last Message Text")
+        case .ShoutAttachment: return NSLocalizedString("Shout", comment: "Last Message Text")
+        case .ProfileAttachment: return NSLocalizedString("Profile", comment: "Last Message Text")
         }
     }
 }
@@ -114,7 +114,7 @@ extension Conversation : Reportable {
     }
     
     public func reportTitle() -> String {
-        return NSLocalizedString("Report Chat", comment: "")
+        return NSLocalizedString("Report Chat", comment: "Report Button Title")
     }
 }
 

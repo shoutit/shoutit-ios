@@ -31,8 +31,8 @@ public final class NumberFormatters {
         
         let exp:Int = Int(log10(num) / 3.0 ); //log10(1000));
         
-        let units:[String] = [NSLocalizedString("K", comment: ""),
-                              NSLocalizedString("M", comment: ""),
+        let units:[String] = ["K",
+                              "M",
                               "G",
                               "T",
                               "P",
@@ -50,7 +50,7 @@ public final class NumberFormatters {
         }
         
         if price == 0 {
-            return NSLocalizedString("FREE", comment: "")
+            return NSLocalizedString("FREE", comment: "Free Price")
         }
         
         let formatter = NSNumberFormatter()

@@ -180,7 +180,7 @@ extension CreateShoutTableViewController {
             return cell
         case .Description:
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell", forIndexPath: indexPath) as! CreateShoutDescriptionTableViewCell
-            cell.textLabel?.text = NSLocalizedString("Description", comment: "")
+            cell.textLabel?.text = NSLocalizedString("Description", comment: "Create Shout Description Button Title")
             
             cell.detailTextLabel?.text = self.viewModel.shoutParams.text.value
             
@@ -329,9 +329,9 @@ extension CreateShoutTableViewController {
     }
     
     func showSharingAlert() {
-        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Create Shout Share Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Create Shout Share Alert Message"), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: { (alertaction) in
         }))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)

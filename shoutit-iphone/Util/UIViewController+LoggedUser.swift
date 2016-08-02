@@ -20,7 +20,7 @@ extension UIViewController {
     }
     
     func displayUserMustBeLoggedInAlert() {
-        let error = LightError(userMessage: NSLocalizedString("You must be logged in to perform this action", comment: ""))
+        let error = LightError(userMessage: NSLocalizedString("You must be logged in to perform this action", comment: "Must be logged Common Message"))
         showError(error)
     }
 }

@@ -559,7 +559,7 @@ extension ProfileCollectionViewController {
                 
                 switch event {
                 case .Next:
-                    self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: ""))
+                    self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: "Reported Message"))
                 case .Error(let error):
                     self?.showError(error)
                 default:
@@ -650,7 +650,7 @@ extension ProfileCollectionViewController : Bookmarking {
 extension ProfileCollectionViewController {
     func showActivateAccountAlert() {
         let alert = UIAlertController(title: NSLocalizedString("Activate your page", comment: ""), message: NSLocalizedString("To activate your page, your personal account should be verified first. Click the activation link in the email you have received when you signed up.", comment: ""), preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }

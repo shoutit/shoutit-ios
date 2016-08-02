@@ -23,7 +23,7 @@ final class ProfileCollectionSectionViewModel <T: ProfileCollectionCellViewModel
          isLoading: Bool,
          footerButtonTitle: String? = nil,
          footerButtonStyle: ProfileCollectionFooterButtonType? = nil,
-         noContentMessage: String = NSLocalizedString("No content available yet", comment: ""),
+         noContentMessage: String = NSLocalizedString("No content available yet", comment: "No Content placeholder"),
          errorMessage: String? = nil) {
         
         self.title = title

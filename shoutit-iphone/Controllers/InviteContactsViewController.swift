@@ -21,7 +21,7 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = NSLocalizedString("Invite Contacts", comment: "")
+        self.navigationItem.title = NSLocalizedString("Invite Contacts", comment: "Invite Contacts screen title")
         extractContacts()
     }
     
@@ -39,7 +39,7 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
                 queryBuilder?.queryAsync({ (results, error) in
                     guard let contacts = results else {
                         self?.hideProgressHUD()
-                        self?.showErrorMessage(NSLocalizedString("We couldn't find any contacts in your address book", comment: ""))
+                        self?.showErrorMessage(NSLocalizedString("We couldn't find any contacts in your address book", comment: "Invite Contacts error message"))
                         return
                     }
                     self?.myContacts = contacts
@@ -50,7 +50,7 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
             })
         } catch {
             hideProgressHUD()
-            showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: ""))
+            showErrorMessage(NSLocalizedString("We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app.", comment: "Invite Contacts error message"))
         }
     }
     
@@ -75,13 +75,13 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
             let messageComposeVC = messageComposer.configuredMessageComposeViewController(phone)
             presentViewController(messageComposeVC, animated: true, completion: nil)
         } else {
-            let errorAlert = UIAlertView(title: NSLocalizedString("Cannot Send Text Message", comment: ""), message: NSLocalizedString("Your device is not able to send text messages.", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("OK", comment: ""))
+            let errorAlert = UIAlertView(title: NSLocalizedString("Cannot Send Text Message", comment: "Invite Contacts send message error title"), message: NSLocalizedString("Your device is not able to send text messages.", comment: "Invite Contacts send message error message"), delegate: self, cancelButtonTitle: LocalizedString.ok)
             errorAlert.show()
         }
     }
     
     func showPhoneActionSheet(phoneNumbers: [String]) {
-        let optionMenu = UIAlertController(title: NSLocalizedString("Please select phone number", comment: ""), message:nil, preferredStyle: .ActionSheet)
+        let optionMenu = UIAlertController(title: NSLocalizedString("Please select phone number", comment: "Invite Contacts Select Phone Number Alert Title"), message:nil, preferredStyle: .ActionSheet)
         
         phoneNumbers.each { (phone) in
             optionMenu.addAction(UIAlertAction(title: phone, style: .Default, handler: { (action) in
@@ -89,7 +89,7 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
             }))
         }
         
-        optionMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        optionMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Invite Contacts Select Phone Cancel"), style: .Cancel, handler: nil))
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }

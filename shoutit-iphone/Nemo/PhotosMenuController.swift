@@ -44,7 +44,7 @@ public class PhotosMenuController: UIAlertController {
         self.recentPhotosCollectionViewController.preferredContentSize = CGSize(width: 0.0, height: 172.0)
         self.recentPhotosCollectionViewController.delegate = self
         
-        self.photoLibraryAction = UIAlertAction(title: NSLocalizedString("Photo Library", comment: ""), style: .Default, handler: { (action) -> Void in
+        self.photoLibraryAction = UIAlertAction(title: NSLocalizedString("Photo Library", comment: "Pick Photot Option TItle"), style: .Default, handler: { (action) -> Void in
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self.delegate
             imagePickerController.modalPresentationStyle = .Popover
@@ -60,7 +60,7 @@ public class PhotosMenuController: UIAlertController {
             self.capturedPresentingViewController?.presentViewController(imagePickerController, animated: true, completion: nil)
         })
         
-        self.cameraAction = UIAlertAction(title: NSLocalizedString("Take Photo or Video", comment: ""), style: .Default, handler: { (action) -> Void in
+        self.cameraAction = UIAlertAction(title: NSLocalizedString("Take Photo or Video", comment: "Pick Photot Option TItle"), style: .Default, handler: { (action) -> Void in
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self.delegate
             imagePickerController.modalPresentationStyle = .FullScreen
@@ -73,7 +73,7 @@ public class PhotosMenuController: UIAlertController {
         })
         self.updateCameraActionTitle()
         
-        self.cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel,  handler: { (action) -> Void in
+        self.cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel,  handler: { (action) -> Void in
             self.delegate?.photosMenuControllerDidCancel?(self)
         })
     }
@@ -120,16 +120,16 @@ public class PhotosMenuController: UIAlertController {
         let mediaTypesContainMovie = (self.mediaTypesForImagePicker.indexOf((kUTTypeMovie as String)) != nil)
         
         if mediaTypesContainImage && mediaTypesContainMovie {
-            cameraActionTitle = NSLocalizedString("Take Photo or Video", comment: "")
+            cameraActionTitle = NSLocalizedString("Take Photo or Video", comment: "Pick Photot Option Title")
         }
         else if mediaTypesContainImage {
-            cameraActionTitle = NSLocalizedString("Take Photo", comment: "")
+            cameraActionTitle = NSLocalizedString("Take Photo", comment: "Pick Photot Option Title")
         }
         else if mediaTypesContainMovie {
-            cameraActionTitle = NSLocalizedString("Take Video", comment: "")
+            cameraActionTitle = NSLocalizedString("Take Video", comment: "Pick Photot Option Title")
         }
         else {
-            cameraActionTitle = NSLocalizedString("Take Photo or Video", comment: "")
+            cameraActionTitle = NSLocalizedString("Take Photo or Video", comment: "Pick Photot Option Title")
         }
         
         self.cameraAction.setValue(cameraActionTitle, forKey: "title")

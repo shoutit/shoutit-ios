@@ -158,7 +158,7 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     }
 
     var verifyButtonTitle: String {
-        return NSLocalizedString("Verify your account!", comment: "")
+        return NSLocalizedString("Verify your account!", comment: "Profile Message")
     }
     
     // MARK: - Fetch
@@ -204,8 +204,8 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
-        let title = String.localizedStringWithFormat(NSLocalizedString("%@ Pages", comment: ""), profile.firstName ?? profile.name)
-        let noContentMessage = NSLocalizedString("No pages available yet", comment: "")
+        let title = String.localizedStringWithFormat(NSLocalizedString("%@ Pages", comment: "Number of pages"), profile.firstName ?? profile.name)
+        let noContentMessage = NSLocalizedString("No pages available yet", comment: "User Profile No pages placeholder")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
                                                  isLoading: loading,
@@ -215,9 +215,9 @@ final class UserProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
-        let title = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: ""), profile.firstName ?? profile.name)
+        let title = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Number of shouts"), profile.firstName ?? profile.name)
         let footerTitle = NSLocalizedString("See All Shouts", comment: "")
-        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "")
+        let noContentMessage = NSLocalizedString("No shouts available yet", comment: "User Profile No shouts placeholder")
         return ProfileCollectionSectionViewModel(title: title,
                                                  cells: cells,
                                                  isLoading: loading,

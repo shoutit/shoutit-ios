@@ -505,7 +505,6 @@
 		B27230811CE365B8003547EA /* ConversationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230801CE365B8003547EA /* ConversationListViewModel.swift */; };
 		B27230831CE36DFD003547EA /* NumberedPagePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27230821CE36DFD003547EA /* NumberedPagePager.swift */; };
 		B275469B1CBFF7A800172FE3 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469A1CBFF7A800172FE3 /* SelectionButton.swift */; };
-		B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275469E1CC145BC00172FE3 /* UserMessages.swift */; };
 		B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */; };
 		B2778F911CAAEBC700BBDD5F /* VerifyEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F901CAAEBC700BBDD5F /* VerifyEmailViewModel.swift */; };
 		B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */; };
@@ -1591,7 +1590,6 @@
 		B27230801CE365B8003547EA /* ConversationListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationListViewModel.swift; path = ViewModel/ConversationListViewModel.swift; sourceTree = "<group>"; };
 		B27230821CE36DFD003547EA /* NumberedPagePager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberedPagePager.swift; path = Util/NumberedPagePager.swift; sourceTree = "<group>"; };
 		B275469A1CBFF7A800172FE3 /* SelectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionButton.swift; path = View/SelectionButton.swift; sourceTree = "<group>"; };
-		B275469E1CC145BC00172FE3 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Other/UserMessages.swift; sourceTree = "<group>"; };
 		B2778F8D1CAAEBB200BBDD5F /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = Controllers/VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		B2778F901CAAEBC700BBDD5F /* VerifyEmailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewModel.swift; path = ViewModel/VerifyEmailViewModel.swift; sourceTree = "<group>"; };
 		B2778F941CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailDisplayable.swift; path = FlowControl/VerifyEmailDisplayable.swift; sourceTree = "<group>"; };
@@ -3814,7 +3812,6 @@
 				AC0CA3141BE7D4AA009EFBA8 /* shoutit-iphone-Bridging-Header.h */,
 				6027CF341BE74EAE00124C28 /* AppDelegate.swift */,
 				6027CF901BE7539300124C28 /* Constants.swift */,
-				B275469E1CC145BC00172FE3 /* UserMessages.swift */,
 				B212D12D1D0B136900E9E19D /* SHAppearanceBridge.h */,
 				B212D12E1D0B136900E9E19D /* SHAppearanceBridge.m */,
 				B2AAB69C1D19723B00307987 /* URLHandler.swift */,
@@ -5911,7 +5908,6 @@
 				240DE9331C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift in Sources */,
 				B2F719D01D0EF2EC002C1D74 /* DateTransform.swift in Sources */,
 				B2F719EA1D0EF4C7002C1D74 /* GooglePlaces.swift in Sources */,
-				B275469F1CC145BC00172FE3 /* UserMessages.swift in Sources */,
 				AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
 				AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */,

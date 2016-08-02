@@ -141,6 +141,6 @@ extension Profile: Reportable {
     }
     
     public func reportTitle() -> String {
-        return NSLocalizedString("Report Profile", comment: "")
+        return NSLocalizedString("Report Profile", comment: "Report Title")
     }
 }

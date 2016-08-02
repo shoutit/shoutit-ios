@@ -31,9 +31,9 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
     
     override func setTitle() {
         if self.shout.type() == .Offer {
-            self.navigationItem.title = NSLocalizedString("Edit Offer", comment: "")
+            self.navigationItem.title = NSLocalizedString("Edit Offer", comment: "Edit Shout Navigation Item Title")
         } else {
-            self.navigationItem.title = NSLocalizedString("Edit Request", comment: "")
+            self.navigationItem.title = NSLocalizedString("Edit Request", comment: "Edit Shout Navigation Item Title")
         }
     }
     

@@ -17,7 +17,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
     let successSubject: PublishSubject<Success> = PublishSubject()
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     
-    let title = NSLocalizedString("Change password", comment: "")
+    let title = NSLocalizedString("Change password", comment: "Change password screen title")
     var cellViewModels: [SettingsFormCellViewModel] = []
     
     init() {
@@ -25,7 +25,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
         let oldPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .OldPassword)
         let newPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .NewPassword)
         let verifyPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .VerifyPassword)
-        let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change password", comment: ""), action: changePassword)
+        let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change password", comment: "Change Password Button Title"), action: changePassword)
         
         if case .Logged(let user)? = Account.sharedInstance.loginState where user.isPasswordSet == true {
             cellViewModels = [oldPasswordCell, newPasswordCell, verifyPasswordCell, changeButtonCell]
@@ -55,7 +55,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
         }
         
         guard let new = newPassword, let new2 = newPassword2 else {
-            errorSubject.onNext(LightError(userMessage: NSLocalizedString("Fields must not be empty", comment: "")))
+            errorSubject.onNext(LightError(userMessage: NSLocalizedString("Fields must not be empty", comment: "Change Password Empty Fields message")))
             return
         }
         

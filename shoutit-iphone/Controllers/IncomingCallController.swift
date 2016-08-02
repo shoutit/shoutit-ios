@@ -63,13 +63,13 @@ final class IncomingCallController: UIViewController {
     }
     
     private func setInitalViewConfiguration() {
-        incomingCallLabel.text = NSLocalizedString("Incoming Call", comment: "")
+        incomingCallLabel.text = NSLocalizedString("Incoming Call", comment: "Incoming Call Title")
         callTopicLabel.text = nil
         callerAvatarImageView.image = nil
     }
     
     private func hydrateViewWithProfile(profile: Profile) {
-        incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "") + "\(profile.fullName())"
+        incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "Incoming Call Title From ") + "\(profile.fullName())"
         callerAvatarImageView.sh_setImageWithURL(profile.imagePath?.toURL(), placeholderImage: nil)
     }
 }

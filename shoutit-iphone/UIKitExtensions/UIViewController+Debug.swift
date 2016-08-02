@@ -12,7 +12,7 @@ extension UIViewController {
     
     func notImplemented() {
         let alertController = UIAlertController(title: nil, message: "Action not implemented", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        alertController.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

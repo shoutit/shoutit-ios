@@ -13,7 +13,7 @@ final class CreateShoutLocationSectionViewModel: CreateShoutSectionViewModel {
     
     // CreateShoutSectionViewModel
     var title: String {
-        return " " + NSLocalizedString("LOCATION", comment: "")
+        return " " + NSLocalizedString("LOCATION", comment: "Create Shout Details Section Title")
     }
     var cellViewModels: [CreateShoutCellViewModel]
     

@@ -74,7 +74,7 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("No notifications to show", comment: ""))
+        return NSAttributedString(string: NSLocalizedString("No notifications to show", comment: "Notifications Placeholder"))
     }
     
     @IBAction func reloadNotifications() {
@@ -165,18 +165,18 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     
     @IBAction func moreAction() {
         
-        let actionSheetController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        let actionSheetController = UIAlertController(title: NSLocalizedString("More", comment: "Notifications Screen Action Sheet"), message: nil, preferredStyle: .ActionSheet)
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Mark all as read", comment: ""), style: .Destructive, handler: { (action) -> Void in
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Mark all as read", comment: "Notifications Screen Action Sheet"), style: .Destructive, handler: { (action) -> Void in
             self.markAllAsRead()
         }))
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Notification Settings", comment: ""), style: .Default, handler: { (action) -> Void in
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Notification Settings", comment: "Notifications Screen Action Sheet"), style: .Default, handler: { (action) -> Void in
             self.openNotificationSettings()
         }))
         
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) -> Void in
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Notifications Screen Action Sheet"), style: .Cancel, handler: { (action) -> Void in
             
         }))
         

@@ -50,9 +50,9 @@ class CreateShoutParentViewController: UIViewController {
     
     func setTitle() {
         if self.type == .Offer {
-            self.navigationItem.title = NSLocalizedString("Create Offer", comment: "")
+            self.navigationItem.title = NSLocalizedString("Create Offer", comment: "Create Shout navigation item title")
         } else {
-            self.navigationItem.title = NSLocalizedString("Create Request", comment: "")
+            self.navigationItem.title = NSLocalizedString("Create Request", comment: "Create Shout navigation item title")
         }
         
     }
@@ -63,22 +63,22 @@ class CreateShoutParentViewController: UIViewController {
             return
         }
         
-        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Create Shout Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Create Shout Alert Message"), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: { (alertaction) in
         }))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func dismiss() {
-        let alert = UIAlertController(title: NSLocalizedString("Do you want to close?", comment: ""), message: NSLocalizedString("Are you sure? All Shout data will be lost.", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Do you want to close?", comment: "Create Shout Alert Title"), message: NSLocalizedString("Are you sure? All Shout data will be lost.", comment: "Create Shout Alert Message"), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .Destructive, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: "Create Shout Alert Option"), style: .Destructive, handler: { (alertaction) in
             self.close()
         }))
             
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Do nothing", comment: ""), style: .Default, handler: { (alert) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Do nothing", comment: "Create Shout Alert Option"), style: .Default, handler: { (alert) in
                 
         }))
         

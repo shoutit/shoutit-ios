@@ -117,8 +117,8 @@ final class MediaPickerController: NSObject, MediaPicker  {
     }
     
     func showToLongVideoAlert() {
-        let alertController = UIAlertController(title: NSLocalizedString("Video is too long", comment:""), message: NSLocalizedString("The maximum length of the video is 60 seconds. Choose a shorter movie.", comment: ""), preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        let alertController = UIAlertController(title: NSLocalizedString("Video is too long", comment:""), message: NSLocalizedString("The maximum length of the video is 60 seconds. Choose a shorter movie.", comment: "To long movie error message"), preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
         
         self.presentingSubject.onNext(alertController)
         return

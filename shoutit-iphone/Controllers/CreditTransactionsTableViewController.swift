@@ -56,7 +56,7 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: NSLocalizedString("No transactions to show", comment: ""))
+        return NSAttributedString(string: NSLocalizedString("No transactions to show", comment: "No Transactions Message"))
     }
     
     @IBAction func reloadTransactions() {

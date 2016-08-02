@@ -16,7 +16,7 @@ enum InternalParseError: ShoutitError {
         assertionFailure()
         switch self {
         case .InvalidJson:
-            return NSLocalizedString("Could not get your data", comment: "")
+            return NSLocalizedString("Could not get your data", comment: "Invalid JSON Error Message")
         }
     }
 }

@@ -384,17 +384,17 @@ final class ConversationViewModel {
     func alertControllerWithTitle(title: String?, message: String?) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
         
         return alert
     }
     
     func deleteActionAlert(completion: () -> Void) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this conversation", comment: ""), preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: "Alert Title"), message: NSLocalizedString("Do you want to delete this conversation", comment: "Alert Message"), preferredStyle: .ActionSheet)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { (alertAction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: "Alert Option"), style: .Destructive, handler: { (alertAction) in
             self.deleteConversation().subscribe(onNext: nil, onError: { (error) in
                 debugPrint(error)
                 }, onCompleted: {

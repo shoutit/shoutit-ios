@@ -107,14 +107,14 @@ private extension ConversationInfoViewModel {
     
     static func sectionViewModelsWithConversation(conversation: Conversation) -> [ConversationInfoSectionViewModel] {
         
-        let attachmentsSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("ATTACHMENTS", comment: ""),
+        let attachmentsSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("ATTACHMENTS", comment: "Conversation Info Attachments Section Title"),
                                                                            cellViewModels:[.Shouts, .Media])
         var membersCellViewModels: [ConversationInfoCellViewModel] = [.AddMember, .Participants]
         let isAdmin = conversation.isAdmin(Account.sharedInstance.user?.id)
         if isAdmin {
             membersCellViewModels.append(.Blocked)
         }
-        let membersSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("MEMBERS", comment: ""),
+        let membersSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("MEMBERS", comment: "Conversation Info Members Section Title"),
                                                                        cellViewModels: membersCellViewModels)
         var destructiveSectionCellViewModels: [ConversationInfoCellViewModel] = []
         if conversation.isPublicChat() {

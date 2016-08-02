@@ -25,7 +25,7 @@ class FacebookFriendsListParentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inviteFriends.setTitle(NSLocalizedString("Friends not on the list? Send them an invite!", comment: ""), forState: UIControlState.Normal)
+        inviteFriends.setTitle(NSLocalizedString("Friends not on the list? Send them an invite!", comment: "Facebook Friends Button Title"), forState: UIControlState.Normal)
     }
     
     
@@ -51,7 +51,7 @@ class FacebookFriendsListParentViewController: UIViewController {
         
         inviteContent.appLinkURL = NSURL(string: Constants.Invite.facebookURL)
         inviteContent.promotionCode = code.code
-        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "")
+        inviteContent.promotionText = NSLocalizedString("Join Shoutit", comment: "Invite Promotion Text")
         
         FBSDKAppInviteDialog.showFromViewController(self, withContent: inviteContent, delegate: self)
     }
@@ -60,7 +60,7 @@ class FacebookFriendsListParentViewController: UIViewController {
         if let facebookListController = segue.destinationViewController as? FacebookFriendsListTableViewController {
 
             facebookListController.viewModel = MutualProfilesViewModel(showListenButtons: true)
-            facebookListController.viewModel.sectionTitle = NSLocalizedString("Facebook Friends", comment: "")
+            facebookListController.viewModel.sectionTitle = NSLocalizedString("Facebook Friends", comment: "Facebook Friends Screen Title")
             facebookListController.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
                 self?.flowDelegate?.showProfile(profile)
                 })

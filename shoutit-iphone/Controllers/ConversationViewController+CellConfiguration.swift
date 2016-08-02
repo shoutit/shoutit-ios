@@ -58,7 +58,7 @@ extension ConversationViewController {
                 return
             }
             cell.titleLabel.text = profile.name
-            cell.subtitleLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.numberToShortString(profile.listenersCount))
+            cell.subtitleLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: "Listners number"), NumberFormatters.numberToShortString(profile.listenersCount))
             setThumbWithProfile(profile, onCell: cell)
         default:
             break

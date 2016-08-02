@@ -35,25 +35,25 @@ enum NavigationItem : String {
     
     func title() -> String {
         switch self {
-        case .Home: return NSLocalizedString("Home",comment: "")
-        case .Discover: return NSLocalizedString("Discover",comment: "")
-        case .Browse: return NSLocalizedString("Browse",comment: "")
-        case .PublicChats: return NSLocalizedString("Public Chats",comment: "")
-        case .Conversation: return NSLocalizedString("Conversation",comment: "")
-        case .Chats: return NSLocalizedString("Chats",comment: "")
-        case .Bookmarks: return NSLocalizedString("Bookmarks",comment: "")
-        case .Orders: return NSLocalizedString("Orders",comment: "")
-        case .Settings: return NSLocalizedString("Settings",comment: "")
-        case .Help: return NSLocalizedString("Help",comment: "")
-        case .InviteFriends: return NSLocalizedString("Invite Friends",comment: "")
+        case .Home: return NSLocalizedString("Home",comment: "Menu Item Title")
+        case .Discover: return NSLocalizedString("Discover",comment: "Menu Item Title")
+        case .Browse: return NSLocalizedString("Browse",comment: "Menu Item Title")
+        case .PublicChats: return NSLocalizedString("Public Chats",comment: "Menu Item Title")
+        case .Conversation: return NSLocalizedString("Conversation",comment: "Menu Item Title")
+        case .Chats: return NSLocalizedString("Chats",comment: "Menu Item Title")
+        case .Bookmarks: return NSLocalizedString("Bookmarks",comment: "Menu Item Title")
+        case .Orders: return NSLocalizedString("Orders",comment: "Menu Item Title")
+        case .Settings: return NSLocalizedString("Settings",comment: "Menu Item Title")
+        case .Help: return NSLocalizedString("Help",comment: "Menu Item Title")
+        case .InviteFriends: return NSLocalizedString("Invite Friends",comment: "Menu Item Title")
         case .Pages: return NSLocalizedString("Pages",comment: "Menu item")
         case .Admins: return NSLocalizedString("Admins",comment: "Menu item")
         case .SwitchFromPageToUser:
             guard case .Some(.Page(let user, _)) = Account.sharedInstance.loginState else {
                 fallthrough
             }
-            return String.localizedStringWithFormat(NSLocalizedString("Use Shoutit as %@", comment: ""), user.name)
-        default: return NSLocalizedString("Unsupported Title",comment: "")
+            return String.localizedStringWithFormat(NSLocalizedString("Use Shoutit as %@", comment: "Menu Item Title"), user.name)
+        default: return NSLocalizedString("Unsupported Title",comment: "Dont need to be translated")
         }
     }
     

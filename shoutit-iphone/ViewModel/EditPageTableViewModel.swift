@@ -166,10 +166,10 @@ final class EditPageTableViewModel {
     
     private func contentReady() throws {
         if let task = avatarUploadTask where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
         if let task = coverUploadTask where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
         
     }

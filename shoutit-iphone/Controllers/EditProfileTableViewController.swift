@@ -76,9 +76,9 @@ final class EditProfileTableViewController: UITableViewController {
     }
     
     func showCompleteProfileInfo() {
-        let alert = UIAlertController(title: NSLocalizedString("Completing your Profile", comment: ""), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: ""), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Completing your Profile", comment: "Edit Profile Alert Title"), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: "Edit Profile Alert Message"), preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
@@ -201,7 +201,7 @@ extension EditProfileTableViewController {
                 .driveNext({ [weak self] () -> Void in
                     
                     
-                    let controller = UIAlertController(title: NSLocalizedString("Select Gender", comment: ""), message: nil, preferredStyle: .ActionSheet)
+                    let controller = UIAlertController(title: NSLocalizedString("Select Gender", comment: "Edit Profile"), message: nil, preferredStyle: .ActionSheet)
                     
                     self?.genderValues().each({ (genderString) in
                     controller.addAction(UIAlertAction(title: genderString.capitalizedString, style: .Default, handler: { (alert) in
@@ -247,7 +247,7 @@ extension EditProfileTableViewController {
                         }
                     }
                     
-                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: #selector(controller.pop))
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Edit Profile"), style: .Plain, target: controller, action: #selector(controller.pop))
                     self?.navigationController?.showViewController(controller, sender: nil)
                     
                     })
@@ -260,7 +260,7 @@ extension EditProfileTableViewController {
 
 extension EditProfileTableViewController {
     func genderValues() -> [String] {
-        return [NSLocalizedString("Not specified", comment: ""), Gender.Male.rawValue, Gender.Female.rawValue, Gender.Other.rawValue]
+        return [NSLocalizedString("Not specified", comment: "Edit Profile Not Specified Gender"), Gender.Male.rawValue, Gender.Female.rawValue, Gender.Other.rawValue]
     }
     
     func birthDateSelected(sender: UIDatePicker) {

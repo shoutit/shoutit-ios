@@ -111,7 +111,7 @@ extension CreatePublicChatTableViewController {
                         }
                     }
                     
-                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .Plain, target: controller, action: #selector(controller.pop))
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.cancel, style: .Plain, target: controller, action: #selector(controller.pop))
                     self?.navigationController?.showViewController(controller, sender: nil)
                     
                     })

@@ -100,7 +100,7 @@ final class ConversationListTableViewController: UITableViewController {
                     self?.tableView.tableHeaderView = nil
                 case .NoContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
-                    self?.tableViewPlaceholder.showMessage(NSLocalizedString("You can start new conversation in shout details or user profile.", comment: ""), title: NSLocalizedString("No conversations to show", comment: ""))
+                    self?.tableViewPlaceholder.showMessage(NSLocalizedString("You can start new conversation in shout details or user profile.", comment: ""), title: NSLocalizedString("No conversations to show", comment: "No conversations message"))
                     self?.refreshControl?.endRefreshing()
                 case .Error(let error):
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder

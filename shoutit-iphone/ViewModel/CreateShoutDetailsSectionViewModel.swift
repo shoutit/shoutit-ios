@@ -14,7 +14,7 @@ final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
     
     // CreateShoutSectionViewModel
     var title: String {
-        return " " + NSLocalizedString("DETAILS", comment: "")
+        return " " + NSLocalizedString("DETAILS", comment: "Create Shout Details Section Title")
     }
     var cellViewModels: [CreateShoutCellViewModel] {
         if hideFilters {

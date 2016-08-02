@@ -18,7 +18,7 @@ class MyPagesCellViewModel {
     }
     
     func listeningCountString() -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), NumberFormatters.numberToShortString(profile.listenersCount))
+        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: "Listners Count"), NumberFormatters.numberToShortString(profile.listenersCount))
     }
     
     func detailTextString() -> String? {

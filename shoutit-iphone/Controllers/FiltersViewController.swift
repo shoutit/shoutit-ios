@@ -248,8 +248,8 @@ private extension FiltersViewController {
         
         guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
         let categoryNames = categories.map{$0.name}
-        let options = [NSLocalizedString("All Categories", comment: "")] + categoryNames
-        self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: ""), options: options) {[weak self] (index) in
+        let options = [NSLocalizedString("All Categories", comment: "Filters View")] + categoryNames
+        self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: "Filters View"), options: options) {[weak self] (index) in
             let category: ShoutitKit.Category? = index == 0 ? nil : categories[index - 1]
             self?.viewModel.changeCategoryToCategory(category)
         }
@@ -260,7 +260,7 @@ private extension FiltersViewController {
         let options = [NSLocalizedString("Offers and Requests", comment: "Filter shout type"),
                        NSLocalizedString("Only Offers", comment: "Filter shout type"),
                        NSLocalizedString("Only Requests", comment: "Filter shout type")]
-        self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: ""), options: options, completion: {[weak self] (index) in
+        self.presentActionSheetWithTitle(NSLocalizedString("Please select type", comment: "Filters View"), options: options, completion: {[weak self] (index) in
             let shoutType: ShoutType? = index == 0 ? nil : shoutTypes[index - 1]
             self?.viewModel.changeShoutTypeToType(shoutType)
         })
@@ -269,7 +269,7 @@ private extension FiltersViewController {
     func presentSortTypeChoiceActionSheet() {
         guard case .Loaded(let sortTypes) = viewModel.sortTypes.value else { return }
         let names = sortTypes.map{$0.name}
-        self.presentActionSheetWithTitle(NSLocalizedString("Please select sort type", comment: ""), options: names, completion: {[weak self] (index) in
+        self.presentActionSheetWithTitle(NSLocalizedString("Please select sort type", comment: "Filters View"), options: names, completion: {[weak self] (index) in
             self?.viewModel.changeSortTypeToType(sortTypes[index])
         })
     }
@@ -306,7 +306,7 @@ private extension FiltersViewController {
             }
             alertController.addAction(action)
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
         self.presentViewController(alertController, animated: true, completion: nil)

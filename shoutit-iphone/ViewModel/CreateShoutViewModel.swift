@@ -66,7 +66,7 @@ extension CreateShoutViewModel {
         } else {
             cell?.selectButton.showIcon(false)
             cell?.selectButton.iconImageView.image = nil
-            cell?.selectButton.setTitle(NSLocalizedString("Category", comment: ""), forState: .Normal)
+            cell?.selectButton.setTitle(NSLocalizedString("Category", comment: "Create Shout Button Title"), forState: .Normal)
         }
     }
     
@@ -84,7 +84,7 @@ extension CreateShoutViewModel {
             cell?.selectButton.setTitle(location.address, forState: .Normal)
         } else {
             cell?.selectButton.showIcon(false)
-            cell?.selectButton.setTitle(NSLocalizedString("Location", comment: ""), forState: .Normal)
+            cell?.selectButton.setTitle(NSLocalizedString("Location", comment: "Create Shout Button Title"), forState: .Normal)
         }
     }
 }
@@ -93,14 +93,14 @@ extension CreateShoutViewModel {
 extension CreateShoutViewModel {
     
     func mediaNotReadyAlertController() -> UIAlertController {
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: ""), message: "",preferredStyle: .ActionSheet)
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),style: .Cancel, handler: nil))
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please make sure that all media are uploaded before continuing", comment: "Create Shout Screen"), message: "",preferredStyle: .ActionSheet)
+        actionSheetController.addAction(UIAlertAction(title: LocalizedString.ok,style: .Cancel, handler: nil))
         
         return actionSheetController
     }
     
     func currenciesActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Currency", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Currency", comment: "Create Shout Screen"), message: "", preferredStyle: .ActionSheet)
         
         detailsSectionViewModel.currencies.value.each { (currency) -> () in
             actionSheetController.addAction(UIAlertAction(title: "\(currency.name) (\(currency.code))", style: .Default, handler: { [weak self] (alertAction) in
@@ -114,17 +114,17 @@ extension CreateShoutViewModel {
         }
         
         actionSheetController
-            .addAction(UIAlertAction(title: NSLocalizedString("Remove Currency", comment: ""), style: .Destructive) { [weak self] (alertAction) in
+            .addAction(UIAlertAction(title: NSLocalizedString("Remove Currency", comment: "Create Shout Screen"), style: .Destructive) { [weak self] (alertAction) in
                 self?.shoutParams.currency.value = nil
                 handler?(alertAction)
             })
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: handler))
         return actionSheetController
     }
     
     func categoriesActionSheet(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
-        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Category", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let actionSheetController = UIAlertController(title: NSLocalizedString("Please select Category", comment: "Create Shout Screen"), message: "", preferredStyle: .ActionSheet)
         detailsSectionViewModel.categories.value.each { (category) -> () in
             let action = UIAlertAction(title: "\(category.name)", style: .Default) { [weak self] (alertAction) in
                 self?.detailsSectionViewModel.setCategory(category)
@@ -133,7 +133,7 @@ extension CreateShoutViewModel {
             actionSheetController.addAction(action)
         }
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: handler))
         return actionSheetController
     }
     
@@ -153,8 +153,8 @@ extension CreateShoutViewModel {
             }))
         }
         
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: handler))
-        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive, handler: { (alertAction) in
+        actionSheetController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: handler))
+        actionSheetController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: "Create Shout Screen"), style: .Destructive, handler: { (alertAction) in
             
             self.shoutParams.filters.value[filter] = nil
             

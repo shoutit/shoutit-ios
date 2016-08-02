@@ -41,18 +41,18 @@ enum ProfileCollectionInfoButton {
     var title: String {
         switch self {
         case .Listeners:
-            return NSLocalizedString("Listeners", comment: "")
+            return NSLocalizedString("Listeners", comment: "Profile Button Title")
         case .Listening:
-            return NSLocalizedString("Listening", comment: "")
+            return NSLocalizedString("Listening", comment: "Profile Button Title")
         case .Interests:
-            return NSLocalizedString("Interests", comment: "")
+            return NSLocalizedString("Interests", comment: "Profile Button Title")
         case .Chat:
-            return NSLocalizedString("Chat", comment: "")
+            return NSLocalizedString("Chat", comment: "Profile Button Title")
         case .Listen(let listetning):
             if listetning {
-                return NSLocalizedString("Stop Listening", comment: "")
+                return NSLocalizedString("Stop Listening", comment: "Profile Button Title")
             } else {
-                return NSLocalizedString("Listen", comment: "")
+                return NSLocalizedString("Listen", comment: "Profile Button Title")
             }
         case .Custom(let title, _):
             return title

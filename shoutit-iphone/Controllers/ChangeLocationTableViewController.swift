@@ -27,7 +27,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     var currentLocationText : String! {
         didSet {
             loading = false
-            currentLocationLabel.text = "\(NSLocalizedString("Current location:", comment: "")) \(currentLocationText)"
+            currentLocationLabel.text = "\(NSLocalizedString("Current location:", comment: "Current Location Title in Change Location Screen")) \(currentLocationText)"
         }
     }
     
@@ -70,23 +70,23 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func showAutoUpdatesButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Auto", comment: ""), style: .Plain, target: self, action: #selector(toggleAutoUpdates))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Auto", comment: "Automatically get user location"), style: .Plain, target: self, action: #selector(toggleAutoUpdates))
     }
     
     func toggleAutoUpdates() {
-        let alert = UIAlertController(title: NSLocalizedString("Automatically Location Updates", comment: ""), message: "", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Automatically Location Updates", comment: "Change Location Screen option"), message: "", preferredStyle: .ActionSheet)
         
         if self.autoUpdates {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .Default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: "Turn off auto location update"), style: .Default, handler: { (action) in
                 self.autoUpdates = false
             }))
         } else {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn On", comment: ""), style: .Default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn On", comment: "Turn on auto location update"), style: .Default, handler: { (action) in
                 self.autoUpdates = true
             }))
         }
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in }))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in }))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
@@ -107,7 +107,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     func loadInitialState() {
         if shouldShowAutoUpdates && autoUpdates {
             loading = false
-            currentLocationLabel.text = NSLocalizedString("Your location will be updated automatically", comment: "")
+            currentLocationLabel.text = NSLocalizedString("Your location will be updated automatically", comment: "change location header title for auto location")
         } else {
             currentLocationText = Account.sharedInstance.locationString()
         }

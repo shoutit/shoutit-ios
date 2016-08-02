@@ -90,7 +90,7 @@ enum EditPageCellViewModel {
     }
     
     init(published: Bool) {
-        self = .Switch(value: published, placeholder: NSLocalizedString("Published", comment: ""), identity: .IsPublished)
+        self = .Switch(value: published, placeholder: NSLocalizedString("Published", comment: "Edit Page placeholder"), identity: .IsPublished)
     }
     
 }

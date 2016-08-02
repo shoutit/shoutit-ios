@@ -48,7 +48,7 @@ enum FiltersCellViewModel {
             case .Distance(let kilometers):
                 return "\(kilometers) km"
             case .EntireCountry:
-                return NSLocalizedString("Entire country", comment: "")
+                return NSLocalizedString("Entire country", comment: "Default Range Search")
             }
         case .FilterValueChoice(_, let values):
             return values.map{$0.name}.joinWithSeparator(", ")

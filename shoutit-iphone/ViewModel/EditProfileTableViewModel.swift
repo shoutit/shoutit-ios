@@ -47,7 +47,7 @@ final class EditProfileTableViewModel {
                  EditProfileCellViewModel(website: user.website ?? ""),
                  EditProfileCellViewModel(mobile: user.mobile ?? ""),
                  EditProfileCellViewModel(birthday: DateFormatters.sharedInstance.dateFromApiString(user.birthday)),
-                 EditProfileCellViewModel(gender: ((user.gender != nil) ? (user.gender!.rawValue) : NSLocalizedString("Not specified", comment: "")))
+                 EditProfileCellViewModel(gender: ((user.gender != nil) ? (user.gender!.rawValue) : NSLocalizedString("Not specified", comment: "Edit Profile Not Specified Gender")))
             
         ]
     }
@@ -140,14 +140,14 @@ final class EditProfileTableViewModel {
     
     private func contentReady() throws {
         if let task = avatarUploadTask where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
         if let task = coverUploadTask where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
         
         for case .RichText(let bio, _, .Bio) in cells where bio.characters.count > charactersLimit {
-            throw LightError(userMessage: NSLocalizedString("Bio has too many characters", comment: ""))
+            throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
     }
     

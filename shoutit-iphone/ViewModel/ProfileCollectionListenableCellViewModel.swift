@@ -66,7 +66,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
             s = NumberFormatters.numberToShortString(tag.listenersCount ?? 0)
 
         }
-        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: ""), s)
+        return String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: "Listners Count"), s)
     }
     
     func updateListnersCount(newListnersCount: Int, isListening: Bool) {

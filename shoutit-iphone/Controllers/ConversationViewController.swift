@@ -222,7 +222,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         leftButton.tintColor = UIColor(shoutitColor: ShoutitColor.FontGrayColor)
         
         typingIndicatorView?.interval = 3.0
-        textView.placeholder = NSLocalizedString("Type a message", comment: "")
+        textView.placeholder = NSLocalizedString("Type a message", comment: "Chat textview placeholder")
         
         // since autolayout swaps text bar, we swap it back to keep send button on the right
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
@@ -349,7 +349,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
     }
     
     func showSendingError(error: ErrorType) -> Void {
-        let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: ""), message: error.sh_message)
+        let controller = viewModel.alertControllerWithTitle(NSLocalizedString("Could not send message", comment: "Error Message"), message: error.sh_message)
         navigationController?.presentViewController(controller, animated: true, completion: nil)
     }
     
@@ -363,11 +363,11 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         let attributedText : NSAttributedString
         if case .NotCreated = viewModel.conversation.value {
-            attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: ""))
+            attributedText = NSAttributedString(string: NSLocalizedString("Don't be so shy. Say something.", comment: "New Conversation Placeholder"))
         } else if viewModel.loadMoreState.value == .ReadyToLoad {
-            attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: ""))
+            attributedText = NSAttributedString(string: NSLocalizedString("No Messages to show", comment: "No Chat Messages Message"))
         } else {
-            attributedText = NSAttributedString(string: NSLocalizedString("Loading Messages...", comment: ""))
+            attributedText = NSAttributedString(string: NSLocalizedString("Loading Messages...", comment: "Loading Chat messages"))
         }
         
         let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: tableView?.frame.width ?? 0, height: tableView?.frame.height ?? 0))
@@ -411,11 +411,11 @@ extension ConversationViewController {
     func showSendingMessage() {
         switch viewModel.conversation.value {
         case let .Created(conversation):
-            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: "Sending Chat Message"))
         case let .CreatedAndLoaded(conversation):
-            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: ""))
+            titleView.setTitle(conversation.firstLineText()?.string, message: NSLocalizedString("Sending message", comment: "Sending Chat Message"))
         case let .NotCreated(_, user, _):
-            titleView.setTitle(user.name, message: NSLocalizedString("Sending message", comment: ""))
+            titleView.setTitle(user.name, message: NSLocalizedString("Sending message", comment: "Sending Chat Message"))
         }
     }
     

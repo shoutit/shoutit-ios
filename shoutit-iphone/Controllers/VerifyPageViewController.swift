@@ -154,7 +154,7 @@ class VerifyPageViewController: UITableViewController {
         self.businessNameTextField.text = verification.businessName
         self.contactNumberTextfield.text = verification.contactNumber
         self.contactPersonTextField.text = verification.contactPerson
-        self.verificationStatusLabel.text = NSLocalizedString("Verification Status: ", comment: "") + verification.status
+        self.verificationStatusLabel.text = NSLocalizedString("Verification Status: ", comment: "Verify Page Verification Status") + verification.status
         
         if let images = verification.images {
             for (index, imageURLString) in images.enumerate() where index < imageViews.count {

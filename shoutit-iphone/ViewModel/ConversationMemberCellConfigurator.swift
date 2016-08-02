@@ -26,14 +26,14 @@ class ConversationMemberCellConfigurator: ProfileCellConfigurator {
         let subtitle = NSMutableAttributedString()
         
         if isAdmin {
-            let adminString = NSAttributedString(string: NSLocalizedString("Administrator", comment: ""),
+            let adminString = NSAttributedString(string: NSLocalizedString("Administrator", comment: "Conversation Profiles List - single user subtitle"),
                                                  attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             subtitle.appendAttributedString(adminString)
             subtitle.appendAttributedString(NSAttributedString(string: "  "))
         }
         
         if isBlocked {
-            let blockedString = NSAttributedString(string: NSLocalizedString("Blocked", comment: ""),
+            let blockedString = NSAttributedString(string: NSLocalizedString("Blocked", comment: "Conversation Profiles List - single user subtitle"),
                                                    attributes: [NSForegroundColorAttributeName: UIColor(shoutitColor: .PrimaryGreen)])
             
             subtitle.appendAttributedString(blockedString)

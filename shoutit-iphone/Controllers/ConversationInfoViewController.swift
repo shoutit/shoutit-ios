@@ -244,7 +244,7 @@ class ConversationInfoViewController: UITableViewController {
         })
         
         controller.viewModel = ListenersProfilesListViewModel(username: username, showListenButtons: false)
-        controller.navigationItem.title = NSLocalizedString("Add Member", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Add Member", comment: "Add Chat Member Navigation Item title")
         controller.dismissAfterSelection = true
         
         let configurator = AddMemberCellConfigurator()
@@ -280,7 +280,7 @@ class ConversationInfoViewController: UITableViewController {
         })
         
         controller.viewModel = ConversationMembersListViewModel(conversation: viewModel.conversation)
-        controller.navigationItem.title = NSLocalizedString("Participants", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Participants", comment: "Chat Participants Screen Title")
         
         let configurator = ConversationMemberCellConfigurator()
         
@@ -301,36 +301,36 @@ class ConversationInfoViewController: UITableViewController {
                 return
             }
             
-            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: ""), preferredStyle: .ActionSheet)
+            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Title"), preferredStyle: .ActionSheet)
             
             let isAdmin = self.viewModel.conversation.admins.contains{$0 == profile.id}
             let isBlocked = self.viewModel.conversation.blocked.contains{$0 == profile.id}
             
             if !isAdmin {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Promote to admin", comment: ""), style: .Default, handler: { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Promote to admin", comment: "Chat Participant List Action Sheet Option"), style: .Default, handler: { (action) in
                     self.promoteToAdmin(profile)
                 }))
             }
             
             if !isBlocked {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: ""), style: .Default) { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: "Chat Participant List Action Sheet Option"), style: .Default) { (action) in
                     self.block(profile)
                 })
             } else {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default) { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: "Chat Participant List Action Sheet Option"), style: .Default) { (action) in
                     self.unblock(profile)
                 })
             }
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .Destructive) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: "Chat Participant List Action Sheet Option"), style: .Destructive) { (action) in
                 self.remove(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: ""), style: .Destructive) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: "Chat Participant List Action Sheet Option"), style: .Destructive) { (action) in
                 self.flowDelegate?.showProfile(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            optionsController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
             self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
         })
         
@@ -407,7 +407,7 @@ class ConversationInfoViewController: UITableViewController {
         let controller = Wireframe.conversationSelectProfileAttachmentController()
         
         controller.viewModel = ConversationBlockedListModel(conversation: viewModel.conversation)
-        controller.navigationItem.title = NSLocalizedString("Blocked", comment: "")
+        controller.navigationItem.title = NSLocalizedString("Blocked", comment: "Conversation Blocked Users Title")
         
         let configurator = ConversationMemberCellConfigurator()
         
@@ -422,17 +422,17 @@ class ConversationInfoViewController: UITableViewController {
                 return
             }
             
-            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: ""), preferredStyle: .ActionSheet)
+            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Option"), preferredStyle: .ActionSheet)
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: ""), style: .Default) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: "Chat Participant List Action Sheet Option"), style: .Default) { (action) in
                 self.unblock(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: ""), style: .Destructive) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: "Chat Participant List Action Sheet Option"), style: .Destructive) { (action) in
                 self.flowDelegate?.showProfile(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            optionsController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
             
             self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
         })
@@ -449,7 +449,7 @@ class ConversationInfoViewController: UITableViewController {
             APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
                 switch event {
                 case .Next(_):
-                    self?.showSuccessMessage(NSLocalizedString("Conversation reported succesfully", comment: ""))
+                    self?.showSuccessMessage(NSLocalizedString("Conversation reported succesfully", comment: "Conversation Reported Message"))
                 case .Error(let error):
                     self?.showError(error)
                 default:
@@ -465,7 +465,7 @@ class ConversationInfoViewController: UITableViewController {
         
         let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this conversation", comment: ""), preferredStyle: .ActionSheet)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { [weak self] (alertAction) in
             self?.deleteConversation()
@@ -478,7 +478,7 @@ class ConversationInfoViewController: UITableViewController {
         APIChatsService.deleteConversationWithId(self.viewModel.conversation.id).subscribe { [weak self] (event) in
             switch event {
             case .Next(_):
-                self?.showSuccessMessage(NSLocalizedString("Conversation Deleted succesfully", comment: ""))
+                self?.showSuccessMessage(NSLocalizedString("Conversation Deleted succesfully", comment: "Delete Conversation Message"))
                 self?.navigationController?.popToRootViewControllerAnimated(true)
             case .Error(let error):
                 self?.showError(error)

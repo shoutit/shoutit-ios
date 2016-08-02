@@ -50,7 +50,7 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
             guard let mode = doneButtonMode else { return }
             switch mode {
             case .Next:
-                doneButton.setTitle(NSLocalizedString("Next", comment: ""), forState: .Normal)
+                doneButton.setTitle(LocalizedString.next, forState: .Normal)
                 doneButton.backgroundColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
                 doneButton
                     .rx_tap
@@ -60,7 +60,7 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
                     }
                     .addDisposableTo(doneButtonDisposeBag)
             case .Done:
-                doneButton.setTitle(NSLocalizedString("Done", comment: ""), forState: .Normal)
+                doneButton.setTitle(LocalizedString.done, forState: .Normal)
                 doneButton.backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
                 doneButton
                     .rx_tap

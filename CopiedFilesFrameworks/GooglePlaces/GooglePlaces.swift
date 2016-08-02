@@ -81,8 +81,8 @@ public class GooglePlaces: GoogleMapsService {
             switch response.status {
             case .None:
                 let userInfo = [
-                    NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: ""),
-                    NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "")
+                    NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed"),
+                    NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed")
                 ]
                 error = NSError(domain: "GooglePlacesError", code: -1, userInfo: userInfo)
             case .Some(let status):
@@ -91,8 +91,8 @@ public class GooglePlaces: GoogleMapsService {
                     break
                 default:
                     let userInfo = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: status.rawValue, comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: response.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: status.rawValue, comment: "Translation not Needed"),
+                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: response.errorMessage ?? "", comment: "Translation not Needed")
                     ]
                     error = NSError(domain: "GooglePlacesError", code: -1, userInfo: userInfo)
                 }
@@ -156,8 +156,8 @@ extension GooglePlaces {
             switch response.status {
             case .None:
                 let userInfo = [
-                    NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: ""),
-                    NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "")
+                    NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed"),
+                    NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed")
                 ]
                 error = NSError(domain: "GooglePlacesError", code: -1, userInfo: userInfo)
             case .Some(let status):
@@ -166,8 +166,8 @@ extension GooglePlaces {
                     break
                 default:
                     let userInfo = [
-                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: status.rawValue, comment: ""),
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: response.errorMessage ?? "", comment: "")
+                        NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: status.rawValue, comment: "Translation not Needed"),
+                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: response.errorMessage ?? "", comment: "Translation not Needed")
                     ]
                     error = NSError(domain: "GooglePlacesError", code: -1, userInfo: userInfo)
                 }

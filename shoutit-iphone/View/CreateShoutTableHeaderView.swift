@@ -18,7 +18,7 @@ final class CreateShoutTableHeaderView: UIView {
         if let curr = currency {
             self.currencyButton.setTitle(curr.code, forState: .Normal)
         } else {
-            self.currencyButton.setTitle(NSLocalizedString("Currency", comment: ""), forState: .Normal)
+            self.currencyButton.setTitle(NSLocalizedString("Currency", comment: "Create Shout Currency Button Title"), forState: .Normal)
         }
     }
 }

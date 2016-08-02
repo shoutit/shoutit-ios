@@ -57,7 +57,7 @@ class CreatePageInfoViewController: UITableViewController {
     
     func validFieldsAndCreatePageBySignupIfPossible() {
         guard let pageName = nameTextField.text else {
-            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: ""))
+            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: "Create Page Validation Message"))
             return
         }
         
@@ -90,7 +90,7 @@ class CreatePageInfoViewController: UITableViewController {
         }
         
         guard let category = selectedCategory else {
-            self.showErrorMessage(NSLocalizedString("Please select category", comment: ""))
+            self.showErrorMessage(NSLocalizedString("Please select category", comment: "Create Page Error"))
             return
         }
         
@@ -100,17 +100,17 @@ class CreatePageInfoViewController: UITableViewController {
     
     func validateAndCreatePageForLoggedUser() {
         guard let pageName = nameTextField.text else {
-            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: ""))
+            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: "Create Page Error"))
             return
         }
         
         guard case .Valid = ShoutitValidator.validateName(pageName) else {
-            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: ""))
+            self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: "Create Page Error"))
             return
         }
         
         guard let category = selectedCategory else {
-            self.showErrorMessage(NSLocalizedString("Please select category", comment: ""))
+            self.showErrorMessage(NSLocalizedString("Please select category", comment: "Create Page Error"))
             return
         }
         
@@ -149,7 +149,7 @@ class CreatePageInfoViewController: UITableViewController {
     
     @IBAction func showSubCategories() {
         
-        let alert = UIAlertController(title: NSLocalizedString("Please select subcategory", comment: ""), message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Please select subcategory", comment: "Create Page Error"), message: nil, preferredStyle: .ActionSheet)
         
         alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
         

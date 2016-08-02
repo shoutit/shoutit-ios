@@ -90,8 +90,8 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         
         guard let longitude = user.location.longitude, latitude = user.location.latitude else {
             
-            let alert = UIAlertController(title: NSLocalizedString("Could not send your location right now.", comment: ""), message: NSLocalizedString("Please make sure that your location services are enabled for Shoutit.", comment: ""), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Cancel, handler: nil))
+            let alert = UIAlertController(title: NSLocalizedString("Could not send your location right now.", comment: "Sending Location Error"), message: NSLocalizedString("Please make sure that your location services are enabled for Shoutit.", comment: "No location services message"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Cancel, handler: nil))
             self.presentingSubject.onNext(alert)
             
             return
@@ -131,9 +131,9 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     
     private func showConfirmationControllerForAttachment(attachment: MessageAttachment) {
         guard let attachmentType = attachment.type() else { return }
-        let alert = UIAlertController(title: NSLocalizedString("Confirmation", comment: ""), message: confirmationMessageForType(attachmentType), preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Send Attachment", comment: ""), style: .Default, handler: { (alertAction) in
+        let alert = UIAlertController(title: NSLocalizedString("Confirmation", comment: "Send attachment action sheet title"), message: confirmationMessageForType(attachmentType), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Send Attachment", comment: "Send attachment action sheet option"), style: .Default, handler: { (alertAction) in
             self.attachmentSelected.onNext(attachment)
         }))
         
@@ -143,15 +143,15 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     private func confirmationMessageForType(type: MessageAttachmentType) -> String {
         switch type {
         case .VideoAttachment:
-            return NSLocalizedString("Do you want to send selected video?", comment: "")
+            return NSLocalizedString("Do you want to send selected video?", comment: "Send Attachment question")
         case .ShoutAttachment:
-            return NSLocalizedString("Do you want to send selected shout?", comment: "")
+            return NSLocalizedString("Do you want to send selected shout?", comment: "Send Attachment question")
         case .LocationAttachment:
-            return NSLocalizedString("Do you want to send your location?", comment: "")
+            return NSLocalizedString("Do you want to send your location?", comment: "Send Attachment question")
         case .ImageAttachment:
-            return NSLocalizedString("Do you want to send selected picture?", comment: "")
+            return NSLocalizedString("Do you want to send selected picture?", comment: "Send Attachment question")
         case .ProfileAttachment:
-            return NSLocalizedString("Do you want to send selected profile?", comment: "")
+            return NSLocalizedString("Do you want to send selected profile?", comment: "Send Attachment question")
         }
     }
     

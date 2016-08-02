@@ -77,35 +77,35 @@ class CreditsMainViewController: UITableViewController {
     }
     
     func completeProfile() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Complete Profile", comment: ""), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Complete Profile", comment: "Credits Screen"), style: .Default) { (action) in
             self.flowDelegate?.showEditProfile()
         }
         
-        showAlertWith(NSLocalizedString("Completing your Profile", comment: ""), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: ""), actions: [completeAction])
+        showAlertWith(NSLocalizedString("Completing your Profile", comment: "Credits Screen"), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: "Credits Screen"), actions: [completeAction])
     }
     
     func sharingOnFacebook() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Create Shout", comment: ""), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Create Shout", comment: "Credits Screen"), style: .Default) { (action) in
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.RootControllerShouldOpenNavigationItem, object: self, userInfo: ["item": NavigationItem.CreateShout.rawValue])
         }
         
-        showAlertWith(NSLocalizedString("Sharing of Facebook", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: ""), actions: [completeAction])
+        showAlertWith(NSLocalizedString("Sharing of Facebook", comment: "Credits Screen"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Credits Screen"), actions: [completeAction])
     }
     
     func invitingFriends() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Invite Friends", comment: ""), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Invite Friends", comment: "Credits Screen"), style: .Default) { (action) in
             self.flowDelegate?.showInviteFriends()
         }
         
-        showAlertWith(NSLocalizedString("Inviting friends", comment: ""), message: NSLocalizedString("Earn 1 Shoutit Credit whenever a friend you invited signs up", comment: ""), actions: [completeAction])
+        showAlertWith(NSLocalizedString("Inviting friends", comment: "Credits Screen"), message: NSLocalizedString("Earn 1 Shoutit Credit whenever a friend you invited signs up", comment: "Credits Screen"), actions: [completeAction])
     }
     
     func listningToFriends() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Find Friends", comment: ""), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Find Friends", comment: "Credits Screen"), style: .Default) { (action) in
             self.flowDelegate?.showInviteFriends()
         }
         
-        showAlertWith(NSLocalizedString("Listening of friends", comment: ""), message: NSLocalizedString("Earn up to 10 Shoutit Credits for finding your friends and listening to them", comment: ""), actions: [completeAction])
+        showAlertWith(NSLocalizedString("Listening of friends", comment: "Credits Screen"), message: NSLocalizedString("Earn up to 10 Shoutit Credits for finding your friends and listening to them", comment: "Credits Screen"), actions: [completeAction])
     }
     
     func promotingShouts() {
@@ -115,7 +115,7 @@ class CreditsMainViewController: UITableViewController {
     func showAlertWith(title: String, message: String, actions: [UIAlertAction]) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Got it", comment: ""), style: .Cancel, handler: { action in }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Got it", comment: "Credits Screen Alert Option"), style: .Cancel, handler: { action in }))
         
         actions.each({ (action) in
             alert.addAction(action)

@@ -271,7 +271,7 @@ extension Account {
             return "\(city), \(state), \(country)"
         }
         
-        return NSLocalizedString("Unknown Location", comment: "")
+        return NSLocalizedString("Unknown Location", comment: "Location String in Menu")
     }
     
     func fetchUserProfile() {

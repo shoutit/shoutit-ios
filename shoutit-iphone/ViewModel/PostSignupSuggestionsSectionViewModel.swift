@@ -16,9 +16,9 @@ enum PostSignupSuggestionsSection {
     var title: String {
         switch self {
         case .Users:
-            return NSLocalizedString("Suggested Users", comment: "")
+            return NSLocalizedString("Suggested Users", comment: "Post Signup Suggestions Title")
         case .Pages:
-            return NSLocalizedString("Suggested Pages", comment: "")
+            return NSLocalizedString("Suggested Pages", comment: "Post Signup Suggestions Title")
         }
     }
     
@@ -40,6 +40,6 @@ final class PostSignupSuggestionsSectionViewModel {
     }
     
     var noContentTitle: String {
-        return NSLocalizedString("There is no suggestions for you at the moment", comment: "")
+        return NSLocalizedString("There is no suggestions for you at the moment", comment: "No Suggestions")
     }
 }

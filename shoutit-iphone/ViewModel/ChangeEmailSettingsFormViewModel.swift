@@ -17,12 +17,12 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     let successSubject: PublishSubject<Success> = PublishSubject()
     let errorSubject: PublishSubject<ErrorType> = PublishSubject()
     
-    let title = NSLocalizedString("Change email", comment: "")
+    let title = NSLocalizedString("Change email", comment: "Change Email screen title")
     var cellViewModels: [SettingsFormCellViewModel] = []
     
     init() {
         let newPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .NewEmail)
-        let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change email", comment: ""), action: changeEmail)
+        let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change email", comment: "Change Email Button Title"), action: changeEmail)
         cellViewModels = [newPasswordCell, changeButtonCell]
     }
     
@@ -52,7 +52,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
                 switch event {
                 case .Next(let user):
                     Account.sharedInstance.updateUserWithModel(user)
-                    self?.successSubject.onNext(Success(message: NSLocalizedString("Email Changed", comment: "")))
+                    self?.successSubject.onNext(Success(message: NSLocalizedString("Email Changed", comment: "Change Email Success Message")))
                 case .Error(let error):
                     self?.errorSubject.onNext(error)
                 default:

@@ -19,11 +19,11 @@ extension ConversationSubjectEditable {
     
     func validateFields() throws {
         if let task = imageUploadTask where task.status.value == .Uploading {
-            throw LightError(userMessage: NSLocalizedString("Please wait for upload to finish", comment: ""))
+            throw LightError(userMessage:LocalizedString.Media.waitUntilUpload)
         }
         
         if chatSubject.utf16.count < 1 {
-            throw LightError(userMessage: NSLocalizedString("Please enter chat subject", comment: ""))
+            throw LightError(userMessage: NSLocalizedString("Please enter chat subject", comment: "Create Public Chat Message"))
         }
     }
 

@@ -39,9 +39,9 @@ enum ShoutDetailTabbarButton {
         case .Promote(false):
             return NSLocalizedString("Promote", comment: "Shout detail tab bar item")
         case .Edit:
-            return NSLocalizedString("Edit", comment: "Shout detail tab bar item")
+            return LocalizedString.edit
         case .Delete:
-            return NSLocalizedString("Delete", comment: "Shout detail tab bar item")
+            return LocalizedString.delete
         default:
             fatalError()
         }
