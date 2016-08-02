@@ -141,9 +141,15 @@ extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate
     func photoEditor(editor: AdobeUXImageEditorViewController, finishedWithImage image: UIImage?) {
         
         editingController?.dismissViewControllerAnimated(true, completion: nil)
-        guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else { return }
+        
+        guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else {
+            self.editingController = nil
+            return
+        }
+        
         guard let image = image, imageData = image.dataRepresentation() else {
             editingCompletion(attachment: editingAttachment)
+             self.editingController = nil
             return
         }
         
@@ -152,12 +158,14 @@ extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate
         
         self.editingAttachment = nil
         self.editingCompletion = nil
+        self.editingController = nil
     }
     
     func photoEditorCanceled(editor: AdobeUXImageEditorViewController) {
         self.editingAttachment = nil
         self.editingCompletion = nil
         editingController?.dismissViewControllerAnimated(true, completion: nil)
+        self.editingController = nil
     }
 }
 

@@ -21,13 +21,13 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     let videoProcessor = VideoProcessor()
     
-    var presentingSubject : BehaviorSubject<UIViewController?>
+    var presentingSubject : PublishSubject<UIViewController?>
     
     weak var delegate : MediaPickerControllerDelegate?
     
     init(delegate: MediaPickerControllerDelegate? = nil, settings: MediaPickerSettings = MediaPickerSettings()) {
         self.pickerSettings = settings
-        self.presentingSubject = BehaviorSubject(value: nil)
+        self.presentingSubject = PublishSubject()
         self.selectedAttachments = []
         super.init()
         
@@ -57,8 +57,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
             
             let options = PHImageRequestOptions()
             
-            options.deliveryMode = .Opportunistic
-            options.synchronous = true
+            options.deliveryMode = .FastFormat
             
             PHImageManager.defaultManager().requestImageForAsset(photo,
                 targetSize: self.pickerSettings.targetSize,

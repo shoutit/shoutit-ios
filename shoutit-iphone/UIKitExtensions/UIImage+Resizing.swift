@@ -24,11 +24,13 @@ extension UIImage {
         
         image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        var newImage : UIImage? = nil
+        
+        newImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     func dataRepresentation() -> NSData? {

@@ -25,4 +25,8 @@ final class CaptureViewController: PhotosMenuController {
             
         }
     }
+    
+    deinit {
+        
+    }
 }
