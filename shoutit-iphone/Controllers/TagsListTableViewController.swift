@@ -115,7 +115,7 @@ final class TagsListTableViewController: UITableViewController {
                         }
                         
                         do {
-                            let newProfile : Tag = profile.copyWithListnersCount(newListnersCount)
+                            let newProfile : Tag = profile.copyWithListnersCount(newListnersCount, isListening: listening)
                             
                             try self.viewModel.pager.replaceItemAtIndex(indexPath.row, withItem: newProfile)
                             

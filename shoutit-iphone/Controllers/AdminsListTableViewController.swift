@@ -112,7 +112,7 @@ final class AdminsListTableViewController: UITableViewController {
                             }
                             
                             do {
-                                let newProfile : Profile = profile.copyWithListnersCount(newListnersCount)
+                                let newProfile : Profile = profile.copyWithListnersCount(newListnersCount, isListening: listening)
                                 
                                 try self.viewModel.pager.replaceItemAtIndex(indexPath.row, withItem: newProfile)
                                 
