@@ -1,0 +1,992 @@
+/* No comment provided by engineer. */
+"%@ Admins" = "%@ مدراء";
+
+/* No comment provided by engineer. */
+"%@ Listeners" = "%@ مستمعين";
+
+/* No comment provided by engineer. */
+"%@ Pages" = "%@ صفحات";
+
+/* No comment provided by engineer. */
+"%@ Shouts" = "%@ إعلانات";
+
+/* Your shout is promoted until \(DateFormatters.sharedInstance.stringFromDateEpoch(expiresAt)) */
+"%@ days" = "%@ أيام";
+
+/* Search results count string */
+"%d Shouts" = "%d إعلانات";
+
+/* No comment provided by engineer. */
+"ATTACHMENTS" = "المرفقات";
+
+/* About screen title
+ Edit page placeholder text
+ Settings cell title */
+"About" = "حول";
+
+/* Settings cell title */
+"Account" = "الحساب";
+
+/* No comment provided by engineer. */
+"Activate your Page!" = "فعل صفحتك!";
+
+/* No comment provided by engineer. */
+"Activate your page" = "فعل صفحتك";
+
+/* No comment provided by engineer. */
+"Add %d Photos" = "إضافة %d صور";
+
+/* New admin choice view header */
+"Add Admin" = "إضافة مدير";
+
+/* No comment provided by engineer. */
+"Add Member" = "إضافة مشترك";
+
+/* No comment provided by engineer. */
+"Administrator" = "مدير";
+
+/* Menu item */
+"Admins" = "المدراء";
+
+/* Default category - filter button title */
+"All Categories" = "جميع التصنيفات";
+
+/* No comment provided by engineer. */
+"Already a member" = "مشترك حاليا";
+
+/* No comment provided by engineer. */
+"Are you sure?" = "هل انت متأكد ؟";
+
+/* No comment provided by engineer. */
+"Are you sure? All Shout data will be lost." = "هل أنت متأكد؟ ستمسح جميع البيانات المدخلة.";
+
+/* No comment provided by engineer. */
+"Auto" = "تلقائي";
+
+/* No comment provided by engineer. */
+"Automatically Location Updates" = "تحديث موقع تلقائي";
+
+/* Edit profile placeholder text */
+"Bio" = "المعلومات الشخصية";
+
+/* No comment provided by engineer. */
+"Bio has too many characters" = "لايمكن ان يحتوي على الكثير من الأحرف";
+
+/* Edit profile placeholder text */
+"Birthday" = "تاريخ الميلاد";
+
+/* No comment provided by engineer. */
+"Block" = "حظر";
+
+/* No comment provided by engineer. */
+"Blocked" = "محظور";
+
+/* No comment provided by engineer. */
+"Bookmarked Shouts" = "إعلانات محفوطة";
+
+/* No comment provided by engineer. */
+"Bookmarks" = "المحفوظات";
+
+/* No comment provided by engineer. */
+"Browse" = "إستعرض";
+
+/* No comment provided by engineer. */
+"Buy" = "إشتري";
+
+/* Signup screen terms and policy message message */
+"By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy." = "عند المتابعة ستكون قد وافقت على شروط الخدمة وسياسة الخصوصية لشاوت ات.";
+
+/* recent searches clear button title */
+"CLEAR" = "مسح";
+
+/* Shout detail tab bar item */
+"Call" = "مكالمة";
+
+/* Video call status message */
+"Call Ended" = "انتهت المكالمة";
+
+/* Video call status message */
+"Call Failed" = "فشلت المكالمة";
+
+/* Edit photo action sheet option */
+"Cancel" = "إلغاء";
+
+/* No comment provided by engineer. */
+"Cannot Send Text Message" = "لايمكن إرسال رسالة نصية";
+
+/* Alert title - user tries to pick more than allowed number of images in media picker */
+"Cannot add more images" = "لا يمكن إضافة مزيد من الصور";
+
+/* Alert title - user tries to pick more than allowed number of videos in media picker */
+"Cannot add more videos" = "لا يمكن إضافة مزيد من الفيديو";
+
+/* Main search screen categories header */
+"Categories" = "التصنيفات";
+
+/* No comment provided by engineer. */
+"Categories unavailable" = "التصنيفات غير متاحة";
+
+/* Post signup 1 placeholder */
+"Categories unavilable" = "التصنيفات غير متاحة";
+
+/* Shout details */
+"Category" = "التصنيف";
+
+/* No comment provided by engineer. */
+"Change email" = "تغيير البريد الإلكتروني";
+
+/* No comment provided by engineer. */
+"Change password" = "تغيير كلمة المرور";
+
+/* Shout detail tab bar item */
+"Chat" = "محادثة";
+
+/* Chat Info Bottom Description */
+"Chat created by %@" = "أنشئت بواسطة %@";
+
+/* Chat Info Bottom Description */
+"Chat created by Shoutit" = "محادثة من شاوت ات";
+
+/* Shout detail tab bar item */
+"Chats" = "المحادثات";
+
+/* Displayed on filter button when no location is chosen */
+"Choose location" = "إختر موقع";
+
+/* No comment provided by engineer. */
+"Close" = "إغلاق";
+
+/* No comment provided by engineer. */
+"Complete Profile" = "أكمل ملفك الشخصي";
+
+/* No comment provided by engineer. */
+"Complete your profile to earn 1 Shoutit Credit" = "أكمل ملفك الشخصي وإحصل على 1 شاوت ات كريديت";
+
+/* No comment provided by engineer. */
+"Completing your Profile" = "إكمال ملفك الشخصي";
+
+/* No comment provided by engineer. */
+"Confirm buying (option.name) for (option.credits) credits" = "تأكيد شراء (option.name) بقيمة (option.credits) كريديت";
+
+/* No comment provided by engineer. */
+"Confirmation" = "موافقة";
+
+/* No comment provided by engineer. */
+"Contacts Friends" = "أصدقاء من دفتر الهاتف";
+
+/* Default table view placeholder */
+"Content unavailable" = "المحتوى غير متاح";
+
+/* No comment provided by engineer. */
+"Conversation" = "المحادثة";
+
+/* No comment provided by engineer. */
+"Conversation Deleted succesfully" = "تم مسح المحادثة";
+
+/* No comment provided by engineer. */
+"Conversation Shouts" = "إعلانات المحادثة";
+
+/* No comment provided by engineer. */
+"Conversation reported succesfully" = "تم التبليغ عن المحادثة بنجاح";
+
+/* No comment provided by engineer. */
+"Could not get your data" = "لايمكن الحصول على البيانات الخاصة بك";
+
+/* No comment provided by engineer. */
+"Could not load photos" = "لايمكن تحميل الصور";
+
+/* No comment provided by engineer. */
+"Could not send message" = "لايمكن إرسال الرسالة";
+
+/* No comment provided by engineer. */
+"Could not send your location right now." = "لايمكن إرسال موقعك الآن";
+
+/* No comment provided by engineer. */
+"Could not subscribe to channel. Wrong Channel Name" = "لايمكن الإشتراك في القناة, إسم القناة خاطئ";
+
+/* No comment provided by engineer. */
+"Create Offer" = "إنشاء عرض";
+
+/* create page screen title */
+"Create Page" = "إنشاء صفحة";
+
+/* No comment provided by engineer. */
+"Create Request" = "إنشاء طلب";
+
+/* No comment provided by engineer. */
+"Create Shout" = "إنشاء إعلان";
+
+/* Signup view. Should be the same as whole text's part */
+"Create a Page" = "إنشاء صفحة";
+
+/* Signup view */
+"Create a Page for brand or business." = "إنشاء صفحة لعلامتك التجارية أو عملك";
+
+/* No comment provided by engineer. */
+"Create another Offer" = "إنشاء عرض آخر";
+
+/* No comment provided by engineer. */
+"Create another Request" = "إنشاء طلب آخر";
+
+/* Chat Info Bottom Description */
+"Created on %@" = "بتاريخ %@";
+
+/* No comment provided by engineer. */
+"Credits" = "كريديت";
+
+/* No comment provided by engineer. */
+"Currency" = "العملة";
+
+/* No comment provided by engineer. */
+"Current Password" = "كلمة المرور الحالية";
+
+/* No comment provided by engineer. */
+"Current location:" = "الموقع الحالي:";
+
+/* No comment provided by engineer. */
+"DETAILS" = "التفاصيل";
+
+/* Shout details */
+"Date" = "التاريخ";
+
+/* Edit photo action sheet option
+ Shout detail tab bar item */
+"Delete" = "حذف";
+
+/* No comment provided by engineer. */
+"Delete Conversation" = "حذف المحادثة";
+
+/* Description cell placeholder text
+ Edit page placeholder text
+ Shout details */
+"Description" = "الشرح";
+
+/* Shout details */
+"Details" = "التفاصيل";
+
+/* No comment provided by engineer. */
+"Discover" = "إكتشف";
+
+/* No comment provided by engineer. */
+"Discover Shouts" = "إكتشف الإعلانات";
+
+/* No comment provided by engineer. */
+"Do nothing" = "لا";
+
+/* No comment provided by engineer. */
+"Do you want to close?" = "هل تريد الإغلاق؟";
+
+/* No comment provided by engineer. */
+"Do you want to delete this conversation" = "هل ترغب بحذف هذه المحادثة";
+
+/* No comment provided by engineer. */
+"Do you want to delete this shout?" = "هل ترغب بحذف هذا الإعلان؟";
+
+/* No comment provided by engineer. */
+"Do you want to send selected picture?" = "هل ترغب بإرسال الصورة المحددة؟";
+
+/* No comment provided by engineer. */
+"Do you want to send selected profile?" = "هل ترغب في إرسال الملف الشخصي المحدد؟";
+
+/* No comment provided by engineer. */
+"Do you want to send selected shout?" = "هل ترغب بإرسال الإعلان المحدد؟";
+
+/* No comment provided by engineer. */
+"Do you want to send selected video?" = "هل ترغب بإرسال الفيديو المحدد؟";
+
+/* No comment provided by engineer. */
+"Do you want to send your location?" = "هل ترغب بإرسال موقعك؟";
+
+/* No comment provided by engineer. */
+"Do you want to unlink your Facebook account?" = "هل ترغب بإلغاء إرتباط حساب الفيس بوك؟";
+
+/* No comment provided by engineer. */
+"Do you want to unlink your Google account?" = "هل ترغب بإلغاء إرتباط حساب غوغل؟";
+
+/* No comment provided by engineer. */
+"Don't be so shy. Say something." = "لا تخجل. اكتب رسالة.";
+
+/* No comment provided by engineer. */
+"Done" = "تم";
+
+/* No comment provided by engineer. */
+"Earn 1 Shoutit Credit for each shout you publicly share on Facebook" = "إحصل على 1 شاوت ات كريديت لكل إعلان تقوم بنشره على العام في الفيس بوك";
+
+/* No comment provided by engineer. */
+"Earn 1 Shoutit Credit whenever a friend you invited signs up" = "إحصل على 1 شاوت ات كريديت عندما يشترك صديقك الذي دعوته";
+
+/* No comment provided by engineer. */
+"Earn Shoutit Credit" = "إحصل على شاوت ات كريديت";
+
+/* No comment provided by engineer. */
+"Earn up to 10 Shoutit Credits for finding your friends and listening to them" = "اكسب لغاية 10 شاوت ات كريدت عند بحثك عن أصدقائك و الاستماع لهم على شاوت ات";
+
+/* Edit photo action sheet option
+ Shout detail tab bar item */
+"Edit" = "تعديل";
+
+/* No comment provided by engineer. */
+"Edit Offer" = "تعديل العرض";
+
+/* My pages acttion sheet option */
+"Edit Page" = "تعديل الصفحة";
+
+/* No comment provided by engineer. */
+"Edit Request" = "تعديل الطلب";
+
+/* Edit media alert title */
+"Edit Shout Media" = "تعديل وسائط الإعلان";
+
+/* Settings cell title */
+"Email" = "البريد الإلكتروني";
+
+/* Enter valid email. */
+"Enter valid email" = "أدخل بريد الكتروني صحيح";
+
+/* Enter valid email / username */
+"Enter valid email / username" = "أدخل اسم مستخدم أو بريد الكتروني صحيح";
+
+/* No comment provided by engineer. */
+"Entire country" = "كامل الدولة";
+
+/* No comment provided by engineer. */
+"Exit Chat" = "ترك المحادثة";
+
+/* Create public chat cell title
+ Facebook cell title on sharing options in create shout view
+ Settings cell title */
+"Facebook" = "فيسبوك";
+
+/* No comment provided by engineer. */
+"Facebook Friends" = "أصدقاء فيسبوك";
+
+/* Returned when updating permissions scope fails on API side */
+"Failed to obtain facebook publish permissions" = "فشل في طلب صلاحية النشر على فيسبوك";
+
+/* No comment provided by engineer. */
+"Fields must not be empty" = "لابمكن ترك الحقول فارغة";
+
+/* No comment provided by engineer. */
+"Find Friends" = "البحث عن أصدقاء";
+
+/* Edit profile placeholder text */
+"First name" = "الإسم الأول";
+
+/* Enter valid first name */
+"First name should have between 2 and 30 characters" = "الاسم الأول لا بد ان يكون بين 2 و 30 حرفا";
+
+/* Edit page placeholder text */
+"Founded" = "تأسست";
+
+/* No comment provided by engineer. */
+"Friends not on the list? Send them an invite!" = "أصدقاءك ليسو بالقائمة؟ أرسل لهم دعوة!";
+
+/* Edit profile placeholder text */
+"Gender" = "الجنس";
+
+/* Edit page placeholder text */
+"General Info" = "معلومات عامة";
+
+/* Settings cell title */
+"Google" = "غوغل";
+
+/* No comment provided by engineer. */
+"Got it" = "موافقة";
+
+/* No comment provided by engineer. */
+"Guest" = "ضيف";
+
+/* Signup view */
+"Have an account? Log in" = "هل يوجد لديك حساب؟ تسجيل الدخول";
+
+/* No comment provided by engineer. */
+"Help" = "المساعدة";
+
+/* No comment provided by engineer. */
+"Home" = "الرئيسية";
+
+/* Edit page placeholder text */
+"Impressum" = "impressum";
+
+/* No comment provided by engineer. */
+"Incoming Call" = "مكالمة واردة";
+
+/* No comment provided by engineer. */
+"Incoming Call from " = "مكالمة واردة من ";
+
+/* No comment provided by engineer. */
+"Interests" = "إهتمامات";
+
+/* No comment provided by engineer. */
+"Invite Contacts" = "دعوة جهات الإتصال";
+
+/* No comment provided by engineer. */
+"Invite Friends" = "دعوة الأصدقاء";
+
+/* No comment provided by engineer. */
+"Inviting friends" = "دعوة الأصدقاء";
+
+/* No comment provided by engineer. */
+"Join Shoutit" = "إنضم إلى شاوت ات";
+
+/* User profile date foined cell
+ User profile date joined cell */
+"Joined" = "مسجل من";
+
+/* Create public chat section title */
+"LOCATION" = "الموقع";
+
+/* Edit profile placeholder text */
+"Last name" = "الإسم الأخير";
+
+/* Enter valid last name */
+"Last name name should have between 1 and 30 characters" = "الاسم الاخير لا بد ان يكون بين 1 و 30 حرفا";
+
+/* Settings cell title */
+"Legal" = "قانوني";
+
+/* No comment provided by engineer. */
+"Linked" = "مرتبط";
+
+/* Settings cell title */
+"Linked Accounts" = "حسابات مرتبطة";
+
+/* No comment provided by engineer. */
+"Listen" = "إستماع";
+
+/* No comment provided by engineer. */
+"Listeners" = "مستمعون";
+
+/* No comment provided by engineer. */
+"Listening" = "إستماعات";
+
+/* No comment provided by engineer. */
+"Listening of friends" = "الإستماع إلى أصدقائك";
+
+/* No comment provided by engineer. */
+"Loading Messages..." = "تحميل الرسائل .....";
+
+/* No comment provided by engineer. */
+"Loading suggestions" = "تحميل الاقتراحات...";
+
+/* Edit profile placeholder text
+ Shout detail */
+"Location" = "الموقع";
+
+/* Signup view. Should be the same as whole text's part */
+"Log in" = "تسجيل الدخول";
+
+/* Settings cell title */
+"Log out" = "تسجيل الخروج";
+
+/* No comment provided by engineer. */
+"MEMBERS" = "المشاركون";
+
+/* No comment provided by engineer. */
+"Manage User" = "إدارة المشترك";
+
+/* No comment provided by engineer. */
+"Mark all as read" = "تحديد الكل كمقروء";
+
+/* No comment provided by engineer. */
+"Media" = "وسائط متعددة";
+
+/* No comment provided by engineer. */
+"Media Options" = "خيارات الوسائط";
+
+/* Edit page placeholder text */
+"Mission" = "المهمة";
+
+/* Edit profile placeholder text */
+"Mobile" = "رقم الموبايل";
+
+/* Shout detail tab bar item */
+"More" = "المزيد";
+
+/* No comment provided by engineer. */
+"More shouts from %@" = "إعلانات بواسطة %@";
+
+/* No comment provided by engineer. */
+"My Pages" = "صفحاتي";
+
+/* No comment provided by engineer. */
+"My Shouts" = "إعلاناتي";
+
+/* Edit page placeholder text
+ Edit profile placeholder text */
+"Name" = "الإسم";
+
+/* No comment provided by engineer. */
+"New Password" = "كلمة مرور جديدة";
+
+/* No comment provided by engineer. */
+"New email" = "بريد إلكتروني جدبد";
+
+/* Signup view */
+"New to Shoutit? Sign up" = "جديد على شاوت ات؟ انشاء حساب";
+
+/* No comment provided by engineer. */
+"Next" = "التالي";
+
+/* No comment provided by engineer. */
+"No Messages to show" = "لا يوجد رسائل للعرض";
+
+/* No comment provided by engineer. */
+"No categores are available" = "لا يوجد تصنيفات متاحة";
+
+/* No comment provided by engineer. */
+"No content available yet" = "لا يوجد محتوى للعرض حتى الآن";
+
+/* No comment provided by engineer. */
+"No conversations to show" = "لا يوجد محادثات للعرض";
+
+/* No comment provided by engineer. */
+"No more messages to show" = "لا يوجد رسائل أخرى للعرض";
+
+/* No comment provided by engineer. */
+"No notifications to show" = "لا يوجد إشعارات للعرض";
+
+/* No comment provided by engineer. */
+"No pages available yet" = "لا توجد صفحات الآن";
+
+/* Empty search results placeholder */
+"No results were found" = "لا يوجد نتائج";
+
+/* No comment provided by engineer. */
+"No shouts are available" = "لا يوجد إعلانات";
+
+/* No comment provided by engineer. */
+"No shouts available yet" = "لا توجد إعلانات الآن";
+
+/* No comment provided by engineer. */
+"No transactions to show" = "لايوجد معاملات للعرض";
+
+/* User search empty message */
+"No users were found" = "لم يتم العثور على مستخدمين";
+
+/* No comment provided by engineer. */
+"Not Linked" = "غير مرتبط";
+
+/* No comment provided by engineer. */
+"Not specified" = "غير محدد";
+
+/* Settings cell title */
+"Notification" = "إشعار";
+
+/* No comment provided by engineer. */
+"Notification Settings" = "ضبط الإشعارات";
+
+/* Alert button */
+"OK" = "موافقة";
+
+/* Filter shout type */
+"Offers and Requests" = "عروض و طلبات";
+
+/* No comment provided by engineer. */
+"Ok" = "موافقة";
+
+/* Filter shout type */
+"Only Offers" = "عروض فقط";
+
+/* Filter shout type */
+"Only Requests" = "طلبات فقط";
+
+/* No comment provided by engineer. */
+"Orders" = "المشتريات";
+
+/* Edit page placeholder text */
+"Overview" = "نظرة عامة";
+
+/* Menu item */
+"Pages" = "الصفحات";
+
+/* No comment provided by engineer. */
+"Participants" = "المشاركون";
+
+/* Settings cell title */
+"Password" = "كلمة المرور";
+
+/* Password characters number should be between 6-20 */
+"Password should have between 6 and 20 characters" = "كلمة المرور لا بد ان تكون بين 6 و 20 حرفا";
+
+/* Edit page placeholder text */
+"Phone" = "الموبايل";
+
+/* No comment provided by engineer. */
+"Photo Library" = "مكتبة الصور";
+
+/* No comment provided by engineer. */
+"Please enter chat subject" = "الرجاء ادخال موضوع المحادثة";
+
+/* No comment provided by engineer. */
+"Please fill all fields" = "يرجئ ملئ كافة الحقول";
+
+/* No comment provided by engineer. */
+"Please make sure that all media are uploaded before continuing" = "يرجى التأكد من تحميل كافة الصور او الفيديو قبل المتابعة";
+
+/* No comment provided by engineer. */
+"Please make sure that your location services are enabled for Shoutit." = "يرجى التأكد من إتاحة موقعك لشاوت ات";
+
+/* Create Shout: choose filter: Action sheet title */
+"Please select %@" = "أختر %@";
+
+/* No comment provided by engineer. */
+"Please select Category" = "يرجى إختيار تصنيف";
+
+/* No comment provided by engineer. */
+"Please select Currency" = "يرجى إختيار عملة";
+
+/* No comment provided by engineer. */
+"Please select category" = "يرجى إختيار تصنيف";
+
+/* No comment provided by engineer. */
+"Please select phone number" = "يرجى إختيار رقم موبايل";
+
+/* No comment provided by engineer. */
+"Please select sort type" = "يرجى اختيار توع الفرز";
+
+/* No comment provided by engineer. */
+"Please select subcategory" = "يرجى إختيار تصنيف فرعي";
+
+/* No comment provided by engineer. */
+"Please select type" = "يرجى اختيار نوع";
+
+/* No comment provided by engineer. */
+"Please wait for upload to finish" = "يرجى انتظار التحميل حتى ينتهي";
+
+/* Settings cell title
+ Signup screen part of terms and condition message. Must match that in whole text */
+"Privacy Policy" = "سياسة الخصوصية";
+
+/* No comment provided by engineer. */
+"Profile Reported Successfully" = "تم التبليغ عن المستخدم بنجاح";
+
+/* Shout detail tab bar item */
+"Promote" = "تمييز";
+
+/* No comment provided by engineer. */
+"Promote Shout" = "تمييز الإعلان";
+
+/* No comment provided by engineer. */
+"Promote to admin" = "ترقية لمدير";
+
+/* Shout detail tab bar item */
+"Promoted" = "مميز";
+
+/* No comment provided by engineer. */
+"Public Chats" = "المحادثات العامة";
+
+/* No comment provided by engineer. */
+"Published" = "تم النشر";
+
+/* Recent searches header */
+"Recent searches" = "تم البحث عنه";
+
+/* No comment provided by engineer. */
+"Related Interests" = "إهتمامات مشابهة";
+
+/* No comment provided by engineer. */
+"Related Shouts" = "إعلانات مشابهة";
+
+/* Shout detail */
+"Related shouts" = "إعلانات مشابهة";
+
+/* No comment provided by engineer. */
+"Remove" = "حذف";
+
+/* Admins list action sheet option */
+"Remove Admin" = "إزالة مدير";
+
+/* No comment provided by engineer. */
+"Remove Currency" = "حذف العملة";
+
+/* No comment provided by engineer. */
+"Report Chat" = "تبليغ عن المحادثة";
+
+/* No comment provided by engineer. */
+"Report Shout" = "تبليغ عن الإعلان";
+
+/* Search results section header */
+"Results" = "النتائج";
+
+/* Search results for search phrase section header */
+"Results for '%@'" = "النتائج ل '%@'";
+
+/* Create public chat section title
+ Sharing section header on create shout */
+"SHARING" = "مشاركة";
+
+/* No comment provided by engineer. */
+"SUGGESTED USERS" = "مستخدمين مقترحين";
+
+/* No comment provided by engineer. */
+"Save" = "حفظ";
+
+/* Search text field placeholder */
+"Search Shoutit" = "ابحث في شاوت ات";
+
+/* Search users placeholder */
+"Search Users" = "البحث عن مستخدمين";
+
+/* Search text field placeholder */
+"Search in %@ shouts" = "إبحث في إعلانات %@";
+
+/* No comment provided by engineer. */
+"See All Shouts" = "إظهار كافة الإعلانات";
+
+/* No comment provided by engineer. */
+"Select Gender" = "إختر جنس";
+
+/* No comment provided by engineer. */
+"Select Photos" = "إختر صور";
+
+/* No comment provided by engineer. */
+"Select Shout" = "اختر إعلان";
+
+/* No comment provided by engineer. */
+"Send Attachment" = "إرسال مرفقات";
+
+/* No comment provided by engineer. */
+"Sending message" = "إرسال رسالة";
+
+/* No comment provided by engineer. */
+"Settings" = "الإعدادات";
+
+/* No comment provided by engineer. */
+"Sharing of Facebook" = "مشاركة على الفيس بوك";
+
+/* No comment provided by engineer. */
+"Shout Promoted successfully" = "تم تمييز الإعلان بنجاح";
+
+/* No comment provided by engineer. */
+"Shout Reported Successfully" = "تم التبليغ عن الإعلان بنجاح";
+
+/* No comment provided by engineer. */
+"Shout deleted Successfully" = "تم حذف الإعلان بنجاح";
+
+/* No comment provided by engineer. */
+"Shouts" = "الإعلانات";
+
+/* No comment provided by engineer. */
+"Shouts in %@" = "الإعلانات في %@";
+
+/* Signup view. Should be the same as whole text's part */
+"Sign up" = "إنشاء حساب";
+
+/* Sort type button title label */
+"Sort By" = "فرز حسب";
+
+/* No comment provided by engineer. */
+"Sponsored" = "إعلان خارجي";
+
+/* No comment provided by engineer. */
+"StatusCodeError" = "لم يتم العثور على رمز الحالة";
+
+/* No comment provided by engineer. */
+"Stop Listening" = "إلغاء الإستماع";
+
+/* No comment provided by engineer. */
+"Suggested Pages" = "صفحات مقترحة";
+
+/* No comment provided by engineer. */
+"Suggested Users" = "مستخدمين مقترحين";
+
+/* No comment provided by engineer. */
+"Suggestions" = "الاقتراحات";
+
+/* No comment provided by engineer. */
+"Take Photo" = "التقط صورة";
+
+/* No comment provided by engineer. */
+"Take Photo or Video" = "التقط صورة أو فيديو";
+
+/* No comment provided by engineer. */
+"Take Video" = "التقط فيديو";
+
+/* No comment provided by engineer. */
+"Tap to add to chat" = "اضغط للإضافة إلى المحادثة";
+
+/* No comment provided by engineer. */
+"Tap to load archive messages" = "إضغط لتحميل الرسائل المؤرشفة";
+
+/* Settings cell title
+ Signup screen part of terms and condition message. Must match that in whole text */
+"Terms of Service" = "شروط الخدمة";
+
+/* No comment provided by engineer. */
+"The matched route handler does not specify a target view controller." = "The matched route handler does not specify a target view controller.";
+
+/* No comment provided by engineer. */
+"The maximum length of the video is 60 seconds. Choose a shorter movie." = "الحد الأعلى للفيديو 60 ثانية, إختر فيديو اقصر";
+
+/* No comment provided by engineer. */
+"The passed URL does not match a registered route." = "The passed URL does not match a registered route.";
+
+/* Public pages empty message */
+"There are no pages available in your country" = "لايوجد صفحات في بلدك";
+
+/* No comment provided by engineer. */
+"There is no suggestions for you at the moment" = "لا يوجد اقتراحات في الوقت الحالي";
+
+/* Deleted Shout */
+"This shout has been deleted" = "هذا الإعلان محذوف";
+
+/* No comment provided by engineer. */
+"To activate your page, your personal account should be verified first. Click the activation link in the email you have received when you signed up." = "لتفعيل صفحتك, يجب التحقق من حسابك الشخصي أولا. إضغط رابط التفعيل الموجود في البريد الإلكتروني المرسل إليك عند تسجيلك.";
+
+/* No comment provided by engineer. */
+"Turn Off" = "إطفاء";
+
+/* No comment provided by engineer. */
+"Turn On" = "تشغيل";
+
+/* Create public chat cell title */
+"Twitter" = "تويتر";
+
+/* Shout type button title label */
+"Type" = "نوع";
+
+/* No comment provided by engineer. */
+"Type a message" = "اكتب رسالة";
+
+/* No comment provided by engineer. */
+"Unblock" = "إلغاء حظر";
+
+/* No comment provided by engineer. */
+"Unknown Location" = "موقع غير معروف";
+
+/* No comment provided by engineer. */
+"Unlink" = "فك الإرتباط";
+
+/* No comment provided by engineer. */
+"Unsupported Title" = "العنوان غير معروف";
+
+/* No comment provided by engineer. */
+"Use Shoutit as %@" = "إستخدم شاوت ات ك %@";
+
+/* My pages acttion sheet option */
+"Use Shoutit as this Page" = "إستخدم شاوت ات بهذه الصفحة";
+
+/* Edit profile placeholder text */
+"Username" = "إسم المستخدم";
+
+/* No comment provided by engineer. */
+"Verification Status: " = "حالة التحقق:";
+
+/* No comment provided by engineer. */
+"Verify New Password" = "تأكيد كلمة المرور الجديدة";
+
+/* No comment provided by engineer. */
+"Verify your account!" = "تفعيل الحساب!";
+
+/* No comment provided by engineer. */
+"Verify your business!" = "تحقق من عملك / شركتك!";
+
+/* Shout detail tab bar item */
+"Video call" = "مكالمة فيديو";
+
+/* No comment provided by engineer. */
+"Video is too long" = "مدة الفيديو طويلة";
+
+/* My pages acttion sheet option */
+"View Page" = "عرض الصفحة";
+
+/* Admins list action sheet option */
+"View Profile" = "عرض الملف الشخصية";
+
+/* No comment provided by engineer. */
+"View profile" = "عرض الملف الشخصي";
+
+/* No comment provided by engineer. */
+"Visit %@'s profile" = "زيارة صفحة %@ الشخصية";
+
+/* No comment provided by engineer. */
+"We can't access your contacts book. Please go to Settings and make sure that you grant access for Shoutit app." = "لم نتمكن من الوصول لدفتر الهاتف. الرجاء الذهاب للإعدادات والتأكد من إعطاء صلاحية جهات الاتصال لتطبيق شاوت ات";
+
+/* No comment provided by engineer. */
+"We couldn't find any contacts in your address book" = "لم يتم العثور على أي جهة إتصال في جهازك";
+
+/* Edit profile placeholder text */
+"Website" = "الموقع الإلكتروني";
+
+/* No comment provided by engineer. */
+"Yes, Delete Shout" = "نعم, إحذف هذا الإعلان";
+
+/* Chat Info actions message */
+"You are not allowed to do this action" = "لا يمكنك القيام بهذه العملية";
+
+/* No comment provided by engineer. */
+"You can only start a chat with your listeners" = "يمكنك بدء المحادثة فقط مع مستمعينك";
+
+/* Alert message - user tries to pick more than allowed number of videos in media picker */
+"You can select only 1 video" = "يمكنك اختيار فيديو واحد فقط";
+
+/* Alert message - user tries to pick more than allowed number of images in media picker */
+"You can select only 5 images" = "يمكنك اختياء 5 صور فقط";
+
+/* No comment provided by engineer. */
+"You can start new conversation in shout details or user profile." = "يمكنك بدء محادثة في صفحة الإعلان أو صفحة المستخدم";
+
+/* No comment provided by engineer. */
+"You can't chat with yourself" = "لابمكن اجراء محادثة مع نفسك";
+
+/* My pages empty placeholder text */
+"You have no pages" = "لايوجد لديك صفحات";
+
+/* No comment provided by engineer. */
+"You have successfully started listening to %@" = "لقد قمت بالإستماع إلى %@ بنجاح";
+
+/* No comment provided by engineer. */
+"You have successfully stopped listening to %@" = "لقد توقفت عن الإستماع إلى %@ بنجاح";
+
+/* No comment provided by engineer. */
+"You must be logged in to perform this action" = "يجب أن تكون مسجل لتنفيذ هذا الإجراء";
+
+/* Verify email user message */
+"Your account has been successfully verified" = "تم تفعيل حسابك بنجاح";
+
+/* Verify email failed user message */
+"Your account isn't verified yet" = "حسابك غير مفعل حتى الآن";
+
+/* No comment provided by engineer. */
+"Your device is not able to send text messages." = "لايمكن لجهازك إرسال رسائل نصية";
+
+/* No comment provided by engineer. */
+"Your location will be updated automatically" = "سيتم تحديد موقعك تلقائيا";
+
+/* No comment provided by engineer. */
+"Your offer \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل.";
+
+/* No comment provided by engineer. */
+"Your offer will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";
+
+/* No comment provided by engineer. */
+"Your request \"%@\" will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل.";
+
+/* No comment provided by engineer. */
+"Your request will appear on Shoutit soon." = "سيظهر إعلانك على شاوت ات بعد قليل";
+
+/* Days null */
+"Your shout is promoted" = "تم تمييز إعلانك";
+
+/* Expiry date */
+"Your shout is promoted until (DateFormatters.sharedInstance.stringFromDateEpoch(expiresAt))" = "تم تمييز إعلانك حتى (DateFormatters.sharedInstance.stringFromDateEpoch(expiresAt))";
+
+/* Video call status message */
+"calling..." = "مكالمة…";
+
+/* No comment provided by engineer. */
+"days" = "أيام";
+
+/* Used in the context: 'Showing 1 of 3 items' */
+"of" = "of";
+
+/* Used in the context: '1 photo' */
+"photo" = "صورة";
+
+/* Used in the context: '3 photos' */
+"photos" = "صور";
+
+/* Displayed on shout detail screen if user's firstname would be null */
+"shouter" = "معلن";
+

@@ -1,0 +1,117 @@
+
+/* Class = "UINavigationItem"; title = "Location"; ObjectID = "1Cm-xk-7AD"; */
+"1Cm-xk-7AD.title" = "Location";
+
+/* Class = "UILabel"; text = "Participants"; ObjectID = "7lD-XO-jLv"; */
+"7lD-XO-jLv.text" = "Participants";
+
+/* Class = "UILabel"; text = "Public chats are country based conversations that every one can join and post what he is selling or buying."; ObjectID = "D53-mI-0We"; */
+"D53-mI-0We.text" = "Public chats are country based conversations that every one can join and post what he is selling or buying.";
+
+/* Class = "UITableViewController"; title = "Chat Info"; ObjectID = "E9i-u2-qRC"; */
+"E9i-u2-qRC.title" = "Chat Info";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "Ejl-rm-dWM"; */
+"Ejl-rm-dWM.text" = "Message Preview";
+
+/* Class = "UIButton"; normalTitle = "Create"; ObjectID = "FGH-Jc-OeH"; */
+"FGH-Jc-OeH.normalTitle" = "Create";
+
+/* Class = "UINavigationItem"; title = "Chats"; ObjectID = "GZ0-mH-W33"; */
+"GZ0-mH-W33.title" = "Chats";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "Guq-g6-Q7h"; */
+"Guq-g6-Q7h.text" = "Profile";
+
+/* Class = "UILabel"; text = "Clear Chat"; ObjectID = "IF9-nC-Rc0"; */
+"IF9-nC-Rc0.text" = "Clear Chat";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "IH5-vo-Oso"; */
+"IH5-vo-Oso.title" = "Title";
+
+/* Class = "UILabel"; text = "Add Member"; ObjectID = "LVe-er-fF2"; */
+"LVe-er-fF2.text" = "Add Member";
+
+/* Class = "UITextField"; placeholder = "Subject"; ObjectID = "On7-Xd-FsK"; */
+"On7-Xd-FsK.placeholder" = "Subject";
+
+/* Class = "UIButton"; normalTitle = "Create Public Chat"; ObjectID = "Ovn-5P-fJ1"; */
+"Ovn-5P-fJ1.normalTitle" = "Create Public Chat";
+
+/* Class = "UILabel"; text = "John Smith"; ObjectID = "QDG-Al-JRl"; */
+"QDG-Al-JRl.text" = "John Smith";
+
+/* Class = "UILabel"; text = "102"; ObjectID = "T6h-Jn-GTd"; */
+"T6h-Jn-GTd.text" = "102";
+
+/* Class = "UILabel"; text = "$44 USD"; ObjectID = "Uyo-AD-bj5"; */
+"Uyo-AD-bj5.text" = "$44 USD";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "VO8-bv-QaH"; */
+"VO8-bv-QaH.text" = "Message Preview";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Wo3-D5-Gbv"; */
+"Wo3-D5-Gbv.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Subject"; ObjectID = "XHs-Pt-tAO"; */
+"XHs-Pt-tAO.placeholder" = "Subject";
+
+/* Class = "UILabel"; text = "Shout"; ObjectID = "aBY-UA-vJh"; */
+"aBY-UA-vJh.text" = "Shout";
+
+/* Class = "UILabel"; text = "Shouts"; ObjectID = "aYa-u5-EZE"; */
+"aYa-u5-EZE.text" = "Shouts";
+
+/* Class = "UINavigationItem"; title = "Create Public Chat"; ObjectID = "bjg-W9-2zR"; */
+"bjg-W9-2zR.title" = "Create Public Chat";
+
+/* Class = "UISegmentedControl"; bzW-bZ-Uc4.segmentTitles[0] = "My Chats"; ObjectID = "bzW-bZ-Uc4"; */
+"bzW-bZ-Uc4.segmentTitles[0]" = "My Chats";
+
+/* Class = "UISegmentedControl"; bzW-bZ-Uc4.segmentTitles[1] = "Public Chats"; ObjectID = "bzW-bZ-Uc4"; */
+"bzW-bZ-Uc4.segmentTitles[1]" = "Public Chats";
+
+/* Class = "UILabel"; text = "Offer"; ObjectID = "c6b-2a-MEJ"; */
+"c6b-2a-MEJ.text" = "Offer";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "cTb-jK-D0D"; */
+"cTb-jK-D0D.text" = "Date";
+
+/* Class = "UILabel"; text = "Participants"; ObjectID = "fMa-98-BMN"; */
+"fMa-98-BMN.text" = "Participants";
+
+/* Class = "UILabel"; text = "Chat created by XX"; ObjectID = "fVO-lu-bIm"; */
+"fVO-lu-bIm.text" = "Chat created by XX";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "hWB-iW-Kpv"; */
+"hWB-iW-Kpv.title" = "Title";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "nrX-oU-PHB"; */
+"nrX-oU-PHB.text" = "Message Preview";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "oR2-Wf-ZJO"; */
+"oR2-Wf-ZJO.text" = "Date";
+
+/* Class = "UILabel"; text = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text"; ObjectID = "pcT-Tt-k2b"; */
+"pcT-Tt-k2b.text" = "Merino Wool Slouchy Hat, Winter Hat, Chunky Textured Knit Hat and more text";
+
+/* Class = "UILabel"; text = "Message Preview"; ObjectID = "rBG-ve-pv0"; */
+"rBG-ve-pv0.text" = "Message Preview";
+
+/* Class = "UITableViewController"; title = "Conversations"; ObjectID = "rdm-hj-mhG"; */
+"rdm-hj-mhG.title" = "Conversations";
+
+/* Class = "UILabel"; text = "Media"; ObjectID = "smL-ce-TDc"; */
+"smL-ce-TDc.text" = "Media";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "viM-Sc-CK6"; */
+"viM-Sc-CK6.text" = "Location";
+
+/* Class = "UINavigationItem"; title = "Select Profile"; ObjectID = "xSa-3B-FcT"; */
+"xSa-3B-FcT.title" = "Select Profile";
+
+/* Class = "UISegmentedControl"; xdz-jg-dvB.segmentTitles[0] = "Listening"; ObjectID = "xdz-jg-dvB"; */
+"xdz-jg-dvB.segmentTitles[0]" = "Listening";
+
+/* Class = "UISegmentedControl"; xdz-jg-dvB.segmentTitles[1] = "Listeners"; ObjectID = "xdz-jg-dvB"; */
+"xdz-jg-dvB.segmentTitles[1]" = "Listeners";

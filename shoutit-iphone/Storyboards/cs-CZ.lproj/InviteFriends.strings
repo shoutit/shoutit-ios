@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Contacts"; ObjectID = "Fub-9R-HLo"; */
+"Fub-9R-HLo.text" = "Contacts";
+
+/* Class = "UILabel"; text = "Contacts"; ObjectID = "MqY-uT-KeA"; */
+"MqY-uT-KeA.text" = "Contacts";
+
+/* Class = "UILabel"; text = "Pages"; ObjectID = "Uip-f1-UcD"; */
+"Uip-f1-UcD.text" = "Pages";
+
+/* Class = "UITableViewSection"; headerTitle = "FIND FRIENDS"; ObjectID = "VCE-Sd-pxI"; */
+"VCE-Sd-pxI.headerTitle" = "FIND FRIENDS";
+
+/* Class = "UIButton"; normalTitle = "Share Shoutit App"; ObjectID = "X5v-bQ-ho4"; */
+"X5v-bQ-ho4.normalTitle" = "Share Shoutit App";
+
+/* Class = "UITableViewSection"; headerTitle = "INVITE FRIENDS"; ObjectID = "XFT-yx-Zs1"; */
+"XFT-yx-Zs1.headerTitle" = "INVITE FRIENDS";
+
+/* Class = "UILabel"; text = "Twitter"; ObjectID = "d2I-3e-rlO"; */
+"d2I-3e-rlO.text" = "Twitter";
+
+/* Class = "UITableViewSection"; headerTitle = "SUGGESTIONS"; ObjectID = "dFB-2V-zC5"; */
+"dFB-2V-zC5.headerTitle" = "SUGGESTIONS";
+
+/* Class = "UILabel"; text = "Facebook"; ObjectID = "hm5-aG-cnI"; */
+"hm5-aG-cnI.text" = "Facebook";
+
+/* Class = "UILabel"; text = "Users"; ObjectID = "iHP-TL-zdS"; */
+"iHP-TL-zdS.text" = "Users";
+
+/* Class = "UILabel"; text = "Facebook"; ObjectID = "iRJ-7L-tXi"; */
+"iRJ-7L-tXi.text" = "Facebook";
+
+/* Class = "UITableViewController"; title = "Suggestions"; ObjectID = "jOt-GS-HLf"; */
+"jOt-GS-HLf.title" = "Suggestions";
+
+/* Class = "UITableViewController"; title = "Invite Friends"; ObjectID = "zdj-1O-cwZ"; */
+"zdj-1O-cwZ.title" = "Invite Friends";

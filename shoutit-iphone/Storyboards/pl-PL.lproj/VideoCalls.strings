@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7sw-fv-yOp"; */
+"7sw-fv-yOp.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EGs-t5-eKn"; */
+"EGs-t5-eKn.text" = "Label";
+
+/* Class = "UILabel"; text = "Reject"; ObjectID = "I74-IB-ecl"; */
+"I74-IB-ecl.text" = "Reject";
+
+/* Class = "UILabel"; text = "Connecting"; ObjectID = "IHn-L1-0lT"; */
+"IHn-L1-0lT.text" = "Connecting";
+
+/* Class = "UILabel"; text = "Incoming call from XX"; ObjectID = "Otg-mn-IP0"; */
+"Otg-mn-IP0.text" = "Incoming call from XX";
+
+/* Class = "UILabel"; text = "Call"; ObjectID = "WrL-1Z-BUo"; */
+"WrL-1Z-BUo.text" = "Call";
+
+/* Class = "UILabel"; text = "Accept"; ObjectID = "Y8C-qw-JQt"; */
+"Y8C-qw-JQt.text" = "Accept";

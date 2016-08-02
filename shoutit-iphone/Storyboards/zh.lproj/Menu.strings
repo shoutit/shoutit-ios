@@ -1,0 +1,48 @@
+
+/* Class = "UILabel"; text = "Shoutit Credit"; ObjectID = "7gm-0x-UqF"; */
+"7gm-0x-UqF.text" = "Shoutit Credit";
+
+/* Class = "UIButton"; normalTitle = "CHANGE"; ObjectID = "DXa-6t-8fv"; */
+"DXa-6t-8fv.normalTitle" = "CHANGE";
+
+/* Class = "UILabel"; text = "Guest"; ObjectID = "FDW-SH-tlA"; */
+"FDW-SH-tlA.text" = "Guest";
+
+/* Class = "UILabel"; text = "Shoutit 2.0.0"; ObjectID = "H2H-0n-97D"; */
+"H2H-0n-97D.text" = "Shoutit 2.0.0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Ma0-yW-8Ph"; */
+"Ma0-yW-8Ph.text" = "0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XRT-0N-mv4"; */
+"XRT-0N-mv4.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "i91-3m-Xsd"; */
+"i91-3m-Xsd.text" = "Label";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "k1A-nM-4aQ"; */
+"k1A-nM-4aQ.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "kGW-q7-n9X"; */
+"kGW-q7-n9X.text" = "0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pFm-S1-gZk"; */
+"pFm-S1-gZk.text" = "Label";
+
+/* Class = "UILabel"; text = "Create Shout"; ObjectID = "uFf-Pq-9uJ"; */
+"uFf-Pq-9uJ.text" = "Create Shout";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "umj-Cn-Qhk"; */
+"umj-Cn-Qhk.text" = "0";
+
+/* Class = "UIView"; accessibilityHint = "Show Shoutit Credit"; ObjectID = "vhI-BP-IyB"; */
+"vhI-BP-IyB.accessibilityHint" = "Show Shoutit Credit";
+
+/* Class = "UIView"; accessibilityIdentifier = "Show Shoutit Credit"; ObjectID = "vhI-BP-IyB"; */
+"vhI-BP-IyB.accessibilityIdentifier" = "Show Shoutit Credit";
+
+/* Class = "UIView"; accessibilityLabel = "Show Shoutit Credit"; ObjectID = "vhI-BP-IyB"; */
+"vhI-BP-IyB.accessibilityLabel" = "Show Shoutit Credit";
+
+/* Class = "UILabel"; text = "Poznań"; ObjectID = "ys9-SK-6FT"; */
+"ys9-SK-6FT.text" = "Poznań";

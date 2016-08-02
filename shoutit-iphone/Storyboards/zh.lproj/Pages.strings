@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = " It's free to set up. Just choose a Page type  to get started. "; ObjectID = "2h9-5i-6BM"; */
+"2h9-5i-6BM.text" = " It's free to set up. Just choose a Page type  to get started. ";
+
+/* Class = "UITextField"; placeholder = "Full Name"; ObjectID = "3cq-gB-3O3"; */
+"3cq-gB-3O3.placeholder" = "Full Name";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "5OX-2i-YhL"; */
+"5OX-2i-YhL.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Create Page"; ObjectID = "9Qb-l6-XgU"; */
+"9Qb-l6-XgU.normalTitle" = "Create Page";
+
+/* Class = "UILabel"; text = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy."; ObjectID = "As4-L8-bCn"; */
+"As4-L8-bCn.text" = "By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "FoE-GE-8d9"; */
+"FoE-GE-8d9.placeholder" = "Email";
+
+/* Class = "UINavigationItem"; title = "Create Page"; ObjectID = "ICO-h4-1Bg"; */
+"ICO-h4-1Bg.title" = "Create Page";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "N5t-oY-IF2"; */
+"N5t-oY-IF2.title" = "Title";
+
+/* Class = "UIViewController"; title = "Create Page"; ObjectID = "Nhg-NF-Zmw"; */
+"Nhg-NF-Zmw.title" = "Create Page";
+
+/* Class = "UITableViewSection"; headerTitle = "YOUR INFO"; ObjectID = "P1z-GT-1LE"; */
+"P1z-GT-1LE.headerTitle" = "YOUR INFO";
+
+/* Class = "UITableViewSection"; headerTitle = "PAGE DETAILS"; ObjectID = "Vk4-3S-KEw"; */
+"Vk4-3S-KEw.headerTitle" = "PAGE DETAILS";
+
+/* Class = "UISegmentedControl"; X3P-kn-sLH.segmentTitles[0] = "My Pages"; ObjectID = "X3P-kn-sLH"; */
+"X3P-kn-sLH.segmentTitles[0]" = "My Pages";
+
+/* Class = "UISegmentedControl"; X3P-kn-sLH.segmentTitles[1] = "Public Pages"; ObjectID = "X3P-kn-sLH"; */
+"X3P-kn-sLH.segmentTitles[1]" = "Public Pages";
+
+/* Class = "UIButton"; normalTitle = "Category"; ObjectID = "ai0-rG-h0y"; */
+"ai0-rG-h0y.normalTitle" = "Category";
+
+/* Class = "UILabel"; text = "Give your brand, product or business a voice on Shoutit and connect easily with your current and potential customers."; ObjectID = "fGk-Ud-Bq2"; */
+"fGk-Ud-Bq2.text" = "Give your brand, product or business a voice on Shoutit and connect easily with your current and potential customers.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "g0v-vr-4Nm"; */
+"g0v-vr-4Nm.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "peR-T8-LIK"; */
+"peR-T8-LIK.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Create Page"; ObjectID = "zUR-4J-XYz"; */
+"zUR-4J-XYz.normalTitle" = "Create Page";
