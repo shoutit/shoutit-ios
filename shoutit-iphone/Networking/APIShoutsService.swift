@@ -17,11 +17,7 @@ final class APIShoutsService {
     
     private static let shoutsURL = APIManager.baseURL + "/shouts"
     
-    static func listShoutsWithParams(params: FilteredShoutsParams) -> Observable<[Shout]> {
-        return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL, responseJsonPath: ["results"])
-    }
-    
-    static func searchShoutsWithParams(params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
+    static func listShoutsWithParams(params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
         return APIGenericService.requestWithMethod(.GET, url: shoutsURL, params: params, encoding: .URL)
     }
     

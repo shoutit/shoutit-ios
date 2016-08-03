@@ -41,9 +41,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         self.collectionView?.registerNib(UINib(nibName: "DiscoverHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.SubItems.headerIdentifier())
         self.collectionView?.registerNib(UINib(nibName: "DiscoverShoutsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.Shouts.headerIdentifier())
         self.collectionView?.registerNib(UINib(nibName: "DiscoverShoutFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: DiscoverSection.Shouts.footerIdentifier())
-        
-        self.collectionView?.registerNib(UINib(nibName: "ShoutItemListCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.ListReuseIdentifier.rawValue)
-        self.collectionView?.registerNib(UINib(nibName: "ShoutItemGridCell", bundle: nil), forCellWithReuseIdentifier: ShoutCellsIdentifiers.GridReuseIdentifier.rawValue)
+        self.collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShoutsExpandedCollectionViewCell")
     }
     
     func loadItems() {
@@ -109,10 +107,10 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         // Configure Shout cell
         if indexPath.section == 1 {
             if case .Shout(let element) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
-                let shoutCell = cell as! SHShoutItemCell
+                let shoutCell = cell as! ShoutsCollectionViewCell
                 shoutCell.bindWith(Shout: element)
                 shoutCell.bookmarkButton?.tag = indexPath.item
-                shoutCell.bookmarkButton?.addTarget(self, action: #selector(HomeShoutsCollectionViewController.switchBookmarkState), forControlEvents: .TouchUpInside)
+                shoutCell.bookmarkButton?.addTarget(self, action: #selector(switchBookmarkState), forControlEvents: .TouchUpInside)
             }
 
             return cell
@@ -122,7 +120,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
-                let discoverCell = cell as! SHShoutItemCell
+                let discoverCell = cell as! ShoutsCollectionViewCell
                 discoverCell.bindWith(DiscoverItem: element)
             }
             

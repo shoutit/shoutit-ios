@@ -27,6 +27,9 @@ final class DiscoverGivenItemViewModel: DiscoverViewModel {
                 self?.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
                 let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, skipLocation: true)
                 APIShoutsService.listShoutsWithParams(params)
+                    .flatMap({ (result) -> Observable<[Shout]> in
+                        return Observable.just(result.results)
+                    })
                     .subscribeNext{ [weak self] (shouts) -> Void in
                         self?.shouts.on(.Next(shouts))
                         self?.adManager.handleNewShouts(shouts)

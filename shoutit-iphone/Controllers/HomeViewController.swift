@@ -12,7 +12,6 @@ import RxSwift
 
 final class HomeViewController: UIViewController {
     
-    @IBOutlet weak var changeLayoutButton: UIButton!
     @IBOutlet weak var discoverHeight: NSLayoutConstraint!
     
     // navigation
@@ -20,11 +19,11 @@ final class HomeViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    weak var homeShoutsController : HomeShoutsCollectionViewController?
+    weak var homeShoutsController : HomeShoutsViewController?
     weak var discoverParentController : DiscoverPreviewParentController?
     
     var maxDiscoverHeight : CGFloat {
-        get { return discoverVisible ? 164.0 : 0 }
+        get { return discoverVisible ? 170.0 : 0 }
     }
     
     private var discoverVisible : Bool = true {
@@ -55,15 +54,6 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupRX() {
-        if let homeShoutsController = self.homeShoutsController {
-            changeLayoutButton.addTarget(homeShoutsController, action: #selector(HomeShoutsCollectionViewController.changeCollectionViewDisplayMode(_:)), forControlEvents: .TouchUpInside)
-            
-            homeShoutsController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
-                if let shout = selectedShout {
-                    self?.flowDelegate?.showShout(shout)
-                }
-                }.addDisposableTo(disposeBag)
-        }
         
         if let discoverParent = self.discoverParentController, collectionController = discoverParent.discoverController {
             bindToDiscoverItems(collectionController)
@@ -75,8 +65,9 @@ final class HomeViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let homeShouts = segue.destinationViewController as? HomeShoutsCollectionViewController {
+        if let homeShouts = segue.destinationViewController as? HomeShoutsViewController {
             homeShoutsController = homeShouts
+            homeShoutsController?.flowDelegate = self.flowDelegate
         }
         
         if let discover = segue.destinationViewController as? DiscoverPreviewParentController {
@@ -89,8 +80,7 @@ final class HomeViewController: UIViewController {
     @IBAction func filterAction(sender: AnyObject) {
         guard let homeShoutsController = self.homeShoutsController else { return }
         flowDelegate?.showFiltersWithState(homeShoutsController.viewModel.getFiltersState(), completionBlock: {[unowned self] (state) in
-            self.homeShoutsController?.viewModel.applyFiltersState(state)
-            self.homeShoutsController?.reloadData()
+            self.homeShoutsController?.viewModel.applyFilters(state)
         })
     }
     

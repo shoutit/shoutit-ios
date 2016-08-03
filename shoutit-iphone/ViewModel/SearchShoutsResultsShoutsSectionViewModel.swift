@@ -106,7 +106,7 @@ extension SearchShoutsResultsViewModel {
             }
             
             applyParamsToFilterParamsIfAny(&params)
-            return APIShoutsService.searchShoutsWithParams(params)
+            return APIShoutsService.listShoutsWithParams(params)
         }
     }
 }

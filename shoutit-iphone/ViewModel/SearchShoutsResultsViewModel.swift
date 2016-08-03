@@ -37,11 +37,7 @@ final class SearchShoutsResultsViewModel {
     }
     
     func adCellReuseIdentifier() -> String {
-//        if displayable.shoutsLayout == ShoutsLayout.VerticalGrid {
-//            return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
-//        }
-        
-        return ShoutCellsIdentifiers.AdListReuseIdentifier.rawValue
+        return "adItemGridCell"
     }
     
     func getFiltersState() -> FiltersState {

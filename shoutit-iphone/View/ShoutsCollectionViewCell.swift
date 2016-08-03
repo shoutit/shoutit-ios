@@ -10,7 +10,7 @@ import UIKit
 import ShoutitKit
 import FBAudienceNetwork
 
-final class ShoutsCollectionViewCell: UICollectionViewCell {
+class ShoutsCollectionViewCell: UICollectionViewCell {
     
     enum Mode {
         case Regular
@@ -130,6 +130,23 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         self.data = .Shout
         commonBindWithShout(shout)
     }
+
+    func bindWith(DiscoverItem discoverItem: DiscoverItem) {
+        self.data = .Shout
+        
+        self.shoutTitle?.text = discoverItem.title
+        
+        if let imagePath = discoverItem.image, imageURL = NSURL(string: imagePath) {
+            self.shoutImage?.sh_setImageWithURL(imageURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
+        } else {
+            self.shoutImage?.image = UIImage(named:"auth_screen_bg_pattern")
+        }
+        
+        self.shoutSubtitle?.hidden = true
+        self.shoutPrice?.hidden = true
+        self.name?.hidden = true
+        self.bookmarkButton?.hidden = true
+    }
     
     func adjustChoicesView() {
         if let currentMode = currentMode {
@@ -137,10 +154,6 @@ final class ShoutsCollectionViewCell: UICollectionViewCell {
         }
         
         self.setNeedsDisplay()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
     
     override func prepareForReuse() {

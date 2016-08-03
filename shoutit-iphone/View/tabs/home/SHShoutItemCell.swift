@@ -10,7 +10,7 @@ import UIKit
 import ShoutitKit
 import FBAudienceNetwork
 
-class SHShoutItemCell: UICollectionViewCell {
+class DiscoverItemCell: UICollectionViewCell {
     
     @IBOutlet weak var shoutImage: UIImageView?
     @IBOutlet weak var name: UILabel?
@@ -28,7 +28,7 @@ class SHShoutItemCell: UICollectionViewCell {
     @IBOutlet weak var adIconImage: UIImageView!
 }
 
-extension SHShoutItemCell {
+extension DiscoverItemCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
