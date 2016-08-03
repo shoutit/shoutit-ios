@@ -19,7 +19,7 @@ extension FlowController : EditProfileDisplayable {
     
     func showEditProfile() -> Void {
         
-        if case .Some(.Page(let _, let page)) = Account.sharedInstance.loginState {
+        if case .Some(.Page(_, let page)) = Account.sharedInstance.loginState {
             self.showEditPageForDetailedProfile(page)
             return
         }

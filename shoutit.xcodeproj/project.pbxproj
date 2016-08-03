@@ -128,7 +128,7 @@
 		AE1F3FE41CEB49C700C3432F /* ConversationMembersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE31CEB49C700C3432F /* ConversationMembersListViewModel.swift */; };
 		AE1F3FE61CEB4ED800C3432F /* ConversationBlockedListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1F3FE51CEB4ED800C3432F /* ConversationBlockedListModel.swift */; };
 		AE21C6661D52004E000D8C82 /* HomeShoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE21C6651D52004E000D8C82 /* HomeShoutsViewController.swift */; };
-		AE21C6671D522786000D8C82 /* SHShoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */; };
+		AE21C6671D522786000D8C82 /* DiscoverItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601EB8B91C2B922900D4C1AE /* DiscoverItemCell.swift */; };
 		AE2995831C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2995821C8B53D700F55C33 /* ShoutMediaCollectionViewCell.swift */; };
 		AE2CB9731C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB9721C6A2C3A0033FCA9 /* LoginWithEmailViewModel.swift */; };
 		AE2EB7CA1D057799000A324D /* ContactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2EB7C91D057799000A324D /* ContactExtensions.swift */; };
@@ -1050,7 +1050,7 @@
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		24E298911CF1F23700FDB055 /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Display.swift; path = Model/Display.swift; sourceTree = "<group>"; };
 		28AA5808B4049585E32D125D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHShoutItemCell.swift; path = View/tabs/home/SHShoutItemCell.swift; sourceTree = "<group>"; };
+		601EB8B91C2B922900D4C1AE /* DiscoverItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItemCell.swift; path = View/tabs/home/DiscoverItemCell.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
 		6027CF3B1BE74EAE00124C28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ShoutitResources/Assets.xcassets; sourceTree = "<group>"; };
@@ -5059,7 +5059,7 @@
 				B2B5D02C1C7F82A50068A6AF /* ShoutsSmallCollectionViewCell.swift */,
 				B22D19701C75095C00A620F3 /* PlcaholderCollectionViewCell.swift */,
 				B2A849341C846B2A00176EB0 /* SeeAllCollectionViewCell.swift */,
-				601EB8B91C2B922900D4C1AE /* SHShoutItemCell.swift */,
+				601EB8B91C2B922900D4C1AE /* DiscoverItemCell.swift */,
 				B2B2869A1CD3B4CA00CE5607 /* RTLShoutItemCell.swift */,
 				B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */,
 				AE54A6B51D11674A002F1430 /* ShoutCell.swift */,
@@ -6337,7 +6337,7 @@
 				B253A33E1C690FB900C8B8F9 /* LoginFinishable.swift in Sources */,
 				B294BC991CEB819D00131B31 /* NSURL+ImageVariation.swift in Sources */,
 				606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */,
-				AE21C6671D522786000D8C82 /* SHShoutItemCell.swift in Sources */,
+				AE21C6671D522786000D8C82 /* DiscoverItemCell.swift in Sources */,
 				AEE924B91C68AEE300EFBF43 /* LoginNavigationViewController.swift in Sources */,
 				B2F719B61D0EF12F002C1D74 /* AddressBookQueryBuilder.swift in Sources */,
 				B2778FA21CAD5AAE00BBDD5F /* FilterDisplayable.swift in Sources */,

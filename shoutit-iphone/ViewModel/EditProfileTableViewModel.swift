@@ -34,7 +34,7 @@ final class EditProfileTableViewModel {
         switch Account.sharedInstance.loginState {
         case .Logged(let logged)?:
             self.user = logged
-        case .Page(_, let _)?:
+        case .Page(_, _)?:
             fatalError()
         default:
             fatalError()

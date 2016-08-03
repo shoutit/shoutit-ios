@@ -343,7 +343,7 @@ private extension Account {
     
     private func checkTwilioConnection() {
         
-        guard let currentProfileId = self.user?.id else {
+        guard self.user?.id != nil else {
             return
         }
         
@@ -351,7 +351,7 @@ private extension Account {
     }
     
     private func checkPusherConnection() {
-        if case .Page(let admin, let page)? = loginState {
+        if case .Page(_, let page)? = loginState {
             pusherManager.subscribeToPageMainChannel(page)
         } else {
             pusherManager.unsubscribePages()
@@ -371,7 +371,7 @@ private extension Account {
         
         guard let user = self.user, apnsToken = self.apnsToken where apnsToken != user.pushTokens?.apns && !updatingAPNS else { return }
         
-        if case .Page(let admin, let page)? = loginState {
+        if case .Page(let admin, _)? = loginState {
             if admin.pushTokens?.apns == self.apnsToken {
                 return
             }
@@ -405,7 +405,7 @@ private extension Account {
                     }
                 }
                 .addDisposableTo(disposeBag)
-        } else if case .Page(let _, let page)? = loginState {
+        } else if case .Page(_, let page)? = loginState {
             let observable: Observable<DetailedPageProfile> = APIProfileService.updateAPNsWithUsername(page.username, withParams: params)
             observable
                 .subscribe{ (event) in

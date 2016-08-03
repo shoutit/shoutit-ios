@@ -29,7 +29,6 @@ protocol ShoutCell {
     func bindWith(Shout shout: Shout)
 }
 
-extension DiscoverItemCell : ShoutCell {}
 extension ShoutsCollectionViewCell : ShoutCell {}
 
 extension ShoutCell where Self : UICollectionViewCell {
