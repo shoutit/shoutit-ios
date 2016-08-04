@@ -20,10 +20,7 @@ enum DiscoverSection : Int {
     case Ads
     
     func cellIdentifier() -> String {
-        switch self {
-        case SubItems: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
-        default: return ShoutCellsIdentifiers.GridReuseIdentifier.rawValue
-        }
+        return "ShoutsExpandedCollectionViewCell"
     }
     
     func headerIdentifier() -> String {
@@ -61,12 +58,6 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
     }
     
     func cellIdentifierForIndexPath(indexPath : NSIndexPath) -> String {
-        if indexPath.section == 1 {
-            if case .Ad(_) = self.shoutItemsWithAds()[indexPath.item] {
-                return ShoutCellsIdentifiers.AdGridReuseIdentifier.rawValue
-            }
-        }
-        
         return DiscoverSection(rawValue: indexPath.section)!.cellIdentifier()
     }
     

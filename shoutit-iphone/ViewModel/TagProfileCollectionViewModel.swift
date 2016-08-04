@@ -177,7 +177,10 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let slug = slugParameter else { return nil }
         let params = FilteredShoutsParams(tag: slug, page: 1, pageSize: 4, currentUserLocation: Account.sharedInstance.user?.location, skipLocation: false, passCountryOnly: true)
-        return APIShoutsService.listShoutsWithParams(params)
+        return APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
+            return Observable.just(result.results)
+        })
+
     }
     
     private func listSectionWithModels(tags: [Tag], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {

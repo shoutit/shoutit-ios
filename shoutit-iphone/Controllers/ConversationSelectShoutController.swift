@@ -25,7 +25,10 @@ final class ConversationSelectShoutController: UITableViewController {
         
         let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30, skipLocation: true)
         
-        APIShoutsService.listShoutsWithParams(params).asDriver(onErrorJustReturn: []).driveNext { [weak self] (shouts) in
+        APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
+            return Observable.just(result.results)
+        })
+        .asDriver(onErrorJustReturn: []).driveNext { [weak self] (shouts) in
             self?.shouts = shouts
             self?.tableView.reloadData()
         }.addDisposableTo(disposeBag)

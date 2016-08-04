@@ -304,7 +304,7 @@ class ConversationInfoViewController: UITableViewController {
             let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Title"), preferredStyle: .ActionSheet)
             
             let isAdmin = self.viewModel.conversation.admins.contains{$0 == profile.id}
-            let isBlocked = self.viewModel.conversation.blocked.contains{$0 == profile.id}
+            let isBlocked = self.viewModel.conversation.blocked?.contains{$0 == profile.id} ?? false
             
             if !isAdmin {
                 optionsController.addAction(UIAlertAction(title: NSLocalizedString("Promote to admin", comment: "Chat Participant List Action Sheet Option"), style: .Default, handler: { (action) in

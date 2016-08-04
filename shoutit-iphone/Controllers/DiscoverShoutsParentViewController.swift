@@ -30,7 +30,8 @@ final class DiscoverShoutsParentViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let shoutsController = segue.destinationViewController as? DiscoverShoutsCollectionViewController {
             shoutsCollectionViewController = shoutsController
-            shoutsCollectionViewController.viewModel = self.viewModel
+            shoutsCollectionViewController.viewModel = ShoutsCollectionViewModel(context: .DiscoverItemShouts(discoverItem: self.viewModel.discoverItem))
+            shoutsCollectionViewController.flowDelegate = self.flowDelegate
         }
     }
     
@@ -47,14 +48,6 @@ final class DiscoverShoutsParentViewController: UIViewController {
     }
     
     private func setupRX() {
-        self.changeLayoutButton.addTarget(shoutsCollectionViewController, action: #selector(DiscoverShoutsCollectionViewController.changeCollectionViewDisplayMode(_:)), forControlEvents: .TouchUpInside)
-        
-        shoutsCollectionViewController.selectedItem.asObservable().subscribeNext { [weak self] selectedShout in
-            if let shout = selectedShout, let flowDelegate = self?.flowDelegate {
-                flowDelegate.showShout(shout)
-            }
-        }.addDisposableTo(disposeBag)
-        
         searchButton.rx_tap
             .asDriver()
             .driveNext {[unowned self] in

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RTLShoutItemCell: SHShoutItemCell {
+class RTLShoutItemCell: DiscoverItemCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()

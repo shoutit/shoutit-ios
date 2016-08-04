@@ -133,7 +133,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     }
     
     func updateLikeButtonState() {
-        if viewModel.shout.isLiked {
+        if viewModel.shout.isLiked ?? false {
             self.likeButton.setLiked()
         } else {
             self.likeButton.setUnliked()
@@ -141,7 +141,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     }
     
     func updateBookmarkButtonState() {
-        if viewModel.shout.isBookmarked {
+        if viewModel.shout.isBookmarked ?? false {
             self.bookmarkButton.setImage(UIImage(named: "bookmark_on"), forState: .Normal)
         } else {
             self.bookmarkButton.setImage(UIImage(named: "bookmark_off"), forState: .Normal)
@@ -390,7 +390,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
     @IBAction func likeButtonAction(sender: LikeButton) {
-        if viewModel.shout.isLiked {
+        if viewModel.shout.isLiked ?? false {
             unlikeShout()
         } else {
             likeShout()
@@ -437,7 +437,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     
     
     @IBAction func bookmarkButtonAction(sender: UIButton) {
-        if viewModel.shout.isBookmarked {
+        if viewModel.shout.isBookmarked ?? false {
             removeFromBookmarks()
         } else {
             bookMarkShout()

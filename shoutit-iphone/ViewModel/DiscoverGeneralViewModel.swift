@@ -48,6 +48,9 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                 
                 APIShoutsService
                     .listShoutsWithParams(params)
+                    .flatMap({ (result) -> Observable<[Shout]> in
+                        return Observable.just(result.results)
+                    })
                     .subscribeNext{[weak self] (shouts) -> Void in
                         self?.shouts.on(.Next(shouts))
                         self?.adManager.handleNewShouts(shouts)

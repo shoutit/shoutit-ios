@@ -70,14 +70,9 @@ final class APIProfileService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
     }
     
-    static func homeShoutsWithParams(params: FilteredShoutsParams) -> Observable<[Shout]> {
+    static func homeShoutsWithParams(params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
         let url = APIManager.baseURL + "/profiles/me/home"
-        return APIGenericService.requestWithMethod(.GET,
-                                                   url: url,
-                                                   params: params,
-                                                   encoding: .URL,
-                                                   responseJsonPath: ["results"],
-                                                   headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
     }
     
     static func getListeningProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {

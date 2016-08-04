@@ -27,7 +27,8 @@ class ShoutsCollectionViewController: UICollectionViewController {
         }
     }
     
-    // view model
+    let refreshControl = UIRefreshControl()
+    
     var viewModel: ShoutsCollectionViewModel!
     
     // navigation
@@ -52,6 +53,17 @@ class ShoutsCollectionViewController: UICollectionViewController {
         setupRX()
         viewModel.reloadContent()
         bookmarksDisposeBag = DisposeBag()
+    
+        
+        refreshControl.tintColor = UIColor.darkGrayColor()
+        refreshControl.addTarget(self, action: #selector(reload), forControlEvents: .ValueChanged)
+        
+        self.collectionView?.addSubview(refreshControl)
+        self.collectionView?.alwaysBounceVertical = true
+    }
+    
+    func reload() {
+        self.viewModel.reloadContent()
     }
     
     // MARK: - Setup
@@ -67,7 +79,21 @@ class ShoutsCollectionViewController: UICollectionViewController {
         viewModel.pager.state
             .asDriver()
             .driveNext {[weak self] (state) in
-                self?.collectionView?.reloadData()
+                
+                switch state {
+                case .Loading: self?.refreshControl.beginRefreshing()
+                case .LoadedAllContent(_,_):
+                    self?.refreshControl.endRefreshing()
+                    self?.collectionView?.reloadData()
+                case .Loaded(_,_,_):
+                    self?.refreshControl.endRefreshing()
+                    self?.collectionView?.reloadData()
+                case .Error(_):
+                    self?.refreshControl.endRefreshing()
+                case .LoadingMore(_,_,_): break;
+                case .NoContent: self?.refreshControl.endRefreshing()
+                default: break;
+                }
             }
             .addDisposableTo(disposeBag)
     }
@@ -159,6 +185,8 @@ extension ShoutsCollectionViewController {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, forIndexPath: indexPath) as! ShoutsSectionHeader
         view.titleLabel.text = viewModel.sectionTitle()
         view.subtitleLabel.text = viewModel.resultsCountString()
+        view.backgroundColor = viewModel.headerBackgroundColor()
+        view.setSubtitleHidden(viewModel.subtitleHidden())
         view.filterButton
             .rx_tap
             .asDriver()

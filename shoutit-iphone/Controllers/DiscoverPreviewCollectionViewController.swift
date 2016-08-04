@@ -80,7 +80,7 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
             return cell
         }
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! SHShoutItemCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! DiscoverItemCell
         cell.transform = collectionView.transform
         
         let element = items[indexPath.item]

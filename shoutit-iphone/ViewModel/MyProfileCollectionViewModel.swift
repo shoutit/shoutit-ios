@@ -199,7 +199,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     private func fetchShouts() -> Observable<[Shout]>? {
         guard let user = user else {return nil}
         let params = FilteredShoutsParams(username: user.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true)
-        return APIShoutsService.listShoutsWithParams(params)
+        return APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
+            return Observable.just(result.results)
+        })
+
     }
     
     private func fetchPages() -> Observable<[Profile]>? {

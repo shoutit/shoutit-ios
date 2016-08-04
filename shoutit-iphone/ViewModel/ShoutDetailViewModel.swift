@@ -237,7 +237,9 @@ private extension ShoutDetailViewModel {
     
     private func fetchOtherShouts() -> Observable<[Shout]> {
         let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true, excludeId: shout.id)
-        return APIShoutsService.listShoutsWithParams(params)
+        return APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
+            return Observable.just(result.results)
+        })
     }
     
     private func fetchRelatedShouts() -> Observable<[Shout]> {

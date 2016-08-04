@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -30,6 +30,9 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bN-b7-ADe">
                     <rect key="frame" x="10" y="32" width="31" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="oNY-3e-CJj"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -50,16 +53,19 @@
                 <constraint firstItem="CN4-zw-aAJ" firstAttribute="leading" secondItem="qND-2k-A4n" secondAttribute="leading" constant="10" id="ely-gX-tUL"/>
                 <constraint firstItem="1xo-uP-MXi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0bN-b7-ADe" secondAttribute="trailing" constant="8" id="fMs-J7-47M"/>
                 <constraint firstAttribute="trailing" secondItem="eLX-Qz-aDr" secondAttribute="trailing" id="jsZ-Af-I8D"/>
+                <constraint firstAttribute="bottom" secondItem="0bN-b7-ADe" secondAttribute="bottom" constant="3" id="kid-qF-3Ba"/>
                 <constraint firstItem="0bN-b7-ADe" firstAttribute="top" secondItem="CN4-zw-aAJ" secondAttribute="bottom" constant="1" id="rOT-hA-cV2"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="JET-XT-ior"/>
                     <exclude reference="Mvz-66-IEy"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="filterButton" destination="1xo-uP-MXi" id="Bit-L5-4LA"/>
                 <outlet property="layoutButton" destination="eLX-Qz-aDr" id="xta-iG-jFq"/>
+                <outlet property="subtitleHeightConstraint" destination="oNY-3e-CJj" id="Ig4-op-Gmd"/>
                 <outlet property="subtitleLabel" destination="0bN-b7-ADe" id="K6f-dW-3Dh"/>
                 <outlet property="titleLabel" destination="CN4-zw-aAJ" id="owL-j8-pc8"/>
             </connections>

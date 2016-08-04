@@ -54,7 +54,7 @@ class LinkedAccountsManager : NSObject {
         
         MBProgressHUD.showHUDAddedTo(controller.view, animated: true)
         
-        Account.sharedInstance.facebookManager.unlinkFacebookAccount().subscribe { [weak self] (event) in
+        Account.sharedInstance.facebookManager.unlinkFacebookAccount().subscribe { (event) in
             guard let controller = wController else {
                 return
             }

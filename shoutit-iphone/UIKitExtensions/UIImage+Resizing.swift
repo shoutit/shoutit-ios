@@ -20,15 +20,21 @@ extension UIImage {
         
         let newHeight = image.size.height * scale
         
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        let size = CGSizeMake(newWidth, newHeight)
+
+        let screenScale = UIScreen.mainScreen().scale
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, screenScale);
         
         image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        var newImage : UIImage? = nil
+        
+        newImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     func dataRepresentation() -> NSData? {

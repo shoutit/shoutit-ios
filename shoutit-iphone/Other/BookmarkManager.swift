@@ -46,7 +46,7 @@ extension Bookmarking where Self : UICollectionViewController {
             return
         }
         
-        if shout.isBookmarked {
+        if shout.isBookmarked ?? false {
             APIShoutsService.removeFromBookmarksShout(shout).subscribe({ [weak self] (event) in
                 switch event {
                 case .Next(let success):
