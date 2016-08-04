@@ -7,7 +7,12 @@
 //
 
 #import "SHAppearanceBridge.h"
-#import "Shoutit-Swift.h"
+
+#if LOCAL
+    #import "Shoutit_Local-Swift.h"
+#else
+    #import "Shoutit-Swift.h"
+#endif
 
 @implementation SHAppearanceBridge
 
