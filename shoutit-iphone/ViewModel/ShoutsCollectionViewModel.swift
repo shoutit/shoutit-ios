@@ -136,7 +136,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
                 }
                 return APIProfileService.homeShoutsWithParams(params)
             } else {
-                var params = FilteredShoutsParams(page: page, pageSize: 20, useLocaleBasedCountryCodeWhenNil: true, skipLocation: true)
+                var params = FilteredShoutsParams(page: page, pageSize: 20, useLocaleBasedCountryCodeWhenNil: true, currentUserLocation: Account.sharedInstance.user?.location, skipLocation: false)
                 if let filtersState = filtersState {
                     let filterParams = filtersState.composeParams()
                     params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)

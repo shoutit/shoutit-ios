@@ -21,6 +21,18 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
         viewModel = ShoutsCollectionViewModel(context: .HomeShouts)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Account.sharedInstance.userSubject.distinctUntilChanged {(oldUser, newUser) -> Bool in
+            return oldUser?.id == newUser?.id && oldUser?.location.address == newUser?.location.address
+        }
+        .skip(1)
+        .subscribeNext { [weak self] (user) in
+                self?.viewModel.reloadContent()
+        }.addDisposableTo(disposeBag)
+    }
+    
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         scrollOffset.value = scrollView.contentOffset
         
