@@ -105,10 +105,6 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         }
     }
     
-    deinit {
-        print("deinit")
-    }
-    
     // children
     private var photosPageViewController: PhotoBrowserPageViewController!
     
