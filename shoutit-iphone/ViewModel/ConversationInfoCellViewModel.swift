@@ -51,7 +51,7 @@ enum ConversationInfoCellViewModel {
         case .Shouts: return String(conversation.attachmentCount.shout)
         case .Media: return String(conversation.attachmentCount.media)
         case .Participants: return String(conversation.users?.count ?? 0)
-        case .Blocked: return String(conversation.blocked.count)
+        case .Blocked: return String(conversation.blocked?.count ?? 0)
         default: return nil
         }
     }

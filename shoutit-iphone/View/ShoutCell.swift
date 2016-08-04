@@ -73,7 +73,7 @@ extension ShoutCell where Self : UICollectionViewCell {
             self.shoutSubtitle?.text = user.name
         }
         
-        self.setBookmarked(shout.isBookmarked)
+        self.setBookmarked(shout.isBookmarked ?? false)
         
         self.shoutPrice?.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
         

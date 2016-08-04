@@ -23,7 +23,7 @@ public struct Conversation: ConversationInterface {
     public let shout: Shout?
     public let readby: [ReadBy]?
     public let display: ConversationDescription
-    public let blocked: [String]
+    public let blocked: [String]?
     public let admins: [String]
     public let attachmentCount: AttachmentCount
     public let creator: MiniProfile?
@@ -49,7 +49,7 @@ extension Conversation: Decodable {
             <*> j <||? "read_by"
             <*> j <| "display"
         let f = d
-            <*> j <|| "blocked"
+            <*> j <||? "blocked"
             <*> j <|| "admins"
         let g = f
             <*> j <| "attachments_count"

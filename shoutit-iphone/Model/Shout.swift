@@ -42,8 +42,8 @@ public struct Shout: Decodable, Hashable, Equatable {
     public let mobile: String?
     public let promotion: Promotion?
     
-    public let isBookmarked: Bool
-    public let isLiked: Bool
+    public let isBookmarked: Bool?
+    public let isLiked: Bool?
     
     public static func decode(j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
@@ -79,8 +79,8 @@ public struct Shout: Decodable, Hashable, Equatable {
         let h = g
             <*> j <|? "mobile"
             <*> j <|? "promotion"
-            <*> j <| "is_bookmarked"
-            <*> j <| "is_liked"
+            <*> j <|? "is_bookmarked"
+            <*> j <|? "is_liked"
         return h
     }
     
