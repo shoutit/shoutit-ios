@@ -235,9 +235,9 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     
     func openMessageObject(notification: Notification) {
         guard let path = notification.appPath, url = NSURL(string: path) else { return }
-        if UIApplication.sharedApplication().canOpenURL(url) {
+//        if UIApplication.sharedApplication().canOpenURL(url) {
             UIApplication.sharedApplication().openURL(url)
-        }
+//        }
     }
     
     func openNotificationSettings() {
