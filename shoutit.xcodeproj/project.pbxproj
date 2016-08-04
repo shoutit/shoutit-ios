@@ -10215,6 +10215,7 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
+				PRODUCT_MODULE_NAME = Shoutit;
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -10401,6 +10402,7 @@
 					"-framework",
 					"\"VideoToolbox\"",
 				);
+				PRODUCT_MODULE_NAME = Shoutit;
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
