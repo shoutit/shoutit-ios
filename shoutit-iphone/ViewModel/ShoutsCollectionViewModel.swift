@@ -70,6 +70,25 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         
     }
     
+    func headerBackgroundColor() -> UIColor {
+        switch context {
+        case .HomeShouts:
+            return UIColor(shoutitColor: .BackgroundLightGray)
+        default:
+            return UIColor.whiteColor()
+        }
+    }
+    
+    func subtitleHidden() -> Bool {
+        switch context {
+        case .HomeShouts:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    
     func resultsCountString() -> String {
         switch context {
         case .HomeShouts: return ""

@@ -23,7 +23,7 @@ final class HomeViewController: UIViewController {
     weak var discoverParentController : DiscoverPreviewParentController?
     
     var maxDiscoverHeight : CGFloat {
-        get { return discoverVisible ? 170.0 : 0 }
+        get { return discoverVisible ? 164.0 : 0 }
     }
     
     private var discoverVisible : Bool = true {

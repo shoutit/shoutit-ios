@@ -159,6 +159,8 @@ extension ShoutsCollectionViewController {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, forIndexPath: indexPath) as! ShoutsSectionHeader
         view.titleLabel.text = viewModel.sectionTitle()
         view.subtitleLabel.text = viewModel.resultsCountString()
+        view.backgroundColor = viewModel.headerBackgroundColor()
+        view.setSubtitleHidden(viewModel.subtitleHidden())
         view.filterButton
             .rx_tap
             .asDriver()
