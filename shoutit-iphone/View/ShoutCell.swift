@@ -41,12 +41,12 @@ extension ShoutCell where Self : UICollectionViewCell {
         self.name?.text = NSLocalizedString("Sponsored", comment: "")
         self.shoutSubtitle?.text = ad.subtitle
         
-        ad.coverImage?.loadImageAsyncWithBlock({(image) -> Void in
-            self.shoutImage?.image = image
+        ad.coverImage?.loadImageAsyncWithBlock({ [weak self] (image) -> Void in
+            self?.shoutImage?.image = image
         })
         
-        ad.icon?.loadImageAsyncWithBlock({ (image) in
-            self.adIconImage?.image = image
+        ad.icon?.loadImageAsyncWithBlock({ [weak self] (image) in
+            self?.adIconImage?.image = image
         })
         
         self.adChoicesView?.nativeAd = ad

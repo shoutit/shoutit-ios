@@ -105,6 +105,10 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         }
     }
     
+    deinit {
+        print("deinit")
+    }
+    
     // children
     private var photosPageViewController: PhotoBrowserPageViewController!
     
@@ -172,8 +176,8 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
             self.adCallToActionButton.hidden = true
         }
         
-        nativeAd.icon?.loadImageAsyncWithBlock({(image) -> Void in
-            self.adIconImageView?.image = image
+        nativeAd.icon?.loadImageAsyncWithBlock({ [weak self] (image) -> Void in
+            self?.adIconImageView?.image = image
         })
         self.adCoverMediaView.nativeAd = nativeAd
         
@@ -202,9 +206,6 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     
     func nativeAdDidLoad(nativeAd: FBNativeAd) {
         DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
-        if nativeAd == "" {
-            adUIView.hidden = true
-        }
         bindWithAd(nativeAd)
     }
     
