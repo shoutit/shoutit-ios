@@ -37,6 +37,6 @@ local:
   script: "bundle exec fastlane ios local --env local"
   tags:
     - swift2.2
-  except:
-    - /^translations-.*$/ # any git refs (e.g. tag) starting with "appstore-"
+  only:
+    - develop
   
