@@ -170,7 +170,7 @@ private extension Twilio {
             switch event {
             case .Next(let authData):
                 self?.authData = authData
-            case .Error(let error):
+            case .Error(_):
                 break
             default: break
             }

@@ -131,7 +131,7 @@ class CreatePageInfoViewController: UITableViewController {
             switch event {
             case .Next(let page):
                 self?.navigationController?.popToRootViewControllerAnimated(true)
-                if case .Some(.Logged(let _)) = Account.sharedInstance.loginState {
+                if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
                     Account.sharedInstance.switchToPage(page)
                 }
             case .Error(let error):
