@@ -31,6 +31,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     public let filters: [(Filter, [FilterValue])]?
     public let currentUserLocation: Address?
     public let passCountryOnly: Bool?
+    public let attachCityAndState: Bool?
     
     public init(searchPhrase: String? = nil,
          discoverId: String? = nil,
@@ -53,7 +54,8 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
          currentUserLocation: Address? = nil,
          skipLocation: Bool?,
          passCountryOnly: Bool? = false,
-         excludeId: String? = nil) {
+         excludeId: String? = nil,
+         attachCityAndState: Bool = false) {
         
         self.searchPhrase = searchPhrase
         self.discoverId = discoverId
@@ -74,6 +76,8 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         self.skipLocation = skipLocation
         self.passCountryOnly = passCountryOnly
         
+        self.attachCityAndState = attachCityAndState
+        
         if let skipLocation = skipLocation {
             if skipLocation == true {
                 self.country = nil
@@ -91,6 +95,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         }
         self.state = state ?? location?.state
         self.city = city ?? location?.city
+        
         
     }
     
@@ -158,6 +163,11 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
             if skipLocation == true {
                 return p
             }
+        }
+        
+        if attachCityAndState == true {
+            p["city"] = self.city
+            p["state"] = self.state
         }
         
         if entireCountry {
