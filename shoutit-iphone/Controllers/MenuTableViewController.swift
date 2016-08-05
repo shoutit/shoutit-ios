@@ -153,7 +153,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         
         Account.sharedInstance.statsSubject.subscribeNext{ (stats) in
             self.tableView.reloadData()
-            }.addDisposableTo(disposeBag)
+        }.addDisposableTo(disposeBag)
     }
 }
 

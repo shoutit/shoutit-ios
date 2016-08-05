@@ -135,8 +135,17 @@ final class PusherClient : NSObject {
             self.mainChannelSubject.onNext(event)
             
             if event.eventType() == .StatsUpdate {
+                
+                
                 if let stats : ProfileStats = event.object() {
-                    self.account.updateStats(stats)
+                    
+                    switch self.account.loginState {
+                    case .Some(.Page):
+                        self.account.updateAdminStats(stats)
+                    case .Some(.Logged):
+                        self.account.updateMainStats(stats)
+                    default: break
+                    }
                 }
             }
             
@@ -181,7 +190,7 @@ final class PusherClient : NSObject {
             
             if event.eventType() == .StatsUpdate {
                 if let stats : ProfileStats = event.object() {
-                    self.account.updateStats(stats)
+                    self.account.updateMainStats(stats)
                 }
             }
             

@@ -28,7 +28,10 @@ final class Account {
     let userSubject = BehaviorSubject<User?>(value: nil) // triggered on login and user update
     let loginStateSubject = BehaviorSubject<LoginState?>(value: nil)
     let loginSubject: PublishSubject<AuthData?> = PublishSubject() // triggered on login
+    
     let statsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    let adminStatsSubject = BehaviorSubject<ProfileStats?>(value: nil)
+    
     lazy var twilioManager: Twilio = {[unowned self] in Twilio(account: self) }()
     lazy var pusherManager: PusherClient = {[unowned self] in PusherClient(account: self) }()
     lazy var facebookManager: FacebookManager = {[unowned self] in FacebookManager(account: self) }()
@@ -66,6 +69,7 @@ final class Account {
             case .Some(.Page(let user, let page)):
                 userSubject.onNext(page)
                 statsSubject.onNext(page.stats)
+                adminStatsSubject.onNext(user.stats)
                 updateApplicationBadgeNumberWithStats(page.stats)
                 SecureCoder.writeObject(page, toFileAtPath: archivePath)
                 updateAPNSIfNeeded()
@@ -288,12 +292,11 @@ extension Account {
             }.addDisposableTo(disposeBag)
     }
     
-    func updateStats(stats: ProfileStats) {
+    func updateMainStats(stats: ProfileStats) {
         if case .Page(let admin, let page)? = loginState {
             
-            self.loginState = .Page(user: admin.updatedProfileWithStats(stats), page: page)
+            self.loginState = .Page(user: admin, page: page.updatedProfileWithStats(stats))
             self.statsSubject.onNext(stats)
-            
             return
         }
         
@@ -302,12 +305,11 @@ extension Account {
         self.statsSubject.onNext(stats)
     }
     
-    func updatePageStats(stats: ProfileStats) {
+    func updateAdminStats(stats: ProfileStats) {
         if case .Page(let admin, let page)? = loginState {
             
-            self.loginState = .Page(user: admin, page: page.updatedProfileWithStats(stats))
-            self.statsSubject.onNext(stats)
-            
+            self.loginState = .Page(user: admin.updatedProfileWithStats(stats), page: page)
+            self.adminStatsSubject.onNext(stats)
             return
         }
     }
