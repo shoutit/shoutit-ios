@@ -18,6 +18,7 @@ extension FlowController : StaticPageDisplayable {
         let controller = Wireframe.staticPageViewController()
     
         controller.urlToLoad = url
+        controller.flowDelegate = self
         
         let nav = ModalNavigationController(rootViewController: controller)
         navigationController.presentViewController(nav, animated: true, completion: nil)

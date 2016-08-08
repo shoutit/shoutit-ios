@@ -144,6 +144,13 @@ final class RootController: UIViewController, ContainerController {
             return
         }
         
+        if let presentedNavigation = self.presentedViewController as? UINavigationController, presentedStaticPage = presentedNavigation.visibleViewController as? StaticPageViewController {
+            presentedStaticPage.dismissViewControllerAnimated(true, completion: { [weak self] in
+                    self?.openItem(navigationItem, deepLink: deepLink)
+                })
+            return
+        }
+        
         if navigationItem == .PublicChats {
             item = .Chats
         }
