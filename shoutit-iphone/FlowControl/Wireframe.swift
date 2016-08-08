@@ -37,6 +37,7 @@ struct Wireframe {
         case Promote = "Promote"
         case Pages = "Pages"
         case Admins = "Admins"
+        case StaticPage = "StaticPage"
     }
     
     // General
@@ -365,4 +366,10 @@ struct Wireframe {
     static func adminsListTableViewController() -> AdminsListTableViewController {
         return storyboard(.Admins).instantiateViewControllerWithIdentifier("AdminsListTableViewController") as! AdminsListTableViewController
     }
+    
+    static func staticPageViewController() -> StaticPageViewController {
+        return storyboard(.StaticPage).instantiateViewControllerWithIdentifier("StaticPageViewController") as! StaticPageViewController
+    }
+    
+    
 }

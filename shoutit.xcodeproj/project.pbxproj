@@ -244,6 +244,10 @@
 		AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */; };
 		AE63FB1B1D12DC84005A35CD /* PromotionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB1A1D12DC84005A35CD /* PromotionOptionTableViewCell.swift */; };
 		AE69C4C51D13F51400DB2D76 /* PromoteShoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */; };
+		AE6AF6551D587A180079A7B9 /* StaticPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE6AF6541D587A180079A7B9 /* StaticPage.storyboard */; };
+		AE6AF6581D587A6D0079A7B9 /* StaticPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF6571D587A6D0079A7B9 /* StaticPageViewController.swift */; };
+		AE6AF65A1D587AC90079A7B9 /* StaticPageFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF6591D587AC90079A7B9 /* StaticPageFlowController.swift */; };
+		AE6AF65C1D5880FE0079A7B9 /* StaticPageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF65B1D5880FE0079A7B9 /* StaticPageDisplayable.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
 		AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */; };
@@ -1265,6 +1269,10 @@
 		AE6654CF1CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VideoCalls.strings; sourceTree = "<group>"; };
 		AE6654D01CD3846D0087E38D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SeeAllShouts.strings; sourceTree = "<group>"; };
 		AE69C4C31D13F50100DB2D76 /* PromoteShoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteShoutParams.swift; path = Networking/PromoteShoutParams.swift; sourceTree = "<group>"; };
+		AE6AF6541D587A180079A7B9 /* StaticPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StaticPage.storyboard; path = Storyboards/StaticPage.storyboard; sourceTree = "<group>"; };
+		AE6AF6571D587A6D0079A7B9 /* StaticPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticPageViewController.swift; path = Controllers/StaticPageViewController.swift; sourceTree = "<group>"; };
+		AE6AF6591D587AC90079A7B9 /* StaticPageFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticPageFlowController.swift; path = FlowControl/StaticPageFlowController.swift; sourceTree = "<group>"; };
+		AE6AF65B1D5880FE0079A7B9 /* StaticPageDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticPageDisplayable.swift; path = FlowControl/StaticPageDisplayable.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
 		AE76E3331D47506800C7F2CB /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CocoaAsyncSocket-umbrella.h"; path = "CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/CocoaAsyncSocket-umbrella.h"; sourceTree = SOURCE_ROOT; };
@@ -3103,6 +3111,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE6AF6561D587A510079A7B9 /* StaticPage */,
 				AED6361E1D356CAF0005E1A5 /* VerifyPage */,
 				AE3DC4011D211FF900C460CC /* PagesCategories */,
 				2474E0081D1C15900085D9DD /* CreatePage */,
@@ -3231,6 +3240,7 @@
 				B2D029471D1C1FF800A29D8B /* Pages.storyboard */,
 				B2CA5C4E1D1D7DC9009E164E /* Admins.storyboard */,
 				AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */,
+				AE6AF6541D587A180079A7B9 /* StaticPage.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -3419,6 +3429,14 @@
 				B2E43C901D103BA1006C6AD2 /* VideoCallViewController */,
 			);
 			name = VideoCalls;
+			sourceTree = "<group>";
+		};
+		AE6AF6561D587A510079A7B9 /* StaticPage */ = {
+			isa = PBXGroup;
+			children = (
+				AE6AF6571D587A6D0079A7B9 /* StaticPageViewController.swift */,
+			);
+			name = StaticPage;
 			sourceTree = "<group>";
 		};
 		AE76E2A41D4749DC00C7F2CB /* PaperTrail */ = {
@@ -4456,6 +4474,7 @@
 				B2CA5C571D1D99EF009E164E /* ProfilesListDisplayable.swift */,
 				AE32EA1C1D2139EF00545F72 /* CreatePageDisplayable.swift */,
 				AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */,
+				AE6AF65B1D5880FE0079A7B9 /* StaticPageDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -4779,6 +4798,7 @@
 				B2D19C531D1D3F30007CB6DF /* PagesFlowController.swift */,
 				B2CA5C551D1D84CB009E164E /* AdminsFlowController.swift */,
 				AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */,
+				AE6AF6591D587AC90079A7B9 /* StaticPageFlowController.swift */,
 			);
 			name = FlowControllers;
 			sourceTree = "<group>";
@@ -5887,6 +5907,7 @@
 				B2D9B10A1C9881C000924941 /* SearchCategoryTableViewCell.xib in Resources */,
 				B2B5D0451C80D0190068A6AF /* ShoutsSmallCollectionViewCell.xib in Resources */,
 				B2D441601CB816DA009782AF /* Search.storyboard in Resources */,
+				AE6AF6551D587A180079A7B9 /* StaticPage.storyboard in Resources */,
 				B2F719621D0EEEF5002C1D74 /* ImageError.png in Resources */,
 				B2D441161CB81660009782AF /* Home.storyboard in Resources */,
 				B2E53E9A1CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib in Resources */,
@@ -6090,6 +6111,7 @@
 				AE5A5DB91CAAF33F003BE604 /* VideoCallViewController.swift in Sources */,
 				B2F71A611D0EF791002C1D74 /* DPLRouteHandler.m in Sources */,
 				B2C8C2681CF89CCA00E80C6A /* CreateShoutSelectableCell.swift in Sources */,
+				AE6AF65A1D587AC90079A7B9 /* StaticPageFlowController.swift in Sources */,
 				B211AAD71C89F65400C9E8DB /* APIProfileService.swift in Sources */,
 				B2F719D91D0EF2EC002C1D74 /* Operators.swift in Sources */,
 				248320F51C99975D00C12D90 /* BubbleView.swift in Sources */,
@@ -6154,6 +6176,7 @@
 				B27230521CE0DF6F003547EA /* UITableView+Reusables.swift in Sources */,
 				AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */,
 				B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */,
+				AE6AF6581D587A6D0079A7B9 /* StaticPageViewController.swift in Sources */,
 				B2F7199B1D0EEFAA002C1D74 /* MWPhoto.m in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				BF5FB27C1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift in Sources */,
@@ -6188,6 +6211,7 @@
 				B2E715531C6E05FC007F95CF /* ProfileCollectionCoverSupplementaryView.swift in Sources */,
 				B22D90981CE9E48000D3C387 /* CreatePublicChatCellViewModel.swift in Sources */,
 				B272305C1CE0EE49003547EA /* ProfilesListEventHandler.swift in Sources */,
+				AE6AF65C1D5880FE0079A7B9 /* StaticPageDisplayable.swift in Sources */,
 				B2B4AACF1CB436FB00926474 /* CategoryFiltersTableViewCell.swift in Sources */,
 				B2F5246F1C9AF84E00EA622F /* ProfileTableViewCell.swift in Sources */,
 				B2E715571C6E09F1007F95CF /* ProfileCollectionSectionHeaderSupplementaryView.swift in Sources */,

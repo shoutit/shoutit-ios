@@ -32,6 +32,7 @@ enum NavigationItem : String {
     case Bookmarks = "bookmarks"
     case Admins = "admins"
     case SwitchFromPageToUser = "switch_to_user"
+    case StaticPage = "static"
     
     func title() -> String {
         switch self {

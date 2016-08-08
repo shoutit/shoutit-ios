@@ -265,7 +265,7 @@ private extension AppDelegate {
 extension AppDelegate {
     func registerRoutes() {
         
-        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout, .CreditsTransations]
+        let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout, .CreditsTransations, .StaticPage]
         
         for route in routableElements {
             self.router.registerBlock({ [weak self] (deeplink) in

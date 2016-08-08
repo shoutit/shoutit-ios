@@ -139,7 +139,7 @@ final class RootController: UIViewController, ContainerController {
         
         var item = navigationItem
         
-        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) || navigationItem == .CreditsTransations {
+        if navigationItem == .Conversation || navigationItem == .Shout || (navigationItem == .Profile && deepLink != nil) || navigationItem == .CreditsTransations || navigationItem == .Search || navigationItem == .StaticPage {
             self.showOverExistingFlowController(navigationItem, deepLink: deepLink)
             return
         }
@@ -262,6 +262,18 @@ final class RootController: UIViewController, ContainerController {
             }
             
             currentFlowController.showCreditTransactions()
+        case .StaticPage:
+            guard let path = deepLink?.queryParameters["page"] as? String else {
+                return
+            }
+            
+            guard let url = NSURL(string: path) else {
+                return
+            }
+            
+            currentFlowController.showStaticPage(url)
+        case .Search:
+            currentFlowController.showSearchInContext(.General)
         default:
             break
         }
