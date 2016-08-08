@@ -248,6 +248,8 @@
 		AE6AF6581D587A6D0079A7B9 /* StaticPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF6571D587A6D0079A7B9 /* StaticPageViewController.swift */; };
 		AE6AF65A1D587AC90079A7B9 /* StaticPageFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF6591D587AC90079A7B9 /* StaticPageFlowController.swift */; };
 		AE6AF65C1D5880FE0079A7B9 /* StaticPageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF65B1D5880FE0079A7B9 /* StaticPageDisplayable.swift */; };
+		AE6AF65E1D58A21C0079A7B9 /* SpecialMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE6AF65D1D58A21C0079A7B9 /* SpecialMessageCell.xib */; };
+		AE6AF6601D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF65F1D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
 		AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */; };
@@ -1273,6 +1275,8 @@
 		AE6AF6571D587A6D0079A7B9 /* StaticPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticPageViewController.swift; path = Controllers/StaticPageViewController.swift; sourceTree = "<group>"; };
 		AE6AF6591D587AC90079A7B9 /* StaticPageFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticPageFlowController.swift; path = FlowControl/StaticPageFlowController.swift; sourceTree = "<group>"; };
 		AE6AF65B1D5880FE0079A7B9 /* StaticPageDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticPageDisplayable.swift; path = FlowControl/StaticPageDisplayable.swift; sourceTree = "<group>"; };
+		AE6AF65D1D58A21C0079A7B9 /* SpecialMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SpecialMessageCell.xib; path = View/SpecialMessageCell.xib; sourceTree = "<group>"; };
+		AE6AF65F1D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSpecialMessageCell.swift; path = View/ConversationSpecialMessageCell.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
 		AE76E3331D47506800C7F2CB /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CocoaAsyncSocket-umbrella.h"; path = "CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/CocoaAsyncSocket-umbrella.h"; sourceTree = SOURCE_ROOT; };
@@ -4349,6 +4353,7 @@
 				B2D441C31CB81A24009782AF /* OutgoingLocationCell.xib */,
 				B27230631CE0F8DA003547EA /* IncomingProfileCell.xib */,
 				B27230671CE0F913003547EA /* OutgoingProfileCell.xib */,
+				AE6AF65D1D58A21C0079A7B9 /* SpecialMessageCell.xib */,
 			);
 			name = CellXibs;
 			sourceTree = "<group>";
@@ -4641,6 +4646,7 @@
 				AEADF33D1CA552D60051DABA /* ConversationVideoCell.swift */,
 				AE18BAD41CA2F86D001C73EC /* ConversationLocationCell.swift */,
 				B27230691CE0FAB0003547EA /* ConversationProfileCell.swift */,
+				AE6AF65F1D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift */,
 			);
 			name = CellClasses;
 			sourceTree = "<group>";
@@ -5894,6 +5900,7 @@
 				B2D442121CB81BE5009782AF /* ProfileCollectionFooterButtonSupplementeryView.xib in Resources */,
 				B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */,
 				BF0CB0051D33A4E500EC96FB /* EditPage.storyboard in Resources */,
+				AE6AF65E1D58A21C0079A7B9 /* SpecialMessageCell.xib in Resources */,
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				B2F719811D0EEEF5002C1D74 /* VideoOverlay@2x.png in Resources */,
 				B2F7196A1D0EEEF5002C1D74 /* ImageSelectedOn@3x.png in Resources */,
@@ -6451,6 +6458,7 @@
 				B2B5D03C1C808A4E0068A6AF /* APIGenericService.swift in Sources */,
 				BF5FB27E1D2FCE240078A57F /* EditPageTextViewTableViewCell.swift in Sources */,
 				AED636221D356CF40005E1A5 /* VerifyPageViewController.swift in Sources */,
+				AE6AF6601D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift in Sources */,
 				B2A1441B1C651B99002CD70A /* PostSignupInterestsViewController.swift in Sources */,
 				AE4DB35B1C638E93001EB84B /* InviteFriendsFlowController.swift in Sources */,
 				B2F71A011D0EF53A002C1D74 /* ResponsiveLabel.m in Sources */,

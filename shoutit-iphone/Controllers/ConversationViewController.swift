@@ -196,6 +196,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         tableView.registerNib(UINib(nibName: "OutgoingProfileCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Profile.outgoing)
         tableView.registerNib(UINib(nibName: "IncomingProfileCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.Profile.incoming)
+        
+        tableView.registerNib(UINib(nibName: "SpecialMessageCell", bundle: nil), forCellReuseIdentifier: ConversationCellIdentifier.special)
+        
     }
     
     private func customizeTable() {
@@ -223,6 +226,8 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         typingIndicatorView?.interval = 3.0
         textView.placeholder = NSLocalizedString("Type a message", comment: "Chat textview placeholder")
+        
+        textView.keyboardType = .Default
         
         // since autolayout swaps text bar, we swap it back to keep send button on the right
         if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {

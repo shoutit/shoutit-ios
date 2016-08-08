@@ -60,6 +60,9 @@ extension ConversationViewController {
             cell.titleLabel.text = profile.name
             cell.subtitleLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ Listeners", comment: "Listners number"), NumberFormatters.numberToShortString(profile.listenersCount))
             setThumbWithProfile(profile, onCell: cell)
+        case let cell as ConversationSpecialMessageCell:
+            cell.textLabel?.text = message.text
+            cell.hideImageView()
         default:
             break
         }

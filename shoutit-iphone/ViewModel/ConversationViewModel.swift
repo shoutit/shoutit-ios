@@ -238,6 +238,9 @@ final class ConversationViewModel {
     }
     
     func cellIdentifierForMessage(msg: Message) -> String {
+        if msg.user == nil {
+            return ConversationCellIdentifier.special
+        }
         
         let isOugoingMessage: Bool
         if let currentUserId = Account.sharedInstance.user?.id {
