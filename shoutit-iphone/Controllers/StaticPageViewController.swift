@@ -15,6 +15,7 @@ class StaticPageViewController: UIViewController, UIWebViewDelegate {
     weak var flowDelegate: FlowController?
     
     var urlToLoad : NSURL!
+    var titleToShow : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class StaticPageViewController: UIViewController, UIWebViewDelegate {
         self.webView.delegate = self
         self.webView.loadRequest(NSURLRequest(URL: urlToLoad))
         
-        self.navigationItem.title = ""
+        self.navigationItem.title = self.titleToShow ?? ""
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {

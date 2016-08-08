@@ -278,7 +278,9 @@ final class RootController: UIViewController, ContainerController {
                 return
             }
             
-            currentFlowController.showStaticPage(url)
+            let title = deepLink?.queryParameters["title"] as? String
+            
+            currentFlowController.showStaticPage(url, title: title)
         case .Search:
             currentFlowController.showSearchInContext(.General)
         default:
