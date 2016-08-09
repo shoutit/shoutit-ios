@@ -36,6 +36,12 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             loadInitialState()
             NSUserDefaults.standardUserDefaults().setObject(autoUpdates, forKey: Constants.Defaults.locationAutoUpdates)
             NSUserDefaults.standardUserDefaults().synchronize()
+            
+            if autoUpdates {
+                LocationManager.sharedInstance.askForPermissions()
+            } else {
+                LocationManager.sharedInstance.stopUpdatingLocation()
+            }
         }
     }
     
@@ -54,8 +60,8 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let auto = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? NSNumber {
-            autoUpdates = auto.boolValue
+        if let auto = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? Bool {
+            autoUpdates = auto
         }
         
         if shouldShowAutoUpdates {
@@ -63,6 +69,18 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         }
         
         setupObservers()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        LocationManager.sharedInstance.startUpdatingLocationIfPermissionsGranted()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        LocationManager.sharedInstance.startUpdatingLocationIfPermissionsGranted()
     }
     
     deinit {

@@ -27,38 +27,24 @@ final class LocationManager: NSObject {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        
+    }
+    
+    func askForPermissions() {
         if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
             locationManager.requestWhenInUseAuthorization()
         }
-        
-        locationManager.distanceFilter = 5000 // 5000m to update location
-        
-        startMonitoringSignificantLocationChanges()
     }
     
-    deinit {
-        stopMonitoringSignificantLocationChanges()
-    }
-    
-    func startUpdatingLocation() {
-        locationManager.startUpdatingLocation()
+    func startUpdatingLocationIfPermissionsGranted() {
+        let autoUpdates = (NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? Bool) ?? false
+        
+        if autoUpdates && CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
-    }
-    
-    func triggerLocationUpdate() {
-        self.locationManager.startUpdatingLocation()
-    }
-    
-    func startMonitoringSignificantLocationChanges() {
-        locationManager.startMonitoringSignificantLocationChanges()
-    }
-    
-    func stopMonitoringSignificantLocationChanges() {
-        locationManager.stopMonitoringSignificantLocationChanges()
     }
     
     func updateUserCoordinates(coordinates: CLLocationCoordinate2D) {
