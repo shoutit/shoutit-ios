@@ -21,11 +21,41 @@ final class ShoutConfirmationViewController: UIViewController {
     @IBOutlet weak var createAnotherButton: CustomUIButton!
     @IBOutlet weak var descriptionlabel: UILabel!
     
+    var ratePresented = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hydrateViews()
         setupRx()
+        
+        RateApp.sharedInstance().registerEvent()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if ratePresented { return }
+        
+        let rate = RateApp.sharedInstance()
+        
+        if RateApp.sharedInstance().shouldHelpfulPrompt() {
+            ratePresented = true
+            
+            let alert = rate.promptHelpfulAlert({ [weak self] (decision) in
+                if decision == true {
+                    let alert = rate.promptRateAlert({ (rate) in })
+                    self?.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    let alert = rate.promptFeedbackAlert({ (feedback) in
+                        if feedback { UserVoice.presentUserVoiceContactUsFormForParentViewController(self) }
+                    })
+                    self?.presentViewController(alert, animated: true, completion: nil)
+                }
+                })
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     private func setupRx() {

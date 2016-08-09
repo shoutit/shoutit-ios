@@ -135,6 +135,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Account.sharedInstance.fetchUserProfile()
+        
+        RateApp.sharedInstance().registerLaunch()
     }
     
     // MARK: - Push notifications

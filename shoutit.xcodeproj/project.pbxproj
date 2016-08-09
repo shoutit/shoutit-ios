@@ -107,6 +107,7 @@
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
+		AE0D16701D59D520008198D8 /* RateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D166F1D59D520008198D8 /* RateApp.swift */; };
 		AE11DAE11D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11DAE01D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift */; };
 		AE11DAE31D4B85B900EE4CCA /* ShoutDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11DAE21D4B85B900EE4CCA /* ShoutDescriptionViewController.swift */; };
 		AE1516761D059688009E8357 /* LightError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B345451CA5584D0066DF15 /* LightError.swift */; };
@@ -1097,6 +1098,7 @@
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		AE0CD3591CFC6647006B05FD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ViewModel/Contact.swift; sourceTree = "<group>"; };
 		AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListTableViewController.swift; path = Controllers/FacebookFriendsListTableViewController.swift; sourceTree = "<group>"; };
+		AE0D166F1D59D520008198D8 /* RateApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RateApp.swift; path = Other/RateApp.swift; sourceTree = "<group>"; };
 		AE11DAE01D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutDescriptionTableViewCell.swift; path = View/CreateShoutDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		AE11DAE21D4B85B900EE4CCA /* ShoutDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutDescriptionViewController.swift; path = Controllers/ShoutDescriptionViewController.swift; sourceTree = "<group>"; };
 		AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaperTrailLumberjack.framework; path = Carthage/Build/iOS/PaperTrailLumberjack.framework; sourceTree = SOURCE_ROOT; };
@@ -3318,6 +3320,14 @@
 			path = UVResources;
 			sourceTree = "<group>";
 		};
+		AE0D166E1D59D4FA008198D8 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				AE0D166F1D59D520008198D8 /* RateApp.swift */,
+			);
+			name = Rate;
+			sourceTree = "<group>";
+		};
 		AE1F29711CE9DDE900D1AA76 /* ConversationInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -4144,6 +4154,7 @@
 		B2190D811C5A3D78007FF33B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AE0D166E1D59D4FA008198D8 /* Rate */,
 				B2FA5CD41D11C5BF007034F8 /* String */,
 				B2C8C2691CF89D1900E80C6A /* UIViewExtensions */,
 				B272304C1CE0DC83003547EA /* Reusables */,
@@ -6330,6 +6341,7 @@
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
 				AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */,
 				AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */,
+				AE0D16701D59D520008198D8 /* RateApp.swift in Sources */,
 				B2587D731CC55D3B00B51B69 /* PagedShoutsViewModel.swift in Sources */,
 				B2E1071D1C97311700F7F4EF /* TagDisplayable.swift in Sources */,
 				B294BC971CEB814900131B31 /* ImageVariation.swift in Sources */,

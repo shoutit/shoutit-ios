@@ -76,11 +76,20 @@ final class RootController: UIViewController, ContainerController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(openItemFromNotification), name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(checkRateApp), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    func checkRateApp() {
+        if RateApp.sharedInstance().shouldEnjoyPrompt() {
+            showRateApp()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,6 +98,39 @@ final class RootController: UIViewController, ContainerController {
         dispatch_once(&token) {
             self.openItem(.Home)
         }
+        
+        checkRateApp()
+    }
+    
+    func showRateApp() {
+        var currentItem : NavigationItem? = self.currentNavigationItem
+        
+        if currentItem == nil {
+            currentItem = .Home
+            self.openItem(.Home)
+        }
+        
+        guard let currentFlowController = self.flowControllers[currentItem!] else {
+            return
+        }
+        
+        let rate = RateApp.sharedInstance()
+        
+        let alert = rate.promptEnjoyAlert({ [weak currentFlowController] (decision) in
+            if decision == true {
+                let alert = rate.promptRateAlert({ (rate) in })
+                
+                
+                currentFlowController?.navigationController.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                let alert = rate.promptFeedbackAlert({ (feedback) in
+                    if feedback { UserVoice.presentUserVoiceContactUsFormForParentViewController(currentFlowController?.navigationController) }
+                })
+                currentFlowController?.navigationController.presentViewController(alert, animated: true, completion: nil)
+            }
+            })
+        
+        currentFlowController.navigationController.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Status bar
