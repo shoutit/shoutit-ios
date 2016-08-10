@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		026372191D3657B80071B179 /* VerifyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026372181D3657B80071B179 /* VerifyPageViewModel.swift */; };
 		0263721C1D36953E0071B179 /* PageVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263721A1D3685AA0071B179 /* PageVerification.swift */; };
-		0285D0C72D806F0A18285E6B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376F28A446969569A86D217 /* CoreTelephony.framework */; };
 		14E48B110F6CBF2841C3E264 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89F2B1851D9065D1C86D52B /* CoreVideo.framework */; };
 		240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2405803F1C7368CB009ED106 /* APIShoutsService.swift */; };
 		240DE9331C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DE9321C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift */; };
@@ -91,7 +90,6 @@
 		606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3041BF8AADD0064C53E /* UIImage+Extention.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
 		6D66575F91DE9ADE619CA06B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0FB754506806CFD2A18E2F /* CoreText.framework */; };
-		A851D848BC6C12C3B47F34F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8317A321EB92E1F40C2A541 /* SystemConfiguration.framework */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
 		AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* termsofservice.html */; };
@@ -106,6 +104,7 @@
 		AC7028051C1AA66200262622 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC7027FA1C1AA66200262622 /* uv_idea@2x.png */; };
 		AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7030C11C15A036008F4C00 /* UIView+Gradient.m */; };
 		AC74A7741BFC96F00029CE7D /* MKMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */; };
+		AE0536B81D5B333D0049B479 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0536B71D5B333D0049B479 /* NewRelicAgent.framework */; };
 		AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */; };
 		AE0D16701D59D520008198D8 /* RateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D166F1D59D520008198D8 /* RateApp.swift */; };
 		AE11DAE11D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11DAE01D4B760000EE4CCA /* CreateShoutDescriptionTableViewCell.swift */; };
@@ -224,7 +223,6 @@
 		AE3DC4081D212ADB00C460CC /* PageCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DC4071D212ADB00C460CC /* PageCategoryCell.swift */; };
 		AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */; };
 		AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */; };
-		AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F91CAAB0C7009E066B /* CoreTelephony.framework */; };
 		AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1FB1CAAB0CD009E066B /* CoreMedia.framework */; };
 		AE4DB3431C635026001EB84B /* MenuAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3421C635026001EB84B /* MenuAnimationController.swift */; };
 		AE4DB3471C636508001EB84B /* MenuDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DB3461C636508001EB84B /* MenuDismissAnimationController.swift */; };
@@ -539,7 +537,6 @@
 		B2956F031CDCEE020041C6CD /* PHAsset+MediaAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2956F021CDCEE020041C6CD /* PHAsset+MediaAttachment.swift */; };
 		B2985F841C728F6E00EEA9A2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F831C728F6E00EEA9A2 /* AddressBook.framework */; };
 		B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F851C728F7700EEA9A2 /* StoreKit.framework */; };
-		B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F871C728F8100EEA9A2 /* SystemConfiguration.framework */; };
 		B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F8B1C7294F300EEA9A2 /* Accelerate.framework */; };
 		B2985F8E1C7294F900EEA9A2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F8D1C7294F900EEA9A2 /* AVFoundation.framework */; };
 		B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2985F8F1C72950F00EEA9A2 /* CoreData.framework */; };
@@ -1096,6 +1093,7 @@
 		AC7030C01C15A036008F4C00 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Gradient.h"; path = "Util/extensions/UIView+Gradient.h"; sourceTree = "<group>"; };
 		AC7030C11C15A036008F4C00 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Gradient.m"; path = "Util/extensions/UIView+Gradient.m"; sourceTree = "<group>"; };
 		AC74A7731BFC96F00029CE7D /* MKMapView+ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MKMapView+ZoomLevel.swift"; path = "Util/extensions/MKMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
+		AE0536B71D5B333D0049B479 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewRelicAgent.framework; path = InRepoFrameworks/newrelic/NewRelicAgent.framework; sourceTree = SOURCE_ROOT; };
 		AE0CD3591CFC6647006B05FD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ViewModel/Contact.swift; sourceTree = "<group>"; };
 		AE0CD35B1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookFriendsListTableViewController.swift; path = Controllers/FacebookFriendsListTableViewController.swift; sourceTree = "<group>"; };
 		AE0D166F1D59D520008198D8 /* RateApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RateApp.swift; path = Other/RateApp.swift; sourceTree = "<group>"; };
@@ -2554,6 +2552,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2985FAC1C7295B500EEA9A2 /* libz.tbd in Frameworks */,
+				B2985F9F1C72958E00EEA9A2 /* libc++.tbd in Frameworks */,
 				BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
 				BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */,
@@ -2578,7 +2578,6 @@
 				B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */,
 				B21D8A971D0B3E5100EE1549 /* Mixpanel.framework in Frameworks */,
 				AEFB8E581CF86667003D82A0 /* Social.framework in Frameworks */,
-				B2985F881C728F8100EEA9A2 /* SystemConfiguration.framework in Frameworks */,
 				B2985F981C72954A00EEA9A2 /* GLKit.framework in Frameworks */,
 				B21D8A931D0B3DF400EE1549 /* DZNEmptyDataSet.framework in Frameworks */,
 				B212D12C1D0B0F1D00E9E19D /* Bolts.framework in Frameworks */,
@@ -2586,7 +2585,6 @@
 				B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */,
 				B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */,
 				B212D1441D0B33BC00E9E19D /* Validator.framework in Frameworks */,
-				AE4CB1FA1CAAB0C7009E066B /* CoreTelephony.framework in Frameworks */,
 				AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */,
 				AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */,
 				B2463C5E1D1025EC0006BD6E /* TwilioConversationsClient.framework in Frameworks */,
@@ -2597,14 +2595,13 @@
 				B212D1271D0B023600E9E19D /* ACPDownload.framework in Frameworks */,
 				B2985FA91C7295B500EEA9A2 /* libz.1.1.3.tbd in Frameworks */,
 				B2985FAA1C7295B500EEA9A2 /* libz.1.2.5.tbd in Frameworks */,
+				AE0536B81D5B333D0049B479 /* NewRelicAgent.framework in Frameworks */,
 				B2985FAB1C7295B500EEA9A2 /* libz.1.tbd in Frameworks */,
-				B2985FAC1C7295B500EEA9A2 /* libz.tbd in Frameworks */,
 				B2985FA31C7295A900EEA9A2 /* libicucore.A.tbd in Frameworks */,
 				B2985FA41C7295A900EEA9A2 /* libicucore.tbd in Frameworks */,
 				B2985F9E1C72958E00EEA9A2 /* libc++.1.tbd in Frameworks */,
 				B21D8A9D1D0B40A000EE1549 /* SWXMLHash.framework in Frameworks */,
 				B2F719251D0ECFC9002C1D74 /* SlackTextViewController.framework in Frameworks */,
-				B2985F9F1C72958E00EEA9A2 /* libc++.tbd in Frameworks */,
 				B2985FA01C72958E00EEA9A2 /* libc++abi.tbd in Frameworks */,
 				B2985F9A1C72955100EEA9A2 /* ImageIO.framework in Frameworks */,
 				B21D8A8C1D0B3D6400EE1549 /* Alamofire.framework in Frameworks */,
@@ -2630,8 +2627,6 @@
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
 				F3D553D4DE1D62D562D1788A /* AssetsLibrary.framework in Frameworks */,
 				6D66575F91DE9ADE619CA06B /* CoreText.framework in Frameworks */,
-				0285D0C72D806F0A18285E6B /* CoreTelephony.framework in Frameworks */,
-				A851D848BC6C12C3B47F34F0 /* SystemConfiguration.framework in Frameworks */,
 				E677ABF59E0B8081FF38E269 /* QuartzCore.framework in Frameworks */,
 				E910099B479E740834964E32 /* AVFoundation.framework in Frameworks */,
 				D9F64A74FDC3884B1ACF0627 /* CoreMedia.framework in Frameworks */,
@@ -5545,6 +5540,7 @@
 		B2F719021D0ECCA7002C1D74 /* EmbeddedFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE0536B71D5B333D0049B479 /* NewRelicAgent.framework */,
 				B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */,
 				B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */,
 				B2F7193B1D0EECEE002C1D74 /* Fabric.framework */,
@@ -5695,6 +5691,7 @@
 				6027CF2F1BE74EAE00124C28 /* Resources */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
 				AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */,
+				AE0536B91D5B34FA0049B479 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -6002,6 +5999,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AE0536B91D5B34FA0049B479 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SCRIPT=`/usr/bin/find \"${SRCROOT}\" -name newrelic_postbuild.sh | head -n 1`\n/bin/sh \"${SCRIPT}\" \"AAcbc05e7a42d552ab0640b06042072214972a32d2\"";
+		};
 		AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7906,6 +7916,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -8048,6 +8059,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10144,6 +10156,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10327,6 +10340,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10517,6 +10531,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10702,6 +10717,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -10888,6 +10904,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -11067,6 +11084,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -11246,6 +11264,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,
@@ -11425,6 +11444,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -11605,6 +11625,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -11786,6 +11807,7 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/GoogleSignIn",
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
+					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_CSDK_COMPONENTS,

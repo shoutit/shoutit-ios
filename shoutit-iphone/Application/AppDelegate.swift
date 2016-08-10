@@ -218,6 +218,8 @@ private extension AppDelegate {
         
         DDLog.addLogger(paperTrailLogger)
         
+        NewRelicAgent.startWithApplicationToken("AAcbc05e7a42d552ab0640b06042072214972a32d2")
+        
     }
     
     func applyAppearance() {

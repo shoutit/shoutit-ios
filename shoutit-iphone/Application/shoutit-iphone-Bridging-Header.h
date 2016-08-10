@@ -18,3 +18,4 @@
 #import "SHAppearanceBridge.h"
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
 #import "UISearchBarAppearance.h"
+#import <NewRelicAgent/NewRelic.h>
