@@ -11,6 +11,8 @@ import CoreLocation
 import RxSwift
 import ShoutitKit
 
+let LocationManagerDidChangeAuthorizationStatus = "LocationManagerDidChangeAuthorizationStatus"
+
 final class LocationManager: NSObject {
     
     static let sharedInstance = LocationManager()
@@ -85,5 +87,9 @@ extension LocationManager: CLLocationManagerDelegate {
         if CLLocationCoordinate2DIsValid(newLocation.coordinate) {
             currentLocation = newLocation
         }
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        NSNotificationCenter.defaultCenter().postNotificationName(LocationManagerDidChangeAuthorizationStatus, object: manager)
     }
 }

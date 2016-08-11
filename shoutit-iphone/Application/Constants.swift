@@ -31,6 +31,17 @@ public struct Constants {
         #endif
     }
     
+    public struct NewRelic {
+        #if STAGING
+        public static let appId = "AA9e7a6abfb318f478c0087b01a356641a16e2fd71"
+        #elseif LOCAL
+        public static let appId = "AA9e7a6abfb318f478c0087b01a356641a16e2fd71"
+        #else
+        public static let appId = "AAcbc05e7a42d552ab0640b06042072214972a32d2"
+        #endif
+        
+    }
+    
     public struct URL {
         public static let ShoutItWebsite = "http://www.shoutit.com"
     }

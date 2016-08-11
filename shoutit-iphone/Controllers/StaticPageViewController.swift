@@ -29,4 +29,15 @@ class StaticPageViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         self.showErrorMessage(NSLocalizedString("Could not load content. Please try again late", comment: ""))
     }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        guard let url = request.URL, path = url.absoluteString as? NSString else  { return true }
+        
+        if path.rangeOfString("shoutit.com").location == NSNotFound {
+            UIApplication.sharedApplication().openURL(url)
+            return false
+        }
+        
+        return true
+    }
 }

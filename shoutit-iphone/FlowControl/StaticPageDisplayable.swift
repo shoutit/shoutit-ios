@@ -23,5 +23,6 @@ extension FlowController : StaticPageDisplayable {
         
         let nav = ModalNavigationController(rootViewController: controller)
         navigationController.presentViewController(nav, animated: true, completion: nil)
+        
     }
 }

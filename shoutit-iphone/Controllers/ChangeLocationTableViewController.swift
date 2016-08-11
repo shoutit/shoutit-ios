@@ -36,12 +36,6 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             loadInitialState()
             NSUserDefaults.standardUserDefaults().setObject(autoUpdates, forKey: Constants.Defaults.locationAutoUpdates)
             NSUserDefaults.standardUserDefaults().synchronize()
-            
-            if autoUpdates {
-                LocationManager.sharedInstance.askForPermissions()
-            } else {
-                LocationManager.sharedInstance.stopUpdatingLocation()
-            }
         }
     }
     
@@ -69,6 +63,8 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         }
         
         setupObservers()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(authorizationStatusDidChange), name: LocationManagerDidChangeAuthorizationStatus, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -80,7 +76,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        LocationManager.sharedInstance.startUpdatingLocationIfPermissionsGranted()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: LocationManagerDidChangeAuthorizationStatus, object: nil)
     }
     
     deinit {
@@ -100,13 +96,45 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             }))
         } else {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Turn On", comment: "Turn on auto location update"), style: .Default, handler: { (action) in
-                self.autoUpdates = true
+                
+                if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+                    self.autoUpdates = true
+                } else if CLLocationManager.authorizationStatus() == .Denied {
+                    // go to settings
+                    
+                    let alertController = UIAlertController(title: NSLocalizedString("Shoutit is not authorized to use your location. Please go to Settings and change location permissions.", comment: ""), message: nil, preferredStyle: .Alert)
+                    
+                    let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Go to settings button"), style: .Default) { (alertAction) in
+                        
+                        if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
+                            UIApplication.sharedApplication().openURL(appSettings)
+                        }
+                    }
+                    alertController.addAction(settingsAction)
+                    
+                    let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil)
+                    alertController.addAction(cancelAction)
+                    
+                    self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
+                    
+                } else {
+                    LocationManager.sharedInstance.askForPermissions()
+                }
             }))
         }
         
         alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in }))
         
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func authorizationStatusDidChange(notification: NSNotification) {
+        if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
+            self.autoUpdates = false
+        } else {
+            self.autoUpdates = true
+            LocationManager.sharedInstance.startUpdatingLocationIfPermissionsGranted()
+        }
     }
     
     private func setAutoLocationUpdates(autoUpdates: Bool) {
