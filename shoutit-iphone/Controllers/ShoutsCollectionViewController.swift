@@ -91,7 +91,9 @@ class ShoutsCollectionViewController: UICollectionViewController {
                 case .Error(_):
                     self?.refreshControl.endRefreshing()
                 case .LoadingMore(_,_,_): break;
-                case .NoContent: self?.refreshControl.endRefreshing()
+                case .NoContent:
+                    self?.refreshControl.endRefreshing()
+                    self?.collectionView?.reloadData()
                 default: break;
                 }
             }
