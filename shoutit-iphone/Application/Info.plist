@@ -101,7 +101,7 @@
 	<dict/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>shoutit</string>
+		<string>$(SHOUTIT_URL_SCHEME)</string>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
