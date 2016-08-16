@@ -125,7 +125,7 @@ private extension HomeViewController {
     
     private func bindToCollectionOffset() {
         
-        homeShoutsController!.scrollOffset
+        homeShoutsController?.scrollOffset
             .asObservable()
             .map{ [weak self] (offset) -> CGFloat in
                 guard let `self` = self else { return 0 }
