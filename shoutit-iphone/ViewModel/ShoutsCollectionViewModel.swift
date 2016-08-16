@@ -70,6 +70,13 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         
     }
     
+    func noContentMessage() -> String {
+        switch context {
+        case .HomeShouts: return NSLocalizedString("Nothing in your feed tap here to add some interests", comment: "Home No Items Placeholder")
+        default: return NSLocalizedString("No results were found", comment: "Empty search results placeholder")
+        }
+    }
+    
     func headerBackgroundColor() -> UIColor {
         switch context {
         case .HomeShouts:

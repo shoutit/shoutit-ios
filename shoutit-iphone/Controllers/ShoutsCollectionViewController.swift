@@ -173,7 +173,7 @@ extension ShoutsCollectionViewController {
         case .Error(let error):
             return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
         case .NoContent:
-            return placeholderCellWithMessage(message: NSLocalizedString("No results were found", comment: "Empty search results placeholder"), activityIndicator: false)
+            return placeholderCellWithMessage(message: self.viewModel.noContentMessage(), activityIndicator: false)
         case .Loading:
             return placeholderCellWithMessage(message: nil, activityIndicator: true)
         default:

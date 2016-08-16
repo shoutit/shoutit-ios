@@ -312,17 +312,21 @@ final class RootController: UIViewController, ContainerController {
             
             currentFlowController.showCreditTransactions()
         case .StaticPage:
-            guard let path = deepLink?.queryParameters["page"] as? String else {
-                return
-            }
             
-            guard let url = NSURL(string: path) else {
-                return
-            }
             
-            let title = deepLink?.queryParameters["title"] as? String
+            guard let url = deepLink?.URL else { return }
             
-            currentFlowController.showStaticPage(url, title: title)
+            let urlComponents = NSURLComponents(URL: url, resolvingAgainstBaseURL: false)
+            
+            let queryItems = urlComponents?.queryItems
+            
+            guard let path = queryItems?.filter({$0.name == "page"}).first, urlPath = path.value, fullURL = NSURL(string: urlPath) else { return }
+            
+            let staticComponents = NSURLComponents(URL: fullURL, resolvingAgainstBaseURL: false)
+                
+            guard let titleComponent = staticComponents?.queryItems?.filter({$0.name == "title"}).first, destinationURL = staticComponents?.URL, title = titleComponent.value else { return }
+            
+            currentFlowController.showStaticPage(destinationURL, title: title)
         case .Search:
             currentFlowController.showSearchInContext(.General)
         default:

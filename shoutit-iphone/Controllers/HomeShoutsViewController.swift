@@ -40,4 +40,17 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
             viewModel.fetchNextPage()
         }
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if case .NoContent = self.viewModel.pager.state.value {
+            showInterests()
+            return
+        }
+        
+        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+    }
+    
+    func showInterests() {
+        print("show interests")
+    }
 }
