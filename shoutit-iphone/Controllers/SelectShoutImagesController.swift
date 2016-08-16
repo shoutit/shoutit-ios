@@ -125,6 +125,7 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
             self.attachments[idx] = attachment
             self.collectionView?.reloadData()
             showPhotoEditingForAttechmentIfNeeded(attachment, completion: { [weak self] (editedAttachment) in
+                if editedAttachment.originalData == nil { return }
                 let task = self?.startUploadingAttachment(editedAttachment)
                 self?.attachments[idx] = task?.attachment
                 self?.collectionView?.reloadData()
@@ -274,6 +275,7 @@ private extension SelectShoutImagesController {
                 guard attachment.type == .Image else { return }
                 self?.showPhotoEditingForAttechmentIfNeeded(attachment) { (newAttachment) in
                     self?.mediaUploader.removeTaskForAttachment(attachment)
+                    if attachment.originalData == nil { return }
                     let task = self?.startUploadingAttachment(newAttachment)
                     self?.attachments[idx] = task?.attachment
                     self?.collectionView?.reloadData()
