@@ -37,7 +37,8 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     var viewModel: PostSignupSuggestionViewModel!
     
     // navigation
-    weak var flowDelegate: LoginFlowController?
+    weak var loginDelegate: LoginFlowController?
+    weak var flowSimpleDelegate : FlowController?
     
     // RX
     private let disposeBag = DisposeBag()
@@ -65,7 +66,12 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
                 doneButton
                     .rx_tap
                     .subscribeNext {[unowned self] in
-                        self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+                        if let _ = self.flowSimpleDelegate {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            return
+                        }
+                        
+                        self.loginDelegate?.didFinishLoginProcessWithSuccess(true)
                     }
                     .addDisposableTo(doneButtonDisposeBag)
             }
@@ -88,6 +94,10 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
         doneButtonMode = .Next
         
         viewModel.fetchSections()
+        
+        if self.flowSimpleDelegate != nil {
+            self.skipButton.hidden = true
+        }
     }
     
     // MARK: - Setup
@@ -97,7 +107,7 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
         skipButton
             .rx_tap
             .subscribeNext {[unowned self] in
-                self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+                self.loginDelegate?.didFinishLoginProcessWithSuccess(true)
             }
             .addDisposableTo(disposeBag)
     }

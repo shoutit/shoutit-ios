@@ -15,6 +15,8 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
  
     let scrollOffset = Variable(CGPointZero)
     
+    var reloadOnAppear = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -33,6 +35,15 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
         }.addDisposableTo(disposeBag)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if reloadOnAppear {
+            reloadOnAppear = false
+            self.viewModel.reloadContent()
+        }
+    }
+    
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         scrollOffset.value = scrollView.contentOffset
         
@@ -43,14 +54,11 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if case .NoContent = self.viewModel.pager.state.value {
-            showInterests()
+            reloadOnAppear = true
+            self.flowDelegate?.presentInterests()
             return
         }
         
         super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
-    }
-    
-    func showInterests() {
-        print("show interests")
     }
 }

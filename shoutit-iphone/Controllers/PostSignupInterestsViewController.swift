@@ -35,7 +35,8 @@ final class PostSignupInterestsViewController: UIViewController {
     var viewModel: PostSignupInterestsViewModel!
     
     // navigation
-    weak var flowDelegate: LoginFlowController?
+    weak var loginDelegate: LoginFlowController?
+    weak var flowSimpleDelegate : FlowController?
     
     // Rx
     private let disposeBag = DisposeBag()
@@ -48,6 +49,10 @@ final class PostSignupInterestsViewController: UIViewController {
         setupRX()
         setupAppearance()
         viewModel.fetchCategories()
+        
+        if self.flowSimpleDelegate != nil {
+            self.skipButton.hidden = true
+        }
     }
     
     // MARK: - Setup
@@ -102,7 +107,7 @@ final class PostSignupInterestsViewController: UIViewController {
         skipButton
             .rx_tap
             .subscribeNext {[unowned self] in
-                self.flowDelegate?.didFinishLoginProcessWithSuccess(true)
+                self.loginDelegate?.didFinishLoginProcessWithSuccess(true)
             }
             .addDisposableTo(disposeBag)
         
@@ -119,7 +124,15 @@ final class PostSignupInterestsViewController: UIViewController {
                 MBProgressHUD.hideHUDForView(self?.view, animated: true)
                 switch event {
                 case .Next:
-                    self?.flowDelegate?.showPostSignupSuggestions()
+                    if let simpleFlow = self?.flowSimpleDelegate{
+                        
+                        self?.dismissViewControllerAnimated(true, completion: {
+                            simpleFlow.presentSuggestions()
+                        })
+                        
+                        return
+                    }
+                    self?.loginDelegate?.showPostSignupSuggestions()
                 case .Error(let error):
                     self?.showError(error)
                 default:

@@ -18,14 +18,14 @@ extension LoginFlowController : PostSignupDisplayable {
     func showPostSignupInterests() {
         let postSignupController = Wireframe.postSignupInterestsViewController()
         postSignupController.viewModel = PostSignupInterestsViewModel()
-        postSignupController.flowDelegate = self
+        postSignupController.loginDelegate = self
         navigationController.showViewController(postSignupController, sender: nil)
     }
     
     func showPostSignupSuggestions() {
         let postSignupController = Wireframe.postSignupSuggestionsViewController()
         postSignupController.viewModel = PostSignupSuggestionViewModel()
-        postSignupController.flowDelegate = self
+        postSignupController.loginDelegate = self
         navigationController.showViewController(postSignupController, sender: nil)
     }
 }
@@ -34,6 +34,23 @@ extension FlowController {
     func showSuggestions() {
         let postSignupController = Wireframe.postSignupSuggestionsViewController()
         postSignupController.viewModel = PostSignupSuggestionViewModel()
+        postSignupController.flowSimpleDelegate = self
         navigationController.showViewController(postSignupController, sender: nil)
+    }
+    
+    func presentInterests() {
+        let postSignupController = Wireframe.postSignupInterestsViewController()
+        postSignupController.viewModel = PostSignupInterestsViewModel()
+        postSignupController.flowSimpleDelegate = self
+        
+        navigationController.presentViewController(postSignupController, animated: true, completion: nil)
+    }
+    
+    func presentSuggestions() {
+        let postSignupController = Wireframe.postSignupSuggestionsViewController()
+        postSignupController.viewModel = PostSignupSuggestionViewModel()
+        postSignupController.flowSimpleDelegate = self
+
+        navigationController.presentViewController(postSignupController, animated: true, completion: nil)
     }
 }
