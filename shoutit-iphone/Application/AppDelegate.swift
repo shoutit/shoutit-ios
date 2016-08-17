@@ -40,12 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PlacesGeocoder.setup()
         
-        // Configure Third Parties With Small Delay
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(Constants.Aviary.clientID, clientSecret: Constants.Aviary.clientSecret, enableSignUp: true)
-        }
-        
         configureAPS(application)
         
         configureURLCache()

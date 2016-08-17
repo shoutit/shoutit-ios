@@ -24,7 +24,6 @@ final class SelectShoutImagesController: UICollectionViewController {
     
     private var editingAttachment : MediaAttachment?
     private var editingCompletion : ((attachment: MediaAttachment) -> Void)?
-    private var editingController : AdobeUXImageEditorViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +32,6 @@ final class SelectShoutImagesController: UICollectionViewController {
         mediaUploader = MediaUploader(bucket: .ShoutImage)
         
         attachments = [:]
-        
-        AdobeImageEditorOpenGLManager.beginOpenGLLoad()
     }
     
     override func viewDidLoad() {
@@ -137,61 +134,10 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
     }
 }
 
-extension SelectShoutImagesController : AdobeUXImageEditorViewControllerDelegate {
-    
-    func photoEditor(editor: AdobeUXImageEditorViewController, finishedWithImage image: UIImage?) {
-        
-        editingController?.dismissViewControllerAnimated(true, completion: nil)
-        
-        guard let editingAttachment = editingAttachment, editingCompletion = editingCompletion else {
-            self.editingController = nil
-            return
-        }
-        
-        guard let image = image, imageData = image.dataRepresentation() else {
-            editingCompletion(attachment: editingAttachment)
-             self.editingController = nil
-            return
-        }
-        
-        let newAttachment = editingAttachment.mediaAttachmentWithExchangedImage(image, data: imageData)
-        editingCompletion(attachment: newAttachment)
-        
-        self.editingAttachment = nil
-        self.editingCompletion = nil
-        self.editingController = nil
-    }
-    
-    func photoEditorCanceled(editor: AdobeUXImageEditorViewController) {
-        self.editingAttachment = nil
-        self.editingCompletion = nil
-        editingController?.dismissViewControllerAnimated(true, completion: nil)
-        self.editingController = nil
-    }
-}
-
 private extension SelectShoutImagesController {
     
     func showPhotoEditingForAttechmentIfNeeded(attachment: MediaAttachment, completion: (attachment : MediaAttachment) -> Void ) {
-        
-        guard let img = attachment.image where attachment.type == .Image else {
-            completion(attachment: attachment)
-            return
-        }
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {[weak self] in
-            guard self?.editingController?.presentingViewController == nil && self?.presentedViewController == nil else {
-                completion(attachment: attachment)
-                return
-            }
-            
-            self?.editingAttachment = attachment
-            self?.editingCompletion = completion
-            self?.editingController = AdobeUXImageEditorViewController(image: img)
-            self?.editingController?.delegate = self
-            self?.mediaPicker.presentingSubject.onNext(self?.editingController)
-        }
+        completion(attachment: attachment)
     }
 }
 
@@ -255,33 +201,19 @@ private extension SelectShoutImagesController {
     }
     
     func showEditAlert() {
-        guard let idx = self.selectedIdx, attachment = self.attachments[idx] else {
+        guard let idx = self.selectedIdx, _ = self.attachments[idx] else {
             return
         }
         
         let title = NSLocalizedString("Edit Shout Media", comment: "Edit media alert title")
         let cancelButtonTitle = LocalizedString.cancel
-        let changeButtonTitle = LocalizedString.edit
+
         let deleteButtonTitle = LocalizedString.delete
         
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
         alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: {[weak self] (alertAction) in
             self?.selectedIdx = nil
         }))
-        
-
-        if attachment.type == .Image && attachment.image != nil {
-            alert.addAction(UIAlertAction(title: changeButtonTitle, style: .Default) {[weak self] (alertAction) in
-                guard attachment.type == .Image else { return }
-                self?.showPhotoEditingForAttechmentIfNeeded(attachment) { (newAttachment) in
-                    self?.mediaUploader.removeTaskForAttachment(attachment)
-                    if attachment.originalData == nil { return }
-                    let task = self?.startUploadingAttachment(newAttachment)
-                    self?.attachments[idx] = task?.attachment
-                    self?.collectionView?.reloadData()
-                }
-            })
-        }
         
         alert.addAction(UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
             if let selectedIdx = self?.selectedIdx {

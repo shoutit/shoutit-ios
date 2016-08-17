@@ -10,8 +10,6 @@
 #import "TWCLocalMedia+Additions.h"
 #import "PhotoBrowser.h"
 #import "DeepLinkKit.h"
-#import <AdobeCreativeSDKImage/AdobeCreativeSDKImage.h>
-#import <AdobeCreativeSDKCore/AdobeCreativeSDKCore.h>
 #import "ResponsiveLabel.h"
 #import "PTPusherEvent.h"
 #import "PTPusherChannel.h"

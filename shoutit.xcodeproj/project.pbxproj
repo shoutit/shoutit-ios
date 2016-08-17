@@ -287,7 +287,6 @@
 		AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599751C609DA100015AA3 /* MenuTableViewController.swift */; };
 		AEA5997F1C60C59300015AA3 /* ToggleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA5997E1C60C59300015AA3 /* ToggleMenu.swift */; };
 		AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA599831C60DDE000015AA3 /* MenuCell.swift */; };
-		AEA844221D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AEA844211D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle */; };
 		AEADF3301CA48B590051DABA /* IncomingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF32F1CA48B590051DABA /* IncomingPictureCell.xib */; };
 		AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3311CA48B740051DABA /* OutgoingPictureCell.xib */; };
 		AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3351CA544880051DABA /* ConversationTitleViewMessage.xib */; };
@@ -351,7 +350,6 @@
 		B209C5331CF341E100727095 /* InterestsTagsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5321CF341E100727095 /* InterestsTagsListViewModel.swift */; };
 		B209C5351CF3437E00727095 /* Listenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5341CF3437E00727095 /* Listenable.swift */; };
 		B209C5371CF34F3800727095 /* TagsListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B209C5361CF34F3800727095 /* TagsListCellViewModel.swift */; };
-		B20BFFC51D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20BFFC41D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle */; };
 		B20EDBC71CAAB98F00AD9F2A /* UIViewController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBC61CAAB98F00AD9F2A /* UIViewController+Error.swift */; };
 		B20EDBC91CAABCE500AD9F2A /* AlertBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */; };
 		B20EDBCC1CAABD2300AD9F2A /* AlertBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDBCB1CAABD2300AD9F2A /* AlertBarView.swift */; };
@@ -457,8 +455,6 @@
 		B2463C5E1D1025EC0006BD6E /* TwilioConversationsClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */; };
 		B2463C5F1D1025EC0006BD6E /* TwilioCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F719311D0EE795002C1D74 /* TwilioCommon.framework */; };
 		B2463C601D1026000006BD6E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */; };
-		B2463C611D1026080006BD6E /* AdobeCreativeSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */; };
-		B2463C621D1026080006BD6E /* AdobeCreativeSDKImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */; };
 		B249D5651CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5641CA30815004F57A6 /* ShoutsCollectionViewLayoutAttributes.swift */; };
 		B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E280A1C93410100EE85A0 /* ResetPasswordViewController.swift */; };
 		B24E29FA1CBD237500328503 /* CreateShoutTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24E29F91CBD237500328503 /* CreateShoutTextViewCell.swift */; };
@@ -2320,8 +2316,6 @@
 		B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlackTextViewController.framework; path = Carthage/Build/iOS/SlackTextViewController.framework; sourceTree = SOURCE_ROOT; };
 		B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = SOURCE_ROOT; };
 		B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = External/GoogleMaps/Frameworks/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
-		B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKCore.framework; path = External/AviarySDK/SDK/AdobeCreativeSDKCore.framework; sourceTree = SOURCE_ROOT; };
-		B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdobeCreativeSDKImage.framework; path = External/AviarySDK/SDK/AdobeCreativeSDKImage.framework; sourceTree = SOURCE_ROOT; };
 		B2F719311D0EE795002C1D74 /* TwilioCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioCommon.framework; path = External/TwilioCommon/TwilioCommon.framework; sourceTree = SOURCE_ROOT; };
 		B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioConversationsClient.framework; path = External/TwilioConversationsClient/TwilioConversationsClient.framework; sourceTree = SOURCE_ROOT; };
 		B2F719351D0EEC99002C1D74 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = InRepoFrameworks/FBSDKCoreKit.framework; sourceTree = SOURCE_ROOT; };
@@ -2557,8 +2551,6 @@
 				BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */,
 				B2985F861C728F7700EEA9A2 /* StoreKit.framework in Frameworks */,
 				BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */,
-				B2463C611D1026080006BD6E /* AdobeCreativeSDKCore.framework in Frameworks */,
-				B2463C621D1026080006BD6E /* AdobeCreativeSDKImage.framework in Frameworks */,
 				B2463C601D1026000006BD6E /* GoogleMaps.framework in Frameworks */,
 				AE32C54A1D055BFD009A49C5 /* ShoutitKit.framework in Frameworks */,
 				B21D8A921D0B3DE700EE1549 /* AWSS3.framework in Frameworks */,
@@ -5593,8 +5585,6 @@
 			children = (
 				B2F719331D0EE79E002C1D74 /* TwilioConversationsClient.framework */,
 				B2F719311D0EE795002C1D74 /* TwilioCommon.framework */,
-				B2F7192D1D0EE77E002C1D74 /* AdobeCreativeSDKCore.framework */,
-				B2F7192E1D0EE77E002C1D74 /* AdobeCreativeSDKImage.framework */,
 				B2F7192B1D0EE769002C1D74 /* GoogleMaps.framework */,
 			);
 			name = Submodules;
@@ -5831,7 +5821,6 @@
 				B2E715681C6E37B8007F95CF /* ShoutsCollectionViewCell.xib in Resources */,
 				B2F7196E1D0EEEF5002C1D74 /* ImageSelectedSmallOn.png in Resources */,
 				B2F5246B1C9AF73D00EA622F /* ProfileTableViewCell.xib in Resources */,
-				AEA844221D070CB600C723D9 /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				AEDE159E1C6E0DB9002D2AF7 /* HomeShouts.storyboard in Resources */,
 				B2E43CAB1D104598006C6AD2 /* SectionHeaderWithDetailsButton.xib in Resources */,
 				248320F31C99715D00C12D90 /* OutgoingCell.xib in Resources */,
@@ -5842,7 +5831,6 @@
 				AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */,
 				B2D442091CB81BB0009782AF /* ProfileCollectionInfoSupplementaryView.xib in Resources */,
 				B2D0295E1D1C305200A29D8B /* MyPageTableViewCell.xib in Resources */,
-				B20BFFC51D102FDE00D90729 /* AdobeCreativeSDKImageResources.bundle in Resources */,
 				B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
 				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,

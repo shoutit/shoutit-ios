@@ -6,10 +6,6 @@
 	path = translations
 	url = https://shoutit-bot:shoutitbot1@github.com/shoutit/shoutit-ios-xliff.git
 	ignore = dirty
-[submodule "External/AviarySDK"]
-	path = External/AviarySDK
-	url = git@git.appunite.com:appunite/aviary.git
-	ignore = dirty
 [submodule "External/TwilioCommon"]
 	path = External/TwilioCommon
 	url = git@git.appunite.com:shoutit/TwilioCommon.git
