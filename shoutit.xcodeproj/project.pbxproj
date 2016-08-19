@@ -471,6 +471,9 @@
 		B26081A01CB6CBDF0025DA26 /* ShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B260819F1CB6CBDF0025DA26 /* ShoutCellViewModel.swift */; };
 		B26081A31CB6D6E60025DA26 /* ShoutsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26081A21CB6D6E60025DA26 /* ShoutsSectionHeader.swift */; };
 		B26081A51CB6D7070025DA26 /* ShoutsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26081A41CB6D7070025DA26 /* ShoutsSectionHeader.xib */; };
+		B26AB91B1D675F98001A8799 /* GCDAsyncSocket.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26AB91D1D675F98001A8799 /* GCDAsyncSocket.strings */; };
+		B26AB9201D675F9A001A8799 /* GCDAsyncUdpSocket.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26AB9221D675F9A001A8799 /* GCDAsyncUdpSocket.strings */; };
+		B26AB9241D675F9B001A8799 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26AB9231D675F9B001A8799 /* InfoPlist.strings */; };
 		B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE2E1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift */; };
 		B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */; };
 		B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */; };
@@ -1969,6 +1972,9 @@
 		B260819F1CB6CBDF0025DA26 /* ShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutCellViewModel.swift; path = ViewModel/ShoutCellViewModel.swift; sourceTree = "<group>"; };
 		B26081A21CB6D6E60025DA26 /* ShoutsSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsSectionHeader.swift; path = View/ShoutsSectionHeader.swift; sourceTree = "<group>"; };
 		B26081A41CB6D7070025DA26 /* ShoutsSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoutsSectionHeader.xib; path = Storyboards/ShoutsSectionHeader.xib; sourceTree = "<group>"; };
+		B26AB91C1D675F98001A8799 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/GCDAsyncSocket.strings; sourceTree = "<group>"; };
+		B26AB9211D675F9A001A8799 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/GCDAsyncUdpSocket.strings; sourceTree = "<group>"; };
+		B26AB9231D675F9B001A8799 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		B26CEE2E1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionListenableCellViewModel.swift; path = ViewModel/ProfileCollectionListenableCellViewModel.swift; sourceTree = "<group>"; };
 		B26CEE301C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCollectionShoutCellViewModel.swift; path = ViewModel/ProfileCollectionShoutCellViewModel.swift; sourceTree = "<group>"; };
 		B26CEE331C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileCollectionCoverSupplementaryView.xib; path = Storyboards/ProfileCollectionCoverSupplementaryView.xib; sourceTree = "<group>"; };
@@ -3173,6 +3179,8 @@
 		6027CF661BE74F7800124C28 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B26AB9221D675F9A001A8799 /* GCDAsyncUdpSocket.strings */,
+				B26AB91D1D675F98001A8799 /* GCDAsyncSocket.strings */,
 				B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */,
 				B22CCD6B1CD3BDAB0019AB27 /* Localizable.strings */,
 				B22CCD661CD3BDA90019AB27 /* InfoPlist.strings */,
@@ -3355,6 +3363,7 @@
 		AE32C5441D055BFD009A49C5 /* ShoutitKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				B26AB9231D675F9B001A8799 /* InfoPlist.strings */,
 				AE32C5451D055BFD009A49C5 /* ShoutitKitTests.swift */,
 				AE32C5471D055BFD009A49C5 /* Info.plist */,
 			);
@@ -5932,6 +5941,7 @@
 				B2F7197B1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight@2x.png in Resources */,
 				B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */,
 				B2D441301CB81690009782AF /* HTML.storyboard in Resources */,
+				B26AB9201D675F9A001A8799 /* GCDAsyncUdpSocket.strings in Resources */,
 				B2D441991CB819AA009782AF /* SeeAllCollectionViewCell.xib in Resources */,
 				B2F719681D0EEEF5002C1D74 /* ImageSelectedOn.png in Resources */,
 				B2F719631D0EEEF5002C1D74 /* ImageError@2x.png in Resources */,
@@ -5953,6 +5963,7 @@
 				B2E7E3011C592BD20078C743 /* Settings.storyboard in Resources */,
 				B2D4414D1CB816BD009782AF /* EditProfile.storyboard in Resources */,
 				B2E7E2EC1C592B9E0078C743 /* Chats.storyboard in Resources */,
+				B26AB91B1D675F98001A8799 /* GCDAsyncSocket.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5977,6 +5988,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26AB9241D675F9B001A8799 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6926,6 +6938,24 @@
 				AEF65F5D1D50C12F00B5FF18 /* cs-CZ */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B26AB91D1D675F98001A8799 /* GCDAsyncSocket.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B26AB91C1D675F98001A8799 /* ar */,
+			);
+			name = GCDAsyncSocket.strings;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B26AB9221D675F9A001A8799 /* GCDAsyncUdpSocket.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B26AB9211D675F9A001A8799 /* ar */,
+			);
+			name = GCDAsyncUdpSocket.strings;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		B2BC1EC81CF5A2BC00E56ECF /* Nemo.strings */ = {
