@@ -20,11 +20,11 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     
     //AdUI
     @IBOutlet weak var adIconImageView: UIImageView!
-    @IBOutlet weak var adCoverMediaView: FBMediaView!
+//    @IBOutlet weak var adCoverMediaView: FBMediaView!
     @IBOutlet weak var adTitlelabel: UILabel!
     @IBOutlet weak var adBodyLabel: UILabel!
     @IBOutlet weak var sponsoredLabel: UILabel!
-    @IBOutlet weak var adChoicesView: FBAdChoicesView!
+//    @IBOutlet weak var adChoicesView: FBAdChoicesView!
     @IBOutlet weak var adCallToActionButton: UIButton!
     @IBOutlet weak var adUIView: UIView!
     @IBOutlet weak var adBGView: UIView!
@@ -175,11 +175,11 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         nativeAd.icon?.loadImageAsyncWithBlock({ [weak self] (image) -> Void in
             self?.adIconImageView?.image = image
         })
-        self.adCoverMediaView.nativeAd = nativeAd
+//        self.adCoverMediaView.nativeAd = nativeAd
         
-        self.adChoicesView.nativeAd = nativeAd
-        self.adChoicesView.corner = .TopRight
-        self.adChoicesView.hidden = false
+//        self.adChoicesView.nativeAd = nativeAd
+//        self.adChoicesView.corner = .TopRight
+//        self.adChoicesView.hidden = false
         
         nativeAd.registerViewForInteraction(self.adUIView, withViewController: self)
     }
