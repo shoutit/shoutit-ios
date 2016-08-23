@@ -7865,7 +7865,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -8008,7 +8008,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -10105,7 +10105,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -10292,7 +10292,7 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_SHADOW = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -10480,7 +10480,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -10666,7 +10666,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -10853,7 +10853,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -11033,7 +11033,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -11213,7 +11213,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -11394,7 +11394,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -11575,7 +11575,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -11756,7 +11756,7 @@
 					USE_CSDK_COMPONENTS,
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/shoutit-iphone/Application/Info.plist";
+				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

@@ -229,6 +229,8 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         
         let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
         headerView.setConstraintForPriceLabelVisible(visible)
+        headerView.markButtonVisible = viewModel.shout.user?.id == Account.sharedInstance.user?.id
+        
         
         if let firstImageController = self.imagesDataSource.firstViewController() {
             photosPageViewController.setViewControllers([firstImageController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)

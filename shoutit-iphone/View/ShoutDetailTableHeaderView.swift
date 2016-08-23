@@ -26,6 +26,17 @@ final class ShoutDetailTableHeaderView: UIView {
     // constraints
     @IBOutlet weak var titleLabelToBottomConstraints: NSLayoutConstraint!
     
+    var markButtonVisible = false {
+        didSet {
+            self.adjustBottomHeight()
+        }
+    }
+    var priceLabelVisible = false
+    
+    var markButtonHeight : CGFloat {
+        return self.markButtonVisible ? 364.0 : 0.0
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -33,13 +44,15 @@ final class ShoutDetailTableHeaderView: UIView {
         internalContainerView.layer.cornerRadius = 4
         internalContainerView.layer.borderWidth = 1 / UIScreen.mainScreen().scale
         internalContainerView.layer.borderColor = UIColor(shoutitColor: .CellBackgroundGrayColor).CGColor
-        
-        
-        
-        
     }
     
     func setConstraintForPriceLabelVisible(visible: Bool) {
-        titleLabelToBottomConstraints.constant = visible ? 30 : 8
+        priceLabelVisible = visible
+        adjustBottomHeight()
     }
+    
+    func adjustBottomHeight() {
+        titleLabelToBottomConstraints.constant = priceLabelVisible ? 30 + self.markButtonHeight : 8 + self.markButtonHeight
+    }
+    
 }
