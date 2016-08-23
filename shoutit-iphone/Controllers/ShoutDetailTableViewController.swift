@@ -232,6 +232,10 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         
         headerView.markButtonVisible = viewModel.shout.user?.id == Account.sharedInstance.user?.id
         
+        headerView.markButton.rx_tap.asDriver().driveNext { [unowned self] in
+            self.performActionForMarkButtonState(self.headerView.markButtonState)
+        }.addDisposableTo(headerDisposeBag)
+        
         if viewModel.shout.user?.id == Account.sharedInstance.user?.id {
             headerView.markButtonVisible = true
             
@@ -264,6 +268,19 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         updateLikeButtonState()
         updateBookmarkButtonState()
     }
+    
+    func performActionForMarkButtonState(state: MarkButtonState) {
+        switch state {
+        case .MarkOfferSold, .MarkRequestFullfilled:
+            viewModel.markAsSold(true)
+        case .UnMarkOfferSold, .UnMarkRequestFullfilled:
+            viewModel.markAsSold(false)
+        default:
+            break
+        }
+    }
+    
+    
     
     // MARK: - Navigation
     

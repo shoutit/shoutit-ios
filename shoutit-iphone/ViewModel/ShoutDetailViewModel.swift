@@ -166,6 +166,23 @@ final class ShoutDetailViewModel {
         
         return buttons
     }
+    
+    func markAsSold(sold: Bool) {
+        APIShoutsService.markShoutAsSoldWithParams(SoldParams(sold: sold), uid: self.shout.id).subscribe {[weak self] (event) in
+            defer { self?.reloadSubject.onNext() }
+            switch event {
+            case .Next(let shout):
+                self?.shout = shout
+                self?.reloadImages()
+            case .Error(let error):
+                self?.imagesViewModels = [ShoutDetailShoutImageViewModel.Error(error: error)]
+            case .Completed:
+                break
+            }
+            }
+            .addDisposableTo(disposeBag)
+    }
+    
 }
 
 // MARK: - Helpers

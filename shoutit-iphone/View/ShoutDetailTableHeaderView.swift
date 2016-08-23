@@ -44,7 +44,7 @@ final class ShoutDetailTableHeaderView: UIView {
     var priceLabelVisible = false
     
     var markButtonHeight : CGFloat {
-        return self.markButtonVisible ? 364.0 : 0.0
+        return self.markButtonVisible ? 64.0 : 0.0
     }
     
     var markButtonState : MarkButtonState = .None {
@@ -72,10 +72,10 @@ final class ShoutDetailTableHeaderView: UIView {
     }
     
     private func adjustMarkButton(state: MarkButtonState) {
-        self.markButtonState = state
         
         self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen)
         self.markButton.setTitleColor(UIColor(shoutitColor: .PrimaryGreen), forState: .Normal)
+        self.markButton.borderWidth = 1.0
         
         switch state {
         case .MarkOfferSold:

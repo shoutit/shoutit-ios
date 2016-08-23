@@ -22,6 +22,7 @@
 		241CEC351C73282B00694575 /* APIDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC341C73282B00694575 /* APIDiscoverService.swift */; };
 		242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */; };
 		242EE81B1C90626C00621A5E /* EditShoutParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */; };
+		24312DDD1D6C9FE300385450 /* SoldParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24312DDC1D6C9FE300385450 /* SoldParams.swift */; };
 		2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */; };
 		2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */; };
 		2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */; };
@@ -972,6 +973,7 @@
 		241CEC361C732CDE00694575 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItem.swift; path = Model/DiscoverItem.swift; sourceTree = "<group>"; };
 		242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutParentViewController.swift; path = Controllers/CreateShoutParentViewController.swift; sourceTree = "<group>"; };
 		242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutParentViewController.swift; path = Controllers/EditShoutParentViewController.swift; sourceTree = "<group>"; };
+		24312DDC1D6C9FE300385450 /* SoldParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoldParams.swift; path = Model/SoldParams.swift; sourceTree = "<group>"; };
 		2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutPopupViewController.swift; path = Controllers/CreateShoutPopupViewController.swift; sourceTree = "<group>"; };
 		2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayAnimationController.swift; path = Controllers/OverlayAnimationController.swift; sourceTree = "<group>"; };
 		2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayDismissAnimationController.swift; path = Other/OverlayDismissAnimationController.swift; sourceTree = "<group>"; };
@@ -5177,6 +5179,7 @@
 				B2C8C2621CF8627E00E80C6A /* CreateShoutLocationSectionViewModel.swift */,
 				B2C8C2651CF8994800E80C6A /* CreateShoutSocialSharingSectionViewModel.swift */,
 				B232BC881CF5F08600A36432 /* CreateShoutCellViewModel.swift */,
+				24312DDC1D6C9FE300385450 /* SoldParams.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -6697,6 +6700,7 @@
 				AE32C5A11D055C33009A49C5 /* AuthData.swift in Sources */,
 				AE32C5A81D055C33009A49C5 /* Category.swift in Sources */,
 				AE32C5AA1D055C33009A49C5 /* Filter.swift in Sources */,
+				24312DDD1D6C9FE300385450 /* SoldParams.swift in Sources */,
 				AE32C5DC1D0564C5009A49C5 /* APNParams.swift in Sources */,
 				AE32C5A61D055C33009A49C5 /* PushTokens.swift in Sources */,
 				AE32C5E91D05657D009A49C5 /* Constants.swift in Sources */,

@@ -58,6 +58,11 @@ final class APIShoutsService {
         return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
     }
     
+    static func markShoutAsSoldWithParams(params: SoldParams, uid: String) -> Observable<Shout> {
+        let url = shoutsURL + "/\(uid)"
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+    }
+
     static func retrievePhoneNumberForShoutWithId(id: String) -> Observable<Mobile> {
         let url = shoutsURL + "/\(id)/call"
         return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
