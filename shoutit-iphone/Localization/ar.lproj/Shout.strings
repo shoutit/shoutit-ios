@@ -16,6 +16,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "8a7-SP-t4R"; */
 "8a7-SP-t4R.text" = "Label";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "AQt-zR-dLg"; */
+"AQt-zR-dLg.text" = "العنوان";
+
 /* Class = "UIButton"; normalTitle = "Offer"; ObjectID = "ArL-Gz-lqw"; */
 "ArL-Gz-lqw.normalTitle" = "عرض";
 
@@ -43,6 +46,9 @@
 /* Class = "UINavigationItem"; title = "Edit Shout"; ObjectID = "Qcg-aH-k2h"; */
 "Qcg-aH-k2h.title" = "إنشاء إعلان";
 
+/* Class = "UINavigationItem"; title = "Description"; ObjectID = "T9V-Wd-mEo"; */
+"T9V-Wd-mEo.title" = "التفاصيل";
+
 /* Class = "UITextField"; placeholder = "Title"; ObjectID = "WZp-Em-qUh"; */
 "WZp-Em-qUh.placeholder" = "العنوان";
 
@@ -52,6 +58,9 @@
 /* Class = "UILabel"; text = "Congratulations!"; ObjectID = "Ws1-lB-UsQ"; */
 "Ws1-lB-UsQ.text" = "تهانينا!";
 
+/* Class = "UILabel"; text = "Detail"; ObjectID = "XJ5-iN-ha5"; */
+"XJ5-iN-ha5.text" = "المواصفات";
+
 /* Class = "UITextField"; placeholder = "Title"; ObjectID = "XgN-88-Js2"; */
 "XgN-88-Js2.placeholder" = "العنوان";
 
@@ -60,6 +69,9 @@
 
 /* Class = "UIButton"; normalTitle = "Create another Shout"; ObjectID = "Yoo-Nj-lhn"; */
 "Yoo-Nj-lhn.normalTitle" = "إنشاء إعلان آخر";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "ZV0-fq-V7s"; */
+"ZV0-fq-V7s.text" = "العنوان";
 
 /* Class = "UINavigationItem"; title = "Create Shout"; ObjectID = "dlP-sh-64t"; */
 "dlP-sh-64t.title" = "إنشاء إعلان";

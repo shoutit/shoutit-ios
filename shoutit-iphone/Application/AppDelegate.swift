@@ -44,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureURLCache()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionStarted), name: AppseeSessionStartedNotification, object: nil)
+        
+        Appsee.start(Constants.AppSee.appKey)
+        
         var firstLaunch = false
         
         if (NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedOnce") == false) {
@@ -284,4 +288,14 @@ extension AppDelegate {
         
         rootController.routeToNavigationItem(navigationItem, withDeeplink: deeplink)
     }
+}
+
+// Appsee
+extension AppDelegate {
+    
+    func sessionStarted(notification: NSNotification) {
+        
+        Crashlytics.sharedInstance().setObjectValue("https://dashboard.appsee.com/3rdparty/crashlytics/\(Appsee.generate3rdPartyID("Crashlytics", persistent: false))", forKey: "AppseeSessionUrl")
+    }
+    
 }

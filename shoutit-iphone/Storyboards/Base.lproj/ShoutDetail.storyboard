@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -774,8 +774,8 @@
                         <outlet property="adBGView" destination="yEV-vY-koe" id="6uM-1j-34b"/>
                         <outlet property="adBodyLabel" destination="bcr-Mb-2JU" id="9Uw-Nz-NvA"/>
                         <outlet property="adCallToActionButton" destination="fUe-my-fmP" id="uwq-KF-xaN"/>
-                        <outlet property="adChoicesView" destination="ILS-57-0fo" id="xJR-Mq-qEm"/>
-                        <outlet property="adCoverMediaView" destination="yFI-vZ-JDE" id="Kry-GC-pIt"/>
+                        <outlet property="adChoicesView" destination="ILS-57-0fo" id="5CX-vs-SYB"/>
+                        <outlet property="adCoverMediaView" destination="yFI-vZ-JDE" id="m3a-o5-mZq"/>
                         <outlet property="adIconImageView" destination="llo-Me-GDw" id="LTX-kc-4uE"/>
                         <outlet property="adTitlelabel" destination="m5B-TQ-cHC" id="4J1-b6-aHb"/>
                         <outlet property="adUIView" destination="UQD-0l-N9j" id="lc2-l2-B7q"/>

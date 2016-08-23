@@ -34,9 +34,6 @@
 /* Class = "UILabel"; text = "Sharing on Facebook"; ObjectID = "ZGJ-7s-yVu"; */
 "ZGJ-7s-yVu.text" = "مشاركة الإعلانات على الفيس بوك";
 
-/* Class = "UILabel"; text = "Shoutit credit is virtual currency that can be earned and spent while using Shoutit. "; ObjectID = "a5V-Qp-Jay"; */
-"a5V-Qp-Jay.text" = "شاوت ات كريدت (Shoutit Credit) هي عملة افتراضية يمكنك كسبها أو شرائها على شاوت ات. استخدم رصيد شاوت ات كريدت لتمييز إعلاناتك و صفحات شركاتك.";
-
 /* Class = "UILabel"; text = "Listening to friends"; ObjectID = "cr0-G8-B2b"; */
 "cr0-G8-B2b.text" = "الإستماع إلى الأصدقاء";
 

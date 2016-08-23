@@ -46,6 +46,3 @@
 /* Class = "UITextField"; placeholder = "Contact Number"; ObjectID = "yFo-lY-XSG"; */
 "yFo-lY-XSG.placeholder" = "الرقم";
 
-/* Class = "UILabel"; text = "To have your business Page appear as “Verified” on Shoutit we need few extra information from you.\n\nPages verification doesn’t take long time and will give your Page more legitmacy on the marketplace."; ObjectID = "ztX-Ic-2XN"; */
-"ztX-Ic-2XN.text" = "لتظهر صفحتك كصفحة \"محققة\" على شاوت ات نريد بعض المعلومات الاضافية عن طبيعة عملك او شركتك. عملية التحقق لن تأخذ الكثير من الوقت و ستعطي صفحتك مظهر أكثر رسمية على سوق شاوت ات.";
-

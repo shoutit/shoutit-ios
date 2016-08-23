@@ -100,7 +100,7 @@ final class APIGenericService {
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)
                     let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
-                    print(json)
+//                    debugPrint(json)
                     let object: T = try parseJson(json)
                     observer.onNext(object)
                     observer.onCompleted()
@@ -273,7 +273,7 @@ final class APIGenericService {
             }
         }
         guard let j = nestedJson else {
-            print(json)
+            debugPrint(json)
             assertionFailure(InternalParseError.InvalidJson.userMessage)
             throw InternalParseError.InvalidJson
         }
@@ -301,7 +301,7 @@ final class APIGenericService {
         case .Success(let object):
             return object
         case .Failure(let decodeError):
-            print(json)
+            debugPrint(json)
             assertionFailure("\(decodeError.description) in model of type \(T.self)")
             throw decodeError
         }

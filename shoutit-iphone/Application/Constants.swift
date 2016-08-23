@@ -42,6 +42,16 @@ public struct Constants {
         
     }
     
+    public struct AppSee {
+        #if STAGING
+        public static let appKey = "ec274d5916bd4a72b3ae0eb776adec88"
+        #elseif LOCAL
+        public static let appKey = "9f4cb11447d049d58b062f1e803a0975"
+        #else
+        public static let appKey = "67b28ab63f414eb68e5dffdcbe7b538f"
+        #endif
+    }
+    
     public struct URL {
         public static let ShoutItWebsite = "http://www.shoutit.com"
     }
