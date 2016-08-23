@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionStarted), name: AppseeSessionStartedNotification, object: nil)
         
         Appsee.start(Constants.AppSee.appKey)
-        Appsee.setDebugToNSLog(true)
         
         var firstLaunch = false
         
