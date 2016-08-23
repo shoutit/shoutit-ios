@@ -229,7 +229,24 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         
         let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
         headerView.setConstraintForPriceLabelVisible(visible)
+        
         headerView.markButtonVisible = viewModel.shout.user?.id == Account.sharedInstance.user?.id
+        
+        if viewModel.shout.user?.id == Account.sharedInstance.user?.id {
+            headerView.markButtonVisible = true
+            
+            let shout = viewModel.shout
+            
+            if shout.type() == .Request {
+                headerView.markButtonState = shout.isSold == false ? .MarkRequestFullfilled : .UnMarkRequestFullfilled
+            } else {
+                headerView.markButtonState = shout.isSold == false ? .MarkOfferSold : .UnMarkOfferSold
+            }
+            
+        } else {
+            headerView.markButtonVisible = false
+            headerView.markButtonState = .None
+        }
         
         
         if let firstImageController = self.imagesDataSource.firstViewController() {

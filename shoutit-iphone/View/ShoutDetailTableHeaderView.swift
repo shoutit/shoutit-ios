@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum MarkButtonState {
+    case MarkOfferSold
+    case UnMarkOfferSold
+    case MarkRequestFullfilled
+    case UnMarkRequestFullfilled
+    case None
+}
+
 final class ShoutDetailTableHeaderView: UIView {
     
     @IBOutlet weak var internalContainerView: UIView!
@@ -21,6 +29,7 @@ final class ShoutDetailTableHeaderView: UIView {
     @IBOutlet weak var availabilityLabel: UILabel!
     @IBOutlet weak var addToCartButton: CustomUIButton!
     @IBOutlet weak var showProfileButton: UIButton!
+    @IBOutlet weak var markButton: CustomUIButton!
     
     
     // constraints
@@ -29,12 +38,19 @@ final class ShoutDetailTableHeaderView: UIView {
     var markButtonVisible = false {
         didSet {
             self.adjustBottomHeight()
+            self.markButton.hidden = !markButtonVisible
         }
     }
     var priceLabelVisible = false
     
     var markButtonHeight : CGFloat {
         return self.markButtonVisible ? 364.0 : 0.0
+    }
+    
+    var markButtonState : MarkButtonState = .None {
+        didSet {
+            self.adjustMarkButton(markButtonState)
+        }
     }
     
     override func awakeFromNib() {
@@ -55,4 +71,24 @@ final class ShoutDetailTableHeaderView: UIView {
         titleLabelToBottomConstraints.constant = priceLabelVisible ? 30 + self.markButtonHeight : 8 + self.markButtonHeight
     }
     
+    private func adjustMarkButton(state: MarkButtonState) {
+        self.markButtonState = state
+        
+        self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen)
+        self.markButton.setTitleColor(UIColor(shoutitColor: .PrimaryGreen), forState: .Normal)
+        
+        switch state {
+        case .MarkOfferSold:
+            self.markButton.setTitle(NSLocalizedString("Mark as Sold", comment: ""), forState: .Normal)
+        case .UnMarkOfferSold:
+            self.markButton.setTitle(NSLocalizedString("Unmark as Sold", comment: ""), forState: .Normal)
+            self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.7)
+        case .MarkRequestFullfilled:
+            self.markButton.setTitle(NSLocalizedString("Mark as Fulfilled", comment: ""), forState: .Normal)
+        case .UnMarkRequestFullfilled:
+            self.markButton.setTitle(NSLocalizedString("Unmark as Fulfilled", comment: ""), forState: .Normal)
+            self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.7)
+        default: self.markButton.setTitle("", forState: .Normal)
+        }
+    }
 }

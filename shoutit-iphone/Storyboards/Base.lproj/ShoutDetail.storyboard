@@ -250,6 +250,26 @@
                                                 <constraint firstAttribute="height" constant="30" id="rAg-5h-Rwx"/>
                                             </constraints>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-x0-31J" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                            <rect key="frame" x="10" y="355" width="560" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="dTS-3p-83W"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <inset key="imageEdgeInsets" minX="-25" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="Mark as Sold" image="cart">
+                                                <color key="titleColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -258,12 +278,15 @@
                                         <constraint firstAttribute="bottom" secondItem="3UM-EM-oSg" secondAttribute="bottom" constant="30" id="BjZ-xV-yyg"/>
                                         <constraint firstItem="GHt-NY-HdP" firstAttribute="top" secondItem="Vsg-dp-01X" secondAttribute="top" constant="5" id="Ezk-f9-29J"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="centerY" secondItem="GHt-NY-HdP" secondAttribute="centerY" id="GAK-2u-ZQk"/>
+                                        <constraint firstItem="ZUC-x0-31J" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="10" id="JMm-yB-ji9"/>
                                         <constraint firstItem="ibG-bb-S7x" firstAttribute="bottom" secondItem="GHt-NY-HdP" secondAttribute="bottom" id="KDB-yC-Q3D"/>
                                         <constraint firstAttribute="trailing" secondItem="J4q-lD-k78" secondAttribute="trailing" id="Kf0-se-XpM"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZUC-x0-31J" secondAttribute="trailing" constant="10" id="NWA-iV-ZWd"/>
                                         <constraint firstItem="WN2-bO-IyP" firstAttribute="leading" secondItem="GHt-NY-HdP" secondAttribute="leading" id="Q2q-7f-a7d"/>
                                         <constraint firstAttribute="trailing" secondItem="Gdc-UE-KK9" secondAttribute="trailing" id="SYO-5J-7fX"/>
                                         <constraint firstItem="OF4-56-wbL" firstAttribute="leading" secondItem="GHt-NY-HdP" secondAttribute="trailing" constant="10" id="UPZ-fY-6uS"/>
                                         <constraint firstAttribute="trailing" secondItem="bMb-en-aRa" secondAttribute="trailing" constant="10" id="UuH-da-egg"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZUC-x0-31J" secondAttribute="bottom" constant="30" id="Vfh-1m-lYU"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OF4-56-wbL" secondAttribute="trailing" constant="10" id="WhP-Gj-svY"/>
                                         <constraint firstItem="bMb-en-aRa" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="10" id="WoW-N6-i0h"/>
                                         <constraint firstItem="GHt-NY-HdP" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="5" id="YX9-QO-1F1"/>
@@ -300,6 +323,7 @@
                                 <outlet property="availabilityLabel" destination="X2c-Q6-8hK" id="R86-LS-e0K"/>
                                 <outlet property="internalContainerView" destination="Vsg-dp-01X" id="y2t-YR-Rvr"/>
                                 <outlet property="locationLabel" destination="ibG-bb-S7x" id="fMQ-43-mXp"/>
+                                <outlet property="markButton" destination="ZUC-x0-31J" id="HiM-YR-Oub"/>
                                 <outlet property="pageViewControllerContainer" destination="Gdc-UE-KK9" id="GXg-mh-oSr"/>
                                 <outlet property="priceLabel" destination="RFV-cQ-2AI" id="5p6-i3-QTB"/>
                                 <outlet property="shoutTypeLabel" destination="tO4-jw-2Gj" id="oMo-Dr-Zy2"/>
