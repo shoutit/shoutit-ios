@@ -1,29 +1,23 @@
 /* More than 99 Notifications */
 "+99" = "+99";
 
-/* No comment provided by engineer. */
+/* Last Message Text */
 "Attachment" = "المرفقات";
 
-/* No comment provided by engineer. */
+/* Invite message content */
 "Buy & Sell while Chatting on #Shoutit App! Get it on shoutit.com/app" = "بيع و اشتري وانت تدردش على شاوت ات! حمل التطبيق الآن shoutit.com/app #شاوت_ات #Shoutit";
 
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 
-/* No comment provided by engineer. */
+/* Free Price */
 "FREE" = "مجاني";
 
-/* No comment provided by engineer. */
+/* Last Message Text */
 "Image" = "صورة";
 
-/* No comment provided by engineer. */
-"K" = "ألف";
-
-/* No comment provided by engineer. */
+/* Last Message Text */
 "Location" = "الموقع";
-
-/* No comment provided by engineer. */
-"M" = "مليون";
 
 /* No comment provided by engineer. */
 "Offer" = "عرض";
@@ -34,13 +28,13 @@
 /* No comment provided by engineer. */
 "Please provide a report message" = "يرجى تقديم رسالة تبليغ";
 
-/* No comment provided by engineer. */
+/* Last Message Text */
 "Profile" = "الصفحة الشخصية";
 
-/* No comment provided by engineer. */
+/* Report Button Title */
 "Report Chat" = "تبليغ عن المحادثة";
 
-/* No comment provided by engineer. */
+/* Report Title */
 "Report Profile" = "تبليغ عن المستخدم";
 
 /* No comment provided by engineer. */
@@ -52,9 +46,9 @@
 /* No comment provided by engineer. */
 "Send" = "إرسال";
 
-/* No comment provided by engineer. */
+/* Last Message Text */
 "Shout" = "إعلان";
 
-/* No comment provided by engineer. */
+/* Last Message Text */
 "Video" = "فيديو";
 

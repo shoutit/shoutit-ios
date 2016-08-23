@@ -10,11 +10,17 @@
 /* Class = "UILabel"; text = "Shoutit 2.0.0"; ObjectID = "H2H-0n-97D"; */
 "H2H-0n-97D.text" = "Shoutit 2.0.0";
 
+/* Class = "UILabel"; text = "0"; ObjectID = "Ma0-yW-8Ph"; */
+"Ma0-yW-8Ph.text" = "0";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "XRT-0N-mv4"; */
 "XRT-0N-mv4.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "i91-3m-Xsd"; */
 "i91-3m-Xsd.text" = "Label";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "k1A-nM-4aQ"; */
+"k1A-nM-4aQ.text" = "0";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "kGW-q7-n9X"; */
 "kGW-q7-n9X.text" = "0";
@@ -24,6 +30,9 @@
 
 /* Class = "UILabel"; text = "Create Shout"; ObjectID = "uFf-Pq-9uJ"; */
 "uFf-Pq-9uJ.text" = "إنشاء إعلان";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "umj-Cn-Qhk"; */
+"umj-Cn-Qhk.text" = "0";
 
 /* Class = "UIView"; accessibilityHint = "Show Shoutit Credit"; ObjectID = "vhI-BP-IyB"; */
 "vhI-BP-IyB.accessibilityHint" = "إظهار شاوت ات كريديت";
