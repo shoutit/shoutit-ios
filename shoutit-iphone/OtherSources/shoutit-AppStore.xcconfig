@@ -8,3 +8,5 @@ PRODUCT_BUNDLE_IDENTIFIER = com.shoutit-iphone
 APPLICATION_BUNDLE_IDENTIFIER = com.shoutit-iphone
 
 CODE_SIGN_IDENTITY = iPhone Distribution: Syrex FZ-LLC (2857HUGC3W)
+
+APPSEE_APIKEY=67b28ab63f414eb68e5dffdcbe7b538f

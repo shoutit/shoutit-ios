@@ -13,3 +13,5 @@
 CODE_SIGN_IDENTITY = iPhone Distribution: AppUnite Sp. z o.o.
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "STAGING"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) STAGING=1
+
+APPSEE_APIKEY=ec274d5916bd4a72b3ae0eb776adec88

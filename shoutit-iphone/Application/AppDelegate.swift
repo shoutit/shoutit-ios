@@ -195,7 +195,7 @@ private extension AppDelegate {
     }
     
     func configureLoggingServices() {
-        Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self, Appsee.self])
         AmazonAWS.configureS3()
         
         //UserVoice
