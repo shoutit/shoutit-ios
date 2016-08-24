@@ -22,7 +22,11 @@ final class CustomUIButton: UIButton {
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.clearColor()
+    @IBInspectable var borderColor: UIColor = UIColor.clearColor() {
+        didSet {
+            applyBorder()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

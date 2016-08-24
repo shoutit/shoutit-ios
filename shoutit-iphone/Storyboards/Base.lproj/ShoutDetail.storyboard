@@ -251,12 +251,13 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUC-x0-31J" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="355" width="560" height="44"/>
+                                            <rect key="frame" x="10" y="409" width="560" height="44"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="dTS-3p-83W"/>
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="imageEdgeInsets" minX="-25" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Mark as Sold" image="cart">
                                                 <color key="titleColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -286,7 +287,7 @@
                                         <constraint firstAttribute="trailing" secondItem="Gdc-UE-KK9" secondAttribute="trailing" id="SYO-5J-7fX"/>
                                         <constraint firstItem="OF4-56-wbL" firstAttribute="leading" secondItem="GHt-NY-HdP" secondAttribute="trailing" constant="10" id="UPZ-fY-6uS"/>
                                         <constraint firstAttribute="trailing" secondItem="bMb-en-aRa" secondAttribute="trailing" constant="10" id="UuH-da-egg"/>
-                                        <constraint firstAttribute="bottom" secondItem="ZUC-x0-31J" secondAttribute="bottom" constant="30" id="Vfh-1m-lYU"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZUC-x0-31J" secondAttribute="bottom" priority="999" constant="35" id="Vfh-1m-lYU"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OF4-56-wbL" secondAttribute="trailing" constant="10" id="WhP-Gj-svY"/>
                                         <constraint firstItem="bMb-en-aRa" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="10" id="WoW-N6-i0h"/>
                                         <constraint firstItem="GHt-NY-HdP" firstAttribute="leading" secondItem="Vsg-dp-01X" secondAttribute="leading" constant="5" id="YX9-QO-1F1"/>
@@ -297,6 +298,7 @@
                                         <constraint firstItem="X2c-Q6-8hK" firstAttribute="baseline" secondItem="RFV-cQ-2AI" secondAttribute="baseline" id="eZN-dv-kcR"/>
                                         <constraint firstItem="X2c-Q6-8hK" firstAttribute="trailing" secondItem="bMb-en-aRa" secondAttribute="trailing" id="fqL-ZJ-3ev"/>
                                         <constraint firstItem="tO4-jw-2Gj" firstAttribute="trailing" secondItem="WN2-bO-IyP" secondAttribute="trailing" id="hdq-5j-9uV"/>
+                                        <constraint firstItem="ZUC-x0-31J" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3UM-EM-oSg" secondAttribute="bottom" constant="10" id="i56-K9-Acg"/>
                                         <constraint firstItem="WN2-bO-IyP" firstAttribute="top" secondItem="GHt-NY-HdP" secondAttribute="top" id="nXH-Uf-2BM"/>
                                         <constraint firstItem="WN2-bO-IyP" firstAttribute="bottom" secondItem="GHt-NY-HdP" secondAttribute="bottom" id="nmK-fY-qta"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3UM-EM-oSg" secondAttribute="trailing" constant="10" id="oeT-YW-Ckn"/>

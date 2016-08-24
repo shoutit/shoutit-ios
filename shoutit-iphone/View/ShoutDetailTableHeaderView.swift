@@ -75,19 +75,21 @@ final class ShoutDetailTableHeaderView: UIView {
         
         self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen)
         self.markButton.setTitleColor(UIColor(shoutitColor: .PrimaryGreen), forState: .Normal)
-        self.markButton.borderWidth = 1.0
+        self.markButton.borderWidth = 1.5
         
         switch state {
         case .MarkOfferSold:
             self.markButton.setTitle(NSLocalizedString("Mark as Sold", comment: ""), forState: .Normal)
         case .UnMarkOfferSold:
             self.markButton.setTitle(NSLocalizedString("Unmark as Sold", comment: ""), forState: .Normal)
-            self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.7)
+            self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.5)
+            self.markButton.setTitleColor(UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.5), forState: .Normal)
         case .MarkRequestFullfilled:
             self.markButton.setTitle(NSLocalizedString("Mark as Fulfilled", comment: ""), forState: .Normal)
         case .UnMarkRequestFullfilled:
             self.markButton.setTitle(NSLocalizedString("Unmark as Fulfilled", comment: ""), forState: .Normal)
-            self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.7)
+            self.markButton.borderColor = UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.5)
+            self.markButton.setTitleColor(UIColor(shoutitColor: .PrimaryGreen).colorWithAlphaComponent(0.5), forState: .Normal)
         default: self.markButton.setTitle("", forState: .Normal)
         }
     }
