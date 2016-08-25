@@ -41,7 +41,7 @@ class FacebookManager {
     init(account: Account) {
         self.account = account
         self.loginManager = SHFBSDKLoginManager()
-        self.loginManager.loginBehavior = .SystemAccount
+        self.loginManager.loginBehavior = .Native
         
     }
 }
