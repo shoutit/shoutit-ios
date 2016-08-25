@@ -5658,7 +5658,6 @@
 				6027CF2F1BE74EAE00124C28 /* Resources */,
 				B25F31F11C57E30700C5DAFC /* Crashlytics Run Script */,
 				AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */,
-				AE0536B91D5B34FA0049B479 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -5963,19 +5962,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AE0536B91D5B34FA0049B479 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "SCRIPT=`/usr/bin/find \"${SRCROOT}\" -name newrelic_postbuild.sh | head -n 1`\n/bin/sh \"${SCRIPT}\" \"AAcbc05e7a42d552ab0640b06042072214972a32d2\"";
-		};
 		AE25CDCE1D081060009D121C /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7865,10 +7851,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -8007,10 +7989,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -10105,10 +10083,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -10290,10 +10264,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
@@ -10480,10 +10450,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -10665,10 +10631,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -10853,10 +10815,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -11033,10 +10991,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -11212,10 +11166,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -11394,10 +11344,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -11575,10 +11521,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -11755,10 +11697,6 @@
 					"$(PROJECT_DIR)/InRepoFrameworks/Crashlytics/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/PaperTrailLumberjack.framework/Frameworks",
 					"$(PROJECT_DIR)/InRepoFrameworks/newrelic",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_CSDK_COMPONENTS,
-					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

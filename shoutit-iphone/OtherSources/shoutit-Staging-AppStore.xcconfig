@@ -11,3 +11,4 @@
 #include "shoutit-Staging-Release.xcconfig"
 
 APPSEE_APIKEY=ec274d5916bd4a72b3ae0eb776adec88
+FACEBOOK_APP_ID = 1151546964858487

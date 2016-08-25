@@ -79,8 +79,7 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>22000</string>
-	
-  <key>Fabric</key>
+	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
 		<string>b058b2dcbf8b8f864860fe9fe12789317aba9da1</string>
@@ -92,15 +91,15 @@
 				<key>KitName</key>
 				<string>Crashlytics</string>
 			</dict>
-      <dict>
-        <key>KitInfo</key>
-        <dict>
-          <key>apikey</key>
-          <string>$(APPSEE_APIKEY)</string>
-        </dict>
-        <key>KitName</key>
-        <string>Appsee</string>
-      </dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>apikey</key>
+					<string>$(APPSEE_APIKEY)</string>
+				</dict>
+				<key>KitName</key>
+				<string>Appsee</string>
+			</dict>
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
@@ -118,6 +117,7 @@
 		<string>fbshareextension</string>
 		<string>com.shoutit-iphone.swift</string>
 		<string>com.googleusercontent.apps.935842257865-lppn1neft859vr84flug604an2lh33dk</string>
+		<string>fbapi20150708</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
