@@ -15,7 +15,7 @@ final class HomeFlowController: FlowController {
         
         // create initial view controller
         let controller = Wireframe.homeViewController()
-        controller.flowDelegate = self
+//        controller.flowDelegate = self
 
         navigationController.showViewController(controller, sender: nil)
     }

@@ -80,6 +80,7 @@
 		24AEF78E1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */; };
 		24AEF7901CF755AA00C57C7C /* SuggestionsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78F1CF755AA00C57C7C /* SuggestionsDisplayable.swift */; };
 		24AEF7921CF759C500C57C7C /* SuggestedProfilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */; };
+		24B2F2F01D72DC09001286F4 /* NewHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */; };
 		24D3B0BF1C9AA68E00DE1600 /* PusherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */; };
 		24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */; };
 		24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C61C9C472D00DE1600 /* Twilio.swift */; };
@@ -1046,6 +1047,7 @@
 		24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsTableViewController.swift; path = Controllers/InviteFriendsTableViewController.swift; sourceTree = "<group>"; };
 		24AEF78F1CF755AA00C57C7C /* SuggestionsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestionsDisplayable.swift; path = FlowControl/SuggestionsDisplayable.swift; sourceTree = "<group>"; };
 		24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedProfilesTableViewController.swift; path = Controllers/SuggestedProfilesTableViewController.swift; sourceTree = "<group>"; };
+		24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NewHome.storyboard; path = Storyboards/NewHome.storyboard; sourceTree = "<group>"; };
 		24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherClient.swift; path = Networking/PusherClient.swift; sourceTree = "<group>"; };
 		24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherAdditions.swift; path = Networking/PusherAdditions.swift; sourceTree = "<group>"; };
 		24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwilioAuth.swift; path = Model/TwilioAuth.swift; sourceTree = "<group>"; };
@@ -3240,6 +3242,7 @@
 				B2CA5C4E1D1D7DC9009E164E /* Admins.storyboard */,
 				AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */,
 				AE6AF6541D587A180079A7B9 /* StaticPage.storyboard */,
+				24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -5851,6 +5854,7 @@
 				B2D441251CB8167D009782AF /* InviteFriends.storyboard in Resources */,
 				B2F7197E1D0EEEF5002C1D74 /* UIBarButtonItemGrid@2x.png in Resources */,
 				B2F719821D0EEEF5002C1D74 /* VideoOverlay@3x.png in Resources */,
+				24B2F2F01D72DC09001286F4 /* NewHome.storyboard in Resources */,
 				B2D441F71CB81B66009782AF /* PostSignupSuggestionsSectionHeader.xib in Resources */,
 				B2D441AF1CB81A02009782AF /* ConversationLoadMoreFooter.xib in Resources */,
 				B2E7E2EF1C592BA50078C743 /* CameraStoryboard.storyboard in Resources */,
@@ -7937,7 +7941,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8080,7 +8084,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10177,7 +10181,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10364,7 +10368,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10552,7 +10556,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10738,7 +10742,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10925,7 +10929,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11105,7 +11109,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11285,7 +11289,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11466,7 +11470,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11647,7 +11651,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11828,7 +11832,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "shoutit-iphone/Application/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

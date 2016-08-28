@@ -16,6 +16,7 @@ struct Wireframe {
         case Login = "LoginStoryboard"
         case HTML = "HTML"
         case Home = "Home"
+        case NewHome = "NewHome"
         case Discover = "Discover"
         case Bookmarks = "Bookmarks"
         case Credits = "Credits"
@@ -173,8 +174,8 @@ struct Wireframe {
     
     // MARK: - Home storyboard view controllers
 
-    static func homeViewController() -> HomeViewController {
-        return storyboard(.Home).instantiateViewControllerWithIdentifier("homeRootController") as! HomeViewController
+    static func homeViewController() -> UIViewController {
+        return storyboard(.NewHome).instantiateViewControllerWithIdentifier("homeViewController")
     }
     
     static func ordersViewController() -> UIViewController {
