@@ -44,6 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureURLCache()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionStarted), name: AppseeSessionStartedNotification, object: nil)
+        
+        #if DEBUG
+            Appsee.setDebugToNSLog(true)
+        #else
+            Appsee.start(Constants.AppSee.appKey)
+        #endif
+        
         var firstLaunch = false
         
         if (NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedOnce") == false) {
@@ -191,7 +199,7 @@ private extension AppDelegate {
     }
     
     func configureLoggingServices() {
-        Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self, Appsee.self])
         AmazonAWS.configureS3()
         
         //UserVoice
@@ -284,4 +292,14 @@ extension AppDelegate {
         
         rootController.routeToNavigationItem(navigationItem, withDeeplink: deeplink)
     }
+}
+
+// Appsee
+extension AppDelegate {
+    
+    func sessionStarted(notification: NSNotification) {
+        
+        Crashlytics.sharedInstance().setObjectValue("https://dashboard.appsee.com/3rdparty/crashlytics/\(Appsee.generate3rdPartyID("Crashlytics", persistent: false))", forKey: "AppseeSessionUrl")
+    }
+    
 }

@@ -604,8 +604,13 @@
 "No notifications to show" = "لا يوجد إشعارات للعرض";
 
 /* No pages placeholder
+<<<<<<< HEAD
    Profile Placeholder
    Profile placeholder
+=======
+   Profile placeholder
+   Profile Placeholder
+>>>>>>> gitlab/facebook-sdk-update
    User Profile No pages placeholder */
 "No pages available yet" = "لا توجد صفحات الآن";
 

@@ -230,6 +230,29 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
         headerView.setConstraintForPriceLabelVisible(visible)
         
+        headerView.markButtonVisible = viewModel.shout.user?.id == Account.sharedInstance.user?.id
+        
+        headerView.markButton.rx_tap.asDriver().driveNext { [unowned self] in
+            self.performActionForMarkButtonState(self.headerView.markButtonState)
+        }.addDisposableTo(headerDisposeBag)
+        
+        if viewModel.shout.user?.id == Account.sharedInstance.user?.id {
+            headerView.markButtonVisible = true
+            
+            let shout = viewModel.shout
+            
+            if shout.type() == .Request {
+                headerView.markButtonState = shout.isSold == false ? .MarkRequestFullfilled : .UnMarkRequestFullfilled
+            } else {
+                headerView.markButtonState = shout.isSold == false ? .MarkOfferSold : .UnMarkOfferSold
+            }
+            
+        } else {
+            headerView.markButtonVisible = false
+            headerView.markButtonState = .None
+        }
+        
+        
         if let firstImageController = self.imagesDataSource.firstViewController() {
             photosPageViewController.setViewControllers([firstImageController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
             imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
@@ -245,6 +268,19 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         updateLikeButtonState()
         updateBookmarkButtonState()
     }
+    
+    func performActionForMarkButtonState(state: MarkButtonState) {
+        switch state {
+        case .MarkOfferSold, .MarkRequestFullfilled:
+            viewModel.markAsSold(true)
+        case .UnMarkOfferSold, .UnMarkRequestFullfilled:
+            viewModel.markAsSold(false)
+        default:
+            break
+        }
+    }
+    
+    
     
     // MARK: - Navigation
     

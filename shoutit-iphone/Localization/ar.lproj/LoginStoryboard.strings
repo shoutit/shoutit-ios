@@ -31,7 +31,7 @@
 /* Class = "UIButton"; normalTitle = "Next"; ObjectID = "Gcm-Gs-6OL"; */
 "Gcm-Gs-6OL.normalTitle" = "التالي";
 
-/* Class = "UILabel"; text = "Welcome to Shoutit"; ObjectID = "Gv6-Vf-08z"; */
+/* (No Commment) */
 "Gv6-Vf-08z.text" = "أهلاً بكم في شاوت ات";
 
 /* Class = "UITableViewController"; title = "Reset password"; ObjectID = "HYX-k8-0GR"; */
@@ -64,7 +64,7 @@
 /* Class = "UILabel"; text = "Find what you need in your Community or anywhere in the World."; ObjectID = "Rwd-Tt-HmF"; */
 "Rwd-Tt-HmF.text" = "ابحث عن كل شي تريده في منطقتك أو في أي مكان في العالم.";
 
-/* Class = "UILabel"; text = "Buy and Sell while Chatting"; ObjectID = "Soz-bA-Q3z"; */
+/* Class = "UILabel"; text = "Buy & Sell while Chatting"; ObjectID = "Soz-bA-Q3z"; */
 "Soz-bA-Q3z.text" = "بيع و اشتري وأنت تدردش!";
 
 /* Class = "UILabel"; text = "Video is worth a thousand pictures! see what you want to buy live before buying it."; ObjectID = "V9W-3j-fHJ"; */
@@ -99,9 +99,6 @@
 
 /* Class = "UILabel"; text = "Log in with Google"; ObjectID = "ff2-Jg-zkJ"; */
 "ff2-Jg-zkJ.text" = "بواسطة غوغل";
-
-/* Class = "UILabel"; text = "Login and discover what others are selling in your neighborhood or start selling in seconds "; ObjectID = "fg0-TH-CXc"; */
-"fg0-TH-CXc.text" = "سجل دخولك واكتشف ماذا يقوم الآخرين بالبيع في منطقتك أو قم بالبيع في ثوان ";
 
 /* Class = "UIButton"; normalTitle = "Create a Page for brand or business."; ObjectID = "gmD-j1-B34"; */
 "gmD-j1-B34.normalTitle" = "إنشاء صفحة لعلامتك التجارية أو عملك";

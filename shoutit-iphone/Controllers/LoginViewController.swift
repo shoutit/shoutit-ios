@@ -38,6 +38,9 @@ final class LoginViewController: UITableViewController {
         
         setupRX()
         setupSwitchToSignupLabel()
+        
+        Appsee.markViewAsSensitive(emailTextField)
+        Appsee.markViewAsSensitive(passwordTextField)
     }
     
     // MARK: - Setup
