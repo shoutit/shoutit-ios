@@ -33,5 +33,12 @@ class HomeStackView: UIScrollView {
     // search
     @IBOutlet var searchTextField : UITextField!
     
-    
+    func activateViewsForTab(currentTab: HomeTab) {
+        switch currentTab {
+        case .MyFeed:
+            self.discoverHeaderStack.hidden = true
+        default:
+            return
+        }
+    }
 }

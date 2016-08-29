@@ -8,8 +8,30 @@
 
 import Foundation
 
+enum HomeTab {
+    case MyFeed
+    case ShoutitPicks
+    case Discover
+}
 
 class HomeDataSource : CompoundDataSource {
+
+    var currentTab : HomeTab = .MyFeed {
+        didSet {
+            self.active = false
+            
+            switch currentTab {
+            case .MyFeed:
+                self.subSources = myFeedSources
+            case .ShoutitPicks:
+                self.subSources = shoutitPicksSources
+            case .Discover:
+                self.subSources = discoverSources
+            }
+            
+            self.active = true
+        }
+    }
     
     let myFeedSources : [BasicDataSource] = [ShoutsCollectionViewModel(context: .HomeShouts)]
     let shoutitPicksSources : [BasicDataSource] = []
@@ -19,6 +41,6 @@ class HomeDataSource : CompoundDataSource {
     override init() {
         super.init()
         
-        self.subSources = myFeedSources
+        self.subSources = []
     }
 }

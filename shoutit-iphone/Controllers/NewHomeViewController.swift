@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import RxSwift
 
 class NewHomeViewController: UIViewController {
 
+    @IBOutlet var homeView : HomeStackView!
+    
     let dataSource = HomeDataSource()
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dataSource.active = true
+        
+        dataSource.stateMachine.subject.asDriver(onErrorJustReturn: .Error).driveNext{ [weak self] (state) in
+            self?.applyData()
+        }.addDisposableTo(disposeBag)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -40,4 +49,9 @@ class NewHomeViewController: UIViewController {
     }
     */
 
+    
+    func applyData() {
+        homeView.activateViewsForTab(self.dataSource.currentTab)
+    }
+    
 }
