@@ -249,8 +249,6 @@
 		AE63AE811D74537C00D3C6F9 /* BasicDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63AE801D74537C00D3C6F9 /* BasicDataSource.swift */; };
 		AE63AE831D74551F00D3C6F9 /* CompoundDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63AE821D74551F00D3C6F9 /* CompoundDataSource.swift */; };
 		AE63AE881D7462D600D3C6F9 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63AE871D7462D600D3C6F9 /* HomeDataSource.swift */; };
-		AE63AE8B1D7465A600D3C6F9 /* ShoutsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63AE8A1D7465A600D3C6F9 /* ShoutsDataSource.swift */; };
-		AE63AE8D1D74711B00D3C6F9 /* HomeShoutsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63AE8C1D74711B00D3C6F9 /* HomeShoutsData.swift */; };
 		AE63FB121D12D04F005A35CD /* PromotionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB111D12D04F005A35CD /* PromotionOption.swift */; };
 		AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */; };
 		AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE63FB161D12D284005A35CD /* PromotionLabelView.swift */; };
@@ -1172,8 +1170,6 @@
 		AE63AE801D74537C00D3C6F9 /* BasicDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicDataSource.swift; path = DataSources/BasicDataSource.swift; sourceTree = "<group>"; };
 		AE63AE821D74551F00D3C6F9 /* CompoundDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompoundDataSource.swift; path = DataSources/CompoundDataSource.swift; sourceTree = "<group>"; };
 		AE63AE871D7462D600D3C6F9 /* HomeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeDataSource.swift; path = DataSources/HomeDataSource.swift; sourceTree = "<group>"; };
-		AE63AE8A1D7465A600D3C6F9 /* ShoutsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoutsDataSource.swift; path = DataSources/ShoutsDataSource.swift; sourceTree = "<group>"; };
-		AE63AE8C1D74711B00D3C6F9 /* HomeShoutsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeShoutsData.swift; path = DataSources/HomeShoutsData.swift; sourceTree = "<group>"; };
 		AE63FB111D12D04F005A35CD /* PromotionOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionOption.swift; path = Model/PromotionOption.swift; sourceTree = "<group>"; };
 		AE63FB141D12D271005A35CD /* PromotionLabelsViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionLabelsViews.swift; path = View/PromotionLabelsViews.swift; sourceTree = "<group>"; };
 		AE63FB161D12D284005A35CD /* PromotionLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromotionLabelView.swift; path = View/PromotionLabelView.swift; sourceTree = "<group>"; };
@@ -3443,8 +3439,6 @@
 		AE63AE891D74656A00D3C6F9 /* Basic */ = {
 			isa = PBXGroup;
 			children = (
-				AE63AE8A1D7465A600D3C6F9 /* ShoutsDataSource.swift */,
-				AE63AE8C1D74711B00D3C6F9 /* HomeShoutsData.swift */,
 			);
 			name = Basic;
 			sourceTree = "<group>";
@@ -6336,7 +6330,6 @@
 				B2082D7B1C63844E007EB2FB /* Fonts.swift in Sources */,
 				B209C5271CF3181E00727095 /* RecentPhotosPhotoCollectionViewCell.swift in Sources */,
 				B2D9B1011C98539500924941 /* ModalNavigationController.swift in Sources */,
-				AE63AE8D1D74711B00D3C6F9 /* HomeShoutsData.swift in Sources */,
 				B22D90771CE4C74D00D3C387 /* ConversationListsParentViewController.swift in Sources */,
 				B2C729AC1C622088006F7D29 /* ShoutitValidator.swift in Sources */,
 				B2E43CA71D104430006C6AD2 /* CreditsFlowController.swift in Sources */,
@@ -6669,7 +6662,6 @@
 				B2F719D31D0EF2EC002C1D74 /* FromJSON.swift in Sources */,
 				AE32EA1D1D2139EF00545F72 /* CreatePageDisplayable.swift in Sources */,
 				B2E7155B1C6E0BF1007F95CF /* ShoutsCollectionViewCell.swift in Sources */,
-				AE63AE8B1D7465A600D3C6F9 /* ShoutsDataSource.swift in Sources */,
 				B2B3454A1CA558960066DF15 /* PusherError.swift in Sources */,
 				AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */,
 			);

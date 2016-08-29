@@ -7,32 +7,37 @@
 //
 
 import Foundation
+import RxSwift
 
 class CompoundDataSource : BasicDataSource {
 
-    private var subSources : [BasicDataSource]!
+    private var stateDisposeBag : DisposeBag! = DisposeBag()
     
-    override var active : Bool {
+    var subSources : [BasicDataSource]! {
         didSet {
-            if active == false { return }
+            self.stateDisposeBag = DisposeBag()
             
             for source in subSources {
-                source.active = active
-            }
-            
-            if self.stateMachine.currentState == .Initial || shouldReloadOnActive {
-                loadContent()
+                source.stateMachine.subject.asDriver(onErrorJustReturn: .Error).driveNext({ [weak self] (state) in
+                    self?.trackStateOfSubSources()
+                }).addDisposableTo(self.stateDisposeBag)
             }
         }
     }
     
-    init(subSources: [BasicDataSource]) {
-        super.init()
-        
-        self.subSources = subSources
+    override var active : Bool {
+        didSet {
+            for source in subSources {
+                source.active = active
+            }
+        }
     }
     
     override func loadContent() {
+        // do nothing, load just subsources
+    }
+    
+    private func trackStateOfSubSources() {
         
     }
 }

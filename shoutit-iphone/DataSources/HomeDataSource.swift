@@ -10,9 +10,15 @@ import Foundation
 
 
 class HomeDataSource : CompoundDataSource {
-    convenience init() {
+    
+    let myFeedSources : [BasicDataSource] = [ShoutsCollectionViewModel(context: .HomeShouts)]
+    let shoutitPicksSources : [BasicDataSource] = []
+    let discoverSources : [BasicDataSource] = []
+    
+    
+    override init() {
+        super.init()
         
-
-        self.init(subSources: [])
+        self.subSources = myFeedSources
     }
 }

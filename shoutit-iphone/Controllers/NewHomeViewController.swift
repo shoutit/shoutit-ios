@@ -15,7 +15,13 @@ class NewHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dataSource.active = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        dataSource.active = false
     }
 
     override func didReceiveMemoryWarning() {

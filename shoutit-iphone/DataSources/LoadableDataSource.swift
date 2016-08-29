@@ -22,6 +22,8 @@ class LoadableContentStateMachine {
     
     var currentState = LoadableContentState.Initial {
         willSet (newState) {
+            if newState == currentState { return }
+            
             guard let availableStates = self.validTransitions[currentState] else {
                 assertionFailure("No States Provided")
                 return
