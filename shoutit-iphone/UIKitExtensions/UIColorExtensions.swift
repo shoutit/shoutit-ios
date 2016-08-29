@@ -43,6 +43,10 @@ enum ShoutitColor: Int {
             return 1.0
         }
     }
+    
+    // new colors
+    
+    case NavigationBarBlack = 0x353535
 }
 
 extension UIColor {

@@ -229,8 +229,8 @@ private extension AppDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
                                                             NSFontAttributeName : UIFont.systemFontOfSize(20)]
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
-        UINavigationBar.appearance().barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .NavigationBarBlack)
+        UINavigationBar.appearance().barTintColor = UIColor(shoutitColor: .NavigationBarBlack)
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
     }
     
