@@ -21,7 +21,7 @@ enum PagerError: ErrorType {
 class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
     
     private(set) var requestDisposeBag: DisposeBag = DisposeBag()
-    private(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.Idle)
+    private(set) var state: Variable<LoadableContentState<CellViewModelType, PageIndexType, ItemType>> = Variable(.Idle)
     private(set) var numberOfResults: Int?
     
     let showAds : Bool

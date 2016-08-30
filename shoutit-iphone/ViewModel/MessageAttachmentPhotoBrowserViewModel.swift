@@ -18,7 +18,7 @@ class MessageAttachmentPhotoBrowserViewModel: NSObject {
     private let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     private(set) var requestDisposeBag: DisposeBag = DisposeBag()
-    private(set) var state: Variable<PagedViewModelState<MessageAttachment, Int, MessageAttachment>> = Variable(.Idle)
+    private(set) var state: Variable<LoadableContentState<MessageAttachment, Int, MessageAttachment>> = Variable(.Idle)
     private(set) var cellViewModels: [MessageAttachmentPhotoBrowserCellViewModel]?
     private(set) var thumbnailCellViewModels: [MessageAttachmentPhotoBrowserCellViewModel]?
     private(set) var numberOfResults: Int? {

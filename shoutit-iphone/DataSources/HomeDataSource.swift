@@ -14,33 +14,71 @@ enum HomeTab {
     case Discover
 }
 
-class HomeDataSource : CompoundDataSource {
-
-    var currentTab : HomeTab = .MyFeed {
+class HomeDataSource {
+    
+    var active : Bool = false {
         didSet {
-            self.active = false
-            
-            switch currentTab {
-            case .MyFeed:
-                self.subSources = myFeedSources
-            case .ShoutitPicks:
-                self.subSources = shoutitPicksSources
-            case .Discover:
-                self.subSources = discoverSources
+            self.activeComponents.each { (component) in
+                component.active = active
             }
-            
-            self.active = true
         }
     }
     
-    let myFeedSources : [BasicDataSource] = [ShoutsCollectionViewModel(context: .HomeShouts)]
-    let shoutitPicksSources : [BasicDataSource] = []
-    let discoverSources : [BasicDataSource] = []
+    var componentsChanged : ((([ComponentStackViewRepresentable])) -> Void)?
     
-    
-    override init() {
-        super.init()
+    var activeComponents : [BasicComponent] = [] {
+        willSet {
+            self.activeComponents.each { (component) in
+                component.active = false
+            }
+        }
         
-        self.subSources = []
+        didSet {
+            self.activeComponents.each { (component) in
+                component.active = self.active
+            }
+            
+            var stackComponents : [ComponentStackViewRepresentable] = []
+            
+            self.activeComponents.each { (component) in
+                if let stackComponent = component as? ComponentStackViewRepresentable {
+                    stackComponents.append(stackComponent)
+                }
+            }
+            
+            self.componentsChanged?(stackComponents)
+        }
     }
+    
+    lazy var myFeedComponents : [BasicComponent] = {
+        return [HomeShoutsComponent()]
+    }()
+    
+    lazy var shoutitPicksComponents : [BasicComponent] = {
+        return [HomeShoutsComponent()]
+    }()
+    
+    lazy var discoverComponents : [BasicComponent] = {
+        return [HomeShoutsComponent()]
+    }()
+
+    var currentTab : HomeTab = .MyFeed {
+        didSet {
+            
+            switch currentTab {
+            case .MyFeed:
+                self.activeComponents = myFeedComponents
+                break
+            case .ShoutitPicks:
+                self.activeComponents = shoutitPicksComponents
+                break
+            case .Discover:
+                self.activeComponents = discoverComponents
+                break
+            }
+            
+            
+        }
+    }
+    
 }

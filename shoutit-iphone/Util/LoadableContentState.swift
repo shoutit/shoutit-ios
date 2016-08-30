@@ -9,8 +9,9 @@
 import Foundation
 import Argo
 import ShoutitKit
+import RxSwift
 
-enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
+enum LoadableContentState <CellViewModelType, PageIndexType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
     case Idle
     case Loading
     case Loaded(cells: [CellViewModelType], page: PageIndexType, lastPageResults: PagedResults<ItemType>)
@@ -34,5 +35,6 @@ enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable 
             return nil
         }
     }
+    
 }
 

@@ -11,34 +11,23 @@ import UIKit
 class HomeStackView: UIScrollView {
 
     @IBOutlet var mainStackView : UIStackView!
-
-    @IBOutlet var navigationStackView : UIStackView!
     
-    // discover
-    @IBOutlet var discoverHeaderStack : UIStackView!
-    @IBOutlet var discoverCollectionView : UICollectionView!
+    @IBOutlet var commonStaticComponents : [UIView]!
     
-    // pages
-    @IBOutlet var pagesHeaderStack : UIStackView!
-    @IBOutlet var pagesCollectionView : UICollectionView!
-    
-    // chats
-    @IBOutlet var chatsHeaderStack : UIStackView!
-    @IBOutlet var chatsCollectionView : UICollectionView!
-    
-    // trending shouts
-    @IBOutlet var trendingHeaderStack : UIStackView!
-    @IBOutlet var trendingCollectionView : UICollectionView!
-    
-    // search
-    @IBOutlet var searchTextField : UITextField!
-    
-    func activateViewsForTab(currentTab: HomeTab) {
-        switch currentTab {
-        case .MyFeed:
-            self.discoverHeaderStack.hidden = true
-        default:
-            return
+    func applyComponents(components: [ComponentStackViewRepresentable]) {
+        for stackPart in mainStackView.arrangedSubviews {
+            
+            if commonStaticComponents.contains(stackPart) { continue }
+            
+            mainStackView.removeArrangedSubview(stackPart)
+        }
+        
+        for component in components {
+            let componentViews = component.stackViewRepresentation()
+            
+            for view in componentViews {
+                mainStackView.addArrangedSubview(view)
+            }
         }
     }
 }
