@@ -333,6 +333,7 @@
 		AEC852991D2E53F10060A32D /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC852981D2E53F10060A32D /* CellViewModel.swift */; };
 		AEC8529D1D2E7FE90060A32D /* FBNativeAdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8529A1D2E7F330060A32D /* FBNativeAdExtension.swift */; };
 		AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */; };
+		AECEDED41D76EFB100722DF7 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEDED31D76EFB100722DF7 /* FlowLayout.swift */; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
 		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
@@ -1407,6 +1408,7 @@
 		AEC852981D2E53F10060A32D /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		AEC8529A1D2E7F330060A32D /* FBNativeAdExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBNativeAdExtension.swift; sourceTree = "<group>"; };
 		AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LikeButton.swift; path = View/LikeButton.swift; sourceTree = "<group>"; };
+		AECEDED31D76EFB100722DF7 /* FlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		AED291751D08676D000F9DAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonS3RequestManager.framework; path = ../Carthage/Build/iOS/AmazonS3RequestManager.framework; sourceTree = "<group>"; };
 		AED291771D08676D000F9DAF /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ../Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
@@ -4361,6 +4363,7 @@
 				AEDC78FD1D4BAA9100C3B174 /* CopyLabel.swift */,
 				AEBBCF331D75845C003C7893 /* ShoutCardCollectionViewCell.swift */,
 				AEBBCF351D758DC9003C7893 /* AutoInstrictSizeCollectionView.swift */,
+				AECEDED31D76EFB100722DF7 /* FlowLayout.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -6556,6 +6559,7 @@
 				B2C729D31C62224A006F7D29 /* TermsAndPolicyDisplayable.swift in Sources */,
 				B2FA5CD31D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift in Sources */,
 				B2778FB51CAD8DD500BBDD5F /* FiltersCellViewModel.swift in Sources */,
+				AECEDED41D76EFB100722DF7 /* FlowLayout.swift in Sources */,
 				B22D907F1CE4DB8600D3C387 /* ConversationPagedResults.swift in Sources */,
 				AE3DC4031D21202400C460CC /* PageCategoriesCollectionViewController.swift in Sources */,
 				AE1D73901CFD826E0030E2ED /* SuggestedUsersViewModel.swift in Sources */,

@@ -12,22 +12,28 @@ class HomeStackView: UIScrollView {
 
     @IBOutlet var mainStackView : UIStackView!
     
-    @IBOutlet var commonStaticComponents : [UIView]!
-    
     func applyComponents(components: [ComponentStackViewRepresentable]) {
-        for stackPart in mainStackView.arrangedSubviews {
-            
-            if commonStaticComponents.contains(stackPart) { continue }
-            
-            mainStackView.removeArrangedSubview(stackPart)
-        }
-        
-        for component in components {
-            let componentViews = component.stackViewRepresentation()
-            
-            for view in componentViews {
-                mainStackView.addArrangedSubview(view)
+
+            for stackPart in self.mainStackView.arrangedSubviews {
+                stackPart.hidden = true
             }
-        }
+        
+            for stackPart in self.mainStackView.arrangedSubviews {
+                self.mainStackView.removeArrangedSubview(stackPart)
+            }
+            
+        
+            for component in components {
+                let componentViews = component.stackViewRepresentation()
+                    
+                for view in componentViews {
+                    self.mainStackView.addArrangedSubview(view)
+                }
+            }
+        
+            for stackPart in self.mainStackView.arrangedSubviews {
+                    
+                stackPart.hidden = false
+            }
     }
 }

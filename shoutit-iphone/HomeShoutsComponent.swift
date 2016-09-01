@@ -20,6 +20,7 @@ class HomeShoutsComponent : BasicComponent {
         
         return header
     }()
+
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,8 +32,14 @@ class HomeShoutsComponent : BasicComponent {
         collection.dataSource = self
         collection.backgroundColor = UIColor.whiteColor()
         collection.delegate = self
+        collection.scrollEnabled = false
+        
+//        collection.setContentHuggingPriority(260, forAxis: .Vertical)
+        collection.setContentCompressionResistancePriority(760, forAxis: .Vertical)
         
         collection.register(ShoutCardCollectionViewCell)
+        
+        collection.invalidateIntrinsicContentSize()
         
         return collection
     }()
@@ -44,7 +51,6 @@ class HomeShoutsComponent : BasicComponent {
             .asDriver()
             .driveNext {[weak self] (state) in
                 self?.collectionView.reloadData()
-                self?.collectionView.invalidateIntrinsicContentSize()
             }
             .addDisposableTo(self.disposeBag)
         

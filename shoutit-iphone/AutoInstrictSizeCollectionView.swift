@@ -11,7 +11,18 @@ import UIKit
 class AutoInstrictSizeCollectionView: UICollectionView {
 
     override func intrinsicContentSize() -> CGSize {
-        return self.contentSize
+//        if let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout {
+//            let items : CGFloat = CGFloat(self.dataSource?.collectionView(self, numberOfItemsInSection: 0) ?? 0)
+//            let rowHeight = (flowLayout.itemSize.height + flowLayout.minimumLineSpacing)
+//            
+//            print(items)
+//            
+//            return CGSizeMake(self.collectionViewLayout.collectionViewContentSize().width,  rowHeight * items)
+//        }
+//        
+//        print(self.collectionViewLayout.collectionViewContentSize())
+        return self.collectionViewLayout.collectionViewContentSize()
     }
 
+    
 }

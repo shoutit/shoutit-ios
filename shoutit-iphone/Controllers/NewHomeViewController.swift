@@ -24,9 +24,7 @@ class NewHomeViewController: UIViewController {
             self.homeView.applyComponents(newComponents)
         }
         
-        dataSource.active = true
         dataSource.currentTab = .MyFeed
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -34,9 +32,23 @@ class NewHomeViewController: UIViewController {
         
         dataSource.active = false
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dataSource.active = true
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func switchCurrentTab(sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            dataSource.currentTab = .MyFeed
+        case 1:
+            dataSource.currentTab = .ShoutitPicks
+        case 2:
+            dataSource.currentTab = .Discover
+        default:
+            break
+        }
     }
 }
