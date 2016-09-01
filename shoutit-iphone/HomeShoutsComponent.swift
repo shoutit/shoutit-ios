@@ -20,7 +20,6 @@ class HomeShoutsComponent : BasicComponent {
         
         return header
     }()
-
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,8 +33,7 @@ class HomeShoutsComponent : BasicComponent {
         collection.delegate = self
         collection.scrollEnabled = false
         
-//        collection.setContentHuggingPriority(260, forAxis: .Vertical)
-        collection.setContentCompressionResistancePriority(760, forAxis: .Vertical)
+        collection.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
         
         collection.register(ShoutCardCollectionViewCell)
         
@@ -50,7 +48,35 @@ class HomeShoutsComponent : BasicComponent {
         vm.pager.state
             .asDriver()
             .driveNext {[weak self] (state) in
+                print("STATE CHANGED: \(state)")
                 self?.collectionView.reloadData()
+                self?.collectionView.invalidateIntrinsicContentSize()
+                switch state {
+                case .Idle:
+                    self?.isLoaded = false
+                    self?.isLoading = false
+                case .Loading:
+                    self?.isLoaded = false
+                    self?.isLoading = true
+                case .Refreshing:
+                    self?.isLoaded = false
+                    self?.isLoading = true
+                case .Loaded:
+                    self?.isLoaded = true
+                    self?.isLoading = false
+                case .NoContent:
+                    self?.isLoaded = true
+                    self?.isLoading = false
+                case .Error:
+                    self?.isLoaded = true
+                    self?.isLoading = false
+                case .LoadingMore:
+                    self?.isLoaded = true
+                    self?.isLoading = true
+                case .LoadedAllContent:
+                    self?.isLoaded = true
+                    self?.isLoading = false
+                }
             }
             .addDisposableTo(self.disposeBag)
         

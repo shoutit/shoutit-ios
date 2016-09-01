@@ -10,19 +10,26 @@ import UIKit
 
 class AutoInstrictSizeCollectionView: UICollectionView {
 
-    override func intrinsicContentSize() -> CGSize {
-//        if let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout {
-//            let items : CGFloat = CGFloat(self.dataSource?.collectionView(self, numberOfItemsInSection: 0) ?? 0)
-//            let rowHeight = (flowLayout.itemSize.height + flowLayout.minimumLineSpacing)
-//            
-//            print(items)
-//            
-//            return CGSizeMake(self.collectionViewLayout.collectionViewContentSize().width,  rowHeight * items)
-//        }
-//        
-//        print(self.collectionViewLayout.collectionViewContentSize())
-        return self.collectionViewLayout.collectionViewContentSize()
-    }
-
+    var heightContraint : NSLayoutConstraint?
     
+    override var contentSize: CGSize {
+        didSet {
+            self.heightContraint?.constant = contentSize.height
+            self.layoutIfNeeded()
+        }
+    }
+    
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        
+        heightContraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.contentSize.height)
+        heightContraint?.active = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        heightContraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.contentSize.height)
+        heightContraint?.active = true
+    }    
 }

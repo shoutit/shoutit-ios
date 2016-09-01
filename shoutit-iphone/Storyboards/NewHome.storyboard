@@ -64,7 +64,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-v5-EZA" customClass="HomeStackView" customModule="Shoutit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="580"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="deb-tM-2cl">
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="deb-tM-2cl">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     </stackView>
                                 </subviews>
