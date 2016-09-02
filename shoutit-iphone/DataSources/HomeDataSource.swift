@@ -51,15 +51,15 @@ class HomeDataSource {
     }
     
     lazy var myFeedComponents : [BasicComponent] = {
-        return [HomeShoutsComponent()]
+        return [ShoutsComponent(context: .HomeShouts)]
     }()
     
     lazy var shoutitPicksComponents : [BasicComponent] = {
-        return [HomeShoutsComponent()]
+        return [ShoutsComponent(context: .HomeShouts)]
     }()
     
     lazy var discoverComponents : [BasicComponent] = {
-        return [HomeShoutsComponent()]
+        return [DiscoverComponent()]
     }()
 
     var currentTab : HomeTab = .MyFeed {

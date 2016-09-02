@@ -51,14 +51,6 @@ final class TabbarButton: UIButton {
         createBadgeLabel()
     }
     
-    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
-        return CGRectMake(CGRectGetMidX(contentRect) - iconSize.width * 0.5, imageTopMargin, iconSize.width, iconSize.height)
-    }
-    
-    override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
-        return CGRectMake(0, CGRectGetMaxY(contentRect) - textHeight, CGRectGetWidth(contentRect), textHeight)
-    }
-    
     func tabNavigationItem() -> NavigationItem? {
         return NavigationItem(rawValue: self.navigationItem)
     }

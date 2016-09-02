@@ -16,7 +16,7 @@ import ShoutitKit
 
 final class RootController: UIViewController, ContainerController {
     
-    private let defaultTabBarHeight: CGFloat = 49
+    private let defaultTabBarHeight: CGFloat = 69
     
     @IBOutlet weak var containerView : UIView!
     @IBOutlet weak var tabbarHeightConstraint: NSLayoutConstraint!

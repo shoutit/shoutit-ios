@@ -20,6 +20,10 @@
 		240F50A01C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F509F1C71C94300AE4A76 /* ShoutsVerticalListLayoutDelegate.swift */; };
 		240F50A41C72180300AE4A76 /* DiscoverPreviewParentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */; };
 		241CEC351C73282B00694575 /* APIDiscoverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241CEC341C73282B00694575 /* APIDiscoverService.swift */; };
+		242288B61D783398001115B2 /* DiscoverCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242288B51D783398001115B2 /* DiscoverCard.xib */; };
+		242288B81D7833FF001115B2 /* DiscoverCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242288B71D7833FF001115B2 /* DiscoverCardCollectionViewCell.swift */; };
+		242288BA1D783621001115B2 /* DiscoverComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242288B91D783621001115B2 /* DiscoverComponent.swift */; };
+		242288BC1D783BFF001115B2 /* ShoutsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242288BB1D783BFF001115B2 /* ShoutsComponent.swift */; };
 		242EE8191C9058B300621A5E /* CreateShoutParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */; };
 		242EE81B1C90626C00621A5E /* EditShoutParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */; };
 		24312DDD1D6C9FE300385450 /* SoldParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24312DDC1D6C9FE300385450 /* SoldParams.swift */; };
@@ -78,10 +82,13 @@
 		249FD6E31C7DDBF000859851 /* DiscoverShoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */; };
 		24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A843F81CA02107007FF9E8 /* ConversationShoutHeader.xib */; };
 		24A843FB1CA02733007FF9E8 /* ConversationShoutHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */; };
+		24AA0B761D7967E50062AC42 /* NewLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24AA0B751D7967E50062AC42 /* NewLogin.storyboard */; };
 		24AEF78E1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */; };
 		24AEF7901CF755AA00C57C7C /* SuggestionsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78F1CF755AA00C57C7C /* SuggestionsDisplayable.swift */; };
 		24AEF7921CF759C500C57C7C /* SuggestedProfilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */; };
 		24B2F2F01D72DC09001286F4 /* NewHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */; };
+		24C4B5561D79781100CAB78E /* assets35.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C4B5551D79781100CAB78E /* assets35.xcassets */; };
+		24C4B5581D79886500CAB78E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4B5571D79886500CAB78E /* TabBarView.swift */; };
 		24D3B0BF1C9AA68E00DE1600 /* PusherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */; };
 		24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */; };
 		24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C61C9C472D00DE1600 /* Twilio.swift */; };
@@ -988,6 +995,10 @@
 		240F50A31C72180300AE4A76 /* DiscoverPreviewParentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverPreviewParentController.swift; path = Controllers/DiscoverPreviewParentController.swift; sourceTree = "<group>"; };
 		241CEC341C73282B00694575 /* APIDiscoverService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIDiscoverService.swift; path = Networking/APIDiscoverService.swift; sourceTree = "<group>"; };
 		241CEC361C732CDE00694575 /* DiscoverItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItem.swift; path = Model/DiscoverItem.swift; sourceTree = "<group>"; };
+		242288B51D783398001115B2 /* DiscoverCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverCard.xib; path = View/DiscoverCard.xib; sourceTree = "<group>"; };
+		242288B71D7833FF001115B2 /* DiscoverCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverCardCollectionViewCell.swift; path = View/DiscoverCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		242288B91D783621001115B2 /* DiscoverComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverComponent.swift; sourceTree = "<group>"; };
+		242288BB1D783BFF001115B2 /* ShoutsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoutsComponent.swift; sourceTree = "<group>"; };
 		242EE8181C9058B300621A5E /* CreateShoutParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutParentViewController.swift; path = Controllers/CreateShoutParentViewController.swift; sourceTree = "<group>"; };
 		242EE81A1C90626C00621A5E /* EditShoutParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditShoutParentViewController.swift; path = Controllers/EditShoutParentViewController.swift; sourceTree = "<group>"; };
 		24312DDC1D6C9FE300385450 /* SoldParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoldParams.swift; path = Model/SoldParams.swift; sourceTree = "<group>"; };
@@ -1057,10 +1068,13 @@
 		249FD6E21C7DDBF000859851 /* DiscoverShoutFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverShoutFooterView.swift; path = View/DiscoverShoutFooterView.swift; sourceTree = "<group>"; };
 		24A843F81CA02107007FF9E8 /* ConversationShoutHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationShoutHeader.xib; path = View/ConversationShoutHeader.xib; sourceTree = "<group>"; };
 		24A843FA1CA02733007FF9E8 /* ConversationShoutHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationShoutHeader.swift; path = View/ConversationShoutHeader.swift; sourceTree = "<group>"; };
+		24AA0B751D7967E50062AC42 /* NewLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NewLogin.storyboard; path = Storyboards/NewLogin.storyboard; sourceTree = "<group>"; };
 		24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsTableViewController.swift; path = Controllers/InviteFriendsTableViewController.swift; sourceTree = "<group>"; };
 		24AEF78F1CF755AA00C57C7C /* SuggestionsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestionsDisplayable.swift; path = FlowControl/SuggestionsDisplayable.swift; sourceTree = "<group>"; };
 		24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedProfilesTableViewController.swift; path = Controllers/SuggestedProfilesTableViewController.swift; sourceTree = "<group>"; };
 		24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NewHome.storyboard; path = Storyboards/NewHome.storyboard; sourceTree = "<group>"; };
+		24C4B5551D79781100CAB78E /* assets35.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets35.xcassets; sourceTree = "<group>"; };
+		24C4B5571D79886500CAB78E /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarView.swift; path = View/TabBarView.swift; sourceTree = "<group>"; };
 		24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherClient.swift; path = Networking/PusherClient.swift; sourceTree = "<group>"; };
 		24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherAdditions.swift; path = Networking/PusherAdditions.swift; sourceTree = "<group>"; };
 		24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwilioAuth.swift; path = Model/TwilioAuth.swift; sourceTree = "<group>"; };
@@ -2950,6 +2964,15 @@
 			name = SupplementaryViews;
 			sourceTree = "<group>";
 		};
+		24AA0B741D7967380062AC42 /* NewStoryboards */ = {
+			isa = PBXGroup;
+			children = (
+				24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */,
+				24AA0B751D7967E50062AC42 /* NewLogin.storyboard */,
+			);
+			name = NewStoryboards;
+			sourceTree = "<group>";
+		};
 		24AEF78C1CF74F1600C57C7C /* InviteFriends */ = {
 			isa = PBXGroup;
 			children = (
@@ -3215,6 +3238,7 @@
 		6027CF711BE7504B00124C28 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				24AA0B741D7967380062AC42 /* NewStoryboards */,
 				B2F524691C9AF6D000EA622F /* TableViewCommonCells */,
 				B24D17B61C886D6500FB9614 /* Xibs */,
 				B2B5D0431C80CFCC0068A6AF /* CollectionViewCommonCells */,
@@ -3247,7 +3271,6 @@
 				B2CA5C4E1D1D7DC9009E164E /* Admins.storyboard */,
 				AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */,
 				AE6AF6541D587A180079A7B9 /* StaticPage.storyboard */,
-				24B2F2EF1D72DC09001286F4 /* NewHome.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -3289,6 +3312,7 @@
 				B2F7193D1D0EEDA9002C1D74 /* GoogleSignIn.bundle */,
 				B2082D701C626331007EB2FB /* HTMLFiles */,
 				6027CF3B1BE74EAE00124C28 /* Assets.xcassets */,
+				24C4B5551D79781100CAB78E /* assets35.xcassets */,
 			);
 			name = Resources;
 			path = "shoutit-iphone";
@@ -3453,6 +3477,8 @@
 				AEBBCF261D7572D2003C7893 /* Component.swift */,
 				AEBBCF2A1D757427003C7893 /* BasicComponent.swift */,
 				AEBBCF281D75739C003C7893 /* HomeShoutsComponent.swift */,
+				242288B91D783621001115B2 /* DiscoverComponent.swift */,
+				242288BB1D783BFF001115B2 /* ShoutsComponent.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -3592,6 +3618,7 @@
 			isa = PBXGroup;
 			children = (
 				AE83516B1C5F595C0055C71F /* TabbarController.swift */,
+				24C4B5571D79886500CAB78E /* TabBarView.swift */,
 			);
 			name = Tabbar;
 			sourceTree = "<group>";
@@ -4362,6 +4389,7 @@
 				AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */,
 				AEDC78FD1D4BAA9100C3B174 /* CopyLabel.swift */,
 				AEBBCF331D75845C003C7893 /* ShoutCardCollectionViewCell.swift */,
+				242288B71D7833FF001115B2 /* DiscoverCardCollectionViewCell.swift */,
 				AEBBCF351D758DC9003C7893 /* AutoInstrictSizeCollectionView.swift */,
 				AECEDED31D76EFB100722DF7 /* FlowLayout.swift */,
 			);
@@ -5178,6 +5206,7 @@
 				B2E53E991CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib */,
 				AEC5CB011D25153D009168D7 /* DiscoverItemCell.xib */,
 				AEBBCF311D7582C4003C7893 /* ShoutCard.xib */,
+				242288B51D783398001115B2 /* DiscoverCard.xib */,
 			);
 			name = CollectionViewCommonCells;
 			sourceTree = "<group>";
@@ -6014,14 +6043,17 @@
 				B2F719761D0EEEF5002C1D74 /* PlayButtonOverlayLargeTap@3x.png in Resources */,
 				B2F719661D0EEEF5002C1D74 /* ImageSelectedOff@2x.png in Resources */,
 				B2F7193E1D0EEDA9002C1D74 /* GoogleSignIn.bundle in Resources */,
+				24C4B5561D79781100CAB78E /* assets35.xcassets in Resources */,
 				B27230681CE0F913003547EA /* OutgoingProfileCell.xib in Resources */,
 				AEADF3361CA544880051DABA /* ConversationTitleViewMessage.xib in Resources */,
 				B2D441691CB816EE009782AF /* VerifyEmail.storyboard in Resources */,
+				24AA0B761D7967E50062AC42 /* NewLogin.storyboard in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
 				B2D9B10C1C9881CF00924941 /* SearchSuggestionTableViewCell.xib in Resources */,
 				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
 				B2F5248A1C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib in Resources */,
 				B2F719691D0EEEF5002C1D74 /* ImageSelectedOn@2x.png in Resources */,
+				242288B61D783398001115B2 /* DiscoverCard.xib in Resources */,
 				B2F719801D0EEEF5002C1D74 /* VideoOverlay.png in Resources */,
 				B2F719711D0EEEF5002C1D74 /* PlayButtonOverlayLarge.png in Resources */,
 				B2E7E3011C592BD20078C743 /* Settings.storyboard in Resources */,
@@ -6297,6 +6329,7 @@
 				B2E7154B1C6DF078007F95CF /* UIViewController+NavigationItems.swift in Sources */,
 				249F78271C99641D00FCB9A6 /* ConversationDayHeader.swift in Sources */,
 				B2F71A2E1D0EF643002C1D74 /* PTPusherAPI.m in Sources */,
+				24C4B5581D79886500CAB78E /* TabBarView.swift in Sources */,
 				AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */,
 				B2B5D03E1C80AABC0068A6AF /* ShoutDisplayable.swift in Sources */,
 				AE76E34F1D47507600C7F2CB /* DDASLLogCapture.m in Sources */,
@@ -6545,6 +6578,7 @@
 				AE8DF0551D2183B1004FEE22 /* CreatePageParams.swift in Sources */,
 				AE1F3FE41CEB49C700C3432F /* ConversationMembersListViewModel.swift in Sources */,
 				B2B5D0251C7F5CAE0068A6AF /* AllShoutsDisplayable.swift in Sources */,
+				242288BA1D783621001115B2 /* DiscoverComponent.swift in Sources */,
 				AEADF3411CA565A30051DABA /* ConversationSelectShoutController.swift in Sources */,
 				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
 				B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */,
@@ -6606,6 +6640,7 @@
 				B2CA5C561D1D84CB009E164E /* AdminsFlowController.swift in Sources */,
 				B22D90941CE6248100D3C387 /* CreatePublicChatHeaderView.swift in Sources */,
 				B2F5247A1C9C605800EA622F /* SearchShoutsResultsCollectionViewController.swift in Sources */,
+				242288B81D7833FF001115B2 /* DiscoverCardCollectionViewCell.swift in Sources */,
 				B2CA5C491D1D7C91009E164E /* AdminsListViewModel.swift in Sources */,
 				B22D90921CE611F600D3C387 /* CreatePublicChatViewModel.swift in Sources */,
 				B2F719FD1D0EF53A002C1D74 /* InlineTextAttachment.m in Sources */,
@@ -6638,6 +6673,7 @@
 				B20F47C81CAEBC410091899C /* MixpanelHelper.swift in Sources */,
 				B2F719FC1D0EF53A002C1D74 /* CustomLayoutManager.m in Sources */,
 				B27230831CE36DFD003547EA /* NumberedPagePager.swift in Sources */,
+				242288BC1D783BFF001115B2 /* ShoutsComponent.swift in Sources */,
 				B209C5351CF3437E00727095 /* Listenable.swift in Sources */,
 				240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */,
 				B2F71A001D0EF53A002C1D74 /* PatternDescriptor.m in Sources */,

@@ -36,10 +36,6 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
 
         navigationBar.barTintColor = UIColor(shoutitColor: .NavigationBarBlack)
         navigationBar.tintColor = UIColor.whiteColor()
-        
-        let overlay = UIView(frame: CGRect(x: 0, y: -20.0, width: self.view.frame.width, height: 20.0))
-        overlay.backgroundColor = UIColor.blackColor()
-        self.navigationBar.addSubview(overlay)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -61,6 +57,8 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
+        
+        viewController.navigationItem.titleView = UIImageView(image: UIImage(named: "nav_logo"))
         
         if ignoreToggleMenu || viewController.ignoresToggleMenu() {
             return

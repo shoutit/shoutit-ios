@@ -12,6 +12,10 @@ class HomeStackView: UIScrollView {
 
     @IBOutlet var mainStackView : UIStackView!
     
+    @IBOutlet var firstTabConstraints : [NSLayoutConstraint]!
+    @IBOutlet var secondTabConstraints : [NSLayoutConstraint]!
+    @IBOutlet var thirdTabConstraints : [NSLayoutConstraint]!
+    
     func applyComponents(components: [ComponentStackViewRepresentable]) {
 
             for stackPart in self.mainStackView.arrangedSubviews {
@@ -35,5 +39,25 @@ class HomeStackView: UIScrollView {
                     
                 stackPart.hidden = false
             }
+    }
+    
+    func switchToTab(tab: Int) {
+        switch tab {
+        case 0:
+            NSLayoutConstraint.deactivateConstraints(self.secondTabConstraints + self.thirdTabConstraints)
+            NSLayoutConstraint.activateConstraints(self.firstTabConstraints)
+        case 1:
+            NSLayoutConstraint.deactivateConstraints(self.firstTabConstraints + self.thirdTabConstraints)
+            NSLayoutConstraint.activateConstraints(self.secondTabConstraints)
+        case 2:
+            NSLayoutConstraint.deactivateConstraints(self.firstTabConstraints + self.secondTabConstraints)
+            NSLayoutConstraint.activateConstraints(self.thirdTabConstraints)
+        default: break
+        }
+        
+        self.setNeedsUpdateConstraints()
+        UIView.animateWithDuration(0.3) { 
+            self.layoutIfNeeded()
+        }
     }
 }

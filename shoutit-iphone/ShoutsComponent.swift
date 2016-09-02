@@ -1,18 +1,23 @@
 //
-//  HomeShoutsComponent.swift
+//  ShoutsComponent.swift
 //  shoutit
 //
-//  Created by Piotr Bernad on 30/08/16.
+//  Created by Piotr Bernad on 01.09.2016.
 //  Copyright © 2016 Shoutit. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 
-/*
-class HomeShoutsComponent : BasicComponent {
+class ShoutsComponent : BasicComponent {
     
     private let disposeBag = DisposeBag()
+    
+    let context : ShoutsContext
+    
+    init(context: ShoutsContext) {
+        self.context = context
+    }
     
     lazy var sectionHeader : HomeSectionHeader = {
         let header = HomeSectionHeader.instanceFromNib()
@@ -44,7 +49,7 @@ class HomeShoutsComponent : BasicComponent {
     }()
     
     lazy var viewModel : ShoutsCollectionViewModel = {
-        let vm = ShoutsCollectionViewModel(context: .HomeShouts)
+        let vm = ShoutsCollectionViewModel(context: self.context)
         
         vm.pager.state
             .asDriver()
@@ -93,13 +98,13 @@ class HomeShoutsComponent : BasicComponent {
     }
 }
 
-extension HomeShoutsComponent : ComponentStackViewRepresentable {
+extension ShoutsComponent : ComponentStackViewRepresentable {
     func stackViewRepresentation() -> [UIView] {
         return [self.sectionHeader, self.collectionView]
     }
 }
 
-extension HomeShoutsComponent : UICollectionViewDataSource {
+extension ShoutsComponent : UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -117,20 +122,20 @@ extension HomeShoutsComponent : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell : ShoutCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    
+        
         
         switch viewModel.pager.state.value {
         case .Idle:
             fatalError()
         case .Error(let error):
             return cell
-//            return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
+        //            return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
         case .NoContent:
             return cell
-//            return placeholderCellWithMessage(message: self.viewModel.noContentMessage(), activityIndicator: false)
+        //            return placeholderCellWithMessage(message: self.viewModel.noContentMessage(), activityIndicator: false)
         case .Loading:
             return cell
-//            return placeholderCellWithMessage(message: nil, activityIndicator: true)
+        //            return placeholderCellWithMessage(message: nil, activityIndicator: true)
         default:
             let cellViewModel = self.viewModel.pager.shoutCellViewModels()[indexPath.row]
             
@@ -139,14 +144,14 @@ extension HomeShoutsComponent : UICollectionViewDataSource {
             } else if let ad = cellViewModel.ad {
                 cell.bindWithAd(ad)
             }
-         
+            
             return cell
         }
         
     }
 }
 
-extension HomeShoutsComponent : UICollectionViewDelegateFlowLayout {
+extension ShoutsComponent : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = (collectionView.bounds.width - 3 * 10.0) * 0.5
         
@@ -165,4 +170,3 @@ extension HomeShoutsComponent : UICollectionViewDelegateFlowLayout {
         return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
     }
 }
- */

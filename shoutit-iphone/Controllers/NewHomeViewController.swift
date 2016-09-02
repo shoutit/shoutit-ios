@@ -40,6 +40,8 @@ class NewHomeViewController: UIViewController {
     }
 
     @IBAction func switchCurrentTab(sender: UIButton) {
+        self.homeView.switchToTab(sender.tag)
+        
         switch sender.tag {
         case 0:
             dataSource.currentTab = .MyFeed

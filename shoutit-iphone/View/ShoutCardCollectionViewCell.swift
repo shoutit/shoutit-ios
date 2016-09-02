@@ -8,6 +8,8 @@
 
 import UIKit
 import QuartzCore
+import ShoutitKit
+import FBAudienceNetwork
 
 class ShoutCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView : UIImageView!
@@ -15,6 +17,7 @@ class ShoutCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet var firstLineLabel : UILabel!
     @IBOutlet var secondLineLabel : UILabel!
     @IBOutlet var thirdLineLabel : UILabel!
+    @IBOutlet var fourthLineLabel : UILabel!
     
     @IBOutlet var shadowView : UIView!
     @IBOutlet var roundedContentView : UIView!
@@ -41,4 +44,48 @@ class ShoutCardCollectionViewCell: UICollectionViewCell {
 extension ShoutCardCollectionViewCell : ReusableView, NibLoadableView {
     static var defaultReuseIdentifier: String { return "ShoutCardCollectionViewCell" }
     static var nibName: String { return "ShoutCard" }
+}
+
+extension ShoutCardCollectionViewCell {
+    func bindWithShout(shout: Shout) {
+        
+        fillLabel(self.firstLineLabel, withText: shout.title)
+        fillLabel(self.secondLineLabel, withText: shout.user?.name)
+        fillLabel(self.thirdLineLabel, withText: NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency))
+        fillLabel(self.fourthLineLabel, withText: shout.type()?.title())
+        
+        if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
+            self.imageView.sh_setImageWithURL(thumbURL, placeholderImage: UIImage.backgroundPattern())
+        } else {
+            self.imageView.image = UIImage.backgroundPattern()
+        }
+        
+        if shout.type() == .Request {
+            self.fourthLineLabel.textColor = UIColor(shoutitColor: .RequestColor)
+        } else {
+            self.fourthLineLabel.textColor = UIColor(shoutitColor: .OfferColor)
+        }
+    }
+    
+    func bindWithAd(ad: FBNativeAd) {
+        fillLabel(self.firstLineLabel, withText: ad.title)
+        fillLabel(self.secondLineLabel, withText: NSLocalizedString("Sponsored", comment: ""))
+        fillLabel(self.thirdLineLabel, withText: ad.subtitle)
+        fillLabel(self.fourthLineLabel, withText: ad.callToAction)
+        
+        ad.coverImage?.loadImageAsyncWithBlock({ [weak self] (image) -> Void in
+            self?.imageView.image = image
+        })
+    }
+}
+
+extension UICollectionViewCell {
+    func fillLabel(label: UILabel, withText text: String?) {
+        if text?.isEmpty ?? true {
+            label.hidden = true
+        } else {
+            label.hidden = false
+            label.text = text
+        }
+    }
 }

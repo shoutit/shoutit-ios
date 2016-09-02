@@ -13,6 +13,9 @@ import ShoutitKit
 final class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]?
+    @IBOutlet var currentTabMarkerCenter : NSLayoutConstraint!
+    @IBOutlet var tabMarker : UIView!
+    @IBOutlet weak var shadowView: UIView!
     
     private let disposeBag = DisposeBag()
     
@@ -38,6 +41,11 @@ final class TabbarController: UIViewController, Navigation {
                 .subscribeNext {[unowned self] in
                     self.tabs!.each { $0.selected = false }
                     button.selected = true
+                    
+                    self.currentTabMarkerCenter.active = false
+                    self.currentTabMarkerCenter = NSLayoutConstraint(item: self.tabMarker, attribute: .CenterX, relatedBy: .Equal, toItem: button, attribute: .CenterX, multiplier: 1.0, constant: 0.0)
+                    self.currentTabMarkerCenter.active = true
+                    
                     self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
                 }
                 .addDisposableTo(self.disposeBag)
@@ -47,6 +55,10 @@ final class TabbarController: UIViewController, Navigation {
             self?.fillBadgesWithStats(stats)
         }.addDisposableTo(disposeBag)
         
+        
+        self.shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.shadowView.layer.shadowOpacity = 0.07
+        self.shadowView.layer.shadowRadius = 5.0
     }
     
     func triggerActionWithItem(navigationItem : NavigationItem) {

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U9O-UO-ZiD">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Application Main View Controller-->
@@ -58,19 +56,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCY-gM-IfM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="561"/>
+                                <connections>
+                                    <segue destination="pSd-3i-Wp1" kind="embed" id="fke-MT-WQb"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyR-qc-LMX">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <rect key="frame" x="0.0" y="531" width="600" height="69"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="fGv-Y3-KvU"/>
+                                    <constraint firstAttribute="height" constant="69" id="fGv-Y3-KvU"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="0kv-fZ-8aZ" kind="embed" id="G82-YL-Hlh"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCY-gM-IfM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <connections>
-                                    <segue destination="pSd-3i-Wp1" kind="embed" id="fke-MT-WQb"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -79,7 +78,7 @@
                             <constraint firstAttribute="trailing" secondItem="wCY-gM-IfM" secondAttribute="trailing" id="0HO-4Q-epz"/>
                             <constraint firstItem="wCY-gM-IfM" firstAttribute="leading" secondItem="JOG-3k-jWo" secondAttribute="leading" id="4O0-Ac-nod"/>
                             <constraint firstAttribute="bottom" secondItem="KyR-qc-LMX" secondAttribute="bottom" id="6jL-TZ-pxJ"/>
-                            <constraint firstItem="KyR-qc-LMX" firstAttribute="top" secondItem="wCY-gM-IfM" secondAttribute="bottom" id="7P3-SI-TVg"/>
+                            <constraint firstItem="KyR-qc-LMX" firstAttribute="top" secondItem="wCY-gM-IfM" secondAttribute="bottom" constant="-30" id="7P3-SI-TVg"/>
                             <constraint firstItem="wCY-gM-IfM" firstAttribute="top" secondItem="JOG-3k-jWo" secondAttribute="top" id="Mlh-0g-0cl"/>
                             <constraint firstItem="KyR-qc-LMX" firstAttribute="leading" secondItem="JOG-3k-jWo" secondAttribute="leading" id="jxv-ls-fwS"/>
                             <constraint firstAttribute="trailing" secondItem="KyR-qc-LMX" secondAttribute="trailing" id="kIW-as-cfM"/>
@@ -104,7 +103,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OGS-rB-6RX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xjs-cr-XEC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="561"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -121,117 +120,93 @@
                         <viewControllerLayoutGuide type="top" id="cIr-Hs-4jN"/>
                         <viewControllerLayoutGuide type="bottom" id="DKA-Gf-Qca"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fYb-XL-xJ2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
+                    <view key="view" contentMode="scaleToFill" id="fYb-XL-xJ2" customClass="TabBarView" customModule="Shoutit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16Q-9c-Z6Z">
+                                <rect key="frame" x="-10" y="20" width="620" height="59"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="nys-Ox-BcO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-ql-aSg">
+                                <rect key="frame" x="35" y="20" width="50" height="3"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="3dM-tl-R2N"/>
+                                    <constraint firstAttribute="width" constant="50" id="q2E-2D-Fg8"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3UP-c6-K4D" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="49"/>
+                                <rect key="frame" x="0.0" y="20" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Home" image="tabHome">
+                                <state key="normal" image="tab_home_icon">
                                     <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTintColor">
-                                        <color key="value" red="0.20784313725490194" green="0.8666666666666667" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
-                                        <color key="value" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="home"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5a-pa-YnH" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="240" y="0.0" width="120" height="49"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Shout" image="tabShout">
-                                    <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTintColor">
-                                        <color key="value" red="0.20784313725490194" green="0.8666666666666667" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
-                                        <color key="value" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="create_shout"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9F-65-KVv" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="360" y="0.0" width="120" height="49"/>
+                                <rect key="frame" x="360" y="20" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Chats" image="tabChat">
+                                <state key="normal" image="tab_home_search">
                                     <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTintColor">
-                                        <color key="value" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
-                                        <color key="value" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="chats"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7d-LT-LWQ" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="480" y="0.0" width="120" height="49"/>
+                                <rect key="frame" x="480" y="20" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Profile" image="tabProfile">
+                                <state key="normal" image="tab_home_more">
                                     <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTintColor">
-                                        <color key="value" red="0.20784313725490194" green="0.8666666666666667" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
-                                        <color key="value" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="profile"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj9-hC-NUq">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="kG5-ov-uyw"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccM-e5-uAL" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
-                                <rect key="frame" x="120" y="0.0" width="120" height="49"/>
+                                <rect key="frame" x="120" y="20" width="120" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Discover" image="tabDiscover">
+                                <state key="normal" image="tab_home_chats">
                                     <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTintColor">
-                                        <color key="value" red="0.20784313725490194" green="0.8666666666666667" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="normalTintColor">
-                                        <color key="value" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="discover"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5a-pa-YnH" customClass="TabbarButton" customModule="Shoutit" customModuleProvider="target">
+                                <rect key="frame" x="240" y="0.0" width="120" height="69"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="tintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="create_shout_button">
+                                    <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="navigationItem" value="create_shout"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="DKA-Gf-Qca" firstAttribute="top" secondItem="16Q-9c-Z6Z" secondAttribute="bottom" constant="-10" id="3Rc-NZ-Y7o"/>
                             <constraint firstItem="P5a-pa-YnH" firstAttribute="leading" secondItem="ccM-e5-uAL" secondAttribute="trailing" id="4zq-ir-JBh"/>
-                            <constraint firstAttribute="trailing" secondItem="gj9-hC-NUq" secondAttribute="trailing" id="76p-Dd-gVk"/>
-                            <constraint firstItem="m7d-LT-LWQ" firstAttribute="leading" secondItem="gj9-hC-NUq" secondAttribute="trailing" id="Aqe-06-Bce"/>
-                            <constraint firstItem="gj9-hC-NUq" firstAttribute="leading" secondItem="3UP-c6-K4D" secondAttribute="trailing" id="Exx-1T-uhY"/>
+                            <constraint firstAttribute="trailing" secondItem="16Q-9c-Z6Z" secondAttribute="trailing" constant="-10" id="HZF-a8-Imd"/>
                             <constraint firstItem="3UP-c6-K4D" firstAttribute="width" secondItem="s9F-65-KVv" secondAttribute="width" id="IvA-hd-BXq"/>
-                            <constraint firstItem="ccM-e5-uAL" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" id="JgW-Zq-juH"/>
+                            <constraint firstItem="ccM-e5-uAL" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" constant="20" id="JgW-Zq-juH"/>
                             <constraint firstItem="m7d-LT-LWQ" firstAttribute="leading" secondItem="s9F-65-KVv" secondAttribute="trailing" id="Jvh-Zf-slz"/>
-                            <constraint firstItem="s9F-65-KVv" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" id="M2p-a8-Q3R"/>
-                            <constraint firstItem="gj9-hC-NUq" firstAttribute="leading" secondItem="fYb-XL-xJ2" secondAttribute="leading" id="TUc-wX-jQm"/>
+                            <constraint firstItem="s9F-65-KVv" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" constant="20" id="M2p-a8-Q3R"/>
+                            <constraint firstItem="16Q-9c-Z6Z" firstAttribute="leading" secondItem="fYb-XL-xJ2" secondAttribute="leading" constant="-10" id="NnP-iD-yO1"/>
                             <constraint firstAttribute="bottom" secondItem="P5a-pa-YnH" secondAttribute="bottom" id="WQT-Ba-3Nh"/>
                             <constraint firstItem="ccM-e5-uAL" firstAttribute="leading" secondItem="3UP-c6-K4D" secondAttribute="trailing" id="Zna-y5-5M0"/>
-                            <constraint firstItem="gj9-hC-NUq" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="topMargin" id="dPD-pZ-4mO"/>
                             <constraint firstAttribute="bottom" secondItem="3UP-c6-K4D" secondAttribute="bottom" id="eNZ-Wm-0OE"/>
                             <constraint firstItem="3UP-c6-K4D" firstAttribute="width" secondItem="P5a-pa-YnH" secondAttribute="width" id="g3B-iq-XRs"/>
                             <constraint firstItem="3UP-c6-K4D" firstAttribute="width" secondItem="m7d-LT-LWQ" secondAttribute="width" id="gME-56-0jz"/>
@@ -239,21 +214,25 @@
                             <constraint firstItem="3UP-c6-K4D" firstAttribute="width" secondItem="ccM-e5-uAL" secondAttribute="width" id="mQ0-cU-teE"/>
                             <constraint firstAttribute="trailing" secondItem="m7d-LT-LWQ" secondAttribute="trailing" id="mVA-sN-3pC"/>
                             <constraint firstItem="3UP-c6-K4D" firstAttribute="leading" secondItem="fYb-XL-xJ2" secondAttribute="leading" id="nRm-rv-SX3"/>
-                            <constraint firstItem="3UP-c6-K4D" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" id="oXa-fQ-KhN"/>
+                            <constraint firstItem="3UP-c6-K4D" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" constant="20" id="oXa-fQ-KhN"/>
                             <constraint firstItem="s9F-65-KVv" firstAttribute="leading" secondItem="P5a-pa-YnH" secondAttribute="trailing" id="pKm-Pj-rD5"/>
                             <constraint firstAttribute="bottom" secondItem="s9F-65-KVv" secondAttribute="bottom" id="sCZ-c8-CYo"/>
                             <constraint firstItem="P5a-pa-YnH" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" id="ssy-2B-uml"/>
-                            <constraint firstItem="m7d-LT-LWQ" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" id="tS4-Zr-Y1C"/>
+                            <constraint firstItem="m7d-LT-LWQ" firstAttribute="top" secondItem="fYb-XL-xJ2" secondAttribute="top" constant="20" id="tS4-Zr-Y1C"/>
+                            <constraint firstItem="dWc-ql-aSg" firstAttribute="top" secondItem="16Q-9c-Z6Z" secondAttribute="top" id="uq7-os-qYW"/>
                             <constraint firstAttribute="bottom" secondItem="ccM-e5-uAL" secondAttribute="bottom" id="v6Y-Aj-FL5"/>
+                            <constraint firstItem="dWc-ql-aSg" firstAttribute="centerX" secondItem="3UP-c6-K4D" secondAttribute="centerX" id="vR4-Va-RzJ"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Exx-1T-uhY"/>
-                                <exclude reference="Aqe-06-Bce"/>
-                            </mask>
-                        </variation>
+                        <connections>
+                            <outlet property="createButton" destination="P5a-pa-YnH" id="WMb-Ud-dgC"/>
+                            <outlet property="shadowView" destination="16Q-9c-Z6Z" id="ozK-lT-wjk"/>
+                            <outlet property="tabMarker" destination="dWc-ql-aSg" id="t59-kN-woZ"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="currentTabMarkerCenter" destination="vR4-Va-RzJ" id="ZjW-tc-WZ5"/>
+                        <outlet property="shadowView" destination="16Q-9c-Z6Z" id="QhD-sq-3FN"/>
+                        <outlet property="tabMarker" destination="dWc-ql-aSg" id="aOo-rJ-DSv"/>
                         <outletCollection property="tabs" destination="3UP-c6-K4D" collectionClass="NSMutableArray" id="etK-20-sDR"/>
                         <outletCollection property="tabs" destination="ccM-e5-uAL" collectionClass="NSMutableArray" id="s5N-7o-qqX"/>
                         <outletCollection property="tabs" destination="P5a-pa-YnH" collectionClass="NSMutableArray" id="pkS-UK-D5g"/>
@@ -267,10 +246,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tabChat" width="29" height="28"/>
-        <image name="tabDiscover" width="28" height="28"/>
-        <image name="tabHome" width="28" height="27"/>
-        <image name="tabProfile" width="26" height="27"/>
-        <image name="tabShout" width="26" height="26"/>
+        <image name="create_shout_button" width="56" height="56"/>
+        <image name="tab_home_chats" width="20" height="20"/>
+        <image name="tab_home_icon" width="18" height="19"/>
+        <image name="tab_home_more" width="18" height="14"/>
+        <image name="tab_home_search" width="19" height="19"/>
     </resources>
 </document>

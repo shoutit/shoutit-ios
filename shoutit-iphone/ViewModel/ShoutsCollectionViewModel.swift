@@ -10,25 +10,26 @@ import Foundation
 import RxSwift
 import ShoutitKit
 
+enum ShoutsContext {
+    case ProfileShouts(user: Profile)
+    case RelatedShouts(shout: Shout)
+    case TagShouts(tag: Tag)
+    case DiscoverItemShouts(discoverItem: DiscoverItem)
+    case ConversationShouts(conversation: Conversation)
+    case BookmarkedShouts(user: Profile)
+    case HomeShouts
+    
+    func showAds() -> Bool {
+        // turn of ads for given context if needed
+        return true
+    }
+}
+
 final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
-    enum Context {
-        case ProfileShouts(user: Profile)
-        case RelatedShouts(shout: Shout)
-        case TagShouts(tag: Tag)
-        case DiscoverItemShouts(discoverItem: DiscoverItem)
-        case ConversationShouts(conversation: Conversation)
-        case BookmarkedShouts(user: Profile)
-        case HomeShouts
-        
-        func showAds() -> Bool {
-            // turn of ads for given context if needed
-            return true
-        }
-    }
     
     // consts
-    var context: Context
+    var context: ShoutsContext
     
     private(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
     
@@ -36,7 +37,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     // state
     var filtersState: FiltersState?
     
-    init(context: Context) {
+    init(context: ShoutsContext) {
         self.context = context
         
         self.pager = NumberedPagePager(itemToCellViewModelBlock: {ShoutCellViewModel(shout: $0)},

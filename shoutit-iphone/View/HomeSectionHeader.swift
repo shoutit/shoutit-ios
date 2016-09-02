@@ -17,12 +17,4 @@ class HomeSectionHeader: UIStackView {
         return UINib(nibName: "HomeSectionHeader", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! HomeSectionHeader
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.rightButton.layer.borderWidth = 1.0
-        self.rightButton.layer.borderColor = (self.rightButton.titleColorForState(.Normal) ?? UIColor.blackColor()).CGColor
-        self.rightButton.layer.cornerRadius = 2.0
-        self.rightButton.titleEdgeInsets = UIEdgeInsetsMake(10, -20.0, 10, -20.0)
-    }
 }
