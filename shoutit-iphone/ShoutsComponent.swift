@@ -55,6 +55,9 @@ class ShoutsComponent : BasicComponent {
             .asDriver()
             .driveNext {[weak self] (state) in
                 print("STATE CHANGED: \(state)")
+                
+                self?.sectionHeader.leftLabel.text = vm.sectionTitle()
+                
                 self?.collectionView.reloadData()
                 self?.collectionView.invalidateIntrinsicContentSize()
                 switch state {

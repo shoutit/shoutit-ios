@@ -34,6 +34,9 @@
 		244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */; };
 		244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */; };
 		244FD9A81C7C7ABF0048CC82 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A71C7C7ABF0048CC82 /* DiscoverViewModel.swift */; };
+		24601ECF1D7D902D00145261 /* PublicChatsPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24601ECE1D7D902D00145261 /* PublicChatsPreviewCell.xib */; };
+		24601ED11D7D94AE00145261 /* PublicChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24601ED01D7D94AE00145261 /* PublicChatCollectionViewCell.swift */; };
+		24601ED31D7D99F500145261 /* PublicChatsPreviewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24601ED21D7D99F500145261 /* PublicChatsPreviewComponent.swift */; };
 		2463B6941C98291300BFE6BA /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6931C98291300BFE6BA /* ConversationViewController.swift */; };
 		2463B6961C982A5A00BFE6BA /* ChatDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6951C982A5A00BFE6BA /* ChatDisplayable.swift */; };
 		2463B6991C984A5E00BFE6BA /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2463B6981C984A5E00BFE6BA /* ConversationViewModel.swift */; };
@@ -1009,6 +1012,9 @@
 		244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGivenItemViewModel.swift; path = ViewModel/DiscoverGivenItemViewModel.swift; sourceTree = "<group>"; };
 		244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGeneralViewModel.swift; path = ViewModel/DiscoverGeneralViewModel.swift; sourceTree = "<group>"; };
 		244FD9A71C7C7ABF0048CC82 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverViewModel.swift; path = ViewModel/DiscoverViewModel.swift; sourceTree = "<group>"; };
+		24601ECE1D7D902D00145261 /* PublicChatsPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PublicChatsPreviewCell.xib; path = View/PublicChatsPreviewCell.xib; sourceTree = "<group>"; };
+		24601ED01D7D94AE00145261 /* PublicChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicChatCollectionViewCell.swift; path = View/PublicChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		24601ED21D7D99F500145261 /* PublicChatsPreviewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicChatsPreviewComponent.swift; path = Other/PublicChatsPreviewComponent.swift; sourceTree = "<group>"; };
 		2463B6901C981D5000BFE6BA /* ReadBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ReadBy.swift; path = Model/ReadBy.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2463B6931C98291300BFE6BA /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationViewController.swift; path = Controllers/ConversationViewController.swift; sourceTree = "<group>"; };
 		2463B6951C982A5A00BFE6BA /* ChatDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatDisplayable.swift; path = FlowControl/ChatDisplayable.swift; sourceTree = "<group>"; };
@@ -3479,6 +3485,7 @@
 				AEBBCF281D75739C003C7893 /* HomeShoutsComponent.swift */,
 				242288B91D783621001115B2 /* DiscoverComponent.swift */,
 				242288BB1D783BFF001115B2 /* ShoutsComponent.swift */,
+				24601ED21D7D99F500145261 /* PublicChatsPreviewComponent.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -4514,6 +4521,7 @@
 				B2D441A81CB819D2009782AF /* TableViewPlaceholderView.xib */,
 				B20EDBC81CAABCE500AD9F2A /* AlertBarView.xib */,
 				AE63FB181D12D2DF005A35CD /* PromotionLabelView.xib */,
+				24601ECE1D7D902D00145261 /* PublicChatsPreviewCell.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -5180,6 +5188,7 @@
 				B2B2869A1CD3B4CA00CE5607 /* RTLShoutItemCell.swift */,
 				B23D132B1CD7693A00072906 /* RTLSeeAllCollectionViewCell.swift */,
 				AE54A6B51D11674A002F1430 /* ShoutCell.swift */,
+				24601ED01D7D94AE00145261 /* PublicChatCollectionViewCell.swift */,
 			);
 			name = CommonCollectionViewCells;
 			sourceTree = "<group>";
@@ -5940,6 +5949,7 @@
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
 				B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */,
 				B2D442001CB81B91009782AF /* PostSignupSuggestionsTableViewCell.xib in Resources */,
+				24601ECF1D7D902D00145261 /* PublicChatsPreviewCell.xib in Resources */,
 				B2D441251CB8167D009782AF /* InviteFriends.storyboard in Resources */,
 				B2F7197E1D0EEEF5002C1D74 /* UIBarButtonItemGrid@2x.png in Resources */,
 				B2F719821D0EEEF5002C1D74 /* VideoOverlay@3x.png in Resources */,
@@ -6248,6 +6258,7 @@
 				B2C729B71C62216A006F7D29 /* APIManager.swift in Sources */,
 				24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */,
 				B2C729CF1C62224A006F7D29 /* AboutDisplayable.swift in Sources */,
+				24601ED11D7D94AE00145261 /* PublicChatCollectionViewCell.swift in Sources */,
 				AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */,
 				AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */,
 				248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */,
@@ -6741,6 +6752,7 @@
 				B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */,
 				B2F719D31D0EF2EC002C1D74 /* FromJSON.swift in Sources */,
 				AE32EA1D1D2139EF00545F72 /* CreatePageDisplayable.swift in Sources */,
+				24601ED31D7D99F500145261 /* PublicChatsPreviewComponent.swift in Sources */,
 				B2E7155B1C6E0BF1007F95CF /* ShoutsCollectionViewCell.swift in Sources */,
 				B2B3454A1CA558960066DF15 /* PusherError.swift in Sources */,
 				AC7030C21C15A036008F4C00 /* UIView+Gradient.m in Sources */,

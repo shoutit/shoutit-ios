@@ -15,6 +15,13 @@ class DiscoverComponent: BasicComponent {
     private let disposeBag = DisposeBag()
     
     var items : [DiscoverItem] = []
+    var mainItem : DiscoverItem? {
+        didSet {
+            self.loadShouts()
+        }
+    }
+    
+    var shoutsViewModel : ShoutsCollectionViewModel?
     
     var maximumDiscoverItems = 4
     
@@ -44,11 +51,13 @@ class DiscoverComponent: BasicComponent {
         collection.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
         
         collection.register(DiscoverCardCollectionViewCell)
+        collection.register(ShoutCardCollectionViewCell)
         
         collection.invalidateIntrinsicContentSize()
         
         return collection
     }()
+    
     
     override func loadContent() {
         // automatically loaded
@@ -63,10 +72,28 @@ class DiscoverComponent: BasicComponent {
                 self?.collectionView.reloadData()
                 self?.isLoaded = true
                 self?.isLoading = false
+                self?.mainItem = viewModel.mainItem
             }
             .addDisposableTo(self.disposeBag)
         
         self.viewModel = viewModel
+    }
+    
+    func loadShouts() {
+        guard let discoverItem = self.mainItem else { return }
+        
+        shoutsViewModel = ShoutsCollectionViewModel(context: ShoutsContext.DiscoverItemShouts(discoverItem: discoverItem))
+        
+        shoutsViewModel?.pager.state
+            .asDriver()
+            .driveNext {[weak self] (state) in
+                print(state)
+                self?.collectionView.reloadData()
+                self?.collectionView.invalidateIntrinsicContentSize()
+            }
+            .addDisposableTo(self.disposeBag)
+        
+        shoutsViewModel?.reloadContent()
     }
 
 }
@@ -100,22 +127,43 @@ extension DiscoverComponent : UICollectionViewDelegate {
 extension DiscoverComponent : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return min(items.count, maximumDiscoverItems)
+        if section == 0 {
+            return min(items.count, maximumDiscoverItems)
+        }
+        
+        return self.shoutsViewModel?.pager.shoutCellViewModels().count ?? 0
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return self.mainItem == nil ? 1 : 2
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell : DiscoverCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        if indexPath.section == 0 {
         
-        let element = items[indexPath.item]
+            let cell : DiscoverCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
-        cell.bindWithDiscoverItem(element)
+            let element = items[indexPath.item]
+        
+            cell.bindWithDiscoverItem(element)
+        
+            return cell
+        }
+        
+        let cell : ShoutCardCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        
+        guard let cellViewModel = self.shoutsViewModel?.pager.shoutCellViewModels()[indexPath.row] else { return cell }
+        
+        if let shout = cellViewModel.shout {
+            cell.bindWithShout(shout)
+        } else if let ad = cellViewModel.ad {
+            cell.bindWithAd(ad)
+        }
         
         return cell
+        
+        
     }
     
 }

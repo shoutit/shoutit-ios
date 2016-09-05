@@ -51,11 +51,11 @@ class HomeDataSource {
     }
     
     lazy var myFeedComponents : [BasicComponent] = {
-        return [ShoutsComponent(context: .HomeShouts)]
+        return [HomeShoutsComponent(context: .HomeShouts)]
     }()
     
     lazy var shoutitPicksComponents : [BasicComponent] = {
-        return [ShoutsComponent(context: .HomeShouts)]
+        return [PublicChatsPreviewComponent(), ShoutsComponent(context: .HomeShouts)]
     }()
     
     lazy var discoverComponents : [BasicComponent] = {

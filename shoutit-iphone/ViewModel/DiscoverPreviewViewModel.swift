@@ -28,6 +28,8 @@
     private(set) var dataSource : Observable<[DiscoverItem]>
     private(set) var mainItemObservable : Observable<DiscoverItem?>
     
+    var mainItem : DiscoverItem?
+    
     private let disposeBag = DisposeBag()
     
     func cellReuseIdentifier() -> String {
@@ -69,6 +71,7 @@
         mainItemObservable
             .subscribeNext {[weak self] (mainItem) -> Void in
                 if let _ = mainItem {
+                    self?.mainItem = mainItem
                     self?.state.value = .Loading
                 } else {
                     self?.state.value = .NoItems
