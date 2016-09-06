@@ -440,6 +440,7 @@ private extension RootController {
         case .Pages: flowController         = PagesFlowController(navigationController: navController)
         case .Admins: flowController        = AdminsFlowController(navigationController: navController)
         case .Bookmarks: flowController     = BookmarksFlowController(navigationController: navController)
+        case .More: flowController          = MoreFlowController(navigationController: navController)
         default: flowController             = HomeFlowController(navigationController: navController)
         }
         
