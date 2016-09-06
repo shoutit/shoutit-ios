@@ -39,6 +39,7 @@ struct Wireframe {
         case Pages = "Pages"
         case Admins = "Admins"
         case StaticPage = "StaticPage"
+        case More = "More"
     }
     
     // General
@@ -57,6 +58,10 @@ struct Wireframe {
     
     static func introViewController() -> IntroViewController {
         return storyboard(.Login).instantiateViewControllerWithIdentifier("IntroViewController") as! IntroViewController
+    }
+    
+    static func moreViewController() -> MoreTableViewController {
+        return storyboard(.More).instantiateViewControllerWithIdentifier("MoreTableViewController") as! MoreTableViewController
     }
     
     static func loginMethodChoiceViewController() -> LoginMethodChoiceViewController {

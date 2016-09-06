@@ -10,11 +10,15 @@ import UIKit
 
 final class ShadowView: UIView {
 
+    @IBInspectable var enableStroke : Bool = true
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
-        self.layer.borderColor = UIColor.lightGrayColor().CGColor
+        if enableStroke {
+            self.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+            self.layer.borderColor = UIColor.lightGrayColor().CGColor
+        }
         
         self.layer.shadowColor = UIColor.lightGrayColor().CGColor
         self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)

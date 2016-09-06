@@ -344,6 +344,11 @@
 		AEC8529D1D2E7FE90060A32D /* FBNativeAdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8529A1D2E7F330060A32D /* FBNativeAdExtension.swift */; };
 		AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */; };
 		AECEDED41D76EFB100722DF7 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEDED31D76EFB100722DF7 /* FlowLayout.swift */; };
+		AECEDED61D7EB21B00722DF7 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECEDED51D7EB21B00722DF7 /* More.storyboard */; };
+		AECEDED91D7EC37700722DF7 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEDED81D7EC37700722DF7 /* MoreTableViewController.swift */; };
+		AECEDEDB1D7EC3AA00722DF7 /* MoreFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEDEDA1D7EC3AA00722DF7 /* MoreFlowController.swift */; };
+		AECEDEDD1D7ED9AD00722DF7 /* ChangeLocationDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEDEDC1D7ED9AD00722DF7 /* ChangeLocationDisplayable.swift */; };
+		AECEDEDF1D7EDF6000722DF7 /* SettingsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEDEDE1D7EDF6000722DF7 /* SettingsDisplayable.swift */; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
 		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
@@ -1429,6 +1434,11 @@
 		AEC8529A1D2E7F330060A32D /* FBNativeAdExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBNativeAdExtension.swift; sourceTree = "<group>"; };
 		AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LikeButton.swift; path = View/LikeButton.swift; sourceTree = "<group>"; };
 		AECEDED31D76EFB100722DF7 /* FlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		AECEDED51D7EB21B00722DF7 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = More.storyboard; path = Storyboards/More.storyboard; sourceTree = "<group>"; };
+		AECEDED81D7EC37700722DF7 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreTableViewController.swift; path = Controllers/MoreTableViewController.swift; sourceTree = "<group>"; };
+		AECEDEDA1D7EC3AA00722DF7 /* MoreFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreFlowController.swift; path = FlowControl/MoreFlowController.swift; sourceTree = "<group>"; };
+		AECEDEDC1D7ED9AD00722DF7 /* ChangeLocationDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeLocationDisplayable.swift; path = FlowControl/ChangeLocationDisplayable.swift; sourceTree = "<group>"; };
+		AECEDEDE1D7EDF6000722DF7 /* SettingsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsDisplayable.swift; path = FlowControl/SettingsDisplayable.swift; sourceTree = "<group>"; };
 		AED291751D08676D000F9DAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonS3RequestManager.framework; path = ../Carthage/Build/iOS/AmazonS3RequestManager.framework; sourceTree = "<group>"; };
 		AED291771D08676D000F9DAF /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ../Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
@@ -3146,6 +3156,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AECEDED71D7EC36400722DF7 /* More */,
 				AE63AE781D743D7F00D3C6F9 /* NewHome */,
 				AE6AF6561D587A510079A7B9 /* StaticPage */,
 				AED6361E1D356CAF0005E1A5 /* VerifyPage */,
@@ -3277,6 +3288,7 @@
 				B2CA5C4E1D1D7DC9009E164E /* Admins.storyboard */,
 				AE9BB9171D242E4E00973541 /* Bookmarks.storyboard */,
 				AE6AF6541D587A180079A7B9 /* StaticPage.storyboard */,
+				AECEDED51D7EB21B00722DF7 /* More.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -3973,6 +3985,14 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
+		AECEDED71D7EC36400722DF7 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				AECEDED81D7EC37700722DF7 /* MoreTableViewController.swift */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
 		AED6361E1D356CAF0005E1A5 /* VerifyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4579,6 +4599,8 @@
 				AE32EA1C1D2139EF00545F72 /* CreatePageDisplayable.swift */,
 				AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */,
 				AE6AF65B1D5880FE0079A7B9 /* StaticPageDisplayable.swift */,
+				AECEDEDC1D7ED9AD00722DF7 /* ChangeLocationDisplayable.swift */,
+				AECEDEDE1D7EDF6000722DF7 /* SettingsDisplayable.swift */,
 			);
 			name = Displayables;
 			sourceTree = "<group>";
@@ -4904,6 +4926,7 @@
 				B2CA5C551D1D84CB009E164E /* AdminsFlowController.swift */,
 				AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */,
 				AE6AF6591D587AC90079A7B9 /* StaticPageFlowController.swift */,
+				AECEDEDA1D7EC3AA00722DF7 /* MoreFlowController.swift */,
 			);
 			name = FlowControllers;
 			sourceTree = "<group>";
@@ -5938,6 +5961,7 @@
 				B2D442091CB81BB0009782AF /* ProfileCollectionInfoSupplementaryView.xib in Resources */,
 				B2D0295E1D1C305200A29D8B /* MyPageTableViewCell.xib in Resources */,
 				B2DCBD8E1CC7997D00927174 /* LaunchScreen.storyboard in Resources */,
+				AECEDED61D7EB21B00722DF7 /* More.storyboard in Resources */,
 				24A843F91CA02107007FF9E8 /* ConversationShoutHeader.xib in Resources */,
 				AEADF33A1CA5517A0051DABA /* IncomingVideoCell.xib in Resources */,
 				B2F7196F1D0EEEF5002C1D74 /* ImageSelectedSmallOn@2x.png in Resources */,
@@ -6215,6 +6239,7 @@
 				24AEF7921CF759C500C57C7C /* SuggestedProfilesTableViewController.swift in Sources */,
 				B27DF7851C58E1CA006909D4 /* ApplicationMainViewController.swift in Sources */,
 				B2D029541D1C2BFD00A29D8B /* MyPagesTableViewController.swift in Sources */,
+				AECEDEDB1D7EC3AA00722DF7 /* MoreFlowController.swift in Sources */,
 				60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */,
 				AE8351931C5F7DFA0055C71F /* ProfileFlowController.swift in Sources */,
 				BF849AAF1D2A58F80017D26F /* AdManager.swift in Sources */,
@@ -6442,6 +6467,7 @@
 				B2F719EA1D0EF4C7002C1D74 /* GooglePlaces.swift in Sources */,
 				AEBB69891C6B35D200D48E4F /* CLGeocoder+RX.swift in Sources */,
 				B2C729D21C62224A006F7D29 /* LoginScreenDisplayable.swift in Sources */,
+				AECEDED91D7EC37700722DF7 /* MoreTableViewController.swift in Sources */,
 				AEADF33E1CA552D60051DABA /* ConversationVideoCell.swift in Sources */,
 				AE194DDA1CB5022F004A44CA /* CreateShoutMobileCell.swift in Sources */,
 				AE0D16701D59D520008198D8 /* RateApp.swift in Sources */,
@@ -6611,6 +6637,7 @@
 				B2E7154E1C6DF561007F95CF /* ProfileCollectionViewLayout.swift in Sources */,
 				AE8351971C5F7E0F0055C71F /* ShoutFlowController.swift in Sources */,
 				AED864A11D34EED2002C17F1 /* EditPageSwitchTableViewCell.swift in Sources */,
+				AECEDEDD1D7ED9AD00722DF7 /* ChangeLocationDisplayable.swift in Sources */,
 				B2F719B71D0EF12F002C1D74 /* AddressBookRecord.swift in Sources */,
 				B2B5D0111C7F28E50068A6AF /* ShoutDetailKeyValueTableViewCell.swift in Sources */,
 				B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */,
@@ -6624,6 +6651,7 @@
 				B2F71A2F1D0EF643002C1D74 /* PTPusherChannel.m in Sources */,
 				B2F719BD1D0EF12F002C1D74 /* DictionaryUtils.swift in Sources */,
 				BF5FB2711D2FC72F0078A57F /* EditPageTableViewController.swift in Sources */,
+				AECEDEDF1D7EDF6000722DF7 /* SettingsDisplayable.swift in Sources */,
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
 				B2F719D21D0EF2EC002C1D74 /* EnumTransform.swift in Sources */,
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,

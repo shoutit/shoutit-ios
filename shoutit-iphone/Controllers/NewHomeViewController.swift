@@ -17,6 +17,8 @@ class NewHomeViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    weak var flowDelegate : FlowController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

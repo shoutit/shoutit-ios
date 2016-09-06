@@ -73,7 +73,7 @@ final class TabbarController: UIViewController, Navigation {
     }
     
     func fillUnreadNotifications(unread: Int) {
-        let tab = tabButtonForNavigationItem(.Profile)
+        let tab = tabButtonForNavigationItem(.More)
         tab.setBadgeNumber(unread)
     }
     
