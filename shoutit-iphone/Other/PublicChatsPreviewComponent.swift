@@ -15,6 +15,16 @@ class PublicChatsPreviewComponent: BasicComponent {
     private let disposeBag = DisposeBag()
     
     
+    lazy var sectionHeader : HomeSectionHeader = {
+        let header = HomeSectionHeader.instanceFromNib()
+        
+        header.backgroundColor = UIColor.whiteColor()
+        header.leftLabel.text = NSLocalizedString("Public Chats", comment: "")
+        header.rightButton.setTitle(NSLocalizedString("View All Chats", comment: ""), forState: .Normal)
+        
+        return header
+    }()
+    
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -56,7 +66,7 @@ class PublicChatsPreviewComponent: BasicComponent {
 
 extension PublicChatsPreviewComponent : ComponentStackViewRepresentable {
     func stackViewRepresentation() -> [UIView] {
-        return [self.collectionView]
+        return [self.sectionHeader, self.collectionView]
     }
 }
 
