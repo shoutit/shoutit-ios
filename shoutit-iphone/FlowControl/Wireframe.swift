@@ -211,8 +211,8 @@ struct Wireframe {
         return storyboard(.Shout).instantiateViewControllerWithIdentifier("shCreateShoutTableViewController") as! CreateShoutPopupViewController
     }
     
-    static func settingsViewController() -> SettingsTableViewController {
-        return storyboard(.Settings).instantiateViewControllerWithIdentifier("SettingsTableViewController") as! SettingsTableViewController
+    static func settingsViewController() -> MainSettingsTableViewController {
+        return storyboard(.Settings).instantiateViewControllerWithIdentifier("MainSettingsTableViewController") as! MainSettingsTableViewController
     }
     
     static func settingsFromViewController() -> SettingsFormViewController {

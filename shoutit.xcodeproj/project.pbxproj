@@ -30,6 +30,7 @@
 		2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */; };
 		2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */; };
 		2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */; };
+		243D45E61D7F078A00A0F054 /* MainSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D45E51D7F078900A0F054 /* MainSettingsTableViewController.swift */; };
 		244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A11C7C79F30048CC82 /* DiscoverCollectionViewController.swift */; };
 		244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */; };
 		244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */; };
@@ -1013,6 +1014,7 @@
 		2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateShoutPopupViewController.swift; path = Controllers/CreateShoutPopupViewController.swift; sourceTree = "<group>"; };
 		2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayAnimationController.swift; path = Controllers/OverlayAnimationController.swift; sourceTree = "<group>"; };
 		2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayDismissAnimationController.swift; path = Other/OverlayDismissAnimationController.swift; sourceTree = "<group>"; };
+		243D45E51D7F078900A0F054 /* MainSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainSettingsTableViewController.swift; path = Controllers/MainSettingsTableViewController.swift; sourceTree = "<group>"; };
 		244FD9A11C7C79F30048CC82 /* DiscoverCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverCollectionViewController.swift; path = Controllers/DiscoverCollectionViewController.swift; sourceTree = "<group>"; };
 		244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGivenItemViewModel.swift; path = ViewModel/DiscoverGivenItemViewModel.swift; sourceTree = "<group>"; };
 		244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverGeneralViewModel.swift; path = ViewModel/DiscoverGeneralViewModel.swift; sourceTree = "<group>"; };
@@ -2776,6 +2778,14 @@
 			name = Popup;
 			sourceTree = "<group>";
 		};
+		243D45E41D7F077400A0F054 /* New Settings */ = {
+			isa = PBXGroup;
+			children = (
+				243D45E51D7F078900A0F054 /* MainSettingsTableViewController.swift */,
+			);
+			name = "New Settings";
+			sourceTree = "<group>";
+		};
 		244FD9A01C7C79DF0048CC82 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -3156,6 +3166,7 @@
 		6027CF641BE74F6F00124C28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				243D45E41D7F077400A0F054 /* New Settings */,
 				AECEDED71D7EC36400722DF7 /* More */,
 				AE63AE781D743D7F00D3C6F9 /* NewHome */,
 				AE6AF6561D587A510079A7B9 /* StaticPage */,
@@ -6654,6 +6665,7 @@
 				AECEDEDF1D7EDF6000722DF7 /* SettingsDisplayable.swift in Sources */,
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
 				B2F719D21D0EF2EC002C1D74 /* EnumTransform.swift in Sources */,
+				243D45E61D7F078A00A0F054 /* MainSettingsTableViewController.swift in Sources */,
 				B2C729AF1C6220AD006F7D29 /* SecureCoder.swift in Sources */,
 				B2F719BC1D0EF12F002C1D74 /* ContactValues.swift in Sources */,
 				B2190D7C1C5A2A27007FF33B /* LoginMethodChoiceViewModel.swift in Sources */,

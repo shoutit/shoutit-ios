@@ -15,10 +15,11 @@ protocol AboutDisplayable: class {
 
 extension FlowController : AboutDisplayable {
     func showAboutInterface() {
+        // TODO CHANGE TO ABOUT
         let aboutViewController = Wireframe.settingsViewController()
-        aboutViewController.models = aboutOptions()
-        aboutViewController.ignoreMenuButton = true
-        aboutViewController.title = NSLocalizedString("About", comment: "About screen title")
+//        aboutViewController.models = aboutOptions()
+//        aboutViewController.ignoreMenuButton = true
+//        aboutViewController.title = NSLocalizedString("About", comment: "About screen title")
         navigationController.showViewController(aboutViewController, sender: nil)
     }
     
