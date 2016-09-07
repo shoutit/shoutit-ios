@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ShoutitKit
 
 class MainSettingsTableViewController: UITableViewController {
 
@@ -37,9 +38,18 @@ class MainSettingsTableViewController: UITableViewController {
         case (1,2):
             self.flowDelegate?.showPrivacyPolicy()
         case (2,2):
-            // do nothing
+            logout()
             break
         default: break
+        }
+    }
+    
+    func logout() {
+        do {
+            try Account.sharedInstance.logout()
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+        } catch let error {
+            self.navigationController?.showError(error)
         }
     }
 }
