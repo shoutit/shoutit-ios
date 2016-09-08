@@ -257,36 +257,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zCV-Sg-dsp">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Invite Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zCV-Sg-dsp">
                                                     <rect key="frame" x="50" y="0.0" width="515" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                     <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="settings_icon" id="AGG-Bl-UfJ">
-                                                    <rect key="frame" x="15" y="11" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gGb-bg-gjx" imageView="avy-3i-iow" style="IBUITableViewCellStyleDefault" id="JDY-eq-Azq">
-                                        <rect key="frame" x="0.0" y="562" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JDY-eq-Azq" id="iGS-A7-Shb">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gGb-bg-gjx">
-                                                    <rect key="frame" x="51" y="0.0" width="514" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                    <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="help_icon" id="avy-3i-iow">
-                                                    <rect key="frame" x="15" y="11" width="21" height="20"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="invite_friends_icon" id="AGG-Bl-UfJ">
+                                                    <rect key="frame" x="15" y="13" width="20" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -297,7 +276,7 @@
                             <tableViewSection headerTitle="   " id="DCK-PT-MKB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dpl-Hz-8WA" imageView="qwe-Xj-5AS" style="IBUITableViewCellStyleDefault" id="gHJ-XL-hil">
-                                        <rect key="frame" x="0.0" y="657" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="613" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gHJ-XL-hil" id="vlN-Lj-k8Z">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -318,7 +297,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="m4e-BG-ggH" imageView="XuP-Qb-EGe" style="IBUITableViewCellStyleDefault" id="lRu-8X-Fl7">
-                                        <rect key="frame" x="0.0" y="701" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="657" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lRu-8X-Fl7" id="Yeu-tQ-v6Q">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -343,7 +322,7 @@
                             <tableViewSection headerTitle="   " id="NYS-aF-vJa">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="69Z-1N-DCx" style="IBUITableViewCellStyleDefault" id="n42-IR-13z">
-                                        <rect key="frame" x="0.0" y="796" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="752" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n42-IR-13z" id="kX4-eO-smD">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -384,6 +363,7 @@
         <image name="avatar_placeholder" width="60" height="60"/>
         <image name="credits_icon" width="20" height="16"/>
         <image name="help_icon" width="21" height="20"/>
+        <image name="invite_friends_icon" width="20" height="16"/>
         <image name="location_icon" width="11" height="11"/>
         <image name="orders_icon" width="21" height="15"/>
         <image name="pages_icon" width="17" height="20"/>

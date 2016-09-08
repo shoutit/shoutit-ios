@@ -53,7 +53,7 @@ class MoreTableViewController: UITableViewController {
     }
     
     func showPages() {
-        notImplemented()
+        self.flowDelegate?.showPagesList()
     }
     
     func showOrders() {

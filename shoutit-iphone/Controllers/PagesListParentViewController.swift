@@ -21,6 +21,9 @@ class PagesListParentViewController: UIViewController, ContainerController {
     @IBOutlet weak var createPageButton: UIButton!
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
     
+    @IBOutlet var leftTabConstraints : [NSLayoutConstraint]!
+    @IBOutlet var rightTabConstraints : [NSLayoutConstraint]!
+    
     // ContainerController
     weak var currentChildViewController: UIViewController?
     var currentControllerConstraints: [NSLayoutConstraint] = []
@@ -62,30 +65,21 @@ class PagesListParentViewController: UIViewController, ContainerController {
         flowDelegate?.showSearchInContext(.General)
     }
     
-    func switchToPublicChats() {
-        listChoiceSegmentedControl.selectedSegmentIndex = 1
+    @IBAction func switchToPublicChats() {
+        NSLayoutConstraint.deactivateConstraints(self.leftTabConstraints)
+        NSLayoutConstraint.activateConstraints(self.rightTabConstraints)
+        
         self.changeContentTo(self.publicPagesViewController)
     }
     
-    func switchToMyChats() {
-        listChoiceSegmentedControl.selectedSegmentIndex = 0
+    @IBAction func switchToMyChats() {
+        NSLayoutConstraint.deactivateConstraints(self.rightTabConstraints)
+        NSLayoutConstraint.activateConstraints(self.leftTabConstraints)
+        
         self.changeContentTo(self.myPagesViewController)
     }
     
     private func setupRX() {
-        
-        listChoiceSegmentedControl
-            .rx_value
-            .asDriver()
-            .driveNext { [unowned self] (value) in
-                if value == 0 {
-                    self.changeContentTo(self.myPagesViewController)
-                }
-                else if value == 1 {
-                    self.changeContentTo(self.publicPagesViewController)
-                }
-            }
-            .addDisposableTo(disposeBag)
         
         createPageButton
             .rx_tap

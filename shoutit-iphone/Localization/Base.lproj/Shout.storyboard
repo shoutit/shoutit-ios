@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oVf-Ih-Mn7">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -57,66 +56,112 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVL-6U-XrS">
-                                <rect key="frame" x="20" y="168" width="560" height="164"/>
+                                <rect key="frame" x="15" y="55" width="565" height="391"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you posting?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4A-6j-khU">
-                                        <rect key="frame" x="192" y="23" width="176" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArL-Gz-lqw" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="56" width="536" height="44"/>
-                                        <color key="backgroundColor" red="0.25098039215686274" green="0.76862745098039209" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="37J-e6-n12"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <state key="normal" title="Offer">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="createOffer" destination="DlG-iA-aou" eventType="touchUpInside" id="z9V-pd-PlM"/>
-                                            <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="eWA-Aj-noW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-pW-gaf" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="108" width="536" height="44"/>
-                                        <color key="backgroundColor" red="1" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="6Yv-DO-SWX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <state key="normal" title="Request">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="createRequest" destination="DlG-iA-aou" eventType="touchUpInside" id="6eJ-E0-rgB"/>
-                                            <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="wgG-H3-8IP"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="35f-ZI-Z8J">
+                                        <rect key="frame" x="15" y="15" width="535" height="361"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoutit_logo_s" translatesAutoresizingMaskIntoConstraints="NO" id="Atb-ZV-uDe">
+                                                <rect key="frame" x="0.0" y="0.0" width="535" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="9O8-nl-5OG"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you posting?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjv-wx-5id">
+                                                <rect key="frame" x="0.0" y="49" width="535" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="358-rb-I5B">
+                                                <rect key="frame" x="0.0" y="86" width="535" height="1"/>
+                                                <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="JxK-vW-fWe"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArL-Gz-lqw" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="103" width="535" height="44"/>
+                                                <color key="backgroundColor" red="0.25098039215686274" green="0.76862745098039209" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="37J-e6-n12"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Offer">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="createOffer" destination="DlG-iA-aou" eventType="touchUpInside" id="z9V-pd-PlM"/>
+                                                    <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="eWA-Aj-noW"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" text="any product or a service on Shoutit marketplace" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pI-sE-uCe">
+                                                <rect key="frame" x="0.0" y="163" width="535" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep5-af-s3g">
+                                                <rect key="frame" x="0.0" y="199" width="535" height="1"/>
+                                                <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="aj2-uu-ilt"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-pW-gaf" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="216" width="535" height="44"/>
+                                                <color key="backgroundColor" red="1" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="6Yv-DO-SWX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Request">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="createRequest" destination="DlG-iA-aou" eventType="touchUpInside" id="6eJ-E0-rgB"/>
+                                                    <action selector="submitAction" destination="vi7-2B-9jh" eventType="touchUpInside" id="wgG-H3-8IP"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" text="it and wait to be contacted by someone who has it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCG-5W-SPL">
+                                                <rect key="frame" x="0.0" y="276" width="535" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                <color key="textColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KwZ-7Z-GJF">
+                                                <rect key="frame" x="0.0" y="312" width="535" height="1"/>
+                                                <color key="backgroundColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="Dep-W6-YUs"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrH-jd-yd6">
+                                                <rect key="frame" x="0.0" y="329" width="535" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                <state key="normal" title="Close">
+                                                    <color key="titleColor" red="0.32941176470588235" green="0.32941176470588235" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ArL-Gz-lqw" secondAttribute="trailing" constant="12" id="N2v-vN-E3h"/>
-                                    <constraint firstItem="ArL-Gz-lqw" firstAttribute="leading" secondItem="dVL-6U-XrS" secondAttribute="leading" constant="12" id="Phb-nh-UDg"/>
-                                    <constraint firstItem="ArL-Gz-lqw" firstAttribute="top" secondItem="C4A-6j-khU" secondAttribute="bottom" constant="13" id="S0f-OY-gWs"/>
-                                    <constraint firstItem="C4A-6j-khU" firstAttribute="centerX" secondItem="dVL-6U-XrS" secondAttribute="centerX" id="XkL-kt-eh0"/>
-                                    <constraint firstAttribute="height" constant="164" id="YF9-co-hZg"/>
-                                    <constraint firstItem="Ei6-pW-gaf" firstAttribute="top" secondItem="ArL-Gz-lqw" secondAttribute="bottom" constant="8" id="YGA-bE-Dlb"/>
-                                    <constraint firstItem="Ei6-pW-gaf" firstAttribute="centerX" secondItem="ArL-Gz-lqw" secondAttribute="centerX" id="ZBJ-bF-KZy"/>
-                                    <constraint firstItem="C4A-6j-khU" firstAttribute="top" secondItem="dVL-6U-XrS" secondAttribute="top" constant="23" id="cJX-fe-W0g"/>
-                                    <constraint firstItem="Ei6-pW-gaf" firstAttribute="width" secondItem="ArL-Gz-lqw" secondAttribute="width" id="xM4-tH-cMq"/>
+                                    <constraint firstAttribute="trailing" secondItem="35f-ZI-Z8J" secondAttribute="trailing" constant="15" id="OJN-q5-czj"/>
+                                    <constraint firstItem="35f-ZI-Z8J" firstAttribute="top" secondItem="dVL-6U-XrS" secondAttribute="top" constant="15" id="STc-fd-Wib"/>
+                                    <constraint firstItem="35f-ZI-Z8J" firstAttribute="leading" secondItem="dVL-6U-XrS" secondAttribute="leading" constant="15" id="Sk1-rf-xMr"/>
+                                    <constraint firstAttribute="bottom" secondItem="35f-ZI-Z8J" secondAttribute="bottom" constant="15" id="xg1-5j-eBi"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -131,7 +176,7 @@
                             <constraint firstAttribute="trailing" secondItem="QJj-kc-ND1" secondAttribute="trailing" id="2Or-uG-0VS"/>
                             <constraint firstItem="QJj-kc-ND1" firstAttribute="top" secondItem="dVL-6U-XrS" secondAttribute="bottom" id="4eC-ZQ-Uie"/>
                             <constraint firstItem="QJj-kc-ND1" firstAttribute="top" secondItem="u8h-bp-ydW" secondAttribute="topMargin" id="ME3-tw-cKW"/>
-                            <constraint firstItem="dVL-6U-XrS" firstAttribute="leading" secondItem="u8h-bp-ydW" secondAttribute="leading" constant="20" id="SEL-Me-dvE"/>
+                            <constraint firstItem="dVL-6U-XrS" firstAttribute="leading" secondItem="u8h-bp-ydW" secondAttribute="leading" constant="15" id="SEL-Me-dvE"/>
                             <constraint firstAttribute="trailing" secondItem="dVL-6U-XrS" secondAttribute="trailing" constant="20" id="fdb-Fx-BuP"/>
                             <constraint firstItem="dVL-6U-XrS" firstAttribute="centerY" secondItem="QJj-kc-ND1" secondAttribute="centerY" constant="-50" id="mue-8B-vue"/>
                             <constraint firstItem="c9B-BL-40c" firstAttribute="top" secondItem="QJj-kc-ND1" secondAttribute="bottom" id="xEP-E5-egM"/>
@@ -154,7 +199,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1909" y="-776"/>
+            <point key="canvasLocation" x="-2047" y="-647"/>
         </scene>
         <!--Create Shout Parent View Controller-->
         <scene sceneID="Swv-hg-ltk">
@@ -556,7 +601,7 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="89"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1408,7 +1453,7 @@
                                             <rect key="frame" x="15" y="35" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XJ5-iN-ha5">
@@ -1545,6 +1590,7 @@
         <image name="pencil" width="14" height="14"/>
         <image name="photo_icon" width="30" height="27"/>
         <image name="share_icon" width="17" height="23"/>
+        <image name="shoutit_logo_s" width="27" height="33"/>
         <image name="success_icon" width="34" height="31"/>
         <image name="tick" width="15" height="13"/>
         <image name="video_play_small" width="36" height="36"/>
