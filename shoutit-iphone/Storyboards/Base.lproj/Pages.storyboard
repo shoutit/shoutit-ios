@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-zX-4y2">
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-zX-4y2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Xf-BN-oDX">
@@ -103,6 +103,7 @@
                             <constraint firstItem="3a5-zX-4y2" firstAttribute="leading" secondItem="5kn-Qc-f5W" secondAttribute="leading" id="nvb-6a-5dh"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Title" id="N5t-oY-IF2">
                         <barButtonItem key="rightBarButtonItem" image="search" id="75z-eG-e0k">
                             <connections>
@@ -145,10 +146,69 @@
                             <outlet property="delegate" destination="PMj-bT-b55" id="Z7h-Nr-GXu"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="placeholderView" destination="DZW-pA-K7l" id="V4d-DG-vGG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k27-Dx-PxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DZW-pA-K7l" customClass="PagesPlaceholderView" customModule="Shoutit" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="554" height="600"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" axis="vertical" distribution="equalSpacing" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="mEf-pt-7v0">
+                            <rect key="frame" x="25" y="186" width="504" height="229"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_pages_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ihQ-lu-QFq">
+                                    <rect key="frame" x="0.0" y="0.0" width="504" height="67"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="67" id="115-zU-RGK"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" text="You have no pages yet. Create a page for your business to sell more" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tka-Kr-qhE">
+                                    <rect key="frame" x="0.0" y="89" width="504" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                    <color key="textColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RbH-vT-Cag">
+                                    <rect key="frame" x="0.0" y="131" width="504" height="44"/>
+                                    <color key="backgroundColor" red="0.20784313730000001" green="0.86666666670000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="6fN-Le-BgC"/>
+                                    </constraints>
+                                    <state key="normal" title="Create New Page">
+                                        <color key="titleColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGM-Ra-tt0">
+                                    <rect key="frame" x="0.0" y="197" width="504" height="32"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <state key="normal" title="More information about pages">
+                                        <color key="titleColor" red="0.20784313725490194" green="0.8666666666666667" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="mEf-pt-7v0" secondAttribute="trailing" constant="25" id="CcQ-eP-FHH"/>
+                        <constraint firstItem="mEf-pt-7v0" firstAttribute="leading" secondItem="DZW-pA-K7l" secondAttribute="leading" constant="25" id="jMZ-S7-Btj"/>
+                        <constraint firstItem="mEf-pt-7v0" firstAttribute="centerY" secondItem="DZW-pA-K7l" secondAttribute="centerY" id="tXo-NP-hxg"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="createPageButton" destination="RbH-vT-Cag" id="UH0-c4-mLH"/>
+                        <outlet property="moreInformationButton" destination="sGM-Ra-tt0" id="oFZ-aZ-EOm"/>
+                    </connections>
+                </view>
             </objects>
-            <point key="canvasLocation" x="-1138" y="564"/>
+            <point key="canvasLocation" x="-1111" y="769"/>
         </scene>
         <!--My Pages Table View Controller-->
         <scene sceneID="H4P-z8-QqL">
@@ -176,7 +236,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFi-kE-Mnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1138" y="-122"/>
+            <point key="canvasLocation" x="-1185" y="-610"/>
         </scene>
         <!--Create Page-->
         <scene sceneID="ZO1-bW-d2N">
@@ -196,13 +256,13 @@
                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-zC-4ac">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-zC-4ac">
                                 <rect key="frame" x="0.0" y="107" width="600" height="493"/>
                                 <connections>
                                     <segue destination="3RB-KY-1rv" kind="embed" id="4QT-KB-Eo4"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text=" It's free to set up. Just choose a Page type  to get started. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h9-5i-6BM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text=" It's free to set up. Just choose a Page type  to get started. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2h9-5i-6BM">
                                 <rect key="frame" x="20" y="73" width="560" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
@@ -244,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Ocu-Yp-jgq">
-                            <rect key="frame" x="0.0" y="492.5" width="600" height="107"/>
+                            <rect key="frame" x="0.0" y="494" width="600" height="107"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qb-l6-XgU" customClass="CustomUIButton" customModule="Shoutit" customModuleProvider="target">
@@ -297,7 +357,7 @@
                             <tableViewSection headerTitle="PAGE DETAILS" id="Vk4-3S-KEw">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateShoutCellLocation" rowHeight="75" id="2Ik-1a-LAv" customClass="CreateShoutSelectCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49.5" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ik-1a-LAv" id="a5T-eR-mz7">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -347,7 +407,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="75" id="KqF-90-1cH" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="124.5" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="125" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KqF-90-1cH" id="dPW-pv-hDn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -377,7 +437,7 @@
                             <tableViewSection headerTitle="YOUR INFO" id="P1z-GT-1LE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="75" id="NRz-RM-xHX" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="249.5" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="251" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NRz-RM-xHX" id="cAV-Hn-3JW">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -403,7 +463,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoutCellMobile" rowHeight="75" id="N6w-yJ-f7f" customClass="CreateShoutMobileCell" customModule="Shoutit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="324.5" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="326" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N6w-yJ-f7f" id="li0-fQ-V2P">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -429,7 +489,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="75" id="Kae-gX-lDf">
-                                        <rect key="frame" x="0.0" y="399.5" width="600" height="75"/>
+                                        <rect key="frame" x="0.0" y="401" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kae-gX-lDf" id="i9e-5W-Xea">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
@@ -494,7 +554,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="190" height="178"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0v-vr-4Nm">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0v-vr-4Nm">
                                             <rect key="frame" x="78" y="136" width="35" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -534,6 +594,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="no_pages_icon" width="55" height="67"/>
         <image name="search" width="25" height="24"/>
     </resources>
 </document>

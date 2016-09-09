@@ -15,6 +15,6 @@ enum ListenButtonState {
 
 class ListenButton: UIButton {
 
-    var listenState : ListenButtonState = .ListenButton
+    var listenState : ListenButtonState = .Listen
     
 }

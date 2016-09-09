@@ -8,6 +8,7 @@
 
 import UIKit
 import ShoutitKit
+import RxSwift
 
 class PageTableViewCell: UITableViewCell {
 
@@ -16,14 +17,28 @@ class PageTableViewCell: UITableViewCell {
     @IBOutlet var listenersCountLabel : UILabel!
     @IBOutlet var listenButton : ListenButton!
     @IBOutlet var ratingView : RatingView!
-
+    
+    var reuseDisposeBag = DisposeBag()
     
     func bindWithProfileViewModel(profileViewModel: ProfilesListCellViewModel) {
-        let profile = profileViewModel.profile
-        
+
         self.listenButton.listenState = profileViewModel.isListening ? .Listening : .Listen
         
-        self.profileImageView
+        
+        self.nameLabel.text = profileViewModel.profile.name
+        self.listenersCountLabel.text = profileViewModel.listeningCountString()
+        
+        self.profileImageView.sh_setImageWithURL(profileViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPagePlaceholder())
     }
     
+}
+
+extension PageTableViewCell: NibLoadableView, ReusableView {
+    static var defaultReuseIdentifier: String {
+        return "PageTableViewCell"
+    }
+    
+    static var nibName: String {
+        return "PageTableViewCell"
+    }
 }

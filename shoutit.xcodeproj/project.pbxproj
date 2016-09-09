@@ -342,6 +342,7 @@
 		AEBBCF361D758DC9003C7893 /* AutoInstrictSizeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBBCF351D758DC9003C7893 /* AutoInstrictSizeCollectionView.swift */; };
 		AEBDDF0A1D4F6C1B0070D84F /* ListenSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBDDF091D4F6C1B0070D84F /* ListenSuccess.swift */; };
 		AEBF823F1D817E0A00F69B2A /* GreenSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBF823E1D817E0A00F69B2A /* GreenSegmentedControl.swift */; };
+		AEBF82411D82E6BD00F69B2A /* PagesPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBF82401D82E6BD00F69B2A /* PagesPlaceholderView.swift */; };
 		AEC5CAFB1D24FBE9009168D7 /* BookmarksFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */; };
 		AEC5CAFE1D251387009168D7 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */; };
 		AEC5CB021D25153D009168D7 /* DiscoverItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC5CB011D25153D009168D7 /* DiscoverItemCell.xib */; };
@@ -1439,6 +1440,7 @@
 		AEBBCF351D758DC9003C7893 /* AutoInstrictSizeCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoInstrictSizeCollectionView.swift; sourceTree = "<group>"; };
 		AEBDDF091D4F6C1B0070D84F /* ListenSuccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListenSuccess.swift; path = Model/ListenSuccess.swift; sourceTree = "<group>"; };
 		AEBF823E1D817E0A00F69B2A /* GreenSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GreenSegmentedControl.swift; path = View/GreenSegmentedControl.swift; sourceTree = "<group>"; };
+		AEBF82401D82E6BD00F69B2A /* PagesPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagesPlaceholderView.swift; path = View/PagesPlaceholderView.swift; sourceTree = "<group>"; };
 		AEC5CAFA1D24FBE9009168D7 /* BookmarksFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarksFlowController.swift; path = FlowControl/BookmarksFlowController.swift; sourceTree = "<group>"; };
 		AEC5CAFD1D251387009168D7 /* BookmarkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarkManager.swift; path = Other/BookmarkManager.swift; sourceTree = "<group>"; };
 		AEC5CB011D25153D009168D7 /* DiscoverItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DiscoverItemCell.xib; path = View/DiscoverItemCell.xib; sourceTree = "<group>"; };
@@ -5421,6 +5423,7 @@
 			children = (
 				B2D029551D1C2C1E00A29D8B /* PublicPagesTableViewController.swift */,
 				B2D029581D1C2C2C00A29D8B /* ViewModel */,
+				AEBF82401D82E6BD00F69B2A /* PagesPlaceholderView.swift */,
 			);
 			name = PublicPages;
 			sourceTree = "<group>";
@@ -6650,6 +6653,7 @@
 				B2B5D0251C7F5CAE0068A6AF /* AllShoutsDisplayable.swift in Sources */,
 				242288BA1D783621001115B2 /* DiscoverComponent.swift in Sources */,
 				AEADF3411CA565A30051DABA /* ConversationSelectShoutController.swift in Sources */,
+				AEBF82411D82E6BD00F69B2A /* PagesPlaceholderView.swift in Sources */,
 				B2A03E231C85F69400F5E257 /* BorderedView.swift in Sources */,
 				B2F524811C9C6E9B00EA622F /* UIViewController+LoggedUser.swift in Sources */,
 				B2F719EB1D0EF4C7002C1D74 /* LocationCoordinate2DTransform.swift in Sources */,

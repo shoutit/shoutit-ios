@@ -16,10 +16,7 @@ class PagesListParentViewController: UIViewController, ContainerController {
     // RX
     private let disposeBag = DisposeBag()
     
-    @IBOutlet weak var listChoiceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var createPageButton: UIButton!
-    @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
     
     @IBOutlet var leftTabConstraints : [NSLayoutConstraint]!
     @IBOutlet var rightTabConstraints : [NSLayoutConstraint]!
@@ -42,6 +39,9 @@ class PagesListParentViewController: UIViewController, ContainerController {
         let controller = Wireframe.publicPagesTableViewController()
         controller.viewModel = PublicPagesViewModel()
         controller.flowDelegate = self.flowDelegate
+        
+        
+        
         return controller
     }()
     
@@ -50,11 +50,18 @@ class PagesListParentViewController: UIViewController, ContainerController {
         setupNavigationBar()
         setupViews()
         switchToMyChats()
+        
+        publicPagesViewController.placeholderView.createPageButton.rx_tap.asDriver().driveNext({
+            self.showCreatePageView()
+        }).addDisposableTo(self.disposeBag)
+        
+        publicPagesViewController.placeholderView.moreInformationButton.rx_tap.asDriver().asDriver().driveNext({
+            self.notImplemented()
+        }).addDisposableTo(self.disposeBag)
     }
     
     private func setupViews() {
-        disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
-        createPageButton.contentHorizontalAlignment = Platform.isRTL ? .Right : .Left
+        
     }
     
     private func setupNavigationBar() {

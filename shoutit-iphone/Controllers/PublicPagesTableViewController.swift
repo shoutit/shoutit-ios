@@ -10,19 +10,15 @@ import Foundation
 import RxSwift
 import RxCocoa
 import ShoutitKit
+import DZNEmptyDataSet
 
 class PublicPagesTableViewController: UITableViewController {
-    
-    // UI
-    lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
-        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
-        view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
-        return view
-    }()
     
     var viewModel: PublicPagesViewModel!
     weak var flowDelegate: FlowController?
     private let cellConfigurator = ProfileCellConfigurator()
+    
+    @IBOutlet var placeholderView : PagesPlaceholderView!
     
     private let disposeBag = DisposeBag()
     
@@ -31,6 +27,8 @@ class PublicPagesTableViewController: UITableViewController {
         precondition(viewModel != nil)
         registerReusables()
         setupRX()
+        
+        self.tableView.emptyDataSetSource = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,16 +36,8 @@ class PublicPagesTableViewController: UITableViewController {
         viewModel.pager.refreshContent()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if tableViewPlaceholder.frame.size != tableView.bounds.size {
-            tableViewPlaceholder.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
-            tableView.tableHeaderView = tableView.tableHeaderView
-        }
-    }
-    
     private func registerReusables() {
-        tableView.register(ProfileTableViewCell.self)
+        tableView.register(PageTableViewCell.self)
     }
     
     private func setupRX() {
@@ -55,21 +45,6 @@ class PublicPagesTableViewController: UITableViewController {
         viewModel.pager.state
             .asObservable()
             .subscribeNext {[weak self] (state) in
-                switch state {
-                case .Idle:
-                    break
-                case .Loading:
-                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
-                    self?.tableViewPlaceholder.showActivity()
-                case .Loaded, .LoadedAllContent, .LoadingMore, .Refreshing:
-                    self?.tableView.tableHeaderView = nil
-                case .NoContent:
-                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
-                    self?.tableViewPlaceholder.showMessage(NSLocalizedString("There are no pages available in your country", comment: "Public pages empty message"))
-                case .Error(let error):
-                    self?.tableView.tableHeaderView = self?.tableViewPlaceholder
-                    self?.tableViewPlaceholder.showMessage(error.sh_message)
-                }
                 self?.tableView.reloadData()
             }
             .addDisposableTo(disposeBag)
@@ -89,10 +64,10 @@ class PublicPagesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         guard let cells = viewModel.pager.getCellViewModels() else { preconditionFailure() }
-        let cell: ProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: PageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let cellModel = cells[indexPath.row]
         
-        cellConfigurator.configureCell(cell, cellViewModel: cellModel, showsListenButton: true)
+        cell.bindWithProfileViewModel(cellModel)
         
         cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
             guard let `self` = self else { return }
@@ -102,8 +77,8 @@ class PublicPagesTableViewController: UITableViewController {
                 .subscribe({[weak cell] (event) in
                     switch event {
                     case .Next(let (listening, successMessage, newListnersCount, error)):
-                        let listenButtonImage = listening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
-                        cell?.listenButton.setImage(listenButtonImage, forState: .Normal)
+                        
+                        cell?.listenButton.listenState = listening ? .Listening : .Listen
                         
                         if let message = successMessage {
                             self.showSuccessMessage(message)
@@ -151,5 +126,23 @@ class PublicPagesTableViewController: UITableViewController {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             viewModel.pager.fetchNextPage()
         }
+    }
+}
+
+extension PublicPagesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
+    func customViewForEmptyDataSet(scrollView: UIScrollView!) -> UIView! {
+        return self.placeholderView
+    }
+    
+    func emptyDataSetShouldAllowTouch(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetDidTapView(scrollView: UIScrollView!) {
+        
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        
     }
 }
