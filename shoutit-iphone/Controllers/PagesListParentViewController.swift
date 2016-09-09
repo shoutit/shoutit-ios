@@ -47,9 +47,9 @@ class PagesListParentViewController: UIViewController, ContainerController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRX()
         setupNavigationBar()
         setupViews()
+        switchToMyChats()
     }
     
     private func setupViews() {
@@ -79,17 +79,7 @@ class PagesListParentViewController: UIViewController, ContainerController {
         self.changeContentTo(self.myPagesViewController)
     }
     
-    private func setupRX() {
-        
-        createPageButton
-            .rx_tap
-            .asDriver().driveNext { [weak self] in
-                self?.showCreatePageView()
-            }
-            .addDisposableTo(disposeBag)
-    }
-    
-    private func showCreatePageView() {
+    func showCreatePageView() {
         let viewModel = LoginWithEmailViewModel()
         
         viewModel.loginSuccessSubject.subscribeNext { (created) in
