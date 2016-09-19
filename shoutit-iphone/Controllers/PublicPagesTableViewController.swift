@@ -137,12 +137,4 @@ extension PublicPagesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     func emptyDataSetShouldAllowTouch(scrollView: UIScrollView!) -> Bool {
         return true
     }
-    
-    func emptyDataSetDidTapView(scrollView: UIScrollView!) {
-        
-    }
-    
-    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-        
-    }
 }
