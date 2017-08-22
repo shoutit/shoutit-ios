@@ -13,7 +13,7 @@ public struct EmailParams: Params {
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["email"] = email
+        p["email"] = email as AnyObject
         return p
     }
     

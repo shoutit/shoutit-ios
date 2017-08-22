@@ -10,25 +10,25 @@ import Foundation
 
 struct URLHandler {
     
-    static func callPhoneNumberWithString(phoneNumber: String) {
+    static func callPhoneNumberWithString(_ phoneNumber: String) {
         let path = "telprompt://" + phoneNumber
-        guard let url = NSURL(string: path) else { return }
+        guard let url = URL(string: path) else { return }
         if UIApplication.sharedApplication().canOpenURL(url) {
             UIApplication.sharedApplication().openURL(url)
         }
     }
     
-    static func openSafariWithPath(p: String) {
-        var path = p.lowercaseString
+    static func openSafariWithPath(_ p: String) {
+        var path = p.lowercased()
         switch ShoutitValidator.validateEmail(path) {
-        case .Valid:
+        case .valid:
             path = "mailto:?to=\(path)"
         default:
             break
         }
-        guard var url = NSURL(string: path) else { return }
-        if url.scheme.utf16.count == 0 {
-            url = NSURL(string: "http://\(url.absoluteString)")!
+        guard var url = URL(string: path) else { return }
+        if url.scheme?.utf16.count == 0 {
+            url = URL(string: "http://\(url.absoluteString)")!
         }
         if UIApplication.sharedApplication().canOpenURL(url) {
             UIApplication.sharedApplication().openURL(url)

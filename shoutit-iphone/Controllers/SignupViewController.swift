@@ -35,7 +35,7 @@ final class SignupViewController: UITableViewController {
     weak var viewModel: LoginWithEmailViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -50,12 +50,12 @@ final class SignupViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
-        let signupActionFilterClosure: Void -> Bool = {[unowned self] in
+        let signupActionFilterClosure: (Void) -> Bool = {[unowned self] in
             
             for validationResult in [ShoutitValidator.validateName(self.nameTextField.text), ShoutitValidator.validateEmail(self.emailTextField.text), ShoutitValidator.validatePassword(self.passwordTextField.text)] {
-                if case .Invalid(let errors) = validationResult {
+                if case .invalid(let errors) = validationResult {
                     if let error = errors.first {
                         self.delegate?.showLoginErrorMessage(error.message)
                     }
@@ -84,22 +84,22 @@ final class SignupViewController: UITableViewController {
         signupButton
             .rx_tap
             .filter(signupActionFilterClosure).subscribeNext{
-                MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+                MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
                 self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, invitationCode: Account.sharedInstance.invitationCode)
             }
             .addDisposableTo(disposeBag)
         
         // return button
-        nameTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+        nameTextField.rx_controlEvent(.editingDidEndOnExit).subscribeNext{[weak self] in
             self?.emailTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
         
-        emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+        emailTextField.rx_controlEvent(.editingDidEndOnExit).subscribeNext{[weak self] in
             self?.passwordTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
         
-        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(signupActionFilterClosure).subscribeNext{[unowned self] in
-            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+        passwordTextField.rx_controlEvent(.editingDidEndOnExit).filter(signupActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
             self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, invitationCode: Account.sharedInstance.invitationCode)
         }.addDisposableTo(disposeBag)
         
@@ -109,7 +109,7 @@ final class SignupViewController: UITableViewController {
         passwordTextField.addValidator(ShoutitValidator.validatePassword, withDisposeBag: disposeBag)
     }
     
-    private func setupTermsAndPolicyLabel() {
+    fileprivate func setupTermsAndPolicyLabel() {
         
         // get text
         let text = NSLocalizedString("By Proceeding you also agree to Shoutit’s Terms of Service and Privacy Policy.", comment: "Signup screen terms and policy message message")
@@ -118,14 +118,14 @@ final class SignupViewController: UITableViewController {
         
         // create paragraph style
         let paragrapghStyle = NSMutableParagraphStyle()
-        paragrapghStyle.alignment = .Center
+        paragrapghStyle.alignment = .center
         
         // create attibuted string
         let attributedString = NSMutableAttributedString(string: text, attributes: [NSParagraphStyleAttributeName : paragrapghStyle])
         
         // get ranges
-        let termsRange = (text as NSString).rangeOfString(termsClickableText)
-        let policyRange = (text as NSString).rangeOfString(privacyPolicyClickableText)
+        let termsRange = (text as NSString).range(of: termsClickableText)
+        let policyRange = (text as NSString).range(of: privacyPolicyClickableText)
         
         // create tap responders
         let termsResponder: _PatternTapResponder = {[weak self] (_) in
@@ -136,14 +136,14 @@ final class SignupViewController: UITableViewController {
         }
         
         // set attributed
-        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(termsResponder, AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)], range: termsRange)
-        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(policyResponder, AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)], range: policyRange)
+        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(termsResponder, to: AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)], range: termsRange)
+        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(policyResponder, to: AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)], range: policyRange)
         
         // assign string
         termsAndPolicyLabel.setAttributedText(attributedString, withTruncation: false)
     }
     
-    private func setupSwitchToLoginLabel() {
+    fileprivate func setupSwitchToLoginLabel() {
         
         let text = NSLocalizedString("Have an account? Log in", comment: "Signup view")
         let loginText = NSLocalizedString("Log in", comment: "Signup view. Should be the same as whole text's part")
@@ -152,17 +152,17 @@ final class SignupViewController: UITableViewController {
         let attributedString = NSMutableAttributedString(string: text)
         
         // get attributes for login
-        let range = (text as NSString).rangeOfString(loginText)
-        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        let range = (text as NSString).range(of: loginText)
+        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .primaryGreen)]
         
         // modify attributed string
         attributedString.setAttributes(attributes, range: range)
         
         // assign
-        switchToLoginButton.setAttributedTitle(attributedString, forState: .Normal)
+        switchToLoginButton.setAttributedTitle(attributedString, for: UIControlState())
     }
     
-    private func setupCreatePageLabel() {
+    fileprivate func setupCreatePageLabel() {
         
         let text = NSLocalizedString("Create a Page for brand or business.", comment: "Signup view")
         let loginText = NSLocalizedString("Create a Page", comment: "Signup view. Should be the same as whole text's part")
@@ -171,17 +171,17 @@ final class SignupViewController: UITableViewController {
         let attributedString = NSMutableAttributedString(string: text)
         
         // get attributes for login
-        let range = (text as NSString).rangeOfString(loginText)
-        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        let range = (text as NSString).range(of: loginText)
+        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .primaryGreen)]
         
         // modify attributed string
         attributedString.setAttributes(attributes, range: range)
         
         // assign
-        createPageButton.setAttributedTitle(attributedString, forState: .Normal)
+        createPageButton.setAttributedTitle(attributedString, for: UIControlState())
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
 }

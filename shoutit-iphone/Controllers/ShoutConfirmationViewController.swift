@@ -15,7 +15,7 @@ final class ShoutConfirmationViewController: UIViewController {
 
     var shout : Shout!
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var createAnotherButton: CustomUIButton!
@@ -32,7 +32,7 @@ final class ShoutConfirmationViewController: UIViewController {
         RateApp.sharedInstance().registerEvent()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if ratePresented { return }
@@ -58,7 +58,7 @@ final class ShoutConfirmationViewController: UIViewController {
         }
     }
     
-    private func setupRx() {
+    fileprivate func setupRx() {
         
         shareButton.rx_tap
             .asDriver()
@@ -68,9 +68,9 @@ final class ShoutConfirmationViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func hydrateViews() {
+    fileprivate func hydrateViews() {
         if shout.type()! == ShoutType.Offer {
-            createAnotherButton.setTitle(NSLocalizedString("Create another Offer", comment: ""), forState: .Normal)
+            createAnotherButton.setTitle(NSLocalizedString("Create another Offer", comment: ""), for: UIControlState())
             if let title = shout.title {
                 descriptionlabel.text = String.localizedStringWithFormat(NSLocalizedString("Your offer \"%@\" will appear on Shoutit soon.", comment: ""), title)
             } else {
@@ -78,7 +78,7 @@ final class ShoutConfirmationViewController: UIViewController {
             }
             
         } else {
-            createAnotherButton.setTitle(NSLocalizedString("Create another Request", comment: ""), forState: .Normal)
+            createAnotherButton.setTitle(NSLocalizedString("Create another Request", comment: ""), for: UIControlState())
             if let title = shout.title {
                 descriptionlabel.text = String.localizedStringWithFormat(NSLocalizedString("Your request \"%@\" will appear on Shoutit soon.", comment: ""), title)
             } else {
@@ -87,9 +87,9 @@ final class ShoutConfirmationViewController: UIViewController {
         }
     }
     
-    private func displayShareSheet() {
-        let url = NSURL(string: shout.webPath)!
+    fileprivate func displayShareSheet() {
+        let url = URL(string: shout.webPath)!
         let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        presentViewController(activityController, animated: true, completion: nil)
+        present(activityController, animated: true, completion: nil)
     }
 }

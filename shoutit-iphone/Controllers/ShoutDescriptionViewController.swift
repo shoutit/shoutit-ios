@@ -29,46 +29,46 @@ class ShoutDescriptionViewController: UIViewController , UITextViewDelegate {
         self.textView.text = initialText
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShowUp), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowUp), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWillShowUp(notification: NSNotification) {
-        guard let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect, duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval else {
+    func keyboardWillShowUp(_ notification: Notification) {
+        guard let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect, let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else {
             return
         }
         
-        UIView.animateWithDuration(duration) {
+        UIView.animate(withDuration: duration, animations: {
             self.bottomTextViewConstraint.constant = keyboardSize.height
             self.view.layoutIfNeeded()
-        }
+        }) 
         
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        UIView.animateWithDuration(0.3) {
+    func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.bottomTextViewConstraint.constant = 0
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         self.completionSubject.onNext(textView.text)
     }
     
     @IBAction func save() {
         self.textView.resignFirstResponder()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 }

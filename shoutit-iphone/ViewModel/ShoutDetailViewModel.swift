@@ -9,17 +9,41 @@
 import UIKit
 import RxSwift
 import ShoutitKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 final class ShoutDetailViewModel {
     
     let disposeBag = DisposeBag()
     
     let reloadObservable: Observable<Void>
-    private let reloadSubject: PublishSubject<Void>
+    fileprivate let reloadSubject: PublishSubject<Void>
     let reloadOtherShoutsSubject: PublishSubject<Void> = PublishSubject()
     let reloadRelatedShoutsSubject: PublishSubject<Void> = PublishSubject()
     
-    private(set) var shout: Shout {
+    fileprivate(set) var shout: Shout {
         didSet {
             cellModels = cellViewModelsWithShout(shout)
             reloadSubject.onNext()
@@ -27,19 +51,19 @@ final class ShoutDetailViewModel {
     }
     
     // messages
-    private let noImagesImage = UIImage.shoutsPlaceholderImage()
-    private let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
+    fileprivate let noImagesImage = UIImage.shoutsPlaceholderImage()
+    fileprivate let noShoutsMessage = NSLocalizedString("No shouts are available", comment: "")
     
     // child view models
-    private(set) var cellModels: [ShoutDetailTableViewCellViewModel] = []
-    private(set) var otherShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading]
-    private(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.Loading] {
+    fileprivate(set) var cellModels: [ShoutDetailTableViewCellViewModel] = []
+    fileprivate(set) var otherShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.loading]
+    fileprivate(set) var relatedShoutsCellModels: [ShoutDetailShoutCellViewModel] = [ShoutDetailShoutCellViewModel.loading] {
         didSet {
             cellModels = cellViewModelsWithShout(shout)
             reloadSubject.onNext()
         }
     }
-    private(set) var imagesViewModels: [ShoutDetailShoutImageViewModel] = [ShoutDetailShoutImageViewModel.Loading]
+    fileprivate(set) var imagesViewModels: [ShoutDetailShoutImageViewModel] = [ShoutDetailShoutImageViewModel.loading]
     
     init(shout: Shout) {
         self.shout = shout
@@ -50,7 +74,7 @@ final class ShoutDetailViewModel {
     
     // MARK: - Actions
     
-    func reloadShout(newShout: Shout) {
+    func reloadShout(_ newShout: Shout) {
         shout = newShout
     }
     
@@ -62,12 +86,12 @@ final class ShoutDetailViewModel {
             .subscribe {[weak self] (event) in
                 defer { self?.reloadSubject.onNext() }
                 switch event {
-                case .Next(let shout):
+                case .next(let shout):
                     self?.shout = shout
                     self?.reloadImages()
                 case .Error(let error):
-                    self?.imagesViewModels = [ShoutDetailShoutImageViewModel.Error(error: error)]
-                case .Completed:
+                    self?.imagesViewModels = [ShoutDetailShoutImageViewModel.error(error: error)]
+                case .completed:
                     break
                 }
             }
@@ -77,13 +101,13 @@ final class ShoutDetailViewModel {
             .subscribe {[weak self] (event) in
                 defer { self?.reloadOtherShoutsSubject.onNext() }
                 switch event {
-                case .Next(let otherShouts):
+                case .next(let otherShouts):
                     if let strongSelf = self {
                         strongSelf.otherShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(otherShouts.prefix(4)), withSeeAllCell: false)
                     }
                 case .Error(let error):
-                    self?.otherShoutsCellModels = [ShoutDetailShoutCellViewModel.Error(error: error)]
-                case .Completed:
+                    self?.otherShoutsCellModels = [ShoutDetailShoutCellViewModel.error(error: error)]
+                case .completed:
                     break
                 }
             }
@@ -93,15 +117,15 @@ final class ShoutDetailViewModel {
             .subscribe {[weak self] (event) in
                 defer { self?.reloadRelatedShoutsSubject.onNext() }
                 switch event {
-                case .Next(let relatedShouts):
+                case .next(let relatedShouts):
                     if let strongSelf = self {
                         strongSelf.relatedShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(relatedShouts.prefix(6)), withSeeAllCell: true)
                     }
                 case .Error(let error):
                     if let strongSelf = self {
-                        strongSelf.relatedShoutsCellModels = [ShoutDetailShoutCellViewModel.Error(error: error)]
+                        strongSelf.relatedShoutsCellModels = [ShoutDetailShoutCellViewModel.error(error: error)]
                     }
-                case .Completed:
+                case .completed:
                     break
                 }
             }
@@ -110,7 +134,7 @@ final class ShoutDetailViewModel {
     
     func reloadImages() {
         guard shout.imagePaths?.count > 0 || shout.videos?.count > 0 else {
-            self.imagesViewModels = [ShoutDetailShoutImageViewModel.NoContent(image: self.noImagesImage)]
+            self.imagesViewModels = [ShoutDetailShoutImageViewModel.noContent(image: self.noImagesImage)]
             return
         }
         
@@ -118,15 +142,15 @@ final class ShoutDetailViewModel {
         
         if let imagePaths = shout.imagePaths {
             for path : String in imagePaths {
-                if let url : NSURL = NSURL(string: path) {
-                    models.append(ShoutDetailShoutImageViewModel.Image(url: url))
+                if let url : URL = URL(string: path) {
+                    models.append(ShoutDetailShoutImageViewModel.image(url: url))
                 }
             }
         }
         
         if let videos = shout.videos {
             for video : Video in videos {
-                models.append(ShoutDetailShoutImageViewModel.Movie(video: video))
+                models.append(ShoutDetailShoutImageViewModel.movie(video: video))
             }
         }
         
@@ -147,7 +171,7 @@ final class ShoutDetailViewModel {
     }
     
     func priceString() -> String? {
-        if let price = shout.price, currency = shout.currency {
+        if let price = shout.price, let currency = shout.currency {
             return NumberFormatters.priceStringWithPrice(price, currency: currency)
         }
         
@@ -156,12 +180,12 @@ final class ShoutDetailViewModel {
     
     func tabbarButtons() -> [ShoutDetailTabbarButton] {
         if shout.user?.id == Account.sharedInstance.user?.id {
-            return [.Promote(promoted: shout.isPromoted), .Edit, .More]
+            return [.promote(promoted: shout.isPromoted), .edit, .more]
         }
         
-        var buttons: [ShoutDetailTabbarButton] = [.VideoCall, .Chat, .More]
-        if let isMobileSet = shout.isMobileSet where isMobileSet {
-            buttons.insert(.Call, atIndex: 0)
+        var buttons: [ShoutDetailTabbarButton] = [.videoCall, .chat, .more]
+        if let isMobileSet = shout.isMobileSet, isMobileSet {
+            buttons.insert(.call, at: 0)
         }
         
         return buttons
@@ -172,23 +196,23 @@ final class ShoutDetailViewModel {
 
 private extension ShoutDetailViewModel {
     
-    private func prepareCellViewModelsForLoading() {
+    func prepareCellViewModelsForLoading() {
         
-        let preparationBlock: ([ShoutDetailShoutCellViewModel] -> [ShoutDetailShoutCellViewModel]) = {models in
+        let preparationBlock: (([ShoutDetailShoutCellViewModel]) -> [ShoutDetailShoutCellViewModel]) = {models in
             
             if models.count > 1 {
                 return models
             }
             
             if models.count == 0 {
-                return [ShoutDetailShoutCellViewModel.Loading]
+                return [ShoutDetailShoutCellViewModel.loading]
             }
             
             if models.count == 1 {
-                if case .Content = models[0] {
+                if case .content = models[0] {
                     return models
                 } else {
-                    return [ShoutDetailShoutCellViewModel.Loading]
+                    return [ShoutDetailShoutCellViewModel.loading]
                 }
             }
             
@@ -200,7 +224,7 @@ private extension ShoutDetailViewModel {
         relatedShoutsCellModels = preparationBlock(relatedShoutsCellModels)
     }
     
-    private func cellViewModelsWithModels(models: [Shout]?, withSeeAllCell seeAll: Bool) -> [ShoutDetailShoutCellViewModel] {
+    func cellViewModelsWithModels(_ models: [Shout]?, withSeeAllCell seeAll: Bool) -> [ShoutDetailShoutCellViewModel] {
         
         guard let models = models else {
             return []
@@ -208,21 +232,21 @@ private extension ShoutDetailViewModel {
         
         if models.count == 0 {
             let noContentMessage = noShoutsMessage
-            return [ShoutDetailShoutCellViewModel.NoContent(message: noContentMessage)]
+            return [ShoutDetailShoutCellViewModel.noContent(message: noContentMessage)]
         }
         
-        var viewModels = models.map{ShoutDetailShoutCellViewModel.Content(shout: $0)}
+        var viewModels = models.map{ShoutDetailShoutCellViewModel.content(shout: $0)}
         
         if seeAll {
-            viewModels.append(ShoutDetailShoutCellViewModel.SeeAll)
+            viewModels.append(ShoutDetailShoutCellViewModel.seeAll)
         }
         
         return viewModels
     }
     
-    private func hasRelatedShouts() -> Bool {
+    func hasRelatedShouts() -> Bool {
         guard let first = relatedShoutsCellModels.first else { return false }
-        guard case .Content = first else { return false }
+        guard case .content = first else { return false }
         return true
     }
 }
@@ -231,18 +255,18 @@ private extension ShoutDetailViewModel {
 
 private extension ShoutDetailViewModel {
     
-    private func fetchShoutDetails() -> Observable<Shout> {
+    func fetchShoutDetails() -> Observable<Shout> {
         return APIShoutsService.retrieveShoutWithId(self.shout.id)
     }
     
-    private func fetchOtherShouts() -> Observable<[Shout]> {
+    func fetchOtherShouts() -> Observable<[Shout]> {
         let params = FilteredShoutsParams(username: shout.user?.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true, excludeId: shout.id)
         return APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
             return Observable.just(result.results)
         })
     }
     
-    private func fetchRelatedShouts() -> Observable<[Shout]> {
+    func fetchRelatedShouts() -> Observable<[Shout]> {
         let params = RelatedShoutsParams(shout: shout, page: 1, pageSize: 6)
         return APIShoutsService.relatedShoutsWithParams(params).map{$0.results}
     }
@@ -252,46 +276,46 @@ private extension ShoutDetailViewModel {
 
 private extension ShoutDetailViewModel {
     
-    func cellViewModelsWithShout(shout: Shout) -> [ShoutDetailTableViewCellViewModel] {
+    func cellViewModelsWithShout(_ shout: Shout) -> [ShoutDetailTableViewCellViewModel] {
         
         var models: [ShoutDetailTableViewCellViewModel] = []
         
         // description
-        if let description = shout.text where description.utf16.count > 0 {
-            models.append(.SectionHeader(title: NSLocalizedString("Description", comment: "Shout details")))
-            models.append(.Description(description: description))
+        if let description = shout.text, description.utf16.count > 0 {
+            models.append(.sectionHeader(title: NSLocalizedString("Description", comment: "Shout details")))
+            models.append(.description(description: description))
         }
         
         // details
-        models.append(.SectionHeader(title: NSLocalizedString("Details", comment: "Shout details")))
+        models.append(.sectionHeader(title: NSLocalizedString("Details", comment: "Shout details")))
         let detailsTuples = detailsWithShout(shout)
         var index = 0
         models += detailsTuples.reduce([ShoutDetailTableViewCellViewModel]()) { (array, tuple) -> [ShoutDetailTableViewCellViewModel] in
             defer { index += 1 }
-            return array + [ShoutDetailTableViewCellViewModel.KeyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1, imageName: tuple.2, filter: tuple.3, tag: tuple.4)]
+            return array + [ShoutDetailTableViewCellViewModel.keyValue(rowInSection: index, sectionRowsCount:detailsTuples.count, key: tuple.0, value: tuple.1, imageName: tuple.2, filter: tuple.3, tag: tuple.4)]
         }
         
         // other
         let creatorDisplayName: String
-        if let firstname = shout.user?.firstName where firstname.utf16.count > 0 {
+        if let firstname = shout.user?.firstName, firstname.utf16.count > 0 {
             creatorDisplayName = firstname
-        } else if let name = shout.user?.name where name.utf16.count > 0 {
+        } else if let name = shout.user?.name, name.utf16.count > 0 {
             creatorDisplayName = name
         } else {
             creatorDisplayName = NSLocalizedString("shouter", comment: "Displayed on shout detail screen if user's firstname would be null")
         }
-        models.append(.SectionHeader(title: String.localizedStringWithFormat(NSLocalizedString("More shouts from %@", comment: ""), creatorDisplayName)))
-        models.append(.OtherShouts)
-        models.append(.Button(title: String.localizedStringWithFormat(NSLocalizedString("Visit %@'s profile", comment: ""), creatorDisplayName), type: .VisitProfile))
+        models.append(.sectionHeader(title: String.localizedStringWithFormat(NSLocalizedString("More shouts from %@", comment: ""), creatorDisplayName)))
+        models.append(.otherShouts)
+        models.append(.button(title: String.localizedStringWithFormat(NSLocalizedString("Visit %@'s profile", comment: ""), creatorDisplayName), type: .visitProfile))
         if (hasRelatedShouts()) {
-            models.append(.SectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
-            models.append(.RelatedShouts)
+            models.append(.sectionHeader(title: NSLocalizedString("Related shouts", comment: "Shout detail")))
+            models.append(.relatedShouts)
         }
         
         return models
     }
     
-    func detailsWithShout(shout: Shout) -> [(String, String, String?, Filter?, ShoutitKit.Category?)] {
+    func detailsWithShout(_ shout: Shout) -> [(String, String, String?, Filter?, ShoutitKit.Category?)] {
         
         var details: [(String, String, String?, Filter?, ShoutitKit.Category?)] = []
         
@@ -307,7 +331,7 @@ private extension ShoutDetailViewModel {
         
         // add filters
         shout.filters?.forEach{ (filter) in
-            if let key = filter.name, value = filter.value?.name {
+            if let key = filter.name, let value = filter.value?.name {
                 details.append((key, value, nil, filter, nil))
             }
         }

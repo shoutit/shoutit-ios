@@ -9,8 +9,8 @@
 import Foundation
 
 enum ProfileCollectionInfoSupplementeryViewAvatar {
-    case Remote(url: NSURL?)
-    case Local(image: UIImage?)
+    case remote(url: URL?)
+    case local(image: UIImage?)
 }
 
 protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
@@ -27,28 +27,28 @@ protocol ProfileCollectionInfoSupplementaryViewDataSource: class {
 }
 
 enum ProfileCollectionInfoButton {
-    case Listeners(countString: String)
-    case Listening(countString: String)
-    case Interests(countString: String)
-    case Chat
-    case Listen(isListening: Bool)
-    case Notification(position: ProfileCollectionInfoButtonPosition?)
-    case EditProfile
-    case More
-    case Custom(title: String, icon: UIImage?)
-    case HiddenButton(position: ProfileCollectionInfoButtonPosition)
+    case listeners(countString: String)
+    case listening(countString: String)
+    case interests(countString: String)
+    case chat
+    case listen(isListening: Bool)
+    case notification(position: ProfileCollectionInfoButtonPosition?)
+    case editProfile
+    case more
+    case custom(title: String, icon: UIImage?)
+    case hiddenButton(position: ProfileCollectionInfoButtonPosition)
     
     var title: String {
         switch self {
-        case .Listeners:
+        case .listeners:
             return NSLocalizedString("Listeners", comment: "Profile Button Title")
-        case .Listening:
+        case .listening:
             return NSLocalizedString("Listening", comment: "Profile Button Title")
-        case .Interests:
+        case .interests:
             return NSLocalizedString("Interests", comment: "Profile Button Title")
-        case .Chat:
+        case .chat:
             return NSLocalizedString("Chat", comment: "Profile Button Title")
-        case .Listen(let listetning):
+        case .listen(let listetning):
             if listetning {
                 return NSLocalizedString("Stop Listening", comment: "Profile Button Title")
             } else {
@@ -63,72 +63,72 @@ enum ProfileCollectionInfoButton {
     
     var image: UIImage {
         switch self {
-        case .Listeners:
+        case .listeners:
             return UIImage.profileListenersIcon()
-        case .Listening:
+        case .listening:
             return UIImage.profileListeningIcon()
-        case .Interests:
+        case .interests:
             return UIImage.profileTagsIcon()
-        case .Chat:
+        case .chat:
             return UIImage.profileChatIcon()
-        case .Listen(let listetning):
+        case .listen(let listetning):
             if listetning {
                 return UIImage.profileStopListeningIcon()
             } else {
                 return UIImage.profileListenIcon()
             }
-        case .Notification:
+        case .notification:
             return UIImage.profileNotificationIcon()
-        case .EditProfile:
+        case .editProfile:
             return UIImage.profileEditUserIcon()
-        case .More:
+        case .more:
             return UIImage.profileMoreIcon()
         case .Custom(_, let icon):
             return icon ?? UIImage()
-        case .HiddenButton:
+        case .hiddenButton:
             return UIImage()
         }
     }
     
     var position: ProfileCollectionInfoButtonPosition {
         switch self {
-        case .Notification(let position?):
+        case .notification(let position?):
             return position
         default:
             return defaultPosition
         }
     }
     
-    private var defaultPosition: ProfileCollectionInfoButtonPosition {
+    fileprivate var defaultPosition: ProfileCollectionInfoButtonPosition {
         switch self {
-        case .Listeners:
-            return .BigLeft
-        case .Listening:
-            return .BigCenter
-        case .Interests:
-            return .BigRight
-        case .Chat:
-            return .BigCenter
-        case .Listen:
-            return .BigRight
-        case .Notification:
-            return .SmallLeft
-        case .EditProfile:
-            return .SmallRight
-        case .More:
-            return .SmallRight
+        case .listeners:
+            return .bigLeft
+        case .listening:
+            return .bigCenter
+        case .interests:
+            return .bigRight
+        case .chat:
+            return .bigCenter
+        case .listen:
+            return .bigRight
+        case .notification:
+            return .smallLeft
+        case .editProfile:
+            return .smallRight
+        case .more:
+            return .smallRight
         case .Custom:
-            return .BigCenter
-        case .HiddenButton(let position):
+            return .bigCenter
+        case .hiddenButton(let position):
             return position
         }
     }
 }
 
 enum ProfileCollectionInfoButtonPosition {
-    case SmallLeft
-    case SmallRight
-    case BigLeft
-    case BigCenter
-    case BigRight
+    case smallLeft
+    case smallRight
+    case bigLeft
+    case bigCenter
+    case bigRight
 }

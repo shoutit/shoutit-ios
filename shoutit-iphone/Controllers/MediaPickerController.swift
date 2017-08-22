@@ -9,9 +9,22 @@
 import UIKit
 import RxSwift
 import MobileCoreServices
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 protocol MediaPickerControllerDelegate: class {
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController)
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController)
 }
 
 final class MediaPickerController: NSObject, MediaPicker  {
@@ -40,7 +53,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
         self.presentingSubject.onNext(controller)
     }
     
-    func mediaPickerController(settings: MediaPickerSettings = MediaPickerSettings(), sender: AnyObject? = nil) -> PhotosMenuController {
+    func mediaPickerController(_ settings: MediaPickerSettings = MediaPickerSettings(), sender: AnyObject? = nil) -> PhotosMenuController {
         let photosMenuController = CaptureViewController()
         photosMenuController.allowsVideos = settings.allowsVideos
         
@@ -51,7 +64,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
         return photosMenuController
     }
     
-    func photosMenuController(controller: PhotosMenuController, didPickPhotos photos: [PHAsset]) {
+    func photosMenuController(_ controller: PhotosMenuController, didPickPhotos photos: [PHAsset]) {
         
         for photo in photos {
             
@@ -71,17 +84,17 @@ final class MediaPickerController: NSObject, MediaPicker  {
         }
     }
     
-    func photosMenuControllerDidCancel(controller: PhotosMenuController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func photosMenuControllerDidCancel(_ controller: PhotosMenuController) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func photosMenuController(controller: PhotosMenuController, didPickImagePicker imagePicker: UIImagePickerController) {
-        imagePicker.navigationBar.translucent = false
-        imagePicker.navigationBar.barStyle = .Default
-        imagePicker.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+    func photosMenuController(_ controller: PhotosMenuController, didPickImagePicker imagePicker: UIImagePickerController) {
+        imagePicker.navigationBar.isTranslucent = false
+        imagePicker.navigationBar.barStyle = .default
+        imagePicker.navigationBar.barTintColor = UIColor(shoutitColor: .primaryGreen)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let attachment = MediaAttachment(type: .Image,
                                              uid: MediaAttachment.generateUid(),
@@ -93,19 +106,19 @@ final class MediaPickerController: NSObject, MediaPicker  {
             self.attachmentSelected(attachment)
         }
         
-        if let type = info[UIImagePickerControllerMediaType] as? String where type == (kUTTypeMovie as String) {
-            if videoCanBeProcessed(info[UIImagePickerControllerMediaURL] as? NSURL) == false {
-                picker.dismissViewControllerAnimated(true, completion: {
+        if let type = info[UIImagePickerControllerMediaType] as? String, type == (kUTTypeMovie as String) {
+            if videoCanBeProcessed(info[UIImagePickerControllerMediaURL] as? URL) == false {
+                picker.dismiss(animated: true, completion: {
                     self.showToLongVideoAlert()
                 })
             }
-            processVideoFromURL(info[UIImagePickerControllerMediaURL] as? NSURL)
+            processVideoFromURL(info[UIImagePickerControllerMediaURL] as? URL)
         }
         
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    func videoCanBeProcessed(url: NSURL?) -> Bool {
+    func videoCanBeProcessed(_ url: URL?) -> Bool {
         guard let url = url else {
             return true
         }
@@ -116,19 +129,19 @@ final class MediaPickerController: NSObject, MediaPicker  {
     }
     
     func showToLongVideoAlert() {
-        let alertController = UIAlertController(title: NSLocalizedString("Video is too long", comment:""), message: NSLocalizedString("The maximum length of the video is 60 seconds. Choose a shorter movie.", comment: "To long movie error message"), preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        let alertController = UIAlertController(title: NSLocalizedString("Video is too long", comment:""), message: NSLocalizedString("The maximum length of the video is 60 seconds. Choose a shorter movie.", comment: "To long movie error message"), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
         
         self.presentingSubject.onNext(alertController)
         return
     }
     
-    func processVideoFromURL(url: NSURL?) {
+    func processVideoFromURL(_ url: URL?) {
         
         guard let url = url else { return }
         
         videoProcessor.generateMovieData(url) {[weak self] (data) -> Void in
-            guard let `self` = self, data = data else { return }
+            guard let `self` = self, let data = data else { return }
             let image = self.videoProcessor.generateThumbImage(url)
             let attachment = MediaAttachment(type: .Video,
                                              uid: MediaAttachment.generateUid(),
@@ -141,7 +154,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
         }
     }
     
-    func attachmentSelected(attachment: MediaAttachment) {
+    func attachmentSelected(_ attachment: MediaAttachment) {
         
         self.selectedAttachments.append(attachment)
         if let delegate = delegate {

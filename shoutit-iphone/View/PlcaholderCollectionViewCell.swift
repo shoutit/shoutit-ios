@@ -15,17 +15,17 @@ final class PlcaholderCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        activityIndicator.hidden = true
+        activityIndicator.isHidden = true
     }
     
-    final func setupCellForActivityIndicator(activity: Bool) {
+    final func setupCellForActivityIndicator(_ activity: Bool) {
         if activity {
-            activityIndicator.hidden = false
+            activityIndicator.isHidden = false
             activityIndicator.startAnimating()
         } else {
             activityIndicator.stopAnimating()
-            activityIndicator.hidden = true
+            activityIndicator.isHidden = true
         }
-        placeholderTextLabel.hidden = activity
+        placeholderTextLabel.isHidden = activity
     }
 }

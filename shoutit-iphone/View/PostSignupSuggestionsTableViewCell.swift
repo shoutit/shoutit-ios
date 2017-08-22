@@ -21,7 +21,7 @@ final class PostSignupSuggestionsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorViewHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+        separatorViewHeightConstraint.constant = 1 / UIScreen.main.scale
     }
     
     override func prepareForReuse() {

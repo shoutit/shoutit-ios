@@ -18,7 +18,7 @@ class VerifyPageViewController: UITableViewController {
     var viewModel: VerifyPageViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var businessNameTextField: UITextField!
     @IBOutlet weak var contactPersonTextField: UITextField!
@@ -41,19 +41,19 @@ class VerifyPageViewController: UITableViewController {
     @IBOutlet var secondTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var thirdTapGestureRecognizer: UITapGestureRecognizer!
     
-    private var imageViews: [UIImageView] {
+    fileprivate var imageViews: [UIImageView] {
         return [firstImageView, secondImageView, thirdImageView]
     }
     
-    private var progressViews: [ACPDownloadView] {
+    fileprivate var progressViews: [ACPDownloadView] {
         return [firstDownloadView, secondDownloadView, thirdDownloadView]
     }
     
-    private var tapGestureRecognizers: [UITapGestureRecognizer] {
+    fileprivate var tapGestureRecognizers: [UITapGestureRecognizer] {
         return [firstTapGestureRecognizer, secondTapGestureRecognizer, thirdTapGestureRecognizer]
     }
     
-    private var selectedImageViewIndex: Int?
+    fileprivate var selectedImageViewIndex: Int?
     
     lazy var mediaPickerController: MediaPickerController = {[unowned self] in
         var pickerSettings = MediaPickerSettings()
@@ -89,7 +89,7 @@ class VerifyPageViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext({[weak self] in
-                    self?.navigationController?.dismissViewControllerAnimated(true, completion:nil)
+                    self?.navigationController?.dismiss(animated: true, completion:nil)
                 })
             .addDisposableTo(disposeBag)
         
@@ -107,9 +107,9 @@ class VerifyPageViewController: UITableViewController {
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (show) in
                 if show {
-                    MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                    MBProgressHUD.showAdded(to: self?.view, animated: true)
                 } else {
-                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                    MBProgressHUD.hide(for: self?.view, animated: true)
                 }
             }
             .addDisposableTo(disposeBag)
@@ -117,7 +117,7 @@ class VerifyPageViewController: UITableViewController {
         viewModel.successSubject
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (message) in
-                self?.navigationController?.dismissViewControllerAnimated(true, completion:nil)
+                self?.navigationController?.dismiss(animated: true, completion:nil)
             }
             .addDisposableTo(disposeBag)
         
@@ -129,7 +129,7 @@ class VerifyPageViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         
-        for (index, tapGestureRecognizer) in tapGestureRecognizers.enumerate() {
+        for (index, tapGestureRecognizer) in tapGestureRecognizers.enumerated() {
            tapGestureRecognizer
             .rx_event
             .asDriver()
@@ -149,7 +149,7 @@ class VerifyPageViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
     }
     
-    private func populateWithVerification(verification: PageVerification) {
+    fileprivate func populateWithVerification(_ verification: PageVerification) {
         self.businessEmail.text = verification.businessEmail
         self.businessNameTextField.text = verification.businessName
         self.contactNumberTextfield.text = verification.contactNumber
@@ -157,19 +157,19 @@ class VerifyPageViewController: UITableViewController {
         self.verificationStatusLabel.text = NSLocalizedString("Verification Status: ", comment: "Verify Page Verification Status") + verification.status
         
         if let images = verification.images {
-            for (index, imageURLString) in images.enumerate() where index < imageViews.count {
-                guard let imageURL = NSURL(string: imageURLString) else { continue }
+            for (index, imageURLString) in images.enumerated() where index < imageViews.count {
+                guard let imageURL = URL(string: imageURLString) else { continue }
                 
                 let imageView = imageViews[index]
                 
-                imageView.sd_setImageWithURL(imageURL)
+                imageView.sd_setImage(with: imageURL)
             }
         }
     }
 }
 
 extension VerifyPageViewController: MediaPickerControllerDelegate {
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         guard let selectedIndex = selectedImageViewIndex else { return }
     
         let imageView = imageViews[selectedIndex]
@@ -182,14 +182,14 @@ extension VerifyPageViewController: MediaPickerControllerDelegate {
             .asDriver()
             .driveNext{[weak progressView] (status) in
                 switch (status) {
-                case .Uploading:
-                    progressView?.hidden = false
-                    progressView?.setIndicatorStatus(.Running)
-                case .Error:
-                    progressView?.hidden = true
-                    progressView?.setIndicatorStatus(.None)
-                case .Uploaded:
-                    progressView?.hidden = true
+                case .uploading:
+                    progressView?.isHidden = false
+                    progressView?.setIndicatorStatus(.running)
+                case .error:
+                    progressView?.isHidden = true
+                    progressView?.setIndicatorStatus(.none)
+                case .uploaded:
+                    progressView?.isHidden = true
                 }
             }
             .addDisposableTo(disposeBag)

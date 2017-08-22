@@ -10,12 +10,12 @@ import Foundation
 import ShoutitKit
 
 enum InternalParseError: ShoutitError {
-    case InvalidJson
+    case invalidJson
     
     var userMessage: String {
         assertionFailure()
         switch self {
-        case .InvalidJson:
+        case .invalidJson:
             return NSLocalizedString("Could not get your data", comment: "Invalid JSON Error Message")
         }
     }

@@ -13,11 +13,11 @@ import Ogra
 
 extension FBNativeAd : Decodable, Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["fake": "object".encode()])
+        return JSON.object(["fake": "object".encode()])
     }
     
-    public static func decode(j: JSON) -> Decoded<FBNativeAd> {
-        let decoded : Decoded<FBNativeAd> = .Success(FBNativeAd(placementID: ""))
+    public static func decode(_ j: JSON) -> Decoded<FBNativeAd> {
+        let decoded : Decoded<FBNativeAd> = .success(FBNativeAd(placementID: ""))
         return decoded
     }   
 }

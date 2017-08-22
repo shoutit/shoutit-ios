@@ -10,16 +10,16 @@ import Foundation
 import ShoutitKit
 
 protocol ShoutDisplayable {
-    func showShout(shout: Shout) -> Void
-    func showEditShout(shout: Shout) -> Void
+    func showShout(_ shout: Shout) -> Void
+    func showEditShout(_ shout: Shout) -> Void
     func showDiscover() -> Void
-    func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void
-    func showBookmarks(user: Profile) -> Void
+    func showDiscoverForDiscoverItem(_ discoverItem: DiscoverItem?) -> Void
+    func showBookmarks(_ user: Profile) -> Void
 }
 
 extension FlowController : ShoutDisplayable {
     
-    func showShout(shout: Shout) {
+    func showShout(_ shout: Shout) {
         
         if shout.id == "" {
             navigationController.showErrorMessage(NSLocalizedString("This shout has been deleted", comment: "Deleted Shout"))
@@ -28,12 +28,12 @@ extension FlowController : ShoutDisplayable {
         controller.viewModel = ShoutDetailViewModel(shout: shout)
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
         }
         
     }
     
-    func showEditShout(shout: Shout) -> Void {
+    func showEditShout(_ shout: Shout) -> Void {
         
         let editController = Wireframe.editShoutController()
         
@@ -41,7 +41,7 @@ extension FlowController : ShoutDisplayable {
         editController.dismissAfter = true
         let navigation = SHNavigationViewController(rootViewController: editController)
         
-        navigationController.presentViewController(navigation, animated: true, completion: nil)
+        navigationController.present(navigation, animated: true, completion: nil)
     }
     
     func showDiscover() -> Void {
@@ -51,10 +51,10 @@ extension FlowController : ShoutDisplayable {
         
         controller.viewModel = DiscoverGeneralViewModel()
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showDiscoverForDiscoverItem(discoverItem: DiscoverItem?) -> Void {
+    func showDiscoverForDiscoverItem(_ discoverItem: DiscoverItem?) -> Void {
         let controller = Wireframe.discoverViewController()
         
         controller.flowDelegate = self
@@ -65,18 +65,18 @@ extension FlowController : ShoutDisplayable {
             controller.viewModel = DiscoverGeneralViewModel()
         }
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showBookmarks(user: Profile) -> Void {
+    func showBookmarks(_ user: Profile) -> Void {
         let controller = Wireframe.bookmarksViewController()
         
-        let viewModel = ShoutsCollectionViewModel(context: .BookmarkedShouts(user: user))
+        let viewModel = ShoutsCollectionViewModel(context: .bookmarkedShouts(user: user))
         
         controller.viewModel = viewModel
         
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

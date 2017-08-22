@@ -9,32 +9,32 @@
 import UIKit
 
 class OverlayAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.33
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
         
         guard let toView = toViewController?.view else {
             fatalError("View was not created")
         }
         
         
-        transitionContext.containerView()?.addSubview(toView)
+        transitionContext.containerView.addSubview(toView)
         
         toView.alpha = 0
-        toView.frame = transitionContext.containerView()!.frame
+        toView.frame = transitionContext.containerView.frame
         
-        UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { () -> Void in
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: { () -> Void in
            toView.alpha = 1.0
-        }) { (finished) -> Void in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-        }
+        }, completion: { (finished) -> Void in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }) 
         
     }
     
     func completionCurve() -> UIViewAnimationCurve {
-        return .Linear
+        return .linear
     }
 }

@@ -12,12 +12,12 @@ import AddressBook
 internal class ABAddressBookQueryBuilder: InternalAddressBookQueryBuilder<ABAddressBookImpl> {
     
     let addressBookPropertiesToABProperties: [AddressBookRecordProperty: ABPropertyID] = [
-        AddressBookRecordProperty.FirstName : kABPersonFirstNameProperty,
-        AddressBookRecordProperty.MiddleName : kABPersonMiddleNameProperty,
-        AddressBookRecordProperty.LastName : kABPersonLastNameProperty,
-        AddressBookRecordProperty.EmailAddresses : kABPersonEmailProperty,
-        AddressBookRecordProperty.OrganizationName : kABPersonOrganizationProperty,
-        AddressBookRecordProperty.PhoneNumbers : kABPersonPhoneProperty
+        AddressBookRecordProperty.firstName : kABPersonFirstNameProperty,
+        AddressBookRecordProperty.middleName : kABPersonMiddleNameProperty,
+        AddressBookRecordProperty.lastName : kABPersonLastNameProperty,
+        AddressBookRecordProperty.emailAddresses : kABPersonEmailProperty,
+        AddressBookRecordProperty.organizationName : kABPersonOrganizationProperty,
+        AddressBookRecordProperty.phoneNumbers : kABPersonPhoneProperty
     ]
     
     internal override init(addressBook: ABAddressBookImpl) {
@@ -32,8 +32,8 @@ internal class ABAddressBookQueryBuilder: InternalAddressBookQueryBuilder<ABAddr
         })
     }
     
-    func removePropertiesFromRecord(record: ABRecord) {
-        let keysWhichShouldBeIgnored = Set(AddressBookRecordProperty.allValues).subtract(keysToFetch)
+    func removePropertiesFromRecord(_ record: ABRecord) {
+        let keysWhichShouldBeIgnored = Set(AddressBookRecordProperty.allValues).subtracting(keysToFetch)
         for key in keysWhichShouldBeIgnored {
             if let abKey = addressBookPropertiesToABProperties[key] {
                 ABRecordRemoveValue(record, abKey, nil)

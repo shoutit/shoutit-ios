@@ -10,20 +10,20 @@ import Foundation
 import ShoutitKit
 
 protocol PageDisplayable {
-    func showPage(page: Profile) -> Void
+    func showPage(_ page: Profile) -> Void
 }
 
 extension FlowController : PageDisplayable {
     
-    func showPage(page: Profile) {
+    func showPage(_ page: Profile) {
         
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        if case .Page(_, let userPage)? = Account.sharedInstance.loginState where userPage.id == page.id {
+        if case .page(_, let userPage)? = Account.sharedInstance.loginState, userPage.id == page.id {
             controller.viewModel = MyPageCollectionViewModel()
         } else {
             controller.viewModel = PageProfileCollectionViewModel(profile: page)
         }
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

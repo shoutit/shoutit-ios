@@ -25,7 +25,7 @@ public struct AttachmentCount {
 
 extension AttachmentCount: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<AttachmentCount> {
+    public static func decode(_ j: JSON) -> Decoded<AttachmentCount> {
         return curry(AttachmentCount.init)
             <^> j <| "shout"
             <*> j <| "media"

@@ -22,7 +22,7 @@ extension FlowController : SuggestionsDisplayable {
         
         controller.sectionViewModel = controller.viewModel.usersSection
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
         
     }
     func showSuggestedPages() {
@@ -32,6 +32,6 @@ extension FlowController : SuggestionsDisplayable {
 
         controller.sectionViewModel = controller.viewModel.pagesSection
 
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

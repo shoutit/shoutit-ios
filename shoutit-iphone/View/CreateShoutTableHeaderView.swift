@@ -14,11 +14,11 @@ final class CreateShoutTableHeaderView: UIView {
     @IBOutlet var titleTextField : UITextField!
     @IBOutlet var priceTextField : UITextField!
     
-    func setCurrency(currency: ShoutitKit.Currency?) {
+    func setCurrency(_ currency: ShoutitKit.Currency?) {
         if let curr = currency {
-            self.currencyButton.setTitle(curr.code, forState: .Normal)
+            self.currencyButton.setTitle(curr.code, for: UIControlState())
         } else {
-            self.currencyButton.setTitle(NSLocalizedString("Currency", comment: "Create Shout Currency Button Title"), forState: .Normal)
+            self.currencyButton.setTitle(NSLocalizedString("Currency", comment: "Create Shout Currency Button Title"), for: UIControlState())
         }
     }
 }

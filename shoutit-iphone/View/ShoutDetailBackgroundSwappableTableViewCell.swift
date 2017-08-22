@@ -12,8 +12,8 @@ class ShoutDetailBackgroundSwappableTableViewCell: UITableViewCell, Borderable {
     
     @IBOutlet weak var internalContentView: BorderedView!
     
-    func setBackgroundForRow(row: Int) {
+    func setBackgroundForRow(_ row: Int) {
         let isEven = row % 2 == 0
-        internalContentView.backgroundColor = isEven ? UIColor.whiteColor() : UIColor(shoutitColor: .CellBackgroundGrayColor)
+        internalContentView.backgroundColor = isEven ? UIColor.white : UIColor(shoutitColor: .cellBackgroundGrayColor)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
     
-    static func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+    static func resizeImage(_ image: UIImage, newWidth: CGFloat) -> UIImage {
         
         if newWidth > image.size.width {
             return image
@@ -20,13 +20,13 @@ extension UIImage {
         
         let newHeight = image.size.height * scale
         
-        let size = CGSizeMake(newWidth, newHeight)
+        let size = CGSize(width: newWidth, height: newHeight)
 
-        let screenScale = UIScreen.mainScreen().scale
+        let screenScale = UIScreen.main.scale
         
         UIGraphicsBeginImageContextWithOptions(size, false, screenScale);
         
-        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         
         var newImage : UIImage? = nil
         
@@ -37,7 +37,7 @@ extension UIImage {
         return newImage!
     }
     
-    func dataRepresentation() -> NSData? {
+    func dataRepresentation() -> Data? {
         let resizedImage = UIImage.resizeImage(self, newWidth: MediaAttachment.maximumImageWidth)
         
         return UIImageJPEGRepresentation(resizedImage, 0.7)

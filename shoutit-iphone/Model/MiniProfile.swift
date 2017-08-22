@@ -23,7 +23,7 @@ public struct MiniProfile {
 
 extension MiniProfile: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<MiniProfile> {
+    public static func decode(_ j: JSON) -> Decoded<MiniProfile> {
         return curry(MiniProfile.init)
             <^> j <| "id"
             <*> j <| "username"

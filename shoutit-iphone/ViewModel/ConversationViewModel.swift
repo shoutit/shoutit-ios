@@ -12,37 +12,37 @@ import RxSwift
 import ShoutitKit
 
 enum ConversationDataState : Int {
-    case NotLoaded
-    case RestLoaded
-    case PusherLoaded
+    case notLoaded
+    case restLoaded
+    case pusherLoaded
 }
 
 protocol ConversationPresenter: class {
-    func showSendingError(error: ErrorType) -> Void
+    func showSendingError(_ error: Error) -> Void
 }
 
 final class ConversationViewModel {
     
     enum ConversationExistance {
-        case Created(conversation: MiniConversation)
-        case CreatedAndLoaded(conversation: Conversation)
-        case NotCreated(type: ConversationType, user: Profile, aboutShout: Shout?)
+        case created(conversation: MiniConversation)
+        case createdAndLoaded(conversation: Conversation)
+        case notCreated(type: ConversationType, user: Profile, aboutShout: Shout?)
         
         var shout: Shout? {
             switch self {
-            case .Created:
+            case .created:
                 return nil
-            case .CreatedAndLoaded(let conversation):
+            case .createdAndLoaded(let conversation):
                 return conversation.shout
-            case .NotCreated(_, _, let aboutShout):
+            case .notCreated(_, _, let aboutShout):
                 return aboutShout
             }
         }
         
         var conversationInterface: ConversationInterface? {
             switch self {
-            case .CreatedAndLoaded(let conversation): return conversation
-            case .Created(let conversation): return conversation
+            case .createdAndLoaded(let conversation): return conversation
+            case .created(let conversation): return conversation
             default: return nil
             }
         }
@@ -56,21 +56,21 @@ final class ConversationViewModel {
     
     
     
-    let messages : Variable<[NSDate:[Message]]> = Variable([:])
+    let messages : Variable<[Date:[Message]]> = Variable([:])
     var sortedMessages : [Message] = []
     
     let typingUsers : PublishSubject<TypingInfo?> = PublishSubject()
     let nowTyping : PublishSubject<Bool> = PublishSubject()
-    let loadMoreState = Variable(LoadMoreState.NotReady)
+    let loadMoreState = Variable(LoadMoreState.notReady)
     let presentingSubject : PublishSubject<UIViewController?> = PublishSubject()
     let sendingMessages : Variable<[Message]> = Variable([])
     var nextPageParams : String?
     
-    private weak var delegate : ConversationPresenter?
+    fileprivate weak var delegate : ConversationPresenter?
     
-    private let disposeBag = DisposeBag()
-    private var socketsBag : DisposeBag?
-    private var socketsConnected = false
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var socketsBag : DisposeBag?
+    fileprivate var socketsConnected = false
     
     init(conversation: ConversationExistance, delegate: ConversationPresenter? = nil) {
         self.conversation = Variable(conversation)
@@ -113,8 +113,8 @@ final class ConversationViewModel {
     }
     
     
-    private func createConversation(message: Message) {
-        guard case .NotCreated(_, let user, let shout) = conversation.value else { return }
+    fileprivate func createConversation(_ message: Message) {
+        guard case .notCreated(_, let user, let shout) = conversation.value else { return }
         self.addToSending(message)
         let observable: Observable<Message>
         if let shout = shout {
@@ -129,8 +129,8 @@ final class ConversationViewModel {
             }
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let conversation, _):
-                    self?.conversation.value = .CreatedAndLoaded(conversation: conversation)
+                case .next(let conversation, _):
+                    self?.conversation.value = .createdAndLoaded(conversation: conversation)
                     self?.fetchMessages()
                     self?.removeFromSending(message)
                 case .Error(let error):
@@ -145,9 +145,9 @@ final class ConversationViewModel {
     
     func deleteConversation() -> Observable<Void> {
         switch conversation.value {
-        case .NotCreated: return Observable.empty()
-        case .Created(let conversation): return APIChatsService.deleteConversationWithId(conversation.id)
-        case .CreatedAndLoaded(let conversation): return APIChatsService.deleteConversationWithId(conversation.id)
+        case .notCreated: return Observable.empty()
+        case .created(let conversation): return APIChatsService.deleteConversationWithId(conversation.id)
+        case .createdAndLoaded(let conversation): return APIChatsService.deleteConversationWithId(conversation.id)
         }
     }
     
@@ -159,7 +159,7 @@ final class ConversationViewModel {
             self?.nextPageParams = response.beforeParamsString()
             self?.appendMessages(messages)
             if messages.count > 0 {
-                self?.loadMoreState.value = .ReadyToLoad
+                self?.loadMoreState.value = .readyToLoad
             }
         }.addDisposableTo(disposeBag)
         
@@ -168,10 +168,10 @@ final class ConversationViewModel {
     }
     
     func fetchFullConversation() {
-        guard case .Created(let conversation) = self.conversation.value else { return }
+        guard case .created(let conversation) = self.conversation.value else { return }
         APIChatsService.conversationWithId(conversation.id)
             .subscribeNext {[weak self] (conversation) in
-                self?.conversation.value = .CreatedAndLoaded(conversation: conversation)
+                self?.conversation.value = .createdAndLoaded(conversation: conversation)
             }
             .addDisposableTo(disposeBag)
     }
@@ -190,7 +190,7 @@ final class ConversationViewModel {
     
     func triggerLoadMore() {
         guard let conversation = conversation.value.conversationInterface else { return }
-        loadMoreState.value = .Loading
+        loadMoreState.value = .loading
         if sortedMessages.last != nil {
             APIChatsService.moreMessagesForConversationWithId(conversation.id, nextPageParams:  self.nextPageParams)
                 .subscribe(onNext: { [weak self] (response) -> Void in
@@ -198,30 +198,30 @@ final class ConversationViewModel {
                     
                     self?.appendMessages(messages)
                     if messages.count > 0 {
-                        self?.loadMoreState.value = .ReadyToLoad
+                        self?.loadMoreState.value = .readyToLoad
                         self?.nextPageParams = response.beforeParamsString()
                     } else {
-                        self?.loadMoreState.value = .NoMore
+                        self?.loadMoreState.value = .noMore
                         self?.nextPageParams = nil
                     }
                 }, onError: { [weak self] (error) -> Void in
-                    self?.loadMoreState.value = .ReadyToLoad
+                    self?.loadMoreState.value = .readyToLoad
                 }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         } else {
-            loadMoreState.value = .NoMore
+            loadMoreState.value = .noMore
         }
     }
     
-    func appendMessages(newMessages: [Message]) {
+    func appendMessages(_ newMessages: [Message]) {
         var base: [Message] = []
         
         for (_, msgs) in messages.value {
-            base.appendContentsOf(msgs)
+            base.append(contentsOf: msgs)
         }
         
-        base.appendContentsOf(newMessages)
+        base.append(contentsOf: newMessages)
         
-        base = base.unique().sort({ (msg, msg2) -> Bool in
+        base = base.unique().sorted(by: { (msg, msg2) -> Bool in
             return msg.createdAt > msg2.createdAt
         })
         
@@ -232,12 +232,12 @@ final class ConversationViewModel {
         self.messages.value = result
     }
     
-    func cellIdentifierAtIndexPath(indexPath: NSIndexPath) -> String {
+    func cellIdentifierAtIndexPath(_ indexPath: IndexPath) -> String {
         let msg = messageAtIndexPath(indexPath)
         return cellIdentifierForMessage(msg)
     }
     
-    func cellIdentifierForMessage(msg: Message) -> String {
+    func cellIdentifierForMessage(_ msg: Message) -> String {
         if msg.user == nil {
             return ConversationCellIdentifier.special
         }
@@ -250,23 +250,23 @@ final class ConversationViewModel {
         }
         
         switch msg.attachment()?.type() {
-        case .None:
+        case .none:
             return isOugoingMessage ? ConversationCellIdentifier.Text.outgoing : ConversationCellIdentifier.Text.incoming
-        case .Some(.ImageAttachment):
+        case .some(.imageAttachment):
             return isOugoingMessage ? ConversationCellIdentifier.Picture.outgoing : ConversationCellIdentifier.Picture.incoming
-        case .Some(.VideoAttachment):
+        case .some(.videoAttachment):
             return isOugoingMessage ? ConversationCellIdentifier.Video.outgoing : ConversationCellIdentifier.Video.incoming
-        case .Some(.LocationAttachment):
+        case .some(.locationAttachment):
             return isOugoingMessage ? ConversationCellIdentifier.Location.outgoing : ConversationCellIdentifier.Location.incoming
-        case .Some(.ShoutAttachment):
+        case .some(.shoutAttachment):
             return isOugoingMessage ? ConversationCellIdentifier.Shout.outgoing : ConversationCellIdentifier.Shout.incoming
-        case .Some(.ProfileAttachment):
+        case .some(.profileAttachment):
             return isOugoingMessage ? ConversationCellIdentifier.Profile.outgoing : ConversationCellIdentifier.Profile.incoming
         }
     }
     
-    func previousMessageFor(message: Message) -> Message? {
-        guard let idx = sortedMessages.indexOf(message) else {
+    func previousMessageFor(_ message: Message) -> Message? {
+        guard let idx = sortedMessages.index(of: message) else {
             return nil
         }
         
@@ -277,8 +277,8 @@ final class ConversationViewModel {
         return nil
     }
     
-    func messageAtIndexPath(indexPath: NSIndexPath) -> Message {
-        guard let day = sortedDays()[indexPath.section] as NSDate? else {
+    func messageAtIndexPath(_ indexPath: IndexPath) -> Message {
+        guard let day = sortedDays()[indexPath.section] as Date? else {
             fatalError("No Message at Given Index")
         }
         
@@ -289,11 +289,11 @@ final class ConversationViewModel {
         return messagesFromGivenDay[indexPath.row]
     }
     
-    func sortedDays() -> [NSDate] {
-        let base : [NSDate] = Array(self.messages.value.keys)
+    func sortedDays() -> [Date] {
+        let base : [Date] = Array(self.messages.value.keys)
         
-        return base.sort({ (first, second) -> Bool in
-            return first.compare(second) == .OrderedDescending
+        return base.sorted(by: { (first, second) -> Bool in
+            return first.compare(second) == .orderedDescending
         })
     }
     
@@ -301,20 +301,20 @@ final class ConversationViewModel {
         self.nowTyping.onNext(true)
     }
     
-    func sectionTitle(section: Int) -> String? {
-        let date : NSDate = sortedDays()[section]
+    func sectionTitle(_ section: Int) -> String? {
+        let date : Date = sortedDays()[section]
         return DateFormatters.sharedInstance.stringFromDate(date)
     }
     
-    func numberOfRowsInSection(section: Int) -> Int {
-        if let day = sortedDays()[section] as NSDate?, messagesFromGivenDay : [Message] = self.messages.value[day] {
+    func numberOfRowsInSection(_ section: Int) -> Int {
+        if let day = sortedDays()[section] as Date?, let messagesFromGivenDay : [Message] = self.messages.value[day] {
             return messagesFromGivenDay.count
         }
         
         return 0
     }
     
-    func sendMessageWithText(text: String) -> Bool {
+    func sendMessageWithText(_ text: String) -> Bool {
         if text.characters.count < 1 {
             return false
         }
@@ -340,7 +340,7 @@ final class ConversationViewModel {
         return true
     }
     
-    func sendMessageWithAttachment(attachment: MessageAttachment) -> Bool {
+    func sendMessageWithAttachment(_ attachment: MessageAttachment) -> Bool {
         let msg = Message.messageWithAttachment(attachment)
         
         guard let conversation = conversation.value.conversationInterface else {
@@ -356,7 +356,7 @@ final class ConversationViewModel {
                 APIChatsService
                     .conversationWithId(conversation.id)
                     .subscribeNext{ (updatedConversation) in
-                        self.conversation.value = .CreatedAndLoaded(conversation: updatedConversation)
+                        self.conversation.value = .createdAndLoaded(conversation: updatedConversation)
                     }
                     .addDisposableTo(self.disposeBag)
             }
@@ -371,33 +371,33 @@ final class ConversationViewModel {
         return true
     }
     
-    func removeFromSending(msg: Message) {
+    func removeFromSending(_ msg: Message) {
         var copy = self.sendingMessages.value
         copy.removeElementIfExists(msg)
         self.sendingMessages.value = copy
     }
     
-    func addToSending(msg: Message) {
+    func addToSending(_ msg: Message) {
         var copy = self.sendingMessages.value
         copy.append(msg)
         self.sendingMessages.value = copy
     }
     
     
-    func alertControllerWithTitle(title: String?, message: String?) -> UIAlertController {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func alertControllerWithTitle(_ title: String?, message: String?) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .default, handler: nil))
         
         return alert
     }
     
-    func deleteActionAlert(completion: () -> Void) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: "Alert Title"), message: NSLocalizedString("Do you want to delete this conversation", comment: "Alert Message"), preferredStyle: .ActionSheet)
+    func deleteActionAlert(_ completion: @escaping () -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: "Alert Title"), message: NSLocalizedString("Do you want to delete this conversation", comment: "Alert Message"), preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: "Alert Option"), style: .Destructive, handler: { (alertAction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: "Alert Option"), style: .destructive, handler: { (alertAction) in
             self.deleteConversation().subscribe(onNext: nil, onError: { (error) in
                 debugPrint(error)
                 }, onCompleted: {

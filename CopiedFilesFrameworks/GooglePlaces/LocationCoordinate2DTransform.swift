@@ -13,7 +13,7 @@ class LocationCoordinate2DTransform: TransformType {
     typealias Object = LocationCoordinate2D
     typealias JSON = [String : AnyObject]
     
-    func transformFromJSON(value: AnyObject?) -> Object? {
+    func transformFromJSON(_ value: AnyObject?) -> Object? {
         if let value = value as? JSON {
             guard let latitude = value["lat"] as? Double, let longitude = value["lng"] as? Double else {
                 NSLog("Error: lat/lng is not Double")
@@ -25,11 +25,11 @@ class LocationCoordinate2DTransform: TransformType {
         return nil
     }
     
-    func transformToJSON(value: Object?) -> JSON? {
+    func transformToJSON(_ value: Object?) -> JSON? {
         if let value = value {
             return [
-                "lat" : "\(value.latitude)",
-                "lng" : "\(value.longitude)"
+                "lat" : "\(value.latitude)" as AnyObject,
+                "lng" : "\(value.longitude)" as AnyObject
             ]
         }
         return nil

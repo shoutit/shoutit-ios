@@ -13,16 +13,16 @@ final class LoginNavigationViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        navigationBar.barTintColor = UIColor(shoutitColor: .primaryGreen)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }
 
 extension LoginNavigationViewController: UINavigationControllerDelegate {
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
     }
 }

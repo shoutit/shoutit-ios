@@ -11,19 +11,19 @@ import UIKit
 final class AlertBarView: UIView {
     
     enum Type {
-        case Success
-        case Error
+        case success
+        case error
     }
     
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
     
-    func setAppearanceForAlertType(type: Type) {
+    func setAppearanceForAlertType(_ type: Type) {
         switch type {
-        case .Success:
-            backgroundColor = UIColor(shoutitColor: .SuccessGreen)
-        case .Error:
-            backgroundColor = UIColor(shoutitColor: .FailureRed)
+        case .success:
+            backgroundColor = UIColor(shoutitColor: .successGreen)
+        case .error:
+            backgroundColor = UIColor(shoutitColor: .failureRed)
         }
     }
 }

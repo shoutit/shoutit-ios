@@ -7,6 +7,30 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     
@@ -89,7 +113,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         // location
         let location = currentUserLocation
         if country == nil && location?.country == nil && useLocaleBasedCountryCodeWhenNil {
-            self.country = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
+            self.country = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String
         } else {
             self.country = country ?? location?.country
         }
@@ -99,7 +123,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         
     }
     
-    public func paramsByReplacingEmptyFieldsWithFieldsFrom(other: FilteredShoutsParams) -> FilteredShoutsParams {
+    public func paramsByReplacingEmptyFieldsWithFieldsFrom(_ other: FilteredShoutsParams) -> FilteredShoutsParams {
         return FilteredShoutsParams(searchPhrase: searchPhrase ?? other.searchPhrase,
                                     discoverId: discoverId ?? other.discoverId,
                                     username: username ?? other.username,
@@ -125,29 +149,29 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         
-        p["search"] = searchPhrase
-        p["discover"] = discoverId
-        p["profile"] = username
-        p["tags"] = tag
+        p["search"] = searchPhrase as AnyObject
+        p["discover"] = discoverId as AnyObject
+        p["profile"] = username as AnyObject
+        p["tags"] = tag as AnyObject
         
         if let shoutTypeValue =  shoutType?.rawValue {
-            p["shout_type"] = shoutTypeValue
+            p["shout_type"] = shoutTypeValue as AnyObject
         }
     
-        p["category"] = category
-        p["min_price"] = minimumPrice
-        p["max_price"] = maximumPrice
-        p["sort"] = sort?.type
-        p["within"] = withinDistance
+        p["category"] = category as AnyObject
+        p["min_price"] = minimumPrice as AnyObject
+        p["max_price"] = maximumPrice as AnyObject
+        p["sort"] = sort?.type as AnyObject
+        p["within"] = withinDistance as AnyObject
         
         if self.excludeId != nil {
-            p["exclude"] = self.excludeId
+            p["exclude"] = self.excludeId as AnyObject
         }
         
         filters?.forEach({ (filter, values) in
-            let valuesString = values.map{$0.slug}.joinWithSeparator(",")
+            let valuesString = values.map{$0.slug}.joined(separator: ",")
             if valuesString.utf16.count > 0 {
-                p[filter.slug] = valuesString
+                p[filter.slug] = valuesString as AnyObject
             }
         })
         
@@ -156,7 +180,7 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         }
         
         if passCountryOnly == true && self.country?.characters.count > 0 {
-            p["country"] = self.country
+            p["country"] = self.country as AnyObject
         }
         
         if let skipLocation = self.skipLocation {
@@ -166,12 +190,12 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
         }
         
         if attachCityAndState == true {
-            p["city"] = self.city
-            p["state"] = self.state
+            p["city"] = self.city as AnyObject
+            p["state"] = self.state as AnyObject
         }
         
         if entireCountry {
-            p["country"] = self.country
+            p["country"] = self.country as AnyObject
         } else {
             for (key, value) in localizedParams {
                 p[key] = value

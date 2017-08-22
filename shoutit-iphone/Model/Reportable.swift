@@ -17,18 +17,18 @@ public protocol Reportable {
 }
 
 extension Reportable {
-    public func reportAlert(completion: (report: Report) -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: reportTitle(), message: NSLocalizedString("Please provide a report message", comment: ""), preferredStyle: .Alert)
+    public func reportAlert(_ completion: @escaping (_ report: Report) -> Void) -> UIAlertController {
+        let alertController = UIAlertController(title: reportTitle(), message: NSLocalizedString("Please provide a report message", comment: ""), preferredStyle: .alert)
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = NSLocalizedString("Please enter report message", comment: "")
         }
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send", comment: ""), style: .Default, handler: { (action) in
-            completion(report: Report(text: alertController.textFields?.first?.text ?? "", object: self))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send", comment: ""), style: .default, handler: { (action) in
+            completion(Report(text: alertController.textFields?.first?.text ?? "", object: self))
         }))
         
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: { (action) in }))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) in }))
         
         return alertController
     }

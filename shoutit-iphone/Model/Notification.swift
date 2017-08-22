@@ -28,7 +28,7 @@ public struct Notification: Decodable, Hashable, Equatable {
         }
     }
     
-    public static func decode(j: JSON) -> Decoded<Notification> {
+    public static func decode(_ j: JSON) -> Decoded<Notification> {
         let a = curry(Notification.init)
             <^> j <| "id"
             <*> j <| "is_read"
@@ -64,7 +64,7 @@ extension Notification {
             }
             
             for range in ranges {
-                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], range: NSMakeRange(range.offset, range.length))
+                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16.0)], range: NSMakeRange(range.offset, range.length))
             }
             
             return attributed
@@ -73,10 +73,10 @@ extension Notification {
         return nil
     }
     
-    public func imageURL() -> NSURL? {
+    public func imageURL() -> URL? {
         
-        if let display = self.display, path = display.image {
-            return NSURL(string: path)
+        if let display = self.display, let path = display.image {
+            return URL(string: path)
         }
         
         return nil

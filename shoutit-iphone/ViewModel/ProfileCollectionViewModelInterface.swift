@@ -11,13 +11,13 @@ import RxSwift
 import ShoutitKit
 
 enum ProfileCollectionViewModelMainModel {
-    case ProfileModel(profile: Profile)
-    case TagModel(tag: Tag)
+    case profileModel(profile: Profile)
+    case tagModel(tag: Tag)
     
     var name: String {
         switch self {
-        case .ProfileModel(let profile): return profile.name
-        case .TagModel(let tag): return tag.name
+        case .profileModel(let profile): return profile.name
+        case .tagModel(let tag): return tag.name
         }
     }
 }
@@ -29,7 +29,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var name: String? {get}
     var username: String? {get}
     var isListeningToYou: Bool? {get}
-    var coverURL: NSURL? {get}
+    var coverURL: URL? {get}
     var conversation: MiniConversation? {get}
     var reportable: Reportable? {get}
     var placeholderImage: UIImage { get }
@@ -44,20 +44,20 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     var reloadSubject: PublishSubject<Void> {get}
     var successMessageSubject: PublishSubject<String> {get}
     func listen() -> Observable<Void>?
-    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool)
+    func reloadWithNewListnersCount(_ newListnersCount: Int?, isListening: Bool)
     
     // more handling
-    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController?
+    func moreAlert(_ completion: (_ alertController: UIAlertController) -> Void) -> UIAlertController?
 }
 
 // MARK: - Default implementations
 
 extension ProfileCollectionViewModelInterface {
-    func replaceShout(newShout: Shout) {
+    func replaceShout(_ newShout: Shout) {
         var cells : [ProfileCollectionShoutCellViewModel] = self.gridSection.cells
         let shouts : [Shout] = cells.map{ $0.shout }
         
-        if let idx = shouts.indexOf(newShout) {
+        if let idx = shouts.index(of: newShout) {
             cells[idx] = ProfileCollectionShoutCellViewModel(shout: newShout)
         }
         
@@ -71,50 +71,50 @@ extension ProfileCollectionViewModelInterface {
         return true
     }
     
-    func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode {
+    func sectionContentModeForSection(_ section: Int) -> ProfileCollectionSectionContentMode {
         
         if section == 0 {
             if listSection.isLoading {
-                return .Placeholder
+                return .placeholder
             }
-            return listSection.cells.count > 0 ? .Default : .Hidden
+            return listSection.cells.count > 0 ? .default : .hidden
         }
         if section == 1 {
             if gridSection.isLoading {
-                return .Placeholder
+                return .placeholder
             }
-            return gridSection.cells.count > 0 ? .Default : .Hidden
+            return gridSection.cells.count > 0 ? .default : .hidden
         }
         
         assertionFailure()
-        return .Default
+        return .default
     }
     
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool {
+    func hidesSupplementeryView(_ view: ProfileCollectionViewSupplementaryView) -> Bool {
         switch view {
-        case .CreatePageButtonFooter:
+        case .createPageButtonFooter:
             return true
-        case .ListSectionHeader:
+        case .listSectionHeader:
             return self.listSection.cells.count == 0 && !listSection.isLoading
-        case .GridSectionHeader:
+        case .gridSectionHeader:
             return self.gridSection.cells.count == 0 && !gridSection.isLoading
-        case .SeeAllShoutsButtonFooter:
+        case .seeAllShoutsButtonFooter:
             return self.gridSection.cells.count == 0
         default:
             return false
         }
     }
     
-    func moreAlert(completion: (alertController: UIAlertController) -> Void) -> UIAlertController? {
-        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .ActionSheet)
+    func moreAlert(_ completion: @escaping (_ alertController: UIAlertController) -> Void) -> UIAlertController? {
+        let alertController = UIAlertController(title: NSLocalizedString("More", comment: ""), message: nil, preferredStyle: .actionSheet)
         
         if let reportable = self.reportable {
-            alertController.addAction(UIAlertAction(title: reportable.reportTitle(), style: .Default, handler: { (action) in
+            alertController.addAction(UIAlertAction(title: reportable.reportTitle(), style: .default, handler: { (action) in
                 completion(alertController: alertController)
             }))
         }
         
-        alertController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: { (action) in
             
         }))
         

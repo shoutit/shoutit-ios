@@ -20,26 +20,26 @@ final class PusherClient : NSObject {
     #elseif LOCAL
     private let pusherAppKey = "d6a98f27e49289344791"
     #else
-    private let pusherAppKey = "86d676926d4afda44089"
+    fileprivate let pusherAppKey = "86d676926d4afda44089"
     #endif
-    private let pusherURL = APIManager.baseURL + "/pusher/auth"
+    fileprivate let pusherURL = APIManager.baseURL + "/pusher/auth"
     
-    private unowned var account: Account
-    private var pusherInstance: PTPusher?
-    private var reachability: Reachability!
+    fileprivate unowned var account: Account
+    fileprivate var pusherInstance: PTPusher?
+    fileprivate var reachability: Reachability!
     
-    private var authToken : String?
-    private var mainChannelIdentifier: String?
-    private var mainPageChannelIdentifier: String?
-    private var subscribedChannels : [String] = [] {
+    fileprivate var authToken : String?
+    fileprivate var mainChannelIdentifier: String?
+    fileprivate var mainPageChannelIdentifier: String?
+    fileprivate var subscribedChannels : [String] = [] {
         didSet {
             print(subscribedChannels)
         }
     }
-    private var keepDisconnected = false
+    fileprivate var keepDisconnected = false
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     var mainChannelSubject = PublishSubject<PTPusherEvent>()
     var subscribedPage : DetailedPageProfile?
     
@@ -48,7 +48,7 @@ final class PusherClient : NSObject {
         super.init()
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
+        pusherInstance?.authorizationURL = URL(string: pusherURL)
         
         do {
             reachability = try Reachability.reachabilityForInternetConnection()
@@ -57,7 +57,7 @@ final class PusherClient : NSObject {
         
         
         
-        NSNotificationCenter.defaultCenter()
+        NotificationCenter.default
           .rx_notification(ReachabilityChangedNotification)
           .asObservable()
           .subscribeNext { (notification) in
@@ -71,7 +71,7 @@ final class PusherClient : NSObject {
           }.addDisposableTo(disposeBag)
     }
     
-    func setAuthorizationToken(token: String) {
+    func setAuthorizationToken(_ token: String) {
         authToken = token
         tryToConnect()
     }
@@ -80,11 +80,11 @@ final class PusherClient : NSObject {
         
         var userLoggedIn = false
         
-        if case .Logged(_)? = account.loginState {
+        if case .logged(_)? = account.loginState {
             userLoggedIn = true
         }
         
-        if case .Page(_,_)? = account.loginState {
+        if case .page(_,_)? = account.loginState {
             userLoggedIn = true
         }
         
@@ -95,7 +95,7 @@ final class PusherClient : NSObject {
         keepDisconnected = false
         
         pusherInstance = PTPusher(key: pusherAppKey, delegate: self)
-        pusherInstance?.authorizationURL = NSURL(string: pusherURL)
+        pusherInstance?.authorizationURL = URL(string: pusherURL)
         
         // Connect only when user is logged
         if userLoggedIn {
@@ -107,7 +107,7 @@ final class PusherClient : NSObject {
         
         guard let pusher = pusherInstance else { return }
         
-        if let channelName = self.mainChannelIdentifier, ch = pusher.channelNamed(channelName) {
+        if let channelName = self.mainChannelIdentifier, let ch = pusher.channelNamed(channelName) {
             ch.unsubscribe()
         }
         
@@ -120,7 +120,7 @@ final class PusherClient : NSObject {
         pusher.disconnect()
     }
     
-    private func reconnect() {
+    fileprivate func reconnect() {
         if keepDisconnected {
             return
         }
@@ -129,7 +129,7 @@ final class PusherClient : NSObject {
         tryToConnect()
     }
     
-    private func subscribeToMainChannel() {
+    fileprivate func subscribeToMainChannel() {
         
         mainChannelObservable().subscribeNext { (event) -> Void in
             self.mainChannelSubject.onNext(event)
@@ -181,7 +181,7 @@ final class PusherClient : NSObject {
         self.subscribedPage = nil
     }
     
-    func subscribeToPageMainChannel(page: DetailedPageProfile) {
+    func subscribeToPageMainChannel(_ page: DetailedPageProfile) {
         mainPageChannelObservable(page).subscribeNext { (event) -> Void in
             
             
@@ -212,7 +212,7 @@ final class PusherClient : NSObject {
             }.addDisposableTo(disposeBag)
     }
     
-    func unsubscribeFromPageMainChannel(page: DetailedPageProfile) {
+    func unsubscribeFromPageMainChannel(_ page: DetailedPageProfile) {
         let channelName = "presence-v3-p-\(page.id)"
 
         self.mainPageChannelIdentifier = channelName
@@ -225,7 +225,7 @@ final class PusherClient : NSObject {
     func connectToMainChannels() {
         subscribeToMainChannel()
         
-        if case .Page(_,let page)? = account.loginState {
+        if case .page(_,let page)? = account.loginState {
             subscribeToPageMainChannel(page)
         }
     }
@@ -236,46 +236,46 @@ extension PusherClient : PTPusherDelegate {
     
     // Connection Delegates
     
-    func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
+    func pusher(_ pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
         // WARNING //
         
         // There is issue with Pusher Library everytime pusher did connect it calls this delegate method and after that it calls subscribeAll.
         // If we do our subscription immediately it is added to internal `channels` dictionary and in subscribeAll that causes duplicate subscription.
         // So we want to add small delay before subscribing to avoid this situation.
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.connectToMainChannels()
         }
         
     }
     
-    func pusher(pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
+    func pusher(_ pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
         request.setValue(authToken, forHTTPHeaderField: "Authorization")
     }
     
     // Subscriptions
     
-    func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
+    func pusher(_ pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
       
     }
     
-    func pusher(pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
+    func pusher(_ pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
       
         self.subscribedChannels.removeElementIfExists(channel.name)
     }
     
     // Error handling
     
-    func pusher(pusher: PTPusher!, didReceiveErrorEvent errorEvent: PTPusherErrorEvent!) {
+    func pusher(_ pusher: PTPusher!, didReceiveErrorEvent errorEvent: PTPusherErrorEvent!) {
        
     }
     
-    func pusher(pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
+    func pusher(_ pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
        
     }
     
-    func pusher(pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
+    func pusher(_ pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
        
     
         if !keepDisconnected {
@@ -283,14 +283,14 @@ extension PusherClient : PTPusherDelegate {
         }
     }
     
-    func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
+    func pusher(_ pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
         
     }
 }
 
 extension PusherClient {
     
-    private func mainChannelObservable() -> Observable<PTPusherEvent> {
+    fileprivate func mainChannelObservable() -> Observable<PTPusherEvent> {
         return Observable.create { (observer) -> Disposable in
             
             guard let channelName = self.generateMainChannelIdentifier() else {
@@ -325,7 +325,7 @@ extension PusherClient {
         }
     }
     
-    private func mainPageChannelObservable(page: DetailedPageProfile) -> Observable<PTPusherEvent> {
+    fileprivate func mainPageChannelObservable(_ page: DetailedPageProfile) -> Observable<PTPusherEvent> {
         return Observable.create { (observer) -> Disposable in
             
             let channelName = "presence-v3-p-\(page.id)"
@@ -357,7 +357,7 @@ extension PusherClient {
         }
     }
     
-    func conversationMessagesObservable(conversation: Conversation) -> Observable<Message> {
+    func conversationMessagesObservable(_ conversation: Conversation) -> Observable<Message> {
         return mainChannelSubject
             .filter{ (event) -> Bool in
                 return event.eventType() == .NewMessage
@@ -372,7 +372,7 @@ extension PusherClient {
             }
     }
     
-    func conversationObservable(conversation: ConversationInterface) -> Observable<PTPusherEvent> {
+    func conversationObservable(_ conversation: ConversationInterface) -> Observable<PTPusherEvent> {
         return Observable.create({ (observer) -> Disposable in
 
             let channel : PTPusherChannel
@@ -405,8 +405,8 @@ extension PusherClient {
         })
     }
     
-    private func generateMainChannelIdentifier() -> String? {
-        if case .Some(.Page(let admin, _)) = account.loginState {
+    fileprivate func generateMainChannelIdentifier() -> String? {
+        if case .some(.page(let admin, _)) = account.loginState {
             return "presence-v3-p-\(admin.id)"
         }
         
@@ -417,7 +417,7 @@ extension PusherClient {
         return nil
     }
     
-    func sendTypingEventToConversation(conversation: ConversationInterface) {
+    func sendTypingEventToConversation(_ conversation: ConversationInterface) {
         guard let user = account.user else {
             return
         }

@@ -10,18 +10,18 @@ import Foundation
 import ShoutitKit
 
 enum ShoutDetailShoutImageViewModel {
-    case Image(url: NSURL)
-    case NoContent(image: UIImage)
-    case Loading
-    case Error(error: ErrorType)
-    case Movie(video: Video)
+    case image(url: URL)
+    case noContent(image: UIImage)
+    case loading
+    case error(error: Error)
+    case movie(video: Video)
 }
 
 extension ShoutDetailShoutImageViewModel {
     
     func canShowPreview() -> Bool {
         switch self {
-        case .Image, .Movie:
+        case .image, .movie:
             return true
         default:
             return false
@@ -30,10 +30,10 @@ extension ShoutDetailShoutImageViewModel {
     
     func mwPhoto() -> MWPhoto? {
         switch self {
-        case .Image(let url):
+        case .image(let url):
             return MWPhoto(URL: url.imageUrlByAppendingVaraitionComponent(.Large))
-        case .Movie(let video):
-            guard let url = video.path.toURL(), thumbURL = video.thumbnailPath.toURL() else { return nil }
+        case .movie(let video):
+            guard let url = video.path.toURL(), let thumbURL = video.thumbnailPath.toURL() else { return nil }
             return MWPhoto(videoURL: url, thumbnailURL: thumbURL.imageUrlByAppendingVaraitionComponent(.Large))
         default:
             return nil

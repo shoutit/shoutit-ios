@@ -13,19 +13,19 @@ import ShoutitKit
 class CreatePublicChatViewModel: ConversationSubjectEditable {
     
     enum OperationStatus {
-        case Ready
-        case Error(error: ErrorType)
-        case Progress(show: Bool)
+        case ready
+        case error(error: Error)
+        case progress(show: Bool)
     }
     
     // state
-    private(set) var sections: [CreatePublicChatSectionViewModel] = []
+    fileprivate(set) var sections: [CreatePublicChatSectionViewModel] = []
     
     // ConversationSubjectEditable
     var chatSubject: String = ""
-    private(set) var imageUploadTask: MediaUploadingTask?
+    fileprivate(set) var imageUploadTask: MediaUploadingTask?
     lazy var mediaUploader: MediaUploader = {
-        return MediaUploader(bucket: .TagImage)
+        return MediaUploader(bucket: .tagImage)
     }()
     
     init() {
@@ -34,7 +34,7 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
     
     // MARK: - Actions
     
-    func uploadImageAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadImageAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         imageUploadTask = task
         return task
@@ -45,22 +45,22 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
         return Observable.create{[unowned self] (observer) -> Disposable in
             do {
                 try self.validateFields()
-                observer.onNext(.Progress(show: true))
+                observer.onNext(.progress(show: true))
                 return APIPublicChatsService.requestCreatePublicChatWithParams(self.composeParameters()).subscribe{ (event) in
-                    observer.onNext(.Progress(show: false))
+                    observer.onNext(.progress(show: false))
                     switch event {
-                    case .Next:
-                        observer.onNext(.Ready)
+                    case .next:
+                        observer.onNext(.ready)
                     case .Error(let error):
-                        observer.onNext(.Error(error: error))
+                        observer.onNext(.error(error: error))
                         observer.onCompleted()
-                    case .Completed:
+                    case .completed:
                         observer.onCompleted()
                     }
                 }
             }
             catch (let error) {
-                observer.onNext(.Error(error: error))
+                observer.onNext(.error(error: error))
                 observer.onCompleted()
             }
             return NopDisposable.instance
@@ -69,9 +69,9 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
     
     // MARK: - Setup
     
-    private func createChildViewModels() -> [CreatePublicChatSectionViewModel] {
+    fileprivate func createChildViewModels() -> [CreatePublicChatSectionViewModel] {
         guard let user = Account.sharedInstance.user else { fatalError() }
-        let firstSectionCells: [CreatePublicChatCellViewModel] = [.Location(location: user.location)]
+        let firstSectionCells: [CreatePublicChatCellViewModel] = [.location(location: user.location)]
 //        let secondSectionCells: [CreatePublicChatCellViewModel] = [.Selectable(option: .Facebook, selected: true), .Selectable(option: .Twitter, selected: false)]
         let firstSection = CreatePublicChatSectionViewModel(title: NSLocalizedString("LOCATION", comment: "Create public chat section title"),
                                                             cellViewModels: firstSectionCells)
@@ -82,12 +82,12 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
     
     // MARK: - Convenience
     
-    private func composeParameters() -> CreatePublicChatParams {
+    fileprivate func composeParameters() -> CreatePublicChatParams {
         var address: Address!
         let cellViewModels = sections.flatMap{$0.cellViewModels}
         for cell in cellViewModels {
             switchStatement: switch cell {
-            case .Location(let location):
+            case .location(let location):
                 address = location
             default:
                 break switchStatement

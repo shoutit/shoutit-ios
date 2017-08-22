@@ -25,11 +25,11 @@ extension ContainerController {
 
 extension ContainerController where Self: UIViewController {
     
-    func changeContentTo(controller: UIViewController, animated: Bool = false) {
+    func changeContentTo(_ controller: UIViewController, animated: Bool = false) {
         
         guard currentChildViewController !== controller else { return }
         
-        currentChildViewController?.willMoveToParentViewController(nil)
+        currentChildViewController?.willMove(toParentViewController: nil)
         addChildViewController(controller)
         addSubview(controller.view, toView: containerView)
         
@@ -37,19 +37,19 @@ extension ContainerController where Self: UIViewController {
         self.containerView.removeConstraints(constraints)
         self.currentChildViewController?.view.removeFromSuperview()
         self.currentChildViewController?.removeFromParentViewController()
-        controller.didMoveToParentViewController(self)
+        controller.didMove(toParentViewController: self)
         self.currentChildViewController = controller
     }
     
-    private func addSubview(subview: UIView, toView view: UIView) {
+    fileprivate func addSubview(_ subview: UIView, toView view: UIView) {
         
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
         
         let views = ["child" : subview]
         var constraints: [NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[child]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[child]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[child]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[child]|", options: [], metrics: nil, views: views)
         view.addConstraints(constraints)
         currentControllerConstraints += constraints
     }

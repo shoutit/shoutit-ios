@@ -16,7 +16,7 @@ public struct GoogleAccount {
 
 extension GoogleAccount: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<GoogleAccount> {
+    public static func decode(_ j: JSON) -> Decoded<GoogleAccount> {
         return curry(GoogleAccount.init)
             <^> j <| "gplus_id"
     }
@@ -25,7 +25,7 @@ extension GoogleAccount: Decodable {
 extension GoogleAccount: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "gplus_id" : self.gplusId.encode()
             ]
         )

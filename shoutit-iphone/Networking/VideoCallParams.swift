@@ -18,7 +18,7 @@ public struct VideoCallParams: Params {
     }
     
     public var params: [String : AnyObject] {
-        return ["identity" : identity,
-                "missed" : missed]
+        return ["identity" : identity as AnyObject,
+                "missed" : missed as AnyObject]
     }
 }

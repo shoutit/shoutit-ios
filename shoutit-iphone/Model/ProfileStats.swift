@@ -19,7 +19,7 @@ public struct ProfileStats {
 
 extension ProfileStats: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<ProfileStats> {
+    public static func decode(_ j: JSON) -> Decoded<ProfileStats> {
         return curry(ProfileStats.init)
             <^> j <| "unread_conversations_count"
             <*> j <| "unread_notifications_count"
@@ -30,7 +30,7 @@ extension ProfileStats: Decodable {
 
 extension ProfileStats: Encodable {
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "unread_conversations_count" : self.unreadConversationCount.encode(),
             "unread_notifications_count" : self.unreadNotificationsCount.encode(),
             "total_unread_count" : self.totalUnreadCount.encode(),

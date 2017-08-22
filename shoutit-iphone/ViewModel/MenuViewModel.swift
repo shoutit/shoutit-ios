@@ -17,57 +17,57 @@ final class MenuViewModel: AnyObject {
     }
     
     enum MenuSection  {
-        case UserSwitch
-        case Main
-        case Secondary
+        case userSwitch
+        case main
+        case secondary
         
         func cellIdentifier() -> String {
             switch self {
-            case .UserSwitch: return "UserSwitchCellIdentifier"
-            case .Main: return "MenuBasicCellIdentifier"
-            case .Secondary: return "MenuSecondarySectionCellIdentifier"
+            case .userSwitch: return "UserSwitchCellIdentifier"
+            case .main: return "MenuBasicCellIdentifier"
+            case .secondary: return "MenuSecondarySectionCellIdentifier"
             }
         }
         
-        func menuItems(loginState: Account.LoginState?) -> [NavigationItem] {
+        func menuItems(_ loginState: Account.LoginState?) -> [NavigationItem] {
             switch self {
-            case .UserSwitch:
-                guard case .Some(.Page) = loginState else {
+            case .userSwitch:
+                guard case .some(.page) = loginState else {
                     fatalError()
                 }
                 return [.SwitchFromPageToUser]
-            case .Main:
+            case .main:
                 let basicItems: [NavigationItem] = [.Home, .Discover, .Browse, .Chats, .Bookmarks]
                 switch loginState {
-                case .Some(.Logged):
+                case .some(.logged):
                     return basicItems + [.Pages]
-                case .Some(.Page):
+                case .some(.page):
                     return basicItems + [.Admins]
                 default:
                     return basicItems
                 }
-            case .Secondary: return [.InviteFriends, .Settings, .Help]
+            case .secondary: return [.InviteFriends, .Settings, .Help]
             }
         }
     }
     
     func sections() -> [MenuSection] {
-        let basicItems: [MenuSection] = [.Main, .Secondary]
-        if case .Some(.Page) = loginState {
-            return [.UserSwitch] + basicItems
+        let basicItems: [MenuSection] = [.main, .secondary]
+        if case .some(.page) = loginState {
+            return [.userSwitch] + basicItems
         }
         return basicItems
     }
     
-    func numberOfRowsInSection(section: Int) -> Int {
+    func numberOfRowsInSection(_ section: Int) -> Int {
         return sections()[section].menuItems(loginState).count
     }
     
-    func cellIdentifierForSection(section: Int) -> String {
+    func cellIdentifierForSection(_ section: Int) -> String {
         return sections()[section].cellIdentifier()
     }
     
-    func navigationItemForIndexPath(indexPath: NSIndexPath) -> NavigationItem {
+    func navigationItemForIndexPath(_ indexPath: IndexPath) -> NavigationItem {
         return sections()[indexPath.section].menuItems(loginState)[indexPath.row]
     }
     

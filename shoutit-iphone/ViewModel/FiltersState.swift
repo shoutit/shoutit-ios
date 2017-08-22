@@ -12,13 +12,13 @@ import ShoutitKit
 struct FiltersState {
     
     enum DistanceRestriction {
-        case Distance(kilometers: Int)
-        case EntireCountry
+        case distance(kilometers: Int)
+        case entireCountry
     }
     
     enum Editing {
-        case Enabled
-        case Disabled
+        case enabled
+        case disabled
     }
     let shoutType: (ShoutType?, Editing)
     let sortType: (SortType?, Editing)
@@ -29,13 +29,13 @@ struct FiltersState {
     let withinDistance: (DistanceRestriction?, Editing)
     let filters: [(Filter, [FilterValue])]?
     
-    init(shoutType: (ShoutType?, Editing) = (nil, .Enabled),
-         sortType: (SortType?, Editing) = (nil, .Enabled),
-         category: (ShoutitKit.Category?, Editing) = (nil, .Enabled),
-         minimumPrice: (Int?, Editing) = (nil, .Enabled),
-         maximumPrice: (Int?, Editing) = (nil, .Enabled),
-         location: (Address?, Editing) = (nil, .Enabled),
-         withinDistance: (DistanceRestriction?, Editing) = (nil, .Enabled),
+    init(shoutType: (ShoutType?, Editing) = (nil, .enabled),
+         sortType: (SortType?, Editing) = (nil, .enabled),
+         category: (ShoutitKit.Category?, Editing) = (nil, .enabled),
+         minimumPrice: (Int?, Editing) = (nil, .enabled),
+         maximumPrice: (Int?, Editing) = (nil, .enabled),
+         location: (Address?, Editing) = (nil, .enabled),
+         withinDistance: (DistanceRestriction?, Editing) = (nil, .enabled),
          filters: [(Filter, [FilterValue])]? = nil)
     {
         self.shoutType = shoutType
@@ -54,10 +54,10 @@ struct FiltersState {
         let entireCountry: Bool
         
         switch withinDistance.0 {
-        case .Some(.EntireCountry):
+        case .some(.entireCountry):
             entireCountry = true
             distance = nil
-        case .Some(.Distance(let kilometers)):
+        case .some(.distance(let kilometers)):
             entireCountry = false
             distance = kilometers
         default:
@@ -84,9 +84,9 @@ extension FiltersState.DistanceRestriction: Equatable {}
 
 func ==(lhs: FiltersState.DistanceRestriction, rhs: FiltersState.DistanceRestriction) -> Bool {
     switch (lhs, rhs) {
-    case (.EntireCountry, .EntireCountry):
+    case (.entireCountry, .entireCountry):
         return true
-    case (.Distance(let lhsDistance), .Distance(let rhsDistance)):
+    case (.distance(let lhsDistance), .distance(let rhsDistance)):
         return lhsDistance == rhsDistance
     default:
         return false

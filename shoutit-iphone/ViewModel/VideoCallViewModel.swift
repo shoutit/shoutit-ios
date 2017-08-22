@@ -13,30 +13,30 @@ import ShoutitKit
 class VideoCallViewModel {
     
     enum State {
-        case ReadyForCall
-        case Calling
-        case InCall
-        case CallEnded
-        case CallFailed
+        case readyForCall
+        case calling
+        case inCall
+        case callEnded
+        case callFailed
     }
     
     let callerProfile: Variable<Profile?>
     let conversation: Variable<TWCConversation?>
     let audioMuted: Variable<Bool>
     let videoDisabled: Variable<Bool>
-    private(set) var localMedia: TWCLocalMedia
+    fileprivate(set) var localMedia: TWCLocalMedia
     let state: Variable<State>
-    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
-    private let disposeBag = DisposeBag()
+    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    fileprivate let disposeBag = DisposeBag()
     
-    private var callDurationTimer: NSTimer?
-    let ticks: Variable<NSTimeInterval> = Variable(0.0)
+    fileprivate var callDurationTimer: Timer?
+    let ticks: Variable<TimeInterval> = Variable(0.0)
     
     init(callerProfile: Profile?) {
         self.callerProfile = Variable(callerProfile)
         self.conversation = Variable(nil)
         self.localMedia = TWCLocalMedia()
-        self.state = Variable(.ReadyForCall)
+        self.state = Variable(.readyForCall)
         self.audioMuted =  Variable(false)
         self.videoDisabled = Variable(false)
     }
@@ -69,7 +69,7 @@ class VideoCallViewModel {
             return
         }
         
-        state.value = .Calling
+        state.value = .calling
         
         Account.sharedInstance
             .twilioManager
@@ -97,7 +97,7 @@ class VideoCallViewModel {
         }
         Account.sharedInstance.twilioManager.sentInvitations = []
         
-        state.value = .CallEnded
+        state.value = .callEnded
     }
     
     func muteAudio() {
@@ -118,7 +118,7 @@ class VideoCallViewModel {
 
 private extension VideoCallViewModel {
     
-    func fetchCallingProfileWithIdentity(identity: String) {
+    func fetchCallingProfileWithIdentity(_ identity: String) {
         
         APIProfileService
             .retrieveProfileWithTwilioUsername(identity)
@@ -135,7 +135,7 @@ extension VideoCallViewModel {
     
     func startTimer() {
         ticks.value = 0.0
-        callDurationTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(timerTick(_:)), userInfo: nil, repeats: true)
+        callDurationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerTick(_:)), userInfo: nil, repeats: true)
     }
     
     func stopTimer() {
@@ -143,7 +143,7 @@ extension VideoCallViewModel {
         callDurationTimer = nil
     }
     
-    @objc func timerTick(timer: NSTimer) {
+    @objc func timerTick(_ timer: Timer) {
         ticks.value = ticks.value + 1.0
     }
 }

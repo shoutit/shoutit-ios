@@ -31,7 +31,7 @@ public struct Video: Hashable, Equatable {
 
 extension Video: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Video> {
+    public static func decode(_ j: JSON) -> Decoded<Video> {
         return curry(Video.init)
             <^> j <| "url"
             <*> j <| "thumbnail_url"
@@ -43,7 +43,7 @@ extension Video: Decodable {
 
 extension Video: Encodable {
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "url"    : self.path.encode(),
             "thumbnail_url"  : self.thumbnailPath.encode(),
             "provider" : self.provider.encode(),

@@ -13,32 +13,32 @@ import ShoutitKit
 final class SearchViewModel {
     
     enum SearchState: Equatable {
-        case Inactive
-        case Active
-        case Typing(phrase: String)
+        case inactive
+        case active
+        case typing(phrase: String)
     }
     
     enum SegmentedControlState: Equatable {
         
         enum Option {
-            case Shouts
-            case Users
+            case shouts
+            case users
         }
-        case Hidden(option: Option)
-        case Shown(option: Option)
+        case hidden(option: Option)
+        case shown(option: Option)
     }
     
     // consts
     let minimumNumberOfCharactersForAutocompletion = 2
-    lazy private var archivePath: String = {
+    lazy fileprivate var archivePath: String = {
         let directory = Account.sharedInstance.userDirectory
-        let directoryURL = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("recent_searches.data")
-        return directoryURL.path!
+        let directoryURL = URL(fileURLWithPath: directory).appendingPathComponent("recent_searches.data")
+        return directoryURL.path
     }()
     
     // RX
-    private let disposeBag = DisposeBag()
-    private var requestDisposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var requestDisposeBag = DisposeBag()
     
     // state
     let context: SearchContext
@@ -48,14 +48,14 @@ final class SearchViewModel {
     
     // recents
     lazy var recentSearches: Set<String> = {[unowned self] in
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(self.archivePath) as? Set<String> ?? Set()
+        return NSKeyedUnarchiver.unarchiveObject(withFile: self.archivePath) as? Set<String> ?? Set()
     }()
     
     init(context: SearchContext) {
         self.context = context
-        self.searchState = Variable(.Inactive)
-        self.segmentedControlState = Variable(.Hidden(option: .Shouts))
-        self.sectionViewModel = Variable(.LoadingPlaceholder)
+        self.searchState = Variable(.inactive)
+        self.segmentedControlState = Variable(.hidden(option: .shouts))
+        self.sectionViewModel = Variable(.loadingPlaceholder)
         setupRX()
     }
     
@@ -67,35 +67,35 @@ final class SearchViewModel {
         requestDisposeBag = DisposeBag()
         
         switch (context, searchState.value, segmentedControlState.value) {
-        case (_, _, .Shown(option: .Users)):
+        case (_, _, .shown(option: .users)):
             setSectionViewModelWithUsersPlaceholder()
-        case (_, .Typing(let phrase), .Shown(option: .Shouts)):
+        case (_, .typing(let phrase), .shown(option: .shouts)):
             loadSuggestionsForPhrase(phrase)
-        case (_, .Typing(let phrase), .Hidden):
+        case (_, .typing(let phrase), .hidden):
             loadSuggestionsForPhrase(phrase)
-        case (_, .Active, .Hidden):
+        case (_, .active, .hidden):
             setSectionViewModelWithEmptyScreen()
         // Active
-        case (.General, .Active, .Shown(option: .Shouts)):
+        case (.general, .active, .shown(option: .shouts)):
             setSectionViewModelWithRecentSearches()
-        case (.ProfileShouts, .Active, .Shown(option: .Shouts)):
+        case (.profileShouts, .active, .shown(option: .shouts)):
             setSectionViewModelWithEmptyScreen()
-        case (.TagShouts, .Active, .Shown(option: .Shouts)):
+        case (.tagShouts, .active, .shown(option: .shouts)):
             setSectionViewModelWithEmptyScreen()
-        case (.CategoryShouts, .Active, .Shown(option: .Shouts)):
+        case (.categoryShouts, .active, .shown(option: .shouts)):
             setSectionViewModelWithEmptyScreen()
-        case (.DiscoverShouts, .Active, .Shown(option: .Shouts)):
+        case (.discoverShouts, .active, .shown(option: .shouts)):
             setSectionViewModelWithEmptyScreen()
         // Inactive
-        case (.General, .Inactive, _):
+        case (.general, .inactive, _):
             fetchCategories()
-        case (.ProfileShouts, .Inactive, _):
+        case (.profileShouts, .inactive, _):
             setSectionViewModelWithEmptyScreen()
-        case (.TagShouts, .Inactive, _):
+        case (.tagShouts, .inactive, _):
             setSectionViewModelWithEmptyScreen()
-        case (.CategoryShouts, .Inactive, _):
+        case (.categoryShouts, .inactive, _):
             setSectionViewModelWithEmptyScreen()
-        case (.DiscoverShouts, .Inactive, _):
+        case (.discoverShouts, .inactive, _):
             setSectionViewModelWithEmptyScreen()
         default:
             assertionFailure()
@@ -103,8 +103,8 @@ final class SearchViewModel {
         }
     }
     
-    func savePhraseToRecentSearchesIfApplicable(phrase: String) {
-        if case .Shown(option: .Users) = segmentedControlState.value {
+    func savePhraseToRecentSearchesIfApplicable(_ phrase: String) {
+        if case .shown(option: .users) = segmentedControlState.value {
             return
         }
         recentSearches.insert(phrase)
@@ -112,7 +112,7 @@ final class SearchViewModel {
         reloadContent()
     }
     
-    func removeRecentSearchPhrase(phrase: String) {
+    func removeRecentSearchPhrase(_ phrase: String) {
         recentSearches.remove(phrase)
         saveRecentSearches()
         reloadContent()
@@ -128,37 +128,37 @@ final class SearchViewModel {
     
     func searchBarPlaceholder() -> String {
         switch context {
-        case .General:
+        case .general:
             return NSLocalizedString("Search Shoutit", comment: "Search text field placeholder")
-        case .DiscoverShouts(let item):
+        case .discoverShouts(let item):
             return String.localizedStringWithFormat(NSLocalizedString("Search in %@ shouts", comment: "Search text field placeholder"), item.title)
-        case .ProfileShouts(let profile):
+        case .profileShouts(let profile):
             return String.localizedStringWithFormat(NSLocalizedString("Search in %@ shouts", comment: "Search text field placeholder"), profile.name)
-        case .TagShouts(let tag):
+        case .tagShouts(let tag):
             return String.localizedStringWithFormat(NSLocalizedString("Search in %@ shouts", comment: "Search text field placeholder"), tag.name)
-        case .CategoryShouts(let category):
+        case .categoryShouts(let category):
             return String.localizedStringWithFormat(NSLocalizedString("Search in %@ shouts", comment: "Search text field placeholder"), category.name)
         }
     }
     
     // MARK: - Initial setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         searchState
             .asObservable()
             .distinctUntilChanged()
             .subscribeNext {[unowned self] (searchState) in
                 switch searchState {
-                case .Active, .Typing:
-                    if case (.General, .Hidden(let option)) = (self.context, self.segmentedControlState.value) {
-                        self.segmentedControlState.value = .Shown(option: option)
+                case .active, .typing:
+                    if case (.general, .hidden(let option)) = (self.context, self.segmentedControlState.value) {
+                        self.segmentedControlState.value = .shown(option: option)
                     } else {
                         self.reloadContent()
                     }
-                case .Inactive:
-                    if case (.General, .Shown(let option)) = (self.context, self.segmentedControlState.value) {
-                        self.segmentedControlState.value = .Hidden(option: option)
+                case .inactive:
+                    if case (.general, .shown(let option)) = (self.context, self.segmentedControlState.value) {
+                        self.segmentedControlState.value = .hidden(option: option)
                     }
                 }
             }
@@ -175,12 +175,12 @@ final class SearchViewModel {
     
     // MARK: - Hydrate models
     
-    private func fetchCategories() {
+    fileprivate func fetchCategories() {
         
         APIShoutsService.listCategories()
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let categories):
+                case .next(let categories):
                     self?.setSectionViewModelWithCategories(categories)
                 case .Error(let error):
                     self?.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: error.sh_message, image: nil)
@@ -191,9 +191,9 @@ final class SearchViewModel {
             .addDisposableTo(requestDisposeBag)
     }
     
-    private func loadSuggestionsForPhrase(phrase: String) {
+    fileprivate func loadSuggestionsForPhrase(_ phrase: String) {
         let params: AutocompletionParams
-        if case SearchContext.CategoryShouts(let category) = context {
+        if case SearchContext.categoryShouts(let category) = context {
             params = AutocompletionParams(phrase: phrase, categoryName: category.name, country: Account.sharedInstance.user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
         } else {
             params = AutocompletionParams(phrase: phrase, categoryName: nil, country: Account.sharedInstance.user?.location.country, useLocaleBasedCountryCodeWhenNil: true)
@@ -201,7 +201,7 @@ final class SearchViewModel {
         APIShoutsService.getAutocompletionWithParams(params)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let autocompletions):
+                case .next(let autocompletions):
                     self?.setSectionsViewModelWithAutocompletion(autocompletions)
                 case .Error(let error):
                     self?.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: error.sh_message, image: nil)
@@ -214,45 +214,45 @@ final class SearchViewModel {
     
     // MARK: - Create cell view models
     
-    private func setSectionViewModelWithCategories(categories: [ShoutitKit.Category]) {
+    fileprivate func setSectionViewModelWithCategories(_ categories: [ShoutitKit.Category]) {
         
         if categories.count == 0 {
             let message = NSLocalizedString("No categores are available", comment: "")
             self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: message, image: nil)
         } else {
-            let header = SearchSectionViewModel.HeaderType.TitleCentered(title: NSLocalizedString("Categories", comment: "Main search screen categories header"))
+            let header = SearchSectionViewModel.HeaderType.titleCentered(title: NSLocalizedString("Categories", comment: "Main search screen categories header"))
             let cells = categories.map{SearchCategoryCellViewModel(category: $0)}
-            self.sectionViewModel.value = SearchSectionViewModel.Categories(cells: cells, header: header)
+            self.sectionViewModel.value = SearchSectionViewModel.categories(cells: cells, header: header)
         }
     }
     
-    private func setSectionViewModelWithEmptyScreen() {
+    fileprivate func setSectionViewModelWithEmptyScreen() {
         self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: nil, image: nil)
     }
     
-    private func setSectionViewModelWithRecentSearches() {
+    fileprivate func setSectionViewModelWithRecentSearches() {
         
         let searches = self.recentSearches
         if searches.count == 0 {
             setSectionViewModelWithEmptyScreen()
         } else {
-            let header = SearchSectionViewModel.HeaderType.TitleAlignedLeftWithButton(title: NSLocalizedString("Recent searches", comment: "Recent searches header"), buttonTitle: NSLocalizedString("CLEAR", comment: "recent searches clear button title"))
-            let cells = searches.map{SearchSuggestionCellViewModel.RecentSearch(phrase: $0)}
-            self.sectionViewModel.value = SearchSectionViewModel.Suggestions(cells: cells, header: header)
+            let header = SearchSectionViewModel.HeaderType.titleAlignedLeftWithButton(title: NSLocalizedString("Recent searches", comment: "Recent searches header"), buttonTitle: NSLocalizedString("CLEAR", comment: "recent searches clear button title"))
+            let cells = searches.map{SearchSuggestionCellViewModel.recentSearch(phrase: $0)}
+            self.sectionViewModel.value = SearchSectionViewModel.suggestions(cells: cells, header: header)
         }
     }
     
-    private func setSectionsViewModelWithAutocompletion(autocompletionTerms: [AutocompletionTerm]) {
+    fileprivate func setSectionsViewModelWithAutocompletion(_ autocompletionTerms: [AutocompletionTerm]) {
         if autocompletionTerms.count == 0 {
             setSectionViewModelWithEmptyScreen()
         } else {
-            let header = SearchSectionViewModel.HeaderType.None
-            let cells = autocompletionTerms.map{SearchSuggestionCellViewModel.APISuggestion(phrase: $0.term)}
-            self.sectionViewModel.value = SearchSectionViewModel.Suggestions(cells: cells, header: header)
+            let header = SearchSectionViewModel.HeaderType.none
+            let cells = autocompletionTerms.map{SearchSuggestionCellViewModel.apiSuggestion(phrase: $0.term)}
+            self.sectionViewModel.value = SearchSectionViewModel.suggestions(cells: cells, header: header)
         }
     }
     
-    private func setSectionViewModelWithUsersPlaceholder() {
+    fileprivate func setSectionViewModelWithUsersPlaceholder() {
         self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: NSLocalizedString("Search Users", comment: "Search users placeholder"), image: UIImage.searchUsersPlaceholder())
     }
     
@@ -260,18 +260,18 @@ final class SearchViewModel {
     
     // MARK: - Helpers
     
-    private func saveRecentSearches() {
+    fileprivate func saveRecentSearches() {
         NSKeyedArchiver.archiveRootObject(recentSearches, toFile: archivePath)
     }
 }
 
 func ==(lhs: SearchViewModel.SearchState, rhs: SearchViewModel.SearchState) -> Bool {
     switch (lhs, rhs) {
-    case (.Inactive, .Inactive):
+    case (.inactive, .inactive):
         return true
-    case (.Active, .Active):
+    case (.active, .active):
         return true
-    case (.Typing(let l), .Typing(let r)):
+    case (.typing(let l), .typing(let r)):
         return l == r
     default:
         return false
@@ -280,9 +280,9 @@ func ==(lhs: SearchViewModel.SearchState, rhs: SearchViewModel.SearchState) -> B
 
 func ==(lhs: SearchViewModel.SegmentedControlState, rhs: SearchViewModel.SegmentedControlState) -> Bool {
     switch (lhs, rhs) {
-    case (.Shown(let l), .Shown(let r)):
+    case (.shown(let l), .shown(let r)):
         return l == r
-    case (.Hidden(let l), .Hidden(let r)):
+    case (.hidden(let l), .hidden(let r)):
         return l == r
     default:
         return false

@@ -12,15 +12,15 @@ import RxCocoa
 
 extension UITextField {
     
-    func addNextTextField(textField: UITextField, withDisposeBag disposeBag: DisposeBag) {
-        self.rx_controlEvent(.EditingDidEndOnExit)
+    func addNextTextField(_ textField: UITextField, withDisposeBag disposeBag: DisposeBag) {
+        self.rx_controlEvent(.editingDidEndOnExit)
             .subscribeNext{
                 textField.becomeFirstResponder()
             }
             .addDisposableTo(disposeBag)
     }
     
-    func addOnReturnAction(action: Void -> Void, withDisposeBag disposeBag: DisposeBag) {
-        self.rx_controlEvent(.EditingDidEndOnExit).subscribeNext(action).addDisposableTo(disposeBag)
+    func addOnReturnAction(_ action: (Void) -> Void, withDisposeBag disposeBag: DisposeBag) {
+        self.rx_controlEvent(.editingDidEndOnExit).subscribeNext(action).addDisposableTo(disposeBag)
     }
 }

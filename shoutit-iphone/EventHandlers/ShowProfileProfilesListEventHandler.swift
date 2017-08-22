@@ -17,7 +17,7 @@ final class ShowProfileProfilesListEventHandler: ProfilesListEventHandler {
         self.profileDisplayable = profileDisplayable
     }
     
-    func handleUserDidTapProfile(profile: Profile) {
+    func handleUserDidTapProfile(_ profile: Profile) {
         profileDisplayable.showProfile(profile)
     }
 }

@@ -16,7 +16,7 @@ final class SettingsFormViewController: UITableViewController {
     var viewModel: SettingsFormViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // toggle menu
     var ignoreMenuButton : Bool = false
@@ -33,7 +33,7 @@ final class SettingsFormViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel
             .progressSubject
@@ -41,9 +41,9 @@ final class SettingsFormViewController: UITableViewController {
             .subscribeNext {[weak self] (show) in
                 guard let `self` = self else { return }
                 if show {
-                    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
                 } else {
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    MBProgressHUD.hide(for: self.view, animated: true)
                 }
             }
             .addDisposableTo(disposeBag)
@@ -71,21 +71,21 @@ final class SettingsFormViewController: UITableViewController {
 
 extension SettingsFormViewController {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cellViewModels.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellViewModel = viewModel.cellViewModels[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierForCellViewModel(cellViewModel), forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierForCellViewModel(cellViewModel), for: indexPath)
         switch cellViewModel {
-        case .Button(let title, let action):
+        case .button(let title, let action):
             let buttonCell = cell as! SettingsFormButtonTableViewCell
-            buttonCell.button.setTitle(title, forState: .Normal)
+            buttonCell.button.setTitle(title, for: UIControlState())
             buttonCell.button
                 .rx_tap
                 .asDriver()
@@ -93,16 +93,16 @@ extension SettingsFormViewController {
                     action()
                 }
                 .addDisposableTo(buttonCell.reuseDisposeBag)
-        case .TextField(let value, let type):
+        case .textField(let value, let type):
             let textFieldCell = cell as! SettingsFormTextFieldTableViewCell
             textFieldCell.textField.text = value
             textFieldCell.textField.placeholder = type.placeholder
-            textFieldCell.textField.secureTextEntry = type.secureTextEntry
+            textFieldCell.textField.isSecureTextEntry = type.secureTextEntry
             textFieldCell.textField
                 .rx_text
                 .asDriver()
                 .driveNext{[unowned self](text) in
-                    self.viewModel.cellViewModels[indexPath.row] = .TextField(value: text, type: type)
+                    self.viewModel.cellViewModels[indexPath.row] = .textField(value: text, type: type)
                 }
                 .addDisposableTo(textFieldCell.reuseDisposeBag)
             
@@ -117,12 +117,12 @@ extension SettingsFormViewController {
 
 extension SettingsFormViewController {
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellViewModel = viewModel.cellViewModels[indexPath.row]
         switch cellViewModel {
-        case .Button:
+        case .button:
             return 44
-        case .TextField:
+        case .textField:
             return 100
         }
     }
@@ -130,11 +130,11 @@ extension SettingsFormViewController {
 
 private extension SettingsFormViewController {
     
-    func reuseIdentifierForCellViewModel(model: SettingsFormCellViewModel) -> String {
+    func reuseIdentifierForCellViewModel(_ model: SettingsFormCellViewModel) -> String {
         switch model {
-        case .Button:
+        case .button:
             return "ButtonCell"
-        case .TextField:
+        case .textField:
             return "TextFieldCell"
         }
     }

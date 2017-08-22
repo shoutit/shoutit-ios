@@ -28,7 +28,7 @@ final class IntroViewController: UIViewController {
     var viewModel: IntroViewModel!
     
     // rx
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // navigation
     weak var flowDelegate: LoginFlowController?
@@ -40,13 +40,13 @@ final class IntroViewController: UIViewController {
         setupRX()
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         // view model signals
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
@@ -60,9 +60,9 @@ final class IntroViewController: UIViewController {
         
         viewModel.progressHUDSubject.subscribeNext{[weak self](show) in
             if show {
-                MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                MBProgressHUD.showAdded(to: self?.view, animated: true)
             } else {
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
             }
             }.addDisposableTo(disposeBag)
         
@@ -93,26 +93,26 @@ final class IntroViewController: UIViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: nil)
-        if let pageVC = segue.destinationViewController as? UIPageViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: nil)
+        if let pageVC = segue.destination as? UIPageViewController {
             pageViewController = pageVC
             pageVC.dataSource = self
             pageVC.delegate = self
-            pageVC.setViewControllers([Wireframe.introContentViewControllerForPage(1)], direction: .Forward, animated: false, completion: nil)
+            pageVC.setViewControllers([Wireframe.introContentViewControllerForPage(1)], direction: .forward, animated: false, completion: nil)
         }
     }
 }
 
 extension IntroViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let controller = viewController as? IntroContentViewController else { assertionFailure(); return nil; }
         guard controller.index > 1 else { return nil }
         return Wireframe.introContentViewControllerForPage(controller.index - 1)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let controller = viewController as? IntroContentViewController else { assertionFailure(); return nil; }
         guard controller.index < 5 else { return nil }
         return Wireframe.introContentViewControllerForPage(controller.index + 1)
@@ -121,7 +121,7 @@ extension IntroViewController: UIPageViewControllerDataSource {
 
 extension IntroViewController: UIPageViewControllerDelegate {
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let controller = pendingViewControllers.first as? IntroContentViewController else { return }
         pageControl.currentPage = controller.index - 1
     }
@@ -129,7 +129,7 @@ extension IntroViewController: UIPageViewControllerDelegate {
 
 extension IntroViewController: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.contentSize.width / numberOfPagesInScrollView
         let page = floor((scrollView.contentOffset.x + 0.5 * pageWidth) / pageWidth)
         pageControl.currentPage = Int(page)

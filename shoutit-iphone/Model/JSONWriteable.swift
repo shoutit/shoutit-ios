@@ -12,14 +12,14 @@ import Ogra
 
 public protocol JSONWriteable {
         
-    @warn_unused_result
+    
     func asJSON() throws -> AnyObject
 }
 
 extension JSONReadable where Self: Encodable {
     func asJSON() throws -> AnyObject {
         guard let json = self.encode() as? AnyObject else {
-            throw JSONError.InvalidJSON
+            throw JSONError.invalidJSON
         }
         
         return json

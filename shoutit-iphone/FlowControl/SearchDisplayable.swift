@@ -10,39 +10,39 @@ import Foundation
 import ShoutitKit
 
 enum SearchContext {
-    case General
-    case ProfileShouts(profile: Profile)
-    case TagShouts(tag: Tag)
-    case CategoryShouts(category: ShoutitKit.Category)
-    case DiscoverShouts(item: DiscoverItem)
+    case general
+    case profileShouts(profile: Profile)
+    case tagShouts(tag: Tag)
+    case categoryShouts(category: ShoutitKit.Category)
+    case discoverShouts(item: DiscoverItem)
 }
 
 protocol SearchDisplayable {
-    func showSearchInContext(context: SearchContext) -> Void
-    func showUserSearchResultsWithPhrase(phrase: String) -> Void
-    func showShoutsSearchResultsWithPhrase(phrase: String?, context: SearchContext) -> Void
+    func showSearchInContext(_ context: SearchContext) -> Void
+    func showUserSearchResultsWithPhrase(_ phrase: String) -> Void
+    func showShoutsSearchResultsWithPhrase(_ phrase: String?, context: SearchContext) -> Void
 }
 
 extension FlowController : SearchDisplayable {
     
-    func showUserSearchResultsWithPhrase(phrase: String) {
+    func showUserSearchResultsWithPhrase(_ phrase: String) {
         let controller = Wireframe.searchUserResultsTableViewController()
         controller.viewModel = SearchUserResultsViewModel(searchPhrase: phrase)
         controller.eventHandler = ShowProfileProfilesListEventHandler(profileDisplayable: self)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showShoutsSearchResultsWithPhrase(phrase: String?, context: SearchContext) {
+    func showShoutsSearchResultsWithPhrase(_ phrase: String?, context: SearchContext) {
         let controller = Wireframe.searchShoutsResultsCollectionViewController()
         controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: phrase, inContext: context)
         controller.flowDelegate = self
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showSearchInContext(context: SearchContext) {
+    func showSearchInContext(_ context: SearchContext) {
         let controller = Wireframe.searchViewController()
         controller.flowDelegate = self
         controller.viewModel = SearchViewModel(context: context)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

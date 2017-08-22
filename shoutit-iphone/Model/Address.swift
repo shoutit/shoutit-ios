@@ -33,7 +33,7 @@ public struct Address {
 
 extension Address: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Address> {
+    public static func decode(_ j: JSON) -> Decoded<Address> {
         let f = curry(Address.init)
             <^> j <|? "address"
             <*> j <| "city"
@@ -49,7 +49,7 @@ extension Address: Decodable {
 extension Address: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "address"    : self.address.encode(),
             "city"  : self.city.encode(),
             "country" : self.country.encode(),

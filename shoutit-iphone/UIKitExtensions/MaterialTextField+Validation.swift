@@ -14,7 +14,7 @@ import Validator
 
 extension BorderedMaterialTextField {
     
-    func addValidator(validator: (String -> ValidationResult), withDisposeBag disposeBag: DisposeBag) {
+    func addValidator(_ validator: ((String) -> ValidationResult), withDisposeBag disposeBag: DisposeBag) {
         
         self.rx_text
             .throttle(0.3, scheduler: MainScheduler.instance)
@@ -25,9 +25,9 @@ extension BorderedMaterialTextField {
                     return
                 }
                 switch validator(email) {
-                case .Valid:
+                case .valid:
                     self.detailLabelHidden = true
-                case .Invalid(let error):
+                case .invalid(let error):
                     self.detailLabelHidden = false
                     self.detailLabel?.text = error.first?.message
                 }

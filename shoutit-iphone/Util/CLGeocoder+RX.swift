@@ -11,15 +11,15 @@ import CoreLocation
 import RxSwift
 
 extension CLGeocoder {
-    public func rx_response(query: String!) -> Observable<([CLPlacemark])> {
+    public func rx_response(_ query: String!) -> Observable<([CLPlacemark])> {
         return Observable.create { observer in
             
             self.geocodeAddressString(query, completionHandler: { (placemarks, error) -> Void in
                 if let plm = placemarks {
-                    observer.on(.Next(plm))
+                    observer.on(.next(plm))
                 }
                 
-                observer.on(.Completed)
+                observer.on(.completed)
             })
             
             return AnonymousDisposable {

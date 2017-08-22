@@ -15,10 +15,10 @@ final class CategoryFiltersTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+        separatorHeightConstraint.constant = 1 / UIScreen.main.scale
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         checkboxImageView.image = selected ? UIImage.filtersCheckboxSelected() : UIImage.filtersCheckbox()
     }

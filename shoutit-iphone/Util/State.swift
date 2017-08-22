@@ -9,9 +9,9 @@
 import UIKit
 
 enum LoadingState {
-    case Idle
-    case Loading
-    case ContentLoaded
-    case ContentUnavailable
-    case Error(ErrorType)
+    case idle
+    case loading
+    case contentLoaded
+    case contentUnavailable
+    case error(Error)
 }

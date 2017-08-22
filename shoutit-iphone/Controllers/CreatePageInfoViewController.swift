@@ -29,7 +29,7 @@ class CreatePageInfoViewController: UITableViewController {
     var selectedCategory : PageCategory?
     weak var flowDelegate: FlowController?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class CreatePageInfoViewController: UITableViewController {
             return
         }
         
-        guard case .Valid = ShoutitValidator.validateName(pageName) else {
+        guard case .valid = ShoutitValidator.validateName(pageName) else {
             return
         }
         
@@ -69,7 +69,7 @@ class CreatePageInfoViewController: UITableViewController {
             return
         }
         
-        guard case .Valid = ShoutitValidator.validateName(fullName) else {
+        guard case .valid = ShoutitValidator.validateName(fullName) else {
             return
         }
         
@@ -77,7 +77,7 @@ class CreatePageInfoViewController: UITableViewController {
             return
         }
         
-        guard case .Valid = ShoutitValidator.validateEmail(email) else {
+        guard case .valid = ShoutitValidator.validateEmail(email) else {
             return
         }
         
@@ -85,7 +85,7 @@ class CreatePageInfoViewController: UITableViewController {
             return
         }
         
-        guard case .Valid = ShoutitValidator.validatePassword(password) else {
+        guard case .valid = ShoutitValidator.validatePassword(password) else {
             return
         }
         
@@ -104,7 +104,7 @@ class CreatePageInfoViewController: UITableViewController {
             return
         }
         
-        guard case .Valid = ShoutitValidator.validateName(pageName) else {
+        guard case .valid = ShoutitValidator.validateName(pageName) else {
             self.showErrorMessage(NSLocalizedString("Please fill all fields", comment: "Create Page Error"))
             return
         }
@@ -129,9 +129,9 @@ class CreatePageInfoViewController: UITableViewController {
             self?.locked = false
             
             switch event {
-            case .Next(let page):
-                self?.navigationController?.popToRootViewControllerAnimated(true)
-                if case .Some(.Logged(_)) = Account.sharedInstance.loginState {
+            case .next(let page):
+                self?.navigationController?.popToRootViewController(animated: true)
+                if case .some(.logged(_)) = Account.sharedInstance.loginState {
                     Account.sharedInstance.switchToPage(page)
                 }
             case .Error(let error):
@@ -143,31 +143,31 @@ class CreatePageInfoViewController: UITableViewController {
         
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return Account.sharedInstance.isUserLoggedIn ? 1 : 2
     }
     
     @IBAction func showSubCategories() {
         
-        let alert = UIAlertController(title: NSLocalizedString("Please select subcategory", comment: "Create Page Error"), message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Please select subcategory", comment: "Create Page Error"), message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
         
         guard let categories = self.preselectedCategory?.children else {
             return
         }
         
         categories.each { (subcat) in
-            alert.addAction(UIAlertAction(title: subcat.name, style: .Default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: subcat.name, style: .default, handler: { (action) in
                 self.selectedCategory = subcat
-                self.categoryButton.setTitle(subcat.name, forState: .Normal)
+                self.categoryButton.setTitle(subcat.name, for: UIControlState())
             }))
         }
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
-    func createPageWith(name: String, fullname: String, email: String, password: String, category: PageCategory) {
+    func createPageWith(_ name: String, fullname: String, email: String, password: String, category: PageCategory) {
         guard let viewModel = viewModel else {
             return
         }

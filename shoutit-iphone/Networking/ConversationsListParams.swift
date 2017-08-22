@@ -16,10 +16,10 @@ public struct ConversationsListParams: Params {
     
     public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
-        params["page_size"] = pageSize
-        params["type"] = conversationType?.rawValue
-        params["before"] = beforeTimestamp
-        params["after"] = afterTimestamp
+        params["page_size"] = pageSize as AnyObject
+        params["type"] = conversationType?.rawValue as AnyObject
+        params["before"] = beforeTimestamp as AnyObject
+        params["after"] = afterTimestamp as AnyObject
         return params
     }
     

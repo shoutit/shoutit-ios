@@ -14,7 +14,7 @@ final class TabbarController: UIViewController, Navigation {
 
     @IBOutlet var tabs: [TabbarButton]?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     weak var rootController : RootController?
     
@@ -25,7 +25,7 @@ final class TabbarController: UIViewController, Navigation {
             }
             
             for button : TabbarButton in tabs {
-                button.selected = button.tabNavigationItem() == self.selectedNavigationItem
+                button.isSelected = button.tabNavigationItem() == self.selectedNavigationItem
             }
         }
     }
@@ -36,8 +36,8 @@ final class TabbarController: UIViewController, Navigation {
             button
                 .rx_tap
                 .subscribeNext {[unowned self] in
-                    self.tabs!.each { $0.selected = false }
-                    button.selected = true
+                    self.tabs!.each { $0.isSelected = false }
+                    button.isSelected = true
                     self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
                 }
                 .addDisposableTo(self.disposeBag)
@@ -49,28 +49,28 @@ final class TabbarController: UIViewController, Navigation {
         
     }
     
-    func triggerActionWithItem(navigationItem : NavigationItem) {
+    func triggerActionWithItem(_ navigationItem : NavigationItem) {
         if let root = self.rootController {
             root.openItem(navigationItem)
         }
     }
     
-    private func fillBadgesWithStats(stats: ProfileStats?) {
+    fileprivate func fillBadgesWithStats(_ stats: ProfileStats?) {
         fillUnreadConversations(stats?.unreadConversationCount ?? 0)
         fillUnreadNotifications(stats?.unreadNotificationsCount ?? 0)
     }
     
-    func fillUnreadNotifications(unread: Int) {
+    func fillUnreadNotifications(_ unread: Int) {
         let tab = tabButtonForNavigationItem(.Profile)
         tab.setBadgeNumber(unread)
     }
     
-    func fillUnreadConversations(unread: Int) {
+    func fillUnreadConversations(_ unread: Int) {
         let tab = tabButtonForNavigationItem(.Chats)
         tab.setBadgeNumber(unread)
     }
     
-    private func tabButtonForNavigationItem(navigationItem: NavigationItem) -> TabbarButton {
+    fileprivate func tabButtonForNavigationItem(_ navigationItem: NavigationItem) -> TabbarButton {
         for button in self.tabs! {
             if button.navigationItem == navigationItem.rawValue {
                 return button

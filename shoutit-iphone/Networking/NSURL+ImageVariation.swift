@@ -8,12 +8,12 @@
 
 import Foundation
 
-public extension NSURL {
+public extension URL {
     
-    func imageUrlByAppendingVaraitionComponent(varation: ImageVariation) -> NSURL {
+    func imageUrlByAppendingVaraitionComponent(_ varation: ImageVariation) -> URL {
         guard let fileExtension = pathExtension else { assertionFailure(); return self; }
-        guard let originalPath = URLByDeletingPathExtension?.absoluteString else { assertionFailure(); return self; }
-        guard let noExtensionURL = NSURL(string: originalPath + varation.pathComponent) else { assertionFailure(); return self; }
-        return noExtensionURL.URLByAppendingPathExtension(fileExtension)
+        guard let originalPath = deletingPathExtension().absoluteString else { assertionFailure(); return self; }
+        guard let noExtensionURL = URL(string: originalPath + varation.pathComponent) else { assertionFailure(); return self; }
+        return noExtensionURL.appendingPathExtension(fileExtension)
     }
 }

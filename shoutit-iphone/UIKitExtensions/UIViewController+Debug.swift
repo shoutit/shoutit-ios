@@ -11,8 +11,8 @@ import UIKit
 extension UIViewController {
     
     func notImplemented() {
-        let alertController = UIAlertController(title: nil, message: "Action not implemented", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: nil, message: "Action not implemented", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: LocalizedString.ok, style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 }

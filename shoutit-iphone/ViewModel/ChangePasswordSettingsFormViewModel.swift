@@ -12,44 +12,44 @@ import ShoutitKit
 
 final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let successSubject: PublishSubject<Success> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
+    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
     
     let title = NSLocalizedString("Change password", comment: "Change password screen title")
     var cellViewModels: [SettingsFormCellViewModel] = []
     
     init() {
         
-        let oldPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .OldPassword)
-        let newPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .NewPassword)
-        let verifyPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .VerifyPassword)
-        let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change password", comment: "Change Password Button Title"), action: changePassword)
+        let oldPasswordCell = SettingsFormCellViewModel.textField(value: nil, type: .oldPassword)
+        let newPasswordCell = SettingsFormCellViewModel.textField(value: nil, type: .newPassword)
+        let verifyPasswordCell = SettingsFormCellViewModel.textField(value: nil, type: .verifyPassword)
+        let changeButtonCell = SettingsFormCellViewModel.button(title: NSLocalizedString("Change password", comment: "Change Password Button Title"), action: changePassword)
         
-        if case .Logged(let user)? = Account.sharedInstance.loginState where user.isPasswordSet == true {
+        if case .logged(let user)? = Account.sharedInstance.loginState, user.isPasswordSet == true {
             cellViewModels = [oldPasswordCell, newPasswordCell, verifyPasswordCell, changeButtonCell]
         } else {
             cellViewModels = [newPasswordCell, verifyPasswordCell, changeButtonCell]
         }
     }
     
-    private func changePassword() {
+    fileprivate func changePassword() {
         
         var oldPassword: String?
         var newPassword: String?
         var newPassword2: String?
         
-        for case let .TextField(value, type) in cellViewModels {
+        for case let .textField(value, type) in cellViewModels {
             switch type {
-            case .NewPassword: newPassword = value
-            case .VerifyPassword: newPassword2 = value
-            case .OldPassword: oldPassword = value
+            case .newPassword: newPassword = value
+            case .verifyPassword: newPassword2 = value
+            case .oldPassword: oldPassword = value
             default: break
             }
         }
         
-        if case .Invalid(let errors) = ShoutitValidator.validatePassword(newPassword) {
+        if case .invalid(let errors) = ShoutitValidator.validatePassword(newPassword) {
             errorSubject.onNext(errors[0])
             return
         }
@@ -63,7 +63,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
         APIAuthService.changePasswordWithParams(params)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let success):
+                case .next(let success):
                     self?.successSubject.onNext(success)
                 case .Error(let error):
                     self?.errorSubject.onNext(error)

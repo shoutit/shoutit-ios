@@ -14,7 +14,7 @@ import ShoutitKit
 class PagesListParentViewController: UIViewController, ContainerController {
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var listChoiceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
@@ -49,17 +49,17 @@ class PagesListParentViewController: UIViewController, ContainerController {
         setupViews()
     }
     
-    private func setupViews() {
+    fileprivate func setupViews() {
         disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
-        createPageButton.contentHorizontalAlignment = Platform.isRTL ? .Right : .Left
+        createPageButton.contentHorizontalAlignment = Platform.isRTL ? .right : .left
     }
     
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
     @IBAction func searchAction() {
-        flowDelegate?.showSearchInContext(.General)
+        flowDelegate?.showSearchInContext(.general)
     }
     
     func switchToPublicChats() {
@@ -72,7 +72,7 @@ class PagesListParentViewController: UIViewController, ContainerController {
         self.changeContentTo(self.myPagesViewController)
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         listChoiceSegmentedControl
             .rx_value
@@ -95,7 +95,7 @@ class PagesListParentViewController: UIViewController, ContainerController {
             .addDisposableTo(disposeBag)
     }
     
-    private func showCreatePageView() {
+    fileprivate func showCreatePageView() {
         let viewModel = LoginWithEmailViewModel()
         
         viewModel.loginSuccessSubject.subscribeNext { (created) in

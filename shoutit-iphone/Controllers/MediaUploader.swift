@@ -11,31 +11,31 @@ import AmazonS3RequestManager
 import ShoutitKit
 
 enum MediaUploaderBucket {
-    case UserImage
-    case ShoutImage
-    case TagImage
+    case userImage
+    case shoutImage
+    case tagImage
     
     func bucketBasePath() -> String {
         switch (self) {
-        case .UserImage: return "https://user-image.static.shoutit.com/"
-        case .ShoutImage: return "https://shout-image.static.shoutit.com/"
-        case .TagImage: return "https://tag-image.static.shoutit.com/"
+        case .userImage: return "https://user-image.static.shoutit.com/"
+        case .shoutImage: return "https://shout-image.static.shoutit.com/"
+        case .tagImage: return "https://tag-image.static.shoutit.com/"
         }
     }
     
     func bucketName() -> String {
         switch (self) {
-        case .UserImage: return "shoutit-user-image-original"
-        case .ShoutImage: return "shoutit-shout-image-original"
-        case .TagImage: return "shoutit-tag-image-original"
+        case .userImage: return "shoutit-user-image-original"
+        case .shoutImage: return "shoutit-shout-image-original"
+        case .tagImage: return "shoutit-tag-image-original"
         }
     }
 }
 
 final class MediaUploader: AnyObject {
     
-    private let amazonAccessKey = "AKIAJW62O3PBJT3W3HJA"
-    private let amazonSecretKey = "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"
+    fileprivate let amazonAccessKey = "AKIAJW62O3PBJT3W3HJA"
+    fileprivate let amazonSecretKey = "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"
     
     var tasks : [MediaUploadingTask]!
     let bucket : MediaUploaderBucket!
@@ -47,7 +47,7 @@ final class MediaUploader: AnyObject {
         createAmazonS3Manager()
     }
     
-    func uploadAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         if let task = taskForAttachment(attachment) { return task }
         guard let originalData = attachment.originalData else { fatalError() }
         guard let user = Account.sharedInstance.user else { fatalError("Uploading without user account not supported.") }
@@ -55,17 +55,17 @@ final class MediaUploader: AnyObject {
         let destination = task.attachment.remoteFilename(user)
         let request = amazonManager.putObject(originalData, destinationPath: destination)
         task.request = request
-        task.attachment.remoteURL = NSURL(string: bucket.bucketBasePath() + destination)
-        if let data = task.attachment.image?.dataRepresentation() where attachment.type == .Video {
+        task.attachment.remoteURL = URL(string: bucket.bucketBasePath() + destination)
+        if let data = task.attachment.image?.dataRepresentation(), attachment.type == .Video {
             let destination = task.attachment.thumbRemoteFilename(user)
             amazonManager.putObject(data, destinationPath: destination)
-            task.attachment.thumbRemoteURL = NSURL(string: bucket.bucketBasePath() + destination)
+            task.attachment.thumbRemoteURL = URL(string: bucket.bucketBasePath() + destination)
         }
         tasks.append(task)
         return task
     }
     
-    func taskForAttachment(attachment: MediaAttachment?) -> MediaUploadingTask? {
+    func taskForAttachment(_ attachment: MediaAttachment?) -> MediaUploadingTask? {
         guard let _ = attachment else { return nil }
         for task in tasks {
             if task.attachment == attachment {
@@ -75,15 +75,15 @@ final class MediaUploader: AnyObject {
         return nil
     }
     
-    func removeTaskForAttachment(attachment: MediaAttachment) {
+    func removeTaskForAttachment(_ attachment: MediaAttachment) {
         if let task = taskForAttachment(attachment) {
-            if let idx = tasks.indexOf(task) {
-                self.tasks.removeAtIndex(idx)
+            if let idx = tasks.index(of: task) {
+                self.tasks.remove(at: idx)
             }
         }
     }
     
-    private func createAmazonS3Manager() {
-        amazonManager = AmazonS3RequestManager(bucket: bucket.bucketName(), region: .EUWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
+    fileprivate func createAmazonS3Manager() {
+        amazonManager = AmazonS3RequestManager(bucket: bucket.bucketName(), region: .euWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
     }
 }

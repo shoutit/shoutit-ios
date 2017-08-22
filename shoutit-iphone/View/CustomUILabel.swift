@@ -10,7 +10,7 @@ import UIKit
 
 final class CustomUILabel: UILabel {
     
-    private let textPadding: CGFloat = 2
+    fileprivate let textPadding: CGFloat = 2
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
@@ -24,7 +24,7 @@ final class CustomUILabel: UILabel {
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.clearColor()
+    @IBInspectable var borderColor: UIColor = UIColor.clear
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,24 +32,24 @@ final class CustomUILabel: UILabel {
         applyBorder()
     }
     
-    override func drawTextInRect(rect: CGRect) {
+    override func drawText(in rect: CGRect) {
         let insets = UIEdgeInsets(top: 0, left: textPadding, bottom: 0, right: textPadding)
         let insetsRect = UIEdgeInsetsInsetRect(rect, insets)
-        super.drawTextInRect(insetsRect)
+        super.drawText(in: insetsRect)
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        let defaultSize = super.intrinsicContentSize()
+    override var intrinsicContentSize : CGSize {
+        let defaultSize = super.intrinsicContentSize
         return CGSize(width: defaultSize.width + 2 * textPadding, height: defaultSize.height)
     }
     
-    private func applyCornerRadius() {
+    fileprivate func applyCornerRadius() {
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = cornerRadius > 0
     }
     
-    private func applyBorder() {
-        layer.borderWidth = borderWidth / UIScreen.mainScreen().scale
-        layer.borderColor = borderColor.CGColor
+    fileprivate func applyBorder() {
+        layer.borderWidth = borderWidth / UIScreen.main.scale
+        layer.borderColor = borderColor.cgColor
     }
 }

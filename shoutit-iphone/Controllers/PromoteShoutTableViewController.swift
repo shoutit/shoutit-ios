@@ -14,14 +14,14 @@ final class PromoteShoutTableViewController: UITableViewController {
     
     var viewModel: PromoteShoutViewModel!
     weak var flowDelegate : FlowController?
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     @IBOutlet weak var creditsBalanceLabel: UILabel!
     
     @IBOutlet weak var headerView : PromotionLabelsViews?
     
-    private var options : [PromotionOption]? = []
+    fileprivate var options : [PromotionOption]? = []
     
-    private var selectedOption : PromotionOption? {
+    fileprivate var selectedOption : PromotionOption? {
         didSet {
             if let selectedOption = selectedOption {
                 buyOption(selectedOption)
@@ -56,25 +56,25 @@ final class PromoteShoutTableViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let options = options else {
             return 1
         }
         return options.count > 0 ? options.count : 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if options?.count == 0 {
-            return tableView.dequeueReusableCellWithIdentifier("PromotionsLoadingPlaceholder", forIndexPath: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "PromotionsLoadingPlaceholder", for: indexPath)
         }
         
         // PromotionsOptionCell
-        let cell = tableView.dequeueReusableCellWithIdentifier("PromotionsOptionCell", forIndexPath: indexPath) as! PromotionOptionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PromotionsOptionCell", for: indexPath) as! PromotionOptionTableViewCell
         
         guard let option = options?[indexPath.row] else {
             return cell
@@ -85,11 +85,11 @@ final class PromoteShoutTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let option = options?[indexPath.row] else {
             return
         }
@@ -97,23 +97,23 @@ final class PromoteShoutTableViewController: UITableViewController {
         showPromoteAlert(option)
     }
     
-    func showPromoteAlert(option: PromotionOption) {
-        let alert = UIAlertController(title: NSLocalizedString("Promote Shout", comment: "Promote Shout"), message: NSLocalizedString("Confirm buying \(option.name) for \(option.credits) credits", comment: ""), preferredStyle: .Alert)
+    func showPromoteAlert(_ option: PromotionOption) {
+        let alert = UIAlertController(title: NSLocalizedString("Promote Shout", comment: "Promote Shout"), message: NSLocalizedString("Confirm buying \(option.name) for \(option.credits) credits", comment: ""), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Buy", comment: "Promote Shout"), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Buy", comment: "Promote Shout"), style: .default, handler: { (action) in
             self.selectedOption = option
         }))
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: { (action) in
         }))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
-    func buyOption(option: PromotionOption) {
+    func buyOption(_ option: PromotionOption) {
         self.viewModel.promoteShoutWithOption(option).subscribe { [weak self] (event) in
             switch event {
-                case .Next(let promotion):
+                case .next(let promotion):
                     self?.navigationController?.showSuccessMessage(NSLocalizedString("Shout Promoted successfully", comment: "Promoted Shout Success Message"))
                     self?.shoutPromoted(promotion)
                 case .Error(let error):
@@ -124,11 +124,11 @@ final class PromoteShoutTableViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
     }
 
-    func shoutPromoted(promotion: Promotion) {
+    func shoutPromoted(_ promotion: Promotion) {
 
         let shout = viewModel.shout.copyShoutWithPromotion(promotion)
 
-        self.dismissViewControllerAnimated(true) { [weak self] in
+        self.dismiss(animated: true) { [weak self] in
             self?.flowDelegate?.showPromotedViewWithShout(shout)
         }
     }

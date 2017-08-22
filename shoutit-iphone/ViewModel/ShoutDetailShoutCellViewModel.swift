@@ -11,11 +11,11 @@ import ShoutitKit
 
 enum ShoutDetailShoutCellViewModel {
     
-    case Content(shout: Shout)
-    case NoContent(message: String)
-    case Loading
-    case Error(error: ErrorType)
-    case SeeAll
+    case content(shout: Shout)
+    case noContent(message: String)
+    case loading
+    case error(error: Error)
+    case seeAll
     
     static var placeholderCellReuseIdentifier: String {
         return "PlaceholderCellReuseIdentifier"
@@ -31,35 +31,35 @@ enum ShoutDetailShoutCellViewModel {
     
     var cellReuseIdentifier: String {
         switch self {
-        case .Error, .NoContent, .Loading:
+        case .error, .noContent, .loading:
             return ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier
-        case .Content:
+        case .content:
             return ShoutDetailShoutCellViewModel.contentCellReuseIdentifier
-        case .SeeAll:
+        case .seeAll:
             return ShoutDetailShoutCellViewModel.seeAllCellReuseIdentifier
         }
     }
     
     var title: String? {
-        guard case .Content(let shout) = self else {
+        guard case .content(let shout) = self else {
             return nil
         }
         return shout.title
     }
     
     var authorName: String? {
-        guard case .Content(let shout) = self else {
+        guard case .content(let shout) = self else {
             return nil
         }
         return shout.user?.name
     }
     
     var priceString: String? {
-        guard case .Content(let shout) = self else {
+        guard case .content(let shout) = self else {
             return nil
         }
         
-        if let price = shout.price, currency = shout.currency {
+        if let price = shout.price, let currency = shout.currency {
             return NumberFormatters.priceStringWithPrice(price, currency: currency)
         }
         
@@ -67,7 +67,7 @@ enum ShoutDetailShoutCellViewModel {
     }
     
     var errorMessage: String? {
-        guard case .Error(let error) = self else {
+        guard case .error(let error) = self else {
             return nil
         }
         return error.sh_message

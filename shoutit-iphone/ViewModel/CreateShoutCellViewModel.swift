@@ -10,10 +10,10 @@ import Foundation
 import ShoutitKit
 
 enum CreateShoutCellViewModel {    
-    case Category
-    case Description
-    case Location
-    case Mobile
-    case FilterChoice(filter: Filter)
-    case Facebook
+    case category
+    case description
+    case location
+    case mobile
+    case filterChoice(filter: Filter)
+    case facebook
 }

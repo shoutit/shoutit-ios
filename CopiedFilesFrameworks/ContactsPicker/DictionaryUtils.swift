@@ -8,7 +8,7 @@
 
 import Foundation
 internal class DictionaryUtils {
-    static func dictionaryWithSwappedKeysAndValues<T>(dict:Dictionary<T,T>) -> Dictionary<T,T>{
+    static func dictionaryWithSwappedKeysAndValues<T>(_ dict:Dictionary<T,T>) -> Dictionary<T,T>{
         var reversedDictionary = [T:T]()
         for (key, value) in dict {
             reversedDictionary[value] = key

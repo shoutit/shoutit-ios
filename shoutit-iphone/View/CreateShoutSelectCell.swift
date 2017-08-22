@@ -12,14 +12,14 @@ import ShoutitKit
 
 final class CreateShoutSelectCell: UITableViewCell {
     
-    private(set) var reuseDisposeBag = DisposeBag()
+    fileprivate(set) var reuseDisposeBag = DisposeBag()
     @IBOutlet var selectButton : SelectionButton!
  
-    func fillWithFilter(filter: Filter, currentValue: FilterValue?) {
+    func fillWithFilter(_ filter: Filter, currentValue: FilterValue?) {
         if let value = currentValue {
-            self.selectButton.setTitle(value.name, forState: .Normal)
+            self.selectButton.setTitle(value.name, for: UIControlState())
         } else {
-            self.selectButton.setTitle(filter.name, forState: .Normal)
+            self.selectButton.setTitle(filter.name, for: UIControlState())
         }
     }
     

@@ -10,25 +10,25 @@ import Foundation
 import Argo
 import ShoutitKit
 
-enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
-    case Idle
-    case Loading
-    case Loaded(cells: [CellViewModelType], page: PageIndexType, lastPageResults: PagedResults<ItemType>)
-    case LoadingMore(cells: [CellViewModelType], currentPage: PageIndexType, loadingPage: PageIndexType)
-    case Refreshing(cells: [CellViewModelType], page: PageIndexType)
-    case LoadedAllContent(cells: [CellViewModelType], page: PageIndexType)
-    case NoContent
-    case Error(ErrorType)
+enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable> where ItemType.DecodedType == ItemType {
+    case idle
+    case loading
+    case loaded(cells: [CellViewModelType], page: PageIndexType, lastPageResults: PagedResults<ItemType>)
+    case loadingMore(cells: [CellViewModelType], currentPage: PageIndexType, loadingPage: PageIndexType)
+    case refreshing(cells: [CellViewModelType], page: PageIndexType)
+    case loadedAllContent(cells: [CellViewModelType], page: PageIndexType)
+    case noContent
+    case error(Error)
     
     func getCellViewModels() -> [CellViewModelType]? {
         switch self {
-        case .Refreshing(let cells, _):
+        case .refreshing(let cells, _):
             return cells
-        case .LoadingMore(let cells, _, _):
+        case .loadingMore(let cells, _, _):
             return cells
-        case .Loaded(let cells, _, _):
+        case .loaded(let cells, _, _):
             return cells
-        case .LoadedAllContent(let cells, _):
+        case .loadedAllContent(let cells, _):
             return cells
         default:
             return nil

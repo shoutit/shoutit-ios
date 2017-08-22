@@ -16,7 +16,7 @@ final class ConversationShoutCell: UITableViewCell, ThumbedConversationCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     @IBOutlet weak var avatarImageView: UIImageView? {
         didSet {
-            avatarImageView?.userInteractionEnabled = true
+            avatarImageView?.isUserInteractionEnabled = true
             addAvatarButtonToAvatarImageView()
         }
     }
@@ -30,7 +30,7 @@ final class ConversationShoutCell: UITableViewCell, ThumbedConversationCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .None
+        self.selectionStyle = .none
     }
     
     override func prepareForReuse() {

@@ -17,30 +17,30 @@ final class LocationManager: NSObject {
     
     static let sharedInstance = LocationManager()
     
-    private let disposeBag = DisposeBag()
-    private let locationManager = CLLocationManager()
-    private (set) var currentLocation = CLLocation() {
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let locationManager = CLLocationManager()
+    fileprivate (set) var currentLocation = CLLocation() {
         didSet {
             updateUserCoordinates(currentLocation.coordinate)
         }
     }
     
-    private override init() {
+    fileprivate override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
     
     func askForPermissions() {
-        if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
             locationManager.requestWhenInUseAuthorization()
         }
     }
     
     func startUpdatingLocationIfPermissionsGranted() {
-        let autoUpdates = (NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? Bool) ?? false
+        let autoUpdates = (UserDefaults.standard.object(forKey: Constants.Defaults.locationAutoUpdates) as? Bool) ?? false
         
-        if autoUpdates && CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+        if autoUpdates && CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.startUpdatingLocation()
         }
     }
@@ -49,9 +49,9 @@ final class LocationManager: NSObject {
         locationManager.stopUpdatingLocation()
     }
     
-    func updateUserCoordinates(coordinates: CLLocationCoordinate2D) {
+    func updateUserCoordinates(_ coordinates: CLLocationCoordinate2D) {
         
-        guard let auto = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? NSNumber else {
+        guard let auto = UserDefaults.standard.object(forKey: Constants.Defaults.locationAutoUpdates) as? NSNumber else {
             return
         }
 
@@ -72,7 +72,7 @@ final class LocationManager: NSObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.first else {
             return
         }
@@ -83,13 +83,13 @@ extension LocationManager: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+    func locationManager(_ manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         if CLLocationCoordinate2DIsValid(newLocation.coordinate) {
             currentLocation = newLocation
         }
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        NSNotificationCenter.defaultCenter().postNotificationName(LocationManagerDidChangeAuthorizationStatus, object: manager)
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: LocationManagerDidChangeAuthorizationStatus), object: manager)
     }
 }

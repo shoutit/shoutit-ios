@@ -15,7 +15,7 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     
     // UI
     lazy var placeholderView: TableViewPlaceholderView = {[unowned self] in
-        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        let view = Bundle.main.loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)?[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height * 0.5)
         return view
     }()
@@ -25,7 +25,7 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     var sectionViewModel: PostSignupSuggestionsSectionViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -52,23 +52,23 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         tableView.scrollEnabled = tableView.contentSize.height > tableView.frame.height
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel.state.asObservable()
             .subscribeNext {[weak self] (state) in
                 switch state {
-                case .Idle:
+                case .idle:
                     self?.tableView.tableHeaderView = nil
-                case .Loading:
+                case .loading:
                     self?.placeholderView.showActivity()
                     self?.tableView.tableHeaderView = self?.placeholderView
-                case .ContentUnavailable:
+                case .contentUnavailable:
                     self?.placeholderView.label.text = NSLocalizedString("Categories unavailable", comment: "Could not load categories placeholder")
                     self?.tableView.tableHeaderView = self?.placeholderView
-                case .Error(let error):
+                case .error(let error):
                     self?.placeholderView.showMessage(error.sh_message)
                     self?.tableView.tableHeaderView = self?.placeholderView
-                case .ContentLoaded:
+                case .contentLoaded:
                     self?.tableView.tableHeaderView = nil
                 }
                 
@@ -87,30 +87,30 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 58
     }
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        guard case LoadingState.ContentLoaded = viewModel.state.value else {
+    override func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+        guard case LoadingState.contentLoaded = viewModel.state.value else {
             return 0
         }
         
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard case LoadingState.ContentLoaded = viewModel.state.value else {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard case LoadingState.contentLoaded = viewModel.state.value else {
             return 0
         }
         
         return sectionViewModel.cells.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard case LoadingState.ContentLoaded = viewModel.state.value else {
+    override func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard case LoadingState.contentLoaded = viewModel.state.value else {
             fatalError()
         }
         
@@ -125,9 +125,9 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         cell.listenButton.setImage(image, forState: .Normal)
         
         cell.reuseDisposeBag = DisposeBag()
-        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorType?)> in
+        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorProtocol?)> in
             return cellViewModel.listen()
-        }).subscribeNext({[weak self] (let successMessage, let error) in
+        }).subscribeNext({[weak self] (successMessage, error) in
             if let successMessage = successMessage {
                 self?.showSuccessMessage(successMessage)
             } else if let error = error {
@@ -139,15 +139,15 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let view = NSBundle.mainBundle().loadNibNamed("PostSignupSuggestionsSectionHeader", owner: nil, options: nil).first as! PostSignupSuggestionsSectionHeader
+        let view = Bundle.main.loadNibNamed("PostSignupSuggestionsSectionHeader", owner: nil, options: nil)?.first as! PostSignupSuggestionsSectionHeader
         view.sectionTitleLabel.text = sectionViewModel.section.title
         
         return view
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
 }

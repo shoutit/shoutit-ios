@@ -15,12 +15,12 @@ final class NotificationsTableViewCell: UITableViewCell {
     @IBOutlet weak var notificationImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    func bindWithNotificationMessage(message: Notification) {
+    func bindWithNotificationMessage(_ message: ShoutitKit.Notification) {
         self.titleLabel.attributedText = message.attributedText()
         self.notificationImage.sh_setImageWithURL(message.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
         if message.read == true {
-            self.contentView.backgroundColor = UIColor.whiteColor()
+            self.contentView.backgroundColor = UIColor.white
         } else {
             self.contentView.backgroundColor = UIColor(red: 200/255, green: 230/255, blue: 201/255, alpha: 1)
         }
@@ -29,7 +29,7 @@ final class NotificationsTableViewCell: UITableViewCell {
         
     }
 
-    func bindWithTransaction(transaction: Transaction) {
+    func bindWithTransaction(_ transaction: Transaction) {
         self.titleLabel.attributedText = transaction.attributedText()
         if transaction.type == "in" {
             self.notificationImage.image = UIImage(named: "dollarIn")

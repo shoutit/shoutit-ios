@@ -18,9 +18,9 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     var finishedBlock: ((Bool, Address?) -> Void)?
     
-    private let disposeBag = DisposeBag()
-    private let viewModel = ChangeLocationViewModel()
-    private let cellIdentifier = "ChangeLocationCellIdentifier"
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let viewModel = ChangeLocationViewModel()
+    fileprivate let cellIdentifier = "ChangeLocationCellIdentifier"
     
     var shouldShowAutoUpdates : Bool = true
     
@@ -34,15 +34,15 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     var autoUpdates : Bool = false {
         didSet {
             loadInitialState()
-            NSUserDefaults.standardUserDefaults().setObject(autoUpdates, forKey: Constants.Defaults.locationAutoUpdates)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(autoUpdates, forKey: Constants.Defaults.locationAutoUpdates)
+            UserDefaults.standard.synchronize()
         }
     }
     
     var loading : Bool = true {
         didSet {
-            currentLocationLabel.hidden = loading
-            activityIndicator.hidden = !loading
+            currentLocationLabel.isHidden = loading
+            activityIndicator.isHidden = !loading
             if loading {
                 activityIndicator.startAnimating()
             } else {
@@ -54,7 +54,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let auto = NSUserDefaults.standardUserDefaults().objectForKey(Constants.Defaults.locationAutoUpdates) as? Bool {
+        if let auto = UserDefaults.standard.object(forKey: Constants.Defaults.locationAutoUpdates) as? Bool {
             autoUpdates = auto
         }
         
@@ -64,19 +64,19 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         setupObservers()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(authorizationStatusDidChange), name: LocationManagerDidChangeAuthorizationStatus, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(authorizationStatusDidChange), name: NSNotification.Name(rawValue: LocationManagerDidChangeAuthorizationStatus), object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         LocationManager.sharedInstance.startUpdatingLocationIfPermissionsGranted()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: LocationManagerDidChangeAuthorizationStatus, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: LocationManagerDidChangeAuthorizationStatus), object: nil)
     }
     
     deinit {
@@ -84,38 +84,38 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func showAutoUpdatesButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Auto", comment: "Automatically get user location"), style: .Plain, target: self, action: #selector(toggleAutoUpdates))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Auto", comment: "Automatically get user location"), style: .plain, target: self, action: #selector(toggleAutoUpdates))
     }
     
     func toggleAutoUpdates() {
-        let alert = UIAlertController(title: NSLocalizedString("Automatically Location Updates", comment: "Change Location Screen option"), message: "", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Automatically Location Updates", comment: "Change Location Screen option"), message: "", preferredStyle: .actionSheet)
         
         if self.autoUpdates {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: "Turn off auto location update"), style: .Default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: "Turn off auto location update"), style: .default, handler: { (action) in
                 self.autoUpdates = false
             }))
         } else {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn On", comment: "Turn on auto location update"), style: .Default, handler: { (action) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Turn On", comment: "Turn on auto location update"), style: .default, handler: { (action) in
                 
-                if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+                if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
                     self.autoUpdates = true
-                } else if CLLocationManager.authorizationStatus() == .Denied {
+                } else if CLLocationManager.authorizationStatus() == .denied {
                     // go to settings
                     
-                    let alertController = UIAlertController(title: NSLocalizedString("Shoutit is not authorized to use your location. Please go to Settings and change location permissions.", comment: ""), message: nil, preferredStyle: .Alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("Shoutit is not authorized to use your location. Please go to Settings and change location permissions.", comment: ""), message: nil, preferredStyle: .alert)
                     
-                    let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Go to settings button"), style: .Default) { (alertAction) in
+                    let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Go to settings button"), style: .default) { (alertAction) in
                         
-                        if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
-                            UIApplication.sharedApplication().openURL(appSettings)
+                        if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                            UIApplication.shared.openURL(appSettings)
                         }
                     }
                     alertController.addAction(settingsAction)
                     
-                    let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil)
+                    let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil)
                     alertController.addAction(cancelAction)
                     
-                    self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
+                    self.navigationController?.present(alertController, animated: true, completion: nil)
                     
                 } else {
                     LocationManager.sharedInstance.askForPermissions()
@@ -123,13 +123,13 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
             }))
         }
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: { (action) in }))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: { (action) in }))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
-    @objc private func authorizationStatusDidChange(notification: NSNotification) {
-        if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
+    @objc fileprivate func authorizationStatusDidChange(_ notification: Foundation.Notification) {
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
             self.autoUpdates = false
         } else {
             self.autoUpdates = true
@@ -137,17 +137,17 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         }
     }
     
-    private func setAutoLocationUpdates(autoUpdates: Bool) {
+    fileprivate func setAutoLocationUpdates(_ autoUpdates: Bool) {
         self.autoUpdates = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadInitialState()
     }
     
     @IBAction override func dismiss() {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func loadInitialState() {
@@ -181,7 +181,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
                 self.autoUpdates = false
                 
                 guard let place = selectedLocation.place else { return }
-                guard case .PlaceID(let plId) = place else { return }
+                guard case .placeID(let plId) = place else { return }
                 self.viewModel.geocoder
                     .rx_details(plId)
                     .filter{$0?.geometryLocation != nil}
@@ -201,7 +201,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         }.addDisposableTo(disposeBag)
     }
     
-    func finishWithAddress(address: Address) {
+    func finishWithAddress(_ address: Address) {
         
         guard let username = Account.sharedInstance.user?.username else {
             return
@@ -210,7 +210,7 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         let coordinates = CLLocationCoordinate2D(latitude: address.latitude ?? 0, longitude: address.longitude ?? 0)
         let params = CoordinateParams(coordinates: coordinates)
         
-        if case .Some(.Page(_,_)) = Account.sharedInstance.loginState {
+        if case .some(.page(_,_)) = Account.sharedInstance.loginState {
             APILocationService.updateLocationForPage(username, withParams: params).subscribeNext {[weak self] (_) in
                 if let finish = self?.finishedBlock {
                     self?.searchBar.text = ""

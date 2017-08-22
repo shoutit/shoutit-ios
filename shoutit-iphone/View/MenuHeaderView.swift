@@ -31,12 +31,12 @@ final class MenuHeaderView: UIView {
         self.profileNameLabel?.layer.shadowOpacity = 0.5;
     }
     
-    func fillWith(loginState: Account.LoginState?){
+    func fillWith(_ loginState: Account.LoginState?){
         
         switch loginState {
-        case .Some(.Logged(let user)):
+        case .some(.logged(let user)):
             fillWithLoggedUser(user)
-        case .Some(.Page(_, let page)):
+        case .some(.page(_, let page)):
             fillWithPage(page)
         default:
             fillAsGuest()
@@ -45,70 +45,70 @@ final class MenuHeaderView: UIView {
         fillLocation()
     }
     
-    private func fillWithLoggedUser(user: DetailedUserProfile) {
+    fileprivate func fillWithLoggedUser(_ user: DetailedUserProfile) {
         
-        if let path = user.imagePath, profileURL = NSURL(string: path) {
+        if let path = user.imagePath, let profileURL = URL(string: path) {
             profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "default_profile"))
         } else {
             profileImageView?.image = UIImage.squareAvatarPlaceholder()
         }
         
-        if let path = user.coverPath, coverURL = NSURL(string: path) {
+        if let path = user.coverPath, let coverURL = URL(string: path) {
             coverImageView?.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         }
         
         profileNameLabel?.text = user.name
         
-        profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView?.layer.borderColor = UIColor.white.cgColor
         profileImageView?.layer.borderWidth = 1.0
         profileImageView?.layer.masksToBounds = true
         
-        creditsCountLabel?.hidden = false
+        creditsCountLabel?.isHidden = false
         creditsCountLabel?.text = "\(user.stats?.credit ?? 0)"
     }
     
-    private func fillWithPage(page: DetailedProfile) {
+    fileprivate func fillWithPage(_ page: DetailedProfile) {
         
-        if let path = page.imagePath, profileURL = NSURL(string: path) {
+        if let path = page.imagePath, let profileURL = URL(string: path) {
             profileImageView?.sh_setImageWithURL(profileURL, placeholderImage: UIImage(named: "default_page"))
         } else {
             profileImageView?.image = UIImage.squareAvatarPagePlaceholder()
         }
         
-        if let path = page.coverPath, coverURL = NSURL(string: path) {
+        if let path = page.coverPath, let coverURL = URL(string: path) {
             coverImageView?.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         }
         
         profileNameLabel?.text = page.name
         
-        profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView?.layer.borderColor = UIColor.white.cgColor
         profileImageView?.layer.borderWidth = 1.0
         profileImageView?.layer.masksToBounds = true
         
-        creditsCountLabel?.hidden = true
+        creditsCountLabel?.isHidden = true
     }
     
-    private func fillAsGuest() {
+    fileprivate func fillAsGuest() {
         profileImageView?.image = UIImage(named: "default_profile")
         profileNameLabel?.text = NSLocalizedString("Guest", comment: "Menu Header Title")
         coverImageView?.image = UIImage(named: "auth_screen_bg_pattern")
         
-        profileImageView?.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView?.layer.borderColor = UIColor.white.cgColor
         profileImageView?.layer.borderWidth = 0.0
         profileImageView?.layer.masksToBounds = true
         
-        creditsCountLabel?.hidden = true
+        creditsCountLabel?.isHidden = true
     }
     
-    private func fillLocation() {
+    fileprivate func fillLocation() {
         
         countryNameLabel?.text = Account.sharedInstance.locationString()
         
         if let flagName = Account.sharedInstance.user?.location.country {
-            countryFlagImageView?.hidden = false
+            countryFlagImageView?.isHidden = false
             countryFlagImageView?.image = UIImage(named: flagName)
         } else {
-            countryFlagImageView?.hidden = true
+            countryFlagImageView?.isHidden = true
         }
     }
     

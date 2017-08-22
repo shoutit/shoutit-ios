@@ -27,7 +27,7 @@ public struct GuestUser: User {
 
 extension GuestUser: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<GuestUser> {
+    public static func decode(_ j: JSON) -> Decoded<GuestUser> {
         let a = curry(GuestUser.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -45,7 +45,7 @@ extension GuestUser: Decodable {
 extension GuestUser {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
             "is_guest" : self.isGuest.encode(),

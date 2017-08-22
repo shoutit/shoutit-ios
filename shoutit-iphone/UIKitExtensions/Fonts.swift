@@ -9,23 +9,23 @@
 import UIKit
 
 enum FontWeight {
-    case Light
-    case Regular
-    case Medium
-    case Semibold
-    case Bold
+    case light
+    case regular
+    case medium
+    case semibold
+    case bold
     
     var fontName: String {
         switch self {
-        case .Light:
+        case .light:
             return "HelveticaNeue-Light"
-        case .Regular:
+        case .regular:
             return "HelveticaNeue"
-        case Medium:
+        case .medium:
             return "HelveticaNeue-Medium"
-        case Semibold:
+        case .semibold:
             return "HelveticaNeue-Medium"
-        case Bold:
+        case .bold:
             return "HelveticaNeue-Bold"
         }
     }
@@ -33,15 +33,15 @@ enum FontWeight {
     @available(iOS 8.2, *)
     var weight: CGFloat {
         switch self {
-        case .Light:
+        case .light:
             return UIFontWeightLight
-        case .Regular:
+        case .regular:
             return UIFontWeightRegular
-        case Medium:
+        case .medium:
             return UIFontWeightMedium
-        case Semibold:
+        case .semibold:
             return UIFontWeightSemibold
-        case Bold:
+        case .bold:
             return UIFontWeightBold
         }
     }
@@ -49,10 +49,10 @@ enum FontWeight {
 
 extension UIFont {
     
-    static func sh_systemFontOfSize(size: CGFloat, weight: FontWeight) -> UIFont {
+    static func sh_systemFontOfSize(_ size: CGFloat, weight: FontWeight) -> UIFont {
         
         if #available(iOS 8.2, *) {
-            return UIFont.systemFontOfSize(size, weight: weight.weight)
+            return UIFont.systemFont(ofSize: size, weight: weight.weight)
         } else {
             return UIFont(name: weight.fontName, size: size)!
         }

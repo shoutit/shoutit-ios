@@ -10,7 +10,7 @@ import Foundation
 
 public final class NumberFormatters {
     
-    public static func minutesAndSecondsUserDisplayableStringWithTimeInterval(time: NSTimeInterval) -> String {
+    public static func minutesAndSecondsUserDisplayableStringWithTimeInterval(_ time: TimeInterval) -> String {
         let seconds = Int(time)
         let minutesPart = seconds / 60
         let secondsPart = seconds % 60
@@ -19,7 +19,7 @@ public final class NumberFormatters {
         return "\(minutesString):\(secondsString)"
     }
     
-    public static func numberToShortString(number: Int) -> String {
+    public static func numberToShortString(_ number: Int) -> String {
         
         var num:Double = Double(number)
         
@@ -43,7 +43,7 @@ public final class NumberFormatters {
         return string
     }
     
-    public static func priceStringWithPrice(price: Int?, currency: String? = nil) -> String? {
+    public static func priceStringWithPrice(_ price: Int?, currency: String? = nil) -> String? {
         
         guard let price = price else {
             return nil
@@ -53,21 +53,21 @@ public final class NumberFormatters {
             return NSLocalizedString("FREE", comment: "Free Price")
         }
         
-        let formatter = NSNumberFormatter()
+        let formatter = NumberFormatter()
         
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
-        formatter.locale = .autoupdatingCurrentLocale()
+        formatter.locale = .autoupdatingCurrent
         
         if let currency = currency {
-            formatter.currencyCode = currency.lowercaseString
-            formatter.numberStyle = .CurrencyStyle
+            formatter.currencyCode = currency.lowercased()
+            formatter.numberStyle = .currency
         }
         
-        return formatter.stringFromNumber(Double(price)/100.0)
+        return formatter.string(from: NSNumber(Double(price)/100.0))
     }
     
-    public static func badgeCountStringWithNumber(number: Int) -> String {
+    public static func badgeCountStringWithNumber(_ number: Int) -> String {
         
         if number > 99 {
             return "\(NSLocalizedString("+99", comment: "More than 99 Notifications")) "
@@ -76,15 +76,15 @@ public final class NumberFormatters {
         return localizedNumber(number)
     }
     
-    private static func localizedNumber(number: Int, numberOfDigits: Int? = nil) -> String {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .NoStyle
-        formatter.locale = .autoupdatingCurrentLocale()
+    fileprivate static func localizedNumber(_ number: Int, numberOfDigits: Int? = nil) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.locale = .autoupdatingCurrent
         if let numberOfDigits = numberOfDigits {
             formatter.minimumIntegerDigits = numberOfDigits
             formatter.maximumIntegerDigits = numberOfDigits
         }
         
-        return formatter.stringFromNumber(number)!
+        return formatter.string(from: NSNumber(number))!
     }
 }

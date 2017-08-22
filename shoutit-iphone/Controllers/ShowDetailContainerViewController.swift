@@ -13,34 +13,34 @@ import MBProgressHUD
 import ShoutitKit
 
 enum ShoutDetailTabbarButton {
-    case Call
-    case VideoCall
-    case Chat
-    case More
-    case Chats
-    case Promote(promoted: Bool)
-    case Edit
-    case Delete
+    case call
+    case videoCall
+    case chat
+    case more
+    case chats
+    case promote(promoted: Bool)
+    case edit
+    case delete
     
     var title: String {
         switch self {
-        case .Call:
+        case .call:
             return NSLocalizedString("Call", comment: "Shout detail tab bar item")
-        case .VideoCall:
+        case .videoCall:
             return NSLocalizedString("Video call", comment: "Shout detail tab bar item")
-        case .Chat:
+        case .chat:
             return NSLocalizedString("Chat", comment: "Shout detail tab bar item")
-        case .More:
+        case .more:
             return NSLocalizedString("More", comment: "Shout detail tab bar item")
-        case .Chats:
+        case .chats:
             return NSLocalizedString("Chats", comment: "Shout detail tab bar item")
-        case .Promote(true):
+        case .promote(true):
             return NSLocalizedString("Promoted", comment: "Shout detail tab bar item")
-        case .Promote(false):
+        case .promote(false):
             return NSLocalizedString("Promote", comment: "Shout detail tab bar item")
-        case .Edit:
+        case .edit:
             return LocalizedString.edit
-        case .Delete:
+        case .delete:
             return LocalizedString.delete
         default:
             fatalError()
@@ -49,31 +49,31 @@ enum ShoutDetailTabbarButton {
     
     var image: UIImage {
         switch self {
-        case .Call:
+        case .call:
             return UIImage.shoutDetailTabBarCallImage()
-        case .VideoCall:
+        case .videoCall:
             return UIImage.shoutDetailTabBarVideoCallImage()
-        case .Chat:
+        case .chat:
             return UIImage.shoutDetailTabBarChatImage()
-        case .More:
+        case .more:
             return UIImage.shoutDetailTabBarMoreImage()
-        case .Chats:
+        case .chats:
             return UIImage.shoutDetailTabBarChatImage()
-        case .Promote:
+        case .promote:
             return UIImage.shoutDetailTabBarPromoteStarImage()
-        case .Edit:
+        case .edit:
             return UIImage.shoutDetailTabBarEditImage()
-        case .Delete:
+        case .delete:
             return UIImage.shoutDetailTabBarDeleteImage()
         }
     }
     
     var color: UIColor {
         switch self {
-        case .Promote:
-            return UIColor(shoutitColor: .PromoteActionYellowColor)
+        case .promote:
+            return UIColor(shoutitColor: .promoteActionYellowColor)
         default:
-            return UIColor.whiteColor()
+            return UIColor.white
         }
     }
 }
@@ -87,8 +87,8 @@ class ShowDetailContainerViewController: UIViewController {
     weak var flowDelegate: FlowController?
     
     // RX
-    private var buttonsDisposeBag = DisposeBag()
-    private let disposeBag = DisposeBag()
+    fileprivate var buttonsDisposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // UI
     @IBOutlet weak var tabBarButtonsBar: UIView!
@@ -105,10 +105,10 @@ class ShowDetailContainerViewController: UIViewController {
         layoutButtons(reload: false)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         
-        if let destination = segue.destinationViewController as? ShoutDetailTableViewController {
+        if let destination = segue.destination as? ShoutDetailTableViewController {
             destination.viewModel = viewModel
             destination.flowDelegate = flowDelegate
         }
@@ -120,7 +120,7 @@ class ShowDetailContainerViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRx() {
+    fileprivate func setupRx() {
         
         viewModel.reloadObservable
             .observeOn(MainScheduler.instance)
@@ -133,13 +133,13 @@ class ShowDetailContainerViewController: UIViewController {
     @IBAction func shareAction() {
         let url = viewModel.shout.webPath.toURL()!
         let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        activityController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo]
-        self.navigationController?.presentViewController(activityController, animated: true, completion: nil)
+        activityController.excludedActivityTypes = [UIActivityType.print, UIActivityType.saveToCameraRoll, UIActivityType.postToFlickr, UIActivityType.postToVimeo]
+        self.navigationController?.present(activityController, animated: true, completion: nil)
     }
     
     // MARK: - Helpers
     
-    private func layoutButtons(reload reload: Bool) {
+    fileprivate func layoutButtons(reload: Bool) {
         
         buttonsDisposeBag = DisposeBag()
         let buttonModels = viewModel.tabbarButtons()
@@ -153,8 +153,8 @@ class ShowDetailContainerViewController: UIViewController {
             }
             constraint.constant = singleButtonWidth
             let model = buttonModels[button.tag]
-            button.setImage(model.image, forState: .Normal)
-            button.setTitle(model.title, forState: .Normal)
+            button.setImage(model.image, for: UIControlState())
+            button.setTitle(model.title, for: UIControlState())
             button.tintColor = model.color
             button.titleLabel?.textColor = model.color
             addActionToButton(button, withModel: model)
@@ -165,30 +165,30 @@ class ShowDetailContainerViewController: UIViewController {
         }
     }
     
-    private func addActionToButton(button: UIButton, withModel model: ShoutDetailTabbarButton) {
+    fileprivate func addActionToButton(_ button: UIButton, withModel model: ShoutDetailTabbarButton) {
         
         button
             .rx_tap
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] in
                 switch model {
-                case .Call:
+                case .call:
                     self?.makeCall()
-                case .VideoCall:
+                case .videoCall:
                     self?.videoCall()
-                case .Chat:
+                case .chat:
                     self?.startChat()
-                case .More:
+                case .more:
                     self?.moreAction()
-                case .Chats:
+                case .chats:
                     self?.notImplemented()
-                case .Edit:
+                case .edit:
                     self?.showEditController()
-                case .Delete:
+                case .delete:
                     self?.deleteAction()
-                case .Promote(true):
+                case .promote(true):
                     self?.promotedAction()
-                case .Promote(false):
+                case .promote(false):
                     self?.promoteAction()
                 default:
                     fatalError()
@@ -200,26 +200,26 @@ class ShowDetailContainerViewController: UIViewController {
 
 private extension ShowDetailContainerViewController {
     
-    private func startChat() {
+    func startChat() {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         guard let user = viewModel.shout.user else { return }
         if let conversation = viewModel.shout.conversations?.first {
-            flowDelegate?.showConversation(.Created(conversation: conversation))
+            flowDelegate?.showConversation(.created(conversation: conversation))
         } else {
-            flowDelegate?.showConversation(.NotCreated(type: .AboutShout, user: user, aboutShout: viewModel.shout))
+            flowDelegate?.showConversation(.notCreated(type: .AboutShout, user: user, aboutShout: viewModel.shout))
         }
     }
     
-    private func reportAction() {
+    func reportAction() {
         
         let alert = self.viewModel.shout.reportAlert { (report) in
-            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             
             APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
                 
                 switch event {
-                case .Next:
+                case .next:
                     self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
                 case .Error(let error):
                     self?.showError(error)
@@ -230,18 +230,18 @@ private extension ShowDetailContainerViewController {
                 }).addDisposableTo(self.disposeBag)
         }
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
-    private func moreAction() {
+    func moreAction() {
         let isShoutOwnedByCurrentUser = viewModel.shout.user?.id == Account.sharedInstance.user?.id
-        let reportHandler: (Void -> Void)? = isShoutOwnedByCurrentUser ? nil : reportAction
-        let deleteHandler: (Void -> Void)? = isShoutOwnedByCurrentUser ? deleteAction : nil
+        let reportHandler: ((Void) -> Void)? = isShoutOwnedByCurrentUser ? nil : reportAction
+        let deleteHandler: ((Void) -> Void)? = isShoutOwnedByCurrentUser ? deleteAction : nil
         let alert = moreAlert(reportHandler, deleteHandler: deleteHandler)
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
-    private func deleteAction() {
+    func deleteAction() {
         let alert = deleteAlert {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             
@@ -264,18 +264,18 @@ private extension ShowDetailContainerViewController {
         self.navigationController?.presentViewController(alert, animated: true, completion: nil)
     }
     
-    private func makeCall() {
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    func makeCall() {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         viewModel.makeCall()
             .subscribe {[weak self] (event) in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
                 switch event {
-                case .Next(let mobile):
-                    guard let url = NSURL(string: "telprompt://\(mobile.phone)") else {
+                case .next(let mobile):
+                    guard let url = URL(string: "telprompt://\(mobile.phone)") else {
                         assertionFailure()
                         return
                     }
-                    UIApplication.sharedApplication().openURL(url)
+                    UIApplication.shared.openURL(url)
                 case .Error(let error):
                     self?.showError(error)
                 default:
@@ -285,21 +285,21 @@ private extension ShowDetailContainerViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func videoCall() {
+    func videoCall() {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         guard let user = viewModel.shout.user else { return }
         self.flowDelegate?.startVideoCallWithProfile(user)
     }
     
-    private func showEditController() {
+    func showEditController() {
         self.flowDelegate?.showEditShout(viewModel.shout)
     }
     
-    private func promoteAction() {
+    func promoteAction() {
         flowDelegate?.showPromoteViewWithShout(viewModel.shout)
     }
     
-    private func promotedAction() {
+    func promotedAction() {
         flowDelegate?.showPromotedViewWithShout(viewModel.shout)
     }
 }

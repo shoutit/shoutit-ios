@@ -12,9 +12,9 @@ import Contacts
 @available(iOS 9.0, *)
 internal class CNAddressBookImpl: AddressBookProtocol {
     
-    private var contactStore: CNContactStore!
-    private var saveRequest: CNSaveRequest = CNSaveRequest()
-    private let defaultKeysToFetch = [
+    fileprivate var contactStore: CNContactStore!
+    fileprivate var saveRequest: CNSaveRequest = CNSaveRequest()
+    fileprivate let defaultKeysToFetch = [
         CNContactGivenNameKey,
         CNContactMiddleNameKey,
         CNContactFamilyNameKey,
@@ -26,7 +26,7 @@ internal class CNAddressBookImpl: AddressBookProtocol {
     internal var allContactsPredicate: NSPredicate {
         get {
             let containerId = contactStore.defaultContainerIdentifier()
-            let predicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
+            let predicate = CNContact.predicateForContactsInContainer(withIdentifier: containerId)
             return predicate
         }
     }
@@ -35,39 +35,39 @@ internal class CNAddressBookImpl: AddressBookProtocol {
         contactStore = CNContactStore()
     }
     
-    func requestAccessToAddressBook(completion: (Bool, NSError?) -> Void) {
-        contactStore.requestAccessForEntityType(CNEntityType.Contacts) { (access, err) -> Void in
-            completion(access, err)
+    func requestAccessToAddressBook(_ completion: @escaping (Bool, NSError?) -> Void) {
+        contactStore.requestAccess(for: CNEntityType.contacts) { (access, err) -> Void in
+            completion(access, err as! NSError)
         }
     }
     
     func retrieveAddressBookRecordsCount() throws -> Int {
         let containerId = contactStore.defaultContainerIdentifier()
-        let predicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
-        return try contactStore.unifiedContactsMatchingPredicate(predicate, keysToFetch: []).count
+        let predicate = CNContact.predicateForContactsInContainer(withIdentifier: containerId)
+        return try contactStore.unifiedContacts(matching: predicate, keysToFetch: []).count
     }
     
-    func addContactToAddressBook(contact: ContactProtocol) throws -> ContactProtocol {
+    func addContactToAddressBook(_ contact: ContactProtocol) throws -> ContactProtocol {
         let cnContact = CNAdapter.convertContactValuesToCNContact(contact)
-        saveRequest.addContact(cnContact, toContainerWithIdentifier: nil)
+        saveRequest.add(cnContact, toContainerWithIdentifier: nil)
         return CNContactRecord(cnContact: cnContact)
     }
     
-    func updateContact(contact: ContactProtocol) {
+    func updateContact(_ contact: ContactProtocol) {
         guard let record = contact as? CNContactRecord else {
             return
         }
         
-        saveRequest.updateContact(record.wrappedContact)
+        saveRequest.update(record.wrappedContact)
     }
     
-    func findContactWithIdentifier(identifier: String?) -> ContactProtocol? {
+    func findContactWithIdentifier(_ identifier: String?) -> ContactProtocol? {
         guard let id = identifier else {
             return nil
         }
 
         do {
-            let contact = try contactStore.unifiedContactWithIdentifier(id, keysToFetch: defaultKeysToFetch)
+            let contact = try contactStore.unifiedContact(withIdentifier: id, keysToFetch: defaultKeysToFetch as [CNKeyDescriptor])
             return CNContactRecord(cnContact: contact.mutableCopy() as! CNMutableContact)
         } catch {
             return nil
@@ -82,28 +82,28 @@ internal class CNAddressBookImpl: AddressBookProtocol {
         return try fetchContactsUsingPredicate(allContactsPredicate)
     }
     
-    func findContactsMatchingName(name: String) throws -> [ContactProtocol] {
-        let predicate = CNContact.predicateForContactsMatchingName(name)
+    func findContactsMatchingName(_ name: String) throws -> [ContactProtocol] {
+        let predicate = CNContact.predicateForContacts(matchingName: name)
         return try fetchContactsUsingPredicate(predicate)
     }
     
-    func fetchContactsUsingPredicate(predicate: NSPredicate) throws -> [ContactProtocol] {
+    func fetchContactsUsingPredicate(_ predicate: NSPredicate) throws -> [ContactProtocol] {
         return try fetchContactsUsingPredicate(predicate, keys: defaultKeysToFetch)
     }
     
-    func fetchContactsUsingPredicate(predicate: NSPredicate, keys: [String]) throws -> [ContactProtocol] {
-        let cnContacts = try contactStore.unifiedContactsMatchingPredicate(predicate, keysToFetch: keys)
+    func fetchContactsUsingPredicate(_ predicate: NSPredicate, keys: [String]) throws -> [ContactProtocol] {
+        let cnContacts = try contactStore.unifiedContacts(matching: predicate, keysToFetch: keys as [CNKeyDescriptor])
         return CNAdapter.convertCNContactsToContactRecords(cnContacts)
     }
     
-    func deleteContactWithIdentifier(identifier: String?) throws {
+    func deleteContactWithIdentifier(_ identifier: String?) throws {
         guard let id = identifier else {
             return
         }
 
         do {
-            let contact = try contactStore.unifiedContactWithIdentifier(id, keysToFetch: [CNContactIdentifierKey])
-            saveRequest.deleteContact(contact.mutableCopy() as! CNMutableContact)
+            let contact = try contactStore.unifiedContact(withIdentifier: id, keysToFetch: [CNContactIdentifierKey as CNKeyDescriptor])
+            saveRequest.delete(contact.mutableCopy() as! CNMutableContact)
         } catch let e{
             throw e
         }
@@ -111,12 +111,12 @@ internal class CNAddressBookImpl: AddressBookProtocol {
     
     func deleteAllContacts() throws {
         let containerId = contactStore.defaultContainerIdentifier()
-        let predicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
+        let predicate = CNContact.predicateForContactsInContainer(withIdentifier: containerId)
         let keys = [CNContactIdentifierKey]
         do {
-            let allContacts = try contactStore.unifiedContactsMatchingPredicate(predicate, keysToFetch: keys)
+            let allContacts = try contactStore.unifiedContacts(matching: predicate, keysToFetch: keys as [CNKeyDescriptor])
             for contact in allContacts {
-                saveRequest.deleteContact(contact.mutableCopy() as! CNMutableContact)
+                saveRequest.delete(contact.mutableCopy() as! CNMutableContact)
             }
         } catch let e {
             throw e
@@ -125,7 +125,7 @@ internal class CNAddressBookImpl: AddressBookProtocol {
     }
     
     func commitChangesToAddressBook() throws {
-        try contactStore.executeSaveRequest(saveRequest)
+        try contactStore.execute(saveRequest)
         saveRequest = CNSaveRequest()
     }
 }

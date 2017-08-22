@@ -11,23 +11,47 @@ import Alamofire
 import RxSwift
 import RxCocoa
 import ShoutitKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 final class PostSignupInterestsViewModel {
     
-    private let disposeBag = DisposeBag()
-    let state: Variable<LoadingState> = Variable(.Idle)
-    private(set) var categories: Variable<[PostSignupInterestCellViewModel]> = Variable([])
+    fileprivate let disposeBag = DisposeBag()
+    let state: Variable<LoadingState> = Variable(.idle)
+    fileprivate(set) var categories: Variable<[PostSignupInterestCellViewModel]> = Variable([])
     
     func fetchCategories() {
         
-        state.value = .Loading
+        state.value = .loading
         APIMiscService.requestCategories().subscribe {[weak self] (event) in
             switch event {
-            case .Next(let categories):
+            case .next(let categories):
                 self?.categories.value = categories.map{PostSignupInterestCellViewModel(category: $0)}
-                self?.state.value = self?.categories.value.count > 0 ? .ContentLoaded : .ContentUnavailable
+                self?.state.value = self?.categories.value.count > 0 ? .contentLoaded : .contentUnavailable
             case .Error(let error):
-                self?.state.value = .Error(error)
+                self?.state.value = .error(error)
             default:
                 break
             }

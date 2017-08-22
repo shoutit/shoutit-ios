@@ -13,36 +13,36 @@ import ShoutitKit
 import FBAudienceNetwork
 import CocoaLumberjackSwift
 
-enum PagerError: ErrorType {
-    case StateDoesNotAllowManipulation
-    case IndexExceedsBounds
+enum PagerError: Error {
+    case stateDoesNotAllowManipulation
+    case indexExceedsBounds
 }
 
-class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType> {
+class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable> where ItemType.DecodedType == ItemType {
     
-    private(set) var requestDisposeBag: DisposeBag = DisposeBag()
-    private(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.Idle)
-    private(set) var numberOfResults: Int?
+    fileprivate(set) var requestDisposeBag: DisposeBag = DisposeBag()
+    fileprivate(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.idle)
+    fileprivate(set) var numberOfResults: Int?
     
     let showAds : Bool
     var loadedAds : [FBNativeAd] = []
     var adPositionCycle = 20
     var adProvider : PagerAdProvider!
     let firstPageIndex: PageIndexType
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
-    let itemToCellViewModelBlock: (ItemType -> CellViewModelType)
-    let cellViewModelToItemBlock: (CellViewModelType -> ItemType)
-    let fetchItemObservableFactory: (PageIndexType -> Observable<PagedResults<ItemType>>)
+    let itemToCellViewModelBlock: ((ItemType) -> CellViewModelType)
+    let cellViewModelToItemBlock: ((CellViewModelType) -> ItemType)
+    let fetchItemObservableFactory: ((PageIndexType) -> Observable<PagedResults<ItemType>>)
     let nextPageComputerBlock: ((PageIndexType, PagedResults<ItemType>) -> PageIndexType)
-    let lastPageDidLoadExaminationBlock: (PagedResults<ItemType> -> Bool)
-    var itemExclusionRule: (ItemType -> Bool)? // return true if item should be excluded
+    let lastPageDidLoadExaminationBlock: ((PagedResults<ItemType>) -> Bool)
+    var itemExclusionRule: ((ItemType) -> Bool)? // return true if item should be excluded
     
-    init(itemToCellViewModelBlock: ItemType -> CellViewModelType,
-         cellViewModelToItemBlock: CellViewModelType -> ItemType,
-         fetchItemObservableFactory: (PageIndexType -> Observable<PagedResults<ItemType>>),
+    init(itemToCellViewModelBlock: (ItemType) -> CellViewModelType,
+         cellViewModelToItemBlock: (CellViewModelType) -> ItemType,
+         fetchItemObservableFactory: ((PageIndexType) -> Observable<PagedResults<ItemType>>),
          nextPageComputerBlock: ((PageIndexType, PagedResults<ItemType>) -> PageIndexType),
-         lastPageDidLoadExaminationBlock: (PagedResults<ItemType> -> Bool),
+         lastPageDidLoadExaminationBlock: ((PagedResults<ItemType>) -> Bool),
          firstPageIndex: PageIndexType,
          showAds : Bool = false) {
         self.itemToCellViewModelBlock = itemToCellViewModelBlock
@@ -60,22 +60,22 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     }
     
     func loadContent() {
-        state.value = .Loading
+        state.value = .loading
         fetchPage(firstPageIndex)
     }
 
     func refreshContent() {
         switch state.value {
-        case let .Loaded(cells, page, _):
-            state.value = .Refreshing(cells: cells, page: page)
+        case let .loaded(cells, page, _):
+            state.value = .refreshing(cells: cells, page: page)
             fetchPage(firstPageIndex)
-        case let .LoadedAllContent(cells, page):
-            state.value = .Refreshing(cells: cells, page: page)
+        case let .loadedAllContent(cells, page):
+            state.value = .refreshing(cells: cells, page: page)
             fetchPage(firstPageIndex)
-        case let .LoadingMore(cells, currentPage, _):
-            state.value = .Refreshing(cells: cells, page: currentPage)
+        case let .loadingMore(cells, currentPage, _):
+            state.value = .refreshing(cells: cells, page: currentPage)
             fetchPage(firstPageIndex)
-        case .Refreshing:
+        case .refreshing:
             break
         default:
             loadContent()
@@ -83,31 +83,31 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     }
     
     func fetchNextPage() {
-        if case .LoadedAllContent = state.value { return }
-        guard case .Loaded(let cells, let page, let results) = state.value else { return }
+        if case .loadedAllContent = state.value { return }
+        guard case .loaded(let cells, let page, let results) = state.value else { return }
         let pageToLoad = nextPageComputerBlock(page, results)
-        self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
+        self.state.value = .loadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
         fetchPage(pageToLoad)
     }
     
-    func replaceItemAtIndex(index: Int, withItem item: ItemType) throws {
+    func replaceItemAtIndex(_ index: Int, withItem item: ItemType) throws {
         switch state.value {
-        case .Loaded(var cells, let page, let lastPageResults):
-            guard index < cells.count else { throw PagerError.IndexExceedsBounds }
+        case .loaded(var cells, let page, let lastPageResults):
+            guard index < cells.count else { throw PagerError.indexExceedsBounds }
             cells[index] = itemToCellViewModelBlock(item)
-            state.value = .Loaded(cells: cells, page: page, lastPageResults: lastPageResults)
-        case .LoadedAllContent(var cells, let page):
-            guard index < cells.count else { throw PagerError.IndexExceedsBounds }
+            state.value = .loaded(cells: cells, page: page, lastPageResults: lastPageResults)
+        case .loadedAllContent(var cells, let page):
+            guard index < cells.count else { throw PagerError.indexExceedsBounds }
             cells[index] = itemToCellViewModelBlock(item)
-            state.value = .LoadedAllContent(cells: cells, page: page)
+            state.value = .loadedAllContent(cells: cells, page: page)
         default:
-            throw PagerError.StateDoesNotAllowManipulation
+            throw PagerError.stateDoesNotAllowManipulation
         }
     }
     
-    func findItemWithComparisonBlock(block: (ItemType -> Bool)) -> (Int, ItemType)? {
+    func findItemWithComparisonBlock(_ block: ((ItemType) -> Bool)) -> (Int, ItemType)? {
         guard let (cells, _) = try? getCellViewModelsForManipulation() else { return nil }
-        for (index, cell) in cells.enumerate() {
+        for (index, cell) in cells.enumerated() {
             let item = cellViewModelToItemBlock(cell)
             if block(item) {
                 return (index, item)
@@ -118,18 +118,18 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     
     // MARK: - Fetch
     
-    private func fetchPage(page: PageIndexType) {
+    fileprivate func fetchPage(_ page: PageIndexType) {
         
         requestDisposeBag = DisposeBag()
         
         fetchItemObservableFactory(page)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let results):
+                case .next(let results):
                     self?.appendItems(results, forPage: page)
                 case .Error(let error):
                     assert(false, error.sh_message)
-                    self?.state.value = .Error(error)
+                    self?.state.value = .error(error)
                 default:
                     break
                 }
@@ -139,7 +139,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
     
     // MARK: - Helpers
     
-    private func appendItems(results: PagedResults<ItemType>, forPage page: PageIndexType) {
+    fileprivate func appendItems(_ results: PagedResults<ItemType>, forPage page: PageIndexType) {
         
         numberOfResults = results.count ?? numberOfResults
         
@@ -150,12 +150,12 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
             return true
         }
         
-        if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
+        if case .loadingMore(var cells, _, let loadingPage) = self.state.value, loadingPage == page {
             cells += items.map{itemToCellViewModelBlock($0)}
             if lastPageDidLoadExaminationBlock(results) {
-                state.value = .LoadedAllContent(cells: cells, page: page)
+                state.value = .loadedAllContent(cells: cells, page: page)
             } else {
-                state.value = .Loaded(cells: cells, page: page, lastPageResults: results)
+                state.value = .loaded(cells: cells, page: page, lastPageResults: results)
             }
             return
         }
@@ -163,26 +163,26 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable whe
         assert(page == firstPageIndex)
         
         if items.count == 0 {
-            state.value = .NoContent
+            state.value = .noContent
             return
         }
         
         let cellViewModels = items.map{itemToCellViewModelBlock($0)}
         if lastPageDidLoadExaminationBlock(results) {
-            state.value = .LoadedAllContent(cells: cellViewModels, page: page)
+            state.value = .loadedAllContent(cells: cellViewModels, page: page)
         } else {
-            state.value = .Loaded(cells: cellViewModels, page: page, lastPageResults: results)
+            state.value = .loaded(cells: cellViewModels, page: page, lastPageResults: results)
         }
     }
     
-    private func getCellViewModelsForManipulation() throws -> ([CellViewModelType], PageIndexType) {
+    fileprivate func getCellViewModelsForManipulation() throws -> ([CellViewModelType], PageIndexType) {
         switch state.value {
-        case .Loaded(let cells, let page, _):
+        case .loaded(let cells, let page, _):
             return (cells, page)
-        case .LoadedAllContent(let cells, let page):
+        case .loadedAllContent(let cells, let page):
             return (cells, page)
         default:
-            throw PagerError.StateDoesNotAllowManipulation
+            throw PagerError.stateDoesNotAllowManipulation
         }
     }
 }
@@ -208,11 +208,11 @@ extension Pager {
                 return
             }
             
-            if case .Loaded(let models, _, _) = sSelf.state.value {
+            if case .loaded(let models, _, _) = sSelf.state.value {
                 existingModels = models
             }
             
-            if case .LoadedAllContent(let models, _) = sSelf.state.value {
+            if case .loadedAllContent(let models, _) = sSelf.state.value {
                 existingModels = models
             }
             
@@ -223,7 +223,7 @@ extension Pager {
             }.addDisposableTo(disposeBag)
     }
     
-    func shouldLoadAdsIfNeededForModels(models: [CellViewModelType]) -> Bool {
+    func shouldLoadAdsIfNeededForModels(_ models: [CellViewModelType]) -> Bool {
         return models.count / self.adPositionCycle > self.loadedAds.count
     }
     
@@ -244,15 +244,15 @@ class PagerAdProvider : NSObject, FBNativeAdDelegate {
     func loadNextAd() {
         let ad = FBNativeAd(placementID: Constants.FacebookAudience.collectionAdID)
         ad.delegate = self
-        ad.loadAd()
+        ad.load()
     }
     
-    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+    func nativeAd(_ nativeAd: FBNativeAd, didFailWithError error: NSError) {
         print(error)
         DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     
-    func nativeAdDidLoad(nativeAd: FBNativeAd) {
+    func nativeAdDidLoad(_ nativeAd: FBNativeAd) {
         DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
         self.provide?(nativeAd)
     }
@@ -260,7 +260,7 @@ class PagerAdProvider : NSObject, FBNativeAdDelegate {
 
 // Collection View Helpers
 extension Pager {
-    func indexOf(shout: Shout) -> Int? {
+    func indexOf(_ shout: Shout) -> Int? {
         var i : Int = 0
         var idx : Int?
         
@@ -277,7 +277,7 @@ extension Pager {
         return idx
     }
     
-    func indexInRealResultsOf(shout: Shout) -> Int? {
+    func indexInRealResultsOf(_ shout: Shout) -> Int? {
         var i : Int = 0
         var idx : Int?
         
@@ -304,13 +304,13 @@ extension Pager {
         var existingCells : [CellViewModelType] = []
         
         switch state.value {
-        case let .Loaded(cells, _, _):
+        case let .loaded(cells, _, _):
             existingCells = cells
-        case let .LoadedAllContent(cells, _):
+        case let .loadedAllContent(cells, _):
             existingCells = cells
-        case let .LoadingMore(cells, _, _):
+        case let .loadingMore(cells, _, _):
             existingCells = cells
-        case let .Refreshing(cells, _):
+        case let .refreshing(cells, _):
             existingCells = cells
         default:
             break
@@ -335,7 +335,7 @@ extension Pager {
             let position = (adPosition + 1) * adPositionCycle
             
             if position <= result.count {
-                result.insert(ShoutCellViewModel(ad: ad), atIndex: position)
+                result.insert(ShoutCellViewModel(ad: ad), at: position)
             }
             
             adPosition = adPosition + 1

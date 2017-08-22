@@ -17,8 +17,8 @@ final class CreateShoutLocationSectionViewModel: CreateShoutSectionViewModel {
     }
     var cellViewModels: [CreateShoutCellViewModel]
     
-    private unowned var parent: CreateShoutViewModel
-    private let disposeBag = DisposeBag()
+    fileprivate unowned var parent: CreateShoutViewModel
+    fileprivate let disposeBag = DisposeBag()
     
     init(cellViewModels: [CreateShoutCellViewModel], parent: CreateShoutViewModel) {
         self.cellViewModels = cellViewModels

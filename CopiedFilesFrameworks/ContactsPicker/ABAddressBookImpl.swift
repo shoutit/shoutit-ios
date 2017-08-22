@@ -12,13 +12,13 @@ import AddressBook
 @available(iOS 8.0, *)
 internal class ABAddressBookImpl: AddressBookProtocol {
     
-    private var addressBook: ABAddressBook!
+    fileprivate var addressBook: ABAddressBook!
     
     internal init() throws {
         var err : Unmanaged<CFError>? = nil
         let ab = ABAddressBookCreateWithOptions(nil, &err)
         if err == nil {
-            addressBook = ab.takeRetainedValue()
+            addressBook = ab?.takeRetainedValue()
         } else {
             if let error = err?.takeRetainedValue() {
                 throw error
@@ -26,9 +26,9 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         }
     }
     
-    func requestAccessToAddressBook(completion: (Bool, NSError?) -> Void) {
+    func requestAccessToAddressBook(_ completion: @escaping (Bool, NSError?) -> Void) {
         ABAddressBookRequestAccessWithCompletion(addressBook) {
-            (let access : Bool, error : CFError!) -> Void in
+            (access : Bool, error : CFError!) -> Void in
             if access {
                 completion(access, nil)
             } else {
@@ -42,7 +42,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
     }
     
     
-    func addContactToAddressBook(contact: ContactProtocol) throws -> ContactProtocol {
+    func addContactToAddressBook(_ contact: ContactProtocol) throws -> ContactProtocol {
         let record = ABRecordAdapter.convertContactToABRecord(contact)
         
         if let error = (errorIfNoSuccess({
@@ -54,11 +54,11 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         }
     }
     
-    func updateContact(contact: ContactProtocol) {
+    func updateContact(_ contact: ContactProtocol) {
         
     }
     
-    func deleteContactWithIdentifier(identifier: String?) throws {
+    func deleteContactWithIdentifier(_ identifier: String?) throws {
         guard let id = identifier else {
             return
         }
@@ -97,7 +97,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         return ABAddressBookQueryBuilder(addressBook: self)
     }
     
-    func findContactWithIdentifier(identifier: String?) -> ContactProtocol? {
+    func findContactWithIdentifier(_ identifier: String?) -> ContactProtocol? {
         
         guard let id = identifier else {
             return nil
@@ -131,7 +131,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         return allContacts
     }
     
-    func findContactsMatchingName(name: String) -> [ContactProtocol] {
+    func findContactsMatchingName(_ name: String) -> [ContactProtocol] {
         let matchingNameRecords = ABAddressBookCopyPeopleWithName(addressBook, name as CFString).takeRetainedValue() as Array<ABRecord>
         return ABRecordAdapter.convertABRecordsToContactValues(matchingNameRecords)
     }
@@ -149,7 +149,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         }
     }
     
-    func errorIfNoSuccess(call : (UnsafeMutablePointer<Unmanaged<CFError>?>) -> Bool) -> NSError? {
+    func errorIfNoSuccess(_ call : (UnsafeMutablePointer<Unmanaged<CFError>?>) -> Bool) -> NSError? {
         var err : Unmanaged<CFError>? = nil
         let success : Bool = call(&err)
         if success {

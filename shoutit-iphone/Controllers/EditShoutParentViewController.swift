@@ -16,13 +16,13 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
     var editController : EditShoutTableViewController!
     var dismissAfter : Bool = false
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? EditShoutTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EditShoutTableViewController {
             destination.shout = shout
             editController = destination
         }
         
-        if let destination = segue.destinationViewController as? CreateShoutTableViewController {
+        if let destination = segue.destination as? CreateShoutTableViewController {
             self.createShoutTableController = destination
             self.createShoutTableController.type = self.type
         }
@@ -41,7 +41,7 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
         
         if attachmentsReady() == false {
             let alert = self.createShoutTableController.viewModel.mediaNotReadyAlertController()
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            self.navigationController?.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -49,20 +49,20 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
         
         let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
         
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         
         APIShoutsService.updateShoutWithParams(parameters, uid: editController.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in
             
-            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
             
             if (self?.dismissAfter ?? false) == true{
-                self?.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                self?.navigationController?.dismiss(animated: true, completion: nil)
             } else {
-                self?.navigationController?.popViewControllerAnimated(true)
+                self?.navigationController?.popViewController(animated: true)
             }
             
         }, onError: { [weak self] (error) -> Void in
-                MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
                 self?.showError(error)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }

@@ -9,20 +9,20 @@
 import UIKit
 
 class ProfileCellConfigurator: AnyObject {
-    func configureCell(cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
+    func configureCell(_ cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
         cell.nameLabel.text = cellViewModel.profile.name
         cell.listenersCountLabel.text = cellViewModel.listeningCountString()
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: cellViewModel.profile.type == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
         
         
         guard showsListenButton else {
-            cell.listenButton.hidden = true
+            cell.listenButton.isHidden = true
             return
         }
         
         let listenButtonImage = cellViewModel.isListening ? UIImage.profileStopListeningIcon() : UIImage.profileListenIcon()
-        cell.listenButton.setImage(listenButtonImage, forState: .Normal)
-        cell.listenButton.hidden = cellViewModel.hidesListeningButton()
+        cell.listenButton.setImage(listenButtonImage, for: UIControlState())
+        cell.listenButton.isHidden = cellViewModel.hidesListeningButton()
     }
 }
 

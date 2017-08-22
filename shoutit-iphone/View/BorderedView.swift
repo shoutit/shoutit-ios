@@ -11,8 +11,8 @@ import UIKit
 final class BorderedView: UIView {
     
     // boreders
-    var borders: UIRectEdge = .All
-    @IBInspectable var  borderColor: UIColor = UIColor(shoutitColor: .CellBackgroundGrayColor)
+    var borders: UIRectEdge = .all
+    @IBInspectable var  borderColor: UIColor = UIColor(shoutitColor: .cellBackgroundGrayColor)
     @IBInspectable var cornerRadius: CGFloat = 2.0
     
     override func awakeFromNib() {
@@ -22,90 +22,90 @@ final class BorderedView: UIView {
         layer.cornerRadius = cornerRadius
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 2.0)
+        context?.setLineWidth(2.0)
         var red: CGFloat = 0.0
         var blue: CGFloat = 0.0
         var green: CGFloat = 0.0
         var alpha: CGFloat = 0.0
         borderColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        CGContextSetRGBStrokeColor(context, red, green, blue, alpha)
+        context?.setStrokeColor(red: red, green: green, blue: blue, alpha: alpha)
         
-        let top = borders.contains(.Top)
-        let bottom = borders.contains(.Bottom)
-        let left = borders.contains(.Left)
-        let right = borders.contains(.Right)
+        let top = borders.contains(.top)
+        let bottom = borders.contains(.bottom)
+        let left = borders.contains(.left)
+        let right = borders.contains(.right)
         
         if top {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMinX(rect) + (left ? cornerRadius : 0), CGRectGetMinY(rect))
-            CGContextAddLineToPoint(context, CGRectGetMaxX(rect) - (right ? cornerRadius : 0), CGRectGetMinY(rect))
-            CGContextStrokePath(context)
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.minX + (left ? cornerRadius : 0), y: rect.minY))
+            context?.addLine(to: CGPoint(x: rect.maxX - (right ? cornerRadius : 0), y: rect.minY))
+            context?.strokePath()
         }
         if bottom {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMinX(rect) + (left ? cornerRadius : 0), CGRectGetMaxY(rect))
-            CGContextAddLineToPoint(context, CGRectGetMaxX(rect) - (right ? cornerRadius : 0), CGRectGetMaxY(rect))
-            CGContextStrokePath(context)
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.minX + (left ? cornerRadius : 0), y: rect.maxY))
+            context?.addLine(to: CGPoint(x: rect.maxX - (right ? cornerRadius : 0), y: rect.maxY))
+            context?.strokePath()
         }
         if left {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect) + (top ? cornerRadius : 0))
-            CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - (bottom ? cornerRadius : 0))
-            CGContextStrokePath(context)
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.minX, y: rect.minY + (top ? cornerRadius : 0)))
+            context?.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - (bottom ? cornerRadius : 0)))
+            context?.strokePath()
         }
         if right {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect) + (top ? cornerRadius : 0))
-            CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - (bottom ? cornerRadius : 0))
-            CGContextStrokePath(context)
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.maxX, y: rect.minY + (top ? cornerRadius : 0)))
+            context?.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - (bottom ? cornerRadius : 0)))
+            context?.strokePath()
         }
         if top && left {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect) + cornerRadius)
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.minX, y: rect.minY + cornerRadius))
             CGContextAddArcToPoint(context,
-                                   CGRectGetMinX(rect),
-                                   CGRectGetMinY(rect),
-                                   CGRectGetMinX(rect) + cornerRadius,
-                                   CGRectGetMinY(rect),
+                                   rect.minX,
+                                   rect.minY,
+                                   rect.minX + cornerRadius,
+                                   rect.minY,
                                    cornerRadius)
-            CGContextStrokePath(context)
+            context?.strokePath()
         }
         if top && right {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMaxX(rect) - cornerRadius, CGRectGetMinY(rect))
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.maxX - cornerRadius, y: rect.minY))
             CGContextAddArcToPoint(context,
-                                   CGRectGetMaxX(rect),
-                                   CGRectGetMinY(rect),
-                                   CGRectGetMaxX(rect),
-                                   CGRectGetMinY(rect) + cornerRadius,
+                                   rect.maxX,
+                                   rect.minY,
+                                   rect.maxX,
+                                   rect.minY + cornerRadius,
                                    cornerRadius)
-            CGContextStrokePath(context)
+            context?.strokePath()
         }
         if bottom && left {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - cornerRadius)
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.minX, y: rect.maxY - cornerRadius))
             CGContextAddArcToPoint(context,
-                                   CGRectGetMinX(rect),
-                                   CGRectGetMaxY(rect),
-                                   CGRectGetMinX(rect) + cornerRadius,
-                                   CGRectGetMaxY(rect),
+                                   rect.minX,
+                                   rect.maxY,
+                                   rect.minX + cornerRadius,
+                                   rect.maxY,
                                    cornerRadius)
-            CGContextStrokePath(context)
+            context?.strokePath()
         }
         if bottom && right {
-            CGContextBeginPath(context)
-            CGContextMoveToPoint(context, CGRectGetMaxX(rect) - cornerRadius, CGRectGetMaxY(rect))
+            context?.beginPath()
+            context?.move(to: CGPoint(x: rect.maxX - cornerRadius, y: rect.maxY))
             CGContextAddArcToPoint(context,
-                                   CGRectGetMaxX(rect),
-                                   CGRectGetMaxY(rect),
-                                   CGRectGetMaxX(rect),
-                                   CGRectGetMaxY(rect) - cornerRadius,
+                                   rect.maxX,
+                                   rect.maxY,
+                                   rect.maxX,
+                                   rect.maxY - cornerRadius,
                                    cornerRadius)
-            CGContextStrokePath(context)
+            context?.strokePath()
         }
         
-        super.drawRect(rect)
+        super.draw(rect)
     }
 }

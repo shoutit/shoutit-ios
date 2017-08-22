@@ -10,15 +10,15 @@ import UIKit
 
 final class ShoutsCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
     
-    var mode: ShoutsCollectionViewCell.Mode = .Regular
+    var mode: ShoutsCollectionViewCell.Mode = .regular
     
-    override func copyWithZone(zone: NSZone) -> AnyObject {
-        let copy = super.copyWithZone(zone) as! ShoutsCollectionViewLayoutAttributes
+    override func copy(with zone: NSZone?) -> Any {
+        let copy = super.copy(with: zone) as! ShoutsCollectionViewLayoutAttributes
         copy.mode = mode
         return copy
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         
         guard super.isEqual(object) else {
             return false

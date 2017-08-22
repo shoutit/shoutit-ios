@@ -18,14 +18,14 @@ final class CreatePublicChatSectionViewModel {
         self.cellViewModels = cellViewModels
     }
     
-    func selectCellViewModelAtIndex(index: Int) {
+    func selectCellViewModelAtIndex(_ index: Int) {
         var cells: [CreatePublicChatCellViewModel] = []
-        for (i, cellViewModel) in cellViewModels.enumerate() {
-            guard case .Selectable(let option, _) = cellViewModel else {
+        for (i, cellViewModel) in cellViewModels.enumerated() {
+            guard case .selectable(let option, _) = cellViewModel else {
                 cells.append(cellViewModel)
                 continue
             }
-            cells.append(.Selectable(option: option, selected: i == index))
+            cells.append(.selectable(option: option, selected: i == index))
         }
         cellViewModels = cells
     }

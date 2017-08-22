@@ -13,9 +13,9 @@ import ShoutitKit
 final class EditPageTableViewModel {
     
     enum OperationStatus {
-        case Ready
-        case Error(error: ErrorType)
-        case Progress(show: Bool)
+        case ready
+        case error(error: Error)
+        case progress(show: Bool)
     }
     
     let charactersLimit = 150
@@ -24,11 +24,11 @@ final class EditPageTableViewModel {
     var basicProfile : Profile?
     var cells: [EditPageCellViewModel]
     
-    private(set) var avatarUploadTask: MediaUploadingTask?
-    private(set) var coverUploadTask: MediaUploadingTask?
+    fileprivate(set) var avatarUploadTask: MediaUploadingTask?
+    fileprivate(set) var coverUploadTask: MediaUploadingTask?
     
     lazy var mediaUploader: MediaUploader = {
-        return MediaUploader(bucket: .UserImage)
+        return MediaUploader(bucket: .userImage)
     }()
     
     init(profile: Profile) {
@@ -78,7 +78,7 @@ final class EditPageTableViewModel {
     
     // MARK: - Mutation
     
-    func mutateModelForIndex(index: Int, object: AnyObject) {
+    func mutateModelForIndex(_ index: Int, object: AnyObject) {
         
         guard let string = object as? String else {
             if let published = object as? Bool {
@@ -89,23 +89,23 @@ final class EditPageTableViewModel {
         
         let currentModel = cells[index]
         switch currentModel.identity {
-        case .Name:
+        case .name:
             cells[index] = EditPageCellViewModel(name: string)
-        case .About:
+        case .about:
             cells[index] = EditPageCellViewModel(about: string)
-        case .Description:
+        case .description:
             cells[index] = EditPageCellViewModel(description: string)
-        case .Phone:
+        case .phone:
             cells[index] = EditPageCellViewModel(phone: string)
-        case .Founded:
+        case .founded:
             cells[index] = EditPageCellViewModel(founded: string)
-        case .Impressum:
+        case .impressum:
             cells[index] = EditPageCellViewModel(impressum: string)
-        case .Overview:
+        case .overview:
             cells[index] = EditPageCellViewModel(overview: string)
-        case .Mission:
+        case .mission:
             cells[index] = EditPageCellViewModel(mission: string)
-        case .GeneralInfo:
+        case .generalInfo:
             cells[index] = EditPageCellViewModel(general_info: string)
         default:
             break
@@ -117,7 +117,7 @@ final class EditPageTableViewModel {
     func save() -> Observable<OperationStatus> {
         
         guard let user = self.user else {
-            return Observable.just(.Ready)
+            return Observable.just(.ready)
         }
         
         return Observable.create{[unowned self] (observer) -> Disposable in
@@ -127,36 +127,36 @@ final class EditPageTableViewModel {
                 
                 
                 
-                observer.onNext(.Progress(show: true))
+                observer.onNext(.progress(show: true))
                 return  APIProfileService.editPageWithUsername(user.username, withParams: self.composeParameters()).subscribe({ (event) in
-                    observer.onNext(.Progress(show: false))
+                    observer.onNext(.progress(show: false))
                     switch event {
-                    case .Next(let loggedUser):
+                    case .next(let loggedUser):
                         Account.sharedInstance.updateUserWithModel(loggedUser)
-                        observer.onNext(.Ready)
+                        observer.onNext(.ready)
                     case .Error(let error):
-                        observer.onNext(.Error(error: error))
+                        observer.onNext(.error(error: error))
                         observer.onCompleted()
-                    case .Completed:
+                    case .completed:
                         observer.onCompleted()
                     }
                 })
             }
             catch (let error) {
-                observer.onNext(.Error(error: error))
+                observer.onNext(.error(error: error))
                 observer.onCompleted()
             }
             return NopDisposable.instance
         }
     }
     
-    func uploadCoverAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadCoverAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         coverUploadTask = task
         return task
     }
     
-    func uploadAvatarAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadAvatarAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         avatarUploadTask = task
         return task
@@ -164,17 +164,17 @@ final class EditPageTableViewModel {
     
     // MARK: - Convenience
     
-    private func contentReady() throws {
-        if let task = avatarUploadTask where task.status.value == .Uploading {
+    fileprivate func contentReady() throws {
+        if let task = avatarUploadTask, task.status.value == .uploading {
             throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
-        if let task = coverUploadTask where task.status.value == .Uploading {
+        if let task = coverUploadTask, task.status.value == .uploading {
             throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
         
     }
     
-    private func composeParameters() -> EditPageParams {
+    fileprivate func composeParameters() -> EditPageParams {
         
         var name: String?
         var about: String?
@@ -190,25 +190,25 @@ final class EditPageTableViewModel {
         
         for cell in cells {
             switch cell {
-            case .BasicText(let value, _, .Name):
+            case .basicText(let value, _, .name):
                 name = value
-            case .RichText(let value, _, .About):
+            case .richText(let value, _, .about):
                 about = value
-            case .Switch(let value, _, .IsPublished):
+            case .switch(let value, _, .isPublished):
                 is_published = value
-            case .RichText(let value, _, .Description):
+            case .richText(let value, _, .description):
                 description = value
-            case .BasicText(let value, _, .Phone):
+            case .basicText(let value, _, .phone):
                 phone = value
-            case .BasicText(let value, _, .Founded):
+            case .basicText(let value, _, .founded):
                 founded = value
-            case .RichText(let value, _, .Impressum):
+            case .richText(let value, _, .impressum):
                 impressum = value
-            case .RichText(let value, _, .Overview):
+            case .richText(let value, _, .overview):
                 overview = value
-            case .RichText(let value, _, .Mission):
+            case .richText(let value, _, .mission):
                 mission = value
-            case .RichText(let value, _, .GeneralInfo):
+            case .richText(let value, _, .generalInfo):
                 general_info = value
             default:
                 break

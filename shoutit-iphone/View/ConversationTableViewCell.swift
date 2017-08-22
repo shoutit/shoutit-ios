@@ -16,7 +16,7 @@ final class ConversationTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var participantsImageView: UIImageView!
 
-    func bindWithConversation(conversation: MiniConversation) {
+    func bindWithConversation(_ conversation: MiniConversation) {
         self.firstLineLabel.text = conversation.display.title
         self.secondLineLabel.text = conversation.display.subtitle
         self.thirdLineLabel.text = conversation.display.lastMessageSummary
@@ -27,9 +27,9 @@ final class ConversationTableViewCell: UITableViewCell {
         self.participantsImageView.sh_setImageWithURL(conversation.imageURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
         if conversation.isRead() {
-            self.backgroundColor = UIColor.whiteColor()
+            self.backgroundColor = UIColor.white
         } else {
-            self.backgroundColor = UIColor(shoutitColor: .LightGreen)
+            self.backgroundColor = UIColor(shoutitColor: .lightGreen)
         }
     }
     

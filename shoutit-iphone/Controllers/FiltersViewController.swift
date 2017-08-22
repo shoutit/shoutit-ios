@@ -15,7 +15,7 @@ final class FiltersViewController: UIViewController {
     
     // view model
     var viewModel: FiltersViewModel!
-    var completionBlock: (FiltersState -> Void)?
+    var completionBlock: ((FiltersState) -> Void)?
     
     // UI
     @IBOutlet weak var resetButton: UIButton!
@@ -31,7 +31,7 @@ final class FiltersViewController: UIViewController {
     
     // RX
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -49,7 +49,7 @@ final class FiltersViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRx() {
+    fileprivate func setupRx() {
         
         // UI observing
         doneButton
@@ -59,7 +59,7 @@ final class FiltersViewController: UIViewController {
                 guard let `self` = self else { return }
                 let state = self.viewModel.composeFiltersState()
                 self.completionBlock?(state)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
         
@@ -83,22 +83,22 @@ final class FiltersViewController: UIViewController {
 
 extension FiltersViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cellViewModels.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellViewModel = viewModel.cellViewModels[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierForCellViewModel(cellViewModel), forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierForCellViewModel(cellViewModel), for: indexPath)
         switch cellViewModel {
-        case .ShoutTypeChoice:
+        case .shoutTypeChoice:
             let shoutTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
             shoutTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
-            shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+            shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             shoutTypeCell.button
                 .rx_tap
                 .asDriver()
@@ -106,10 +106,10 @@ extension FiltersViewController: UITableViewDataSource {
                     self?.presentShoutChoiceActionSheet()
                 }
                 .addDisposableTo(shoutTypeCell.reuseDisposeBag)
-        case .SortTypeChoice(_, let loaded):
+        case .sortTypeChoice(_, let loaded):
             let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
             sortTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Sort By", comment: "Sort type button title label")
-            sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+            sortTypeCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             sortTypeCell.button.showActivity(!loaded())
             
             sortTypeCell.button
@@ -120,14 +120,14 @@ extension FiltersViewController: UITableViewDataSource {
                 }
                 .addDisposableTo(sortTypeCell.reuseDisposeBag)
             
-        case .CategoryChoice(let category, let enabled, let loaded):
+        case .categoryChoice(let category, let enabled, let loaded):
             let categoryCell = cell as! SelectButtonFilterTableViewCell
-            categoryCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+            categoryCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             categoryCell.button.showIcon(category?.icon != nil)
-            if let path = category?.icon, url = path.toURL() {
+            if let path = category?.icon, let url = path.toURL() {
                 categoryCell.button.iconImageView.kf_setImageWithURL(url, placeholderImage: nil)
             }
-            categoryCell.button.enabled = enabled
+            categoryCell.button.isEnabled = enabled
             categoryCell.button.alpha = enabled ? 1.0 : 0.5
             categoryCell.button.showActivity(!loaded())
             
@@ -138,7 +138,7 @@ extension FiltersViewController: UITableViewDataSource {
                     self?.presentCategoryChoiceActionSheet()
                 }
                 .addDisposableTo(categoryCell.reuseDisposeBag)
-        case .PriceRestriction(let from, let to):
+        case .priceRestriction(let from, let to):
             let priceCell = cell as! LimitingTextFieldsFilterTableViewCell
             priceCell.minimumValueTextField.text = from != nil ? String(from!) : nil
             priceCell.maximumValueTextField.text = to != nil ? String(to!) : nil
@@ -158,9 +158,9 @@ extension FiltersViewController: UITableViewDataSource {
                     self?.viewModel.changeMaximumPriceTo(Int(value))
                 }
                 .addDisposableTo(priceCell.reuseDisposeBag)
-        case .LocationChoice(let address):
+        case .locationChoice(let address):
             let locationCell = cell as! SelectButtonFilterTableViewCell
-            locationCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+            locationCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             if let location = address {
                 locationCell.button.iconImageView.image = UIImage(named: location.country)
                 locationCell.button.showIcon(true)
@@ -174,7 +174,7 @@ extension FiltersViewController: UITableViewDataSource {
                     self?.presentLocationChoiceController()
                 }
                 .addDisposableTo(locationCell.reuseDisposeBag)
-        case .DistanceRestriction(let distanceOption):
+        case .distanceRestriction(let distanceOption):
             let distanceCell = cell as! SliderFilterTableViewCell
             distanceCell.slider.value = viewModel.sliderValueForDistanceRestrictionOption(distanceOption)
             distanceCell.slider
@@ -182,15 +182,15 @@ extension FiltersViewController: UITableViewDataSource {
                 .asDriver()
                 .driveNext{[unowned self] (value) in
                     let option = self.viewModel.distanceRestrictionOptionForSliderValue(value)
-                    let newViewModel = FiltersCellViewModel.DistanceRestriction(distanceOption: option)
+                    let newViewModel = FiltersCellViewModel.distanceRestriction(distanceOption: option)
                     self.viewModel.cellViewModels[indexPath.row] = newViewModel
                     distanceCell.currentValueLabel.text = newViewModel.buttonTitle()
                 }
                 .addDisposableTo(distanceCell.reuseDisposeBag)
-        case .FilterValueChoice(let filter, let selectedValues):
+        case .filterValueChoice(let filter, let selectedValues):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
             filterCell.button.fieldTitleLabel.text = filter.name
-            filterCell.button.setTitle(cellViewModel.buttonTitle(), forState: .Normal)
+            filterCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             filterCell.button
                 .rx_tap
                 .asDriver()
@@ -206,14 +206,14 @@ extension FiltersViewController: UITableViewDataSource {
 
 extension FiltersViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellViewModel = viewModel.cellViewModels[indexPath.row]
         switch cellViewModel {
-        case .ShoutTypeChoice, .SortTypeChoice, .CategoryChoice, .FilterValueChoice:
+        case .shoutTypeChoice, .sortTypeChoice, .categoryChoice, .filterValueChoice:
             return 60
-        case .PriceRestriction, .LocationChoice:
+        case .priceRestriction, .locationChoice:
             return 96
-        case .DistanceRestriction:
+        case .distanceRestriction:
             return 91
         }
     }
@@ -231,22 +231,22 @@ private extension FiltersViewController {
                 self?.viewModel.changeLocationToLocation(place)
             }
         }
-        navigationController?.showViewController(controller, sender: nil)
+        navigationController?.show(controller, sender: nil)
     }
     
-    func presentFilterChoiceScreenWithFilter(filter: Filter, selectedValues: [FilterValue]) {
+    func presentFilterChoiceScreenWithFilter(_ filter: Filter, selectedValues: [FilterValue]) {
         
         let controller = Wireframe.categoryFiltersChoiceViewController()
         controller.viewModel = CategoryFiltersViewModel(filter: filter, selectedValues: selectedValues)
         controller.completionBlock = {[weak self](newSelectedValues) in
             self?.viewModel.changeValuesForFilter(filter, toValues: newSelectedValues)
         }
-        self.navigationController?.showViewController(controller, sender: nil)
+        self.navigationController?.show(controller, sender: nil)
     }
     
     func presentCategoryChoiceActionSheet() {
         
-        guard case .Loaded(let categories) = self.viewModel.categories.value else { return }
+        guard case .loaded(let categories) = self.viewModel.categories.value else { return }
         let categoryNames = categories.map{$0.name}
         let options = [NSLocalizedString("All Categories", comment: "Filters View")] + categoryNames
         self.presentActionSheetWithTitle(NSLocalizedString("Please select category", comment: "Filters View"), options: options) {[weak self] (index) in
@@ -267,7 +267,7 @@ private extension FiltersViewController {
     }
     
     func presentSortTypeChoiceActionSheet() {
-        guard case .Loaded(let sortTypes) = viewModel.sortTypes.value else { return }
+        guard case .loaded(let sortTypes) = viewModel.sortTypes.value else { return }
         let names = sortTypes.map{$0.name}
         self.presentActionSheetWithTitle(NSLocalizedString("Please select sort type", comment: "Filters View"), options: names, completion: {[weak self] (index) in
             self?.viewModel.changeSortTypeToType(sortTypes[index])
@@ -279,36 +279,36 @@ private extension FiltersViewController {
 
 private extension FiltersViewController {
     
-    private func reuseIdentifierForCellViewModel(cellViewModel: FiltersCellViewModel) -> String {
+    func reuseIdentifierForCellViewModel(_ cellViewModel: FiltersCellViewModel) -> String {
         switch cellViewModel {
-        case .ShoutTypeChoice:
+        case .shoutTypeChoice:
             return "ShoutTypeChoiceCell"
-        case .SortTypeChoice:
+        case .sortTypeChoice:
             return "SortByChoiceCell"
-        case .CategoryChoice:
+        case .categoryChoice:
             return "CategoryChoiceCell"
-        case .PriceRestriction:
+        case .priceRestriction:
             return "PriceRestrictionCell"
-        case .LocationChoice:
+        case .locationChoice:
             return "LocationChoiceCell"
-        case .DistanceRestriction:
+        case .distanceRestriction:
             return "DistanceRestrictionCell"
-        case .FilterValueChoice:
+        case .filterValueChoice:
             return "FilterCell"
         }
     }
     
-    private func presentActionSheetWithTitle(title: String, options: [String], completion:(Int -> Void)?) {
-        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
-        for (index, option) in options.enumerate() {
-            let action = UIAlertAction(title: option, style: .Default) { (action) in
+    func presentActionSheetWithTitle(_ title: String, options: [String], completion:((Int) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        for (index, option) in options.enumerated() {
+            let action = UIAlertAction(title: option, style: .default) { (action) in
                 completion?(index)
             }
             alertController.addAction(action)
         }
-        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

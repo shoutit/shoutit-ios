@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 final class ConversationTitleView: UIView {
 
@@ -18,29 +42,29 @@ final class ConversationTitleView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        activityIndicator?.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        activityIndicator?.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
     }
     
-    func setTitle(title: String?, message: String?) {
+    func setTitle(_ title: String?, message: String?) {
         titleLabel.text = title
         
         if message?.characters.count > 0 {
-            messageLabel.hidden = false
+            messageLabel.isHidden = false
             messageLabel.text = message
-            activityIndicator?.hidden = false
+            activityIndicator?.isHidden = false
             activityIndicator?.startAnimating()
             moveTitleToTop()
         } else {
-            messageLabel.hidden = true
+            messageLabel.isHidden = true
             messageLabel.text = ""
-            activityIndicator?.hidden = true
+            activityIndicator?.isHidden = true
             activityIndicator?.stopAnimating()
             moveTitleToMiddle()
         }
     }
     
     func moveTitleToTop() {
-        UIView.animateWithDuration(0.2, delay: 0, options:.BeginFromCurrentState, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options:.beginFromCurrentState, animations: {
             self.titleLabelTopConstraint.constant = 0
             self.layoutIfNeeded()
         }, completion: nil)
@@ -48,7 +72,7 @@ final class ConversationTitleView: UIView {
     }
     
     func moveTitleToMiddle() {
-        UIView.animateWithDuration(0.2, delay: 0, options:.BeginFromCurrentState, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options:.beginFromCurrentState, animations: {
             self.titleLabelTopConstraint.constant = 10.0
             self.layoutIfNeeded()
         }, completion: nil)

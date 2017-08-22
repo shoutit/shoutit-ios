@@ -21,19 +21,19 @@ struct PageVerificationParams : Params {
         var commonParams : [String : AnyObject] = [:]
         
         if let businessName = businessName {
-            commonParams["business_name"] = businessName
+            commonParams["business_name"] = businessName as AnyObject
         }
         
         if let contactPerson = contactPerson {
-            commonParams["contact_person"] = contactPerson
+            commonParams["contact_person"] = contactPerson as AnyObject
         }
         
         if let contactNumber = contactNumber {
-            commonParams["contact_number"] = contactNumber
+            commonParams["contact_number"] = contactNumber as AnyObject
         }
         
         if let businessEmail = businessEmail {
-            commonParams["business_email"] = businessEmail
+            commonParams["business_email"] = businessEmail as AnyObject
         }
         
         if let location = location {
@@ -41,7 +41,7 @@ struct PageVerificationParams : Params {
         }
         
         if let images = images {
-            commonParams["images"] = images
+            commonParams["images"] = images as AnyObject
         }
         
         return commonParams

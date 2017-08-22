@@ -18,7 +18,7 @@ public struct RelatedTagsParams: Params, PagedParams, LocalizedParams {
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["category"] = category
+        p["category"] = category as AnyObject
         
         for (key, value) in pagedParams {
             p[key] = value

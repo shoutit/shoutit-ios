@@ -31,7 +31,7 @@ final class LoginViewController: UITableViewController {
     weak var viewModel: LoginWithEmailViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +45,12 @@ final class LoginViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
-        let loginActionFilterClosure: Void -> Bool = {[unowned self] in
+        let loginActionFilterClosure: (Void) -> Bool = {[unowned self] in
             
             for validationResult in [ShoutitValidator.validateUniversalEmailOrUsernameField(self.emailTextField.text)] {
-                if case .Invalid(let errors) = validationResult {
+                if case .invalid(let errors) = validationResult {
                     if let error = errors.first {
                         self.delegate?.showLoginErrorMessage(error.message)
                     }
@@ -67,7 +67,7 @@ final class LoginViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
         
         loginButton.rx_tap.filter(loginActionFilterClosure).subscribeNext{[unowned self] in
-            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+            MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
@@ -79,12 +79,12 @@ final class LoginViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         // on return actions
-        emailTextField.rx_controlEvent(.EditingDidEndOnExit).subscribeNext{[weak self] in
+        emailTextField.rx_controlEvent(.editingDidEndOnExit).subscribeNext{[weak self] in
             self?.passwordTextField.becomeFirstResponder()
         }.addDisposableTo(disposeBag)
         
-        passwordTextField.rx_controlEvent(.EditingDidEndOnExit).filter(loginActionFilterClosure).subscribeNext{[unowned self] in
-            MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+        passwordTextField.rx_controlEvent(.editingDidEndOnExit).filter(loginActionFilterClosure).subscribeNext{[unowned self] in
+            MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
         }.addDisposableTo(disposeBag)
         
@@ -92,7 +92,7 @@ final class LoginViewController: UITableViewController {
         emailTextField.addValidator(ShoutitValidator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)
     }
     
-    private func setupSwitchToSignupLabel() {
+    fileprivate func setupSwitchToSignupLabel() {
         
         let text = NSLocalizedString("New to Shoutit? Sign up", comment: "Signup view")
         let loginText = NSLocalizedString("Sign up", comment: "Signup view. Should be the same as whole text's part")
@@ -100,13 +100,13 @@ final class LoginViewController: UITableViewController {
         let attributedString = NSMutableAttributedString(string: text)
         
         // get attributes for login
-        let range = (text as NSString).rangeOfString(loginText)
-        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+        let range = (text as NSString).range(of: loginText)
+        let attributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .primaryGreen)]
         
         // modify attributed string
         attributedString.setAttributes(attributes, range: range)
         
         // assign
-        switchToSignupButton.setAttributedTitle(attributedString, forState: .Normal)
+        switchToSignupButton.setAttributedTitle(attributedString, for: UIControlState())
     }
 }

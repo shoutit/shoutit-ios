@@ -13,9 +13,9 @@ import ShoutitKit
 final class EditProfileTableViewModel {
     
     enum OperationStatus {
-        case Ready
-        case Error(error: ErrorType)
-        case Progress(show: Bool)
+        case ready
+        case error(error: Error)
+        case progress(show: Bool)
     }
     
     let charactersLimit = 150
@@ -23,18 +23,18 @@ final class EditProfileTableViewModel {
     let user: DetailedUserProfile
     var cells: [EditProfileCellViewModel]
     
-    private(set) var avatarUploadTask: MediaUploadingTask?
-    private(set) var coverUploadTask: MediaUploadingTask?
+    fileprivate(set) var avatarUploadTask: MediaUploadingTask?
+    fileprivate(set) var coverUploadTask: MediaUploadingTask?
     
     lazy var mediaUploader: MediaUploader = {
-        return MediaUploader(bucket: .UserImage)
+        return MediaUploader(bucket: .userImage)
     }()
     
     init() {
         switch Account.sharedInstance.loginState {
-        case .Logged(let logged)?:
+        case .logged(let logged)?:
             self.user = logged
-        case .Page(_, _)?:
+        case .page(_, _)?:
             fatalError()
         default:
             fatalError()
@@ -54,11 +54,11 @@ final class EditProfileTableViewModel {
     
     // MARK: - Mutation
     
-    func mutateModelForIndex(index: Int, object: AnyObject) {
+    func mutateModelForIndex(_ index: Int, object: AnyObject) {
         
         guard let string = object as? String else {
             
-            if let date = object as? NSDate {
+            if let date = object as? Date {
                 mutateBirthdayWithDate(date)
             }
             
@@ -67,29 +67,29 @@ final class EditProfileTableViewModel {
         
         let currentModel = cells[index]
         switch currentModel.identity {
-        case .Firstname:
+        case .firstname:
             cells[index] = EditProfileCellViewModel(firstname: string)
-        case .Lastname:
+        case .lastname:
             cells[index] = EditProfileCellViewModel(lastname: string)
-        case .Name:
+        case .name:
             cells[index] = EditProfileCellViewModel(name: string)
-        case .Username:
+        case .username:
             cells[index] = EditProfileCellViewModel(username: string)
-        case .Bio:
+        case .bio:
             cells[index] = EditProfileCellViewModel(bio: string)
-        case .Website:
+        case .website:
             cells[index] = EditProfileCellViewModel(website: string)
-        case .Mobile:
+        case .mobile:
             cells[index] = EditProfileCellViewModel(mobile: string)
-        case .Gender:
+        case .gender:
             cells[index] = EditProfileCellViewModel(gender: string)
         default:
             break
         }
     }
     
-    func mutateBirthdayWithDate(date: NSDate?) {
-        cells[9] = EditProfileCellViewModel(birthday: date)
+    func mutateBirthdayWithDate(_ date: Date?) {
+        cells[9] = EditProfileCellViewModel(birthday: date as! NSDate)
     }
     
     // MARK: Actions
@@ -101,36 +101,36 @@ final class EditProfileTableViewModel {
             do {
                 try self.contentReady()
                 
-                observer.onNext(.Progress(show: true))
+                observer.onNext(.progress(show: true))
                 return  APIProfileService.editUserWithUsername(self.user.username, withParams: self.composeParameters()).subscribe({ (event) in
-                    observer.onNext(.Progress(show: false))
+                    observer.onNext(.progress(show: false))
                     switch event {
-                    case .Next(let loggedUser):
+                    case .next(let loggedUser):
                         Account.sharedInstance.updateUserWithModel(loggedUser)
-                        observer.onNext(.Ready)
+                        observer.onNext(.ready)
                     case .Error(let error):
-                        observer.onNext(.Error(error: error))
+                        observer.onNext(.error(error: error))
                         observer.onCompleted()
-                    case .Completed:
+                    case .completed:
                         observer.onCompleted()
                     }
                 })
             }
             catch (let error) {
-                observer.onNext(.Error(error: error))
+                observer.onNext(.error(error: error))
                 observer.onCompleted()
             }
             return NopDisposable.instance
         }
     }
     
-    func uploadCoverAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadCoverAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         coverUploadTask = task
         return task
     }
     
-    func uploadAvatarAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadAvatarAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         avatarUploadTask = task
         return task
@@ -138,20 +138,20 @@ final class EditProfileTableViewModel {
     
     // MARK: - Convenience
     
-    private func contentReady() throws {
-        if let task = avatarUploadTask where task.status.value == .Uploading {
+    fileprivate func contentReady() throws {
+        if let task = avatarUploadTask, task.status.value == .uploading {
             throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
-        if let task = coverUploadTask where task.status.value == .Uploading {
+        if let task = coverUploadTask, task.status.value == .uploading {
             throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
         
-        for case .RichText(let bio, _, .Bio) in cells where bio.characters.count > charactersLimit {
+        for case .richText(let bio, _, .bio) in cells where bio.characters.count > charactersLimit {
             throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
     }
     
-    private func composeParameters() -> EditProfileParams {
+    fileprivate func composeParameters() -> EditProfileParams {
         
         var firstname: String?
         var lastname: String?
@@ -166,27 +166,27 @@ final class EditProfileTableViewModel {
         
         for cell in cells {
             switch cell {
-            case .BasicText(let value, _, .Firstname):
+            case .basicText(let value, _, .firstname):
                 firstname = value
-            case .BasicText(let value, _, .Lastname):
+            case .basicText(let value, _, .lastname):
                 lastname = value
-            case .BasicText(let value, _, .Name):
+            case .basicText(let value, _, .name):
                 name = value
-            case .BasicText(let value, _, .Username):
+            case .basicText(let value, _, .username):
                 username = value
-            case .RichText(let value, _, .Bio):
+            case .richText(let value, _, .bio):
                 bio = value
-            case .Location(let value, _, .Location):
+            case .location(let value, _, .location):
                 location = value
-            case .BasicText(let value, _, .Website):
+            case .basicText(let value, _, .website):
                 website = value
-            case .BasicText(let value, _, .Mobile):
+            case .basicText(let value, _, .mobile):
                 mobile = value
-            case .Date(let value, _, .Birthday):
+            case .date(let value, _, .birthday):
                 if let value = value {
                     birthday = DateFormatters.sharedInstance.apiStringFromDate(value)
                 }
-            case .Gender(let value, _, .Gender):
+            case .gender(let value, _, .gender):
                 if value != nil {
                     gender = Gender(rawValue: value!)
                 }

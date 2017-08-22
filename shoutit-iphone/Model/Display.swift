@@ -13,7 +13,7 @@ public struct DisplayRange: Decodable {
     public let offset: Int
     public let length: Int
     
-    public static func decode(j: JSON) -> Decoded<DisplayRange> {
+    public static func decode(_ j: JSON) -> Decoded<DisplayRange> {
         let a = curry(DisplayRange.init)
             <^> j <| "offset"
             <*> j <| "length"
@@ -28,7 +28,7 @@ public struct Display: Decodable {
     public let image: String?
     
     
-    public static func decode(j: JSON) -> Decoded<Display> {
+    public static func decode(_ j: JSON) -> Decoded<Display> {
         let a = curry(Display.init)
             <^> j <| "text"
             <*> j <||? "ranges"

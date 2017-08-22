@@ -17,13 +17,13 @@ final class ProfileFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
-        if case .Some(.Page(_)) = Account.sharedInstance.loginState {
+        if case .some(.page(_)) = Account.sharedInstance.loginState {
             controller.viewModel = MyPageCollectionViewModel()
         } else {
             controller.viewModel = MyProfileCollectionViewModel()
         }
 
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

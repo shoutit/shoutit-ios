@@ -12,17 +12,17 @@ import ShoutitKit
 enum CreatePublicChatCellViewModel {
     
     enum SelectionOption {
-        case Facebook
-        case Twitter
+        case facebook
+        case twitter
         
         var title: String {
             switch self {
-            case .Facebook: return NSLocalizedString("Facebook", comment: "Create public chat cell title")
-            case .Twitter: return NSLocalizedString("Twitter", comment: "Create public chat cell title")
+            case .facebook: return NSLocalizedString("Facebook", comment: "Create public chat cell title")
+            case .twitter: return NSLocalizedString("Twitter", comment: "Create public chat cell title")
             }
         }
     }
     
-    case Selectable(option: SelectionOption, selected: Bool)
-    case Location(location: Address)
+    case selectable(option: SelectionOption, selected: Bool)
+    case location(location: Address)
 }

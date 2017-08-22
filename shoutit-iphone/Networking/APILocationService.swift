@@ -14,14 +14,14 @@ import RxSwift
 import ShoutitKit
 
 final class APILocationService {
-    private static let usersURL = APIManager.baseURL + "/profiles/*"
+    fileprivate static let usersURL = APIManager.baseURL + "/profiles/*"
     
-    static func updateLocationForUser(username: String, withParams params: CoordinateParams) -> Observable<User> {
-        let url = usersURL.stringByReplacingOccurrencesOfString("*", withString: username)
+    static func updateLocationForUser(_ username: String, withParams params: CoordinateParams) -> Observable<User> {
+        let url = usersURL.replacingOccurrences(of: "*", with: username)
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.PATCH, url, parameters: params.params, encoding: .JSON)
+                .request(.PATCH, url, parameters: params.params, encoding: .json)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -36,7 +36,7 @@ final class APILocationService {
                         Account.sharedInstance.updateUserWithModel(guestUser)
                         observer.onNext(guestUser)
                     } else {
-                        throw InternalParseError.InvalidJson
+                        throw InternalParseError.invalidJson
                     }
                     
                     observer.onCompleted()
@@ -49,12 +49,12 @@ final class APILocationService {
         }
     }
     
-    static func updateLocationForPage(username: String, withParams params: CoordinateParams) -> Observable<User> {
-        let url = usersURL.stringByReplacingOccurrencesOfString("*", withString: username)
+    static func updateLocationForPage(_ username: String, withParams params: CoordinateParams) -> Observable<User> {
+        let url = usersURL.replacingOccurrences(of: "*", with: username)
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.PATCH, url, parameters: params.params, encoding: .JSON)
+                .request(.PATCH, url, parameters: params.params, encoding: .json)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -69,7 +69,7 @@ final class APILocationService {
                         Account.sharedInstance.updateUserWithModel(guestUser)
                         observer.onNext(guestUser)
                     } else {
-                        throw InternalParseError.InvalidJson
+                        throw InternalParseError.invalidJson
                     }
                     
                     observer.onCompleted()

@@ -9,31 +9,31 @@
 import Foundation
 
 protocol ListenersDisplaybale {
-    func showListenersForUsername(username: String) -> Void
-    func showListeningForUsername(username: String) -> Void
-    func showInterestsForUsername(username: String) -> Void
+    func showListenersForUsername(_ username: String) -> Void
+    func showListeningForUsername(_ username: String) -> Void
+    func showInterestsForUsername(_ username: String) -> Void
 }
 
 extension FlowController : ListenersDisplaybale {
     
-    func showListenersForUsername(username: String) {
+    func showListenersForUsername(_ username: String) {
         let controller = Wireframe.listenersListTableViewController()
         controller.viewModel = ListenersProfilesListViewModel(username: username, showListenButtons: true)
         controller.eventHandler = ShowProfileProfilesListEventHandler(profileDisplayable: self)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showListeningForUsername(username: String) {
+    func showListeningForUsername(_ username: String) {
         let controller = Wireframe.listeningListTableViewController()
         controller.viewModel = ListeningProfilesListViewModel(username: username, showListenButtons: true)
         controller.eventHandler = ShowProfileProfilesListEventHandler(profileDisplayable: self)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showInterestsForUsername(username: String) {
+    func showInterestsForUsername(_ username: String) {
         let controller = Wireframe.interestsListTableViewController()
         controller.viewModel = InterestsTagsListViewModel(username: username, showListenButtons: true)
         controller.flowDelegate = self
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

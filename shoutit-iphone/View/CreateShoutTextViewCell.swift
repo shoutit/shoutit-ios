@@ -11,7 +11,7 @@ import RxSwift
 
 final class CreateShoutTextViewCell: UITableViewCell {
     
-    private(set) var reuseDisposeBag = DisposeBag()
+    fileprivate(set) var reuseDisposeBag = DisposeBag()
     @IBOutlet weak var textView: FormTextView!
     
     override func prepareForReuse() {

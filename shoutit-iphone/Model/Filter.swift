@@ -24,7 +24,7 @@ public struct Filter: Hashable, Equatable {
 
 extension Filter: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Filter> {
+    public static func decode(_ j: JSON) -> Decoded<Filter> {
         
         let f = curry(Filter.init)
             <^> j <|? "name"

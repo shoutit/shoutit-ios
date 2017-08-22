@@ -10,11 +10,11 @@ import Foundation
 import ShoutitKit
 
 enum SocialActionError: ShoutitError {
-    case FacebookPermissionsFailedError
+    case facebookPermissionsFailedError
     
     var userMessage: String {
         switch self {
-        case .FacebookPermissionsFailedError:
+        case .facebookPermissionsFailedError:
             return NSLocalizedString("Failed to obtain facebook publish permissions", comment: "Returned when updating permissions scope fails on API side")
         }
     }

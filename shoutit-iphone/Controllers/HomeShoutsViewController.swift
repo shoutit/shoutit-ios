@@ -13,14 +13,14 @@ import ShoutitKit
 
 class HomeShoutsViewController : ShoutsCollectionViewController {
  
-    let scrollOffset = Variable(CGPointZero)
+    let scrollOffset = Variable(CGPoint.zero)
     
     var reloadOnAppear = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewModel = ShoutsCollectionViewModel(context: .HomeShouts)
+        viewModel = ShoutsCollectionViewModel(context: .homeShouts)
     }
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
         }.addDisposableTo(disposeBag)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if reloadOnAppear {
@@ -44,7 +44,7 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
         }
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollOffset.value = scrollView.contentOffset
         
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
@@ -52,13 +52,13 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if case .NoContent = self.viewModel.pager.state.value {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if case .noContent = self.viewModel.pager.state.value {
             reloadOnAppear = true
             self.flowDelegate?.presentInterests()
             return
         }
         
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
     }
 }

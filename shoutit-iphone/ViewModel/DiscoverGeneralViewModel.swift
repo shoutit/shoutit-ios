@@ -43,7 +43,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
             .subscribeNext { [weak self] detailedItem -> Void in
                 
                 guard let `self` = self else { return }
-                self.items.on(.Next((detailedItem.simpleForm(), detailedItem.children)))
+                self.items.on(.next((detailedItem.simpleForm(), detailedItem.children)))
                 let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, skipLocation: true)
                 
                 APIShoutsService
@@ -52,7 +52,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                         return Observable.just(result.results)
                     })
                     .subscribeNext{[weak self] (shouts) -> Void in
-                        self?.shouts.on(.Next(shouts))
+                        self?.shouts.on(.next(shouts))
                         self?.adManager.handleNewShouts(shouts)
                     }
                     .addDisposableTo(self.disposeBag)

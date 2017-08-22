@@ -15,9 +15,9 @@ protocol DiscoverRequest {
 }
 
 enum DiscoverSection : Int {
-    case SubItems
-    case Shouts
-    case Ads
+    case subItems
+    case shouts
+    case ads
     
     func cellIdentifier() -> String {
         return "ShoutsExpandedCollectionViewCell"
@@ -25,7 +25,7 @@ enum DiscoverSection : Int {
     
     func headerIdentifier() -> String {
         switch self {
-        case SubItems: return DiscoverCollectionHeaderReuseIdentifier
+        case .subItems: return DiscoverCollectionHeaderReuseIdentifier
         default: return DiscoverCollectionShoutsHeaderReuseIdentifier
         }
     }
@@ -57,7 +57,7 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         fatalError("Not implemented")
     }
     
-    func cellIdentifierForIndexPath(indexPath : NSIndexPath) -> String {
+    func cellIdentifierForIndexPath(_ indexPath : IndexPath) -> String {
         return DiscoverSection(rawValue: indexPath.section)!.cellIdentifier()
     }
     
@@ -103,12 +103,12 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         return adManager.items()
     }
     
-    func replaceShout(shout: Shout) {
+    func replaceShout(_ shout: Shout) {
         do {
         if let result = try self.shouts.value() {
             var copy = result
             
-            if let idx = copy.indexOf(shout) {
+            if let idx = copy.index(of: shout) {
                 copy[idx] = shout
                 self.shouts.onNext(copy)
             }
@@ -120,34 +120,34 @@ class DiscoverViewModel: AnyObject, DiscoverRequest {
         }
     }
     
-    func headerSize(collectionView: UICollectionView, section: Int) -> CGSize {
+    func headerSize(_ collectionView: UICollectionView, section: Int) -> CGSize {
         if section == 1 {
-            return self.shoutsItems().count > 0 ? CGSize(width: collectionView.bounds.width - 20.0, height: 44.0) : CGSizeZero
+            return self.shoutsItems().count > 0 ? CGSize(width: collectionView.bounds.width - 20.0, height: 44.0) : CGSize.zero
         }
         
         return CGSize(width: collectionView.bounds.width - 20.0, height: 140.0)
     }
     
-    func footerSize(collectionView: UICollectionView, section: Int) -> CGSize {
+    func footerSize(_ collectionView: UICollectionView, section: Int) -> CGSize {
         if section == 1 && self.shoutsItems().count > 0 {
             return CGSize(width: collectionView.bounds.width - 20.0, height: 54.0)
         }
         
-        return CGSizeZero
+        return CGSize.zero
     }
     
-    func itemSize(indexPath: NSIndexPath, collectionView: UICollectionView) -> CGSize {
+    func itemSize(_ indexPath: IndexPath, collectionView: UICollectionView) -> CGSize {
         return self.displayable.sizeForItem(AtIndexPath: indexPath, collectionView: collectionView)
     }
     
-    func minimumInteritemSpacingForSection(section: Int) -> CGFloat {
+    func minimumInteritemSpacingForSection(_ section: Int) -> CGFloat {
         return self.displayable.minimumInterItemSpacingSize().width
     }
     
-    func insetsForSection(section: Int) -> UIEdgeInsets {
+    func insetsForSection(_ section: Int) -> UIEdgeInsets {
         let interItemSpacing = self.displayable.minimumInterItemSpacingSize()
         
-        return UIEdgeInsetsMake(interItemSpacing.height, interItemSpacing.width, section == 0 ? 0 : interItemSpacing.height, interItemSpacing.width)
+        return UIEdgeInsetsMake(interItemSpacing!.height, interItemSpacing!.width, section == 0 ? 0 : interItemSpacing!.height, interItemSpacing!.width)
     }
     
 }

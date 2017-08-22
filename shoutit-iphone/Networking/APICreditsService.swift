@@ -13,14 +13,14 @@ import ShoutitKit
 
 final class APICreditsService {
     
-    private static let transactionsURL = APIManager.baseURL + "/credit/transactions"
-    private static let invitationCodeURL = APIManager.baseURL + "/credit/invitation_code"
+    fileprivate static let transactionsURL = APIManager.baseURL + "/credit/transactions"
+    fileprivate static let invitationCodeURL = APIManager.baseURL + "/credit/invitation_code"
     
-    static func requestTransactions(type: String = "in", before: Int?) -> Observable<[Transaction]> {
-        return APIGenericService.requestWithMethod(.GET, url: transactionsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: .URL, responseJsonPath: ["results"])
+    static func requestTransactions(_ type: String = "in", before: Int?) -> Observable<[Transaction]> {
+        return APIGenericService.requestWithMethod(.GET, url: transactionsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: .url, responseJsonPath: ["results"])
     }
 
     static func requestInvitationCode() -> Observable<InvitationCode> {
-        return APIGenericService.requestWithMethod(.GET, url: invitationCodeURL, params: NopParams(), encoding: .URL, responseJsonPath:nil)
+        return APIGenericService.requestWithMethod(.GET, url: invitationCodeURL, params: NopParams(), encoding: .url, responseJsonPath:nil)
     }
 }

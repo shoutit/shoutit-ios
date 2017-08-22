@@ -13,7 +13,7 @@ extension Promotion {
     
     func color() -> UIColor {
         guard let colorString = self.label?.color else {
-            return UIColor.blackColor()
+            return UIColor.black
         }
         
         return UIColor.colorFromHexAlphaString(colorString)
@@ -21,7 +21,7 @@ extension Promotion {
     
     func backgroundUIColor() -> UIColor {
         guard let colorString = self.label?.backgroundColor else {
-            return UIColor.blackColor()
+            return UIColor.black
         }
         
         return UIColor.colorFromHexAlphaString(colorString)

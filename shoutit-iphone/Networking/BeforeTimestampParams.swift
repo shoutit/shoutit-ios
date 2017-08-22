@@ -14,7 +14,7 @@ public struct BeforeTimestampParams: Params {
     
     public var params: [String : AnyObject] {
         if let after = self.beforeTimeStamp {
-            return ["before":after, "page_size":20]
+            return ["before":after as AnyObject, "page_size":20 as AnyObject]
         }
         
         return [:]

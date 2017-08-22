@@ -10,18 +10,18 @@ import Foundation
 import ShoutitKit
 
 protocol VerifyPageDisplayable {
-    func showVerifyBussiness(page: DetailedPageProfile) -> Void
+    func showVerifyBussiness(_ page: DetailedPageProfile) -> Void
 }
 
 extension FlowController : VerifyPageDisplayable {
     
-    func showVerifyBussiness(page: DetailedPageProfile) -> Void {
+    func showVerifyBussiness(_ page: DetailedPageProfile) -> Void {
         let controller = Wireframe.verifyPageViewController()
         
         let viewModel = VerifyPageViewModel(page: page)
         controller.viewModel = viewModel
     
         let nav = ModalNavigationController(rootViewController: controller)
-        navigationController.presentViewController(nav, animated: true, completion: nil)
+        navigationController.present(nav, animated: true, completion: nil)
     }
 }

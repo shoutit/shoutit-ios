@@ -11,9 +11,9 @@ import Alamofire
 import RxSwift
 
 enum MediaUploadingTaskStatus : Int {
-    case Uploading
-    case Uploaded
-    case Error
+    case uploading
+    case uploaded
+    case error
 }
 
 final class MediaUploadingTask: NSObject {
@@ -29,16 +29,16 @@ final class MediaUploadingTask: NSObject {
     
     var uid : String!
     
-    var status : Variable<MediaUploadingTaskStatus> = Variable(.Uploading)
+    var status : Variable<MediaUploadingTaskStatus> = Variable(.uploading)
     var progress : Variable<Float> = Variable(0)
     
     required init(attachment: MediaAttachment) {
         self.attachment = attachment
-        self.uid = NSUUID().UUIDString
+        self.uid = UUID().uuidString
         super.init()
     }
     
-    func changeStatusTo(status: MediaUploadingTaskStatus) {
+    func changeStatusTo(_ status: MediaUploadingTaskStatus) {
         self.status.value = status
         
         debugPrint(request)
@@ -55,12 +55,12 @@ final class MediaUploadingTask: NSObject {
         if let request = request {
             request.response(completionHandler: { (request, response, data, error) -> Void in
                 if let _ = error {
-                    self.changeStatusTo(.Error)
+                    self.changeStatusTo(.error)
                     return
                 }
                 
                 if let _ = response {
-                    self.changeStatusTo(.Uploaded)
+                    self.changeStatusTo(.uploaded)
                     
                     return
                 }

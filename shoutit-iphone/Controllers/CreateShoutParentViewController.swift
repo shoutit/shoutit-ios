@@ -19,7 +19,7 @@ class CreateShoutParentViewController: UIViewController {
     var type : ShoutType!
     
     let disposeBag = DisposeBag()
-    var onAppearBlock: (Void -> Void)?
+    var onAppearBlock: ((Void) -> Void)?
 
     
     override func viewDidLoad() {
@@ -28,17 +28,17 @@ class CreateShoutParentViewController: UIViewController {
         setupKeyboardNotifcationListenerForBottomLayoutGuideConstraint(bottomConstraint)
         setTitle()
         
-        if (NSUserDefaults.standardUserDefaults().boolForKey("createShoutLaunchedFirstTime") == false) {
+        if (UserDefaults.standard.bool(forKey: "createShoutLaunchedFirstTime") == false) {
             showFirstOpenAlert()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "createShoutLaunchedFirstTime")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(true, forKey: "createShoutLaunchedFirstTime")
+            UserDefaults.standard.synchronize()
         }
         
        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppearBlock?()
         onAppearBlock = nil
@@ -63,36 +63,36 @@ class CreateShoutParentViewController: UIViewController {
             return
         }
         
-        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Create Shout Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Create Shout Alert Message"), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Create Shout Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Create Shout Alert Message"), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .default, handler: { (alertaction) in
         }))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     override func dismiss() {
-        let alert = UIAlertController(title: NSLocalizedString("Do you want to close?", comment: "Create Shout Alert Title"), message: NSLocalizedString("Are you sure? All Shout data will be lost.", comment: "Create Shout Alert Message"), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Do you want to close?", comment: "Create Shout Alert Title"), message: NSLocalizedString("Are you sure? All Shout data will be lost.", comment: "Create Shout Alert Message"), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: "Create Shout Alert Option"), style: .Destructive, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: "Create Shout Alert Option"), style: .destructive, handler: { (alertaction) in
             self.close()
         }))
             
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Do nothing", comment: "Create Shout Alert Option"), style: .Default, handler: { (alert) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Do nothing", comment: "Create Shout Alert Option"), style: .default, handler: { (alert) in
                 
         }))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func close() {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let destination = segue.destinationViewController as? CreateShoutTableViewController {
+        if let destination = segue.destination as? CreateShoutTableViewController {
             self.createShoutTableController = destination
             self.createShoutTableController.type = self.type
         }
@@ -105,7 +105,7 @@ class CreateShoutParentViewController: UIViewController {
         }
         
         for task in activetasks {
-            if task.status.value != MediaUploadingTaskStatus.Uploaded {
+            if task.status.value != MediaUploadingTaskStatus.uploaded {
                 return false
             }
         }
@@ -152,7 +152,7 @@ class CreateShoutParentViewController: UIViewController {
         
     }
     
-    func imageAttachmentObject(attachment: MediaAttachment) -> String? {
+    func imageAttachmentObject(_ attachment: MediaAttachment) -> String? {
         if attachment.type == .Image {
             return attachment.remoteURL?.absoluteString
         }
@@ -161,7 +161,7 @@ class CreateShoutParentViewController: UIViewController {
     }
 
     
-    func videoAttachmentObject(attachment: MediaAttachment) -> Video? {
+    func videoAttachmentObject(_ attachment: MediaAttachment) -> Video? {
         if attachment.type == .Video {
             return attachment.asVideoObject()
         }
@@ -173,7 +173,7 @@ class CreateShoutParentViewController: UIViewController {
         
         if attachmentsReady() == false {
             let alert = self.createShoutTableController.viewModel.mediaNotReadyAlertController()
-            self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+            self.navigationController?.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -181,45 +181,45 @@ class CreateShoutParentViewController: UIViewController {
         
         let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
         
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         
         APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { [weak self] (shout) -> Void in
             
-            MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
             
             let confirmation = Wireframe.shoutConfirmationController()
             
             confirmation.shout = shout
             
-            self?.navigationController?.presentViewController(confirmation, animated: true, completion: nil)
+            self?.navigationController?.present(confirmation, animated: true, completion: nil)
             
             }, onError: { [weak self] (error) -> Void in
                 
-                MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
                 self?.showError(error)
                 
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 
 
-    @IBAction func unwindToCreateShoutParent(segue: UIStoryboardSegue) {
+    @IBAction func unwindToCreateShoutParent(_ segue: UIStoryboardSegue) {
         deferCreateShoutAction()
         
     }
     
-    @IBAction func unwindToEditShoutParent(segue: UIStoryboardSegue) {
-        if let confirmation = segue.sourceViewController as? ShoutConfirmationViewController {
+    @IBAction func unwindToEditShoutParent(_ segue: UIStoryboardSegue) {
+        if let confirmation = segue.source as? ShoutConfirmationViewController {
             deferEditShoutActionWithShout(confirmation.shout)
         }
     }
     
-    private func deferCreateShoutAction() {
+    fileprivate func deferCreateShoutAction() {
         onAppearBlock = {[unowned self] in
             self.navigationController?.viewControllers = [Wireframe.createShoutWithTypeController(self.type)]
         }
     }
     
-    private func deferEditShoutActionWithShout(shout: Shout) {
+    fileprivate func deferEditShoutActionWithShout(_ shout: Shout) {
         onAppearBlock = {[unowned self] in
             let editController = Wireframe.editShoutController()
             editController.shout = shout

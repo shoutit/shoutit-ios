@@ -22,7 +22,7 @@ public struct FilterResult {
 
 extension FilterResult: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["slug": filter.slug.encode(),
+        return JSON.object(["slug": filter.slug.encode(),
                             "value": value.encode()])
     }
 }

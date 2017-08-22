@@ -23,8 +23,8 @@ public struct FilteredPagesParams: Params, PagedParams {
     
     public var params: [String : AnyObject] {
         var p = [String : AnyObject]()
-        p["search"] = searchPhrase
-        p["country"] = country
+        p["search"] = searchPhrase as AnyObject
+        p["country"] = country as AnyObject
         for (key, value) in pagedParams {
             p[key] = value
         }

@@ -11,7 +11,7 @@ import RxSwift
 
 final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
     
-    private(set) var otherShoutsHeight: CGFloat = 130
+    fileprivate(set) var otherShoutsHeight: CGFloat = 130
     unowned let controller: ShoutDetailTableViewController
     var viewModel: ShoutDetailViewModel {
         return controller.viewModel
@@ -21,14 +21,14 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
     let relatedShoutsCollectionViewSetSubject = PublishSubject<IndexedCollectionView>()
     
     // views
-    private(set) var otherShoutsCollectionView: IndexedCollectionView? {
+    fileprivate(set) var otherShoutsCollectionView: IndexedCollectionView? {
         didSet {
             if let cv = otherShoutsCollectionView {
                 otherShoutsCollectionViewSetSubject.onNext(cv)
             }
         }
     }
-    private(set) var relatedShoutsCollectionView: IndexedCollectionView? {
+    fileprivate(set) var relatedShoutsCollectionView: IndexedCollectionView? {
         didSet {
             if let cv = relatedShoutsCollectionView {
                 relatedShoutsCollectionViewSetSubject.onNext(cv)
@@ -41,30 +41,30 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
         super.init()
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cellModels.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellModel = viewModel.cellModels[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellModel.reuseIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellModel.reuseIdentifier, for: indexPath)
         
         switch cellModel {
-        case .SectionHeader(let title):
+        case .sectionHeader(let title):
             let headerCell = cell as! ShoutDetailSectionHeaderTableViewCell
             headerCell.titleLabel.text = title
             
-        case .Description(let description):
+        case .description(let description):
             let descriptionCell = cell as! ShoutDetailDescriptionTableViewCell
             descriptionCell.descriptionLabel.text = description
             descriptionCell.setBorders(cellIsFirst: true, cellIsLast: true)
             
-        case .KeyValue(let row, let sectionRowsCount, let key, let value, let imageName, _, _):
+        case .keyValue(let row, let sectionRowsCount, let key, let value, let imageName, _, _):
             let keyValueCell = cell as! ShoutDetailKeyValueTableViewCell
             keyValueCell.setBackgroundForRow(row)
             keyValueCell.keyLabel.text = key
@@ -76,37 +76,37 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             }
             keyValueCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
-        case .Regular(let row, let sectionRowsCount, let title):
+        case .regular(let row, let sectionRowsCount, let title):
             let regularCell = cell as! ShoutDetailRegularTableViewCell
             regularCell.setBackgroundForRow(row)
             regularCell.titleLabel.text = title
             regularCell.setBorders(cellIsFirst: row == 0, cellIsLast: row + 1 == sectionRowsCount)
             
-        case .Button(let title, let type):
+        case .button(let title, let type):
             let buttonCell = cell as! ShoutDetailButtonTableViewCell
-            buttonCell.button.setTitle(title, forState: .Normal)
+            buttonCell.button.setTitle(title, for: UIControlState())
             buttonCell.reuseDisposeBag = DisposeBag()
             buttonCell.button
                 .rx_tap
                 .asDriver()
                 .driveNext{[unowned self] in
                     switch type {
-                    case .Policies:
+                    case .policies:
                         break
-                    case .VisitProfile:
+                    case .visitProfile:
                         guard let profile = self.viewModel.shout.user else { return }
                         self.controller.flowDelegate?.showProfile(profile)
                     }
                 }
                 .addDisposableTo(buttonCell.reuseDisposeBag!)
             
-        case .OtherShouts:
+        case .otherShouts:
             let otherShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell
             otherShoutsCollectionView = otherShoutsCell.collectionView
             
-            otherShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil),
+            otherShoutsCollectionView?.register(UINib(nibName: "ShoutsCollectionViewCell", bundle: nil),
                                                    forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
-            otherShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
+            otherShoutsCollectionView?.register(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
                                                    forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
             
             otherShoutsCell.collectionView.contentSizeDidChange = {[weak tableView, weak self] (contentSize) in
@@ -115,15 +115,15 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
                 tableView?.endUpdates()
             }
             
-        case .RelatedShouts:
+        case .relatedShouts:
             let relatedShoutsCell = cell as! ShoutDetailCollectionViewContainerTableViewCell
             relatedShoutsCollectionView = relatedShoutsCell.collectionView
             
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "ShoutsSmallCollectionViewCell", bundle: nil),
+            relatedShoutsCollectionView?.register(UINib(nibName: "ShoutsSmallCollectionViewCell", bundle: nil),
                                                      forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.contentCellReuseIdentifier)
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
+            relatedShoutsCollectionView?.register(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil),
                                                      forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.placeholderCellReuseIdentifier)
-            relatedShoutsCollectionView?.registerNib(UINib(nibName: "SeeAllCollectionViewCell", bundle: nil),
+            relatedShoutsCollectionView?.register(UINib(nibName: "SeeAllCollectionViewCell", bundle: nil),
                                                      forCellWithReuseIdentifier: ShoutDetailShoutCellViewModel.seeAllCellReuseIdentifier)
         }
         

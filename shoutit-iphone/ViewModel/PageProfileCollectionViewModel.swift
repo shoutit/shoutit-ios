@@ -16,14 +16,14 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
-    private let profile: Profile
-    private var detailedProfile: DetailedPageProfile?
+    fileprivate let profile: Profile
+    fileprivate var detailedProfile: DetailedPageProfile?
     var model: ProfileCollectionViewModelMainModel? {
-        return .ProfileModel(profile: profile)
+        return .profileModel(profile: profile)
     }
     
-    private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
-    private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
+    fileprivate(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
+    fileprivate(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     init(profile: Profile) {
         self.profile = profile
@@ -41,10 +41,10 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         fetchProfile()
             .subscribe({[weak self] (event) in
                 switch event {
-                case .Next(let detailedProfile):
+                case .next(let detailedProfile):
                     self?.detailedProfile = detailedProfile
                     self?.reloadSubject.onNext(())
-                case .Completed:
+                case .completed:
                     break
                 case .Error:
                     self?.reloadSubject.onNext(())
@@ -56,7 +56,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         fetchShouts()
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let value):
+                case .next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                     self?.reloadSubject.onNext()
@@ -73,7 +73,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         fetchAdmins()
             .subscribe { [weak self] (event) in
                 switch event {
-                case .Next(let value):
+                case .next(let value):
                     self?.listSection = self?.listSectionWithModels(value, isLoading: false)
                     self?.reloadSubject.onNext()
                 case .Error(let error):
@@ -111,23 +111,23 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
         if let imgpath = profile.imagePath {
-            return .Remote(url: imgpath.toURL())
+            return .remote(url: imgpath.toURL())
         } else {
             return .Local(image:UIImage.squareAvatarPagePlaceholder())
         }
     }
     
-    var coverURL: NSURL? {
-        return (profile.coverPath != nil) ? NSURL(string: profile.coverPath!) : nil
+    var coverURL: URL? {
+        return (profile.coverPath != nil) ? URL(string: profile.coverPath!) : nil
     }
     
     var infoButtons: [ProfileCollectionInfoButton] {
         let listenersCountString = NumberFormatters.numberToShortString(detailedProfile?.listenersCount ?? profile.listenersCount)
-        return [.Listeners(countString: listenersCountString),
-                .Chat,
-                .Listen(isListening: detailedProfile?.isListening ?? profile.isListening ?? false),
-                .HiddenButton(position: .SmallLeft),
-                .More]
+        return [.listeners(countString: listenersCountString),
+                .chat,
+                .listen(isListening: detailedProfile?.isListening ?? profile.isListening ?? false),
+                .hiddenButton(position: .smallLeft),
+                .more]
     }
     
     var descriptionText: String? {
@@ -165,19 +165,19 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     // MARK: - Fetch
     
-    private func fetchShouts() -> Observable<[Shout]> {
+    fileprivate func fetchShouts() -> Observable<[Shout]> {
         let params = FilteredShoutsParams(username: profile.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
             return Observable.just(result.results)
         })
     }
     
-    private func fetchAdmins() -> Observable<[Profile]> {
+    fileprivate func fetchAdmins() -> Observable<[Profile]> {
         let params = PageParams(page: 1, pageSize: 3)
         return APIPageService.getAdminsForPageWithUsername(profile.username, pageParams: params).map{ $0.results }
     }
     
-    private func fetchProfile() -> Observable<DetailedPageProfile> {
+    fileprivate func fetchProfile() -> Observable<DetailedPageProfile> {
         return APIProfileService.retrievePageProfileWithUsername(profile.username)
     }
     
@@ -193,7 +193,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
         }
     }
     
-    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool) {
+    func reloadWithNewListnersCount(_ newListnersCount: Int?, isListening: Bool) {
         guard let newListnersCount = newListnersCount else {
             return
         }
@@ -206,7 +206,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
     
     // MARK: - Helpers
     
-    private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
+    fileprivate func listSectionWithModels(_ pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
         let title = String.localizedStringWithFormat(NSLocalizedString("%@ Admins", comment: "Admins Section Title"), profile.name)
         let noContentMessage = NSLocalizedString("No pages available yet", comment: "Profile Placeholder")
@@ -217,7 +217,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                                                  errorMessage: errorMessage)
     }
     
-    private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    fileprivate func gridSectionWithModels(_ shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Number of Shouts"), profile.name)
         let footerTitle = NSLocalizedString("See All Shouts", comment: "Profile Footer section")
@@ -226,7 +226,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                                                  cells: cells,
                                                  isLoading: loading,
                                                  footerButtonTitle: footerTitle,
-                                                 footerButtonStyle: .Gray,
+                                                 footerButtonStyle: .gray,
                                                  noContentMessage: noContentMessage,
                                                  errorMessage: errorMessage)
     }

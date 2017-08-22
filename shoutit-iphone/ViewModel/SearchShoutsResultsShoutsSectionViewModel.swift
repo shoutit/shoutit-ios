@@ -15,7 +15,7 @@ extension SearchShoutsResultsViewModel {
     final class ShoutsSection: PagedShoutsViewModel {
         
         unowned var parent: SearchShoutsResultsViewModel
-        private(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
+        fileprivate(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
         
         var filtersState: FiltersState? {
             return parent.filtersState
@@ -35,7 +35,7 @@ extension SearchShoutsResultsViewModel {
         func sectionTitle() -> String {
             if let searchPhrase = parent.searchPhrase {
                 return String.localizedStringWithFormat(NSLocalizedString("Results for '%@'", comment: "Search results for search phrase section header"), searchPhrase)
-            } else if case .CategoryShouts(let category) = parent.context {
+            } else if case .categoryShouts(let category) = parent.context {
                 return String.localizedStringWithFormat(NSLocalizedString("Results for '%@'", comment: ""), category.name)
             } else if case (let location?, _) = parent.getFiltersState().location {
                 return String.localizedStringWithFormat(NSLocalizedString("Shouts in %@", comment: ""), location.city)
@@ -50,7 +50,7 @@ extension SearchShoutsResultsViewModel {
         
         func allowsFiltering() -> Bool {
             switch parent.context {
-            case .ProfileShouts, .TagShouts:
+            case .profileShouts, .tagShouts:
                 return false
             default:
                 return true
@@ -59,19 +59,19 @@ extension SearchShoutsResultsViewModel {
         
         // MARK: Fetch
         
-        func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
+        func fetchShoutsAtPage(_ page: Int) -> Observable<PagedResults<Shout>> {
             let phrase = parent.searchPhrase
             let context = parent.context
             var params: FilteredShoutsParams
             switch context {
-            case .General:
+            case .general:
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               page: page,
                                               pageSize: pageSize,
                                               useLocaleBasedCountryCodeWhenNil: true,
                                               currentUserLocation: Account.sharedInstance.user?.location,
                                               skipLocation: false)
-            case .DiscoverShouts(let item):
+            case .discoverShouts(let item):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               discoverId: item.id,
                                               page: page,
@@ -79,7 +79,7 @@ extension SearchShoutsResultsViewModel {
                                               useLocaleBasedCountryCodeWhenNil: true,
                                               currentUserLocation: Account.sharedInstance.user?.location,
                                               skipLocation: false)
-            case .ProfileShouts(let profile):
+            case .profileShouts(let profile):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               username: profile.username,
                                               page: page,
@@ -87,7 +87,7 @@ extension SearchShoutsResultsViewModel {
                                               useLocaleBasedCountryCodeWhenNil: true,
                                               currentUserLocation: Account.sharedInstance.user?.location,
                                               skipLocation: false)
-            case .TagShouts(let tag):
+            case .tagShouts(let tag):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               tag: tag.slug,
                                               page: page,
@@ -95,7 +95,7 @@ extension SearchShoutsResultsViewModel {
                                               useLocaleBasedCountryCodeWhenNil: true,
                                               currentUserLocation: Account.sharedInstance.user?.location,
                                               skipLocation: false)
-            case .CategoryShouts(let category):
+            case .categoryShouts(let category):
                 params = FilteredShoutsParams(searchPhrase: phrase,
                                               category: category.slug,
                                               page: page,

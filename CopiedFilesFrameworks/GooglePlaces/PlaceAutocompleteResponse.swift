@@ -20,7 +20,7 @@ extension GooglePlaces {
         public init() {}
         public init?(_ map: Map) { }
         
-        public mutating func mapping(map: Map) {
+        public mutating func mapping(_ map: Map) {
             status <- (map["status"], EnumTransform())
             errorMessage <- map["error_message"]
             
@@ -40,21 +40,21 @@ extension GooglePlaces {
             public init() {}
             public init?(_ map: Map) { }
             
-            public mutating func mapping(map: Map) {
+            public mutating func mapping(_ map: Map) {
                 description <- map["description"]
                 place <- (map["place_id"], TransformOf(fromJSON: { (json) -> Place? in
                     if let placeId = json {
-                        return Place.PlaceID(id: placeId)
+                        return Place.placeID(id: placeId)
                     } else {
                         return nil
                     }
                     }, toJSON: { (place) -> String? in
                         switch place {
-                        case .None:
+                        case .none:
                             return nil
-                        case .Some(let place):
+                        case .some(let place):
                             switch place {
-                            case .PlaceID(id: let id):
+                            case .placeID(id: let id):
                                 return id
                             default:
                                 return nil
@@ -78,7 +78,7 @@ extension GooglePlaces {
             public init() {}
             public init?(_ map: Map) { }
             
-            public mutating func mapping(map: Map) {
+            public mutating func mapping(_ map: Map) {
                 offset <- map["offset"]
                 value <- map["value"]
             }
@@ -94,7 +94,7 @@ extension GooglePlaces {
             public init() {}
             public init?(_ map: Map) { }
             
-            public mutating func mapping(map: Map) {
+            public mutating func mapping(_ map: Map) {
                 length <- map["length"]
                 offset <- map["offset"]
             }

@@ -19,7 +19,7 @@ final class PromotedShoutViewController: UIViewController {
     @IBOutlet weak var promotionLabelViewContainer: UIView!
     @IBOutlet weak var availableShoutitCreditLabel: UILabel!
     var promotionLabelView: PromotionLabelView!
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,39 +41,39 @@ final class PromotedShoutViewController: UIViewController {
 
 private extension PromotedShoutViewController {
     
-    private func configureViews() {
+    func configureViews() {
         addPromotionLabelViewToContainer()
         hydrateViewsWithData()
     }
     
-    private func addPromotionLabelViewToContainer() {
+    func addPromotionLabelViewToContainer() {
         promotionLabelView = PromotionLabelView.instanceFromNib()
         promotionLabelView.translatesAutoresizingMaskIntoConstraints = false
         promotionLabelViewContainer.addSubview(promotionLabelView)
         let views: [String : AnyObject] = ["view" : promotionLabelView]
-        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[view]-|", options: [], metrics: nil, views: views))
-        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[view]-|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: [], metrics: nil, views: views))
+        promotionLabelViewContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: [], metrics: nil, views: views))
         promotionLabelViewContainer.layoutIfNeeded()
         promotionLabelView.setNeedsLayout()
     }
     
-    private func hydrateViewsWithData() {
+    func hydrateViewsWithData() {
         shoutTitleLabel.text = viewModel.shout.title
         guard let promotionLabel = viewModel.shout.promotion else { return }
         bindWithPromotionLabel(promotionLabel)
     }
     
-    func bindWithPromotionLabel(promo: Promotion) {
+    func bindWithPromotionLabel(_ promo: Promotion) {
         promotionLabelView.sentenceLabel?.text = promo.label?.description
         promotionLabelView.topLabel?.text = promo.label?.name
         
-        if let days = promo.days, expiresAt = promo.expiresAt {
-            promotionLabelView.daysLeftLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ days", comment: "Your shout is promoted until \(DateFormatters.sharedInstance.stringFromDateEpoch(expiresAt))"), NSNumber(integer: days))
-            promotionLabelView.daysLeftLabel?.hidden = false
+        if let days = promo.days, let expiresAt = promo.expiresAt {
+            promotionLabelView.daysLeftLabel?.text = String.localizedStringWithFormat(NSLocalizedString("%@ days", comment: "Your shout is promoted until \(DateFormatters.sharedInstance.stringFromDateEpoch(expiresAt))"), NSNumber(value: days as Int))
+            promotionLabelView.daysLeftLabel?.isHidden = false
             promotionLabelView.sentenceLabel?.text = NSLocalizedString("Your shout is promoted until \(DateFormatters.sharedInstance.stringFromDateEpoch(expiresAt))", comment: "Expiry date")
         } else {
             promotionLabelView.daysLeftLabel?.text = NSLocalizedString("", comment: "Your shout is promoted")
-            promotionLabelView.daysLeftLabel?.hidden = false
+            promotionLabelView.daysLeftLabel?.isHidden = false
             promotionLabelView.sentenceLabel?.text = NSLocalizedString("Your shout is promoted", comment: "Days null")
         }
         

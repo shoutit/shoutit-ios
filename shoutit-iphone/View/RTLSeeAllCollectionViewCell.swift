@@ -12,8 +12,8 @@ class RTLSeeAllCollectionViewCell: SeeAllCollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-            transform = CGAffineTransformMakeScale(-1, 1)
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
+            transform = CGAffineTransform(scaleX: -1, y: 1)
         }
     }
 }

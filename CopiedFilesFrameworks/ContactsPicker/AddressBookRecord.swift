@@ -8,25 +8,25 @@
 
 import Foundation
 
-public class AddressBookRecord: ContactProtocol {
+open class AddressBookRecord: ContactProtocol {
     
-    public var identifier: String? {
+    open var identifier: String? {
         get {
             return nil
         }
     }
     
-    public var firstName: String?
+    open var firstName: String?
     
-    public var lastName: String?
+    open var lastName: String?
     
-    public var phoneNumbers: [AddressBookRecordLabel]?
+    open var phoneNumbers: [AddressBookRecordLabel]?
     
-    public var emailAddresses: [AddressBookRecordLabel]?
+    open var emailAddresses: [AddressBookRecordLabel]?
     
-    public var organizationName: String?
+    open var organizationName: String?
     
-    public var middleName: String?
+    open var middleName: String?
     
     public init() {
         phoneNumbers = [AddressBookRecordLabel]()

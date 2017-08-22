@@ -12,11 +12,11 @@ import Ogra
 import CoreLocation
 
 public enum MessageAttachmentType {
-    case ShoutAttachment(shout: Shout)
-    case LocationAttachment(location: MessageLocation)
-    case ImageAttachment(path: String)
-    case VideoAttachment(video: Video)
-    case ProfileAttachment(profile: Profile)
+    case shoutAttachment(shout: Shout)
+    case locationAttachment(location: MessageLocation)
+    case imageAttachment(path: String)
+    case videoAttachment(video: Video)
+    case profileAttachment(profile: Profile)
 }
 
 public struct MessageAttachment: Decodable {
@@ -35,15 +35,15 @@ public struct MessageAttachment: Decodable {
     }
         
     public func type() -> MessageAttachmentType? {
-        if let s = shout { return .ShoutAttachment(shout: s) }
-        if let l = location { return .LocationAttachment(location: l) }
-        if let p = profile { return .ProfileAttachment(profile: p) }
-        if let v = videos where v.count > 0 { return .VideoAttachment(video: v[0]) }
-        if let i = images where i.count > 0 { return .ImageAttachment(path: i[0]) }
+        if let s = shout { return .shoutAttachment(shout: s) }
+        if let l = location { return .locationAttachment(location: l) }
+        if let p = profile { return .profileAttachment(profile: p) }
+        if let v = videos, v.count > 0 { return .videoAttachment(video: v[0]) }
+        if let i = images, i.count > 0 { return .imageAttachment(path: i[0]) }
         return nil
     }
     
-    public static func decode(j: JSON) -> Decoded<MessageAttachment> {
+    public static func decode(_ j: JSON) -> Decoded<MessageAttachment> {
         return curry(MessageAttachment.init)
             <^> j <|? "shout"
             <*> j <|? "location"
@@ -59,7 +59,7 @@ public struct MessageAttachment: Decodable {
         encoded["videos"] = videos?.encode()
         encoded["images"] = images?.encode()
         encoded["profile"] = profile?.encode()
-        return JSON.Object(encoded)
+        return JSON.object(encoded)
     }
 }
 
@@ -68,11 +68,11 @@ extension MessageAttachment {
     public func imagePath() -> String? {
         guard let type = type() else { return nil }
         switch type {
-        case .VideoAttachment(let video):
+        case .videoAttachment(let video):
             return video.thumbnailPath
-        case .ImageAttachment(let path):
+        case .imageAttachment(let path):
             return path
-        case .ShoutAttachment(let shout):
+        case .shoutAttachment(let shout):
             return shout.thumbnailPath
         default:
             return nil
@@ -93,14 +93,14 @@ public struct MessageLocation: Decodable, Encodable {
         self.latitude = latitude
     }
     
-    public static func decode(j: JSON) -> Decoded<MessageLocation> {
+    public static func decode(_ j: JSON) -> Decoded<MessageLocation> {
         return curry(MessageLocation.init)
             <^> j <| "longitude"
             <*> j <| "latitude"
     }
     
     public func encode() -> JSON {
-        return JSON.Object(["longitude": longitude.encode(),
+        return JSON.object(["longitude": longitude.encode(),
                             "latitude": latitude.encode()])
     }
     

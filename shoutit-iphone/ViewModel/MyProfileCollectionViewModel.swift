@@ -16,10 +16,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let successMessageSubject: PublishSubject<String> = PublishSubject()
     
-    private var detailedUser: DetailedUserProfile?
+    fileprivate var detailedUser: DetailedUserProfile?
     
     var user: DetailedUserProfile? {
-        guard case .Some(.Logged(let user)) = Account.sharedInstance.loginState else {
+        guard case .some(.logged(let user)) = Account.sharedInstance.loginState else {
             return nil
         }
         return user
@@ -27,7 +27,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     var model: ProfileCollectionViewModelMainModel? {
         guard let user = user else { return nil }
-        return .ProfileModel(profile: Profile.profileWithUser(user))
+        return .profileModel(profile: Profile.profileWithUser(user))
     }
     
     var verified: Bool {
@@ -38,8 +38,8 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage.squareAvatarPlaceholder()
     }
     
-    private(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
-    private(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
+    fileprivate(set) var listSection: ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel>!
+    fileprivate(set) var gridSection: ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel>!
     
     init() {
         gridSection = gridSectionWithModels([], isLoading: true)
@@ -47,7 +47,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         Account.sharedInstance.loginStateSubject
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (loginState) in
-                if case .Some(.Logged(let user)) = loginState {
+                if case .some(.logged(let user)) = loginState {
                     self?.detailedUser = user
                     self?.reloadSubject.onNext()
                 }
@@ -61,10 +61,10 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         fetchUser()?
             .subscribe({[weak self] (event) in
                 switch event {
-                case .Next(let detailedProfile):
+                case .next(let detailedProfile):
                     self?.detailedUser = detailedProfile
                     self?.reloadSubject.onNext(())
-                case .Completed:
+                case .completed:
                     break
                 case .Error:
                     self?.reloadSubject.onNext(())
@@ -76,7 +76,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         fetchShouts()?
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let value):
+                case .next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                     self?.reloadSubject.onNext()
@@ -93,7 +93,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         fetchPages()?
             .subscribe{ [weak self] (event) in
                 switch event {
-                case .Next(let value):
+                case .next(let value):
                     self?.listSection = self?.listSectionWithModels(value, isLoading: false)
                     self?.reloadSubject.onNext()
                 case .Error(let error):
@@ -127,11 +127,11 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     }
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
-        return .Remote(url: user?.imagePath?.toURL())
+        return .remote(url: user?.imagePath?.toURL())
     }
     
-    var coverURL: NSURL? {
-        return (user?.coverPath != nil) ? NSURL(string: user!.coverPath!) : nil
+    var coverURL: URL? {
+        return (user?.coverPath != nil) ? URL(string: user!.coverPath!) : nil
     }
     
     var conversation: MiniConversation? { return nil }
@@ -163,7 +163,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             interestsCountString = NumberFormatters.numberToShortString(listeningMetadata.tags)
         }
         
-        return [.Listeners(countString: listenersCountString), .Listening(countString: listeningCountString), .Interests(countString: interestsCountString), .Notification(position: nil), .EditProfile]
+        return [.listeners(countString: listenersCountString), .listening(countString: listeningCountString), .interests(countString: interestsCountString), .notification(position: nil), .editProfile]
     }
     
     var descriptionText: String? {
@@ -191,12 +191,12 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         return UIImage(named: (user?.location.country ?? "country_placeholder"))
     }
     
-    func reloadWithNewListnersCount(newListnersCount: Int?, isListening: Bool) {
+    func reloadWithNewListnersCount(_ newListnersCount: Int?, isListening: Bool) {
     }
     
     // MARK: - Fetch
     
-    private func fetchShouts() -> Observable<[Shout]>? {
+    fileprivate func fetchShouts() -> Observable<[Shout]>? {
         guard let user = user else {return nil}
         let params = FilteredShoutsParams(username: user.username, page: 1, pageSize: 4, currentUserLocation: nil, skipLocation: true)
         return APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
@@ -205,13 +205,13 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
 
     }
     
-    private func fetchPages() -> Observable<[Profile]>? {
+    fileprivate func fetchPages() -> Observable<[Profile]>? {
         guard let user = user else { return nil }
         let params = PageParams(page: 1, pageSize: 3)
         return APIProfileService.getPagesForUsername(user.username, pageParams: params).map{ $0.results }
     }
     
-    private func fetchUser() -> Observable<DetailedUserProfile>? {
+    fileprivate func fetchUser() -> Observable<DetailedUserProfile>? {
         guard let user = user else {return nil}
         return APIProfileService.retrieveProfileWithUsername(user.username)
     }
@@ -222,7 +222,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     
     // MARK: - Helpers
     
-    private func listSectionWithModels(pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
+    fileprivate func listSectionWithModels(_ pages: [Profile], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionListenableCellViewModel> {
         let cells = pages.map{ProfileCollectionListenableCellViewModel(profile: $0)}
         let title = NSLocalizedString("My Pages", comment: "Profile Section Title")
         let footerTitle = NSLocalizedString("Create Page", comment: "My Profile Footer Title")
@@ -231,16 +231,16 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                                                  cells: cells,
                                                  isLoading: loading,
                                                  footerButtonTitle: footerTitle,
-                                                 footerButtonStyle: .Green,
+                                                 footerButtonStyle: .green,
                                                  noContentMessage: noContentMessage,
                                                  errorMessage: errorMessage)
     }
     
-    private func gridSectionWithModels(shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
+    fileprivate func gridSectionWithModels(_ shouts: [Shout], isLoading loading: Bool, errorMessage: String? = nil) -> ProfileCollectionSectionViewModel<ProfileCollectionShoutCellViewModel> {
         let cells = shouts.map{ProfileCollectionShoutCellViewModel(shout: $0)}
         let title = NSLocalizedString("My Shouts", comment: "Profile Section Title")
         let footerTitle = NSLocalizedString("See All Shouts", comment: "Profile Section Footer")
         let noContentMessage = NSLocalizedString("No shouts available yet", comment: "Profile Shouts placeholder")
-        return ProfileCollectionSectionViewModel(title: title, cells: cells, isLoading: loading, footerButtonTitle: footerTitle, footerButtonStyle: .Gray, noContentMessage: noContentMessage, errorMessage: errorMessage)
+        return ProfileCollectionSectionViewModel(title: title, cells: cells, isLoading: loading, footerButtonTitle: footerTitle, footerButtonStyle: .gray, noContentMessage: noContentMessage, errorMessage: errorMessage)
     }
 }

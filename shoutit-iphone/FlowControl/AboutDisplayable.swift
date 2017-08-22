@@ -19,10 +19,10 @@ extension FlowController : AboutDisplayable {
         aboutViewController.models = aboutOptions()
         aboutViewController.ignoreMenuButton = true
         aboutViewController.title = NSLocalizedString("About", comment: "About screen title")
-        navigationController.showViewController(aboutViewController, sender: nil)
+        navigationController.show(aboutViewController, sender: nil)
     }
     
-    private func aboutOptions() -> Variable<[SettingsOption]> {
+    fileprivate func aboutOptions() -> Variable<[SettingsOption]> {
         return Variable([
             SettingsOption(name: NSLocalizedString("Terms of Service", comment: "Settings cell title"), action: {[unowned self] (option) in
                 self.showTermsAndConditions()

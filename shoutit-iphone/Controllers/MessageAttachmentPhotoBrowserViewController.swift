@@ -11,7 +11,7 @@ import RxSwift
 
 class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: MessageAttachmentPhotoBrowserViewModel!
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
         viewModel.loadContent()
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel
             .reloadSubject

@@ -21,7 +21,7 @@ extension Transaction {
             }
             
             for range in ranges {
-                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0), NSForegroundColorAttributeName: UIColor(shoutitColor: .ShoutitLightBlueColor)], range: NSMakeRange(range.offset, range.length))
+                attributed.addAttributes([NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16.0), NSForegroundColorAttributeName: UIColor(shoutitColor: .shoutitLightBlueColor)], range: NSMakeRange(range.offset, range.length))
             }
             
             return attributed

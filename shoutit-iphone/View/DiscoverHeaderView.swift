@@ -12,17 +12,17 @@ final class DiscoverHeaderView: UICollectionReusableView {
     @IBOutlet var titleLabel : UILabel!
     @IBOutlet var backgroundImageView : UIImageView!
     
-    func setText(text: String, whiteWithShadow: Bool) {
+    func setText(_ text: String, whiteWithShadow: Bool) {
         if whiteWithShadow {
             let shadow = NSShadow()
-            shadow.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+            shadow.shadowColor = UIColor.black.withAlphaComponent(0.5)
             shadow.shadowOffset = CGSize(width: 2, height: 2)
             shadow.shadowBlurRadius = 2
-            titleLabel.attributedText = NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.whiteColor(),
+            titleLabel.attributedText = NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor.white,
                 NSShadowAttributeName : shadow
                 ])
         } else {
-            titleLabel.attributedText = NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor(shoutitColor: .FontLighterGray)])
+            titleLabel.attributedText = NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName : UIColor(shoutitColor: .fontLighterGray)])
         }
     }
 }

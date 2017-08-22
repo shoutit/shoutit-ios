@@ -9,45 +9,45 @@
 import UIKit
 
 enum ProfileCollectionSectionContentMode {
-    case Default, Placeholder, Hidden
+    case `default`, placeholder, hidden
 }
 
 protocol ProfileCollectionViewLayoutDelegate: class, ProfileCollectionInfoSupplementaryViewDataSource {
-    func hidesSupplementeryView(view: ProfileCollectionViewSupplementaryView) -> Bool
-    func sectionContentModeForSection(section: Int) -> ProfileCollectionSectionContentMode
+    func hidesSupplementeryView(_ view: ProfileCollectionViewSupplementaryView) -> Bool
+    func sectionContentModeForSection(_ section: Int) -> ProfileCollectionSectionContentMode
 }
 
 final class ProfileCollectionViewLayout: UICollectionViewLayout {
     
     // supplementery views consts
-    private let coverViewHeight: CGFloat                           = 211
-    private let collapsedCoverViewHeight: CGFloat                  = 64
-    private let infoViewHeight: CGFloat                            = 336
-    private let sectionHeaderHeight: CGFloat                       = 44
-    private let footerButtonHeight: CGFloat                        = 64
-    private let infoOverCoverViewMargin: CGFloat                   = 34
+    fileprivate let coverViewHeight: CGFloat                           = 211
+    fileprivate let collapsedCoverViewHeight: CGFloat                  = 64
+    fileprivate let infoViewHeight: CGFloat                            = 336
+    fileprivate let sectionHeaderHeight: CGFloat                       = 44
+    fileprivate let footerButtonHeight: CGFloat                        = 64
+    fileprivate let infoOverCoverViewMargin: CGFloat                   = 34
     let defaultInfoSupplementaryViewSectionHeight: CGFloat = 36
     let defaultVerifyButtonHeight: CGFloat = 44
     
     // cells consts
-    private let placeholderCellHeight: CGFloat                     = 58
-    private let pagesCellHeight: CGFloat                           = 58
-    private let shoutsCellHeight: CGFloat                          = 183
-    private let shoutsCellSpacing: CGFloat                         = 10
-    private let numberOfShoutsPerRow                               = 2
+    fileprivate let placeholderCellHeight: CGFloat                     = 58
+    fileprivate let pagesCellHeight: CGFloat                           = 58
+    fileprivate let shoutsCellHeight: CGFloat                          = 183
+    fileprivate let shoutsCellSpacing: CGFloat                         = 10
+    fileprivate let numberOfShoutsPerRow                               = 2
     
     // on prepare layout
-    private var contentHeight: CGFloat = 0.0
-    private var cachedAttributes: [ProfileCollectionViewLayoutAttributes] = []
+    fileprivate var contentHeight: CGFloat = 0.0
+    fileprivate var cachedAttributes: [ProfileCollectionViewLayoutAttributes] = []
     
     // delegate
     weak var delegate: ProfileCollectionViewLayoutDelegate?
     
-    override class func layoutAttributesClass() -> AnyClass {
+    override class var layoutAttributesClass : AnyClass {
         return ProfileCollectionViewLayoutAttributes.self
     }
     
-    override func prepareLayout() {
+    override func prepare() {
         
         guard let collectionView = collectionView else {
             return
@@ -60,8 +60,8 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         var yOffset: CGFloat = 0
         
         // create attributes
-        let coverAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.Cover.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.Cover.indexPath)
-        let infoAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.Info.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.Info.indexPath)
+        let coverAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.cover.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.cover.indexPath)
+        let infoAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.info.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.info.indexPath)
         
         // calculate frames
         coverAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: max(coverViewHeight - contentYOffset, collapsedCoverViewHeight))
@@ -82,16 +82,16 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         cachedAttributes.append(coverAttributes)
         cachedAttributes.append(infoAttributes)
         
-        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.ListSectionHeader,
+        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.listSectionHeader,
                                                          height: sectionHeaderHeight,
                                                          yOffset: &yOffset)
         
         // layout for pages cells
-        if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Pages.rawValue) == .Placeholder {
-            addPlaceholderCellForSection(ProfileCollectionViewSection.Pages.rawValue, yOffset: &yOffset)
-        } else if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Pages.rawValue) == .Default {
-            for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Pages.rawValue) {
-                let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Pages.rawValue)
+        if let delegate = delegate, delegate.sectionContentModeForSection(ProfileCollectionViewSection.pages.rawValue) == .placeholder {
+            addPlaceholderCellForSection(ProfileCollectionViewSection.pages.rawValue, yOffset: &yOffset)
+        } else if let delegate = delegate, delegate.sectionContentModeForSection(ProfileCollectionViewSection.pages.rawValue) == .default {
+            for item in 0 ..< collectionView.numberOfItems(inSection: ProfileCollectionViewSection.pages.rawValue) {
+                let indexPath = IndexPath(item: item, section: ProfileCollectionViewSection.pages.rawValue)
                 let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
                 attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: pagesCellHeight)
                 cachedAttributes.append(attributes)
@@ -100,28 +100,28 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
             }
         }
         
-        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.CreatePageButtonFooter,
+        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.createPageButtonFooter,
                                                          height: footerButtonHeight,
                                                          yOffset: &yOffset)
-        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.GridSectionHeader,
+        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.gridSectionHeader,
                                                          height: sectionHeaderHeight,
                                                          yOffset: &yOffset)
         
         // layout for shouts cells
-        if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Shouts.rawValue) == .Placeholder {
-            addPlaceholderCellForSection(ProfileCollectionViewSection.Shouts.rawValue, yOffset: &yOffset)
-        } else if let delegate = delegate where delegate.sectionContentModeForSection(ProfileCollectionViewSection.Shouts.rawValue) == .Default {
+        if let delegate = delegate, delegate.sectionContentModeForSection(ProfileCollectionViewSection.shouts.rawValue) == .placeholder {
+            addPlaceholderCellForSection(ProfileCollectionViewSection.shouts.rawValue, yOffset: &yOffset)
+        } else if let delegate = delegate, delegate.sectionContentModeForSection(ProfileCollectionViewSection.shouts.rawValue) == .default {
             let cellWidth = floor((collectionWidth - 3 * shoutsCellSpacing) * 0.5)
-            for item in 0 ..< collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue) {
+            for item in 0 ..< collectionView.numberOfItems(inSection: ProfileCollectionViewSection.shouts.rawValue) {
                 
-                let indexPath = NSIndexPath(forItem: item, inSection: ProfileCollectionViewSection.Shouts.rawValue)
+                let indexPath = IndexPath(item: item, section: ProfileCollectionViewSection.shouts.rawValue)
                 let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
                 let leftCell = item % numberOfShoutsPerRow == 0
                 let x = leftCell ? shoutsCellSpacing : cellWidth + CGFloat(numberOfShoutsPerRow) * shoutsCellSpacing
                 attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth, height: shoutsCellHeight)
                 cachedAttributes.append(attributes)
                 
-                let isLastCell = item + 1 == collectionView.numberOfItemsInSection(ProfileCollectionViewSection.Shouts.rawValue)
+                let isLastCell = item + 1 == collectionView.numberOfItems(inSection: ProfileCollectionViewSection.shouts.rawValue)
                 if !leftCell || isLastCell {
                     yOffset += shoutsCellHeight
                     if (!isLastCell) {
@@ -131,14 +131,14 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
             }
         }
         
-        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.SeeAllShoutsButtonFooter,
+        addFullWidthAttributesForSupplementeryView(ProfileCollectionViewSupplementaryView.seeAllShoutsButtonFooter,
                                                          height: footerButtonHeight,
                                                          yOffset: &yOffset)
         
         self.contentHeight = yOffset
     }
     
-    override func collectionViewContentSize() -> CGSize {
+    override var collectionViewContentSize : CGSize {
         
         guard let collectionView = collectionView else {
             return CGSize.zero
@@ -148,7 +148,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         return CGSize(width: contentWidth, height: contentHeight)
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         var array: [UICollectionViewLayoutAttributes]?
         for attributes in cachedAttributes {
@@ -163,7 +163,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         return array
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         for attributes in cachedAttributes {
             if attributes.representedElementKind == nil && attributes.indexPath == indexPath {
                 return attributes
@@ -173,7 +173,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         return nil
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         for attributes in cachedAttributes {
             if attributes.representedElementKind == elementKind && attributes.indexPath == indexPath {
@@ -184,13 +184,13 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         return nil
     }
     
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
     
     // MARK: - Helpers
     
-    private func addFullWidthAttributesForSupplementeryView(supplementary: ProfileCollectionViewSupplementaryView, height h: CGFloat, inout yOffset: CGFloat) {
+    fileprivate func addFullWidthAttributesForSupplementeryView(_ supplementary: ProfileCollectionViewSupplementaryView, height h: CGFloat, yOffset: inout CGFloat) {
         
         var height = h
         
@@ -199,9 +199,9 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         }
         
         let attributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: supplementary.kind.rawValue, withIndexPath: supplementary.indexPath)
-        if let delegate = delegate where delegate.hidesSupplementeryView(supplementary) {
+        if let delegate = delegate, delegate.hidesSupplementeryView(supplementary) {
             height = 0
-            attributes.hidden = true
+            attributes.isHidden = true
         }
         attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: height)
         attributes.zIndex = 5
@@ -210,20 +210,20 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         yOffset += height
     }
     
-    private func addPlaceholderCellForSection(section: Int, inout yOffset: CGFloat) {
+    fileprivate func addPlaceholderCellForSection(_ section: Int, yOffset: inout CGFloat) {
         
         guard let collectionWidth = collectionView?.bounds.width else {
             return
         }
         
-        let indexPath = NSIndexPath(forItem: 0, inSection: section)
-        let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+        let indexPath = IndexPath(item: 0, section: section)
+        let attributes = ProfileCollectionViewLayoutAttributes(forCellWith: indexPath)
         attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: placeholderCellHeight)
         cachedAttributes.append(attributes)
         yOffset += placeholderCellHeight
     }
     
-    private func calculateInfoSupplementaryViewHeight() -> CGFloat {
+    fileprivate func calculateInfoSupplementaryViewHeight() -> CGFloat {
         
         var height = infoViewHeight
         
@@ -246,19 +246,19 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         return height
     }
     
-    func descriptionViewHeightForText(text: String?) -> CGFloat {
+    func descriptionViewHeightForText(_ text: String?) -> CGFloat {
         
         guard let collectionWidth = collectionView?.bounds.width else {
             return defaultInfoSupplementaryViewSectionHeight
         }
         
-        guard let text = text where text.characters.count > 0 else {
+        guard let text = text, text.characters.count > 0 else {
             return 0
         }
         
         let horizontalMargins: CGFloat = 50 + 16
-        let size = CGSize(width: collectionWidth - horizontalMargins, height: CGFloat.max)
-        let textSize = (text as NSString).boundingRectWithSize(size , options: [NSStringDrawingOptions.UsesLineFragmentOrigin], attributes: [NSFontAttributeName : UIFont.systemFontOfSize(12)], context: nil).size
+        let size = CGSize(width: collectionWidth - horizontalMargins, height: CGFloat.greatestFiniteMagnitude)
+        let textSize = (text as NSString).boundingRect(with: size , options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 12)], context: nil).size
         let verticalMargins: CGFloat = 11 + 11
         let calculatedSize = ceil(verticalMargins + textSize.height)
         return max(calculatedSize, defaultInfoSupplementaryViewSectionHeight)

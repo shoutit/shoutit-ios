@@ -13,13 +13,13 @@ import ShoutitKit
 final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
     enum Context {
-        case ProfileShouts(user: Profile)
-        case RelatedShouts(shout: Shout)
-        case TagShouts(tag: Tag)
-        case DiscoverItemShouts(discoverItem: DiscoverItem)
-        case ConversationShouts(conversation: Conversation)
-        case BookmarkedShouts(user: Profile)
-        case HomeShouts
+        case profileShouts(user: Profile)
+        case relatedShouts(shout: Shout)
+        case tagShouts(tag: Tag)
+        case discoverItemShouts(discoverItem: DiscoverItem)
+        case conversationShouts(conversation: Conversation)
+        case bookmarkedShouts(user: Profile)
+        case homeShouts
         
         func showAds() -> Bool {
             // turn of ads for given context if needed
@@ -29,7 +29,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
     // consts
     let context: Context
-    private(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
+    fileprivate(set) var pager: NumberedPagePager<ShoutCellViewModel, Shout>!
     
     // state
     var filtersState: FiltersState?
@@ -43,7 +43,7 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
         )
     }
     
-    func applyFilters(filtersState: FiltersState) {
+    func applyFilters(_ filtersState: FiltersState) {
         self.filtersState = filtersState
         reloadContent()
     }
@@ -52,19 +52,19 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
     func sectionTitle() -> String {
         switch context {
-        case .ProfileShouts(let user):
+        case .profileShouts(let user):
             return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Shouts Controller Section Title"), user.firstName ?? user.name)
-        case .RelatedShouts:
+        case .relatedShouts:
             return NSLocalizedString("Related Shouts", comment: "Shouts Controller Section Title")
-        case .TagShouts(let tag):
+        case .tagShouts(let tag):
             return String.localizedStringWithFormat(NSLocalizedString("%@ Shouts", comment: "Shouts Controller Section Title"), tag.name)
-        case .DiscoverItemShouts(let discoverItem):
+        case .discoverItemShouts(let discoverItem):
             return discoverItem.title
-        case .ConversationShouts:
+        case .conversationShouts:
             return NSLocalizedString("Conversation Shouts", comment: "Shouts Controller Section Title")
-        case .BookmarkedShouts:
+        case .bookmarkedShouts:
             return NSLocalizedString("Bookmarked Shouts", comment: "Shouts Controller Section Title")
-        case .HomeShouts:
+        case .homeShouts:
             return NSLocalizedString("My Feed", comment: "Shouts Controller Section Title")
         }
         
@@ -72,23 +72,23 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
     func noContentMessage() -> String {
         switch context {
-        case .HomeShouts: return NSLocalizedString("Nothing in your feed tap here to add some interests.", comment: "Home No Items Placeholder")
+        case .homeShouts: return NSLocalizedString("Nothing in your feed tap here to add some interests.", comment: "Home No Items Placeholder")
         default: return NSLocalizedString("No results were found", comment: "Empty search results placeholder")
         }
     }
     
     func headerBackgroundColor() -> UIColor {
         switch context {
-        case .HomeShouts:
-            return UIColor(shoutitColor: .BackgroundLightGray)
+        case .homeShouts:
+            return UIColor(shoutitColor: .backgroundLightGray)
         default:
-            return UIColor.whiteColor()
+            return UIColor.white
         }
     }
     
     func subtitleHidden() -> Bool {
         switch context {
-        case .HomeShouts:
+        case .homeShouts:
             return true
         default:
             return false
@@ -98,44 +98,44 @@ final class ShoutsCollectionViewModel: PagedShoutsViewModel {
     
     func resultsCountString() -> String {
         switch context {
-        case .HomeShouts: return ""
+        case .homeShouts: return ""
         default: return String.localizedStringWithFormat(NSLocalizedString("%d Shouts", comment: "Search results count string"), numberOfResults ?? 0)
         }
     }
     
     func getFiltersState() -> FiltersState {
-        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .Enabled),
-                                            withinDistance: (.Distance(kilometers: 20), .Enabled))
+        return filtersState ?? FiltersState(location: (Account.sharedInstance.user?.location, .enabled),
+                                            withinDistance: (.distance(kilometers: 20), .enabled))
     }
     
     // MARK: Fetch
     
-    func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>> {
+    func fetchShoutsAtPage(_ page: Int) -> Observable<PagedResults<Shout>> {
         switch context {
-        case .RelatedShouts(let shout):
+        case .relatedShouts(let shout):
             let params = RelatedShoutsParams(shout: shout, page: page, pageSize: pageSize)
             return APIShoutsService.relatedShoutsWithParams(params)
-        case .ProfileShouts(let profile):
+        case .profileShouts(let profile):
             var params = FilteredShoutsParams(username: profile.username, page: page, pageSize: pageSize, currentUserLocation: nil, skipLocation: true)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.listShoutsWithParams(params)
-        case .TagShouts(let tag):
+        case .tagShouts(let tag):
             var params = FilteredShoutsParams(tag: tag.name, page: page, pageSize: pageSize, currentUserLocation: Account.sharedInstance.user?.location, skipLocation: false)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.listShoutsWithParams(params)
-        case .DiscoverItemShouts(let discoverItem):
+        case .discoverItemShouts(let discoverItem):
             var params = FilteredShoutsParams(discoverId: discoverItem.id, page: page, pageSize: pageSize, skipLocation: true)
             applyParamsToFilterParamsIfAny(&params)
             return APIShoutsService.listShoutsWithParams(params)
-        case .ConversationShouts(let conversation):
+        case .conversationShouts(let conversation):
             let params = PageParams(page: page, pageSize: pageSize)
             return APIChatsService.getShoutsForConversationWithId(conversation.id, params: params)
-        case .BookmarkedShouts(let user):
+        case .bookmarkedShouts(let user):
             let params = PageParams(page: page, pageSize: pageSize)
             return APIShoutsService.getBookmarkedShouts(user, params: params)
-        case .HomeShouts:
+        case .homeShouts:
             let user = Account.sharedInstance.user
-            if let user = user where user.isGuest == false {
+            if let user = user, user.isGuest == false {
                 var params = FilteredShoutsParams(page: page, pageSize: 20, skipLocation: true)
                 if let filtersState = filtersState {
                     let filterParams = filtersState.composeParams()

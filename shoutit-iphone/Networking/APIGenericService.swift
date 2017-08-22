@@ -21,10 +21,10 @@ final class APIGenericService {
     static let disposeBag = DisposeBag()
     
     static func basicRequestWithMethod<P: Params>(
-        method: Alamofire.Method,
+        _ method: Alamofire.Method,
         url: URLStringConvertible,
         params: P?,
-        encoding: ParameterEncoding = .URL,
+        encoding: ParameterEncoding = .url,
         headers: [String: String]? = nil) -> Observable<Void> {
         
         let observable : Observable<Void> = Observable.create {(observer) -> Disposable in
@@ -37,18 +37,18 @@ final class APIGenericService {
             
             
             request.responseData{ (response) in
-                guard let responseData = response.data where responseData.length > 0 else {
+                guard let responseData = response.data, responseData.count > 0 else {
                     observer.onNext()
                     observer.onCompleted()
                     return
                 }
                 do {
-                    let dataObject = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers)
+                    let dataObject = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers)
                     
                     print(dataObject)
                     
                     
-                    let result : Result<AnyObject, NSError> = Result.Success(dataObject)
+                    let result : Result<AnyObject, NSError> = Result.success(dataObject)
                     let resp : Response<AnyObject, NSError> = Response(request: response.request, response: response.response, data: responseData, result: result)
                     
                     _ = try validateResponseAndExtractJson(resp)
@@ -80,13 +80,13 @@ final class APIGenericService {
         return observable
     }
     
-    static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
-        method: Alamofire.Method,
+    static func requestWithMethod<P: Params, T: Decodable>(
+        _ method: Alamofire.Method,
         url: URLStringConvertible,
         params: P?,
-        encoding: ParameterEncoding = .URL,
+        encoding: ParameterEncoding = .url,
         responseJsonPath: [String]? = nil,
-        headers: [String: String]? = nil) -> Observable<T> {
+        headers: [String: String]? = nil) -> Observable<T> where T == T.DecodedType {
         
         let observable : Observable<T> = Observable.create {(observer) -> Disposable in
             
@@ -129,13 +129,13 @@ final class APIGenericService {
         return observable
     }
     
-    static func requestWithMethod<P: Params, T: Decodable where T == T.DecodedType>(
-        method: Alamofire.Method,
+    static func requestWithMethod<P: Params, T: Decodable>(
+        _ method: Alamofire.Method,
         url: URLStringConvertible,
         params: P?,
-        encoding: ParameterEncoding = .URL,
+        encoding: ParameterEncoding = .url,
         responseJsonPath: [String]? = nil,
-        headers: [String: String]? = nil) -> Observable<[T]> {
+        headers: [String: String]? = nil) -> Observable<[T]> where T == T.DecodedType {
         
         let observable : Observable<[T]> = Observable.create {(observer) -> Disposable in
             
@@ -183,7 +183,7 @@ final class APIGenericService {
             return true
             
         }
-        let currentTime = Int(NSDate().timeIntervalSince1970)
+        let currentTime = Int(Date().timeIntervalSince1970)
         
         print("\(tokenExpires) > \(currentTime)")
         
@@ -218,7 +218,7 @@ final class APIGenericService {
         refreshTokenObservableStore?.subscribe({ (event) in
             self.isRefreshingToken = false
             switch event {
-            case .Next(_): self.refreshTokenSubject.onNext(true)
+            case .next(_): self.refreshTokenSubject.onNext(true)
             case .Error(let error):
                 print(error)
                 do {
@@ -234,34 +234,34 @@ final class APIGenericService {
     
     // MARK: - Helpers
     
-    static func validateResponseAndExtractJson(response: Response<AnyObject, NSError>) throws -> AnyObject {
+    static func validateResponseAndExtractJson(_ response: Response<AnyObject, NSError>) throws -> AnyObject {
         
         switch response.result {
-        case .Success(let originalJson):
-            if let httpResponse = response.response where (200..<300) ~= httpResponse.statusCode {
+        case .success(let originalJson):
+            if let httpResponse = response.response, (200..<300) ~= httpResponse.statusCode {
                 return originalJson
             }
             
             guard let json = originalJson as? [String : AnyObject], let errorJson = json["error"] else {
                 assertionFailure()
-                throw InternalParseError.InvalidJson
+                throw InternalParseError.invalidJson
             }
             
             let decoded: Decoded<APIError> = decode(errorJson)
             switch decoded {
-            case .Success(let error):
+            case .success(let error):
                 throw error
-            case .Failure(let decodeError):
+            case .failure(let decodeError):
                 assertionFailure(decodeError.description)
                 throw decodeError
             }
             
-        case .Failure(let error):
+        case .failure(let error):
             throw error
         }
     }
     
-    static func extractJsonFromJson(json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
+    static func extractJsonFromJson(_ json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
         guard let components = components else {
             return json
         }
@@ -274,19 +274,19 @@ final class APIGenericService {
         }
         guard let j = nestedJson else {
             debugPrint(json)
-            assertionFailure(InternalParseError.InvalidJson.userMessage)
-            throw InternalParseError.InvalidJson
+            assertionFailure(InternalParseError.invalidJson.userMessage)
+            throw InternalParseError.invalidJson
         }
         
         return j
     }
     
-    static func parseJson<T: Decodable where T == T.DecodedType>(json: AnyObject, failureExpected: Bool = false) throws -> T {
+    static func parseJson<T: Decodable>(_ json: AnyObject, failureExpected: Bool = false) throws -> T where T == T.DecodedType {
         let decoded: Decoded<T> = decode(json)
         switch decoded {
-        case .Success(let object):
+        case .success(let object):
             return object
-        case .Failure(let decodeError):
+        case .failure(let decodeError):
             if !failureExpected {
                 debugPrint(json)
                 assertionFailure("\(decodeError.description) in model of type \(T.self)")
@@ -295,12 +295,12 @@ final class APIGenericService {
         }
     }
     
-    static func parseJsonArray<T: Decodable where T == T.DecodedType>(json: AnyObject) throws -> [T] {
+    static func parseJsonArray<T: Decodable>(_ json: AnyObject) throws -> [T] where T == T.DecodedType {
         let decoded: Decoded<[T]> = decode(json)
         switch decoded {
-        case .Success(let object):
+        case .success(let object):
             return object
-        case .Failure(let decodeError):
+        case .failure(let decodeError):
             debugPrint(json)
             assertionFailure("\(decodeError.description) in model of type \(T.self)")
             throw decodeError

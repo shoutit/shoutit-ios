@@ -14,7 +14,7 @@ class CreatePageViewController: UIViewController {
     // navigation
     weak var flowDelegate: FlowController?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     var viewModel : LoginWithEmailViewModel!
     
@@ -25,8 +25,8 @@ class CreatePageViewController: UIViewController {
 
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let categoriesController = segue.destinationViewController as? PageCategoriesCollectionViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let categoriesController = segue.destination as? PageCategoriesCollectionViewController {
             categoriesController.selectedCategory.subscribeNext({ (category) in
                 self.flowDelegate?.showCreatePageInfo(category, loginViewModel: self.viewModel)
             }).addDisposableTo(disposeBag)

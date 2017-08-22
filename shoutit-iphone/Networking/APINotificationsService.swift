@@ -14,22 +14,22 @@ import ShoutitKit
 
 final class APINotificationsService {
     
-    private static let notificationsURL = APIManager.baseURL + "/notifications"
-    private static let resetNotificationsURL = APIManager.baseURL + "/notifications/reset"
+    fileprivate static let notificationsURL = APIManager.baseURL + "/notifications"
+    fileprivate static let resetNotificationsURL = APIManager.baseURL + "/notifications/reset"
     
     // MARK: - Traditional
     
-    static func requestNotificationsBefore(before: Int?) -> Observable<[Notification]> {
-        return APIGenericService.requestWithMethod(.GET, url: notificationsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: .URL, responseJsonPath: ["results"])
+    static func requestNotificationsBefore(_ before: Int?) -> Observable<[ShoutitKit.Notification]> {
+        return APIGenericService.requestWithMethod(.GET, url: notificationsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: .url, responseJsonPath: ["results"])
     }
     
-    static func markNotificationAsRead(notification: Notification) -> Observable<Void> {
+    static func markNotificationAsRead(_ notification: ShoutitKit.Notification) -> Observable<Void> {
         let url = APIManager.baseURL + "/notifications/\(notification.id)/read"
         
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .URL, headers: nil)
+        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .url, headers: nil)
     }
     
     static func markAllAsRead() -> Observable<Void> {
-        return APIGenericService.basicRequestWithMethod(.POST, url: resetNotificationsURL, params: NopParams(), encoding: .URL, headers: nil)
+        return APIGenericService.basicRequestWithMethod(.POST, url: resetNotificationsURL, params: NopParams(), encoding: .url, headers: nil)
     }
 }

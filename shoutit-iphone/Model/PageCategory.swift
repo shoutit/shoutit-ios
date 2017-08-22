@@ -26,7 +26,7 @@ public struct PageCategory: Hashable, Equatable {
 
 extension PageCategory: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<PageCategory> {
+    public static func decode(_ j: JSON) -> Decoded<PageCategory> {
         return curry(PageCategory.init)
             <^> j <| "name"
             <*> j <|? "icon"
@@ -41,7 +41,7 @@ extension PageCategory: Decodable {
 extension PageCategory: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "slug"    : self.slug.encode() ])
     }
 }

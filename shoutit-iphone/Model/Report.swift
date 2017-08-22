@@ -25,6 +25,6 @@ extension Report: Encodable {
         
         json["attached_object"] = self.object.attachedObjectJSON()
         
-        return JSON.Object(json)
+        return JSON.object(json)
     }
 }

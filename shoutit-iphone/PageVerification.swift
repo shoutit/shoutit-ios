@@ -26,7 +26,7 @@ public struct PageVerification {
 
 extension PageVerification: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<PageVerification> {
+    public static func decode(_ j: JSON) -> Decoded<PageVerification> {
         let function = curry(PageVerification.init)
         return function
             <^> j <| "business_name"

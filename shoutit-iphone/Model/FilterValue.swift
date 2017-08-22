@@ -24,7 +24,7 @@ public struct FilterValue: Hashable, Equatable {
 
 extension FilterValue: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<FilterValue> {
+    public static func decode(_ j: JSON) -> Decoded<FilterValue> {
         return curry(FilterValue.init)
             <^> j <| "name"
             <*> j <| "slug"
@@ -38,6 +38,6 @@ public func ==(lhs: FilterValue, rhs: FilterValue) -> Bool {
 
 extension FilterValue: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["slug": slug.encode(), "name": name.encode(), "id": id.encode()])
+        return JSON.object(["slug": slug.encode(), "name": name.encode(), "id": id.encode()])
     }
 }

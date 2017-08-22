@@ -9,26 +9,26 @@
 import UIKit
 
 final class OverlayDismissAnimationController: OverlayAnimationController {
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
         
         guard let fromView = fromViewController?.view else {
             fatalError()
         }
         
-        UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { () -> Void in
-            guard let _ = transitionContext.containerView() else {
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: { () -> Void in
+            guard let _ = transitionContext.containerView else {
                 fatalError()
             }
             
             fromView.alpha = 0.0
             
             
-            }) { (finished) -> Void in
+            }, completion: { (finished) -> Void in
                 fromView.removeFromSuperview()
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-        }
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }) 
         
     }
 }

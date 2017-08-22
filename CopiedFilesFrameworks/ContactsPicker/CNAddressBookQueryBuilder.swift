@@ -13,12 +13,12 @@ import Contacts
 internal class CNAddressBookQueryBuilder: InternalAddressBookQueryBuilder<CNAddressBookImpl> {
     
     let addressBookPropertiesToCNProperties: [AddressBookRecordProperty: String] = [
-        AddressBookRecordProperty.FirstName : CNContactGivenNameKey,
-        AddressBookRecordProperty.MiddleName : CNContactMiddleNameKey,
-        AddressBookRecordProperty.LastName : CNContactFamilyNameKey,
-        AddressBookRecordProperty.EmailAddresses : CNContactEmailAddressesKey,
-        AddressBookRecordProperty.OrganizationName : CNContactOrganizationNameKey,
-        AddressBookRecordProperty.PhoneNumbers : CNContactPhoneNumbersKey
+        AddressBookRecordProperty.firstName : CNContactGivenNameKey,
+        AddressBookRecordProperty.middleName : CNContactMiddleNameKey,
+        AddressBookRecordProperty.lastName : CNContactFamilyNameKey,
+        AddressBookRecordProperty.emailAddresses : CNContactEmailAddressesKey,
+        AddressBookRecordProperty.organizationName : CNContactOrganizationNameKey,
+        AddressBookRecordProperty.phoneNumbers : CNContactPhoneNumbersKey
     ]
     
     
@@ -32,7 +32,7 @@ internal class CNAddressBookQueryBuilder: InternalAddressBookQueryBuilder<CNAddr
         return contacts
     }
     
-    func mapProperties(properties: [AddressBookRecordProperty]) -> [String] {
+    func mapProperties(_ properties: [AddressBookRecordProperty]) -> [String] {
         let setProperties = Set<AddressBookRecordProperty>(properties)
         var keys = [String]()
         for property in setProperties {

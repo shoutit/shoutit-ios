@@ -23,7 +23,7 @@ public struct PushTokens {
 
 extension PushTokens: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<PushTokens> {
+    public static func decode(_ j: JSON) -> Decoded<PushTokens> {
         return curry(PushTokens.init)
             <^> j <|? "apns"
             <*> j <|? "gcm"
@@ -33,7 +33,7 @@ extension PushTokens: Decodable {
 extension PushTokens: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "apns"    : self.apns.encode()
             ])
     }

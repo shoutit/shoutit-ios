@@ -13,7 +13,7 @@ import RxCocoa
 class ConversationListsParentViewController: UIViewController, ContainerController {
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var listChoiceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
@@ -55,7 +55,7 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
         }
     }
     
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
@@ -69,7 +69,7 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
         self.changeContentTo(self.myChatsViewController)
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         listChoiceSegmentedControl
             .rx_value
@@ -85,13 +85,13 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
             .addDisposableTo(disposeBag)
     }
     
-    @IBAction func searchAction(sender: AnyObject) {
-        flowDelegate?.showSearchInContext(.General)
+    @IBAction func searchAction(_ sender: AnyObject) {
+        flowDelegate?.showSearchInContext(.general)
     }
 }
 
 extension ConversationListsParentViewController : DeepLinkHandling {
-    func handleDeeplink(deepLink: DPLDeepLink) {
+    func handleDeeplink(_ deepLink: DPLDeepLink) {
         self.loadWithNavigationItem = deepLink.navigationItem
         
         if let _ = self.view {

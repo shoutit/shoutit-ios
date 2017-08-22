@@ -10,31 +10,31 @@ import UIKit
 
 final class ConversationAttachmentViewController: UIViewController {
 
-    var completion: ((type: PickerAttachmentType) -> Void)!
+    var completion: ((_ type: PickerAttachmentType) -> Void)!
     
     @IBAction func mediaAction() {
-        dismissWithType(.Media)
+        dismissWithType(.media)
     }
     
     @IBAction func shoutAction() {
-        dismissWithType(.Shout)
+        dismissWithType(.shout)
     }
     
     @IBAction func locationAction() {
-        dismissWithType(.Location)
+        dismissWithType(.location)
     }
     
     @IBAction func profileAction() {
-        dismissWithType(.Profile)
+        dismissWithType(.profile)
     }
     
-    private func dismissWithType(type: PickerAttachmentType) {
-        self.dismissViewControllerAnimated(true) { 
+    fileprivate func dismissWithType(_ type: PickerAttachmentType) {
+        self.dismiss(animated: true) { 
             self.completion(type: type)
         }
     }
     
     @IBAction override func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

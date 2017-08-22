@@ -8,6 +8,30 @@
 
 import Foundation
 import CoreLocation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 public protocol AuthParams: Params {
     
@@ -22,9 +46,9 @@ extension AuthParams {
     public var params: [String : AnyObject] {
         
         var commonParams: [String : AnyObject] = [
-            "client_id": Constants.Authentication.clientID,
-            "client_secret": Constants.Authentication.clientSecret,
-            "grant_type": grantType
+            "client_id": Constants.Authentication.clientID as AnyObject,
+            "client_secret": Constants.Authentication.clientSecret as AnyObject,
+            "grant_type": grantType as AnyObject
         ]
         
         for (key, value) in authParams {
@@ -39,8 +63,8 @@ extension AuthParams {
                 locationUserParams[key] = value
             }
         }
-        commonParams["profile"] = locationUserParams
-        commonParams["mixpanel_distinct_id"] = mixPanelDistinctId
+        commonParams["profile"] = locationUserParams as AnyObject
+        commonParams["mixpanel_distinct_id"] = mixPanelDistinctId as AnyObject
         
         return commonParams
     }
@@ -64,8 +88,8 @@ public struct LoginParams: AuthParams {
     
     public var authParams: [String : AnyObject] {
         return [
-            "email": email,
-            "password": password
+            "email": email as AnyObject,
+            "password": password as AnyObject
         ]
     }
 }
@@ -104,7 +128,7 @@ public struct SignupParams: AuthParams {
             params["invitation_code"] = invitationCode
         }
         
-        return params
+        return params as [String : AnyObject]
     }
 }
 
@@ -141,7 +165,7 @@ public struct FacebookLoginParams: AuthParams {
     
     public var authParams: [String : AnyObject] {
         return [
-            "facebook_access_token": token
+            "facebook_access_token": token as AnyObject
         ]
     }
     
@@ -163,7 +187,7 @@ public struct GoogleLoginParams: AuthParams {
     
     public var authParams: [String : AnyObject] {
         return [
-            "gplus_code": gplusCode
+            "gplus_code": gplusCode as AnyObject
         ]
     }
     
@@ -179,7 +203,7 @@ public struct ResetPasswordParams: Params {
     public let email: String
     
     public var params: [String : AnyObject] {
-        return ["email" : email]
+        return ["email" : email as AnyObject]
     }
     
     public init(email: String) {
@@ -191,10 +215,10 @@ public struct RefreshTokenParams: Params {
     public var refreshToken: String
 
     public var params: [String : AnyObject] {
-        return ["client_id": Constants.Authentication.clientID,
-        "client_secret": Constants.Authentication.clientSecret,
-        "grant_type": "refresh_token",
-        "refresh_token": refreshToken]
+        return ["client_id": Constants.Authentication.clientID as AnyObject,
+        "client_secret": Constants.Authentication.clientSecret as AnyObject,
+        "grant_type": "refresh_token" as AnyObject,
+        "refresh_token": refreshToken as AnyObject]
         
     }
     

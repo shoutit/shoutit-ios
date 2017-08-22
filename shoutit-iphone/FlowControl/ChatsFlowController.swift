@@ -20,7 +20,7 @@ final class ChatsFlowController: FlowController {
         navigationController.showViewController(controller, sender: nil)
     }
     
-    override func handleDeeplink(deepLink: DPLDeepLink?) {
+    override func handleDeeplink(_ deepLink: DPLDeepLink?) {
         guard let deepLink = deepLink else {
             return
         }

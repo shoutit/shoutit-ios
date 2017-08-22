@@ -29,10 +29,10 @@ final class LocationFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.locationViewController()
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func setShouldShowAutoUpdates(value: Bool) {
+    func setShouldShowAutoUpdates(_ value: Bool) {
         if let locationController = self.navigationController.viewControllers[0] as? ChangeLocationTableViewController {
             locationController.shouldShowAutoUpdates = value
         }

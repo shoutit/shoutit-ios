@@ -14,7 +14,7 @@ class ConversationMemberCellConfigurator: ProfileCellConfigurator {
     var admins : [String]!
     var canAdministrate = false
     
-    override func configureCell(cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
+    override func configureCell(_ cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
         
         let profile : Profile = cellViewModel.profile
         
@@ -27,16 +27,16 @@ class ConversationMemberCellConfigurator: ProfileCellConfigurator {
         
         if isAdmin {
             let adminString = NSAttributedString(string: NSLocalizedString("Administrator", comment: "Conversation Profiles List - single user subtitle"),
-                                                 attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-            subtitle.appendAttributedString(adminString)
-            subtitle.appendAttributedString(NSAttributedString(string: "  "))
+                                                 attributes: [NSForegroundColorAttributeName: UIColor.red])
+            subtitle.append(adminString)
+            subtitle.append(NSAttributedString(string: "  "))
         }
         
         if isBlocked {
             let blockedString = NSAttributedString(string: NSLocalizedString("Blocked", comment: "Conversation Profiles List - single user subtitle"),
-                                                   attributes: [NSForegroundColorAttributeName: UIColor(shoutitColor: .PrimaryGreen)])
+                                                   attributes: [NSForegroundColorAttributeName: UIColor(shoutitColor: .primaryGreen)])
             
-            subtitle.appendAttributedString(blockedString)
+            subtitle.append(blockedString)
         }
         
         cell.listenersCountLabel.attributedText = subtitle
@@ -44,10 +44,10 @@ class ConversationMemberCellConfigurator: ProfileCellConfigurator {
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: cellViewModel.profile.type == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
         
         
-        cell.listenButton.hidden = true
+        cell.listenButton.isHidden = true
         
         if canAdministrate {
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
         }
     }
 }

@@ -12,14 +12,14 @@ import ShoutitKit
 extension UIViewController {
     
     @IBAction func toggleMenu() {
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.ToggleMenuNotification, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Constants.Notification.ToggleMenuNotification), object: nil, userInfo: nil)
     }
     
     @IBAction func pop() {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func dismiss() {
-        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }

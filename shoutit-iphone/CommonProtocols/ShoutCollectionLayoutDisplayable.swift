@@ -10,9 +10,9 @@ import UIKit
 
 protocol ShoutCollectionLayoutDisplayable {
     
-    func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize!
+    func sizeForItem(AtIndexPath indexPath: IndexPath!, collectionView: UICollectionView) -> CGSize!
     func minimumInterItemSpacingSize() -> CGSize!
-    func headerSize(collectionView: UICollectionView) -> CGSize!
+    func headerSize(_ collectionView: UICollectionView) -> CGSize!
     func scrollDirection() -> UICollectionViewScrollDirection
 }
 
@@ -24,7 +24,7 @@ extension ShoutVerticalListLayoutDisplayable {
     
     func itemHeight() -> CGFloat { return 110.0 }
     
-    func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize! {
+    func sizeForItem(AtIndexPath indexPath: IndexPath!, collectionView: UICollectionView) -> CGSize! {
         return CGSize(width: floor(collectionView.bounds.width - 2 * minimumInterItemSpacingSize().width), height: min(itemHeight(), floor(collectionView.bounds.height - 2 * minimumInterItemSpacingSize().width)))
     }
     
@@ -32,12 +32,12 @@ extension ShoutVerticalListLayoutDisplayable {
         return CGSize(width: 10.0, height: 10.0)
     }
     
-    func headerSize(collectionView: UICollectionView) -> CGSize! {
-        return CGSizeZero
+    func headerSize(_ collectionView: UICollectionView) -> CGSize! {
+        return CGSize.zero
     }
     
     func scrollDirection() -> UICollectionViewScrollDirection {
-        return .Vertical
+        return .vertical
     }
 }
 
@@ -49,7 +49,7 @@ extension ShoutVerticalGridLayoutDisplayable {
     
     func itemHeight() -> CGFloat { return 170.0 }
     
-    func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize! {
+    func sizeForItem(AtIndexPath indexPath: IndexPath!, collectionView: UICollectionView) -> CGSize! {
         return CGSize(width: floor((collectionView.bounds.width - 3 * minimumInterItemSpacingSize().width) * 0.5), height: itemHeight())
     }
     
@@ -57,12 +57,12 @@ extension ShoutVerticalGridLayoutDisplayable {
         return CGSize(width: 10.0, height: 10.0)
     }
     
-    func headerSize(collectionView: UICollectionView) -> CGSize! {
-        return CGSizeZero
+    func headerSize(_ collectionView: UICollectionView) -> CGSize! {
+        return CGSize.zero
     }
     
     func scrollDirection() -> UICollectionViewScrollDirection {
-        return .Vertical
+        return .vertical
     }
 }
 
@@ -72,7 +72,7 @@ protocol ShoutHorizontalGridLayoutDisplayable : ShoutCollectionLayoutDisplayable
 
 extension ShoutHorizontalGridLayoutDisplayable {
     
-    func sizeForItem(AtIndexPath indexPath: NSIndexPath!, collectionView: UICollectionView) -> CGSize! {
+    func sizeForItem(AtIndexPath indexPath: IndexPath!, collectionView: UICollectionView) -> CGSize! {
         return CGSize(width: 120.0, height: 120.0)
     }
     
@@ -80,12 +80,12 @@ extension ShoutHorizontalGridLayoutDisplayable {
         return CGSize(width: 10.0, height: 10.0)
     }
     
-    func headerSize(collectionView: UICollectionView) -> CGSize! {
-        return CGSizeZero
+    func headerSize(_ collectionView: UICollectionView) -> CGSize! {
+        return CGSize.zero
     }
     
     func scrollDirection() -> UICollectionViewScrollDirection {
-        return .Horizontal
+        return .horizontal
     }
 }
 

@@ -21,10 +21,10 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
     var sectionViewModel: PostSignupSuggestionsSectionViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     lazy var placeholderView: TableViewPlaceholderView = {[unowned self] in
-        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        let view = Bundle.main.loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)?[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height * 0.5)
         return view
         }()
@@ -43,29 +43,29 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         tableView.emptyDataSetDelegate = self
         
         // register cells
-        tableView.registerNib(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")
+        tableView.register(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")
 
     }
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attributes : [String: AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(18)]
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let attributes : [String: AnyObject] = [NSFontAttributeName: UIFont.systemFont(ofSize: 18)]
         
         switch viewModel.state.value {
-        case .Loading:
+        case .loading:
             return NSAttributedString(string: NSLocalizedString("Loading suggestions", comment: ""), attributes: attributes)
-        case .Idle:
+        case .idle:
             return NSAttributedString(string: NSLocalizedString("Loading suggestions", comment: ""), attributes: attributes)
-        case .ContentUnavailable:
+        case .contentUnavailable:
             return NSAttributedString(string: self.sectionViewModel.noContentTitle, attributes: attributes)
-        case .ContentLoaded:
+        case .contentLoaded:
             return NSAttributedString(string: self.sectionViewModel.noContentTitle, attributes: attributes)
-        case .Error(let error):
+        case .error(let error):
             return NSAttributedString(string: (error as NSError).localizedDescription, attributes: attributes)
         }
         
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel.state.asObservable()
             .subscribeNext {[weak self] (state) in
@@ -88,14 +88,14 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        guard case LoadingState.ContentLoaded = viewModel.state.value else {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard case LoadingState.contentLoaded = viewModel.state.value else {
             return 0
         }
         
@@ -107,21 +107,21 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard case LoadingState.ContentLoaded = viewModel.state.value else {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard case LoadingState.contentLoaded = viewModel.state.value else {
             return 0
         }
         
         return sectionViewModel.cells.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard case LoadingState.ContentLoaded = viewModel.state.value else {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard case LoadingState.contentLoaded = viewModel.state.value else {
             fatalError()
         }
         
         let cellViewModel = sectionViewModel.cells[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostSignupSuggestionsTableViewCell", forIndexPath: indexPath) as! PostSignupSuggestionsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostSignupSuggestionsTableViewCell", for: indexPath) as! PostSignupSuggestionsTableViewCell
         
         cell.nameLabel.text = cellViewModel.item.suggestionTitle
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: UIImage.squareAvatarPlaceholder())
@@ -137,12 +137,12 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: placeholder)
         
         let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
-        cell.listenButton.setImage(image, forState: .Normal)
+        cell.listenButton.setImage(image, for: UIControlState())
         
         cell.reuseDisposeBag = DisposeBag()
-        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorType?)> in
+        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorProtocol?)> in
             return cellViewModel.listen()
-        }).subscribeNext({[weak self] (let successMessage, let error) in
+        }).subscribeNext({[weak self] (successMessage, error) in
             if let successMessage = successMessage {
                 self?.showSuccessMessage(successMessage)
                 
@@ -155,7 +155,7 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionViewModel.section.title
     }
     

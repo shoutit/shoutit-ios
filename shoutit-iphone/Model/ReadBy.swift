@@ -20,7 +20,7 @@ public struct ReadBy: Decodable, Hashable, Equatable {
         }
     }
     
-    public static func decode(j: JSON) -> Decoded<ReadBy> {
+    public static func decode(_ j: JSON) -> Decoded<ReadBy> {
         return curry(ReadBy.init)
             <^> j <| "profile_id"
             <*> j <| "read_at"

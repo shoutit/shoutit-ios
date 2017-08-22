@@ -20,7 +20,7 @@ extension FlowController : CreditsDisplayable {
         
         controller.flowDelegate = self
 
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     func showCreditTransactions() {
@@ -28,7 +28,7 @@ extension FlowController : CreditsDisplayable {
         
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     func showPromotingShouts() {
@@ -36,6 +36,6 @@ extension FlowController : CreditsDisplayable {
         
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

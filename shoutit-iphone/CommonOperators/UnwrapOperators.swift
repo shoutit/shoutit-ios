@@ -8,16 +8,16 @@
 
 import Foundation
 
-infix operator !! {}
+infix operator !!
 
-func !! <T>(wrapped: T?, @autoclosure failureText: () -> String) -> T {
+func !! <T>(wrapped: T?, failureText: @autoclosure () -> String) -> T {
     if let x = wrapped {return x}
     fatalError(failureText)
 }
 
-infix operator !? {}
+infix operator !?
 
-func !? <T>(wrapped: T?, @autoclosure nilDefault: () -> (value: T, text: String)) -> T {
+func !? <T>(wrapped: T?, nilDefault: @autoclosure () -> (value: T, text: String)) -> T {
     assert(wrapped != nil, nilDefault().text)
     return wrapped ?? nilDefault().value
 }

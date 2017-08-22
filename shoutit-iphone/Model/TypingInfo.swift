@@ -22,7 +22,7 @@ public struct TypingInfo {
 }
 
 extension TypingInfo: Decodable {
-    public static func decode(j: JSON) -> Decoded<TypingInfo> {
+    public static func decode(_ j: JSON) -> Decoded<TypingInfo> {
         return curry(TypingInfo.init)
             <^> j <| "id"
             <*> j <| "username"
@@ -31,7 +31,7 @@ extension TypingInfo: Decodable {
 
 extension TypingInfo: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["id": self.id.encode(),
+        return JSON.object(["id": self.id.encode(),
             "username" : self.username.encode()])
     }
 }

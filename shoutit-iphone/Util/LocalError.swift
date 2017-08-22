@@ -11,14 +11,14 @@ import ShoutitKit
 
 enum LocalError: ShoutitError {
     
-    case Cancelled
-    case UnknownError
+    case cancelled
+    case unknownError
     
     var userMessage: String {
         switch self {
-        case .Cancelled:
+        case .cancelled:
             return "Cancelled"
-        case .UnknownError:
+        case .unknownError:
             return ""
         }
     }

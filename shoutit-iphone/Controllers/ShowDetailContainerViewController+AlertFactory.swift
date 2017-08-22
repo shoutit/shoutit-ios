@@ -10,7 +10,7 @@ import Foundation
 
 extension ShowDetailContainerViewController {
     
-    func moreAlert(reportHandler: (Void -> Void)?, deleteHandler: (Void -> Void)?) -> UIAlertController {
+    func moreAlert(_ reportHandler: ((Void) -> Void)?, deleteHandler: ((Void) -> Void)?) -> UIAlertController {
         
         let alertTitle = NSLocalizedString("More", comment: "")
         let reportActionTitle = NSLocalizedString("Report Shout", comment: "")
@@ -30,7 +30,7 @@ extension ShowDetailContainerViewController {
         return alertController
     }
     
-    func deleteAlert(completion: () -> Void) -> UIAlertController {
+    func deleteAlert(_ completion: @escaping () -> Void) -> UIAlertController {
         
         let alertTitle = NSLocalizedString("Are you sure?", comment: "")
         let alertMessage = NSLocalizedString("Do you want to delete this shout?", comment: "")

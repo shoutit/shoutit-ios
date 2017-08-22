@@ -11,10 +11,10 @@ import RxSwift
 import ShoutitKit
 
 enum PickerAttachmentType {
-    case Media
-    case Shout
-    case Profile
-    case Location
+    case media
+    case shout
+    case profile
+    case location
 }
 
 final class ConversationAttachmentManager: MediaPickerControllerDelegate {
@@ -25,7 +25,7 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     let disposeBag = DisposeBag()
     
     var tasks : [MediaUploadingTask: Disposable] = [:]
-    var uploader = MediaUploader(bucket: .ShoutImage)
+    var uploader = MediaUploader(bucket: .shoutImage)
     lazy var mediaPickerController: MediaPickerController = {[unowned self] in
         let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100),
                                            targetSize: PHImageManagerMaximumSize,
@@ -48,24 +48,24 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         return mediaPicker
     }()
     
-    func requestAttachmentWithType(type: PickerAttachmentType) {
+    func requestAttachmentWithType(_ type: PickerAttachmentType) {
         switch type {
-        case .Media:
+        case .media:
             requestMediaAttachment()
-        case .Profile:
+        case .profile:
             requestProfileAttachment()
-        case .Location:
+        case .location:
             requestLocationAttachment()
-        case .Shout:
+        case .shout:
             requestShoutAttachment()
         }
     }
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         let task = uploader.uploadAttachment(attachment)
         
         let subscription = task.status.asDriver().driveNext { [weak self] (status) in
-            if status == .Uploaded {
+            if status == .uploaded {
                 self?.taskCompleted(task)
             }
         }
@@ -73,7 +73,7 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         tasks[task] = subscription
     }
     
-    func taskCompleted(task: MediaUploadingTask) {
+    func taskCompleted(_ task: MediaUploadingTask) {
         let subscription = tasks[task]
         
         subscription?.dispose()
@@ -83,15 +83,15 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         showConfirmationControllerForAttachment(attachment)
     }
     
-    private func requestLocationAttachment() {
+    fileprivate func requestLocationAttachment() {
         guard let user = Account.sharedInstance.user else {
             fatalError("User shouldnt be able to create attachment without logging in")
         }
         
-        guard let longitude = user.location.longitude, latitude = user.location.latitude else {
+        guard let longitude = user.location.longitude, let latitude = user.location.latitude else {
             
-            let alert = UIAlertController(title: NSLocalizedString("Could not send your location right now.", comment: "Sending Location Error"), message: NSLocalizedString("Please make sure that your location services are enabled for Shoutit.", comment: "No location services message"), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Cancel, handler: nil))
+            let alert = UIAlertController(title: NSLocalizedString("Could not send your location right now.", comment: "Sending Location Error"), message: NSLocalizedString("Please make sure that your location services are enabled for Shoutit.", comment: "No location services message"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .cancel, handler: nil))
             self.presentingSubject.onNext(alert)
             
             return
@@ -103,21 +103,21 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         showConfirmationControllerForAttachment(attachment)
     }
     
-    private func requestMediaAttachment() {
+    fileprivate func requestMediaAttachment() {
         mediaPickerController.showMediaPickerController()
     }
     
-    private func requestProfileAttachment() {
+    fileprivate func requestProfileAttachment() {
         let parentController = Wireframe.conversationSelectProfileAttachmentParentController()
         parentController.eventHandler = SelectProfileProfilesListEventHandler {[weak self, weak parentController] (profile) in
-            parentController?.navigationController?.popViewControllerAnimated(true)
+            parentController?.navigationController?.popViewController(animated: true)
             let attachment = MessageAttachment(shout: nil, location: nil, profile: profile, videos: nil, images: nil)
             self?.showConfirmationControllerForAttachment(attachment)
         }
         self.pushingSubject.onNext(parentController)
     }
     
-    private func requestShoutAttachment() {
+    fileprivate func requestShoutAttachment() {
 
         let controller = Wireframe.selectShoutAttachmentController()
         
@@ -129,28 +129,28 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         self.pushingSubject.onNext(controller)
     }
     
-    private func showConfirmationControllerForAttachment(attachment: MessageAttachment) {
+    fileprivate func showConfirmationControllerForAttachment(_ attachment: MessageAttachment) {
         guard let attachmentType = attachment.type() else { return }
-        let alert = UIAlertController(title: NSLocalizedString("Confirmation", comment: "Send attachment action sheet title"), message: confirmationMessageForType(attachmentType), preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Send Attachment", comment: "Send attachment action sheet option"), style: .Default, handler: { (alertAction) in
+        let alert = UIAlertController(title: NSLocalizedString("Confirmation", comment: "Send attachment action sheet title"), message: confirmationMessageForType(attachmentType), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Send Attachment", comment: "Send attachment action sheet option"), style: .default, handler: { (alertAction) in
             self.attachmentSelected.onNext(attachment)
         }))
         
         self.presentingSubject.onNext(alert)
     }
     
-    private func confirmationMessageForType(type: MessageAttachmentType) -> String {
+    fileprivate func confirmationMessageForType(_ type: MessageAttachmentType) -> String {
         switch type {
-        case .VideoAttachment:
+        case .videoAttachment:
             return NSLocalizedString("Do you want to send selected video?", comment: "Send Attachment question")
-        case .ShoutAttachment:
+        case .shoutAttachment:
             return NSLocalizedString("Do you want to send selected shout?", comment: "Send Attachment question")
-        case .LocationAttachment:
+        case .locationAttachment:
             return NSLocalizedString("Do you want to send your location?", comment: "Send Attachment question")
-        case .ImageAttachment:
+        case .imageAttachment:
             return NSLocalizedString("Do you want to send selected picture?", comment: "Send Attachment question")
-        case .ProfileAttachment:
+        case .profileAttachment:
             return NSLocalizedString("Do you want to send selected profile?", comment: "Send Attachment question")
         }
     }

@@ -17,7 +17,7 @@ final class TableViewPlaceholderView: UIView {
     
     @IBOutlet weak var labelToViewCenterYConstraint: NSLayoutConstraint!
     
-    func showMessage(message: String? = NSLocalizedString("Content unavailable", comment: "Default table view placeholder"),
+    func showMessage(_ message: String? = NSLocalizedString("Content unavailable", comment: "Default table view placeholder"),
                      title: String? = nil,
                      image: UIImage? = nil)
     {
@@ -28,18 +28,18 @@ final class TableViewPlaceholderView: UIView {
     }
     
     func showActivity() {
-        titleLabel.hidden = true
-        label.hidden = true
-        activityIndicatorView.hidden = false
+        titleLabel.isHidden = true
+        label.isHidden = true
+        activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
     }
     
-    private func adjustViewForDisplayingMessage() {
-        if activityIndicatorView.isAnimating() {
+    fileprivate func adjustViewForDisplayingMessage() {
+        if activityIndicatorView.isAnimating {
             activityIndicatorView.stopAnimating()
         }
-        activityIndicatorView.hidden = true
-        label.hidden = false
-        titleLabel.hidden = false
+        activityIndicatorView.isHidden = true
+        label.isHidden = false
+        titleLabel.isHidden = false
     }
 }

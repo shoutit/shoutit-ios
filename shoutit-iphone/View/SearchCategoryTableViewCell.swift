@@ -19,7 +19,7 @@ final class SearchCategoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+        separatorHeightConstraint.constant = 1 / UIScreen.main.scale
         disclosureIndicatorImageView.image = UIImage.rightBlueArrowDisclosureIndicator()
     }
     

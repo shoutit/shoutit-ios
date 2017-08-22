@@ -8,6 +8,30 @@
 
 import UIKit
 import ShoutitKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class PromotionLabelsViews: UIView {
     
@@ -16,20 +40,20 @@ class PromotionLabelsViews: UIView {
     @IBOutlet weak var shoutTitleLabel: UILabel?
     @IBOutlet weak var pageControl: UIPageControl?
     
-    var timer : NSTimer?
+    var timer : Timer?
     var currentSlide = 0
     var maxSlides : Int?
     
-    func fillWithShout(shout: Shout) {
+    func fillWithShout(_ shout: Shout) {
         self.shoutTitleLabel?.text = shout.title
     }
     
-    func presentPromotionLabels(labels: [PromotionLabel]) {
+    func presentPromotionLabels(_ labels: [PromotionLabel]) {
         
         if Platform.isRTL {
-            self.pageControl?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            self.pageControl?.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
         } else {
-            self.pageControl?.transform = CGAffineTransformIdentity
+            self.pageControl?.transform = CGAffineTransform.identity
         }
         
         scroll?.subviews.each { (view) in
@@ -58,14 +82,14 @@ class PromotionLabelsViews: UIView {
             self.scroll?.addSubview(view)
             
             if lastView == nil {
-                NSLayoutConstraint(item: view, attribute: (Platform.isRTL ? .Trailing : .Leading), relatedBy: .Equal, toItem: self.scroll, attribute: (Platform.isRTL ? .Trailing : .Leading), multiplier: 1.0, constant: Platform.isRTL ? -50 : 50).active = true
+                NSLayoutConstraint(item: view, attribute: (Platform.isRTL ? .trailing : .leading), relatedBy: .equal, toItem: self.scroll, attribute: (Platform.isRTL ? .trailing : .leading), multiplier: 1.0, constant: Platform.isRTL ? -50 : 50).isActive = true
             } else {
-                NSLayoutConstraint(item: view, attribute: (Platform.isRTL ? .Trailing : .Leading), relatedBy: .Equal, toItem: lastView, attribute: (Platform.isRTL ? .Leading : .Trailing), multiplier: 1.0, constant: Platform.isRTL ? -100 : 100).active = true
+                NSLayoutConstraint(item: view, attribute: (Platform.isRTL ? .trailing : .leading), relatedBy: .equal, toItem: lastView, attribute: (Platform.isRTL ? .leading : .trailing), multiplier: 1.0, constant: Platform.isRTL ? -100 : 100).isActive = true
             }
             
-            NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: self.scroll, attribute: .Height, multiplier: 1.0, constant: 0).active = true
-            NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: self.scroll, attribute: .Width, multiplier: 1.0, constant: -100).active = true
-            NSLayoutConstraint(item: view, attribute: .Top, relatedBy: .Equal, toItem: self.scroll, attribute: .Top, multiplier: 1.0, constant: 0).active = true
+            NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: self.scroll, attribute: .height, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: self.scroll, attribute: .width, multiplier: 1.0, constant: -100).isActive = true
+            NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.scroll, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
            
             lastView = view
         }
@@ -84,7 +108,7 @@ class PromotionLabelsViews: UIView {
         startAnimating()
     }
     
-    func promotionLabelView(promotionLabel: PromotionLabel) -> PromotionLabelView {
+    func promotionLabelView(_ promotionLabel: PromotionLabel) -> PromotionLabelView {
         let promotionView = PromotionLabelView.instanceFromNib()
         
         promotionView.bindWithPromotionLabel(promotionLabel)
@@ -93,11 +117,11 @@ class PromotionLabelsViews: UIView {
     }
     
     func hidePlaceholderView() {
-        placeholderView?.hidden = true
+        placeholderView?.isHidden = true
     }
     
     func showPlaceholderView() {
-        placeholderView?.hidden = false
+        placeholderView?.isHidden = false
     }
 
     func skipToNextSlide() {
@@ -108,7 +132,7 @@ class PromotionLabelsViews: UIView {
         }
         
         let offset : CGFloat = (self.scroll?.frame.width ?? 0) * CGFloat(currentSlide)
-        self.scroll?.setContentOffset(CGPointMake(offset, 0), animated: true)
+        self.scroll?.setContentOffset(CGPoint(x: offset, y: 0), animated: true)
     }
     
     func skipToPreviousSlide() {
@@ -119,7 +143,7 @@ class PromotionLabelsViews: UIView {
         }
         
         let offset : CGFloat = (self.scroll?.frame.width ?? 0) * CGFloat(currentSlide)
-        self.scroll?.setContentOffset(CGPointMake(offset, 0), animated: true)
+        self.scroll?.setContentOffset(CGPoint(x: offset, y: 0), animated: true)
     }
 }
 
@@ -131,9 +155,9 @@ extension PromotionLabelsViews : UIScrollViewDelegate {
         self.scroll?.delegate = self
         
         if Platform.isRTL {
-            timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(skipToPreviousSlide), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(skipToPreviousSlide), userInfo: nil, repeats: true)
         } else {
-            timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(skipToNextSlide), userInfo: nil, repeats: true)
         }
     }
     
@@ -143,7 +167,7 @@ extension PromotionLabelsViews : UIScrollViewDelegate {
         timer = nil
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let width = scrollView.frame.size.width
         let page = Int((scrollView.contentOffset.x + (0.5 * width)) / width)

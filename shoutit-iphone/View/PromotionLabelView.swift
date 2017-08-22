@@ -18,10 +18,10 @@ class PromotionLabelView: UIView {
     @IBOutlet weak var backgroundView : UIView?
     
     class func instanceFromNib() -> PromotionLabelView {
-        return UINib(nibName: "PromotionLabelView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! PromotionLabelView
+        return UINib(nibName: "PromotionLabelView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! PromotionLabelView
     }
 
-    func bindWithPromotionLabel(label: PromotionLabel) {
+    func bindWithPromotionLabel(_ label: PromotionLabel) {
         self.sentenceLabel?.text = label.description
         self.topLabel?.text = label.name
         self.topLabelBackground?.backgroundColor = label.color()

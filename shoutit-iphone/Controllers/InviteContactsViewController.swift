@@ -9,13 +9,37 @@
 import UIKit
 import AddressBook
 import MessageUI
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class InviteContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
     var myContacts : [ContactProtocol]?
-    private var addressBook : AddressBook?
+    fileprivate var addressBook : AddressBook?
     let messageComposer = MessageComposer()
 
     override func viewDidLoad() {
@@ -54,8 +78,8 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         
         guard let contact = myContacts?[indexPath.row] else {
             return cell
@@ -66,37 +90,37 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myContacts?.count ?? 0
     }
     
-    func showMessageComposerForPhoneNumber(phone: String) {
+    func showMessageComposerForPhoneNumber(_ phone: String) {
         if (messageComposer.canSendText()) {
             let messageComposeVC = messageComposer.configuredMessageComposeViewController(phone)
-            presentViewController(messageComposeVC, animated: true, completion: nil)
+            present(messageComposeVC, animated: true, completion: nil)
         } else {
             let errorAlert = UIAlertView(title: NSLocalizedString("Cannot Send Text Message", comment: "Invite Contacts send message error title"), message: NSLocalizedString("Your device is not able to send text messages.", comment: "Invite Contacts send message error message"), delegate: self, cancelButtonTitle: LocalizedString.ok)
             errorAlert.show()
         }
     }
     
-    func showPhoneActionSheet(phoneNumbers: [String]) {
-        let optionMenu = UIAlertController(title: NSLocalizedString("Please select phone number", comment: "Invite Contacts Select Phone Number Alert Title"), message:nil, preferredStyle: .ActionSheet)
+    func showPhoneActionSheet(_ phoneNumbers: [String]) {
+        let optionMenu = UIAlertController(title: NSLocalizedString("Please select phone number", comment: "Invite Contacts Select Phone Number Alert Title"), message:nil, preferredStyle: .actionSheet)
         
         phoneNumbers.each { (phone) in
-            optionMenu.addAction(UIAlertAction(title: phone, style: .Default, handler: { (action) in
+            optionMenu.addAction(UIAlertAction(title: phone, style: .default, handler: { (action) in
                 self.showMessageComposerForPhoneNumber(phone)
             }))
         }
         
-        optionMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Invite Contacts Select Phone Cancel"), style: .Cancel, handler: nil))
+        optionMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Invite Contacts Select Phone Cancel"), style: .cancel, handler: nil))
         
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         guard let contact = myContacts?[indexPath.row] else {
             return

@@ -14,8 +14,8 @@ public struct ConversationUpdateParams: Params {
     
     public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
-        params["subject"] = subject
-        params["icon"] = icon
+        params["subject"] = subject as AnyObject
+        params["icon"] = icon as AnyObject
         return params
     }
     

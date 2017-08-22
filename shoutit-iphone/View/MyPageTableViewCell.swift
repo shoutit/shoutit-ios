@@ -11,7 +11,7 @@ import RxSwift
 
 final class MyPageTableViewCell: UITableViewCell {
     
-    private(set) var reuseDisposeBag = DisposeBag()
+    fileprivate(set) var reuseDisposeBag = DisposeBag()
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

@@ -13,8 +13,8 @@ import ACPDownload
 final class EditPageTableViewHeaderView: UIView {
     
     enum ProgressType {
-        case Cover
-        case Avatar
+        case cover
+        case avatar
     }
     
     // cover
@@ -25,7 +25,7 @@ final class EditPageTableViewHeaderView: UIView {
     // avatar
     @IBOutlet weak var avatarContainerView: UIView! {
         didSet {
-            avatarContainerView.layer.shadowColor = UIColor.grayColor().CGColor
+            avatarContainerView.layer.shadowColor = UIColor.gray.cgColor
             avatarContainerView.layer.shadowOpacity = 0.6
             avatarContainerView.layer.shadowRadius = 3.0
             avatarContainerView.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -34,7 +34,7 @@ final class EditPageTableViewHeaderView: UIView {
     }
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
-            avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+            avatarImageView.layer.borderColor = UIColor.white.cgColor
             avatarImageView.layer.borderWidth = 1
             avatarImageView.layer.cornerRadius = 5
             avatarImageView.layer.masksToBounds = true
@@ -42,7 +42,7 @@ final class EditPageTableViewHeaderView: UIView {
     }
     @IBOutlet weak var avatarButtonOverlay: UIView! {
         didSet {
-            avatarButtonOverlay.layer.borderColor = UIColor.whiteColor().CGColor
+            avatarButtonOverlay.layer.borderColor = UIColor.white.cgColor
             avatarButtonOverlay.layer.borderWidth = 1
             avatarButtonOverlay.layer.cornerRadius = 5
             avatarButtonOverlay.layer.masksToBounds = true
@@ -52,23 +52,23 @@ final class EditPageTableViewHeaderView: UIView {
     @IBOutlet weak var avatarButton: UIButton!
     @IBOutlet weak var avatarUploadProgressView: ACPDownloadView!
     
-    func hydrateProgressView(type: ProgressType, withStatus status: MediaUploadingTaskStatus) {
+    func hydrateProgressView(_ type: ProgressType, withStatus status: MediaUploadingTaskStatus) {
         
-        let progressView = type == .Avatar ? avatarUploadProgressView : coverUploadProgressView
-        let button = type == .Avatar ? avatarButton : coverButton
+        let progressView = type == .avatar ? avatarUploadProgressView : coverUploadProgressView
+        let button = type == .avatar ? avatarButton : coverButton
         
         switch (status) {
-        case .Uploading:
-            progressView.hidden = false
-            button.hidden = true
-            progressView.setIndicatorStatus(.Running)
-        case .Error:
-            button.hidden = false
-            progressView.hidden = true
-            progressView.setIndicatorStatus(.None)
-        case .Uploaded:
-            progressView.hidden = true
-            button.hidden = false
+        case .uploading:
+            progressView?.isHidden = false
+            button?.isHidden = true
+            progressView?.setIndicatorStatus(.running)
+        case .error:
+            button?.isHidden = false
+            progressView?.isHidden = true
+            progressView?.setIndicatorStatus(.none)
+        case .uploaded:
+            progressView?.isHidden = true
+            button?.isHidden = false
         }
     }
 }

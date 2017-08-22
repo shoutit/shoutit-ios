@@ -16,7 +16,7 @@ public struct Currency: Decodable {
     public let country: String
     public let name: String
     
-    public static func decode(j: JSON) -> Decoded<Currency> {
+    public static func decode(_ j: JSON) -> Decoded<Currency> {
         let f = curry(Currency.init)
             <^> j <| "code"
             <*> j <| "country"
@@ -34,7 +34,7 @@ public struct Currency: Decodable {
 extension Currency: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "code"    : self.code.encode(),
             "country"  : self.country.encode(),
             "name" : self.name.encode()

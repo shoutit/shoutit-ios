@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
     // navigation
     weak var flowDelegate: FlowController?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     weak var homeShoutsController : HomeShoutsViewController?
     weak var discoverParentController : DiscoverPreviewParentController?
@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
         get { return discoverVisible ? 164.0 : 0 }
     }
     
-    private var discoverVisible : Bool = true {
+    fileprivate var discoverVisible : Bool = true {
         didSet { self.layoutDiscoverSectionWith(maxDiscoverHeight) }
     }
     
@@ -38,24 +38,24 @@ final class HomeViewController: UIViewController {
         setupNavigationBar()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let discoverController = discoverParentController?.discoverController,
-            discoverCollection = discoverController.collectionView {
+            let discoverCollection = discoverController.collectionView {
             discoverCollection.reloadData()
         }
     }
     
     // MARK: - Setup
     
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo_navbar_white"))
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
-        if let discoverParent = self.discoverParentController, collectionController = discoverParent.discoverController {
+        if let discoverParent = self.discoverParentController, let collectionController = discoverParent.discoverController {
             bindToDiscoverItems(collectionController)
             bindToCollectionOffset()
         }
@@ -63,32 +63,32 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let homeShouts = segue.destinationViewController as? HomeShoutsViewController {
+        if let homeShouts = segue.destination as? HomeShoutsViewController {
             homeShoutsController = homeShouts
             homeShoutsController?.flowDelegate = self.flowDelegate
         }
         
-        if let discover = segue.destinationViewController as? DiscoverPreviewParentController {
+        if let discover = segue.destination as? DiscoverPreviewParentController {
             discoverParentController = discover
         }
     }
     
     // MARK: - Actions
     
-    @IBAction func filterAction(sender: AnyObject) {
+    @IBAction func filterAction(_ sender: AnyObject) {
         guard let homeShoutsController = self.homeShoutsController else { return }
         flowDelegate?.showFiltersWithState(homeShoutsController.viewModel.getFiltersState(), completionBlock: {[unowned self] (state) in
             self.homeShoutsController?.viewModel.applyFilters(state)
         })
     }
     
-    @IBAction func searchAction(sender: AnyObject) {
-        self.flowDelegate?.showSearchInContext(.General)
+    @IBAction func searchAction(_ sender: AnyObject) {
+        self.flowDelegate?.showSearchInContext(.general)
     }
     
-    @IBAction func cartAction(sender: AnyObject) {
+    @IBAction func cartAction(_ sender: AnyObject) {
         notImplemented()
     }
 }
@@ -97,11 +97,11 @@ final class HomeViewController: UIViewController {
 
 private extension HomeViewController {
     
-    private func bindToDiscoverItems(discoverController: DiscoverPreviewCollectionViewController) {
+    func bindToDiscoverItems(_ discoverController: DiscoverPreviewCollectionViewController) {
         discoverController.viewModel.state
             .asObservable()
             .subscribeNext{ [weak self] (state) -> Void in
-                let newValue = state == .Loaded
+                let newValue = state == .loaded
                 self?.discoverVisible = newValue
             }
             .addDisposableTo(disposeBag)
@@ -123,13 +123,13 @@ private extension HomeViewController {
         
     }
     
-    private func bindToCollectionOffset() {
+    func bindToCollectionOffset() {
         
         homeShoutsController?.scrollOffset
             .asObservable()
             .map{ [weak self] (offset) -> CGFloat in
                 guard let `self` = self else { return 0 }
-                let newHeight : CGFloat = self.maxDiscoverHeight - (offset ?? CGPointZero).y
+                let newHeight : CGFloat = self.maxDiscoverHeight - (offset ?? CGPoint.zero).y
                 return max(min(self.maxDiscoverHeight, newHeight), 0)
             }
             .subscribeNext{ [weak self] (newHeight) -> Void in
@@ -138,7 +138,7 @@ private extension HomeViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func layoutDiscoverSectionWith(newHeight: CGFloat) {
+    func layoutDiscoverSectionWith(_ newHeight: CGFloat) {
         self.discoverParentController?.view.alpha = newHeight / self.maxDiscoverHeight
         
         if discoverHeight.constant != newHeight {

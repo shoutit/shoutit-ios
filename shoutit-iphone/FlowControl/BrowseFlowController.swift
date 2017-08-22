@@ -16,8 +16,8 @@ final class BrowseFlowController: FlowController {
         self.navigationController = navigationController
         let controller = Wireframe.searchShoutsResultsCollectionViewController()
         controller.title = NSLocalizedString("Browse", comment: "Browse Screen Title")
-        controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: nil, inContext: .General)
+        controller.viewModel = SearchShoutsResultsViewModel(searchPhrase: nil, inContext: .general)
         controller.flowDelegate = self
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

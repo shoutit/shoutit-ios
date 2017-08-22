@@ -10,12 +10,12 @@ import Foundation
 import ShoutitKit
 
 protocol MediaDisplayable {
-    func showMediaForConversation(conversation: Conversation) -> Void
+    func showMediaForConversation(_ conversation: Conversation) -> Void
 }
 
 extension FlowController : MediaDisplayable {
     
-    func showMediaForConversation(conversation: Conversation) {
+    func showMediaForConversation(_ conversation: Conversation) {
         let viewModel = MessageAttachmentPhotoBrowserViewModel(conversation: conversation)
         let controller = MessageAttachmentPhotoBrowserViewController(delegate: viewModel)
         controller.viewModel = viewModel

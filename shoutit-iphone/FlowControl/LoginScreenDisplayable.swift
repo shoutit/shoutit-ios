@@ -18,6 +18,6 @@ extension LoginFlowController : LoginScreenDisplayable {
         let controller = Wireframe.loginWithEmailViewController()
         controller.viewModel = LoginWithEmailViewModel()
         controller.flowDelegate = self
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

@@ -15,7 +15,7 @@ public struct SearchParams: Params, PagedParams {
     public let pageSize: Int?
     
     public var params: [String : AnyObject] {
-        var p: [String : AnyObject] = ["search" : phrase]
+        var p: [String : AnyObject] = ["search" : phrase as AnyObject]
         for (key, value) in pagedParams {
             p[key] = value
         }

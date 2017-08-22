@@ -10,11 +10,11 @@ import Foundation
 import ShoutitKit
 
 enum PusherError: ShoutitError {
-    case WrongChannelName
+    case wrongChannelName
     
     var userMessage: String {
         switch self {
-        case .WrongChannelName:
+        case .wrongChannelName:
             return NSLocalizedString("Could not subscribe to channel. Wrong Channel Name", comment: "")
         }
     }

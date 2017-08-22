@@ -15,21 +15,21 @@ import ShoutitKit
 final class EditProfileTableViewController: UITableViewController {
     
     enum UploadType {
-        case Cover
-        case Avatar
+        case cover
+        case avatar
     }
     
     var viewModel: EditProfileTableViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // UI
     @IBOutlet weak var headerView: EditProfileTableViewHeaderView!
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
-    weak private var dateField : UITextField?
+    weak fileprivate var dateField : UITextField?
     
     // children
     lazy var mediaPickerController: MediaPickerController = {[unowned self] in
@@ -56,38 +56,38 @@ final class EditProfileTableViewController: UITableViewController {
         headerView.avatarImageView.sh_setImageWithURL(viewModel.user.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         headerView.coverImageView.sh_setImageWithURL(viewModel.user.coverPath?.toURL(), placeholderImage: UIImage.profileCoverPlaceholder())
         
-        self.tableView.keyboardDismissMode = .OnDrag
+        self.tableView.keyboardDismissMode = .onDrag
         
         setupRX()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     
-        if (NSUserDefaults.standardUserDefaults().boolForKey("CompleteProfileAlertWasShown") == false && !viewModel.user.hasAllRequiredFieldsFilled()) {
+        if (UserDefaults.standard.bool(forKey: "CompleteProfileAlertWasShown") == false && !viewModel.user.hasAllRequiredFieldsFilled()) {
             showCompleteProfileInfo()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CompleteProfileAlertWasShown")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(true, forKey: "CompleteProfileAlertWasShown")
+            UserDefaults.standard.synchronize()
         }
     }
     
     func showCompleteProfileInfo() {
-        let alert = UIAlertController(title: NSLocalizedString("Completing your Profile", comment: "Edit Profile Alert Title"), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: "Edit Profile Alert Message"), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Completing your Profile", comment: "Edit Profile Alert Title"), message: NSLocalizedString("Complete your profile to earn 1 Shoutit Credit", comment: "Edit Profile Alert Message"), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .default, handler: nil))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         cancelBarButtonItem
             .rx_tap
             .asDriver()
             .driveNext {[unowned self] in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
         
@@ -95,7 +95,7 @@ final class EditProfileTableViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext {[unowned self] in
-                self.uploadType = .Cover
+                self.uploadType = .cover
                 self.mediaPickerController.showMediaPickerController()
             }
             .addDisposableTo(disposeBag)
@@ -104,7 +104,7 @@ final class EditProfileTableViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext {[unowned self] in
-                self.uploadType = .Avatar
+                self.uploadType = .avatar
                 self.mediaPickerController.showMediaPickerController()
             }
             .addDisposableTo(disposeBag)
@@ -116,16 +116,16 @@ final class EditProfileTableViewController: UITableViewController {
             }
             .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
                 switch status {
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
-                case .Progress(let show):
+                case .progress(let show):
                     if show {
-                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                        MBProgressHUD.showAdded(to: self?.view, animated: true)
                     } else {
-                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
                     }
-                case .Ready:
-                    self?.dismissViewControllerAnimated(true, completion: nil)
+                case .ready:
+                    self?.dismiss(animated: true, completion: nil)
                 }
             }
             .addDisposableTo(disposeBag)
@@ -136,26 +136,26 @@ final class EditProfileTableViewController: UITableViewController {
 
 extension EditProfileTableViewController {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cells.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellViewModel = viewModel.cells[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.reuseIdentifier, for: indexPath)
         
         switch cellViewModel {
-        case .BasicText(let value, let placeholder, let identity):
+        case .basicText(let value, let placeholder, let identity):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
             cell.textField.text = value
             cell.textField.inputView = nil
-            if case .Mobile = identity {
-                cell.textField.keyboardType = .PhonePad
+            if case .mobile = identity {
+                cell.textField.keyboardType = .phonePad
             }
             cell.textField
                 .rx_text
@@ -164,7 +164,7 @@ extension EditProfileTableViewController {
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
                 }
                 .addDisposableTo(cell.disposeBag)
-        case .Date(let value, let placeholder, _):
+        case .date(let value, let placeholder, _):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
             
@@ -173,8 +173,8 @@ extension EditProfileTableViewController {
             }
             
             let picker =  UIDatePicker()
-            picker.datePickerMode = .Date
-            picker.addTarget(self, action: #selector(birthDateSelected), forControlEvents: .ValueChanged)
+            picker.datePickerMode = .date
+            picker.addTarget(self, action: #selector(birthDateSelected), for: .valueChanged)
             
             dateField = cell.textField
             cell.textField.inputView = picker
@@ -186,31 +186,31 @@ extension EditProfileTableViewController {
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
                 }
                 .addDisposableTo(cell.disposeBag)
-        case .Gender(let value, let placeholder, _):
+        case .gender(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
             cell.selectButton.fieldTitleLabel.text = placeholder
             cell.selectButton.showIcon(false)
-            cell.selectButton.setTitle((value != nil ? (value!.capitalizedString) : (genderValues().first!.capitalizedString)), forState: .Normal)
+            cell.selectButton.setTitle((value != nil ? (value!.capitalized) : (genderValues().first!.capitalized)), for: UIControlState())
             cell.selectButton
                 .rx_tap
                 .asDriver()
                 .driveNext({ [weak self] () -> Void in
                     
                     
-                    let controller = UIAlertController(title: NSLocalizedString("Select Gender", comment: "Edit Profile"), message: nil, preferredStyle: .ActionSheet)
+                    let controller = UIAlertController(title: NSLocalizedString("Select Gender", comment: "Edit Profile"), message: nil, preferredStyle: .actionSheet)
                     
                     self?.genderValues().each({ (genderString) in
-                    controller.addAction(UIAlertAction(title: genderString.capitalizedString, style: .Default, handler: { (alert) in
+                    controller.addAction(UIAlertAction(title: genderString.capitalized, style: .default, handler: { (alert) in
                         self?.viewModel.mutateModelForIndex(indexPath.row, object: genderString)
-                        self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }))
                     })
                     
-                    self?.navigationController?.presentViewController(controller, animated: true, completion: nil)
+                    self?.navigationController?.present(controller, animated: true, completion: nil)
                     
                     })
                 .addDisposableTo(cell.disposeBag)
-        case .RichText(let value, let placeholder, _):
+        case .richText(let value, let placeholder, _):
             let cell = cell as! EditProfileTextViewTableViewCell
             cell.textView.placeholderLabel?.text = placeholder
             cell.textView.text = value
@@ -223,11 +223,11 @@ extension EditProfileTableViewController {
                     textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
                 }
                 .addDisposableTo(cell.disposeBag)
-        case .Location(let value, let placeholder, _):
+        case .location(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
             cell.selectButton.fieldTitleLabel.text = placeholder
             cell.selectButton.iconImageView.image = UIImage(named: value.country)
-            cell.selectButton.setTitle(value.address, forState: .Normal)
+            cell.selectButton.setTitle(value.address, for: UIControlState())
             cell.selectButton
                 .rx_tap
                 .asDriver()
@@ -236,15 +236,15 @@ extension EditProfileTableViewController {
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = {[weak indexPath](success, place) -> Void in
-                        if let place = place, indexPath = indexPath {
+                        if let place = place, let indexPath = indexPath {
                             let newViewModel = EditProfileCellViewModel(location: place)
                             self?.viewModel.cells[indexPath.row] = newViewModel
-                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                            self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                         }
                     }
                     
-                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Edit Profile"), style: .Plain, target: controller, action: #selector(controller.pop))
-                    self?.navigationController?.showViewController(controller, sender: nil)
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Edit Profile"), style: .plain, target: controller, action: #selector(controller.pop))
+                    self?.navigationController?.show(controller, sender: nil)
                     
                     })
                 .addDisposableTo(cell.disposeBag)
@@ -259,7 +259,7 @@ extension EditProfileTableViewController {
         return [NSLocalizedString("Not specified", comment: "Edit Profile Not Specified Gender"), Gender.Male.rawValue, Gender.Female.rawValue, Gender.Other.rawValue]
     }
     
-    func birthDateSelected(sender: UIDatePicker) {
+    func birthDateSelected(_ sender: UIDatePicker) {
         let result = DateFormatters.sharedInstance.stringFromDate(sender.date)
         
         let newViewModel = EditProfileCellViewModel(birthday: sender.date)
@@ -272,30 +272,30 @@ extension EditProfileTableViewController {
 
 extension EditProfileTableViewController {
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let cellViewModel = viewModel.cells[indexPath.row]
         switch cellViewModel {
-        case .BasicText: return 70
-        case .RichText: return 150
-        case .Location: return 70
-        case .Date: return 70
-        case .Gender: return 70
+        case .basicText: return 70
+        case .richText: return 150
+        case .location: return 70
+        case .date: return 70
+        case .gender: return 70
         }
     }
 }
 
 extension EditProfileTableViewController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         
         guard let uploadType = uploadType else { return }
         
-        let task = uploadType == .Cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)
-        let progressType: EditProfileTableViewHeaderView.ProgressType = uploadType == .Avatar ? .Avatar : .Cover
-        let progressView = uploadType == .Avatar ? self.headerView.avatarUploadProgressView : self.headerView.coverUploadProgressView
-        let imageView = uploadType == .Cover ? self.headerView.coverImageView : self.headerView.avatarImageView
-        imageView.image = attachment.image
+        let task = uploadType == .cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)
+        let progressType: EditProfileTableViewHeaderView.ProgressType = uploadType == .avatar ? .avatar : .cover
+        let progressView = uploadType == .avatar ? self.headerView.avatarUploadProgressView : self.headerView.coverUploadProgressView
+        let imageView = uploadType == .cover ? self.headerView.coverImageView : self.headerView.avatarImageView
+        imageView?.image = attachment.image
         
         task.status
             .asDriver()
@@ -317,7 +317,7 @@ extension EditProfileTableViewController: MediaPickerControllerDelegate {
 
 extension EditProfileTableViewController: UITextViewDelegate {
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return textView.text.utf16.count < viewModel.charactersLimit || text.utf16.count == 0
     }
 }

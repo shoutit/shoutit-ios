@@ -14,7 +14,7 @@ import MBProgressHUD
 final class CreatePublicChatWrappingViewController: UIViewController {
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // outlets
     @IBOutlet weak var bottomLayoutGuideConstraint: NSLayoutConstraint!
@@ -41,7 +41,7 @@ final class CreatePublicChatWrappingViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         createButton
             .rx_tap
@@ -50,15 +50,15 @@ final class CreatePublicChatWrappingViewController: UIViewController {
             }
             .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
                 switch status {
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
-                case .Progress(let show):
+                case .progress(let show):
                     if show {
-                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                        MBProgressHUD.showAdded(to: self?.view, animated: true)
                     } else {
-                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
                     }
-                case .Ready:
+                case .ready:
                     self?.dismiss()
                 }
             }
@@ -67,9 +67,9 @@ final class CreatePublicChatWrappingViewController: UIViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: nil)
-        if let controller = segue.destinationViewController as? CreatePublicChatTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: nil)
+        if let controller = segue.destination as? CreatePublicChatTableViewController {
             childViewController = controller
             controller.viewModel = viewModel
         }

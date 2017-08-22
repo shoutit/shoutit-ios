@@ -9,10 +9,10 @@
 import UIKit
 
 enum LoadMoreState {
-    case NotReady
-    case ReadyToLoad
-    case Loading
-    case NoMore
+    case notReady
+    case readyToLoad
+    case loading
+    case noMore
 }
 
 final class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
@@ -20,29 +20,29 @@ final class ConversationLoadMoreFooter: UITableViewHeaderFooterView {
     @IBOutlet weak var loadMoreButton: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
-    func setState(state: LoadMoreState) {
+    func setState(_ state: LoadMoreState) {
         
-        if (state == .Loading || state == .NotReady) {
-            loadMoreButton.hidden = true
+        if (state == .loading || state == .notReady) {
+            loadMoreButton.isHidden = true
         } else {
-            loadMoreButton.hidden = false
+            loadMoreButton.isHidden = false
         }
         
-        if (state == .ReadyToLoad || state == .NoMore || state == .NotReady) {
-            activityIndicatorView.hidden = true
+        if (state == .readyToLoad || state == .noMore || state == .notReady) {
+            activityIndicatorView.isHidden = true
         } else {
-            activityIndicatorView.hidden = false
+            activityIndicatorView.isHidden = false
         }
 
-        if state == .NoMore {
-            loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: "No More messages placeholder"), forState: .Normal)
-            loadMoreButton.enabled = false
+        if state == .noMore {
+            loadMoreButton.setTitle(NSLocalizedString("No more messages to show", comment: "No More messages placeholder"), for: UIControlState())
+            loadMoreButton.isEnabled = false
         } else {
-            loadMoreButton.setTitle(NSLocalizedString("Tap to load archive messages", comment: "Load more messages button title"), forState: .Normal)
-            loadMoreButton.enabled = true
+            loadMoreButton.setTitle(NSLocalizedString("Tap to load archive messages", comment: "Load more messages button title"), for: UIControlState())
+            loadMoreButton.isEnabled = true
         }
         
-        if state == .Loading {
+        if state == .loading {
             activityIndicatorView.startAnimating()
         } else {
             activityIndicatorView.stopAnimating()

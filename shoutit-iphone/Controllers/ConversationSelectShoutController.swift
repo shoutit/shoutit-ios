@@ -12,9 +12,9 @@ import ShoutitKit
 
 final class ConversationSelectShoutController: UITableViewController {
     
-    private var shouts : [Shout] = []
-    private let disposeBag = DisposeBag()
-    private let cellIdentifier = "ConversationSelectShoutCellIdentifier"
+    fileprivate var shouts : [Shout] = []
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let cellIdentifier = "ConversationSelectShoutCellIdentifier"
     
     let shoutPublishSubject : PublishSubject<Shout> = PublishSubject()
     
@@ -37,27 +37,27 @@ final class ConversationSelectShoutController: UITableViewController {
     }
     
     override func dismiss() {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shouts.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ConversationSelectShoutTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ConversationSelectShoutTableViewCell
         cell.bindWith(self.shouts[indexPath.row])
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.navigationController?.popViewControllerAnimated(true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.popViewController(animated: true)
         self.shoutPublishSubject.onNext(self.shouts[indexPath.row])
     }
     

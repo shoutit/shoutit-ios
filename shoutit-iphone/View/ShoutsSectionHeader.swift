@@ -25,7 +25,7 @@ final class ShoutsSectionHeader: UICollectionReusableView {
         reuseDisposeBag = DisposeBag()
     }
     
-    func setSubtitleHidden(hidden: Bool) {
+    func setSubtitleHidden(_ hidden: Bool) {
         self.subtitleHeightConstraint.constant = hidden ? 5.0 : 15.0
         
         layoutIfNeeded()

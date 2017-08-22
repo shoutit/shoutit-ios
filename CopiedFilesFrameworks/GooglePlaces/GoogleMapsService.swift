@@ -8,19 +8,19 @@
 
 import Foundation
 
-public class GoogleMapsService {
-    enum Error: ErrorType {
-        case APIKeyNotExisted
+open class GoogleMapsService {
+    enum Error: Error {
+        case apiKeyNotExisted
     }
     
-    private static var _APIKey: String?
+    fileprivate static var _APIKey: String?
     
     /**
      Provide a Google Maps API key
      
      - parameter APIKey: Google Maps API key
      */
-    public class func provideAPIKey(APIKey: String) {
+    open class func provideAPIKey(_ APIKey: String) {
         _APIKey = APIKey
     }
     
@@ -34,13 +34,13 @@ public class GoogleMapsService {
     class func APIKey() throws -> String {
         guard let APIKey = _APIKey else {
             NSLog("Error: Please provide an API key")
-            throw Error.APIKeyNotExisted
+            throw Error.apiKeyNotExisted
         }
         return APIKey
     }
     
     /// Get a base request parameter dictionary, this will include API key
     class var baseRequestParameters: [String : AnyObject] {
-        return try! ["key" : APIKey()]
+        return try! ["key" : APIKey()] as [String : AnyObject]
     }
 }

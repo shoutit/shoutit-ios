@@ -12,36 +12,36 @@ import Validator
 enum SettingsFormCellViewModel {
     
     enum TextFieldType {
-        case NewPassword
-        case VerifyPassword
-        case OldPassword
-        case NewEmail
+        case newPassword
+        case verifyPassword
+        case oldPassword
+        case newEmail
         
         var placeholder: String {
             switch self {
-            case .NewEmail: return NSLocalizedString("New email", comment: "")
-            case .NewPassword: return NSLocalizedString("New Password", comment: "")
-            case .VerifyPassword: return NSLocalizedString("Verify New Password", comment: "")
-            case .OldPassword: return NSLocalizedString("Current Password", comment: "")
+            case .newEmail: return NSLocalizedString("New email", comment: "")
+            case .newPassword: return NSLocalizedString("New Password", comment: "")
+            case .verifyPassword: return NSLocalizedString("Verify New Password", comment: "")
+            case .oldPassword: return NSLocalizedString("Current Password", comment: "")
             }
         }
         
         var secureTextEntry: Bool {
             switch self {
-            case .NewPassword, .VerifyPassword, .OldPassword: return true
+            case .newPassword, .verifyPassword, .oldPassword: return true
             default: return false
             }
         }
         
-        var validator: (String -> ValidationResult)? {
+        var validator: ((String) -> ValidationResult)? {
             switch self {
-            case .NewPassword: return ShoutitValidator.validatePassword
-            case .NewEmail: return ShoutitValidator.validateEmail
+            case .newPassword: return ShoutitValidator.validatePassword
+            case .newEmail: return ShoutitValidator.validateEmail
             default: return nil
             }
         }
     }
     
-    case TextField(value: String?, type: TextFieldType)
-    case Button(title: String, action: (Void -> Void))
+    case textField(value: String?, type: TextFieldType)
+    case button(title: String, action: ((Void) -> Void))
 }

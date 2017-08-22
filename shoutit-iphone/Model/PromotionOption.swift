@@ -16,7 +16,7 @@ public struct PromotionOption: Decodable {
     public let days: Int?
     public let label: PromotionLabel
     
-    public static func decode(j: JSON) -> Decoded<PromotionOption> {
+    public static func decode(_ j: JSON) -> Decoded<PromotionOption> {
         return curry(PromotionOption.init)
             <^> j <| "id"
             <*> j <| "name"

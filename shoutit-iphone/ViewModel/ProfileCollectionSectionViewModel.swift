@@ -35,8 +35,8 @@ final class ProfileCollectionSectionViewModel <T: ProfileCollectionCellViewModel
         self.isLoading = isLoading
     }
     
-    func replaceCell(cell: T, atIndex: Int) {
-        self.cells.removeAtIndex(atIndex)
-        self.cells.insert(cell, atIndex: atIndex)
+    func replaceCell(_ cell: T, atIndex: Int) {
+        self.cells.remove(at: atIndex)
+        self.cells.insert(cell, at: atIndex)
     }
 }

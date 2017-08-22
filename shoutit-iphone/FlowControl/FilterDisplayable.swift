@@ -9,12 +9,12 @@
 import Foundation
 
 protocol FilterDisplayable {
-    func showFiltersWithState(state: FiltersState, completionBlock: (FiltersState -> Void)?) -> Void
+    func showFiltersWithState(_ state: FiltersState, completionBlock: ((FiltersState) -> Void)?) -> Void
 }
 
 extension FlowController : FilterDisplayable {
     
-    func showFiltersWithState(state: FiltersState, completionBlock: (FiltersState -> Void)?) {
+    func showFiltersWithState(_ state: FiltersState, completionBlock: ((FiltersState) -> Void)?) {
         let viewController = Wireframe.filtersViewController()
         viewController.viewModel = FiltersViewModel(filtersState: state)
         viewController.completionBlock = completionBlock

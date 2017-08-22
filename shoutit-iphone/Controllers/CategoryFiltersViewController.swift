@@ -13,11 +13,11 @@ import ShoutitKit
 final class CategoryFiltersViewController: UIViewController {
     
     // consts
-    private let cellReuseIdentifier = "CategoryFiltersTableViewCell"
+    fileprivate let cellReuseIdentifier = "CategoryFiltersTableViewCell"
     
     // view model
     var viewModel: CategoryFiltersViewModel!
-    var completionBlock: ([FilterValue] -> Void)?
+    var completionBlock: (([FilterValue]) -> Void)?
     
     @IBOutlet weak var controllerTitleLabel: UILabel! {
         didSet {
@@ -34,7 +34,7 @@ final class CategoryFiltersViewController: UIViewController {
     }
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -47,7 +47,7 @@ final class CategoryFiltersViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRx() {
+    fileprivate func setupRx() {
         
         backButton.rx_tap
             .asDriver()
@@ -71,22 +71,22 @@ final class CategoryFiltersViewController: UIViewController {
 
 extension CategoryFiltersViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cellViewModels.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CategoryFiltersTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CategoryFiltersTableViewCell
         let cellViewModel = viewModel.cellViewModels[indexPath.row]
         cell.nameLabel.text = cellViewModel.filterValue.name
         if cellViewModel.selected {
-            tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: false)
         }
         return cell
     }
@@ -94,11 +94,11 @@ extension CategoryFiltersViewController: UITableViewDataSource {
 
 extension CategoryFiltersViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.cellViewModels[indexPath.row].selected = true
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         viewModel.cellViewModels[indexPath.row].selected = false
     }
 }

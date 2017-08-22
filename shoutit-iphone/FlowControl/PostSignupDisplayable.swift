@@ -19,14 +19,14 @@ extension LoginFlowController : PostSignupDisplayable {
         let postSignupController = Wireframe.postSignupInterestsViewController()
         postSignupController.viewModel = PostSignupInterestsViewModel()
         postSignupController.loginDelegate = self
-        navigationController.showViewController(postSignupController, sender: nil)
+        navigationController.show(postSignupController, sender: nil)
     }
     
     func showPostSignupSuggestions() {
         let postSignupController = Wireframe.postSignupSuggestionsViewController()
         postSignupController.viewModel = PostSignupSuggestionViewModel()
         postSignupController.loginDelegate = self
-        navigationController.showViewController(postSignupController, sender: nil)
+        navigationController.show(postSignupController, sender: nil)
     }
 }
 
@@ -35,7 +35,7 @@ extension FlowController {
         let postSignupController = Wireframe.postSignupSuggestionsViewController()
         postSignupController.viewModel = PostSignupSuggestionViewModel()
         postSignupController.flowSimpleDelegate = self
-        navigationController.showViewController(postSignupController, sender: nil)
+        navigationController.show(postSignupController, sender: nil)
     }
     
     func presentInterests() {
@@ -43,7 +43,7 @@ extension FlowController {
         postSignupController.viewModel = PostSignupInterestsViewModel()
         postSignupController.flowSimpleDelegate = self
         
-        navigationController.presentViewController(postSignupController, animated: true, completion: nil)
+        navigationController.present(postSignupController, animated: true, completion: nil)
     }
     
     func presentSuggestions() {
@@ -51,6 +51,6 @@ extension FlowController {
         postSignupController.viewModel = PostSignupSuggestionViewModel()
         postSignupController.flowSimpleDelegate = self
 
-        navigationController.presentViewController(postSignupController, animated: true, completion: nil)
+        navigationController.present(postSignupController, animated: true, completion: nil)
     }
 }

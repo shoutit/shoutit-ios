@@ -12,7 +12,7 @@ public protocol Suggestable {
     var listenId: String {get}
     var suggestionTitle: String {get}
     var suggestionId: String {get} // user for api requests
-    var thumbnailURL: NSURL? {get}
+    var thumbnailURL: URL? {get}
     var listenersCount: Int {get}
     var userType: UserType { get }
 }
@@ -28,8 +28,8 @@ extension Profile: Suggestable {
     public var suggestionId: String {
         return self.username
     }
-    public var thumbnailURL: NSURL? {
-        return (self.imagePath != nil) ? NSURL(string: self.imagePath!) : nil
+    public var thumbnailURL: URL? {
+        return (self.imagePath != nil) ? URL(string: self.imagePath!) : nil
     }
     public var userType: UserType {
         return self.type

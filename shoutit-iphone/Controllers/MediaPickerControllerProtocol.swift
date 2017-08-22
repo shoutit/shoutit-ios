@@ -12,14 +12,14 @@ import ShoutitKit
 
 protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var pickerSettings : MediaPickerSettings { get set }
-    func attachmentSelected(attachment: MediaAttachment)
+    func attachmentSelected(_ attachment: MediaAttachment)
 }
 
 struct MediaPickerSettings {
     var thumbnailSize : CGSize = CGSize(width: 100, height: 100)
     var targetSize : CGSize = PHImageManagerMaximumSize
     var contentMode : PHImageContentMode = .AspectFill
-    var videoLength : NSTimeInterval = 10.0
+    var videoLength : TimeInterval = 10.0
     var maximumItems : Int = 5
     var maximumVideos : Int = 1
     var allowsVideos: Bool = true
@@ -34,28 +34,28 @@ struct MediaAttachment : Hashable, Equatable {
     
     var uid: String!
     
-    var remoteURL: NSURL?
-    var thumbRemoteURL: NSURL?
+    var remoteURL: URL?
+    var thumbRemoteURL: URL?
     
     var image: UIImage?
     var videoDuration : Float?
-    var originalData: NSData?
+    var originalData: Data?
     
-    func remoteFilename(user: User) -> String {
+    func remoteFilename(_ user: User) -> String {
         
         if self.type == .Image {
-            return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).jpg"
+            return "\(Int(Date().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).jpg"
         }
         
-        return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).mp4"
+        return "\(Int(Date().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).mp4"
     }
     
-    func thumbRemoteFilename(user: User) -> String {
-        return "\(Int(NSDate().timeIntervalSince1970))_\(arc4random()%100)_\(user.id)_thumbnail.jpg"
+    func thumbRemoteFilename(_ user: User) -> String {
+        return "\(Int(Date().timeIntervalSince1970))_\(arc4random()%100)_\(user.id)_thumbnail.jpg"
     }
     
     static func generateUid() -> String {
-        return NSUUID().UUIDString
+        return UUID().uuidString
     }
     
     var hashValue: Int {
@@ -64,7 +64,7 @@ struct MediaAttachment : Hashable, Equatable {
         }
     }
     
-    func mediaAttachmentWithExchangedImage(nimage: UIImage, data: NSData) -> MediaAttachment {
+    func mediaAttachmentWithExchangedImage(_ nimage: UIImage, data: Data) -> MediaAttachment {
         return MediaAttachment(type: self.type, uid: self.uid, remoteURL: self.remoteURL, thumbRemoteURL: self.thumbRemoteURL, image: nimage, videoDuration: self.videoDuration, originalData: data)
     }
 

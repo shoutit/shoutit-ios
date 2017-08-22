@@ -19,7 +19,7 @@ public struct Mobile {
 
 extension Mobile: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Mobile> {
+    public static func decode(_ j: JSON) -> Decoded<Mobile> {
         return curry(Mobile.init)
             <^> j <| "mobile"
     }

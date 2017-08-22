@@ -12,14 +12,14 @@ import DZNEmptyDataSet
 
 final class ConversationListTableViewController: UITableViewController {
     
-    private struct CellIdentifiers {
+    fileprivate struct CellIdentifiers {
         static let directConversation = "directConversationCellIdentifier"
         static let groupConversation = "groupConversationCellIdentifier"
     }
     
     // UI
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
-        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        let view = Bundle.main.loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)?[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
         return view
         }()
@@ -29,7 +29,7 @@ final class ConversationListTableViewController: UITableViewController {
     weak var flowDelegate: FlowController?
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -48,12 +48,12 @@ final class ConversationListTableViewController: UITableViewController {
         tableViewPlaceholder.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         refreshConversationList()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         self.refreshControl?.endRefreshing()
@@ -61,7 +61,7 @@ final class ConversationListTableViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func subscribeToPusherChannel() {
+    fileprivate func subscribeToPusherChannel() {
         
         
         Account.sharedInstance
@@ -73,36 +73,36 @@ final class ConversationListTableViewController: UITableViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func registerReusables() {
+    fileprivate func registerReusables() {
         tableView.register(ProfileTableViewCell.self)
     }
     
-    private func setupPullToRefresh() {
+    fileprivate func setupPullToRefresh() {
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.refreshConversationList), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(ConversationListTableViewController.refreshConversationList), for: .valueChanged)
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel.pager.state
             .asObservable()
             .subscribeNext {[weak self] (state) in
                 switch state {
-                case .Idle:
+                case .idle:
                     break
-                case .Loading:
+                case .loading:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showActivity()
-                case .Loaded, .LoadedAllContent, .LoadingMore:
+                case .loaded, .loadedAllContent, .loadingMore:
                     self?.tableView.tableHeaderView = nil
                     self?.refreshControl?.endRefreshing()
-                case .Refreshing:
+                case .refreshing:
                     self?.tableView.tableHeaderView = nil
-                case .NoContent:
+                case .noContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showMessage(NSLocalizedString("You can start new conversation in shout details or user profile.", comment: ""), title: NSLocalizedString("No conversations to show", comment: "No conversations message"))
                     self?.refreshControl?.endRefreshing()
-                case .Error(let error):
+                case .error(let error):
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                     self?.refreshControl?.endRefreshing()
@@ -120,24 +120,24 @@ final class ConversationListTableViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let models = viewModel.pager.getCellViewModels() else { return 0 }
         return models.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let models = viewModel.pager.getCellViewModels() else { preconditionFailure() }
         let conversation = models[indexPath.row]
         let cell: ConversationTableViewCell
         switch conversation.type() {
         case .Chat:
-            cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifiers.directConversation, forIndexPath: indexPath) as! ConversationTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.directConversation, for: indexPath) as! ConversationTableViewCell
         default:
-            cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifiers.groupConversation, forIndexPath: indexPath) as! ConversationTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.groupConversation, for: indexPath) as! ConversationTableViewCell
         }
         cell.bindWithConversation(conversation)
         
@@ -146,17 +146,17 @@ final class ConversationListTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cells = viewModel.pager.getCellViewModels() else { return }
         let conversation = cells[indexPath.row]
-        flowDelegate?.showConversation(.Created(conversation: conversation))
+        flowDelegate?.showConversation(.created(conversation: conversation))
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             viewModel.pager.fetchNextPage()
         }

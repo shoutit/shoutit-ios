@@ -45,7 +45,7 @@ public struct Shout: Decodable, Hashable, Equatable {
     public let isBookmarked: Bool?
     public let isLiked: Bool?
     
-    public static func decode(j: JSON) -> Decoded<Shout> {
+    public static func decode(_ j: JSON) -> Decoded<Shout> {
         let a = curry(Shout.init)
             <^> j <| "id"
             <*> j <| "api_url"
@@ -99,7 +99,7 @@ public struct Shout: Decodable, Hashable, Equatable {
 
 extension Shout: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["id":self.id.encode(),
+        return JSON.object(["id":self.id.encode(),
             "api_url":self.apiPath.encode(),
             "web_url":self.webPath.encode(),
             "type":self.typeString.encode(),
@@ -168,15 +168,15 @@ public enum ShoutType : String {
 }
 
 public extension Shout {
-    public func copyShoutWithPromotion(newPromotion: Promotion) -> Shout {
+    public func copyShoutWithPromotion(_ newPromotion: Promotion) -> Shout {
         return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: newPromotion, isBookmarked: self.isBookmarked, isLiked: self.isLiked)
     }
     
-    public func copyWithBookmark(bookmarked: Bool) -> Shout? {
+    public func copyWithBookmark(_ bookmarked: Bool) -> Shout? {
         return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: self.promotion, isBookmarked: bookmarked, isLiked: self.isLiked)
     }
     
-    public func copyWithLiked(liked: Bool) -> Shout? {
+    public func copyWithLiked(_ liked: Bool) -> Shout? {
         return Shout(id: self.id, apiPath: self.apiPath, webPath: self.webPath, typeString: self.typeString, location: self.location, title: self.title, text: self.text, price: self.price, currency: self.currency, thumbnailPath: self.thumbnailPath, videoPath: self.videoPath, user: self.user, publishedAtEpoch: self.publishedAtEpoch, category: self.category, tags: self.tags, filters: self.filters, imagePaths: self.imagePaths, videos: self.videos, replyPath: self.replyPath, relatedRequests: self.relatedRequests, relatedOffers: self.relatedOffers, conversations: self.conversations, isMobileSet: self.isMobileSet, mobile: self.mobile, promotion: self.promotion, isBookmarked: self.isBookmarked, isLiked: liked)
     }
 }

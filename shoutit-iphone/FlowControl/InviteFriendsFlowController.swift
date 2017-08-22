@@ -17,7 +17,7 @@ final class InviteFriendsFlowController: FlowController {
         
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

@@ -90,7 +90,7 @@ public struct DetailedPageProfile: DetailedProfile {
 
 extension DetailedPageProfile: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<DetailedPageProfile> {
+    public static func decode(_ j: JSON) -> Decoded<DetailedPageProfile> {
         let a =  curry(DetailedPageProfile.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -137,7 +137,7 @@ extension DetailedPageProfile: Decodable {
 extension DetailedPageProfile {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
             "api_url" : self.apiPath.encode(),
@@ -173,11 +173,11 @@ extension DetailedPageProfile {
 }
 
 extension DetailedPageProfile {
-    public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedPageProfile {
+    public func updatedProfileWithStats(_ stts: ProfileStats?) -> DetailedPageProfile {
         return DetailedPageProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, isVerified: self.isVerified, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listnersCount: self.listenersCount, website: self.website, about: self.about, isPublished: self.isPublished, stats: stts, mobile: self.mobile, founded: self.founded, description: self.description, impressum: self.impressum, overview: self.overview, mission: self.mission, general_info: self.general_info, listeningMetadata: self.listeningMetadata, dateJoinedEpoch: self.dateJoinedEpoch, location: self.location, pushTokens: self.pushTokens, admin: self.admin, linkedAccounts: self.linkedAccounts)
     }
     
-    public func updatedProfileWithNewListnersCount(lstCount: Int, isListening: Bool? = nil) -> DetailedPageProfile {
+    public func updatedProfileWithNewListnersCount(_ lstCount: Int, isListening: Bool? = nil) -> DetailedPageProfile {
         return DetailedPageProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, isVerified: self.isVerified, imagePath: self.imagePath, coverPath: self.coverPath, isListening: isListening != nil ? isListening : self.isListening, listnersCount: lstCount, website: self.website, about: self.about, isPublished: self.isPublished, stats: self.stats, mobile: self.mobile, founded: self.founded, description: self.description, impressum: self.impressum, overview: self.overview, mission: self.mission, general_info: self.general_info, listeningMetadata: self.listeningMetadata, dateJoinedEpoch: self.dateJoinedEpoch, location: self.location, pushTokens: self.pushTokens, admin: self.admin, linkedAccounts: self.linkedAccounts)
     }
 }

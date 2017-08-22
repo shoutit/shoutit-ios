@@ -17,7 +17,7 @@ public struct TwilioAuth {
 }
 
 extension TwilioAuth: Decodable {
-    public static func decode(j: JSON) -> Decoded<TwilioAuth> {
+    public static func decode(_ j: JSON) -> Decoded<TwilioAuth> {
         return curry(TwilioAuth.init)
             <^> j <| "token"
             <*> j <| "identity"
@@ -26,7 +26,7 @@ extension TwilioAuth: Decodable {
 
 extension TwilioAuth: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["token": self.token.encode(),
+        return JSON.object(["token": self.token.encode(),
             "identity" : self.identity.encode()])
     }
 }
@@ -40,7 +40,7 @@ public struct TwilioIdentity {
 }
 
 extension TwilioIdentity: Decodable {
-    public static func decode(j: JSON) -> Decoded<TwilioIdentity> {
+    public static func decode(_ j: JSON) -> Decoded<TwilioIdentity> {
         return curry(TwilioIdentity.init)
             <^> j <| "identity"
     }
@@ -48,6 +48,6 @@ extension TwilioIdentity: Decodable {
 
 extension TwilioIdentity: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["identity" : self.identity.encode()])
+        return JSON.object(["identity" : self.identity.encode()])
     }
 }

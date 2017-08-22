@@ -10,18 +10,18 @@ import Foundation
 
 extension UITableView {
     
-    func register<T: UITableViewCell where T: ReusableView>(_: T.Type) {
+    func register<T: UITableViewCell>(_: T.Type) where T: ReusableView {
         registerClass(T.self, forCellReuseIdentifier: T.defaultReuseIdentifier)
     }
     
-    func register<T: UITableViewCell where T: ReusableView, T: NibLoadableView>(_: T.Type) {
-        let bundle = NSBundle(forClass: T.self)
+    func register<T: UITableViewCell>(_: T.Type) where T: ReusableView, T: NibLoadableView {
+        let bundle = Bundle(forClass: T.self)
         let nib = UINib(nibName: T.nibName, bundle: bundle)
         
         registerNib(nib, forCellReuseIdentifier: T.defaultReuseIdentifier)
     }
     
-    func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(forIndexPath indexPath: NSIndexPath) -> T {
+    func dequeueReusableCell<T: UITableViewCell>(forIndexPath indexPath: NSIndexPath) -> T where T: ReusableView {
         guard let cell = dequeueReusableCellWithIdentifier(T.defaultReuseIdentifier, forIndexPath: indexPath) as? T else {
             fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
         }

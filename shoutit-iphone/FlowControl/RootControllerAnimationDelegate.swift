@@ -10,7 +10,7 @@ import Foundation
 
 final class RootControllerAnimationDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationControllerForPresentedController(_ presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let _ = presented as? MenuTableViewController {
             return MenuAnimationController()
         }
@@ -18,7 +18,7 @@ final class RootControllerAnimationDelegate: NSObject, UIViewControllerTransitio
         return OverlayAnimationController()
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationControllerForDismissedController(_ dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let _ = dismissed as? MenuTableViewController {
             return MenuDismissAnimationController()
         }

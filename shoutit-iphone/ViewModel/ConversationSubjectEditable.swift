@@ -18,7 +18,7 @@ protocol ConversationSubjectEditable: class {
 extension ConversationSubjectEditable {
     
     func validateFields() throws {
-        if let task = imageUploadTask where task.status.value == .Uploading {
+        if let task = imageUploadTask, task.status.value == .uploading {
             throw LightError(userMessage:LocalizedString.Media.waitUntilUpload)
         }
         

@@ -11,9 +11,9 @@ import RxSwift
 import ShoutitKit
 
 enum FilterOptionDownloadState<T> {
-    case Loading
-    case Loaded(values: [T])
-    case CantLoadContent
+    case loading
+    case loaded(values: [T])
+    case cantLoadContent
 }
 
 final class FiltersViewModel {
@@ -24,28 +24,28 @@ final class FiltersViewModel {
     var cellViewModels: [FiltersCellViewModel] = []
     let filtersState: FiltersState
     let reloadSubject: PublishSubject<Void> = PublishSubject()
-    let categories: Variable<FilterOptionDownloadState<ShoutitKit.Category>> = Variable(.Loading)
-    let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.Loading)
+    let categories: Variable<FilterOptionDownloadState<ShoutitKit.Category>> = Variable(.loading)
+    let sortTypes: Variable<FilterOptionDownloadState<SortType>> = Variable(.loading)
     
     // consts
     lazy var distanceRestrictionOptions: [FiltersState.DistanceRestriction] = {
         return [
-            .Distance(kilometers: 1),
-            .Distance(kilometers: 2),
-            .Distance(kilometers: 3),
-            .Distance(kilometers: 5),
-            .Distance(kilometers: 7),
-            .Distance(kilometers: 10),
-            .Distance(kilometers: 15),
-            .Distance(kilometers: 20),
-            .Distance(kilometers: 30),
-            .Distance(kilometers: 60),
-            .Distance(kilometers: 100),
-            .Distance(kilometers: 200),
-            .Distance(kilometers: 300),
-            .Distance(kilometers: 400),
-            .Distance(kilometers: 500),
-            .EntireCountry
+            .distance(kilometers: 1),
+            .distance(kilometers: 2),
+            .distance(kilometers: 3),
+            .distance(kilometers: 5),
+            .distance(kilometers: 7),
+            .distance(kilometers: 10),
+            .distance(kilometers: 15),
+            .distance(kilometers: 20),
+            .distance(kilometers: 30),
+            .distance(kilometers: 60),
+            .distance(kilometers: 100),
+            .distance(kilometers: 200),
+            .distance(kilometers: 300),
+            .distance(kilometers: 400),
+            .distance(kilometers: 500),
+            .entireCountry
         ]
     }()
     
@@ -65,57 +65,57 @@ final class FiltersViewModel {
     
     // MARK: - Settings filters
     
-    func changeLocationToLocation(location: Address) {
-        for case (let index, .LocationChoice) in cellViewModels.enumerate() {
-            cellViewModels[index] = .LocationChoice(location: location)
+    func changeLocationToLocation(_ location: Address) {
+        for case (let index, .locationChoice) in cellViewModels.enumerated() {
+            cellViewModels[index] = .locationChoice(location: location)
             reloadSubject.onNext()
             return
         }
     }
     
-    func changeValuesForFilter(filter: Filter, toValues values: [FilterValue]) {
-        for case (let index, .FilterValueChoice(filter, _)) in cellViewModels.enumerate() {
-            cellViewModels[index] = .FilterValueChoice(filter: filter, selectedValues: values)
+    func changeValuesForFilter(_ filter: Filter, toValues values: [FilterValue]) {
+        for case (let index, .filterValueChoice(filter, _)) in cellViewModels.enumerated() {
+            cellViewModels[index] = .filterValueChoice(filter: filter, selectedValues: values)
             reloadSubject.onNext()
             return
         }
     }
     
-    func changeCategoryToCategory(category: ShoutitKit.Category?) {
-        for case (let index, .CategoryChoice(_, true, let loaded)) in cellViewModels.enumerate() {
-            cellViewModels[index] = .CategoryChoice(category: category, enabled: true, loaded: loaded)
+    func changeCategoryToCategory(_ category: ShoutitKit.Category?) {
+        for case (let index, .categoryChoice(_, true, let loaded)) in cellViewModels.enumerated() {
+            cellViewModels[index] = .categoryChoice(category: category, enabled: true, loaded: loaded)
             extendViewModelsWithFilters(category?.filters ?? [])
             reloadSubject.onNext()
             return
         }
     }
     
-    func changeShoutTypeToType(shoutType: ShoutType?) {
-        for case (let index, .ShoutTypeChoice) in cellViewModels.enumerate() {
-            cellViewModels[index] = .ShoutTypeChoice(shoutType: shoutType)
+    func changeShoutTypeToType(_ shoutType: ShoutType?) {
+        for case (let index, .shoutTypeChoice) in cellViewModels.enumerated() {
+            cellViewModels[index] = .shoutTypeChoice(shoutType: shoutType)
             reloadSubject.onNext()
             return
         }
     }
     
-    func changeSortTypeToType(sortType: SortType) {
-        for case (let index, .SortTypeChoice(_, let loaded)) in cellViewModels.enumerate() {
-            cellViewModels[index] = .SortTypeChoice(sortType: sortType, loaded: loaded)
+    func changeSortTypeToType(_ sortType: SortType) {
+        for case (let index, .sortTypeChoice(_, let loaded)) in cellViewModels.enumerated() {
+            cellViewModels[index] = .sortTypeChoice(sortType: sortType, loaded: loaded)
             reloadSubject.onNext()
             return
         }
     }
     
-    func changeMinimumPriceTo(price: Int?) {
-        for case (let index, .PriceRestriction(_, let to)) in cellViewModels.enumerate() {
-            cellViewModels[index] = .PriceRestriction(from: price, to: to)
+    func changeMinimumPriceTo(_ price: Int?) {
+        for case (let index, .priceRestriction(_, let to)) in cellViewModels.enumerated() {
+            cellViewModels[index] = .priceRestriction(from: price, to: to)
             return
         }
     }
     
-    func changeMaximumPriceTo(price: Int?) {
-        for case (let index, .PriceRestriction(let from, _)) in cellViewModels.enumerate() {
-            cellViewModels[index] = .PriceRestriction(from: from, to: price)
+    func changeMaximumPriceTo(_ price: Int?) {
+        for case (let index, .priceRestriction(let from, _)) in cellViewModels.enumerated() {
+            cellViewModels[index] = .priceRestriction(from: from, to: price)
             return
         }
     }
@@ -134,20 +134,20 @@ final class FiltersViewModel {
         
         for cellViewModel in cellViewModels {
             switch cellViewModel {
-            case .ShoutTypeChoice(let type):
+            case .shoutTypeChoice(let type):
                 shoutType = type
-            case .SortTypeChoice(let sortType, _):
+            case .sortTypeChoice(let sortType, _):
                 sort = sortType
-            case .CategoryChoice(let cat, _, _):
+            case .categoryChoice(let cat, _, _):
                 category = cat
-            case .PriceRestriction(let from, let to):
+            case .priceRestriction(let from, let to):
                 minimumPrice = from
                 maximumPrice = to
-            case .LocationChoice(let address):
+            case .locationChoice(let address):
                 location = address
-            case .DistanceRestriction(let distanceOption):
+            case .distanceRestriction(let distanceOption):
                 distanceRestriction = distanceOption
-            case .FilterValueChoice(let filter, let selectedValues):
+            case .filterValueChoice(let filter, let selectedValues):
                 filters.append((filter, selectedValues))
             }
         }
@@ -162,18 +162,18 @@ final class FiltersViewModel {
                             filters: filters)
     }
     
-    func distanceRestrictionOptionForSliderValue(value: Float) -> FiltersState.DistanceRestriction {
+    func distanceRestrictionOptionForSliderValue(_ value: Float) -> FiltersState.DistanceRestriction {
         let steps = sliderValueStepsForDistanceRestrictionOptions()
-        for (index, rangeEndValue) in steps.enumerate() {
+        for (index, rangeEndValue) in steps.enumerated() {
             if value <= rangeEndValue {
                 return distanceRestrictionOptions[index]
             }
         }
-        return .EntireCountry
+        return .entireCountry
     }
     
-    func sliderValueForDistanceRestrictionOption(option: FiltersState.DistanceRestriction) -> Float {
-        for (index, distanceRestrictionOption) in distanceRestrictionOptions.enumerate() {
+    func sliderValueForDistanceRestrictionOption(_ option: FiltersState.DistanceRestriction) -> Float {
+        for (index, distanceRestrictionOption) in distanceRestrictionOptions.enumerated() {
             if distanceRestrictionOption == option {
                 return sliderValueStepsForDistanceRestrictionOptions()[index]
             }
@@ -184,16 +184,16 @@ final class FiltersViewModel {
 
 private extension FiltersViewModel {
     
-    private func fetchCategories() {
+    func fetchCategories() {
         APIShoutsService.listCategories()
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let categories):
-                    self?.categories.value = .Loaded(values: categories)
+                case .next(let categories):
+                    self?.categories.value = .loaded(values: categories)
                     self?.reloadSubject.onNext()
                 case .Error(let error):
                     debugPrint(error)
-                    self?.categories.value = .CantLoadContent
+                    self?.categories.value = .cantLoadContent
                 default:
                     break
                 }
@@ -201,17 +201,17 @@ private extension FiltersViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    private func fetchSortTypes() {
+    func fetchSortTypes() {
         APIShoutsService.getSortTypes()
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let sortTypes):
-                    self?.sortTypes.value = .Loaded(values: sortTypes)
+                case .next(let sortTypes):
+                    self?.sortTypes.value = .loaded(values: sortTypes)
                     self?.handleSortDidLoad()
                     self?.reloadSubject.onNext()
                 case .Error(let error):
                     debugPrint(error)
-                    self?.sortTypes.value = .CantLoadContent
+                    self?.sortTypes.value = .cantLoadContent
                 default:
                     break
                 }
@@ -222,44 +222,44 @@ private extension FiltersViewModel {
 
 private extension FiltersViewModel {
     
-    private func initialCellViewModels() -> [FiltersCellViewModel] {
+    func initialCellViewModels() -> [FiltersCellViewModel] {
         
         if let filters = filtersState.filters {
-            return basicCellViewModels() + filters.map{FiltersCellViewModel.FilterValueChoice(filter: $0.0, selectedValues: $0.1)}
+            return basicCellViewModels() + filters.map{FiltersCellViewModel.filterValueChoice(filter: $0.0, selectedValues: $0.1)}
         } else if case (let category?, _) = filtersState.category {
-            return basicCellViewModels() + (category.filters ?? []).map{FiltersCellViewModel.FilterValueChoice(filter: $0, selectedValues: [])}
+            return basicCellViewModels() + (category.filters ?? []).map{FiltersCellViewModel.filterValueChoice(filter: $0, selectedValues: [])}
         }
         return basicCellViewModels()
     }
     
-    private func basicCellViewModels() -> [FiltersCellViewModel] {
+    func basicCellViewModels() -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel: FiltersCellViewModel
         let sortTypeCellViewModel: FiltersCellViewModel
-        let categoryCellViewModel: FiltersCellViewModel = .CategoryChoice(category: filtersState.category.0,
-                                                                          enabled: filtersState.category.1 == .Enabled,
+        let categoryCellViewModel: FiltersCellViewModel = .categoryChoice(category: filtersState.category.0,
+                                                                          enabled: filtersState.category.1 == .enabled,
                                                                           loaded: categoriesLoaded)
-        let priceConstraintCellViewModel: FiltersCellViewModel = .PriceRestriction(from: filtersState.minimumPrice.0, to: filtersState.maximumPrice.0)
-        let locationViewModel: FiltersCellViewModel = .LocationChoice(location: filtersState.location.0)
+        let priceConstraintCellViewModel: FiltersCellViewModel = .priceRestriction(from: filtersState.minimumPrice.0, to: filtersState.maximumPrice.0)
+        let locationViewModel: FiltersCellViewModel = .locationChoice(location: filtersState.location.0)
         let distanceConstraintViewModel: FiltersCellViewModel
         
         if case (let shoutType?, _) = filtersState.shoutType {
-            shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: shoutType)
+            shoutTypeCellViewModel = .shoutTypeChoice(shoutType: shoutType)
         } else {
-            shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: nil)
+            shoutTypeCellViewModel = .shoutTypeChoice(shoutType: nil)
         }
         
         if case (let sortType?, _) = filtersState.sortType {
-            sortTypeCellViewModel = .SortTypeChoice(sortType: sortType, loaded: sortTypesLoaded)
-        } else if case .Loaded(let sortTypes) = sortTypes.value {
-            sortTypeCellViewModel = .SortTypeChoice(sortType: sortTypes.first, loaded: sortTypesLoaded)
+            sortTypeCellViewModel = .sortTypeChoice(sortType: sortType, loaded: sortTypesLoaded)
+        } else if case .loaded(let sortTypes) = sortTypes.value {
+            sortTypeCellViewModel = .sortTypeChoice(sortType: sortTypes.first, loaded: sortTypesLoaded)
         } else {
-            sortTypeCellViewModel = .SortTypeChoice(sortType: nil, loaded: sortTypesLoaded)
+            sortTypeCellViewModel = .sortTypeChoice(sortType: nil, loaded: sortTypesLoaded)
         }
         
         if case (let distanceRestriction?, _) = filtersState.withinDistance {
-            distanceConstraintViewModel = .DistanceRestriction(distanceOption: distanceRestriction)
+            distanceConstraintViewModel = .distanceRestriction(distanceOption: distanceRestriction)
         } else {
-            distanceConstraintViewModel = .DistanceRestriction(distanceOption: .EntireCountry)
+            distanceConstraintViewModel = .distanceRestriction(distanceOption: .entireCountry)
         }
         
         return [shoutTypeCellViewModel,
@@ -270,7 +270,7 @@ private extension FiltersViewModel {
                 distanceConstraintViewModel]
     }
     
-    private func resetCellViewModels() -> [FiltersCellViewModel] {
+    func resetCellViewModels() -> [FiltersCellViewModel] {
         let shoutTypeCellViewModel: FiltersCellViewModel
         let sortTypeCellViewModel: FiltersCellViewModel
         let categoryCellViewModel: FiltersCellViewModel
@@ -279,43 +279,43 @@ private extension FiltersViewModel {
         let distanceConstraintViewModel: FiltersCellViewModel
         var filterViewModels: [FiltersCellViewModel] = []
         
-        if case (let shoutType?, .Disabled) = filtersState.shoutType {
-            shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: shoutType)
+        if case (let shoutType?, .disabled) = filtersState.shoutType {
+            shoutTypeCellViewModel = .shoutTypeChoice(shoutType: shoutType)
         } else {
-            shoutTypeCellViewModel = .ShoutTypeChoice(shoutType: nil)
+            shoutTypeCellViewModel = .shoutTypeChoice(shoutType: nil)
         }
         
-        if case (let sortType?, .Disabled) = filtersState.sortType {
-            sortTypeCellViewModel = .SortTypeChoice(sortType: sortType, loaded: sortTypesLoaded)
-        } else if case .Loaded(let sortTypes) = sortTypes.value {
-            sortTypeCellViewModel = .SortTypeChoice(sortType: sortTypes.first, loaded: sortTypesLoaded)
+        if case (let sortType?, .disabled) = filtersState.sortType {
+            sortTypeCellViewModel = .sortTypeChoice(sortType: sortType, loaded: sortTypesLoaded)
+        } else if case .loaded(let sortTypes) = sortTypes.value {
+            sortTypeCellViewModel = .sortTypeChoice(sortType: sortTypes.first, loaded: sortTypesLoaded)
         } else {
-            sortTypeCellViewModel = .SortTypeChoice(sortType: nil, loaded: sortTypesLoaded)
+            sortTypeCellViewModel = .sortTypeChoice(sortType: nil, loaded: sortTypesLoaded)
         }
         
-        if case (let category?, .Disabled) = filtersState.category {
-            categoryCellViewModel = .CategoryChoice(category: category, enabled: false, loaded: categoriesLoaded)
-            filterViewModels = (category.filters ?? []).map{FiltersCellViewModel.FilterValueChoice(filter: $0, selectedValues: [])}
+        if case (let category?, .disabled) = filtersState.category {
+            categoryCellViewModel = .categoryChoice(category: category, enabled: false, loaded: categoriesLoaded)
+            filterViewModels = (category.filters ?? []).map{FiltersCellViewModel.filterValueChoice(filter: $0, selectedValues: [])}
         } else {
-            categoryCellViewModel = .CategoryChoice(category: nil, enabled: true, loaded: categoriesLoaded)
+            categoryCellViewModel = .categoryChoice(category: nil, enabled: true, loaded: categoriesLoaded)
         }
         
-        if case ((let min, .Disabled), (let max, .Disabled)) = (filtersState.minimumPrice, filtersState.maximumPrice) {
-            priceConstraintCellViewModel = .PriceRestriction(from: min, to: max)
+        if case ((let min, .disabled), (let max, .disabled)) = (filtersState.minimumPrice, filtersState.maximumPrice) {
+            priceConstraintCellViewModel = .priceRestriction(from: min, to: max)
         } else {
-            priceConstraintCellViewModel = .PriceRestriction(from: nil, to: nil)
+            priceConstraintCellViewModel = .priceRestriction(from: nil, to: nil)
         }
         
-        if case (let location?, .Disabled) = filtersState.location {
-            locationViewModel = .LocationChoice(location: location)
+        if case (let location?, .disabled) = filtersState.location {
+            locationViewModel = .locationChoice(location: location)
         } else {
-            locationViewModel = .LocationChoice(location: Account.sharedInstance.user?.location)
+            locationViewModel = .locationChoice(location: Account.sharedInstance.user?.location)
         }
         
-        if case (let distanceRestriction?, .Disabled) = filtersState.withinDistance {
-            distanceConstraintViewModel = .DistanceRestriction(distanceOption: distanceRestriction)
+        if case (let distanceRestriction?, .disabled) = filtersState.withinDistance {
+            distanceConstraintViewModel = .distanceRestriction(distanceOption: distanceRestriction)
         } else {
-            distanceConstraintViewModel = .DistanceRestriction(distanceOption: .EntireCountry)
+            distanceConstraintViewModel = .distanceRestriction(distanceOption: .entireCountry)
         }
         
         return [shoutTypeCellViewModel,
@@ -326,16 +326,16 @@ private extension FiltersViewModel {
                 distanceConstraintViewModel] + filterViewModels
     }
     
-    private func extendViewModelsWithFilters(filters: [Filter]) {
+    func extendViewModelsWithFilters(_ filters: [Filter]) {
         let basicViewModels = self.cellViewModels[0..<basicCellViewModels().count]
-        let filterCellViewModels = filters.map{FiltersCellViewModel.FilterValueChoice(filter: $0, selectedValues: [])}
+        let filterCellViewModels = filters.map{FiltersCellViewModel.filterValueChoice(filter: $0, selectedValues: [])}
         self.cellViewModels = basicViewModels + filterCellViewModels
     }
     
-    private func handleSortDidLoad() {
-        for case (let index, .SortTypeChoice(nil, let loaded)) in cellViewModels.enumerate() {
-            guard case .Loaded(let values) = sortTypes.value else { assertionFailure(); return; }
-            cellViewModels[index] = .SortTypeChoice(sortType: values.first, loaded: loaded)
+    func handleSortDidLoad() {
+        for case (let index, .sortTypeChoice(nil, let loaded)) in cellViewModels.enumerated() {
+            guard case .loaded(let values) = sortTypes.value else { assertionFailure(); return; }
+            cellViewModels[index] = .sortTypeChoice(sortType: values.first, loaded: loaded)
             reloadSubject.onNext()
         }
     }
@@ -343,9 +343,9 @@ private extension FiltersViewModel {
 
 private extension FiltersViewModel {
     
-    private func sliderValueStepsForDistanceRestrictionOptions() -> [Float] {
+    func sliderValueStepsForDistanceRestrictionOptions() -> [Float] {
         let singleStep = 1.0 / Float(distanceRestrictionOptions.count)
-        return Array(count: distanceRestrictionOptions.count, repeatedValue: singleStep).reduce([]) { (currentArray, singleStepValue) -> Array<Float> in
+        return Array(repeating: singleStep, count: distanceRestrictionOptions.count).reduce([]) { (currentArray, singleStepValue) -> Array<Float> in
             return currentArray + [(currentArray.last ?? 0) + singleStepValue]
         }
     }
@@ -354,14 +354,14 @@ private extension FiltersViewModel {
 private extension FiltersViewModel {
     
     func categoriesLoaded() -> Bool {
-        if case .Loaded = categories.value {
+        if case .loaded = categories.value {
             return true
         }
         return false
     }
     
     func sortTypesLoaded() -> Bool {
-        if case .Loaded = sortTypes.value {
+        if case .loaded = sortTypes.value {
             return true
         }
         return false

@@ -10,17 +10,17 @@ import Foundation
 import ShoutitKit
 
 protocol DiscoverShoutsDisplayable {
-    func showDiscoverItem(item: DiscoverItem) -> Void
+    func showDiscoverItem(_ item: DiscoverItem) -> Void
 }
 
 extension FlowController : DiscoverShoutsDisplayable {
     
-    func showDiscoverItem(item: DiscoverItem) {
+    func showDiscoverItem(_ item: DiscoverItem) {
         
         let controller = Wireframe.discoverViewController()
         controller.flowDelegate = self
         controller.viewModel = DiscoverGivenItemViewModel(discoverItem: item)
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

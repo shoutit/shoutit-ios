@@ -16,24 +16,24 @@ final class MixpanelHelper {
     #elseif LOCAL
     private static let mixpanelToken  = "a5774a99b9068ae66129859421ade687"
     #else
-    private static let mixpanelToken  = "c9d0a1dc521ac1962840e565fa971574"
+    fileprivate static let mixpanelToken  = "c9d0a1dc521ac1962840e565fa971574"
     #endif
     
-    private static let didOpenAppUserDefailt = "didOpenAppUserDefailt"
+    fileprivate static let didOpenAppUserDefailt = "didOpenAppUserDefailt"
     
     struct Actions {
         static let appOpen = "app_open"
         static let appClose = "app_close"
     }
     
-    private static var mixpanel: Mixpanel {
-        return Mixpanel.sharedInstanceWithToken(MixpanelHelper.mixpanelToken)
+    fileprivate static var mixpanel: Mixpanel {
+        return Mixpanel.sharedInstance(withToken: MixpanelHelper.mixpanelToken)
     }
     
-    private static var actionProperties: [String : AnyObject] {
+    fileprivate static var actionProperties: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["api_client"] = "shoutit-ios"
-        p["signed_user"] = Account.sharedInstance.isUserAuthenticated
+        p["api_client"] = "shoutit-ios" as AnyObject
+        p["signed_user"] = Account.sharedInstance.isUserAuthenticated as AnyObject
         if let user = Account.sharedInstance.user {
             p["is_guest"] = user.isGuest
         }
@@ -57,17 +57,17 @@ final class MixpanelHelper {
     
     // MARK: - Helpers
     
-    private static func identifyUserIfLoggedIn() {
+    fileprivate static func identifyUserIfLoggedIn() {
         if let user = Account.sharedInstance.user {
             mixpanel.identify(user.id)
         }
     }
     
-    private static func sendAppOpenEvent() {
+    fileprivate static func sendAppOpenEvent() {
         mixpanel.track(Actions.appOpen, properties: actionProperties)
     }
     
-    private static func sendAppDidCloseEvent() {
+    fileprivate static func sendAppDidCloseEvent() {
         mixpanel.track(Actions.appClose, properties: actionProperties)
     }
 }

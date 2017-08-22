@@ -10,17 +10,17 @@ import UIKit
 import RxSwift
 
 enum ShoutsLayout {
-    case HorizontalGrid
-    case VerticalGrid
-    case VerticalList
+    case horizontalGrid
+    case verticalGrid
+    case verticalList
     
     func collectionLayoutDisplayable() -> ShoutCollectionLayoutDisplayable! {
         switch self {
-        case .HorizontalGrid:
+        case .horizontalGrid:
             return ShoutsHorizontalGridLayoutDelegate()
-        case .VerticalGrid:
+        case .verticalGrid:
             return ShoutsVerticalGridLayoutDelegate()
-        case .VerticalList:
+        case .verticalList:
             return ShoutsVerticalListLayoutDelegate()
         }
     }
@@ -36,41 +36,41 @@ final class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
     
     var loadNextPage : PublishSubject<Bool>?
     
-    var selectedIndexPath = BehaviorSubject<NSIndexPath?>(value: nil)
+    var selectedIndexPath = BehaviorSubject<IndexPath?>(value: nil)
     
-    required init(layout: ShoutsLayout, offset: CGPoint = CGPointZero, pageSubject pSub: PublishSubject<Bool>? = nil) {
+    required init(layout: ShoutsLayout, offset: CGPoint = CGPoint.zero, pageSubject pSub: PublishSubject<Bool>? = nil) {
         shoutsLayout = layout
         contentOffset = Variable(offset)
         collectionLayoutDisplayable = layout.collectionLayoutDisplayable()
         loadNextPage = pSub
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionLayoutDisplayable.sizeForItem(AtIndexPath: indexPath, collectionView: collectionView)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let interItemSpacing = collectionLayoutDisplayable.minimumInterItemSpacingSize()
-        return UIEdgeInsetsMake(interItemSpacing.height, interItemSpacing.width, interItemSpacing.height, interItemSpacing.width)
+        return UIEdgeInsetsMake(interItemSpacing!.height, interItemSpacing!.width, interItemSpacing!.height, interItemSpacing!.width)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return collectionLayoutDisplayable.minimumInterItemSpacingSize().width
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return collectionLayoutDisplayable.headerSize(collectionView)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.selectedIndexPath.on(.Next(indexPath))
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndexPath.on(.next(indexPath))
     }
     
     func scrollDirection() -> UICollectionViewScrollDirection {
         return collectionLayoutDisplayable.scrollDirection()
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         contentOffset.value = scrollView.contentOffset
         
         let shouldLoadNextPage = (scrollView.contentOffset.y) > (scrollView.contentSize.height - 1.5 * scrollView.frame.height)
@@ -80,7 +80,7 @@ final class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
         }
     }
     
-    func applyOnLayout(collectionViewLayout: UICollectionViewFlowLayout?) {
+    func applyOnLayout(_ collectionViewLayout: UICollectionViewFlowLayout?) {
         
         collectionViewLayout?.scrollDirection = scrollDirection()
         
@@ -88,8 +88,8 @@ final class ShoutsDisplayable: NSObject, UICollectionViewDelegateFlowLayout {
             collectionView.delegate = self
             collectionView.performBatchUpdates({ () -> Void in
             
-                collectionView.reloadItemsAtIndexPaths(collectionView.visibleCells().map({ (cell) -> NSIndexPath in
-                    return collectionView.indexPathForCell(cell)!
+                collectionView.reloadItems(at: collectionView.visibleCells.map({ (cell) -> IndexPath in
+                    return collectionView.indexPath(for: cell)!
                 }))
                 
             }, completion: nil)

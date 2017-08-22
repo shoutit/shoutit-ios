@@ -16,7 +16,7 @@ final class OrdersFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.ordersViewController()
 
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

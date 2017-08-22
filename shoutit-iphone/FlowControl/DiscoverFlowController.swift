@@ -24,6 +24,6 @@ final class DiscoverFlowController: FlowController {
             controller.viewModel = DiscoverGeneralViewModel()
         }
 
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

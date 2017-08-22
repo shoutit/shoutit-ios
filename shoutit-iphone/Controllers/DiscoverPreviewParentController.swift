@@ -13,13 +13,13 @@ final class DiscoverPreviewParentController: UIViewController {
     
     var discoverController : DiscoverPreviewCollectionViewController?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var titleLabel : UILabel?
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let discover = segue.destinationViewController as? DiscoverPreviewCollectionViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let discover = segue.destination as? DiscoverPreviewCollectionViewController {
             discoverController = discover
         }
     }

@@ -134,13 +134,13 @@ internal class CNContactRecord: ContactProtocol {
 @available(iOS 9.0, *)
 internal class CNAdapter {
     
-    internal class func convertCNContactsToContactRecords(cnContacts: [CNContact]) -> [ContactProtocol] {
+    internal class func convertCNContactsToContactRecords(_ cnContacts: [CNContact]) -> [ContactProtocol] {
         return cnContacts.map({ (cnContact) -> ContactProtocol in
             return CNContactRecord(cnContact: cnContact)
         })
     }
     
-    internal class func convertContactValuesToCNContact(contact: ContactProtocol) -> CNMutableContact {
+    internal class func convertContactValuesToCNContact(_ contact: ContactProtocol) -> CNMutableContact {
         let cnContact = CNMutableContact()
         if let firstName = contact.firstName {
              cnContact.givenName = firstName
@@ -164,7 +164,7 @@ internal class CNAdapter {
         return cnContact
     }
     
-    private class func convertPhoneNumbers(phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue] {
+    fileprivate class func convertPhoneNumbers(_ phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue<<#ValueType: NSCopying & NSSecureCoding#>>] {
         
         guard let phoneNumbers = phoneNumbers else {
             return [CNLabeledValue]()
@@ -185,7 +185,7 @@ internal class CNAdapter {
         })
     }
     
-    private class func convertEmailAddresses(emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue] {
+    fileprivate class func convertEmailAddresses(_ emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue<<#ValueType: NSCopying & NSSecureCoding#>>] {
         
         guard let emailAddresses = emailAddresses else {
             return [CNLabeledValue]()
@@ -202,7 +202,7 @@ internal class CNAdapter {
         
     }
     
-    internal class func convertCNLabeledValues(cnLabeledValues: [CNLabeledValue]) -> [AddressBookRecordLabel] {
+    internal class func convertCNLabeledValues(_ cnLabeledValues: [CNLabeledValue<<#ValueType: NSCopying & NSSecureCoding#>>]) -> [AddressBookRecordLabel] {
         var abLabels = [AddressBookRecordLabel]()
         
         let mappings = DictionaryUtils.dictionaryWithSwappedKeysAndValues(cnMappings)

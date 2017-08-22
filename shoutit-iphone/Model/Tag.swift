@@ -29,7 +29,7 @@ public struct Tag {
 
 extension Tag: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Tag> {
+    public static func decode(_ j: JSON) -> Decoded<Tag> {
         let a = curry(Tag.init)
             <^> j <| "id"
             <*> j <| "slug"
@@ -47,7 +47,7 @@ extension Tag: Decodable {
 }
 
 extension Tag {
-    public func copyWithListnersCount(newListnersCount: Int, isListening: Bool? = nil) -> Tag {
+    public func copyWithListnersCount(_ newListnersCount: Int, isListening: Bool? = nil) -> Tag {
         return Tag(id: self.id, slug: self.slug, name: self.name, apiPath: self.apiPath, imagePath: self.imagePath, webPath: self.webPath, listenersCount: newListnersCount, listenersPath: self.listenersPath, isListening: isListening != nil ? isListening : self.isListening, shoutsPath: self.shoutsPath)
     }
 }

@@ -24,7 +24,7 @@ public struct Suggestions {
 
 extension Suggestions: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Suggestions> {
+    public static func decode(_ j: JSON) -> Decoded<Suggestions> {
         return curry(Suggestions.init)
             <^> j <||? "users"
             <*> j <||? "pages"

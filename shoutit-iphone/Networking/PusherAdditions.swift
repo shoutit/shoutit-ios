@@ -32,7 +32,7 @@ extension PTPusherEvent {
         return type
     }
     
-    func object<T: Decodable where T == T.DecodedType>() -> T? {
+    func object<T: Decodable>() -> T? where T == T.DecodedType {
         
         let decoded: Decoded<T> = decode(self.data)
 

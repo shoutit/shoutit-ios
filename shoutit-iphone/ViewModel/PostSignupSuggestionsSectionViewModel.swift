@@ -10,14 +10,14 @@ import UIKit
 import ShoutitKit
 
 enum PostSignupSuggestionsSection {
-    case Users
-    case Pages
+    case users
+    case pages
     
     var title: String {
         switch self {
-        case .Users:
+        case .users:
             return NSLocalizedString("Suggested Users", comment: "Post Signup Suggestions Title")
-        case .Pages:
+        case .pages:
             return NSLocalizedString("Suggested Pages", comment: "Post Signup Suggestions Title")
         }
     }
@@ -28,14 +28,14 @@ enum PostSignupSuggestionsSection {
 final class PostSignupSuggestionsSectionViewModel {
     
     let section: PostSignupSuggestionsSection
-    private(set) var cells: [PostSignupSuggestionsCellViewModel]
+    fileprivate(set) var cells: [PostSignupSuggestionsCellViewModel]
     
     init(section: PostSignupSuggestionsSection, models: [Suggestable]) {
         self.section = section
         self.cells = models.map{PostSignupSuggestionsCellViewModel(item: $0)}
     }
     
-    func updateCellsWithModels(models: [Suggestable]) {
+    func updateCellsWithModels(_ models: [Suggestable]) {
         self.cells = models.map{PostSignupSuggestionsCellViewModel(item: $0)}
     }
     

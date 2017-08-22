@@ -14,14 +14,14 @@ import MBProgressHUD
 
 final class VerifyEmailViewController: UIViewController {
     
-    typealias VerifyEmailSuccessBlock = (String -> Void)?
+    typealias VerifyEmailSuccessBlock = ((String) -> Void)?
     
     var viewModel: VerifyEmailViewModel!
     
     var successBlock: VerifyEmailSuccessBlock?
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // UI
     @IBOutlet weak var emailTextField: BorderedMaterialTextField!
@@ -47,7 +47,7 @@ final class VerifyEmailViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         // buttons
         resendButton
@@ -70,7 +70,7 @@ final class VerifyEmailViewController: UIViewController {
             .rx_tap
             .asDriver()
             .driveNext {[weak self] in
-                self?.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                self?.navigationController?.dismiss(animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
         
@@ -81,9 +81,9 @@ final class VerifyEmailViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (show) in
                 if show {
-                    MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                    MBProgressHUD.showAdded(to: self?.view, animated: true)
                 } else {
-                    MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                    MBProgressHUD.hide(for: self?.view, animated: true)
                 }
             }
             .addDisposableTo(disposeBag)
@@ -92,7 +92,7 @@ final class VerifyEmailViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribeNext {[weak self] (message) in
                 let block = self?.successBlock
-                self?.navigationController?.dismissViewControllerAnimated(true, completion: {
+                self?.navigationController?.dismiss(animated: true, completion: {
                     block??(message)
                 })
             }
@@ -112,19 +112,19 @@ final class VerifyEmailViewController: UIViewController {
         emailTextField.addValidator(ShoutitValidator.validateEmail, withDisposeBag: disposeBag)
     }
     
-    private func setupTextField() {
+    fileprivate func setupTextField() {
         
-        emailTextField.font = UIFont.systemFontOfSize(18.0)
+        emailTextField.font = UIFont.systemFont(ofSize: 18.0)
         emailTextField.textColor = MaterialColor.black
             
         emailTextField.titleLabel = UILabel()
-        emailTextField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
+        emailTextField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
         emailTextField.titleLabelColor = MaterialColor.grey.lighten1
-        emailTextField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-        emailTextField.clearButtonMode = .WhileEditing
+        emailTextField.titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
+        emailTextField.clearButtonMode = .whileEditing
             
         emailTextField.detailLabel = UILabel()
-        emailTextField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
+        emailTextField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
         emailTextField.detailLabelActiveColor = MaterialColor.red.accent3
         
         emailTextField.text = viewModel.email.value

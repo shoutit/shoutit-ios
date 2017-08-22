@@ -16,10 +16,10 @@ import ShoutitKit
 
 final class LoginMethodChoiceViewModel {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let loginSuccessSubject = PublishSubject<Bool>()
     let progressHUDSubject = PublishSubject<Bool>()
-    let errorSubject = PublishSubject<ErrorType>()
+    let errorSubject = PublishSubject<Error>()
     
     // MARK: - Actions
     
@@ -29,16 +29,16 @@ final class LoginMethodChoiceViewModel {
         GIDSignIn.sharedInstance().signIn()
     }
     
-    func loginWithFacebookFromViewController(viewController: UIViewController) {
+    func loginWithFacebookFromViewController(_ viewController: UIViewController) {
         progressHUDSubject.onNext(true)
         Account.sharedInstance.facebookManager
             .requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
             .subscribe { (event) in
                 switch event {
-                case .Next(let token):
+                case .next(let token):
                     let params = FacebookLoginParams(token: token, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
                     self.authenticateWithParameters(params)
-                case .Error(LocalError.Cancelled):
+                case .Error(LocalError.cancelled):
                     self.progressHUDSubject.onNext(false)
                 case .Error(let error):
                     self.errorSubject.onNext(error)
@@ -52,7 +52,7 @@ final class LoginMethodChoiceViewModel {
     
     // MARK: - Private
     
-    private func authenticateWithParameters(params: AuthParams) {
+    fileprivate func authenticateWithParameters(_ params: AuthParams) {
         
         let observable: Observable<(AuthData, DetailedUserProfile)> = APIAuthService.getOAuthToken(params)
             
@@ -61,7 +61,7 @@ final class LoginMethodChoiceViewModel {
             .subscribe {[weak self] (event) in
                 self?.progressHUDSubject.onNext(false)
                 switch event {
-                case .Next(let authData, let user):
+                case .next(let authData, let user):
                     try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                     self?.loginSuccessSubject.onNext(authData.isNewSignUp)
                 case .Error(let error):
@@ -76,7 +76,7 @@ final class LoginMethodChoiceViewModel {
 
 extension LoginMethodChoiceViewModel: GIDSignInDelegate {
     
-    @objc func signIn(signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?, withError error: NSError?) {
+    @objc func signIn(_ signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?, withError error: NSError?) {
         
         GIDSignIn.sharedInstance().delegate = nil
         
@@ -95,7 +95,7 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
         }
     }
     
-    @objc func signIn(signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
+    @objc func signIn(_ signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
         withError error: NSError?) {
             GIDSignIn.sharedInstance().delegate = nil
             if let error = error {

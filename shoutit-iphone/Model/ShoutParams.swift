@@ -12,6 +12,30 @@ import Argo
 
 import Ogra
 import ShoutitKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 public struct ShoutParams {
     let type: Variable<ShoutType>
@@ -80,13 +104,13 @@ extension ShoutParams: Encodable {
                 values["currency"] = currency.encode()
             }
         } else if self.price.value == 0 {
-            values["price"] = JSON.Number(0)
+            values["price"] = JSON.number(0)
             if let currency = self.currency.value?.code {
                 values["currency"] = currency.encode()
             }
         } else {
-            values["price"] = JSON.Null
-            values["currency"] = JSON.Null
+            values["price"] = JSON.null
+            values["currency"] = JSON.null
         }
                 
         values["images"] = self.images.value.encode()
@@ -95,7 +119,7 @@ extension ShoutParams: Encodable {
         if let category = self.category.value {
             values["category"] = category.encode()
         } else {
-           values["category"] = JSON.Null
+           values["category"] = JSON.null
         }
         
         values["location"] = self.location.value.encode()
@@ -112,6 +136,6 @@ extension ShoutParams: Encodable {
             values["filters"] = shoutFilters.encode()
         }
 
-        return JSON.Object(values)
+        return JSON.object(values)
     }
 }

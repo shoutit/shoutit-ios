@@ -14,19 +14,19 @@ import ShoutitKit
 
 final class APIAuthService {
     
-    private static let oauth2AccessTokenURL = APIManager.baseURL + "/oauth2/access_token"
-    private static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"
+    fileprivate static let oauth2AccessTokenURL = APIManager.baseURL + "/oauth2/access_token"
+    fileprivate static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"
     
-    static func resetPassword(params: ResetPasswordParams) -> Observable<Success> {
-        return APIGenericService.requestWithMethod(.POST, url: authResetPasswordURL, params: params, encoding: .JSON)
+    static func resetPassword(_ params: ResetPasswordParams) -> Observable<Success> {
+        return APIGenericService.requestWithMethod(.POST, url: authResetPasswordURL, params: params, encoding: .json)
     }
     
-    static func getOAuthToken<T: User where T: Decodable, T == T.DecodedType>(params: AuthParams) -> Observable<(AuthData, T)> {
+    static func getOAuthToken<T: User>(_ params: AuthParams) -> Observable<(AuthData, T)> where T: Decodable, T == T.DecodedType {
         
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON)
+                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .json)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -50,11 +50,11 @@ final class APIAuthService {
         }
     }
     
-    static func refreshAuthToken(params: RefreshTokenParams) -> Observable<AuthData> {
+    static func refreshAuthToken(_ params: RefreshTokenParams) -> Observable<AuthData> {
         
         return Observable.create({ (observer) -> Disposable in
             let request = APIManager.manager()
-                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .JSON)
+                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .json)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -74,13 +74,13 @@ final class APIAuthService {
         })
     }
     
-    static func verifyEmail(params: EmailParams) -> Observable<Success> {
+    static func verifyEmail(_ params: EmailParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/auth/verify_email"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
     }
     
-    static func changePasswordWithParams(params: ChangePasswordParams) -> Observable<Success> {
+    static func changePasswordWithParams(_ params: ChangePasswordParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/auth/change_password"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
     }
 }

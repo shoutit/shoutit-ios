@@ -24,9 +24,9 @@ class RoundSwitchableButton: UIButton {
         setOn(false)
     }
     
-    func setOn(on: Bool) {
-        backgroundColor = on ? UIColor(shoutitColor: .ShoutitLightBlueColor) : UIColor.blackColor().colorWithAlphaComponent(0.38)
-        layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.7).CGColor
+    func setOn(_ on: Bool) {
+        backgroundColor = on ? UIColor(shoutitColor: .shoutitLightBlueColor) : UIColor.black.withAlphaComponent(0.38)
+        layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
         layer.borderWidth = on ? 0 : 2
     }
 }

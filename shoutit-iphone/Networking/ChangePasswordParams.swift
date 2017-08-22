@@ -15,9 +15,9 @@ public struct ChangePasswordParams: Params {
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["old_password"] = oldPassword
-        p["new_password"] = newPassword
-        p["new_password2"] = newPassword2
+        p["old_password"] = oldPassword as AnyObject
+        p["new_password"] = newPassword as AnyObject
+        p["new_password2"] = newPassword2 as AnyObject
         
         return p
     }

@@ -14,14 +14,14 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     // consts
     enum CellType {
-        case Shout
-        case Placeholder
+        case shout
+        case placeholder
         
         var resuseIdentifier: String {
             switch self {
-            case .Shout:
+            case .shout:
                 return "ShoutsExpandedCollectionViewCell"
-            case .Placeholder:
+            case .placeholder:
                 return "PlaceholderCollectionViewCell"
                 
             }
@@ -57,15 +57,15 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     // MARK: - Setup
     
-    private func prepareReusables() {
-        collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Shout.resuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.Placeholder.resuseIdentifier)
+    fileprivate func prepareReusables() {
+        collectionView?.register(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.shout.resuseIdentifier)
+        collectionView?.register(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CellType.placeholder.resuseIdentifier)
         
-        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.Regular.headerReuseIdentifier)
-        collectionView?.registerNib(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent.headerReuseIdentifier)
+        collectionView?.register(UINib(nibName: "SearchShoutsResultsCategoriesHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.regular.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.regular.headerReuseIdentifier)
+        collectionView?.register(UINib(nibName: "SearchShoutsResultsShoutsHeaderSupplementeryView", bundle: nil), forSupplementaryViewOfKind: SearchShoutsResultsCollectionViewLayout.SectionType.layoutModeDependent.headerKind, withReuseIdentifier: SearchShoutsResultsCollectionViewLayout.SectionType.layoutModeDependent.headerReuseIdentifier)
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel.shoutsSection.pager.state
             .asDriver()
@@ -78,10 +78,10 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     // MARK: - Actions
     
     @IBAction func searchAction() {
-        if case .CategoryShouts(let category) = viewModel.context {
-            flowDelegate?.showSearchInContext(.CategoryShouts(category: category))
+        if case .categoryShouts(let category) = viewModel.context {
+            flowDelegate?.showSearchInContext(.categoryShouts(category: category))
         } else if self.navigationController?.viewControllers.first === self {
-            flowDelegate?.showSearchInContext(.General)
+            flowDelegate?.showSearchInContext(.general)
         } else {
             pop()
         }
@@ -89,16 +89,16 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
     
     // MARK: - Helpers
     
-    private func toggleLayout(sender: UIButton?) {
+    fileprivate func toggleLayout(_ sender: UIButton?) {
         guard let layout = collectionView?.collectionViewLayout as? SearchShoutsResultsCollectionViewLayout else { return }
-        let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .Grid ? .List : .Grid
+        let newMode: SearchShoutsResultsCollectionViewLayout.LayoutMode = layout.mode == .grid ? .list : .grid
         let newLayout = SearchShoutsResultsCollectionViewLayout(mode: newMode)
         newLayout.delegate = self
-        let image = newMode == .List ? UIImage.shoutsLayoutGridIcon() : UIImage.shoutsLayoutListIcon()
-        sender?.setImage(image, forState: .Normal)
-        UIView.animateWithDuration(0.3) {[weak self] in
+        let image = newMode == .list ? UIImage.shoutsLayoutGridIcon() : UIImage.shoutsLayoutListIcon()
+        sender?.setImage(image, for: UIControlState())
+        UIView.animate(withDuration: 0.3, animations: {[weak self] in
             self?.collectionView?.collectionViewLayout = newLayout
-        }
+        }) 
     }
 }
 
@@ -106,16 +106,16 @@ final class SearchShoutsResultsCollectionViewController: UICollectionViewControl
 
 extension SearchShoutsResultsCollectionViewController {
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch viewModel.shoutsSection.pager.state.value {
-        case .Idle:
+        case .idle:
             return 0
-        case .Error, .NoContent, .Loading:
+        case .error, .noContent, .loading:
             return 1
         default:
             return viewModel.shoutsSection.pager.shoutCellViewModels().count
@@ -123,54 +123,54 @@ extension SearchShoutsResultsCollectionViewController {
         
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let placeholderCellWithMessage: (message: String?, activityIndicator: Bool) -> PlcaholderCollectionViewCell = {(message, activity) in
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Placeholder.resuseIdentifier, forIndexPath: indexPath) as! PlcaholderCollectionViewCell
+        let placeholderCellWithMessage: (_ message: String?, _ activityIndicator: Bool) -> PlcaholderCollectionViewCell = {(message, activity) in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.placeholder.resuseIdentifier, for: indexPath) as! PlcaholderCollectionViewCell
             cell.setupCellForActivityIndicator(activity)
             cell.placeholderTextLabel.text = message
             return cell
         }
         
-        let shoutCellWithModel: (ShoutCellViewModel -> UICollectionViewCell) = {cellViewModel in
+        let shoutCellWithModel: ((ShoutCellViewModel) -> UICollectionViewCell) = {cellViewModel in
             
             let cell: ShoutsCollectionViewCell
             
             
             
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellType.Shout.resuseIdentifier, forIndexPath: indexPath) as! ShoutsCollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellType.shout.resuseIdentifier, for: indexPath) as! ShoutsCollectionViewCell
             
             
             if let ad = cellViewModel.ad {
                 cell.bindWithAd(Ad: ad)
-                ad.registerViewForInteraction(cell, withViewController: self)
+                ad.registerView(forInteraction: cell, with: self)
             } else if let shout = cellViewModel.shout {
                 cell.bindWith(Shout: shout)
                 cell.bookmarkButton?.tag = indexPath.item
-                cell.bookmarkButton?.addTarget(self, action: #selector(self.switchBookmarkState), forControlEvents: .TouchUpInside)
+                cell.bookmarkButton?.addTarget(self, action: #selector(self.switchBookmarkState), for: .touchUpInside)
             }
             
             return cell
         }
         
         switch viewModel.shoutsSection.pager.state.value {
-        case .Idle:
+        case .idle:
             fatalError()
-        case .Error(let error):
+        case .error(let error):
             return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
-        case .NoContent:
-            return placeholderCellWithMessage(message: NSLocalizedString("No results were found", comment: "Empty search results placeholder"), activityIndicator: false)
-        case .Loading:
-            return placeholderCellWithMessage(message: nil, activityIndicator: true)
+        case .noContent:
+            return placeholderCellWithMessage(NSLocalizedString("No results were found", comment: "Empty search results placeholder"), false)
+        case .loading:
+            return placeholderCellWithMessage(nil, true)
         default:
             let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             return shoutCellWithModel(cellViewModel)
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let sectionType = SearchShoutsResultsCollectionViewLayout.SectionType.LayoutModeDependent
-        let view = collectionView.dequeueReusableSupplementaryViewOfKind(sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, forIndexPath: indexPath) as! SearchShoutsResultsShoutsHeaderSupplementeryView
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionType = SearchShoutsResultsCollectionViewLayout.SectionType.layoutModeDependent
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: sectionType.headerKind, withReuseIdentifier: sectionType.headerReuseIdentifier, for: indexPath) as! SearchShoutsResultsShoutsHeaderSupplementeryView
         view.titleLabel.text = viewModel.shoutsSection.sectionTitle()
         view.subtitleLabel.text = viewModel.shoutsSection.resultsCountString()
         view.filterButton.hidden = viewModel.shoutsSection.allowsFiltering() == false
@@ -201,19 +201,19 @@ extension SearchShoutsResultsCollectionViewController {
 
 extension SearchShoutsResultsCollectionViewController {
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch viewModel.shoutsSection.pager.state.value {
-        case .LoadedAllContent(_, _):
+        case .loadedAllContent(_, _):
             let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             if let shout = cellViewModel.shout {
                 flowDelegate?.showShout(shout)
             }
-        case .Loaded(_, _, _):
+        case .loaded(_, _, _):
             let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             if let shout = cellViewModel.shout {
                 flowDelegate?.showShout(shout)
             }
-        case .LoadingMore(_, _, _):
+        case .loadingMore(_, _, _):
             let cellViewModel = viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.row]
             if let shout = cellViewModel.shout {
                 flowDelegate?.showShout(shout)
@@ -223,7 +223,7 @@ extension SearchShoutsResultsCollectionViewController {
         }
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             viewModel.shoutsSection.fetchNextPage()
         }
@@ -234,45 +234,45 @@ extension SearchShoutsResultsCollectionViewController {
 
 extension SearchShoutsResultsCollectionViewController: SearchShoutsResultsCollectionViewLayoutDelegate {
     
-    func sectionTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.SectionType {
-        return .LayoutModeDependent
+    func sectionTypeForSection(_ section: Int) -> SearchShoutsResultsCollectionViewLayout.SectionType {
+        return .layoutModeDependent
     }
     
-    func lastCellTypeForSection(section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
+    func lastCellTypeForSection(_ section: Int) -> SearchShoutsResultsCollectionViewLayout.CellType {
         switch viewModel.shoutsSection.pager.state.value {
-        case .Loaded, .LoadingMore, .LoadedAllContent:
-            return .Regular
+        case .loaded, .loadingMore, .loadedAllContent:
+            return .regular
         default:
-            return .Placeholder
+            return .placeholder
         }
     }
 }
 
 extension SearchShoutsResultsCollectionViewController : Bookmarking {
-    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
+    func shoutForIndexPath(_ indexPath: IndexPath) -> Shout? {
         let cellViewModel = self.viewModel.shoutsSection.pager.shoutCellViewModels()[indexPath.item]
         return cellViewModel.shout
     }
     
-    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+    func indexPathForShout(_ shout: Shout?) -> IndexPath? {
         guard let shout = shout else {
             return nil
         }
         
         if let idx = self.viewModel.shoutsSection.pager.indexOf(shout) {
-            return NSIndexPath(forItem: idx, inSection: 0)
+            return IndexPath(item: idx, section: 0)
         }
         
         return nil
     }
     
-    func replaceShoutAndReload(shout: Shout) {
+    func replaceShoutAndReload(_ shout: Shout) {
         if let idx = self.viewModel.shoutsSection.pager.indexInRealResultsOf(shout) {
             _ = try? self.viewModel.shoutsSection.pager.replaceItemAtIndex(idx, withItem: shout)
         }
     }
     
-    @objc func switchBookmarkState(sender: UIButton) {
+    @objc func switchBookmarkState(_ sender: UIButton) {
         switchShoutBookmarkShout(sender)
     }
     

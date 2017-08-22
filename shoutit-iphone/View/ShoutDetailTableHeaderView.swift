@@ -31,15 +31,15 @@ final class ShoutDetailTableHeaderView: UIView {
         
         internalContainerView.layer.masksToBounds = true
         internalContainerView.layer.cornerRadius = 4
-        internalContainerView.layer.borderWidth = 1 / UIScreen.mainScreen().scale
-        internalContainerView.layer.borderColor = UIColor(shoutitColor: .CellBackgroundGrayColor).CGColor
+        internalContainerView.layer.borderWidth = 1 / UIScreen.main.scale
+        internalContainerView.layer.borderColor = UIColor(shoutitColor: .cellBackgroundGrayColor).cgColor
         
         
         
         
     }
     
-    func setConstraintForPriceLabelVisible(visible: Bool) {
+    func setConstraintForPriceLabelVisible(_ visible: Bool) {
         titleLabelToBottomConstraints.constant = visible ? 30 : 8
     }
 }

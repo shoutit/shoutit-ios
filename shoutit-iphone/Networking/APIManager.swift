@@ -29,19 +29,19 @@ final class APIManager {
     
     static func manager() -> Alamofire.Manager {
         if apiManager == nil {
-            let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
-            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            configuration.HTTPAdditionalHeaders = defaultHeaders
+            let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.httpAdditionalHeaders ?? [:]
+            let configuration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = defaultHeaders
             apiManager = Alamofire.Manager(configuration: configuration)
         }
         return apiManager!
     }
     
-    private static var apiManager: Alamofire.Manager?
+    fileprivate static var apiManager: Alamofire.Manager?
     
     // MARK: - Token
     
-    static func setAuthToken(token: String, expiresAt: Int?, pageId: String?) {
+    static func setAuthToken(_ token: String, expiresAt: Int?, pageId: String?) {
         _setAuthToken(token, expiresAt: expiresAt, pageId: pageId)
     }
     
@@ -49,14 +49,14 @@ final class APIManager {
         _setAuthToken(nil, expiresAt: nil, pageId: nil)
     }
     
-    private static func _setAuthToken(token: String?, expiresAt: Int?, pageId: String?) {
+    fileprivate static func _setAuthToken(_ token: String?, expiresAt: Int?, pageId: String?) {
         self.tokenExpiresAt = expiresAt
         
-        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
+        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.httpAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
         defaultHeaders["Authorization-Page-Id"] = pageId
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = defaultHeaders
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = defaultHeaders
         apiManager = Alamofire.Manager(configuration: configuration)
         
         KingfisherManager.sharedManager.downloader.requestModifier = {(request: NSMutableURLRequest) in
@@ -80,11 +80,11 @@ final class APIManager {
 
 extension Alamofire.Response {
     
-    func success(success: (Value) -> Void, failure:(Error) -> Void) {
+    func success(_ success: (Value) -> Void, failure:(Error) -> Void) {
         switch self.result {
-        case .Success(let value):
+        case .success(let value):
             success(value)
-        case .Failure(let error):
+        case .failure(let error):
             failure(error)
         }
     }

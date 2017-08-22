@@ -8,35 +8,35 @@
 
 import Foundation
 
-public typealias ContactPredicate = (contat: ContactProtocol) -> (Bool)
-public typealias ContactResults = (results: [ContactProtocol]?, error: ErrorType?) -> ()
+public typealias ContactPredicate = (_ contat: ContactProtocol) -> (Bool)
+public typealias ContactResults = (_ results: [ContactProtocol]?, _ error: Error?) -> ()
 
 public enum AddressBookRecordProperty {
-    case Identifier
-    case FirstName
-    case MiddleName
-    case LastName
-    case PhoneNumbers
-    case EmailAddresses
-    case OrganizationName
+    case identifier
+    case firstName
+    case middleName
+    case lastName
+    case phoneNumbers
+    case emailAddresses
+    case organizationName
     
     static let allValues = [
-        AddressBookRecordProperty.Identifier,
-        AddressBookRecordProperty.FirstName,
-        AddressBookRecordProperty.MiddleName,
-        AddressBookRecordProperty.LastName,
-        AddressBookRecordProperty.PhoneNumbers,
-        AddressBookRecordProperty.EmailAddresses,
-        AddressBookRecordProperty.OrganizationName
+        AddressBookRecordProperty.identifier,
+        AddressBookRecordProperty.firstName,
+        AddressBookRecordProperty.middleName,
+        AddressBookRecordProperty.lastName,
+        AddressBookRecordProperty.phoneNumbers,
+        AddressBookRecordProperty.emailAddresses,
+        AddressBookRecordProperty.organizationName
     ]
 }
 
 
 public protocol AddressBookQueryBuilder {
-    func keysToFetch(keys: [AddressBookRecordProperty]) -> AddressBookQueryBuilder
-    func matchingPredicate(predicate: ContactPredicate) -> AddressBookQueryBuilder
+    func keysToFetch(_ keys: [AddressBookRecordProperty]) -> AddressBookQueryBuilder
+    func matchingPredicate(_ predicate: ContactPredicate) -> AddressBookQueryBuilder
     func query() throws -> [ContactProtocol]
-    func queryAsync(completion: ContactResults)
+    func queryAsync(_ completion: ContactResults)
 }
 
 internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressBookQueryBuilder {
@@ -51,13 +51,13 @@ internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressB
         self.addressBook = addressBook
     }
     
-    func keysToFetch(keys: [AddressBookRecordProperty]) -> AddressBookQueryBuilder {
+    func keysToFetch(_ keys: [AddressBookRecordProperty]) -> AddressBookQueryBuilder {
         // always include ID
-        self.keysToFetch = Array(Set(keys).union([AddressBookRecordProperty.Identifier]))
+        self.keysToFetch = Array(Set(keys).union([AddressBookRecordProperty.identifier]))
         return self
     }
     
-    func matchingPredicate(predicate: ContactPredicate) -> AddressBookQueryBuilder {
+    func matchingPredicate(_ predicate: @escaping ContactPredicate) -> AddressBookQueryBuilder {
         self.predicate = predicate
         return self
     }
@@ -76,18 +76,18 @@ internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressB
         return [ContactProtocol]()
     }
     
-    func queryAsync(completion: ContactResults) {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+    func queryAsync(_ completion: @escaping ContactResults) {
+        let priority = DispatchQueue.GlobalQueuePriority.default
+        DispatchQueue.global(priority: priority).async {
             do {
                 let results = try self.query()
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(results: results, error: nil)
+                DispatchQueue.main.async {
+                    completion(results, nil)
                 }
             }
             catch let e {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(results: nil, error: e)
+                DispatchQueue.main.async {
+                    completion(nil, e)
                 }
             }
             

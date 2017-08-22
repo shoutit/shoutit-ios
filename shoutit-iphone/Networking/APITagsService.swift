@@ -14,25 +14,25 @@ import ShoutitKit
 
 final class APITagsService {
     
-    private static let batchTagListenURL = APIManager.baseURL + "/tags/batch_listen"
+    fileprivate static let batchTagListenURL = APIManager.baseURL + "/tags/batch_listen"
     
-    static func listen(listen: Bool, toTagWithSlug slug: String) -> Observable<ListenSuccess> {
+    static func listen(_ listen: Bool, toTagWithSlug slug: String) -> Observable<ListenSuccess> {
         let url = APIManager.baseURL + "/tags/\(slug)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE
-        return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
+        return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .url, headers: nil)
     }
     
-    static func retrieveTagWithSlug(slug: String) -> Observable<Tag> {
+    static func retrieveTagWithSlug(_ slug: String) -> Observable<Tag> {
         let url = APIManager.baseURL + "/tags/\(slug)"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url)
     }
     
-    static func retrieveRelatedTagsForTagWithSlug(slug: String, params: RelatedTagsParams) -> Observable<[Tag]> {
+    static func retrieveRelatedTagsForTagWithSlug(_ slug: String, params: RelatedTagsParams) -> Observable<[Tag]> {
         let url = APIManager.baseURL + "/tags/\(slug)/related"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: ["results"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, responseJsonPath: ["results"])
     }
     
-    static func requestBatchListenTagWithParams(params: BatchListenParams) -> Observable<Void> {
-        return APIGenericService.basicRequestWithMethod(.POST, url: batchTagListenURL, params: params, encoding: .JSON)
+    static func requestBatchListenTagWithParams(_ params: BatchListenParams) -> Observable<Void> {
+        return APIGenericService.basicRequestWithMethod(.POST, url: batchTagListenURL, params: params, encoding: .json)
     }
 }

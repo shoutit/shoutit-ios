@@ -14,27 +14,27 @@ class StaticPageViewController: UIViewController, UIWebViewDelegate {
 
     weak var flowDelegate: FlowController?
     
-    var urlToLoad : NSURL!
+    var urlToLoad : URL!
     var titleToShow : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.webView.delegate = self
-        self.webView.loadRequest(NSURLRequest(URL: urlToLoad))
+        self.webView.loadRequest(URLRequest(url: urlToLoad))
         
         self.navigationItem.title = self.titleToShow ?? ""
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         self.showErrorMessage(NSLocalizedString("Could not load content. Please try again late", comment: ""))
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        guard let url = request.URL, path = url.absoluteString as? NSString else  { return true }
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        guard let url = request.url, let path = url.absoluteString as? NSString else  { return true }
         
-        if path.rangeOfString("shoutit.com").location == NSNotFound {
-            UIApplication.sharedApplication().openURL(url)
+        if path.range(of: "shoutit.com").location == NSNotFound {
+            UIApplication.shared.openURL(url)
             return false
         }
         

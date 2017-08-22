@@ -19,13 +19,13 @@ final class ConversationSelectShoutTableViewCell: UITableViewCell {
     @IBOutlet var shoutTypeLabel: UILabel!
     
     
-    func bindWith(shout: Shout) {
+    func bindWith(_ shout: Shout) {
         
         self.titleLabel.text = shout.title
         self.subtitleLabel?.text = shout.user?.name
         self.priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
   
-        if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
+        if let thumbPath = shout.thumbnailPath, let thumbURL = URL(string: thumbPath) {
             self.shoutImageView.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         } else {
             self.shoutImageView.image = UIImage(named:"auth_screen_bg_pattern")

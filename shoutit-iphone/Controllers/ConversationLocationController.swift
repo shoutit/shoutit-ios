@@ -30,8 +30,8 @@ final class ConversationLocationController: UIViewController, MKMapViewDelegate 
         self.mapView.addAnnotation(Annotation(coordinate: coordinates))
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = mapView.viewForAnnotation(annotation)
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView = mapView.view(for: annotation)
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "locationPin")

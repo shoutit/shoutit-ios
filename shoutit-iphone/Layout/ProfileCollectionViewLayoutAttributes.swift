@@ -14,15 +14,15 @@ final class ProfileCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
     var collapseProgress: CGFloat = 0
     var segmentScrolledUnderCoverViewLength: CGFloat = 0
     
-    override func copyWithZone(zone: NSZone) -> AnyObject {
-        let copy = super.copyWithZone(zone) as! ProfileCollectionViewLayoutAttributes
+    override func copy(with zone: NSZone?) -> Any {
+        let copy = super.copy(with: zone) as! ProfileCollectionViewLayoutAttributes
         copy.scaleFactor = scaleFactor
         copy.collapseProgress = collapseProgress
         copy.segmentScrolledUnderCoverViewLength = segmentScrolledUnderCoverViewLength
         return copy
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         
         guard super.isEqual(object) else {
             return false

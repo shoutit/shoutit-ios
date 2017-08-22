@@ -21,7 +21,7 @@ final class PostSignupSuggestionsCellViewModel {
         self.item = item
     }
     
-    func listen() -> Observable<(successMessage: String?, error: ErrorType?)> {
+    func listen() -> Observable<(successMessage: String?, error: ErrorProtocol?)> {
 
         let selected = !self.selected
         return Observable.create{[unowned self] (observer) -> Disposable in
@@ -30,13 +30,13 @@ final class PostSignupSuggestionsCellViewModel {
             observer.onNext((successMessage: nil, error: nil))
             APIProfileService.listen(selected, toProfileWithUsername: self.item.listenId).subscribe{[weak self] (event) in
                 switch event {
-                case .Completed:
+                case .completed:
                     observer.onCompleted()
                 case .Error(let error):
                     self?.selected = !selected
                     observer.onNext((successMessage: nil, error: error))
                     observer.onCompleted()
-                case .Next(let success):
+                case .next(let success):
                     observer.onNext((successMessage: success.message, error: nil))
                 }
             }.addDisposableTo(self.disposeBag)

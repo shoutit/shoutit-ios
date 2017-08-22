@@ -18,7 +18,7 @@ class ConversationSpecialMessageCell: UITableViewCell, ConversationCell {
     weak var timeLabel: UILabel?
     var reuseDisposeBag: DisposeBag = DisposeBag()
     
-    func hydrateAvatarImageView(imageView: UIImageView, withAvatarPath path: String?) {
+    func hydrateAvatarImageView(_ imageView: UIImageView, withAvatarPath path: String?) {
         
     }
     

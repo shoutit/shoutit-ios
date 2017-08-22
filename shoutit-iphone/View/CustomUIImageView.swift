@@ -21,7 +21,7 @@ final class CustomUIImageView: UIImageView {
         applyCornerRadius()
     }
     
-    private func applyCornerRadius() {
+    fileprivate func applyCornerRadius() {
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = cornerRadius > 0
     }

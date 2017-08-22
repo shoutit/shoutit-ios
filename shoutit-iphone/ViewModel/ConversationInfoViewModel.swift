@@ -13,9 +13,9 @@ import ShoutitKit
 class ConversationInfoViewModel: ConversationSubjectEditable {
     
     enum OperationStatus {
-        case Ready
-        case Error(error: ErrorType)
-        case Progress(show: Bool)
+        case ready
+        case error(error: Error)
+        case progress(show: Bool)
     }
     
     // data
@@ -24,13 +24,13 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
             self.sectionViewModels = ConversationInfoViewModel.sectionViewModelsWithConversation(conversation)
         }
     }
-    private(set) var sectionViewModels: [ConversationInfoSectionViewModel]
+    fileprivate(set) var sectionViewModels: [ConversationInfoSectionViewModel]
     
     // ConversationSubjectEditable
     var chatSubject: String = ""
-    private(set) var imageUploadTask: MediaUploadingTask?
+    fileprivate(set) var imageUploadTask: MediaUploadingTask?
     lazy var mediaUploader: MediaUploader = {
-        return MediaUploader(bucket: .TagImage)
+        return MediaUploader(bucket: .tagImage)
     }()
     
     init(conversation: ShoutitKit.Conversation) {
@@ -40,7 +40,7 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
     
     // MARK: - Actions
     
-    func uploadImageAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadImageAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         imageUploadTask = task
         return task
@@ -51,26 +51,26 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
         return Observable.create{[unowned self] (observer) -> Disposable in
             do {
                 try self.validateFields()
-                observer.onNext(.Progress(show: true))
+                observer.onNext(.progress(show: true))
                 
                 return APIChatsService
                     .updateConversationWithId(self.conversation.id, params: self.composeParameters())
                     .subscribe { [weak self] (event) in
-                        observer.onNext(.Progress(show: false))
+                        observer.onNext(.progress(show: false))
                         switch event {
-                        case .Next(let conversation):
+                        case .next(let conversation):
                             self?.conversation = conversation
-                            observer.onNext(.Ready)
+                            observer.onNext(.ready)
                         case .Error(let error):
-                            observer.onNext(.Error(error: error))
+                            observer.onNext(.error(error: error))
                             observer.onCompleted()
-                        case .Completed:
+                        case .completed:
                             observer.onCompleted()
                         }
                     }
             }
             catch (let error) {
-                observer.onNext(.Error(error: error))
+                observer.onNext(.error(error: error))
                 observer.onCompleted()
             }
             return NopDisposable.instance
@@ -83,21 +83,21 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
         return sectionViewModels.count
     }
     
-    func numberOfRows(section: Int) -> Int {
+    func numberOfRows(_ section: Int) -> Int {
         return sectionViewModels[section].cellViewModels.count
     }
     
-    func cellIdentifierForIndexPath(indexPath: NSIndexPath) -> String {
+    func cellIdentifierForIndexPath(_ indexPath: IndexPath) -> String {
         return sectionViewModels[indexPath.section].cellViewModels[indexPath.row].reuseIdentifier()
     }
     
-    func sectionTitleForSection(section: Int) -> String {
+    func sectionTitleForSection(_ section: Int) -> String {
         return sectionViewModels[section].sectionTitle
     }
     
-    func fillCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func fillCell(_ cell: UITableViewCell, indexPath: IndexPath) {
         let cellViewModel = sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
-        cell.tintColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
+        cell.tintColor = UIColor(shoutitColor: .shoutitLightBlueColor)
         cell.textLabel?.text = cellViewModel.title()
         cell.detailTextLabel?.text = cellViewModel.detailTextWithConversation(conversation)
     }
@@ -105,25 +105,25 @@ class ConversationInfoViewModel: ConversationSubjectEditable {
 
 private extension ConversationInfoViewModel {
     
-    static func sectionViewModelsWithConversation(conversation: Conversation) -> [ConversationInfoSectionViewModel] {
+    static func sectionViewModelsWithConversation(_ conversation: Conversation) -> [ConversationInfoSectionViewModel] {
         
         let attachmentsSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("ATTACHMENTS", comment: "Conversation Info Attachments Section Title"),
-                                                                           cellViewModels:[.Shouts, .Media])
-        var membersCellViewModels: [ConversationInfoCellViewModel] = [.AddMember, .Participants]
+                                                                           cellViewModels:[.shouts, .media])
+        var membersCellViewModels: [ConversationInfoCellViewModel] = [.addMember, .participants]
         let isAdmin = conversation.isAdmin(Account.sharedInstance.user?.id)
         if isAdmin {
-            membersCellViewModels.append(.Blocked)
+            membersCellViewModels.append(.blocked)
         }
         let membersSectionViewModel = ConversationInfoSectionViewModel(title: NSLocalizedString("MEMBERS", comment: "Conversation Info Members Section Title"),
                                                                        cellViewModels: membersCellViewModels)
         var destructiveSectionCellViewModels: [ConversationInfoCellViewModel] = []
         if conversation.isPublicChat() {
-            destructiveSectionCellViewModels.append(.ReportChat)
+            destructiveSectionCellViewModels.append(.reportChat)
         }
-        if let currentUserId = Account.sharedInstance.user?.id, users = conversation.users {
+        if let currentUserId = Account.sharedInstance.user?.id, let users = conversation.users {
             let isMemeber = users.map{$0.value.id}.contains(currentUserId)
             if isMemeber {
-                destructiveSectionCellViewModels.append(.ExitChat)
+                destructiveSectionCellViewModels.append(.exitChat)
             }
         }
         
@@ -143,11 +143,11 @@ private extension ConversationInfoViewModel {
 
 extension ConversationInfoViewModel {
     
-    func addParticipantToConversation(profile: Profile) -> Observable<Success> {
+    func addParticipantToConversation(_ profile: Profile) -> Observable<Success> {
         return APIChatsService.addMemberToConversationWithId(self.conversation.id, profile: profile)
     }
     
-    func removeParticipantFromConversation(profile: Profile) -> Observable<Success> {
+    func removeParticipantFromConversation(_ profile: Profile) -> Observable<Success> {
         return APIChatsService.removeMemberFromConversationWithId(self.conversation.id, profile: profile)
     }
 }

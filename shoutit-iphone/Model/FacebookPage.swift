@@ -18,7 +18,7 @@ public struct FacebookPage {
 
 extension FacebookPage: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<FacebookPage> {
+    public static func decode(_ j: JSON) -> Decoded<FacebookPage> {
         return curry(FacebookPage.init)
             <^> j <|| "perms"
             <*> j <| "facebook_id"
@@ -29,7 +29,7 @@ extension FacebookPage: Decodable {
 extension FacebookPage: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "perms"    : perms.encode(),
             "facebook_id"  : facebookId.encode(),
             "name" : name.encode()

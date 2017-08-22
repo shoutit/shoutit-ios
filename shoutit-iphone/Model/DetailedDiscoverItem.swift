@@ -30,7 +30,7 @@ public struct DetailedDiscoverItem {
 
 extension DetailedDiscoverItem: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<DetailedDiscoverItem> {
+    public static func decode(_ j: JSON) -> Decoded<DetailedDiscoverItem> {
         let f = curry(DetailedDiscoverItem.init)
             <^> j <| "id"
             <*> j <| "api_url"

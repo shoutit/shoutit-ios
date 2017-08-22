@@ -26,7 +26,7 @@ final class ResetPasswordViewController: UITableViewController {
     weak var delegate: LoginWithEmailViewControllerChildDelegate?
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ final class ResetPasswordViewController: UITableViewController {
         setupRX()
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         backToLoginButton.rx_tap
             .asDriver()
@@ -44,7 +44,7 @@ final class ResetPasswordViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         resetPasswordButton.rx_tap.filter {
-            if case .Invalid(let errors) = ShoutitValidator.validateEmail(self.emailTextField.text) {
+            if case .invalid(let errors) = ShoutitValidator.validateEmail(self.emailTextField.text) {
                 if let error = errors.first {
                     self.delegate?.showLoginErrorMessage(error.message)
                 }
@@ -54,7 +54,7 @@ final class ResetPasswordViewController: UITableViewController {
             return true
             }
             .subscribeNext{[unowned self] in
-                MBProgressHUD.showHUDAddedTo(self.parentViewController?.view, animated: true)
+                MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
                 self.viewModel.resetPasswordForEmail(self.emailTextField.text!)
             }
             .addDisposableTo(disposeBag)

@@ -47,9 +47,9 @@ extension ConversationInterface {
         return NSAttributedString(string: lastMessageSummary)
     }
     
-    public func imageURL() -> NSURL? {
+    public func imageURL() -> URL? {
         if let path = display.image {
-            return NSURL(string: path)
+            return URL(string: path)
         }
         return nil
     }

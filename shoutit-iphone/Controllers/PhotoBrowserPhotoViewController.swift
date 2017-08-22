@@ -17,7 +17,7 @@ final class PhotoBrowserPhotoViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     @IBOutlet weak var playButton: UIButton?
     
-    var tapHandler : ((viewModel: ShoutDetailShoutImageViewModel) -> Void)!
+    var tapHandler : ((_ viewModel: ShoutDetailShoutImageViewModel) -> Void)!
     
     var viewModel: ShoutDetailShoutImageViewModel? {
         didSet {
@@ -27,7 +27,7 @@ final class PhotoBrowserPhotoViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let viewModel = viewModel {
@@ -35,10 +35,10 @@ final class PhotoBrowserPhotoViewController: UIViewController {
         }
     }
     
-    private func hydrateWithViewModel(viewModel: ShoutDetailShoutImageViewModel) {
+    fileprivate func hydrateWithViewModel(_ viewModel: ShoutDetailShoutImageViewModel) {
         
         switch viewModel {
-        case .Image(let url):
+        case .image(let url):
             showLoading()
             imageView?.sh_setImageWithURL(url, placeholderImage: nil, optionsInfo: nil) {[weak self] (image, error, _, _) in
                 if let _ = image {
@@ -51,15 +51,15 @@ final class PhotoBrowserPhotoViewController: UIViewController {
                     #endif
                 }
             }
-        case .Loading:
+        case .loading:
             showLoading()
-        case .Error(let error):
+        case .error(let error):
             showMessage(error.sh_message)
-        case .NoContent(let image):
+        case .noContent(let image):
             showPlaceholderImage(image)
-        case .Movie(let video):
+        case .movie(let video):
             showLoading()
-            imageView?.sh_setImageWithURL(NSURL(string: video.thumbnailPath), placeholderImage: nil, optionsInfo: nil) {[weak self] (image, error, _, _) in
+            imageView?.sh_setImageWithURL(URL(string: video.thumbnailPath), placeholderImage: nil, optionsInfo: nil) {[weak self] (image, error, _, _) in
                 if let _ = image {
                     self?.showVideo()
                 } else if let error = error {
@@ -76,43 +76,43 @@ final class PhotoBrowserPhotoViewController: UIViewController {
         
     }
     
-    func showMessage(message: String) {
+    func showMessage(_ message: String) {
         activityIndicator?.stopAnimating()
-        activityIndicator?.hidden = true
-        imageView?.hidden = true
-        label?.hidden = false
+        activityIndicator?.isHidden = true
+        imageView?.isHidden = true
+        label?.isHidden = false
         label?.text = message
-        playButton?.hidden = true
+        playButton?.isHidden = true
     }
     
-    func showPlaceholderImage(image: UIImage){
+    func showPlaceholderImage(_ image: UIImage){
         activityIndicator?.stopAnimating()
-        activityIndicator?.hidden = true
-        imageView?.hidden = false
-        label?.hidden = true
-        playButton?.hidden = true
+        activityIndicator?.isHidden = true
+        imageView?.isHidden = false
+        label?.isHidden = true
+        playButton?.isHidden = true
         imageView?.image = image
     }
     
     func showLoading() {
-        imageView?.hidden = true
-        label?.hidden = true
-        activityIndicator?.hidden = false
+        imageView?.isHidden = true
+        label?.isHidden = true
+        activityIndicator?.isHidden = false
         activityIndicator?.startAnimating()
-        playButton?.hidden = true
+        playButton?.isHidden = true
     }
     
     func showImage() {
         activityIndicator?.stopAnimating()
-        activityIndicator?.hidden = true
-        label?.hidden = true
-        imageView?.hidden = false
-        playButton?.hidden = true
+        activityIndicator?.isHidden = true
+        label?.isHidden = true
+        imageView?.isHidden = false
+        playButton?.isHidden = true
     }
     
     func showVideo() {
         showImage()
-        playButton?.hidden = false
+        playButton?.isHidden = false
     }
     
     @IBAction func playAction() {

@@ -12,44 +12,44 @@ import ShoutitKit
 
 final class APIPageService {
     
-    static func getPagesWithParams(params: FilteredPagesParams) -> Observable<PagedResults<Profile>> {
+    static func getPagesWithParams(_ params: FilteredPagesParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/pages"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func getAdminsForPageWithUsername(username: String, pageParams params: PageParams) -> Observable<PagedResults<Profile>> {
+    static func getAdminsForPageWithUsername(_ username: String, pageParams params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/pages/\(username)/admins"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func addProfileAsAdminWithParams(params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Success> {
+    static func addProfileAsAdminWithParams(_ params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Success> {
         let url = APIManager.baseURL + "/pages/\(username)/admin"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func removeProfileAsAdminWithParams(params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Success> {
+    static func removeProfileAsAdminWithParams(_ params: ProfileIdParams, toPageWithUsername username: String) -> Observable<Success> {
         let url = APIManager.baseURL + "/pages/\(username)/admin"
-        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
     static func getPageCategories() -> Observable<[PageCategory]> {
         let url = APIManager.baseURL + "/pages/categories"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func createPage(params: PageCreationParams) -> Observable<DetailedPageProfile> {
+    static func createPage(_ params: PageCreationParams) -> Observable<DetailedPageProfile> {
         let url = APIManager.baseURL + "/pages"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func verifyPage(params: PageVerificationParams, forPageWithUsername username: String) -> Observable<PageVerification> {
+    static func verifyPage(_ params: PageVerificationParams, forPageWithUsername username: String) -> Observable<PageVerification> {
         let url = APIManager.baseURL + "/pages/\(username)/verification"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
     }
     
-    static func getPageVerificationStatus(username: String) -> Observable<PageVerification> {
+    static func getPageVerificationStatus(_ username: String) -> Observable<PageVerification> {
         let url = APIManager.baseURL + "/pages/\(username)/verification"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .JSON)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .json)
     }
 
 }

@@ -21,7 +21,7 @@ public struct ListenSuccess {
 }
 
 extension ListenSuccess: Decodable {
-    public static func decode(j: JSON) -> Decoded<ListenSuccess> {
+    public static func decode(_ j: JSON) -> Decoded<ListenSuccess> {
         return curry(ListenSuccess.init)
             <^> j <| "success"
             <*> j <| "new_listeners_count"

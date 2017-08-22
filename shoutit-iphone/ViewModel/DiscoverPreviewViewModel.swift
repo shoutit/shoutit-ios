@@ -12,23 +12,23 @@
  import ShoutitKit
  
  enum DiscoverPreviewState {
-    case NotLoaded
-    case Loading
-    case NoItems
-    case Loaded
+    case notLoaded
+    case loading
+    case noItems
+    case loaded
  }
  
  final class DiscoverPreviewViewModel {
     
-    let displayable = ShoutsDisplayable(layout: ShoutsLayout.HorizontalGrid)
+    let displayable = ShoutsDisplayable(layout: ShoutsLayout.horizontalGrid)
     let reuseIdentifier = "DiscoverPreviewCell"
     let discoverPreviewHeaderReuseIdentifier = "shoutDiscoverTitleCell"
     
-    var state = Variable(DiscoverPreviewState.Loading)
-    private(set) var dataSource : Observable<[DiscoverItem]>
-    private(set) var mainItemObservable : Observable<DiscoverItem?>
+    var state = Variable(DiscoverPreviewState.loading)
+    fileprivate(set) var dataSource : Observable<[DiscoverItem]>
+    fileprivate(set) var mainItemObservable : Observable<DiscoverItem?>
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     func cellReuseIdentifier() -> String {
         return reuseIdentifier
@@ -69,16 +69,16 @@
         mainItemObservable
             .subscribeNext {[weak self] (mainItem) -> Void in
                 if let _ = mainItem {
-                    self?.state.value = .Loading
+                    self?.state.value = .loading
                 } else {
-                    self?.state.value = .NoItems
+                    self?.state.value = .noItems
                 }
             }
             .addDisposableTo(disposeBag)
         
         dataSource
             .subscribeNext {[weak self] (items) -> Void in
-                self?.state.value = .Loaded
+                self?.state.value = .loaded
             }
             .addDisposableTo(disposeBag)
         

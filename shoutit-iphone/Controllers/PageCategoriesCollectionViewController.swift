@@ -12,8 +12,8 @@ import RxSwift
 
 class PageCategoriesCollectionViewController: UICollectionViewController {
 
-    private let  disposeBag = DisposeBag()
-    private var categories : [PageCategory]?
+    fileprivate let  disposeBag = DisposeBag()
+    fileprivate var categories : [PageCategory]?
     
     let selectedCategory : PublishSubject<PageCategory> = PublishSubject()
     
@@ -31,16 +31,16 @@ class PageCategoriesCollectionViewController: UICollectionViewController {
         
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (self.categories != nil) ? self.categories!.count : 0
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell : PageCategoryCell = collectionView.dequeueReusableCellWithReuseIdentifier("PageCategoryCell", forIndexPath: indexPath) as! PageCategoryCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell : PageCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PageCategoryCell", for: indexPath) as! PageCategoryCell
         
         guard let category = categories?[indexPath.item] else {
             return cell
@@ -51,7 +51,7 @@ class PageCategoriesCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let category = categories?[indexPath.item] else {
             return
         }
@@ -60,7 +60,7 @@ class PageCategoriesCollectionViewController: UICollectionViewController {
         
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 3 * 20.0)/2.0
         return CGSize(width: width, height: width)
     }

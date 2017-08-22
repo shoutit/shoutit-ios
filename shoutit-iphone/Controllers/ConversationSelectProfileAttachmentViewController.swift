@@ -13,7 +13,7 @@ import RxCocoa
 class ConversationSelectProfileAttachmentViewController: UIViewController, ContainerController {
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var listChoiceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
@@ -45,7 +45,7 @@ class ConversationSelectProfileAttachmentViewController: UIViewController, Conta
         setupRX()
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         listChoiceSegmentedControl
             .rx_value

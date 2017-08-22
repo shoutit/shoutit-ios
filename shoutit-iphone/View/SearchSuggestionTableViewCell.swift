@@ -22,12 +22,12 @@ final class SearchSuggestionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+        separatorHeightConstraint.constant = 1 / UIScreen.main.scale
     }
     
-    func showLeadingIcon(icon: UIImage?) {
+    func showLeadingIcon(_ icon: UIImage?) {
         leadingImageView.image = icon
-        leadingImageView.hidden = icon == nil
+        leadingImageView.isHidden = icon == nil
         labelLeadingConstraint.constant = icon != nil ? 50 : 10
     }
     

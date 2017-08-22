@@ -16,7 +16,7 @@ protocol PagedShoutsViewModel: class {
     var pager: NumberedPagePager<ShoutCellViewModel, Shout>! { get }
     
     func reloadContent() -> Void
-    func fetchShoutsAtPage(page: Int) -> Observable<PagedResults<Shout>>
+    func fetchShoutsAtPage(_ page: Int) -> Observable<PagedResults<Shout>>
 }
 
 extension PagedShoutsViewModel {
@@ -37,7 +37,7 @@ extension PagedShoutsViewModel {
         pager.fetchNextPage()
     }
     
-    func applyParamsToFilterParamsIfAny(inout params: FilteredShoutsParams) {
+    func applyParamsToFilterParamsIfAny(_ params: inout FilteredShoutsParams) {
         if let filtersState = filtersState {
             let filterParams = filtersState.composeParams()
             params = filterParams.paramsByReplacingEmptyFieldsWithFieldsFrom(params)

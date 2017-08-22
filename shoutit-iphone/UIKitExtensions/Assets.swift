@@ -15,7 +15,7 @@ extension UIImage {
     }
     
     static func backButton() -> UIImage {
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+        if (UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft) {
             return UIImage(named: "rtl_backThin")!
         } else {
             return UIImage(named: "backThin")!
@@ -39,28 +39,28 @@ extension UIImage {
     }
     
     static func rightBlueArrowDisclosureIndicator() -> UIImage {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
             return UIImage(named: "rtl_forward_thin")!
         }
         return UIImage(named: "forward_thin")!
     }
     
     static func rightRedArrowDisclosureIndicator() -> UIImage {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
             return UIImage(named: "rtl_disclosure_indicator_red")!
         }
         return UIImage(named: "disclosure_indicator_red")!
     }
     
-    static func rightGreenArrowDisclosureIndicator(forceLeftToRight forceLeftToRight: Bool = false) -> UIImage {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft && forceLeftToRight == false {
+    static func rightGreenArrowDisclosureIndicator(forceLeftToRight: Bool = false) -> UIImage {
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft && forceLeftToRight == false {
             return UIImage(named: "rtl_disclosure_indicator_green")!
         }
         return UIImage(named: "disclosure_indicator_green")!
     }
     
     static func chatsSendButtonImage() -> UIImage {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
             return UIImage(named: "rtl_send")!
         }
         return UIImage(named: "send")!

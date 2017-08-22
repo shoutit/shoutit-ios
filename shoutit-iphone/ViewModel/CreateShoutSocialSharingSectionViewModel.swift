@@ -14,16 +14,16 @@ final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewMode
     var title: String {
         return " " + NSLocalizedString("SHARING", comment: "Sharing section header on create shout")
     }
-    private(set) var cellViewModels: [CreateShoutCellViewModel]
-    private unowned var parent: CreateShoutViewModel
-    private let disposeBag = DisposeBag()
+    fileprivate(set) var cellViewModels: [CreateShoutCellViewModel]
+    fileprivate unowned var parent: CreateShoutViewModel
+    fileprivate let disposeBag = DisposeBag()
     
     init(cellViewModels: [CreateShoutCellViewModel], parent: CreateShoutViewModel) {
         self.cellViewModels = cellViewModels
         self.parent = parent
     }
     
-    func togglePublishToFacebookFromViewController(controller: UIViewController) {
+    func togglePublishToFacebookFromViewController(_ controller: UIViewController) {
 
         let publish = parent.shoutParams.publishToFacebook.value
         let facebookManager = Account.sharedInstance.facebookManager

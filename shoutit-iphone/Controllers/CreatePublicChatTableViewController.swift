@@ -13,7 +13,7 @@ import RxCocoa
 class CreatePublicChatTableViewController: UITableViewController {
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // outlets
     @IBOutlet weak var headerView: CreatePublicChatHeaderView!
@@ -47,7 +47,7 @@ class CreatePublicChatTableViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         headerView.chatImageButton
             .rx_tap
@@ -66,13 +66,13 @@ class CreatePublicChatTableViewController: UITableViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func setupViews() {
-        headerView.setupImageViewWithStatus(.NoImage)
+    fileprivate func setupViews() {
+        headerView.setupImageViewWithStatus(.noImage)
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
         if let headerView = tableView.tableHeaderView {
-            let size = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+            let size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
             tableView.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width, height: size.height)
             tableView.tableHeaderView = headerView
         }
@@ -81,20 +81,20 @@ class CreatePublicChatTableViewController: UITableViewController {
 
 extension CreatePublicChatTableViewController {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sections.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.sections[section].cellViewModels.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellViewModel = viewModel.sections[indexPath.section].cellViewModels[indexPath.row]
         switch cellViewModel {
-        case .Location(let location):
+        case .location(let location):
             let cell: LocationChoiceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.button.setTitle(location.address, forState: .Normal)
+            cell.button.setTitle(location.address, for: UIControlState())
             cell.button.iconImageView.image = UIImage(named: location.country)
             cell.button
                 .rx_tap
@@ -104,66 +104,66 @@ extension CreatePublicChatTableViewController {
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = {[weak indexPath](success, place) -> Void in
-                        if let place = place, indexPath = indexPath {
-                            let newViewModel = CreatePublicChatCellViewModel.Location(location: place)
+                        if let place = place, let indexPath = indexPath {
+                            let newViewModel = CreatePublicChatCellViewModel.location(location: place)
                             self?.viewModel.sections[indexPath.section].cellViewModels[indexPath.row] = newViewModel
-                            self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                            self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                         }
                     }
                     
-                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.cancel, style: .Plain, target: controller, action: #selector(controller.pop))
-                    self?.navigationController?.showViewController(controller, sender: nil)
+                    controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.cancel, style: .plain, target: controller, action: #selector(controller.pop))
+                    self?.navigationController?.show(controller, sender: nil)
                     
                     })
                 .addDisposableTo(cell.reuseDisposeBag)
             return cell
-        case .Selectable(let option, let selected):
+        case .selectable(let option, let selected):
             let cell: CreatePublicChatSelectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.label.text = option.title
             if selected {
-                tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             return cell
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.sections[section].title
     }
 }
 
 extension CreatePublicChatTableViewController {
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellViewModel = viewModel.sections[indexPath.section].cellViewModels[indexPath.row]
-        if case .Location = cellViewModel {
+        if case .location = cellViewModel {
             return 50
         }
         return 44
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.sections[indexPath.section].selectCellViewModelAtIndex(indexPath.row)
     }
 }
 
 extension CreatePublicChatTableViewController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         
         let task = viewModel.uploadImageAttachment(attachment)
-        headerView.setChatImage(.Image(image: attachment.image))
+        headerView.setChatImage(.image(image: attachment.image))
         
         task.status
             .asDriver()
             .driveNext{[weak self] (status) in
                 switch status {
-                case .Error:
-                    self?.headerView.setupImageViewWithStatus(.NoImage)
-                case .Uploaded:
-                    self?.headerView.setupImageViewWithStatus(.Uploaded)
-                case .Uploading:
-                    self?.headerView.setupImageViewWithStatus(.Uploading)
+                case .error:
+                    self?.headerView.setupImageViewWithStatus(.noImage)
+                case .uploaded:
+                    self?.headerView.setupImageViewWithStatus(.uploaded)
+                case .uploading:
+                    self?.headerView.setupImageViewWithStatus(.uploading)
                 }
             }
             .addDisposableTo(disposeBag)

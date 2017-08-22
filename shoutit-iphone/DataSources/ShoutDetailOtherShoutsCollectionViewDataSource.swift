@@ -20,35 +20,35 @@ final class ShoutDetailOtherShoutsCollectionViewDataSource: NSObject, UICollecti
         super.init()
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.otherShoutsCellModels.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cellViewModel = viewModel.otherShoutsCellModels[indexPath.row]
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellViewModel.cellReuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModel.cellReuseIdentifier, for: indexPath)
         
         switch cellViewModel {
-        case .Content(let shout):
+        case .content(let shout):
             let contentCell = cell as! ShoutsCollectionViewCell
             contentCell.bindWith(Shout: shout)
-        case .NoContent(let message):
+        case .noContent(let message):
             let noContentCell = cell as! PlcaholderCollectionViewCell
             noContentCell.setupCellForActivityIndicator(false)
             noContentCell.placeholderTextLabel.text = message
-        case .Loading:
+        case .loading:
             let loadingCell = cell as! PlcaholderCollectionViewCell
             loadingCell.setupCellForActivityIndicator(true)
-        case .Error:
+        case .error:
             let errorCell = cell as! PlcaholderCollectionViewCell
             errorCell.setupCellForActivityIndicator(false)
             errorCell.placeholderTextLabel.text = cellViewModel.errorMessage
-        case .SeeAll:
+        case .seeAll:
             break
         }
         

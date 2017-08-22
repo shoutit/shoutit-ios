@@ -12,20 +12,20 @@ import ShoutitKit
 import CocoaLumberjackSwift
 
 enum ShoutAdItemType {
-    case Shout
-    case Ad
+    case shout
+    case ad
 }
 
 enum ShoutAdItem {
-    case Shout(shout: ShoutitKit.Shout)
-    case Ad(ad: FBNativeAd)
+    case shout(shout: ShoutitKit.Shout)
+    case ad(ad: FBNativeAd)
     
     func  itemType() -> ShoutAdItemType {
         switch self {
-        case Shout( _):
-            return .Shout
+        case shout( _):
+            return .shout
         default:
-            return .Ad
+            return .ad
         }
     }
 }
@@ -33,7 +33,7 @@ enum ShoutAdItem {
 class AdManager : NSObject, FBNativeAdDelegate  {
     
     var reloadCollection : (() -> Void)?
-    var reloadIndexPath : (([NSIndexPath]) -> Void)?
+    var reloadIndexPath : (([IndexPath]) -> Void)?
     var loadedAds : [FBNativeAd]?
     var shouts : [Shout]?
     var shoutsSection : Int = 0
@@ -44,7 +44,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         var allItems : [ShoutAdItem] = []
         
         if let old = self.shouts {
-            allItems.appendContentsOf(old.map{ShoutAdItem.Shout(shout:$0)})
+            allItems.append(contentsOf: old.map{ShoutAdItem.shout(shout:$0)})
         }
         
         var adPosition: Int = 0
@@ -53,7 +53,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
             let position = (adPosition + 1) * adPositionCycle
             
             if position < allItems.count {
-                allItems.insert(.Ad(ad: ad), atIndex: position)
+                allItems.insert(.ad(ad: ad), at: position)
             }
             
             adPosition = adPosition + 1
@@ -67,7 +67,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         self.loadedAds = []
     }
     
-    func handleNewShouts(newShouts: [Shout]?) {
+    func handleNewShouts(_ newShouts: [Shout]?) {
         self.shouts = newShouts
         
         if shouldLoadNextAd() {
@@ -82,21 +82,21 @@ class AdManager : NSObject, FBNativeAdDelegate  {
     func loadNextAd() {
         let nativeAd = FBNativeAd(placementID: Constants.FacebookAudience.collectionAdID)
         nativeAd.delegate = self
-        nativeAd.loadAd()
+        nativeAd.load()
     }
     
-    func indexForItem(item: ShoutAdItem) -> Int? {
+    func indexForItem(_ item: ShoutAdItem) -> Int? {
         var idx = 0
         for aItem in self.items() {
             if item.itemType() != aItem.itemType() {
                 continue
             }
 
-            guard case let .Shout(shout) = item else {
+            guard case let .shout(shout) = item else {
                 continue
             }
             
-            guard case let .Shout(rshout) = aItem else {
+            guard case let .shout(rshout) = aItem else {
                 continue
             }
             
@@ -111,22 +111,22 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         return nil
     }
     
-    func replaceItemAtIndex(idx: Int, withItem newShout: ShoutAdItem) {
-        guard case .Shout(let shout) = newShout else { return }
+    func replaceItemAtIndex(_ idx: Int, withItem newShout: ShoutAdItem) {
+        guard case .shout(let shout) = newShout else { return }
         
         self.shouts?[idx] = shout
         
-        reloadIndexPath?([NSIndexPath(forItem: idx, inSection: self.shoutsSection)])
+        reloadIndexPath?([IndexPath(item: idx, section: self.shoutsSection)])
     }
     
-    func nativeAdDidLoad(nativeAd: FBNativeAd) {
+    func nativeAdDidLoad(_ nativeAd: FBNativeAd) {
         self.loadedAds?.append(nativeAd)
         
         reloadCollection?()
         DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
     }
     
-    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+    func nativeAd(_ nativeAd: FBNativeAd, didFailWithError error: NSError) {
         DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     

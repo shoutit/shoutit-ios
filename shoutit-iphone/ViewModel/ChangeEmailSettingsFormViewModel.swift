@@ -12,36 +12,36 @@ import ShoutitKit
 
 final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let successSubject: PublishSubject<Success> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
+    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
     
     let title = NSLocalizedString("Change email", comment: "Change Email screen title")
     var cellViewModels: [SettingsFormCellViewModel] = []
     
     init() {
-        let newPasswordCell = SettingsFormCellViewModel.TextField(value: nil, type: .NewEmail)
-        let changeButtonCell = SettingsFormCellViewModel.Button(title: NSLocalizedString("Change email", comment: "Change Email Button Title"), action: changeEmail)
+        let newPasswordCell = SettingsFormCellViewModel.textField(value: nil, type: .newEmail)
+        let changeButtonCell = SettingsFormCellViewModel.button(title: NSLocalizedString("Change email", comment: "Change Email Button Title"), action: changeEmail)
         cellViewModels = [newPasswordCell, changeButtonCell]
     }
     
-    private func changeEmail() {
+    fileprivate func changeEmail() {
         let user: DetailedProfile
         switch Account.sharedInstance.loginState {
-        case .Logged(let logged)?:
+        case .logged(let logged)?:
             user = logged
-        case .Page(_, let page)?:
+        case .page(_, let page)?:
             user = page
         default:
             fatalError()
         }
         var newEmail: String?
-        for case .TextField(let value, .NewEmail) in cellViewModels {
+        for case .textField(let value, .newEmail) in cellViewModels {
             newEmail = value
         }
         
-        if case .Invalid(let errors) = ShoutitValidator.validateEmail(newEmail) {
+        if case .invalid(let errors) = ShoutitValidator.validateEmail(newEmail) {
             errorSubject.onNext(errors[0])
             return
         }
@@ -50,7 +50,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
         APIProfileService.editEmailForUserWithUsername(user.username, withEmailParams: params)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let user):
+                case .next(let user):
                     Account.sharedInstance.updateUserWithModel(user)
                     self?.successSubject.onNext(Success(message: NSLocalizedString("Email Changed", comment: "Change Email Success Message")))
                 case .Error(let error):

@@ -10,15 +10,15 @@ import UIKit
 import RxSwift
 
 enum ProfileCollectionFooterButtonType {
-    case Green
-    case Gray
+    case green
+    case gray
 }
 
 final class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusableView {
     
     var reuseDisposeBag: DisposeBag?
     
-    var type: ProfileCollectionFooterButtonType? = .Gray {
+    var type: ProfileCollectionFooterButtonType? = .gray {
         didSet {
             setupAppearanceForType(type)
         }
@@ -30,21 +30,21 @@ final class ProfileCollectionFooterButtonSupplementeryView: UICollectionReusable
         self.setupAppearanceForType(type)
     }
     
-    private func setupAppearanceForType(type: ProfileCollectionFooterButtonType?) {
+    fileprivate func setupAppearanceForType(_ type: ProfileCollectionFooterButtonType?) {
         
         guard let type = type else {
             return
         }
         
         switch type {
-        case .Green:
-            backgroundColor = UIColor.whiteColor()
-            button.backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        case .Gray:
-            backgroundColor = UIColor(shoutitColor: .BackgroundLightGray)
-            button.backgroundColor = UIColor(shoutitColor: .ButtonBackgroundGray)
-            button.setTitleColor(UIColor(shoutitColor: .FontLighterGray), forState: .Normal)
+        case .green:
+            backgroundColor = UIColor.white
+            button.backgroundColor = UIColor(shoutitColor: .primaryGreen)
+            button.setTitleColor(UIColor.white, for: UIControlState())
+        case .gray:
+            backgroundColor = UIColor(shoutitColor: .backgroundLightGray)
+            button.backgroundColor = UIColor(shoutitColor: .buttonBackgroundGray)
+            button.setTitleColor(UIColor(shoutitColor: .fontLighterGray), for: UIControlState())
         }
     }
 }

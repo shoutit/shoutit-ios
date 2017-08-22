@@ -17,7 +17,7 @@ final class IncomingCallController: UIViewController {
             if #available(iOS 9.0, *) {
                 loadViewIfNeeded()
             } else {
-                if isViewLoaded() == false {
+                if isViewLoaded == false {
                     self.view.layoutIfNeeded()
                 }
             }
@@ -25,24 +25,24 @@ final class IncomingCallController: UIViewController {
         }
     }
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var callTopicLabel: UILabel!
     @IBOutlet weak var callerAvatarImageView: UIImageView!
     @IBOutlet weak var incomingCallLabel: UILabel!
     
-    var answerHandler : ((invitation: TWCIncomingInvite) -> Void)?
-    var discardHandler : ((invitation: TWCIncomingInvite) -> Void)?
+    var answerHandler : ((_ invitation: TWCIncomingInvite) -> Void)?
+    var discardHandler : ((_ invitation: TWCIncomingInvite) -> Void)?
 
-    @IBAction func discardAction(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { [weak self] in
+    @IBAction func discardAction(_ sender: AnyObject) {
+        self.dismiss(animated: true) { [weak self] in
             guard let `self` = self else { return }
             self.discardHandler?(invitation: self.invitation)
         }
     }
     
-    @IBAction func answerAction(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { [weak self] in
+    @IBAction func answerAction(_ sender: AnyObject) {
+        self.dismiss(animated: true) { [weak self] in
             guard let `self` = self else { return }
             self.answerHandler?(invitation: self.invitation)
         }
@@ -53,7 +53,7 @@ final class IncomingCallController: UIViewController {
         setInitalViewConfiguration()
     }
     
-    private func fetchCallingProfile() {
+    fileprivate func fetchCallingProfile() {
         APIProfileService
             .retrieveProfileWithTwilioUsername(invitation.from)
             .subscribeNext { [weak self] (profile) in
@@ -62,13 +62,13 @@ final class IncomingCallController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func setInitalViewConfiguration() {
+    fileprivate func setInitalViewConfiguration() {
         incomingCallLabel.text = NSLocalizedString("Incoming Call", comment: "Incoming Call Title")
         callTopicLabel.text = nil
         callerAvatarImageView.image = nil
     }
     
-    private func hydrateViewWithProfile(profile: Profile) {
+    fileprivate func hydrateViewWithProfile(_ profile: Profile) {
         incomingCallLabel.text = NSLocalizedString("Incoming Call from ", comment: "Incoming Call Title From ") + "\(profile.fullName())"
         callerAvatarImageView.sh_setImageWithURL(profile.imagePath?.toURL(), placeholderImage: nil)
     }

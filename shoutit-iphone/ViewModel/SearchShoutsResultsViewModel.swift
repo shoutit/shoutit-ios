@@ -15,9 +15,9 @@ final class SearchShoutsResultsViewModel {
     let context: SearchContext
     let searchPhrase: String?
     
-    private(set) var shoutsSection: ShoutsSection!
-    private(set) var categoriesSection: CategoriesSection!
-    private(set) var filtersState: FiltersState?
+    fileprivate(set) var shoutsSection: ShoutsSection!
+    fileprivate(set) var categoriesSection: CategoriesSection!
+    fileprivate(set) var filtersState: FiltersState?
     
     init(searchPhrase: String?, inContext context: SearchContext) {
         self.searchPhrase = searchPhrase
@@ -31,7 +31,7 @@ final class SearchShoutsResultsViewModel {
         categoriesSection.reloadContent()
     }
     
-    func applyFilters(filtersState: FiltersState) {
+    func applyFilters(_ filtersState: FiltersState) {
         self.filtersState = filtersState
         reloadContent()
     }
@@ -45,13 +45,13 @@ final class SearchShoutsResultsViewModel {
             return filtersState
         }
         
-        if case .CategoryShouts(let category) = context {
-            return FiltersState(category: (category, .Disabled),
-                                location: (Account.sharedInstance.user?.location, .Enabled),
-                                withinDistance: (.Distance(kilometers: 20), .Enabled))
+        if case .categoryShouts(let category) = context {
+            return FiltersState(category: (category, .disabled),
+                                location: (Account.sharedInstance.user?.location, .enabled),
+                                withinDistance: (.distance(kilometers: 20), .enabled))
         }
         
-        return FiltersState(location: (Account.sharedInstance.user?.location, .Enabled),
-                            withinDistance: (.Distance(kilometers: 20), .Enabled))
+        return FiltersState(location: (Account.sharedInstance.user?.location, .enabled),
+                            withinDistance: (.distance(kilometers: 20), .enabled))
     }
 }

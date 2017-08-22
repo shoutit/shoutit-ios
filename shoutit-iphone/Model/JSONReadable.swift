@@ -14,23 +14,23 @@ public protocol JSONReadable {
     
     associatedtype DecodedType = Self
     
-    @warn_unused_result
-    static func readFromJSON(json: AnyObject?) throws -> DecodedType
+    
+    static func readFromJSON(_ json: AnyObject?) throws -> DecodedType
 }
 
 extension JSONReadable where Self: Decodable {
     
-    static func fillWithJSON(json: AnyObject?) throws -> DecodedType {
+    static func fillWithJSON(_ json: AnyObject?) throws -> DecodedType {
         guard let json = json as? JSON else {
-            throw JSONError.InvalidJSON
+            throw JSONError.invalidJSON
         }
         
         let result : Decoded<DecodedType> = self.decode(json)
         
         switch (result) {
-        case .Success(let object):
+        case .success(let object):
             return object
-        case .Failure(let erorr):
+        case .failure(let erorr):
             throw erorr
         }
     }

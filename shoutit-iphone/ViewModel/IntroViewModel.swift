@@ -13,10 +13,10 @@ import ShoutitKit
 
 final class IntroViewModel {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let loginSuccessSubject = PublishSubject<Void>()
     let progressHUDSubject = PublishSubject<Bool>()
-    let errorSubject = PublishSubject<ErrorType>()
+    let errorSubject = PublishSubject<Error>()
     
     func fetchGuestUser() {
         
@@ -28,7 +28,7 @@ final class IntroViewModel {
             .subscribe {[weak self] (event) in
                 self?.progressHUDSubject.onNext(false)
                 switch event {
-                case .Next((let authData, let user)):
+                case .next((let authData, let user)):
                     try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                     self?.loginSuccessSubject.onNext(())
                 case .Error(let error):

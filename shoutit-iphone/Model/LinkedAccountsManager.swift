@@ -14,76 +14,76 @@ import FBSDKCoreKit
 
 class LinkedAccountsManager : NSObject {
     
-    private let account: Account
+    fileprivate let account: Account
     
-    private weak var presentingController : UIViewController?
-    private var googleSettingsOption : SettingsOption?
+    fileprivate weak var presentingController : UIViewController?
+    fileprivate var googleSettingsOption : SettingsOption?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     init(account: Account) {
         self.account = account
     }
     
-    func unlinkFacebookAlert(success: (Void -> Void)) -> UIAlertController {
+    func unlinkFacebookAlert(_ success: @escaping ((Void) -> Void)) -> UIAlertController {
         return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook account?", comment: "Link Account Confirmation Message"), success: success)
     }
     
-    func unlinkFacebookPageAlert(success: (Void -> Void)) -> UIAlertController {
+    func unlinkFacebookPageAlert(_ success: @escaping ((Void) -> Void)) -> UIAlertController {
         return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Facebook Page account?", comment: "Link Account Confirmation Message"), success: success)
     }
     
-    func unlinkGoogleAlert(success: (Void -> Void)) -> UIAlertController {
+    func unlinkGoogleAlert(_ success: @escaping ((Void) -> Void)) -> UIAlertController {
         return unlinkAccountAlertWithTitle(NSLocalizedString("Do you want to unlink your Google account?", comment: "Link Account Confirmation Message"), success: success)
     }
     
-    private func unlinkAccountAlertWithTitle(title: String, success: (Void -> Void)) -> UIAlertController {
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
+    fileprivate func unlinkAccountAlertWithTitle(_ title: String, success: @escaping ((Void) -> Void)) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Unlink", comment: "Link Account Confirmation Button"), style: .Destructive, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Unlink", comment: "Link Account Confirmation Button"), style: .destructive, handler: { (action) in
             success()
         }))
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
         
         return alert
     }
 
-    func unlinkFacebook(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func unlinkFacebook(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         weak var wController = controller
         
-        MBProgressHUD.showHUDAddedTo(controller.view, animated: true)
+        MBProgressHUD.showAdded(to: controller.view, animated: true)
         
         Account.sharedInstance.facebookManager.unlinkFacebookAccount().subscribe { (event) in
             guard let controller = wController else {
                 return
             }
             
-            MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: controller.view, animated: true)
             
             switch event {
             case .Error(let error): controller.showError(error)
-            case .Next (let success): controller.showSuccessMessage(success.message)
+            case .next (let success): controller.showSuccessMessage(success.message)
             default: break
             }
         }.addDisposableTo(disposeBag)
     }
     
-    func linkFacebook(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func linkFacebook(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         weak var wController = controller
         
-        MBProgressHUD.showHUDAddedTo(controller.view, animated: true)
+        MBProgressHUD.showAdded(to: controller.view, animated: true)
         
         Account.sharedInstance.facebookManager.linkWithReadPermissions(viewController: controller).subscribe { (event) in
             guard let controller = wController else {
                 return
             }
             
-            MBProgressHUD.hideAllHUDsForView(controller.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: controller.view, animated: true)
             
             switch event {
             case .Error(let error): controller.showError(error)
-            case .Next (let success): controller.showSuccessMessage(success.message)
+            case .next (let success): controller.showSuccessMessage(success.message)
             default: break
             }
             
@@ -91,7 +91,7 @@ class LinkedAccountsManager : NSObject {
 
     }
     
-    func linkGoogle(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func linkGoogle(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         GIDSignIn.sharedInstance().signOut()
         
         presentingController = controller
@@ -104,7 +104,7 @@ class LinkedAccountsManager : NSObject {
         
     }
     
-    func unlinkGoogle(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func unlinkGoogle(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         presentingController = controller
         
         GIDSignIn.sharedInstance().delegate = self
@@ -113,10 +113,10 @@ class LinkedAccountsManager : NSObject {
         
         googleSettingsOption = option
         
-        APIProfileService.unlinkSocialAccountWithParams(.Google(code: nil)).subscribe { [weak self] (event) in
+        APIProfileService.unlinkSocialAccountWithParams(.google(code: nil)).subscribe { [weak self] (event) in
             self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 Account.sharedInstance.fetchUserProfile()
                 self?.presentingController?.showSuccessMessage(success.message)
             case .Error(let error):
@@ -130,14 +130,14 @@ class LinkedAccountsManager : NSObject {
         
     }
     
-    func linkFacebookPage(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func linkFacebookPage(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         if !account.facebookManager.hasPermissions(.ManagePages) {
             account.facebookManager.requestManagePermissions([.ManagePages, .PublishPages], viewController: controller).subscribe { [weak self] (event) in
                 switch event {
-                case .Next(_):
+                case .next(_):
                     debugPrint("permissionsGranted")
                     self?.showPagesSelectionActionSheetFrom(controller, disposeBag: disposeBag, option: option)
-                case .Error(LocalError.Cancelled):
+                case .Error(LocalError.cancelled):
                     break
                 case .Error(let error):
                     controller.showError(error)
@@ -151,12 +151,12 @@ class LinkedAccountsManager : NSObject {
         self.showPagesSelectionActionSheetFrom(controller, disposeBag: disposeBag, option: option)
     }
     
-    func showPagesSelectionActionSheetFrom(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func showPagesSelectionActionSheetFrom(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         controller.showProgressHUD()
         
-        let request = FBSDKGraphRequest(graphPath: "me/accounts", parameters: ["fields": "id, name"], HTTPMethod: "GET")
+        let request = FBSDKGraphRequest(graphPath: "me/accounts", parameters: ["fields": "id, name"], httpMethod: "GET")
         
-        request.startWithCompletionHandler {[weak self] (requestConnection, result, error) in
+        request?.start {[weak self] (requestConnection, result, error) in
             controller.hideProgressHUD()
             
             if let error = error {
@@ -164,7 +164,7 @@ class LinkedAccountsManager : NSObject {
                 return
             }
             
-            if let result = result as? NSDictionary, data = result["data"] as? [NSDictionary] {
+            if let result = result as? NSDictionary, let data = result["data"] as? [NSDictionary] {
                 print(data)
                 self?.presentPagesSelection(controller, disposeBag: disposeBag, option: option, pages: data)
             }
@@ -173,20 +173,20 @@ class LinkedAccountsManager : NSObject {
         }
     }
     
-    func presentPagesSelection(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil, pages: [NSDictionary]) {
-        let alert = UIAlertController(title: NSLocalizedString("Please select a page:", comment: "Link Page Action Sheet"), message: nil, preferredStyle: .ActionSheet)
+    func presentPagesSelection(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil, pages: [NSDictionary]) {
+        let alert = UIAlertController(title: NSLocalizedString("Please select a page:", comment: "Link Page Action Sheet"), message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
         
         for page in pages {
-            guard let name = page["name"] as? String, uid = page["id"] as? String else {
+            guard let name = page["name"] as? String, let uid = page["id"] as? String else {
                 continue
             }
             
-            alert.addAction(UIAlertAction(title: name, style: .Default, handler: { (action) in
-                APIProfileService.linkFacebookPage(.FacebookPage(pageId: uid)).subscribe { [weak self] (event) in
+            alert.addAction(UIAlertAction(title: name, style: .default, handler: { (action) in
+                APIProfileService.linkFacebookPage(.facebookPage(pageId: uid)).subscribe { [weak self] (event) in
                     switch event {
-                    case .Next(let success):
+                    case .next(let success):
                         Account.sharedInstance.fetchUserProfile()
                         controller.showSuccessMessage(success.message)
                     case .Error(let error):
@@ -200,20 +200,20 @@ class LinkedAccountsManager : NSObject {
             
         }
         
-        controller.presentViewController(alert, animated: true, completion: nil)
+        controller.present(alert, animated: true, completion: nil)
         
     }
     
-    func unlinkFacebookPage(controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
+    func unlinkFacebookPage(_ controller: UIViewController, disposeBag: DisposeBag, option: SettingsOption? = nil) {
         presentingController = controller
         
-        guard let user = self.account.user as? DetailedProfile, pageId = user.linkedAccounts?.facebookPage?.facebookId else {
+        guard let user = self.account.user as? DetailedProfile, let pageId = user.linkedAccounts?.facebookPage?.facebookId else {
             return
         }
         
-        APIProfileService.unlinkFacebookPage(.FacebookPage(pageId: pageId)).subscribe { [weak self] (event) in
+        APIProfileService.unlinkFacebookPage(.facebookPage(pageId: pageId)).subscribe { [weak self] (event) in
             switch event {
-            case .Next(_):
+            case .next(_):
                 Account.sharedInstance.fetchUserProfile()
                 self?.presentingController?.showSuccessMessage(NSLocalizedString("Facebook Page Unlinked", comment: "UnLink Page Message"))
             case .Error(let error):
@@ -228,7 +228,7 @@ class LinkedAccountsManager : NSObject {
 }
 
 extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
-    @objc func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+    @objc func signIn(_ signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         
         if error != nil {
             self.presentingController?.showError(error)
@@ -254,18 +254,18 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
         
     }
     
-    @objc func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+    @objc func signIn(_ signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
         
         presentingController = nil
         
     }
     
-    func signIn(signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
-        presentingController?.presentViewController(viewController, animated: true, completion: nil)
+    func signIn(_ signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+        presentingController?.present(viewController, animated: true, completion: nil)
     }
     
-    func signIn(signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
-        viewController.dismissViewControllerAnimated(true, completion: nil)
+    func signIn(_ signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
+        viewController.dismiss(animated: true, completion: nil)
     }
 
 }

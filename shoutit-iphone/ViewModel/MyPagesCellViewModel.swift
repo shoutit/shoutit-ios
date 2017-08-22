@@ -26,7 +26,7 @@ class MyPagesCellViewModel {
     }
     
     func notificationsCountString() -> String? {
-        if let notificationsCount = profile.stats?.totalUnreadCount where notificationsCount > 0 {
+        if let notificationsCount = profile.stats?.totalUnreadCount, notificationsCount > 0 {
             return NumberFormatters.badgeCountStringWithNumber(notificationsCount)
         } else {
             return nil

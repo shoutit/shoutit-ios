@@ -12,45 +12,45 @@ import ShoutitKit
 enum EditProfileCellViewModel {
     
     enum Identity  : Int {
-        case Firstname
-        case Lastname
-        case Name
-        case Username
-        case Bio
-        case Website
-        case Mobile
-        case Location
-        case Birthday
-        case Gender
+        case firstname
+        case lastname
+        case name
+        case username
+        case bio
+        case website
+        case mobile
+        case location
+        case birthday
+        case gender
     }
     
-    case BasicText(value: String, placeholder: String, identity: Identity)
-    case RichText(value: String, placeholder: String, identity: Identity)
-    case Location(value: Address, placeholder: String, identity: Identity)
-    case Date(value: NSDate?, placeholder: String, identity: Identity)
-    case Gender(value: String?, placeholder: String, identity: Identity)
+    case basicText(value: String, placeholder: String, identity: Identity)
+    case richText(value: String, placeholder: String, identity: Identity)
+    case location(value: Address, placeholder: String, identity: Identity)
+    case date(value: Foundation.Date?, placeholder: String, identity: Identity)
+    case gender(value: String?, placeholder: String, identity: Identity)
     
     var reuseIdentifier: String {
         switch self {
-        case .BasicText: return "EditProfileTextFieldCell"
-        case .RichText: return "EditProfileTextViewCell"
-        case .Location: return "EditProfileSelectButtonCell"
-        case .Gender: return "EditProfileSelectButtonCell"
-        case .Date: return "EditProfileDateTextFieldCell"
+        case .basicText: return "EditProfileTextFieldCell"
+        case .richText: return "EditProfileTextViewCell"
+        case .location: return "EditProfileSelectButtonCell"
+        case .gender: return "EditProfileSelectButtonCell"
+        case .date: return "EditProfileDateTextFieldCell"
         }
     }
     
     var identity: Identity {
         switch self {
-        case .BasicText(_, _, let identity):
+        case .basicText(_, _, let identity):
             return identity
-        case .RichText(_, _, let identity):
+        case .richText(_, _, let identity):
             return identity
-        case .Location(_, _, let identity):
+        case .location(_, _, let identity):
             return identity
-        case .Date(_, _, let identity):
+        case .date(_, _, let identity):
             return identity
-        case .Gender(_, _, let identity):
+        case .gender(_, _, let identity):
             return identity
         }
     }
@@ -58,42 +58,42 @@ enum EditProfileCellViewModel {
     // MARK: - Conenience init
     
     init(firstname: String) {
-        self = .BasicText(value: firstname, placeholder: NSLocalizedString("First name", comment: "Edit profile placeholder text"), identity: .Firstname)
+        self = .basicText(value: firstname, placeholder: NSLocalizedString("First name", comment: "Edit profile placeholder text"), identity: .firstname)
     }
     
     init(lastname: String) {
-        self = .BasicText(value: lastname, placeholder: NSLocalizedString("Last name", comment: "Edit profile placeholder text"), identity: .Lastname)
+        self = .basicText(value: lastname, placeholder: NSLocalizedString("Last name", comment: "Edit profile placeholder text"), identity: .lastname)
     }
     
     init(name: String) {
-        self = .BasicText(value: name, placeholder: NSLocalizedString("Name", comment: "Edit profile placeholder text"), identity: .Name)
+        self = .basicText(value: name, placeholder: NSLocalizedString("Name", comment: "Edit profile placeholder text"), identity: .name)
     }
     
     init(username: String) {
-        self = .BasicText(value: username, placeholder: NSLocalizedString("Username", comment: "Edit profile placeholder text"), identity: .Username)
+        self = .basicText(value: username, placeholder: NSLocalizedString("Username", comment: "Edit profile placeholder text"), identity: .username)
     }
     
     init(bio: String) {
-        self = .RichText(value: bio, placeholder: NSLocalizedString("Bio", comment: "Edit profile placeholder text"), identity: .Bio)
+        self = .richText(value: bio, placeholder: NSLocalizedString("Bio", comment: "Edit profile placeholder text"), identity: .bio)
     }
     
     init(website: String) {
-        self = .BasicText(value: website, placeholder: NSLocalizedString("Website", comment: "Edit profile placeholder text"), identity: .Website)
+        self = .basicText(value: website, placeholder: NSLocalizedString("Website", comment: "Edit profile placeholder text"), identity: .website)
     }
     
     init(location: Address) {
-        self = .Location(value: location, placeholder: NSLocalizedString("Location", comment: "Edit profile placeholder text"), identity: .Location)
+        self = .location(value: location, placeholder: NSLocalizedString("Location", comment: "Edit profile placeholder text"), identity: .location)
     }
     
     init(mobile: String) {
-        self = .BasicText(value: mobile, placeholder: NSLocalizedString("Mobile", comment: "Edit profile placeholder text"), identity: .Mobile)
+        self = .basicText(value: mobile, placeholder: NSLocalizedString("Mobile", comment: "Edit profile placeholder text"), identity: .mobile)
     }
     
-    init(birthday: NSDate?) {
-        self = .Date(value: birthday, placeholder: NSLocalizedString("Birthday", comment: "Edit profile placeholder text"), identity: .Birthday)
+    init(birthday: Foundation.Date?) {
+        self = .date(value: birthday, placeholder: NSLocalizedString("Birthday", comment: "Edit profile placeholder text"), identity: .birthday)
     }
     
     init(gender: String) {
-        self = .Gender(value: gender, placeholder: NSLocalizedString("Gender", comment: "Edit profile placeholder text"), identity: .Gender)
+        self = .gender(value: gender, placeholder: NSLocalizedString("Gender", comment: "Edit profile placeholder text"), identity: .gender)
     }
 }

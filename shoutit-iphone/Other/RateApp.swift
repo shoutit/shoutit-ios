@@ -26,24 +26,24 @@ class RateApp {
         return sharedInstanceStore!
     }
     
-    private static var sharedInstanceStore: RateApp?
+    fileprivate static var sharedInstanceStore: RateApp?
     
     
     func registerEvent() {
-        let events = NSUserDefaults.standardUserDefaults().numberOfEvents() + 1
-        NSUserDefaults.standardUserDefaults().setNumberOfEvents(events)
+        let events = UserDefaults.standard.numberOfEvents() + 1
+        UserDefaults.standard.setNumberOfEvents(events)
     }
     
     func registerLaunch() {
-        let launches = NSUserDefaults.standardUserDefaults().numberOfLaunches() + 1
-        NSUserDefaults.standardUserDefaults().setNumberOfLaunches(launches)
+        let launches = UserDefaults.standard.numberOfLaunches() + 1
+        UserDefaults.standard.setNumberOfLaunches(launches)
     }
     
     func shouldEnjoyPrompt() -> Bool {
         
-        if NSUserDefaults.standardUserDefaults().alreadyPrompted() { return false }
+        if UserDefaults.standard.alreadyPrompted() { return false }
         
-        let launches = NSUserDefaults.standardUserDefaults().numberOfLaunches() + 1
+        let launches = UserDefaults.standard.numberOfLaunches() + 1
         
         if launches > usesUntilPrompt {
             return true
@@ -54,9 +54,9 @@ class RateApp {
     }
     
     func shouldHelpfulPrompt() -> Bool {
-        if NSUserDefaults.standardUserDefaults().alreadyPrompted() { return false }
+        if UserDefaults.standard.alreadyPrompted() { return false }
         
-        let events = NSUserDefaults.standardUserDefaults().numberOfEvents() + 1
+        let events = UserDefaults.standard.numberOfEvents() + 1
         
         if events > eventsUntilPrompt {
             return true
@@ -66,11 +66,11 @@ class RateApp {
     }
     
     func resetCounters() {
-        NSUserDefaults.standardUserDefaults().setNumberOfLaunches(0)
-        NSUserDefaults.standardUserDefaults().setNumberOfEvents(0)
+        UserDefaults.standard.setNumberOfLaunches(0)
+        UserDefaults.standard.setNumberOfEvents(0)
     }
     
-    func promptEnjoyAlert(completion: ((Bool) -> Void)) -> UIAlertController {
+    func promptEnjoyAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
         let alert = UIAlertController(title: NSLocalizedString("Enjoying Shoutit Marketplace?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
@@ -83,7 +83,7 @@ class RateApp {
         return alert
     }
     
-    func promptHelpfulAlert(completion: ((Bool) -> Void)) -> UIAlertController {
+    func promptHelpfulAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
         let alert = UIAlertController(title: NSLocalizedString("Do you think Shoutit is helpful?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
@@ -96,7 +96,7 @@ class RateApp {
         return alert
     }
     
-    func promptRateAlert(completion: ((Bool) -> Void)) -> UIAlertController {
+    func promptRateAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
         
         let alert = UIAlertController(title: NSLocalizedString("How about a rating on the AppStore?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
         
@@ -113,7 +113,7 @@ class RateApp {
         return alert
     }
     
-    func promptFeedbackAlert(completion: ((Bool) -> Void)) -> UIAlertController {
+    func promptFeedbackAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
         let alert = UIAlertController(title: NSLocalizedString("Would you mind giving us some feedback?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok, sure", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
@@ -129,37 +129,37 @@ class RateApp {
     }
     
     func openRateApp() {
-        UIApplication.sharedApplication().openURL(NSURL(string: RateAppURL)!)
+        UIApplication.sharedApplication().openURL(URL(string: RateAppURL)!)
     }
 }
 
-extension NSUserDefaults {
+extension UserDefaults {
     
     
     func numberOfLaunches() -> Int {
-        return (objectForKey(RateAppDefaultsNumberOfLaunchesKey) as? Int) ?? 0
+        return (object(forKey: RateAppDefaultsNumberOfLaunchesKey) as? Int) ?? 0
     }
     
-    func setNumberOfLaunches(launches: Int) {
-        setObject(launches, forKey: RateAppDefaultsNumberOfLaunchesKey)
+    func setNumberOfLaunches(_ launches: Int) {
+        set(launches, forKey: RateAppDefaultsNumberOfLaunchesKey)
         synchronize()
     }
     
     func numberOfEvents() -> Int {
-        return (objectForKey(RateAppDefaultsNumberOfEventsKey) as? Int) ?? 0
+        return (object(forKey: RateAppDefaultsNumberOfEventsKey) as? Int) ?? 0
     }
     
-    func setNumberOfEvents(events: Int) {
-        setObject(events, forKey: RateAppDefaultsNumberOfEventsKey)
+    func setNumberOfEvents(_ events: Int) {
+        set(events, forKey: RateAppDefaultsNumberOfEventsKey)
         synchronize()
     }
     
     func alreadyPrompted() -> Bool {
-        return (objectForKey(RateAppDefaultsPromptedKey) as? Bool) ?? false
+        return (object(forKey: RateAppDefaultsPromptedKey) as? Bool) ?? false
     }
     
-    func setAlreadyPrompted(prompted: Bool) {
-        setObject(prompted, forKey: RateAppDefaultsPromptedKey)
+    func setAlreadyPrompted(_ prompted: Bool) {
+        set(prompted, forKey: RateAppDefaultsPromptedKey)
         synchronize()
     }
     

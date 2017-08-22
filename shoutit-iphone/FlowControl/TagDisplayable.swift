@@ -10,32 +10,32 @@ import Foundation
 import ShoutitKit
 
 protocol TagDisplayable {
-    func showTag(tag: Tag) -> Void
-    func showTag(filter: Filter) -> Void
-    func showTag(category: ShoutitKit.Category) -> Void
+    func showTag(_ tag: Tag) -> Void
+    func showTag(_ filter: Filter) -> Void
+    func showTag(_ category: ShoutitKit.Category) -> Void
 }
 
 extension FlowController : TagDisplayable {
     
-    func showTag(tag: Tag) {
+    func showTag(_ tag: Tag) {
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
         controller.viewModel = TagProfileCollectionViewModel(tag: tag)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showTag(filter: Filter) {
+    func showTag(_ filter: Filter) {
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
         controller.viewModel = TagProfileCollectionViewModel(filter: filter)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    func showTag(category: ShoutitKit.Category) {
+    func showTag(_ category: ShoutitKit.Category) {
         let controller = Wireframe.profileViewController()
         controller.flowDelegate = self
         controller.viewModel = TagProfileCollectionViewModel(category: category)
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     

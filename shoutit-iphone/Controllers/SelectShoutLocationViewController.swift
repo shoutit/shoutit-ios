@@ -11,7 +11,7 @@ import ShoutitKit
 
 final class SelectShoutLocationViewController: ChangeLocationTableViewController {
 
-    override func finishWithAddress(address: Address) {
+    override func finishWithAddress(_ address: Address) {
         if let finish = self.finishedBlock {
             finish(true, address)
         }
@@ -20,6 +20,6 @@ final class SelectShoutLocationViewController: ChangeLocationTableViewController
     }
     
     func popController() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 }

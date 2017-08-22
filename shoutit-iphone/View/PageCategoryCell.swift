@@ -13,11 +13,11 @@ class PageCategoryCell: UICollectionViewCell {
     @IBOutlet var titleLabel : UILabel?
     @IBOutlet var iconImageView : UIImageView?
 
-    func bindWithCategory(category: PageCategory) {
+    func bindWithCategory(_ category: PageCategory) {
         self.titleLabel?.text = category.name
         
         if let iconPath = category.image {
-            self.iconImageView?.sh_setImageWithURL(NSURL(string: iconPath), placeholderImage: nil)
+            self.iconImageView?.sh_setImageWithURL(URL(string: iconPath), placeholderImage: nil)
         }
     }
 }

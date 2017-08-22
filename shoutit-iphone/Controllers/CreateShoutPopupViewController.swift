@@ -13,20 +13,20 @@ final class CreateShoutPopupViewController: UIViewController {
 
     var selectedType: ShoutType?
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let createShoutController = segue.destinationViewController as? CreateShoutParentViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let createShoutController = segue.destination as? CreateShoutParentViewController {
             createShoutController.type = selectedType
         }
     }
 
     @IBAction func createOffer() {
         selectedType = .Offer
-        self.performSegueWithIdentifier("createShoutSegue", sender: nil)
+        self.performSegue(withIdentifier: "createShoutSegue", sender: nil)
     }
     
     @IBAction func createRequest() {
         selectedType = .Request
-        self.performSegueWithIdentifier("createShoutSegue", sender: nil)
+        self.performSegue(withIdentifier: "createShoutSegue", sender: nil)
     }
 }
 

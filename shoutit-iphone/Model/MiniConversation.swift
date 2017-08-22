@@ -20,7 +20,7 @@ public struct MiniConversation: ConversationInterface {
 
 extension MiniConversation: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<MiniConversation> {
+    public static func decode(_ j: JSON) -> Decoded<MiniConversation> {
         let a = curry(MiniConversation.init)
             <^> j <| "id"
             <*> j <| "type"

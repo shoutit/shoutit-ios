@@ -18,7 +18,7 @@ public struct FacebookAccount {
 
 extension FacebookAccount: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<FacebookAccount> {
+    public static func decode(_ j: JSON) -> Decoded<FacebookAccount> {
         return curry(FacebookAccount.init)
             <^> j <|| "scopes"
             <*> j <| "expires_at"
@@ -29,7 +29,7 @@ extension FacebookAccount: Decodable {
 extension FacebookAccount: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "scopes"    : scopes.encode(),
             "expires_at"  : expiresAtEpoch.encode(),
             "facebook_id" : facebookId.encode()

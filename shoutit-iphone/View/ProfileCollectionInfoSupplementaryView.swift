@@ -22,7 +22,7 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     // section 1
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
-            avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+            avatarImageView.layer.borderColor = UIColor.white.cgColor
             avatarImageView.layer.borderWidth = 1
             avatarImageView.layer.cornerRadius = 5
             avatarImageView.layer.masksToBounds = true
@@ -30,7 +30,7 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     }
     @IBOutlet weak var avatarContainerView: UIView! {
         didSet {
-            avatarContainerView.layer.shadowColor = UIColor.grayColor().CGColor
+            avatarContainerView.layer.shadowColor = UIColor.gray.cgColor
             avatarContainerView.layer.shadowOpacity = 0.6
             avatarContainerView.layer.shadowRadius = 3.0
             avatarContainerView.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -74,16 +74,16 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     // computed vars
     var buttonSectionButtons: [ProfileInfoHeaderButton]? {
         if let left = buttonSectionLeftButton,
-            center = buttonSectionCenterButton,
-            right = buttonSectionRightButton {
+            let center = buttonSectionCenterButton,
+            let right = buttonSectionRightButton {
             return [left, center, right]
         }
         return nil
     }
     var buttonSectionButtonsWidthConstraints: [NSLayoutConstraint]? {
         if let left = buttonSectionLeftButtonWidthConstraint,
-            center = buttonSectionCenterButtonWidthConstraint,
-            right = buttonSectionRightButtonWidthConstraint {
+            let center = buttonSectionCenterButtonWidthConstraint,
+            let right = buttonSectionRightButtonWidthConstraint {
             return [left, center, right]
         }
         return nil
@@ -94,8 +94,8 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
         verifyAccountDisclosureIndicatorImageView.image = UIImage.rightRedArrowDisclosureIndicator()
     }
     
-    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.applyLayoutAttributes(layoutAttributes)
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
         
         let attributes = layoutAttributes as! ProfileCollectionViewLayoutAttributes
         let normalAvatarHeight: CGFloat = 76.0
@@ -103,14 +103,14 @@ final class ProfileCollectionInfoSupplementaryView: UICollectionReusableView {
     }
     
     func layoutButtons() {
-        guard let buttons = buttonSectionButtons, constraints = buttonSectionButtonsWidthConstraints else {
+        guard let buttons = buttonSectionButtons, let constraints = buttonSectionButtonsWidthConstraints else {
             return
         }
         let numberOfButtons = buttons
-            .reduce(0) {$0 + ($1.hidden == false ? 1 : 0)}
+            .reduce(0) {$0 + ($1.isHidden == false ? 1 : 0)}
         let buttonWidth = frame.width / CGFloat(numberOfButtons)
         for (button, constraint) in zip(buttons, constraints) {
-            constraint.constant = button.hidden ? 0 : buttonWidth
+            constraint.constant = button.isHidden ? 0 : buttonWidth
         }
     }
     

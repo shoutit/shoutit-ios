@@ -25,7 +25,7 @@ public struct ConversationDescription {
 
 extension ConversationDescription: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<ConversationDescription> {
+    public static func decode(_ j: JSON) -> Decoded<ConversationDescription> {
         let f = curry(ConversationDescription.init)
             <^> j <|? "title"
             <*> j <|? "sub_title"
@@ -38,7 +38,7 @@ extension ConversationDescription: Decodable {
 extension ConversationDescription: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "title"    : self.title.encode(),
             "sub_title"  : self.subtitle.encode(),
             "image" : self.image.encode()

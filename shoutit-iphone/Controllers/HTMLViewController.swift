@@ -25,23 +25,23 @@ final class HTMLViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
+        self.navigationController?.navigationBar.barTintColor = UIColor(shoutitColor: .primaryGreen)
         
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(HTMLViewController.done)), animated: true)
+        navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(HTMLViewController.done)), animated: true)
         
         guard let fileName = htmlFile else {
             assert(false)
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            guard let file = NSBundle.mainBundle().pathForResource(fileName.rawValue, ofType: "html"), let htmlData = NSData(contentsOfFile: file) else {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async {
+            guard let file = Bundle.main.path(forResource: fileName.rawValue, ofType: "html"), let htmlData = try? Data(contentsOf: URL(fileURLWithPath: file)) else {
                 assert(false)
                 return
             }
             
-            dispatch_async(dispatch_get_main_queue()) {[weak self] in
-                self?.webView.loadData(htmlData, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: NSURL(string: Constants.URL.ShoutItWebsite)!)
+            DispatchQueue.main.async {[weak self] in
+                self?.webView.load(htmlData, mimeType: "text/html", textEncodingName: "UTF-8", baseURL: URL(string: Constants.URL.ShoutItWebsite)!)
             }
         }
     }
@@ -49,6 +49,6 @@ final class HTMLViewController: UIViewController {
     // MARK: - Dismiss
     
     func done() {
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

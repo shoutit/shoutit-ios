@@ -101,13 +101,13 @@ internal class ABContactRecord: ContactProtocol {
 
 internal class ABRecordAdapter {
     
-    internal class func convertABRecordsToContactValues(abRecords: [ABRecord]) -> [ContactProtocol] {
+    internal class func convertABRecordsToContactValues(_ abRecords: [ABRecord]) -> [ContactProtocol] {
         return abRecords.map({ (record) -> ContactProtocol in
             return ABContactRecord(abRecord: record)
         })
     }
     
-    internal class func convertContactToABRecord(contact: ContactProtocol) -> ABRecord {
+    internal class func convertContactToABRecord(_ contact: ContactProtocol) -> ABRecord {
         let person = ABPersonCreate().takeRetainedValue()
         
         if let phoneNumbers = contact.phoneNumbers {
@@ -147,7 +147,7 @@ internal class ABRecordAdapter {
         
         return person
     }
-    internal class func createMultiValuesFromLabels(record: ABRecord, type: ABPropertyID, labels:[AddressBookRecordLabel]?) -> ABMutableMultiValue {
+    internal class func createMultiValuesFromLabels(_ record: ABRecord, type: ABPropertyID, labels:[AddressBookRecordLabel]?) -> ABMutableMultiValue {
         let multiValue = createMultiValue(type)
         let labels = labels ?? [AddressBookRecordLabel]()
         for adressBookLabel in labels {
@@ -156,25 +156,25 @@ internal class ABRecordAdapter {
         return multiValue
     }
     
-    internal class func addLabelToMultiValue(multivalue: ABMutableMultiValue, label: AddressBookRecordLabel) {
+    internal class func addLabelToMultiValue(_ multivalue: ABMutableMultiValue, label: AddressBookRecordLabel) {
         ABMultiValueAddValueAndLabel(multivalue, label.value, AddressBookRecordLabel.convertLabel(abMappings, label: label.label), nil)
     }
     
-    internal class func createMultiValue(type: ABPropertyID) -> ABMutableMultiValue {
+    internal class func createMultiValue(_ type: ABPropertyID) -> ABMutableMultiValue {
         return ABMultiValueCreateMutable(ABPersonGetTypeOfProperty(type)).takeRetainedValue()
     }
     
-    internal class func setValueToRecord<T : AnyObject>(record : ABRecord!, key : ABPropertyID, _ value : T?) {
+    internal class func setValueToRecord<T : AnyObject>(_ record : ABRecord!, key : ABPropertyID, _ value : T?) {
         ABRecordSetValue(record, key, value, nil)
     }
     
     
-    internal class func getPropertyFromRecord<T>(record: ABRecord, propertyName : ABPropertyID) -> T? {
+    internal class func getPropertyFromRecord<T>(_ record: ABRecord, propertyName : ABPropertyID) -> T? {
         let value: AnyObject? = ABRecordCopyValue(record, propertyName)?.takeRetainedValue()
         return value as? T
     }
     
-    internal class func getMultiValues(record: ABRecord, propertyName : ABPropertyID) -> [AddressBookRecordLabel] {
+    internal class func getMultiValues(_ record: ABRecord, propertyName : ABPropertyID) -> [AddressBookRecordLabel] {
         var array = [AddressBookRecordLabel]()
         let multivalue : ABMultiValue = getPropertyFromRecord(record, propertyName: propertyName) ?? createMultiValue(propertyName)
         
@@ -186,12 +186,12 @@ internal class ABRecordAdapter {
         return array
     }
     
-    internal class func getAddressBookRecordLabelFromMultiValue(multivalue: ABMultiValue, i: Int) -> AddressBookRecordLabel? {
+    internal class func getAddressBookRecordLabelFromMultiValue(_ multivalue: ABMultiValue, i: Int) -> AddressBookRecordLabel? {
         let mappings = DictionaryUtils.dictionaryWithSwappedKeysAndValues(abMappings)
         return getAddressBookRecordLabelFromMultiValue(multivalue, i: i, labelMappings: mappings)
     }
     
-    internal class func getAddressBookRecordLabelFromMultiValue(multivalue: ABMultiValue, i: Int, labelMappings: Dictionary<String, String>) -> AddressBookRecordLabel? {
+    internal class func getAddressBookRecordLabelFromMultiValue(_ multivalue: ABMultiValue, i: Int, labelMappings: Dictionary<String, String>) -> AddressBookRecordLabel? {
         let value = ABMultiValueCopyValueAtIndex(multivalue, i).takeRetainedValue() as? String
         
         if let v = value {

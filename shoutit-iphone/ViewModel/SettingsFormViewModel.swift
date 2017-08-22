@@ -14,7 +14,7 @@ protocol SettingsFormViewModel {
     
     var progressSubject: PublishSubject<Bool> {get}
     var successSubject: PublishSubject<Success> {get}
-    var errorSubject: PublishSubject<ErrorType> {get}
+    var errorSubject: PublishSubject<ErrorProtocol> {get}
     
     var title: String {get}
     var cellViewModels: [SettingsFormCellViewModel] {get set}

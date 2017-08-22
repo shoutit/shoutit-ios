@@ -20,6 +20,6 @@ extension FlowController : NotificationsDisplayable {
         
         controller.flowDelegate = self
         
-        self.navigationController.showViewController(controller, sender: nil)
+        self.navigationController.show(controller, sender: nil)
     }
 }

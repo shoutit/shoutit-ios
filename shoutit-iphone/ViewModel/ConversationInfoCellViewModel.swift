@@ -10,13 +10,13 @@ import Foundation
 import ShoutitKit
 
 enum ConversationInfoCellViewModel {
-    case Shouts
-    case Media
-    case AddMember
-    case Participants
-    case Blocked
-    case ReportChat
-    case ExitChat
+    case shouts
+    case media
+    case addMember
+    case participants
+    case blocked
+    case reportChat
+    case exitChat
     
     func reuseIdentifier() -> String {
         
@@ -25,33 +25,33 @@ enum ConversationInfoCellViewModel {
         let infoCellIdentifier = "ChatInfoCell"
         
         switch self {
-        case .ReportChat, .ExitChat:
+        case .reportChat, .exitChat:
             return destructiveButtonCellIdentifier
-        case .Shouts, .Media, .Participants, .Blocked:
+        case .shouts, .media, .participants, .blocked:
             return infoCellIdentifier
-        case .AddMember:
+        case .addMember:
             return addButtonCellIdentifier
         }
     }
     
     func title() -> String {
         switch self {
-        case .Shouts: return NSLocalizedString("Shouts", comment: "Conversation Info Screen Cell Title")
-        case .Media: return NSLocalizedString("Media", comment: "Conversation Info Screen Cell Title")
-        case .AddMember: return NSLocalizedString("Add Member", comment: "Conversation Info Screen Cell Title")
-        case .Participants: return NSLocalizedString("Participants", comment: "Conversation Info Screen Cell Title")
-        case .Blocked: return NSLocalizedString("Blocked", comment: "Conversation Info Screen Cell Title")
-        case .ReportChat: return NSLocalizedString("Report Chat", comment: "Conversation Info Screen Cell Title")
-        case .ExitChat: return NSLocalizedString("Exit Chat", comment: "Conversation Info Screen Cell Title")
+        case .shouts: return NSLocalizedString("Shouts", comment: "Conversation Info Screen Cell Title")
+        case .media: return NSLocalizedString("Media", comment: "Conversation Info Screen Cell Title")
+        case .addMember: return NSLocalizedString("Add Member", comment: "Conversation Info Screen Cell Title")
+        case .participants: return NSLocalizedString("Participants", comment: "Conversation Info Screen Cell Title")
+        case .blocked: return NSLocalizedString("Blocked", comment: "Conversation Info Screen Cell Title")
+        case .reportChat: return NSLocalizedString("Report Chat", comment: "Conversation Info Screen Cell Title")
+        case .exitChat: return NSLocalizedString("Exit Chat", comment: "Conversation Info Screen Cell Title")
         }
     }
     
-    func detailTextWithConversation(conversation: Conversation) -> String? {
+    func detailTextWithConversation(_ conversation: Conversation) -> String? {
         switch self {
-        case .Shouts: return String(conversation.attachmentCount.shout)
-        case .Media: return String(conversation.attachmentCount.media)
-        case .Participants: return String(conversation.users?.count ?? 0)
-        case .Blocked: return String(conversation.blocked?.count ?? 0)
+        case .shouts: return String(conversation.attachmentCount.shout)
+        case .media: return String(conversation.attachmentCount.media)
+        case .participants: return String(conversation.users?.count ?? 0)
+        case .blocked: return String(conversation.blocked?.count ?? 0)
         default: return nil
         }
     }

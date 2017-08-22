@@ -9,16 +9,16 @@
 import UIKit
 
 protocol LoginFinishable {
-    func didFinishLoginProcessWithSuccess(success: Bool) -> Void
+    func didFinishLoginProcessWithSuccess(_ success: Bool) -> Void
 }
 
 extension LoginFlowController : LoginFinishable {
     
-    func didFinishLoginProcessWithSuccess(success: Bool) {
+    func didFinishLoginProcessWithSuccess(_ success: Bool) {
         if let loginFinishedBlock = loginFinishedBlock {
             loginFinishedBlock(success)
         } else {
-            navigationController.dismissViewControllerAnimated(true, completion: nil)
+            navigationController.dismiss(animated: true, completion: nil)
         }
     }
 }

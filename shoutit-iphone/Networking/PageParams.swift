@@ -13,7 +13,7 @@ public struct PageParams: Params {
     public var pageSize : Int
     
     public var params: [String : AnyObject] {
-        return ["page":self.page, "page_size": self.pageSize]
+        return ["page":self.page as AnyObject, "page_size": self.pageSize as AnyObject]
     }
     
     public init(page: Int, pageSize: Int) {

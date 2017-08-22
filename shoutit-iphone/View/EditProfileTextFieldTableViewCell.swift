@@ -19,10 +19,10 @@ final class EditProfileTextFieldTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         textField.titleLabel = UILabel()
-        textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        textField.titleLabelColor = UIColor(shoutitColor: .DiscoverBorder)
-        textField.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-        textField.clearButtonMode = .WhileEditing
+        textField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
+        textField.titleLabelColor = UIColor(shoutitColor: .discoverBorder)
+        textField.titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
+        textField.clearButtonMode = .whileEditing
     }
     
     override func prepareForReuse() {

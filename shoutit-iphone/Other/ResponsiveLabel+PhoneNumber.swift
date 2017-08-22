@@ -10,8 +10,8 @@ import Foundation
 
 extension ResponsiveLabel {
     
-    func enablePhoneNumberDetectionWithAttribtues(attributes: [NSObject : AnyObject]) {
-        let types: NSTextCheckingType = [.PhoneNumber]
+    func enablePhoneNumberDetectionWithAttribtues(_ attributes: [AnyHashable: Any]) {
+        let types: NSTextCheckingResult.CheckingType = [.phoneNumber]
         guard let detector = try? NSDataDetector(types: types.rawValue) else { return }
         let patternDescriptor = PatternDescriptor(regex: detector, withSearchType: .All, withPatternAttributes: attributes)
         enablePatternDetection(patternDescriptor)

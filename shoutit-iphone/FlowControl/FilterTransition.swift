@@ -11,43 +11,43 @@ import UIKit
 final class FilterTransition: NSObject {
     
     enum TransitionDirection {
-        case Presenting
-        case Dismissing
+        case presenting
+        case dismissing
     }
     
     // consts
-    private let animationDuration: NSTimeInterval = 0.33
-    private let topSpace: CGFloat = {
-        let screenHeight = UIScreen.mainScreen().bounds.height
+    fileprivate let animationDuration: TimeInterval = 0.33
+    fileprivate let topSpace: CGFloat = {
+        let screenHeight = UIScreen.main.bounds.height
         let filterViewHeight: CGFloat = min(503, screenHeight)
         return screenHeight - filterViewHeight
     }()
     
     // state
-    private var transitionDirection: TransitionDirection = .Presenting
-    private weak var presentedViewController: UIViewController?
+    fileprivate var transitionDirection: TransitionDirection = .presenting
+    fileprivate weak var presentedViewController: UIViewController?
     
     // views
-    private var blurOverlay: UIVisualEffectView!
+    fileprivate var blurOverlay: UIVisualEffectView!
 }
 
 extension FilterTransition: UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return animationDuration
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // Get view controllers
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-        let sourceRect = transitionContext.initialFrameForViewController(fromVC)
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
+        let sourceRect = transitionContext.initialFrame(for: fromVC)
         
         switch transitionDirection {
-        case .Presenting:
+        case .presenting:
             
-            fromVC.view.userInteractionEnabled = false
+            fromVC.view.isUserInteractionEnabled = false
             fromVC.view.frame = sourceRect
             
             presentedViewController = toVC
@@ -56,7 +56,7 @@ extension FilterTransition: UIViewControllerAnimatedTransitioning {
             blurOverlay = UIVisualEffectView(frame: sourceRect)
             blurOverlay.addGestureRecognizer(tapGesture)
             blurOverlay.addGestureRecognizer(panGesture)
-            let transitionContainer = transitionContext.containerView()!
+            let transitionContainer = transitionContext.containerView
             
             transitionContainer.addSubview(blurOverlay)
             transitionContainer.addSubview(toVC.view)
@@ -65,25 +65,25 @@ extension FilterTransition: UIViewControllerAnimatedTransitioning {
             let endFrame = CGRect(x: 0, y: topSpace, width: fromVC.view.frame.width, height: fromVC.view.frame.height - topSpace)
             toVC.view.frame = startFrame
             
-            UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseInOut], animations: {
+            UIView.animate(withDuration: animationDuration, delay: 0, options: UIViewAnimationOptions(), animations: {
                 toVC.view.frame = endFrame
-                self.blurOverlay.effect = UIBlurEffect(style: .Dark)
+                self.blurOverlay.effect = UIBlurEffect(style: .dark)
             }, completion: { (finished) in
                 transitionContext.completeTransition(finished)
             })
             
-        case .Dismissing:
+        case .dismissing:
             
-            toVC.view.userInteractionEnabled = true
+            toVC.view.isUserInteractionEnabled = true
             
-            let transitionContainer = transitionContext.containerView()!
+            let transitionContainer = transitionContext.containerView
             
             transitionContainer.addSubview(blurOverlay)
             transitionContainer.addSubview(fromVC.view)
             
             let endFrame = CGRect(x: 0, y: toVC.view.frame.height , width: toVC.view.frame.width, height: toVC.view.frame.height - topSpace)
             
-            UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseInOut], animations: {
+            UIView.animate(withDuration: animationDuration, delay: 0, options: UIViewAnimationOptions(), animations: {
                 fromVC.view.frame = endFrame
                 self.blurOverlay.effect = nil
                 }, completion: { (finished) in
@@ -95,13 +95,13 @@ extension FilterTransition: UIViewControllerAnimatedTransitioning {
 
 extension FilterTransition: UIViewControllerTransitioningDelegate {
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transitionDirection = .Presenting
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transitionDirection = .presenting
         return self
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transitionDirection = .Dismissing
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transitionDirection = .dismissing
         return self
     }
 }
@@ -109,13 +109,13 @@ extension FilterTransition: UIViewControllerTransitioningDelegate {
 extension FilterTransition {
     
     func handleTap() {
-        presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
+    func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let view = gestureRecognizer.view else { return }
-        if gestureRecognizer.velocityInView(view).y > 50 {
-            presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        if gestureRecognizer.velocity(in: view).y > 50 {
+            presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }
 }

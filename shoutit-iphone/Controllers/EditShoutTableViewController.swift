@@ -32,11 +32,11 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
         downloadAttachments()
     }
     
-    private func downloadAttachments() {
+    fileprivate func downloadAttachments() {
         
-        let completionBlock: ([MediaAttachment] -> Void) = {(attachments) in
+        let completionBlock: (([MediaAttachment]) -> Void) = {(attachments) in
             var attachmentsDictionary = [Int : MediaAttachment]()
-            for (index, attachment) in attachments.enumerate() {
+            for (index, attachment) in attachments.enumerated() {
                 attachmentsDictionary[index] = attachment
             }
             self.imagesController?.attachments = attachmentsDictionary
@@ -50,8 +50,8 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
                 MediaAttachment(
                     type: .Video,
                     uid: MediaAttachment.generateUid(),
-                    remoteURL: NSURL(string: video.path),
-                    thumbRemoteURL: NSURL(string: video.thumbnailPath),
+                    remoteURL: URL(string: video.path),
+                    thumbRemoteURL: URL(string: video.thumbnailPath),
                     image: nil,
                     videoDuration: Float(video.duration),
                     originalData: nil
@@ -59,36 +59,36 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
             )
         }
         
-        guard let imagePaths = shout.imagePaths where imagePaths.count > 0 else {
+        guard let imagePaths = shout.imagePaths, imagePaths.count > 0 else {
             completionBlock(attachments)
             return
         }
         
-        let queue = dispatch_queue_create("com.shoutit.editshout.photos", DISPATCH_QUEUE_CONCURRENT)
-        let group = dispatch_group_create()
+        let queue = DispatchQueue(label: "com.shoutit.editshout.photos", attributes: DispatchQueue.Attributes.concurrent)
+        let group = DispatchGroup()
         
-        dispatch_apply(imagePaths.count, queue) { (iteration) in
+        DispatchQueue.concurrentPerform(iterations: imagePaths.count) { (iteration) in
             
-            dispatch_group_enter(group)
+            group.enter()
             let imgPath = imagePaths[iteration]
-            let data = NSData(contentsOfURL: NSURL(string: imgPath)!)
+            let data = try? Data(contentsOf: URL(string: imgPath)!)
             let image: UIImage? = data != nil ? UIImage(data: data!) : nil
             
             attachments.append(
                 MediaAttachment(
                     type: .Image,
                     uid: MediaAttachment.generateUid(),
-                    remoteURL: NSURL(string: imgPath),
-                    thumbRemoteURL: NSURL(string: imgPath),
+                    remoteURL: URL(string: imgPath),
+                    thumbRemoteURL: URL(string: imgPath),
                     image: image,
                     videoDuration: nil,
                     originalData: data
                 )
             )
-            dispatch_group_leave(group)
+            group.leave()
         }
         
-        dispatch_group_notify(group, dispatch_get_main_queue()) { 
+        group.notify(queue: DispatchQueue.main) { 
             completionBlock(attachments)
         }
     }

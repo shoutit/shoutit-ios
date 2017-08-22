@@ -15,14 +15,14 @@ public struct CreatePublicChatParams: Params {
     
     public var params: [String : AnyObject] {
         var params: [String : AnyObject] = [:]
-        params["subject"] = subject
-        params["icon"] = iconPath
-        if let latitude = location.latitude, longitude = location.longitude {
+        params["subject"] = subject as AnyObject
+        params["icon"] = iconPath as AnyObject
+        if let latitude = location.latitude, let longitude = location.longitude {
             let locationParams: [String : AnyObject] = [
-                "latitude" : latitude,
-                "longitude" : longitude
+                "latitude" : latitude as AnyObject,
+                "longitude" : longitude as AnyObject
             ]
-            params["location"] = locationParams
+            params["location"] = locationParams as AnyObject
         }
         return params
     }

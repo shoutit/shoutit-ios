@@ -15,6 +15,6 @@ final class PostSignupSuggestionsSectionHeader: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorViewHeightConstraint.constant = 1 / UIScreen.mainScreen().scale
+        separatorViewHeightConstraint.constant = 1 / UIScreen.main.scale
     }
 }

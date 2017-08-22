@@ -14,7 +14,7 @@ import ShoutitKit
 
 extension ConversationViewController {
     
-    func hydrateCell(cell: ConversationCell, withMessage message: Message, previousMessage: Message?) {
+    func hydrateCell(_ cell: ConversationCell, withMessage message: Message, previousMessage: Message?) {
         
         doUniversalHydrationWithCell(cell, message: message, previousMessage: previousMessage)
         
@@ -46,8 +46,8 @@ extension ConversationViewController {
             setThumbWithMessageAttachment(message.attachment(), onCell: cell)
         case let cell as ConversationLocationCell:
             cell.activityIndicator?.startAnimating()
-            cell.showLabel?.hidden = true
-            guard let latitude = message.attachment()?.location?.latitude, longitude = message.attachment()?.location?.longitude else {
+            cell.showLabel?.isHidden = true
+            guard let latitude = message.attachment()?.location?.latitude, let longitude = message.attachment()?.location?.longitude else {
                 return
             }
             let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
@@ -71,7 +71,7 @@ extension ConversationViewController {
 
 private extension ConversationViewController {
     
-    func doUniversalHydrationWithCell(cell: ConversationCell, message: Message, previousMessage: Message?) {
+    func doUniversalHydrationWithCell(_ cell: ConversationCell, message: Message, previousMessage: Message?) {
         if let imageView = cell.avatarImageView {
             cell.hydrateAvatarImageView(imageView, withAvatarPath: message.user?.imagePath)
             if let profile = message.user {
@@ -94,41 +94,41 @@ private extension ConversationViewController {
 
 private extension ConversationViewController {
     
-    func hydrateLocationCell(cell: ConversationLocationCell, withSnapshotAtCoordinates coordinates: CLLocationCoordinate2D) {
+    func hydrateLocationCell(_ cell: ConversationLocationCell, withSnapshotAtCoordinates coordinates: CLLocationCoordinate2D) {
         let options = MKMapSnapshotOptions()
         options.size = cell.locationSnapshot.frame.size
         options.region = MKCoordinateRegionMakeWithDistance(coordinates, 1000, 1000)
         let snapshooter = MKMapSnapshotter(options: options)
-        snapshooter.startWithCompletionHandler { [weak cell] (snapshot, error) in
+        snapshooter.start (completionHandler: { [weak cell] (snapshot, error) in
             cell?.locationSnapshot.image = snapshot?.image
             cell?.activityIndicator?.stopAnimating()
-            cell?.activityIndicator?.hidden = true
-            cell?.showLabel?.hidden = false
-        }
+            cell?.activityIndicator?.isHidden = true
+            cell?.showLabel?.isHidden = false
+        })
     }
     
-    func setThumbWithMessageAttachment(attachment: MessageAttachment?, onCell cell: ThumbedConversationCell) {
+    func setThumbWithMessageAttachment(_ attachment: MessageAttachment?, onCell cell: ThumbedConversationCell) {
         setThumbWithPath(attachment?.imagePath(), onCell: cell, placeholderImage: UIImage.shoutsPlaceholderImage())
     }
     
-    func setThumbWithProfile(profile: Profile, onCell cell: ThumbedConversationCell) {
+    func setThumbWithProfile(_ profile: Profile, onCell cell: ThumbedConversationCell) {
         setThumbWithPath(profile.imagePath, onCell: cell, placeholderImage: UIImage.profilePlaceholderImage())
     }
     
-    func setThumbWithPath(path: String?, onCell cell: ThumbedConversationCell, placeholderImage: UIImage) {
-        guard let imagePath = path, let url = NSURL(string: imagePath) where imagePath.utf16.count > 0 else {
+    func setThumbWithPath(_ path: String?, onCell cell: ThumbedConversationCell, placeholderImage: UIImage) {
+        guard let imagePath = path, let url = URL(string: imagePath), imagePath.utf16.count > 0 else {
             cell.activityIndicator?.stopAnimating()
-            cell.activityIndicator?.hidden = true
+            cell.activityIndicator?.isHidden = true
             cell.pictureImageView.image = UIImage.shoutsPlaceholderImage()
             return
         }
         
         cell.activityIndicator?.startAnimating()
-        cell.activityIndicator?.hidden = false
+        cell.activityIndicator?.isHidden = false
         
         cell.pictureImageView.sh_setImageWithURL(url, placeholderImage: UIImage.shoutsPlaceholderImage(), optionsInfo: nil) {[weak cell] (image, error, cacheType, imageURL) in
             cell?.activityIndicator?.stopAnimating()
-            cell?.activityIndicator?.hidden = true
+            cell?.activityIndicator?.isHidden = true
         }
     }
 }

@@ -31,17 +31,17 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         }
         
         self.viewModel.adManager.reloadIndexPath = { indexPaths in
-            self.collectionView?.reloadItemsAtIndexPaths(indexPaths)
+            self.collectionView?.reloadItems(at: indexPaths)
         }
         
         self.viewModel.adManager.shoutsSection = 1
     }
     
     func registerNibs() {
-        self.collectionView?.registerNib(UINib(nibName: "DiscoverHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.SubItems.headerIdentifier())
-        self.collectionView?.registerNib(UINib(nibName: "DiscoverShoutsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.Shouts.headerIdentifier())
-        self.collectionView?.registerNib(UINib(nibName: "DiscoverShoutFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: DiscoverSection.Shouts.footerIdentifier())
-        self.collectionView?.registerNib(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShoutsExpandedCollectionViewCell")
+        self.collectionView?.register(UINib(nibName: "DiscoverHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.subItems.headerIdentifier())
+        self.collectionView?.register(UINib(nibName: "DiscoverShoutsHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: DiscoverSection.shouts.headerIdentifier())
+        self.collectionView?.register(UINib(nibName: "DiscoverShoutFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: DiscoverSection.shouts.footerIdentifier())
+        self.collectionView?.register(UINib(nibName: "ShoutsExpandedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShoutsExpandedCollectionViewCell")
     }
     
     func loadItems() {
@@ -63,17 +63,17 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
     
     // MARK: - Actions
     
-    @IBAction func searchAction(sender: AnyObject) {
+    @IBAction func searchAction(_ sender: AnyObject) {
         if let discoverItem = viewModel.mainItem() {
-            flowDelegate?.showSearchInContext(.DiscoverShouts(item: discoverItem))
+            flowDelegate?.showSearchInContext(.discoverShouts(item: discoverItem))
         } else {
-            flowDelegate?.showSearchInContext(.General)
+            flowDelegate?.showSearchInContext(.general)
         }
     }
     
     // MARK: UICollectionView Delegate
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
                 flowDelegate?.showDiscoverForDiscoverItem(element)
@@ -81,18 +81,18 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             return
         }
         
-        if case .Shout(let shout) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
+        if case .shout(let shout) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
             flowDelegate?.showShout(shout)
         }
     }
 
     // MARK: UICollectionView Data Source
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return viewModel.discoverItems().count
         }
@@ -100,17 +100,17 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         return viewModel.shoutItemsWithAds().count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.viewModel.cellIdentifierForIndexPath(indexPath), for: indexPath)
     
         
         // Configure Shout cell
         if indexPath.section == 1 {
-            if case .Shout(let element) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
+            if case .shout(let element) = self.viewModel.shoutItemsWithAds()[indexPath.item] {
                 let shoutCell = cell as! ShoutsCollectionViewCell
                 shoutCell.bindWith(Shout: element)
                 shoutCell.bookmarkButton?.tag = indexPath.item
-                shoutCell.bookmarkButton?.addTarget(self, action: #selector(switchBookmarkState), forControlEvents: .TouchUpInside)
+                shoutCell.bookmarkButton?.addTarget(self, action: #selector(switchBookmarkState), for: .touchUpInside)
             }
 
             return cell
@@ -118,7 +118,7 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         
         // Configure Discover cell
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.viewModel.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.viewModel.cellIdentifierForIndexPath(indexPath), for: indexPath)
             if let element = self.viewModel?.discoverItems()[indexPath.item] {
                 let discoverCell = cell as! ShoutsCollectionViewCell
                 discoverCell.bindWith(DiscoverItem: element)
@@ -130,25 +130,25 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
         fatalError("Not supported section")
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionFooter {
-            let footer =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.footerIdentifier(), forIndexPath: indexPath)
+            let footer =  collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.footerIdentifier(), for: indexPath)
             
             if let discoverFooter = footer as? DiscoverShoutFooterView {
-                discoverFooter.showShoutsButton.addTarget(self, action: #selector(DiscoverCollectionViewController.showDiscoverShouts), forControlEvents: .TouchUpInside)
+                discoverFooter.showShoutsButton.addTarget(self, action: #selector(DiscoverCollectionViewController.showDiscoverShouts), for: .touchUpInside)
             }
             
             return footer
         }
         
-        let header =  collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.headerIdentifier(), forIndexPath: indexPath)
+        let header =  collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DiscoverSection(rawValue: indexPath.section)!.headerIdentifier(), for: indexPath)
         
         
         if let discoverHeader = header as? DiscoverHeaderView {
             let title = viewModel.mainItem()?.title ?? NSLocalizedString("Discover", comment: "Discover Header")
             discoverHeader.setText(title, whiteWithShadow: !viewModel.isRootDiscoverView)
                         
-            if let coverPath = self.viewModel.mainItem()?.cover, coverURL = NSURL(string: coverPath) {
+            if let coverPath = self.viewModel.mainItem()?.cover, let coverURL = URL(string: coverPath) {
                 discoverHeader.backgroundImageView.sh_setImageWithURL(coverURL, placeholderImage: UIImage(named: "auth_screen_bg_pattern"))
             } else {
                 discoverHeader.backgroundImageView.image = UIImage(named: "auth_screen_bg_pattern")
@@ -168,27 +168,27 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
     
     // MARK: UICollectionView Flow Layout Delegate
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         return self.viewModel.headerSize(collectionView, section: section)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
 
         return self.viewModel.footerSize(collectionView, section: section)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return self.viewModel.itemSize(indexPath, collectionView: collectionView)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         return self.viewModel.minimumInteritemSpacingForSection(section)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return self.viewModel.insetsForSection(section)
     }
@@ -205,34 +205,34 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
 
 extension DiscoverCollectionViewController : Bookmarking {
     
-    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout? {
-        guard case .Shout(let shout) = self.viewModel.shoutItemsWithAds()[indexPath.item] else {
+    func shoutForIndexPath(_ indexPath: IndexPath) -> Shout? {
+        guard case .shout(let shout) = self.viewModel.shoutItemsWithAds()[indexPath.item] else {
             return nil
         }
         
         return shout
     }
     
-    func indexPathForShout(shout: Shout?) -> NSIndexPath? {
+    func indexPathForShout(_ shout: Shout?) -> IndexPath? {
         guard let shout = shout else {
             return nil
         }
         
-        if let idx = self.viewModel.adManager.indexForItem(.Shout(shout: shout)) {
-            return NSIndexPath(forItem: idx, inSection: 1)
+        if let idx = self.viewModel.adManager.indexForItem(.shout(shout: shout)) {
+            return IndexPath(item: idx, section: 1)
         }
         
         return nil
     }
     
-    func replaceShoutAndReload(shout: Shout) {
-        if let idx = self.viewModel.adManager.indexForItem(.Shout(shout: shout)) {
-            self.viewModel.adManager.replaceItemAtIndex(idx, withItem: .Shout(shout: shout))
+    func replaceShoutAndReload(_ shout: Shout) {
+        if let idx = self.viewModel.adManager.indexForItem(.shout(shout: shout)) {
+            self.viewModel.adManager.replaceItemAtIndex(idx, withItem: .shout(shout: shout))
         }
         
     }
     
-    @objc func switchBookmarkState(sender: UIButton) {
+    @objc func switchBookmarkState(_ sender: UIButton) {
         switchShoutBookmarkShout(sender)
     }
 }

@@ -18,6 +18,6 @@ extension FlowController : CreatePublicChatDisplayable {
         let controller = Wireframe.createPublicChatViewController()
         controller.viewModel = CreatePublicChatViewModel()
         let nav = ModalNavigationController(rootViewController: controller)
-        navigationController.presentViewController(nav, animated: true, completion: nil)
+        navigationController.present(nav, animated: true, completion: nil)
     }
 }

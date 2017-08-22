@@ -27,10 +27,10 @@ extension FlowController : TermsAndPolicyDisplayable {
         showHTMLControllerWithHTML(.Policy)
     }
     
-    private func showHTMLControllerWithHTML(htmlFile: BundledHTMLFile) {
+    fileprivate func showHTMLControllerWithHTML(_ htmlFile: BundledHTMLFile) {
         let htmlController = Wireframe.htmlViewController()
         htmlController.htmlFile = htmlFile
         let navigationController = ModalNavigationController(rootViewController: htmlController)
-        self.navigationController.presentViewController(navigationController, animated: true, completion: nil)
+        self.navigationController.present(navigationController, animated: true, completion: nil)
     }
 }

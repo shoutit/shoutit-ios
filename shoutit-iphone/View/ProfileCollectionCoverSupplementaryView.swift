@@ -12,7 +12,7 @@ import RxSwift
 final class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
     var reuseDisposeBag: DisposeBag = DisposeBag()
-    private let visibleLabelsConstraintConstantValue: CGFloat = 21
+    fileprivate let visibleLabelsConstraintConstantValue: CGFloat = 21
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: GradientView!
@@ -31,21 +31,21 @@ final class ProfileCollectionCoverSupplementaryView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backButton.setImage(UIImage.backButton(), forState: .Normal)
+        backButton.setImage(UIImage.backButton(), for: UIControlState())
     }
     
-    func setCoverImage(image: UIImage) {
+    func setCoverImage(_ image: UIImage) {
         blurredImageView.image = image
         imageView.image = image
     }
     
-    func setBackButtonHidden(hidden: Bool) {
-        backButton.hidden = hidden
+    func setBackButtonHidden(_ hidden: Bool) {
+        backButton.isHidden = hidden
         menuButtonLeadingContainerConstraint.constant = hidden ? 0 : 44
     }
     
-    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.applyLayoutAttributes(layoutAttributes)
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
         
         let attributes = layoutAttributes as! ProfileCollectionViewLayoutAttributes
         

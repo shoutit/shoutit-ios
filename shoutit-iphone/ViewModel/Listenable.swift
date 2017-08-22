@@ -17,7 +17,7 @@ protocol Listenable: class {
 
 extension Listenable {
     
-    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, newListnersCount: Int?, error: ErrorType?)> {
+    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, newListnersCount: Int?, error: ErrorProtocol?)> {
         
         return Observable.create{[weak self] (observer) -> Disposable in
             
@@ -28,9 +28,9 @@ extension Listenable {
             self.isListening = !self.isListening
             observer.onNext((listening: self.isListening, successMessage: nil, newListnersCount:nil, error: nil))
             
-            let subscribeBlock: (RxSwift.Event<ListenSuccess> -> Void) = {(event) in
+            let subscribeBlock: ((RxSwift.Event<ListenSuccess>) -> Void) = {(event) in
                 switch event {
-                case .Next(let success):
+                case .next(let success):
                     
                     observer.onNext((listening: self.isListening, successMessage: success.message, newListnersCount:success.newListnersCount, error: nil))
                     observer.onCompleted()

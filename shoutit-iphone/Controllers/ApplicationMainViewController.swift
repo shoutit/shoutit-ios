@@ -20,26 +20,26 @@ final class ApplicationMainViewController: UIViewController {
     // consts
     let animationDuration: Double = 0.25
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
-    private var loginFlowController: LoginFlowController?
-    private(set) weak var delegate: ApplicationMainViewControllerRootObject?
+    fileprivate var loginFlowController: LoginFlowController?
+    fileprivate(set) weak var delegate: ApplicationMainViewControllerRootObject?
     
     // MARK: - Lifecycle
  
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showLogin), name: Constants.Notification.UserDidLogoutNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showLogin), name: Constants.Notification.UserDidLogoutNotification, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Constants.Notification.UserDidLogoutNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Constants.Notification.UserDidLogoutNotification, object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if !Account.sharedInstance.isUserAuthenticated {
@@ -50,19 +50,19 @@ final class ApplicationMainViewController: UIViewController {
     
     // MARK: - Navigation
     
-    @objc private func showLogin() {
+    @objc fileprivate func showLogin() {
         let navigationController = LoginNavigationViewController()
         loginFlowController = LoginFlowController(navigationController: navigationController)
-        presentViewController(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
     
     // MARK: - Status bar
     
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    override var childViewControllerForStatusBarStyle : UIViewController? {
         return childViewControllers.first
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

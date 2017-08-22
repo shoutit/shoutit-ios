@@ -18,7 +18,7 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     @IBOutlet weak var avatarImageView: UIImageView? {
         didSet {
-            avatarImageView?.userInteractionEnabled = true
+            avatarImageView?.isUserInteractionEnabled = true
             addAvatarButtonToAvatarImageView()
         }
     }
@@ -26,12 +26,12 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var messageLabel: ResponsiveLabel!
     var reuseDisposeBag = DisposeBag()
-    var urlHandler: (String -> Void)?
-    var phoneNumberHandler: (String -> Void)?
+    var urlHandler: ((String) -> Void)?
+    var phoneNumberHandler: ((String) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .None
+        selectionStyle = .none
         setupURLResponder()
         setupPhoneNumberResponder()
     }
@@ -42,25 +42,25 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
         reuseDisposeBag = DisposeBag()
     }
     
-    private func setupURLResponder() {
+    fileprivate func setupURLResponder() {
         messageLabel.userInteractionEnabled = true
         let urlResponder: _PatternTapResponder = { [weak self] (url) in
             self?.urlHandler?(url)
         }
         let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
                                                 NSUnderlineStyleAttributeName : 1,
-                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
+                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, to: AnyObject.self)]
         messageLabel.enableURLDetectionWithAttributes(attributes)
     }
     
-    private func setupPhoneNumberResponder() {
+    fileprivate func setupPhoneNumberResponder() {
         messageLabel.userInteractionEnabled = true
         let urlResponder: _PatternTapResponder = { [weak self] (url) in
             self?.phoneNumberHandler?(url)
         }
         let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
                                                 NSUnderlineStyleAttributeName : 1,
-                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, AnyObject.self)]
+                                                RLTapResponderAttributeName : unsafeBitCast(urlResponder, to: AnyObject.self)]
         messageLabel.enablePhoneNumberDetectionWithAttribtues(attributes)
     }
 }

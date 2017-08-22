@@ -22,7 +22,7 @@ final class CustomUIButton: UIButton {
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.clearColor()
+    @IBInspectable var borderColor: UIColor = UIColor.clear
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,13 +30,13 @@ final class CustomUIButton: UIButton {
         applyBorder()
     }
     
-    private func applyCornerRadius() {
+    fileprivate func applyCornerRadius() {
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = cornerRadius > 0
     }
     
-    private func applyBorder() {
-        layer.borderWidth = borderWidth / UIScreen.mainScreen().scale
-        layer.borderColor = borderColor.CGColor
+    fileprivate func applyBorder() {
+        layer.borderWidth = borderWidth / UIScreen.main.scale
+        layer.borderColor = borderColor.cgColor
     }
 }

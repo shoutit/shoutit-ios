@@ -20,21 +20,21 @@ final class ShoutFlowController: FlowController {
         
         let controller = Wireframe.shoutViewController()
 
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {
         return true
     }
 
-    override func handleDeeplink(deepLink: DPLDeepLink?) {
+    override func handleDeeplink(_ deepLink: DPLDeepLink?) {
         
         guard let createShoutViewController = self.navigationController.visibleViewController as? CreateShoutPopupViewController else {
             print(self.navigationController.visibleViewController)
             return
         }
         
-        guard let dplink = deepLink, shoutType = dplink.queryParameters["shout_type"] as? String else {
+        guard let dplink = deepLink, let shoutType = dplink.queryParameters["shout_type"] as? String else {
             return
         }
         

@@ -10,18 +10,18 @@ import Foundation
 import ShoutitKit
 
 protocol ChatDisplayable {
-    func showConversation(conversation: ConversationViewModel.ConversationExistance) -> Void
-    func showConversationInfo(conversation: Conversation) -> Void
-    func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((type: PickerAttachmentType) -> Void)) -> Void
-    func showLocation(coordinate: CLLocationCoordinate2D) -> Void
-    func showImagePreview(imageURL: NSURL) -> Void
-    func showVideoPreview(videoURL: NSURL, thumbnailURL: NSURL) -> Void
-    func startVideoCallWithProfile(profile: Profile) -> Void
+    func showConversation(_ conversation: ConversationViewModel.ConversationExistance) -> Void
+    func showConversationInfo(_ conversation: Conversation) -> Void
+    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((_ type: PickerAttachmentType) -> Void)) -> Void
+    func showLocation(_ coordinate: CLLocationCoordinate2D) -> Void
+    func showImagePreview(_ imageURL: URL) -> Void
+    func showVideoPreview(_ videoURL: URL, thumbnailURL: URL) -> Void
+    func startVideoCallWithProfile(_ profile: Profile) -> Void
 }
 
 extension FlowController : ChatDisplayable {
     
-    func showConversation(conversation: ConversationViewModel.ConversationExistance) {
+    func showConversation(_ conversation: ConversationViewModel.ConversationExistance) {
         let controller = Wireframe.conversationController()
         
         controller.flowDelegate = self
@@ -31,7 +31,7 @@ extension FlowController : ChatDisplayable {
         let previousControllersCount = (self.navigationController.viewControllers.count - 2)
         
         if previousControllersCount >= 0 {
-            if let conversationController = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController, conversationId = conversationController.viewModel.conversation.value.conversationId {
+            if let conversationController = self.navigationController.viewControllers[previousControllersCount] as? ConversationViewController, let conversationId = conversationController.viewModel.conversation.value.conversationId {
                 
                 if conversationId == conversation.conversationId {
                     self.navigationController.popToViewController(conversationController, animated: true)
@@ -40,50 +40,50 @@ extension FlowController : ChatDisplayable {
             }
         }
         
-        self.navigationController.showViewController(controller, sender: nil)
+        self.navigationController.show(controller, sender: nil)
     }
     
-    func showConversationInfo(conversation: Conversation) -> Void {
+    func showConversationInfo(_ conversation: Conversation) -> Void {
         let controller = Wireframe.conversationInfoController()
         controller.viewModel = ConversationInfoViewModel(conversation: conversation)
         controller.flowDelegate = self
-        self.navigationController.showViewController(controller, sender: nil)
+        self.navigationController.show(controller, sender: nil)
     }
     
-    func showAttachmentControllerWithTransitioningDelegate(transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: ((type: PickerAttachmentType) -> Void)) -> Void {
+    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: @escaping ((_ type: PickerAttachmentType) -> Void)) -> Void {
         let controller = Wireframe.conversationAttachmentController()
         
         controller.completion = completion
         controller.transitioningDelegate = transitionDelegate
-        controller.modalPresentationStyle = .Custom
+        controller.modalPresentationStyle = .custom
         
-        self.navigationController.presentViewController(controller, animated: true, completion: nil)
+        self.navigationController.present(controller, animated: true, completion: nil)
     }
     
-    func showLocation(coordinate: CLLocationCoordinate2D) -> Void {
+    func showLocation(_ coordinate: CLLocationCoordinate2D) -> Void {
         let controller = Wireframe.conversationLocationController()
         
         controller.coordinates = coordinate
         
-        self.navigationController.showViewController(controller, sender: nil)
+        self.navigationController.show(controller, sender: nil)
     }
     
-    func showImagePreview(imageURL: NSURL) -> Void {
+    func showImagePreview(_ imageURL: URL) -> Void {
         let controller = PhotoBrowser(photos: [MWPhoto(URL: imageURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
     }
     
-    func showVideoPreview(videoURL: NSURL, thumbnailURL: NSURL) -> Void {
+    func showVideoPreview(_ videoURL: URL, thumbnailURL: URL) -> Void {
         let controller = PhotoBrowser(photos: [MWPhoto(videoURL: videoURL, thumbnailURL: thumbnailURL)])
         
         self.navigationController.showViewController(controller, sender: nil)
     }
     
-    func startVideoCallWithProfile(profile: Profile) -> Void {
+    func startVideoCallWithProfile(_ profile: Profile) -> Void {
         let controller = Wireframe.videoCallController()
         controller.viewModel = VideoCallViewModel(callerProfile: profile)
-        self.navigationController.presentViewController(controller, animated: true, completion: nil)
+        self.navigationController.present(controller, animated: true, completion: nil)
     }
 }
 

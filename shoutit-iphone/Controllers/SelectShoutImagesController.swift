@@ -12,24 +12,24 @@ import ShoutitKit
 
 final class SelectShoutImagesController: UICollectionViewController {
     
-    private let shoutImageCellIdentifier = "shoutImageCellIdentifier"
-    private let numberOfItems = 5
+    fileprivate let shoutImageCellIdentifier = "shoutImageCellIdentifier"
+    fileprivate let numberOfItems = 5
     
-    private var selectedIdx : Int?
+    fileprivate var selectedIdx : Int?
     
     var attachments : [Int : MediaAttachment]!
     
     var mediaPicker : MediaPickerController!
     var mediaUploader : MediaUploader!
     
-    private var editingAttachment : MediaAttachment?
-    private var editingCompletion : ((attachment: MediaAttachment) -> Void)?
+    fileprivate var editingAttachment : MediaAttachment?
+    fileprivate var editingCompletion : ((_ attachment: MediaAttachment) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         mediaPicker = MediaPickerController(delegate: self)
-        mediaUploader = MediaUploader(bucket: .ShoutImage)
+        mediaUploader = MediaUploader(bucket: .shoutImage)
         
         attachments = [:]
     }
@@ -39,34 +39,34 @@ final class SelectShoutImagesController: UICollectionViewController {
         prepareLayout()
     }
     
-    private func prepareLayout() {
+    fileprivate func prepareLayout() {
         guard let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return}
         layout.itemSize = CGSize(width: 74, height: 74)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        layout.scrollDirection = .Horizontal
+        layout.scrollDirection = .horizontal
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         if #available(iOS 9.0, *) {
-            collectionView?.semanticContentAttribute = .ForceLeftToRight
+            collectionView?.semanticContentAttribute = .forceLeftToRight
         }
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-            collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
+            collectionView?.transform = CGAffineTransform(scaleX: -1, y: 1)
         }
     }
 }
 
 extension SelectShoutImagesController {
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfItems
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(shoutImageCellIdentifier, forIndexPath: indexPath) as! ShoutMediaCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: shoutImageCellIdentifier, for: indexPath) as! ShoutMediaCollectionViewCell
         cell.transform = collectionView.transform
         
         let attachment = attachments[indexPath.item]
@@ -81,7 +81,7 @@ extension SelectShoutImagesController {
 
 extension SelectShoutImagesController {
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if !indexActive(indexPath) {
             return
@@ -100,7 +100,7 @@ extension SelectShoutImagesController {
 
 extension SelectShoutImagesController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         if checkIfAttachmentCanBeAdded(attachment) == false {
             return
         }
@@ -136,8 +136,8 @@ extension SelectShoutImagesController: MediaPickerControllerDelegate {
 
 private extension SelectShoutImagesController {
     
-    func showPhotoEditingForAttechmentIfNeeded(attachment: MediaAttachment, completion: (attachment : MediaAttachment) -> Void ) {
-        completion(attachment: attachment)
+    func showPhotoEditingForAttechmentIfNeeded(_ attachment: MediaAttachment, completion: (_ attachment : MediaAttachment) -> Void ) {
+        completion(attachment)
     }
 }
 
@@ -147,15 +147,15 @@ private extension SelectShoutImagesController {
         return Array(self.attachments.values)
     }
     
-    func indexActive(indexPath: NSIndexPath) -> Bool {
+    func indexActive(_ indexPath: IndexPath) -> Bool {
         return indexPath.item <= selectedAttachments().count
     }
     
-    func startUploadingAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func startUploadingAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         return mediaUploader.uploadAttachment(attachment)
     }
     
-    func checkIfAttachmentCanBeAdded(attachment: MediaAttachment) -> Bool {
+    func checkIfAttachmentCanBeAdded(_ attachment: MediaAttachment) -> Bool {
         if attachment.type == .Video {
             if checkIfVideoCanBeAdded() == false {
                 toManyMoviesAlert()
@@ -184,9 +184,9 @@ private extension SelectShoutImagesController {
         let message = NSLocalizedString("You can select only 5 images", comment: "Alert message - user tries to pick more than allowed number of images in media picker")
         let buttonTitle = LocalizedString.ok
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func toManyMoviesAlert() {
@@ -195,13 +195,13 @@ private extension SelectShoutImagesController {
         let message = NSLocalizedString("You can select only 1 video", comment: "Alert message - user tries to pick more than allowed number of videos in media picker")
         let buttonTitle = LocalizedString.ok
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func showEditAlert() {
-        guard let idx = self.selectedIdx, _ = self.attachments[idx] else {
+        guard let idx = self.selectedIdx, let _ = self.attachments[idx] else {
             return
         }
         
@@ -210,12 +210,12 @@ private extension SelectShoutImagesController {
 
         let deleteButtonTitle = LocalizedString.delete
         
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
-        alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: {[weak self] (alertAction) in
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: {[weak self] (alertAction) in
             self?.selectedIdx = nil
         }))
         
-        alert.addAction(UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {[weak self] (alertAction) in
+        alert.addAction(UIAlertAction(title: deleteButtonTitle, style: .default, handler: {[weak self] (alertAction) in
             if let selectedIdx = self?.selectedIdx {
                 if let attachment = self?.attachments[selectedIdx] {
                     self?.mediaUploader.removeTaskForAttachment(attachment)
@@ -227,7 +227,7 @@ private extension SelectShoutImagesController {
             self?.collectionView?.reloadData()
         }))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func rearangeAttachments() {

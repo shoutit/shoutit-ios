@@ -22,23 +22,23 @@ final class MenuCell: UITableViewCell {
         adjustSeparatorHeight()
     }
     
-    func bindWith(item: NavigationItem!, current: Bool) {
+    func bindWith(_ item: NavigationItem!, current: Bool) {
         iconImageView?.image = NavigationItem.icon(item)()
         titleLabel.text = NavigationItem.title(item)()
-        backgroundColor = current ? UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1) : UIColor.whiteColor()
+        backgroundColor = current ? UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1) : UIColor.white
     }
     
-    func setSeparatorVisible(visible: Bool) {
-        bottomSeparator?.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(visible ? 0.4 : 0.0)
+    func setSeparatorVisible(_ visible: Bool) {
+        bottomSeparator?.backgroundColor = UIColor.lightGray.withAlphaComponent(visible ? 0.4 : 0.0)
     }
     
-    private func adjustSeparatorHeight() {
-        bottomSeparatorHeight?.constant = 1.0/UIScreen.mainScreen().scale
+    fileprivate func adjustSeparatorHeight() {
+        bottomSeparatorHeight?.constant = 1.0/UIScreen.main.scale
         layoutIfNeeded()
     }
     
-    func setBadgeNumber(badgeNumber: Int) {
-        badgeLabel.hidden = badgeNumber < 1
+    func setBadgeNumber(_ badgeNumber: Int) {
+        badgeLabel.isHidden = badgeNumber < 1
         badgeLabel.text = NumberFormatters.badgeCountStringWithNumber(badgeNumber)
     }
 }

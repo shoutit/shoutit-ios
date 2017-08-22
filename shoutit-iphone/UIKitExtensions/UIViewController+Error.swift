@@ -9,20 +9,20 @@
 import UIKit
 import ObjectiveC
 
-var vc_associatedTimerObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 0)
-var vc_associatedErrorBarViewObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 1)
+var vc_associatedTimerObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 0)!
+var vc_associatedErrorBarViewObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 1)!
 
 extension UIViewController {
     
     // MARK: - Private vars
     
-    private var barAnimationDuration: NSTimeInterval {
+    fileprivate var barAnimationDuration: TimeInterval {
         return 0.5
     }
     
-    private var barTimer: NSTimer? {
+    fileprivate var barTimer: Timer? {
         get {
-            return objc_getAssociatedObject(self, vc_associatedTimerObjectHandle) as? NSTimer
+            return objc_getAssociatedObject(self, vc_associatedTimerObjectHandle) as? Timer
         }
         
         set {
@@ -30,18 +30,18 @@ extension UIViewController {
         }
     }
     
-    private var barView: AlertBarView {
+    fileprivate var barView: AlertBarView {
         get {
             if let barView = objc_getAssociatedObject(self, vc_associatedErrorBarViewObjectHandle) as? AlertBarView {
                 return barView
             }
-            let barView = NSBundle.mainBundle().loadNibNamed("AlertBarView", owner: nil, options: nil)[0] as! AlertBarView
+            let barView = Bundle.main.loadNibNamed("AlertBarView", owner: nil, options: nil)?[0] as! AlertBarView
             barView.translatesAutoresizingMaskIntoConstraints = true
-            barView.autoresizingMask = [.FlexibleHeight]
+            barView.autoresizingMask = [.flexibleHeight]
             
             // hide
             barView.alpha = 0.0
-            barView.hidden = true
+            barView.isHidden = true
             
             // configure tap gesture recognizer
             barView.tapGestureRecognizer.addTarget(self, action: #selector(UIViewController.hideErrorMessage))
@@ -54,17 +54,17 @@ extension UIViewController {
     
     // MARK: - Public API
     
-    func showSuccessMessage(message: String) {
-        barView.setAppearanceForAlertType(.Success)
+    func showSuccessMessage(_ message: String) {
+        barView.setAppearanceForAlertType(.success)
         showBarWithMessage(message)
     }
     
-    func showError(error: ErrorType) {
+    func showError(_ error: Error) {
         showErrorMessage(error.sh_message)
     }
     
-    func showErrorMessage(message: String) {
-        barView.setAppearanceForAlertType(.Error)
+    func showErrorMessage(_ message: String) {
+        barView.setAppearanceForAlertType(.error)
         showBarWithMessage(message)
     }
     
@@ -72,35 +72,35 @@ extension UIViewController {
         barTimer?.invalidate()
         barTimer = nil
         barView.layer.removeAllAnimations()
-        UIView.animateWithDuration(barAnimationDuration, animations: {[weak self] in
+        UIView.animate(withDuration: barAnimationDuration, animations: {[weak self] in
                                     self?.barView.alpha = 0.0
             },
                                    completion: {[weak self] (finished) in
-                                    self?.barView.hidden = true
+                                    self?.barView.isHidden = true
                                     self?.barView.removeFromSuperview()
             })
     }
     
-    private func showBarWithMessage(message: String) {
+    fileprivate func showBarWithMessage(_ message: String) {
         barTimer?.invalidate()
         barTimer = nil
         
         barView.errorMessageLabel.text = message
-        barView.hidden = false
+        barView.isHidden = false
         barView.layer.removeAllAnimations()
         
         
-        let shouldAddNavBarThreshold = (navigationController != nil && navigationController?.navigationBarHidden == false) || hasFakeNavigationBar()
+        let shouldAddNavBarThreshold = (navigationController != nil && navigationController?.isNavigationBarHidden == false) || hasFakeNavigationBar()
         let y: CGFloat = shouldAddNavBarThreshold ? 64 : 20
         barView.frame = CGRect(x: 0, y: y, width: view.frame.width, height: 40)
         if barView.superview == nil {
-            UIApplication.sharedApplication().keyWindow?.addSubview(barView)
+            UIApplication.shared.keyWindow?.addSubview(barView)
         }
         
-        UIView.animateWithDuration(barAnimationDuration) {[weak self] in
+        UIView.animate(withDuration: barAnimationDuration, animations: {[weak self] in
             self?.barView.alpha = 1.0
-        }
-        barTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(UIViewController.hideErrorMessage), userInfo: nil, repeats: false)
+        }) 
+        barTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(UIViewController.hideErrorMessage), userInfo: nil, repeats: false)
 
     }
 }

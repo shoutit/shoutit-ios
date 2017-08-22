@@ -11,7 +11,7 @@ import RxSwift
 
 final class CreateShoutSelectableCell: UITableViewCell, Borderable {
     
-    private(set) var reuseDisposeBag = DisposeBag()
+    fileprivate(set) var reuseDisposeBag = DisposeBag()
     
     @IBOutlet weak var internalContentView: BorderedView!
     @IBOutlet weak var selectionTitleLabel: UILabel!

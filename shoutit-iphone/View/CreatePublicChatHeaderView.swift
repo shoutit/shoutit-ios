@@ -12,14 +12,14 @@ import ACPDownload
 class CreatePublicChatHeaderView: UIView {
     
     enum Image {
-        case URL(path: String)
-        case Image(image: UIImage?)
+        case url(path: String)
+        case image(image: UIImage?)
     }
     
     enum ImageState {
-        case NoImage
-        case Uploading
-        case Uploaded
+        case noImage
+        case uploading
+        case uploaded
     }
     
     @IBOutlet weak var descriptionLabel: UILabel?
@@ -31,33 +31,33 @@ class CreatePublicChatHeaderView: UIView {
     @IBOutlet weak var chatImageImageView: UIImageView!
     @IBOutlet weak var chatImageOverlayView: UIView!
     
-    func setupImageViewWithStatus(status: ImageState) {
+    func setupImageViewWithStatus(_ status: ImageState) {
         
         switch status {
-        case .NoImage:
-            chatImageButton.setImage(UIImage.cameraIconGray(), forState: .Normal)
-            chatImageButton.hidden = false
-            chatImageOverlayView.hidden = true
-            chatImageProgressView.hidden = true
-        case .Uploading:
-            chatImageButton.hidden = true
-            chatImageOverlayView.hidden = false
-            chatImageProgressView.hidden = false
-            chatImageProgressView.setIndicatorStatus(.Running)
-        case .Uploaded:
-            chatImageButton.setImage(UIImage.cameraIconWhite(), forState: .Normal)
-            chatImageButton.hidden = false
-            chatImageOverlayView.hidden = false
-            chatImageProgressView.hidden = true
-            chatImageProgressView.setIndicatorStatus(.None)
+        case .noImage:
+            chatImageButton.setImage(UIImage.cameraIconGray(), for: UIControlState())
+            chatImageButton.isHidden = false
+            chatImageOverlayView.isHidden = true
+            chatImageProgressView.isHidden = true
+        case .uploading:
+            chatImageButton.isHidden = true
+            chatImageOverlayView.isHidden = false
+            chatImageProgressView.isHidden = false
+            chatImageProgressView.setIndicatorStatus(.running)
+        case .uploaded:
+            chatImageButton.setImage(UIImage.cameraIconWhite(), for: UIControlState())
+            chatImageButton.isHidden = false
+            chatImageOverlayView.isHidden = false
+            chatImageProgressView.isHidden = true
+            chatImageProgressView.setIndicatorStatus(.none)
         }
     }
     
-    func setChatImage(image: Image) {
+    func setChatImage(_ image: Image) {
         switch image {
-        case .URL(let path):
+        case .url(let path):
             chatImageImageView.sh_setImageWithURL(path.toURL(), placeholderImage: nil)
-        case .Image(let image):
+        case .image(let image):
             chatImageImageView.sh_cancelImageDownload()
             chatImageImageView.image = image
         }

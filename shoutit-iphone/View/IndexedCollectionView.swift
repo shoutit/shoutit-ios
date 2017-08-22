@@ -11,11 +11,11 @@ import UIKit
 final class IndexedCollectionView: UICollectionView {
     @IBInspectable var index: Int = 0
     
-    var contentSizeDidChange: (CGSize -> Void)?
+    var contentSizeDidChange: ((CGSize) -> Void)?
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if !CGSizeEqualToSize(bounds.size, contentSize) {
+        if !bounds.size.equalTo(contentSize) {
             contentSizeDidChange?(contentSize)
         }
     }

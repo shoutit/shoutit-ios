@@ -13,8 +13,8 @@ import ShoutitKit
 
 class ConversationInfoViewController: UITableViewController {
 
-    private let disposeBag = DisposeBag()
-    private var socketsBag : DisposeBag?
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var socketsBag : DisposeBag?
     
     // navigation
     weak var flowDelegate: FlowController?
@@ -57,7 +57,7 @@ class ConversationInfoViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         headerView.chatImageButton
             .rx_tap
@@ -96,12 +96,12 @@ class ConversationInfoViewController: UITableViewController {
         }.addDisposableTo(socketsBag!)
     }
 
-    private func fillViews() {
+    fileprivate func fillViews() {
         
         // fill footer
         let createdDateString = DateFormatters.sharedInstance.stringFromDateEpoch(viewModel.conversation.createdAt ?? 0)
         
-        if let creator = viewModel.conversation.creator, name = creator.name {
+        if let creator = viewModel.conversation.creator, let name = creator.name {
             let createdByText = String.localizedStringWithFormat(NSLocalizedString("Chat created by %@", comment: "Chat Info Bottom Description"), name)
             let chatCreatedOn = String.localizedStringWithFormat(NSLocalizedString("Created on %@", comment: "Chat Info Bottom Description"), createdDateString)
             footerLabel.text = createdByText + "\n" + chatCreatedOn
@@ -118,22 +118,22 @@ class ConversationInfoViewController: UITableViewController {
         let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
         
         headerView.chatSubjectTextField.text = viewModel.conversation.display.title
-        headerView.chatSubjectTextField.enabled = isAdmin
-        headerView.chatImageButton.enabled = isAdmin
+        headerView.chatSubjectTextField.isEnabled = isAdmin
+        headerView.chatImageButton.isEnabled = isAdmin
         headerView.chatSubjectTextField.alpha = isAdmin ? 1.0 : 0.5
         
         if let path = viewModel.conversation.display.image {
-            headerView.setupImageViewWithStatus(.Uploaded)
-            headerView.setChatImage(.URL(path: path))
+            headerView.setupImageViewWithStatus(.uploaded)
+            headerView.setChatImage(.url(path: path))
         } else {
-            headerView.setupImageViewWithStatus(.NoImage)
+            headerView.setupImageViewWithStatus(.noImage)
         }
         
         guard isAdmin else {
             return
         }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
         navigationItem.rightBarButtonItem?
             .rx_tap
             .flatMapFirst{[unowned self] in
@@ -142,15 +142,15 @@ class ConversationInfoViewController: UITableViewController {
             .observeOn(MainScheduler.instance)
             .subscribeNext{[weak self] (status) in
                 switch status {
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
-                case .Progress(let show):
+                case .progress(let show):
                     if show {
-                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                        MBProgressHUD.showAdded(to: self?.view, animated: true)
                     } else {
-                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
                     }
-                case .Ready:
+                case .ready:
                     self?.pop()
                 }
             }
@@ -159,54 +159,54 @@ class ConversationInfoViewController: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(section)
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(viewModel.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellIdentifierForIndexPath(indexPath), for: indexPath)
         viewModel.fillCell(cell, indexPath: indexPath)
         return cell
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.sectionTitleForSection(section)
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
             return 5.0
         }
         return 20.0
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         switch cellViewModel {
-        case .Shouts:
+        case .shouts:
             showShouts()
-        case .Media:
+        case .media:
             showMedia()
-        case .AddMember:
+        case .addMember:
             let isAdmin = viewModel.conversation.isAdmin(Account.sharedInstance.user?.id)
             if isAdmin {
                 addMember()
             } else {
                 showNotAuthorizedMessage()
             }
-        case .Participants:
+        case .participants:
             showParticipants()
-        case .Blocked:
+        case .blocked:
             showBlocked()
-        case .ReportChat:
+        case .reportChat:
             reportChat()
-        case .ExitChat:
+        case .exitChat:
             exitChat()
         }
     }
@@ -232,7 +232,7 @@ class ConversationInfoViewController: UITableViewController {
             self.viewModel.addParticipantToConversation(profile).subscribe({ (event) in
                 
                 switch event {
-                    case .Next(let success):
+                    case .next(let success):
                         self.showSuccessMessage(success.message)
                     case .Error(let error):
                         self.showError(error)
@@ -267,7 +267,7 @@ class ConversationInfoViewController: UITableViewController {
         
         controller.cellConfigurator = configurator
         
-        self.navigationController?.showViewController(controller, sender: nil)
+        self.navigationController?.show(controller, sender: nil)
     }
     
     func showParticipants() {
@@ -301,47 +301,47 @@ class ConversationInfoViewController: UITableViewController {
                 return
             }
             
-            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Title"), preferredStyle: .ActionSheet)
+            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Title"), preferredStyle: .actionSheet)
             
             let isAdmin = self.viewModel.conversation.admins.contains{$0 == profile.id}
             let isBlocked = self.viewModel.conversation.blocked?.contains{$0 == profile.id} ?? false
             
             if !isAdmin {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Promote to admin", comment: "Chat Participant List Action Sheet Option"), style: .Default, handler: { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Promote to admin", comment: "Chat Participant List Action Sheet Option"), style: .default, handler: { (action) in
                     self.promoteToAdmin(profile)
                 }))
             }
             
             if !isBlocked {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: "Chat Participant List Action Sheet Option"), style: .Default) { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Block", comment: "Chat Participant List Action Sheet Option"), style: .default) { (action) in
                     self.block(profile)
                 })
             } else {
-                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: "Chat Participant List Action Sheet Option"), style: .Default) { (action) in
+                optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: "Chat Participant List Action Sheet Option"), style: .default) { (action) in
                     self.unblock(profile)
                 })
             }
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: "Chat Participant List Action Sheet Option"), style: .Destructive) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Remove", comment: "Chat Participant List Action Sheet Option"), style: .destructive) { (action) in
                 self.remove(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: "Chat Participant List Action Sheet Option"), style: .Destructive) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: "Chat Participant List Action Sheet Option"), style: .destructive) { (action) in
                 self.flowDelegate?.showProfile(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
-            self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
+            optionsController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
+            self.navigationController?.present(optionsController, animated: true, completion: nil)
         })
         
-        self.navigationController?.showViewController(controller, sender: nil)
+        self.navigationController?.show(controller, sender: nil)
     }
     
-    func remove(profile: Profile) {
+    func remove(_ profile: Profile) {
         self.viewModel.removeParticipantFromConversation(profile).subscribe({ (event) in
             
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
@@ -353,11 +353,11 @@ class ConversationInfoViewController: UITableViewController {
         }).addDisposableTo(self.disposeBag)
     }
     
-    func promoteToAdmin(profile: Profile) {
+    func promoteToAdmin(_ profile: Profile) {
         APIChatsService.promoteToAdminProfileInConversationWithId(viewModel.conversation.id, profile: profile).subscribe { (event) in
             
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
@@ -369,10 +369,10 @@ class ConversationInfoViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
     }
 
-    func block(profile: Profile) {
+    func block(_ profile: Profile) {
         APIChatsService.blockProfileInConversationWithId(viewModel.conversation.id, profile: profile).subscribe { (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
@@ -383,10 +383,10 @@ class ConversationInfoViewController: UITableViewController {
         }.addDisposableTo(disposeBag)
     }
     
-    func unblock(profile: Profile) {
+    func unblock(_ profile: Profile) {
         APIChatsService.unblockProfileInConversationWithId(viewModel.conversation.id, profile: profile).subscribe { (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
             case .Error(let error):
@@ -422,21 +422,21 @@ class ConversationInfoViewController: UITableViewController {
                 return
             }
             
-            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Option"), preferredStyle: .ActionSheet)
+            let optionsController = UIAlertController(title: profile.fullName(), message: NSLocalizedString("Manage User", comment: "Chat Participant List Action Sheet Option"), preferredStyle: .actionSheet)
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: "Chat Participant List Action Sheet Option"), style: .Default) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("Unblock", comment: "Chat Participant List Action Sheet Option"), style: .default) { (action) in
                 self.unblock(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: "Chat Participant List Action Sheet Option"), style: .Destructive) { (action) in
+            optionsController.addAction(UIAlertAction(title: NSLocalizedString("View profile", comment: "Chat Participant List Action Sheet Option"), style: .destructive) { (action) in
                 self.flowDelegate?.showProfile(profile)
             })
             
-            optionsController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+            optionsController.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
             
-            self.navigationController?.presentViewController(optionsController, animated: true, completion: nil)
+            self.navigationController?.present(optionsController, animated: true, completion: nil)
         })
-        self.navigationController?.showViewController(controller, sender: nil)
+        self.navigationController?.show(controller, sender: nil)
     }
     
     func clearChat() {
@@ -448,7 +448,7 @@ class ConversationInfoViewController: UITableViewController {
         let alert = self.viewModel.conversation.reportAlert { (report) in
             APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
                 switch event {
-                case .Next(_):
+                case .next(_):
                     self?.showSuccessMessage(NSLocalizedString("Conversation reported succesfully", comment: "Conversation Reported Message"))
                 case .Error(let error):
                     self?.showError(error)
@@ -458,28 +458,28 @@ class ConversationInfoViewController: UITableViewController {
             }).addDisposableTo(self.disposeBag)
         }
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func exitChat() {
         
-        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this conversation", comment: ""), preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure?", comment: ""), message: NSLocalizedString("Do you want to delete this conversation", comment: ""), preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .Destructive, handler: { [weak self] (alertAction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Conversation", comment: ""), style: .destructive, handler: { [weak self] (alertAction) in
             self?.deleteConversation()
         }))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func deleteConversation() {
         APIChatsService.deleteConversationWithId(self.viewModel.conversation.id).subscribe { [weak self] (event) in
             switch event {
-            case .Next(_):
+            case .next(_):
                 self?.showSuccessMessage(NSLocalizedString("Conversation Deleted succesfully", comment: "Delete Conversation Message"))
-                self?.navigationController?.popToRootViewControllerAnimated(true)
+                self?.navigationController?.popToRootViewController(animated: true)
             case .Error(let error):
                 self?.showError(error)
             default:
@@ -491,21 +491,21 @@ class ConversationInfoViewController: UITableViewController {
 
 extension ConversationInfoViewController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         
         let task = viewModel.uploadImageAttachment(attachment)
-        headerView.setChatImage(.Image(image: attachment.image))
+        headerView.setChatImage(.image(image: attachment.image))
         
         task.status
             .asDriver()
             .driveNext{[weak self] (status) in
                 switch status {
-                case .Error:
-                    self?.headerView.setupImageViewWithStatus(.NoImage)
-                case .Uploaded:
-                    self?.headerView.setupImageViewWithStatus(.Uploaded)
-                case .Uploading:
-                    self?.headerView.setupImageViewWithStatus(.Uploading)
+                case .error:
+                    self?.headerView.setupImageViewWithStatus(.noImage)
+                case .uploaded:
+                    self?.headerView.setupImageViewWithStatus(.uploaded)
+                case .uploading:
+                    self?.headerView.setupImageViewWithStatus(.uploading)
                 }
             }
             .addDisposableTo(disposeBag)

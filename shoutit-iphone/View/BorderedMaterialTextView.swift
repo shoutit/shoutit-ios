@@ -8,12 +8,25 @@
 
 import UIKit
 import Material
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class BorderedMaterialTextView: UITextView {
+
+open class BorderedMaterialTextView: UITextView {
     
-    var contentSizeDidChange:(CGSize -> Void)? {
+    var contentSizeDidChange:((CGSize) -> Void)? {
         didSet {
-            let textSize = self.sizeThatFits(CGSize(width: self.width, height: CGFloat.max))
+            let textSize = self.sizeThatFits(CGSize(width: self.width, height: CGFloat.greatestFiniteMagnitude))
             if textSize != self.bounds.size {
                 contentSizeDidChange?(textSize)
             }
@@ -23,7 +36,7 @@ public class BorderedMaterialTextView: UITextView {
     var editing = false
     var didLayoutSubviews = false
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         textContainer.lineFragmentPadding = 0
     }
@@ -34,7 +47,7 @@ public class BorderedMaterialTextView: UITextView {
      the image property, then this value does not need to be set, since the
      visualLayer's maskToBounds is set to true by default.
      */
-    public var masksToBounds: Bool {
+    open var masksToBounds: Bool {
         get {
             return layer.masksToBounds
         }
@@ -44,14 +57,14 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the backing layer's backgroundColor.
-    public override var backgroundColor: UIColor? {
+    open override var backgroundColor: UIColor? {
         didSet {
-            layer.backgroundColor = backgroundColor?.CGColor
+            layer.backgroundColor = backgroundColor?.cgColor
         }
     }
     
     /// A property that accesses the layer.frame.origin.x property.
-    public var x: CGFloat {
+    open var x: CGFloat {
         get {
             return layer.frame.origin.x
         }
@@ -61,7 +74,7 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the layer.frame.origin.y property.
-    public var y: CGFloat {
+    open var y: CGFloat {
         get {
             return layer.frame.origin.y
         }
@@ -76,13 +89,13 @@ public class BorderedMaterialTextView: UITextView {
      value that is not .None, the height will be adjusted to maintain the correct
      shape.
      */
-    public var width: CGFloat {
+    open var width: CGFloat {
         get {
             return layer.frame.size.width
         }
         set(value) {
             layer.frame.size.width = value
-            if .None != shape {
+            if .none != shape {
                 layer.frame.size.height = value
             }
         }
@@ -94,27 +107,27 @@ public class BorderedMaterialTextView: UITextView {
      value that is not .None, the width will be adjusted to maintain the correct
      shape.
      */
-    public var height: CGFloat {
+    open var height: CGFloat {
         get {
             return layer.frame.size.height
         }
         set(value) {
             layer.frame.size.height = value
-            if .None != shape {
+            if .none != shape {
                 layer.frame.size.width = value
             }
         }
     }
     
     /// A property that accesses the backing layer's shadowColor.
-    public var shadowColor: UIColor? {
+    open var shadowColor: UIColor? {
         didSet {
-            layer.shadowColor = shadowColor?.CGColor
+            layer.shadowColor = shadowColor?.cgColor
         }
     }
     
     /// A property that accesses the backing layer's shadowOffset.
-    public var shadowOffset: CGSize {
+    open var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -124,7 +137,7 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the backing layer's shadowOpacity.
-    public var shadowOpacity: Float {
+    open var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -134,7 +147,7 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the backing layer's shadowRadius.
-    public var shadowRadius: CGFloat {
+    open var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -147,17 +160,17 @@ public class BorderedMaterialTextView: UITextView {
      A property that sets the distance between the textField and
      bottomBorderLayer.
      */
-    public var bottomBorderLayerDistance: CGFloat = 22
+    open var bottomBorderLayerDistance: CGFloat = 22
     
     /// The bottom border layer.
-    public private(set) lazy var bottomBorderLayer: CAShapeLayer = CAShapeLayer()
+    open fileprivate(set) lazy var bottomBorderLayer: CAShapeLayer = CAShapeLayer()
     
     /**
      A property that sets the shadowOffset, shadowOpacity, and shadowRadius
      for the backing layer. This is the preferred method of setting depth
      in order to maintain consitency across UI objects.
      */
-    public var depth: MaterialDepth {
+    open var depth: MaterialDepth {
         didSet {
             let value: MaterialDepthType = MaterialDepthToValue(depth)
             shadowOffset = value.offset
@@ -171,12 +184,12 @@ public class BorderedMaterialTextView: UITextView {
      property has a value of .Circle when the cornerRadius is set, it will
      become .None, as it no longer maintains its circle shape.
      */
-    public var cornerRadius: MaterialRadius {
+    open var cornerRadius: MaterialRadius {
         didSet {
             if let v: MaterialRadius = cornerRadius {
                 layer.cornerRadius = MaterialRadiusToValue(v)
-                if .Circle == shape {
-                    shape = .None
+                if .circle == shape {
+                    shape = .none
                 }
             }
         }
@@ -187,9 +200,9 @@ public class BorderedMaterialTextView: UITextView {
      width or height property is set, the other will be automatically adjusted
      to maintain the shape of the object.
      */
-    public var shape: MaterialShape {
+    open var shape: MaterialShape {
         didSet {
-            if .None != shape {
+            if .none != shape {
                 if width < height {
                     frame.size.width = height
                 } else {
@@ -203,21 +216,21 @@ public class BorderedMaterialTextView: UITextView {
      A property that accesses the layer.borderWith using a MaterialBorder
      enum preset.
      */
-    public var borderWidth: MaterialBorder {
+    open var borderWidth: MaterialBorder {
         didSet {
             layer.borderWidth = MaterialBorderToValue(borderWidth)
         }
     }
     
     /// A property that accesses the layer.borderColor property.
-    public var borderColor: UIColor? {
+    open var borderColor: UIColor? {
         didSet {
-            layer.borderColor = borderColor?.CGColor
+            layer.borderColor = borderColor?.cgColor
         }
     }
     
     /// A property that accesses the layer.position property.
-    public var position: CGPoint {
+    open var position: CGPoint {
         get {
             return layer.position
         }
@@ -227,7 +240,7 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the layer.zPosition property.
-    public var zPosition: CGFloat {
+    open var zPosition: CGFloat {
         get {
             return layer.zPosition
         }
@@ -241,36 +254,36 @@ public class BorderedMaterialTextView: UITextView {
      titleLabel text value is updated with the placeholderLabel
      text value before being displayed.
      */
-    public var titleLabel: UILabel? {
+    open var titleLabel: UILabel? {
         didSet {
             prepareTitleLabel()
         }
     }
     
     /// The color of the titleLabel text when the textView is not active.
-    public var titleLabelColor: UIColor? {
+    open var titleLabelColor: UIColor? {
         didSet {
             titleLabel?.textColor = titleLabelColor
             MaterialAnimation.animationDisabled { [unowned self] in
-                self.bottomBorderLayer.borderColor = self.titleLabelColor?.CGColor
+                self.bottomBorderLayer.borderColor = self.titleLabelColor?.cgColor
             }
         }
     }
     
     /// The color of the titleLabel text when the textView is active.
-    public var titleLabelActiveColor: UIColor?
+    open var titleLabelActiveColor: UIColor?
     
     /**
      A property that sets the distance between the textView and
      titleLabel.
      */
-    public var titleLabelAnimationDistance: CGFloat = 4
+    open var titleLabelAnimationDistance: CGFloat = 4
     
     /**
      The detail UILabel that is displayed when the detailLabelHidden property
      is set to false.
      */
-    public var detailLabel: UILabel? {
+    open var detailLabel: UILabel? {
         didSet {
             prepareDetailLabel()
         }
@@ -280,12 +293,12 @@ public class BorderedMaterialTextView: UITextView {
      The color of the detailLabel text when the detailLabelHidden property
      is set to false.
      */
-    public var detailLabelActiveColor: UIColor? {
+    open var detailLabelActiveColor: UIColor? {
         didSet {
             if !detailLabelHidden {
                 detailLabel?.textColor = detailLabelActiveColor
                 MaterialAnimation.animationDisabled { [unowned self] in
-                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.CGColor
+                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
                 }
             }
         }
@@ -295,23 +308,23 @@ public class BorderedMaterialTextView: UITextView {
      A property that sets the distance between the textField and
      detailLabel.
      */
-    public var detailLabelAnimationDistance: CGFloat = 6
+    open var detailLabelAnimationDistance: CGFloat = 6
     
     /**
      :name:	detailLabelHidden
      */
-    public var detailLabelHidden: Bool = true {
+    open var detailLabelHidden: Bool = true {
         didSet {
             if detailLabelHidden {
                 detailLabel?.textColor = titleLabelColor
                 MaterialAnimation.animationDisabled { [unowned self] in
-                    self.bottomBorderLayer.borderColor = self.editing ? self.titleLabelActiveColor?.CGColor : self.titleLabelColor?.CGColor
+                    self.bottomBorderLayer.borderColor = self.editing ? self.titleLabelActiveColor?.cgColor : self.titleLabelColor?.cgColor
                 }
                 hideDetailLabel()
             } else {
                 detailLabel?.textColor = detailLabelActiveColor
                 MaterialAnimation.animationDisabled { [unowned self] in
-                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.CGColor
+                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
                 }
                 showDetailLabel()
             }
@@ -319,21 +332,21 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Placeholder UILabel view.
-    public var placeholderLabel: UILabel? {
+    open var placeholderLabel: UILabel? {
         didSet {
             preparePlaceholderLabel()
         }
     }
     
     /// An override to the text property.
-    public override var text: String! {
+    open override var text: String! {
         didSet {
             handleTextViewTextDidChange()
         }
     }
     
     /// An override to the attributedText property.
-    public override var attributedText: NSAttributedString! {
+    open override var attributedText: NSAttributedString! {
         didSet {
             handleTextViewTextDidChange()
         }
@@ -343,14 +356,14 @@ public class BorderedMaterialTextView: UITextView {
      Text container UIEdgeInset preset property. This updates the
      textContainerInset property with a preset value.
      */
-    public var textContainerInsetPreset: MaterialEdgeInset = .None {
+    open var textContainerInsetPreset: MaterialEdgeInset = .none {
         didSet {
             textContainerInset = MaterialEdgeInsetToValue(textContainerInsetPreset)
         }
     }
     
     /// Text container UIEdgeInset property.
-    public override var textContainerInset: UIEdgeInsets {
+    open override var textContainerInset: UIEdgeInsets {
         didSet {
             reloadView()
         }
@@ -361,10 +374,10 @@ public class BorderedMaterialTextView: UITextView {
      - Parameter aDecoder: A NSCoder instance.
      */
     public required init?(coder aDecoder: NSCoder) {
-        depth = .None
-        shape = .None
-        cornerRadius = .None
-        borderWidth = .None
+        depth = .none
+        shape = .none
+        cornerRadius = .none
+        borderWidth = .none
         super.init(coder: aDecoder)
         prepareView()
     }
@@ -377,10 +390,10 @@ public class BorderedMaterialTextView: UITextView {
      - Parameter textContainer: A NSTextContainer instance.
      */
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
-        depth = .None
-        shape = .None
-        cornerRadius = .None
-        borderWidth = .None
+        depth = .none
+        shape = .none
+        cornerRadius = .none
+        borderWidth = .none
         super.init(frame: frame, textContainer: textContainer)
         prepareView()
     }
@@ -390,7 +403,7 @@ public class BorderedMaterialTextView: UITextView {
      - Parameter textContainer: A NSTextContainer instance.
      */
     public convenience init(textContainer: NSTextContainer?) {
-        self.init(frame: CGRectNull, textContainer: textContainer)
+        self.init(frame: CGRect.null, textContainer: textContainer)
     }
     
     /** Denitializer. This should never be called unless you know
@@ -401,7 +414,7 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Overriding the layout callback for subviews.
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         placeholderLabel?.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2
         titleLabel?.frame.size.width = bounds.width
@@ -410,11 +423,11 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Overriding the layout callback for sublayers.
-    public override func layoutSublayersOfLayer(layer: CALayer) {
+    open override func layoutSublayersOfLayer(_ layer: CALayer) {
         super.layoutSublayersOfLayer(layer)
         if self.layer == layer {
-            bottomBorderLayer.frame = CGRectMake(-9, -20, bounds.width + 18, bounds.height + bottomBorderLayerDistance + 20)
-            bottomBorderLayer.backgroundColor = UIColor.clearColor().CGColor
+            bottomBorderLayer.frame = CGRect(x: -9, y: -20, width: bounds.width + 18, height: bounds.height + bottomBorderLayerDistance + 20)
+            bottomBorderLayer.backgroundColor = UIColor.clear.cgColor
             bottomBorderLayer.borderWidth = 1.0
             bottomBorderLayer.cornerRadius = 5.0
             layoutShape()
@@ -429,17 +442,17 @@ public class BorderedMaterialTextView: UITextView {
      view's backing layer.
      - Parameter animation: A CAAnimation instance.
      */
-    public func animate(animation: CAAnimation) {
-        animation.delegate = self
+    open func animate(_ animation: CAAnimation) {
+        animation.delegate = self as! CAAnimationDelegate
         if let a: CABasicAnimation = animation as? CABasicAnimation {
-            a.fromValue = (nil == layer.presentationLayer() ? layer : layer.presentationLayer() as! CALayer).valueForKeyPath(a.keyPath!)
+            a.fromValue = (nil == layer.presentation() ? layer : layer.presentation() as! CALayer).value(forKeyPath: a.keyPath!)
         }
         if let a: CAPropertyAnimation = animation as? CAPropertyAnimation {
-            layer.addAnimation(a, forKey: a.keyPath!)
+            layer.add(a, forKey: a.keyPath!)
         } else if let a: CAAnimationGroup = animation as? CAAnimationGroup {
-            layer.addAnimation(a, forKey: nil)
+            layer.add(a, forKey: nil)
         } else if let a: CATransition = animation as? CATransition {
-            layer.addAnimation(a, forKey: kCATransition)
+            layer.add(a, forKey: kCATransition)
         }
     }
     
@@ -448,7 +461,7 @@ public class BorderedMaterialTextView: UITextView {
      running an animation.
      - Parameter anim: The currently running CAAnimation instance.
      */
-    public override func animationDidStart(anim: CAAnimation) {
+    open override func animationDidStart(_ anim: CAAnimation) {
         (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStart?(anim)
     }
     
@@ -460,13 +473,13 @@ public class BorderedMaterialTextView: UITextView {
      because it was completed or interrupted. True if completed, false
      if interrupted.
      */
-    public override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    open override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
             if let b: CABasicAnimation = a as? CABasicAnimation {
                 layer.setValue(nil == b.toValue ? b.byValue : b.toValue, forKey: b.keyPath!)
             }
             (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
-            layer.removeAnimationForKey(a.keyPath!)
+            layer.removeAnimation(forKey: a.keyPath!)
         } else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
             for x in a.animations! {
                 animationDidStop(x, finished: true)
@@ -484,14 +497,14 @@ public class BorderedMaterialTextView: UITextView {
         editing = true
         titleLabel?.textColor = titleLabelActiveColor
         MaterialAnimation.animationDisabled { [unowned self] in
-            self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.CGColor
+            self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.cgColor
         }
     }
     
     /// Notification handler for when text changed.
     internal func handleTextViewTextDidChange() {
         if let p = placeholderLabel {
-            p.hidden = !(true == text?.isEmpty)
+            p.isHidden = !(true == text?.isEmpty)
         }
         
         if 0 < text?.utf16.count {
@@ -505,7 +518,7 @@ public class BorderedMaterialTextView: UITextView {
             hideTitleLabel()
         }
         
-        let textSize = self.sizeThatFits(CGSize(width: self.width, height: CGFloat.max))
+        let textSize = self.sizeThatFits(CGSize(width: self.width, height: CGFloat.greatestFiniteMagnitude))
         if textSize.height != self.bounds.size.height {
             contentSizeDidChange?(textSize)
             updateDetailLabelFrame()
@@ -522,13 +535,13 @@ public class BorderedMaterialTextView: UITextView {
         }
         titleLabel?.textColor = titleLabelColor
         MaterialAnimation.animationDisabled { [unowned self] in
-            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelColor?.CGColor : self.detailLabelActiveColor?.CGColor
+            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelColor?.cgColor : self.detailLabelActiveColor?.cgColor
         }
     }
     
     /// Manages the layout for the shape of the view instance.
     internal func layoutShape() {
-        if .Circle == shape {
+        if .circle == shape {
             layer.cornerRadius = width / 2
         }
     }
@@ -540,8 +553,8 @@ public class BorderedMaterialTextView: UITextView {
      The super.prepareView method should always be called immediately
      when subclassing.
      */
-    private func prepareView() {
-        textContainerInset = MaterialEdgeInsetToValue(.None)
+    fileprivate func prepareView() {
+        textContainerInset = MaterialEdgeInsetToValue(.none)
         backgroundColor = MaterialColor.white
         masksToBounds = false
         removeNotificationHandlers()
@@ -552,12 +565,12 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Prepares the bottomBorderLayer property.
-    private func prepareBottomBorderLayer() {
+    fileprivate func prepareBottomBorderLayer() {
         layer.addSublayer(bottomBorderLayer)
     }
     
     /// prepares the placeholderLabel property.
-    private func preparePlaceholderLabel() {
+    fileprivate func preparePlaceholderLabel() {
         if let v: UILabel = placeholderLabel {
             v.font = font
             v.textAlignment = textAlignment
@@ -570,9 +583,9 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Prepares the titleLabel property.
-    private func prepareTitleLabel() {
+    fileprivate func prepareTitleLabel() {
         if let v: UILabel = titleLabel {
-            v.hidden = true
+            v.isHidden = true
             addSubview(v)
             if 0 < text?.utf16.count {
                 showTitleLabel()
@@ -583,9 +596,9 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Prepares the detailLabel property.
-    private func prepareDetailLabel() {
+    fileprivate func prepareDetailLabel() {
         if let v: UILabel = detailLabel {
-            v.hidden = true
+            v.isHidden = true
             addSubview(v)
             if detailLabelHidden {
                 v.alpha = 0
@@ -596,18 +609,18 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Shows and animates the titleLabel property.
-    private func showTitleLabel() {
+    fileprivate func showTitleLabel() {
         if let v: UILabel = titleLabel {
-            if v.hidden {
+            if v.isHidden {
                 if let s: String = placeholderLabel?.text {
                     if 0 == v.text?.utf16.count || nil == v.text {
                         v.text = s
                     }
                 }
                 let h: CGFloat = v.font.pointSize
-                v.frame = CGRectMake(0, -h, bounds.width, h)
-                v.hidden = false
-                UIView.animateWithDuration(0.25, animations: { [unowned self] in
+                v.frame = CGRect(x: 0, y: -h, width: bounds.width, height: h)
+                v.isHidden = false
+                UIView.animate(withDuration: 0.25, animations: { [unowned self] in
                     v.alpha = 1
                     v.frame.origin.y = -v.frame.height - self.titleLabelAnimationDistance
                     })
@@ -616,58 +629,58 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Hides and animates the titleLabel property.
-    private func hideTitleLabel() {
+    fileprivate func hideTitleLabel() {
         if let v: UILabel = titleLabel {
-            if !v.hidden {
-                UIView.animateWithDuration(0.25, animations: {
+            if !v.isHidden {
+                UIView.animate(withDuration: 0.25, animations: {
                     v.alpha = 0
                     v.frame.origin.y = -v.frame.height
-                }) { _ in
-                    v.hidden = true
-                }
+                }, completion: { _ in
+                    v.isHidden = true
+                }) 
             }
         }
     }
     
     /// Shows and animates the detailLabel property.
-    private func showDetailLabel() {
+    fileprivate func showDetailLabel() {
         if let v: UILabel = detailLabel {
-            if v.hidden {
+            if v.isHidden {
                 let h: CGFloat = v.font.pointSize
-                let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
-                v.frame = CGRectMake(bounds.width - size.width - 10, bounds.height + detailLabelAnimationDistance, size.width + 10, h)
-                v.hidden = false
+                let size = v.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: h))
+                v.frame = CGRect(x: bounds.width - size.width - 10, y: bounds.height + detailLabelAnimationDistance, width: size.width + 10, height: h)
+                v.isHidden = false
                 v.frame.origin.y = self.frame.height + self.detailLabelAnimationDistance
                 v.alpha = 1
             }
         }
     }
     
-    private func updateDetailLabelFrame() {
+    fileprivate func updateDetailLabelFrame() {
         if let v: UILabel = detailLabel {
             let h: CGFloat = v.font.pointSize
-            let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
-            v.frame = CGRectMake(bounds.width - size.width - 10, bounds.height + detailLabelAnimationDistance, size.width + 10, h)
-            UIView.animateWithDuration(0.25, animations: { [unowned self] in
+            let size = v.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: h))
+            v.frame = CGRect(x: bounds.width - size.width - 10, y: bounds.height + detailLabelAnimationDistance, width: size.width + 10, height: h)
+            UIView.animate(withDuration: 0.25, animations: { [unowned self] in
                 v.frame.origin.y = self.frame.height + self.detailLabelAnimationDistance
                 v.alpha = 1
                 })
         }
     }
     
-    private func updateDetailLabelFrameSilently() {
+    fileprivate func updateDetailLabelFrameSilently() {
         
         if let v: UILabel = detailLabel {
             let h: CGFloat = v.font.pointSize
-            let size = v.sizeThatFits(CGSize(width: CGFloat.max, height: h))
-            let frame = CGRectMake(bounds.width - size.width - 10, bounds.height + detailLabelAnimationDistance, size.width + 10, h)
+            let size = v.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: h))
+            let frame = CGRect(x: bounds.width - size.width - 10, y: bounds.height + detailLabelAnimationDistance, width: size.width + 10, height: h)
             if frame != v.frame {
                 v.frame = frame
             }
         }
     }
     
-    private func updatePlaceholderLabelFrame() {
+    fileprivate func updatePlaceholderLabelFrame() {
         if let p = placeholderLabel {
             let width = bounds.width - textContainerInset.left - textContainerInset.right
             let height = p.font.lineHeight
@@ -676,28 +689,28 @@ public class BorderedMaterialTextView: UITextView {
     }
     
     /// Hides and animates the detailLabel property.
-    private func hideDetailLabel() {
+    fileprivate func hideDetailLabel() {
         if let v: UILabel = detailLabel {
-            UIView.animateWithDuration(0.25, animations: {
+            UIView.animate(withDuration: 0.25, animations: {
                 v.alpha = 0
                 v.frame.origin.y = v.frame.height + 20
-            }) { _ in
-                v.hidden = true
-            }
+            }, completion: { _ in
+                v.isHidden = true
+            }) 
         }
     }
     
     /// Prepares the Notification handlers.
-    private func prepareNotificationHandlers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidBegin), name: UITextViewTextDidBeginEditingNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidChange), name: UITextViewTextDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidEnd), name: UITextViewTextDidEndEditingNotification, object: nil)
+    fileprivate func prepareNotificationHandlers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidBegin), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BorderedMaterialTextView.handleTextViewTextDidEnd), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)
     }
     
     /// Removes the Notification handlers.
-    private func removeNotificationHandlers() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidBeginEditingNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidEndEditingNotification, object: nil)
+    fileprivate func removeNotificationHandlers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)
     }
 }

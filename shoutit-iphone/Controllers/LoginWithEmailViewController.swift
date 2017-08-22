@@ -16,17 +16,17 @@ protocol LoginWithEmailViewControllerChildDelegate: class {
     func presentCreatePage()
     func presentSignup()
     func presentResetPassword()
-    func showLoginErrorMessage(message: String)
+    func showLoginErrorMessage(_ message: String)
 }
 
 final class LoginWithEmailViewController: UIViewController, ContainerController {
     
     // animation
     internal let animationDuration: Double = 0.25
-    private let signupViewHeight: CGFloat = 466
-    private let loginViewHeight: CGFloat = 326
-    private let createPageViewHeight: CGFloat = 525
-    private let resetPasswordViewHeight: CGFloat = 188
+    fileprivate let signupViewHeight: CGFloat = 466
+    fileprivate let loginViewHeight: CGFloat = 326
+    fileprivate let createPageViewHeight: CGFloat = 525
+    fileprivate let resetPasswordViewHeight: CGFloat = 188
     
     // UI
     @IBOutlet weak var feedbackButton: UIButton!
@@ -47,7 +47,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     var viewModel: LoginWithEmailViewModel!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // child controllers
     lazy var loginViewController: LoginViewController = {
@@ -100,7 +100,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         feedbackButton
             .rx_tap
@@ -125,13 +125,13 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
         
         // view model subjects
         viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
                 self?.showError(error)
             }
             .addDisposableTo(disposeBag)
         
         viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
                 if isNewSignup {
                     self?.flowDelegate?.showPostSignupInterests()
                 } else {
@@ -141,7 +141,7 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
             .addDisposableTo(disposeBag)
         
         viewModel.successSubject.subscribeNext{[weak self] (message) in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
                 self?.showSuccessMessage(message)
             }
             .addDisposableTo(disposeBag)
@@ -174,7 +174,7 @@ extension LoginWithEmailViewController: LoginWithEmailViewControllerChildDelegat
         changeContentTo(resetPasswordViewController, animated: true)
     }
     
-    func showLoginErrorMessage(message: String) {
+    func showLoginErrorMessage(_ message: String) {
         showErrorMessage(message)
     }
 }

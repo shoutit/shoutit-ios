@@ -13,13 +13,13 @@ class FacebookFriendsListTableViewController: ProfilesListTableViewController {
     
     var fbRefreshControl = UIRefreshControl()
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.fbRefreshControl.attributedTitle = NSAttributedString(string: "")
-        self.fbRefreshControl.addTarget(self, action: #selector(fbRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        self.fbRefreshControl.addTarget(self, action: #selector(fbRefresh), for: UIControlEvents.valueChanged)
         self.tableView?.addSubview(fbRefreshControl)
         
         Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { (event) in
@@ -31,12 +31,12 @@ class FacebookFriendsListTableViewController: ProfilesListTableViewController {
         }.addDisposableTo(disposeBag)
     }
     
-    func fbRefresh(sender:AnyObject) {
+    func fbRefresh(_ sender:AnyObject) {
         self.loadRefreshedList()
     }
     
     func loadRefreshedList() {
-            if self.fbRefreshControl.refreshing {
+            if self.fbRefreshControl.isRefreshing {
                 self.fbRefreshControl.endRefreshing()
             }
         self.viewModel.pager.refreshContent()

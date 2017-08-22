@@ -11,13 +11,13 @@ import ShoutitKit
 
 class SelectProfileProfilesListEventHandler: ProfilesListEventHandler {
     
-    var choiceHandler: (Profile -> Void)
+    var choiceHandler: ((Profile) -> Void)
     
-    init(choiceHandler: (Profile -> Void)) {
+    init(choiceHandler: ((Profile) -> Void)) {
         self.choiceHandler = choiceHandler
     }
     
-    func handleUserDidTapProfile(profile: Profile) {
+    func handleUserDidTapProfile(_ profile: Profile) {
         choiceHandler(profile)
     }
 }

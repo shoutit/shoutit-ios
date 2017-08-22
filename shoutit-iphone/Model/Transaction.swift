@@ -27,7 +27,7 @@ public struct Transaction: Decodable, Hashable, Equatable {
         }
     }
     
-    public static func decode(j: JSON) -> Decoded<Transaction> {
+    public static func decode(_ j: JSON) -> Decoded<Transaction> {
         let a = curry(Transaction.init)
             <^> j <| "id"
             <*> j <| "created_at"

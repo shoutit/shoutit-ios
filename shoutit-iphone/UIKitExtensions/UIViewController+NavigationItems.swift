@@ -16,15 +16,15 @@ extension UIViewController {
             
             let leftBarButtonItem: UIBarButtonItem
             if self === navigationController.viewControllers[0] {
-                leftBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: self, action: #selector(UIViewController.toggleMenu))
+                leftBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .plain, target: self, action: #selector(UIViewController.toggleMenu))
             } else {
-                leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: self, action: #selector(UIViewController.pop))
+                leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .plain, target: self, action: #selector(UIViewController.pop))
             }
             self.navigationItem.leftBarButtonItem = leftBarButtonItem
         }
     }
     
     func applyBackButton() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: self, action: #selector(UIViewController.pop))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .plain, target: self, action: #selector(UIViewController.pop))
     }
 }

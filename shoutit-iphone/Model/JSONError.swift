@@ -10,15 +10,15 @@ import Foundation
 
 enum JSONError: ShoutitError {
     
-    case InvalidJSON
-    case UnknownError
+    case invalidJSON
+    case unknownError
     
     var userMessage: String {
         switch self {
-        case .InvalidJSON:
+        case .invalidJSON:
             return "Provided JSON object is invalid"
             
-        case .UnknownError:
+        case .unknownError:
             return "Unknown Error"
         }
     }

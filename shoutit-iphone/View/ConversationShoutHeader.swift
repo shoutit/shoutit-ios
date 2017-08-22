@@ -21,8 +21,8 @@ final class ConversationShoutHeader: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
-        self.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+        self.layer.borderWidth = 1.0 / UIScreen.main.scale
+        self.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         self.layer.cornerRadius = 3.0
     }
     
@@ -32,7 +32,7 @@ final class ConversationShoutHeader: UIView {
         subtitleLabel.text = shout.user?.name
         priceLabel.text = NumberFormatters.priceStringWithPrice(shout.price, currency: shout.currency)
 
-        if let thumbPath = shout.thumbnailPath, thumbURL = NSURL(string: thumbPath) {
+        if let thumbPath = shout.thumbnailPath, let thumbURL = URL(string: thumbPath) {
             imageView.sh_setImageWithURL(thumbURL, placeholderImage: UIImage(named:"auth_screen_bg_pattern"))
         } else {
             imageView.image = UIImage(named:"auth_screen_bg_pattern")

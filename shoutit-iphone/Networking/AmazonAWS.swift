@@ -13,7 +13,7 @@ import ShoutitKit
 
 final class AmazonAWS: NSObject {
     
-    private(set) var images: [String] = []
+    fileprivate(set) var images: [String] = []
     
     func reset() {
         images.removeAll()
@@ -22,29 +22,29 @@ final class AmazonAWS: NSObject {
     
     static func configureS3() {
         let credsProvider = AWSStaticCredentialsProvider(accessKey: Constants.AWS.SH_S3_ACCESS_KEY_ID, secretKey: Constants.AWS.SH_S3_SECRET_ACCESS_KEY)
-        let configuration = AWSServiceConfiguration(region: AWSRegionType.EUWest1, credentialsProvider: credsProvider)
-        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        let configuration = AWSServiceConfiguration(region: AWSRegionType.euWest1, credentialsProvider: credsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
     }
     
-    func generateKeyWithExtenstion(ext: String) -> String {
-        return String(format: "%@-%d.%@", NSUUID().UUIDString, Int(NSDate().timeIntervalSince1970), ext)
+    func generateKeyWithExtenstion(_ ext: String) -> String {
+        return String(format: "%@-%d.%@", UUID().uuidString, Int(Date().timeIntervalSince1970), ext)
     }
     
     func generateKey() -> String {
-        return String(format: "%@-%d", NSUUID().UUIDString, Int(NSDate().timeIntervalSince1970))
+        return String(format: "%@-%d", UUID().uuidString, Int(Date().timeIntervalSince1970))
     }
     
-    func getShoutImageTask(image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {
-        let filePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(generateKeyWithExtenstion("jpg"))
-        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, progress: progress)?.continueWithSuccessBlock({ (task) -> AnyObject! in
+    func getShoutImageTask(_ image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask<AnyObject>? {
+        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(generateKeyWithExtenstion("jpg"))
+        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, progress: progress)?.continue(successBlock: { (task) -> AnyObject! in
             self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, (filePath as NSString).lastPathComponent))
             return nil
         })
     }
     
-    func getUserImageTask(image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {
-        let filePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(generateKeyWithExtenstion("jpg"))
-        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET, progress: progress)?.continueWithSuccessBlock({ (task) -> AnyObject! in
+    func getUserImageTask(_ image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask<AnyObject>? {
+        let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(generateKeyWithExtenstion("jpg"))
+        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET, progress: progress)?.continue(successBlock: { (task) -> AnyObject! in
             self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_USER_URL, (filePath as NSString).lastPathComponent))
             return nil
         })
@@ -93,24 +93,24 @@ final class AmazonAWS: NSObject {
 //    }
     
     // MARK - Private
-    private func getImageTask(image: UIImage, filePath: String, bucket: String, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {
-        let image = image.resizeImageProportionallyIntoNewSize(CGSizeMake(720, 720))
-        if let data = UIImageJPEGRepresentation(image, 1) where data.writeToFile(filePath, atomically: true) {
-            let fileUrl = NSURL(fileURLWithPath: filePath)
+    fileprivate func getImageTask(_ image: UIImage, filePath: String, bucket: String, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask<AnyObject>? {
+        let image = image.resizeProportionally(intoNewSize: CGSize(width: 720, height: 720))
+        if let data = UIImageJPEGRepresentation(image!, 1), ((try? data.write(to: URL(fileURLWithPath: filePath), options: [.atomic])) != nil) {
+            let fileUrl = URL(fileURLWithPath: filePath)
             let key = (filePath as NSString).lastPathComponent
-            return getObjectTask(fileUrl, bucket: bucket, key: key, contentType: "image/jpg", contentLength: data.length, progress: progress)
+            return getObjectTask(fileUrl, bucket: bucket, key: key, contentType: "image/jpg", contentLength: data.count, progress: progress)
         }
         return nil
     }
     
-    private func getObjectTask(fileURL: NSURL, bucket: String, key: String, contentType: String, contentLength: Int, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask? {
+    fileprivate func getObjectTask(_ fileURL: URL, bucket: String, key: String, contentType: String, contentLength: Int, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask<AnyObject>? {
         let request = AWSS3TransferManagerUploadRequest()
-        request.bucket = bucket
-        request.key = key
-        request.contentType = contentType
-        request.body = fileURL
-        request.contentLength = contentLength
-        request.uploadProgress = progress
-        return AWSS3TransferManager.defaultS3TransferManager().upload(request)
+        request?.bucket = bucket
+        request?.key = key
+        request?.contentType = contentType
+        request?.body = fileURL
+        request?.contentLength = contentLength as NSNumber
+        request?.uploadProgress = progress
+        return AWSS3TransferManager.default().upload(request)
     }
 }

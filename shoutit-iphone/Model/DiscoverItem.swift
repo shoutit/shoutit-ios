@@ -19,7 +19,7 @@ public struct DiscoverItem: Decodable, Hashable, Equatable {
     public let cover: String?
     public let icon: String?
     
-    public static func decode(j: JSON) -> Decoded<DiscoverItem> {
+    public static func decode(_ j: JSON) -> Decoded<DiscoverItem> {
         let f = curry(DiscoverItem.init)
             <^> j <| "id"
             <*> j <| "api_url"

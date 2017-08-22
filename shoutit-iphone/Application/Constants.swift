@@ -107,6 +107,6 @@ public struct Platform {
     }()
     
     public static var isRTL: Bool {
-        return UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft
+        return UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
     }
 }

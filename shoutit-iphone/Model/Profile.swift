@@ -27,7 +27,7 @@ public struct Profile {
     public let location: Address?
     public let stats: ProfileStats?
     
-    public static func profileWithUser(user: DetailedProfile) -> Profile {
+    public static func profileWithUser(_ user: DetailedProfile) -> Profile {
         var stats : ProfileStats?
         
         if let detailedUser = user as? DetailedUserProfile {
@@ -52,7 +52,7 @@ public struct Profile {
                 )
     }
     
-    public static func profileWithGuest(guest: GuestUser) -> Profile {
+    public static func profileWithGuest(_ guest: GuestUser) -> Profile {
         return Profile(id: guest.id,
                        type: .User,
                        apiPath: guest.apiPath,
@@ -83,7 +83,7 @@ extension Profile {
 
 extension Profile: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Profile> {
+    public static func decode(_ j: JSON) -> Decoded<Profile> {
         let a =  curry(Profile.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -109,7 +109,7 @@ extension Profile: Decodable {
 extension Profile: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
             "api_url" : self.apiPath.encode(),
@@ -130,7 +130,7 @@ extension Profile: Encodable {
 }
 
 extension Profile {
-    public func copyWithListnersCount(newListnersCount: Int, isListening: Bool? = nil) -> Profile {
+    public func copyWithListnersCount(_ newListnersCount: Int, isListening: Bool? = nil) -> Profile {
         return Profile(id: self.id, type: self.userType, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: isListening != nil ? isListening : self.isListening, listenersCount: newListnersCount, location: self.location, stats: self.stats)
     }
 }

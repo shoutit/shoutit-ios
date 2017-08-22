@@ -16,15 +16,15 @@ class VerticalButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.imageView?.contentMode = .Center
-        self.titleLabel?.textAlignment = .Center
+        self.imageView?.contentMode = .center
+        self.titleLabel?.textAlignment = .center
     }
     
-    override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
+    override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
         return CGRect(x: 0, y: contentRect.size.height - titleHeight - bottomMargin, width: contentRect.size.width, height: titleHeight)
     }
     
-    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
+    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         return CGRect(x: 0, y: 0, width: contentRect.size.width, height: contentRect.size.height - titleHeight)
     }
 }

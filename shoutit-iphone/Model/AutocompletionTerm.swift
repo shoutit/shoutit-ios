@@ -19,7 +19,7 @@ public struct AutocompletionTerm {
 
 extension AutocompletionTerm: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<AutocompletionTerm> {
+    public static func decode(_ j: JSON) -> Decoded<AutocompletionTerm> {
         return curry(AutocompletionTerm.init)
             <^> j <| "term"
     }

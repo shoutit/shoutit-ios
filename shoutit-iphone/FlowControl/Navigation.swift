@@ -50,7 +50,7 @@ enum NavigationItem : String {
         case .Pages: return NSLocalizedString("Pages",comment: "Menu item")
         case .Admins: return NSLocalizedString("Admins",comment: "Menu item")
         case .SwitchFromPageToUser:
-            guard case .Some(.Page(let user, _)) = Account.sharedInstance.loginState else {
+            guard case .some(.page(let user, _)) = Account.sharedInstance.loginState else {
                 fallthrough
             }
             return String.localizedStringWithFormat(NSLocalizedString("Use Shoutit as %@", comment: "Menu Item Title"), user.name)
@@ -78,11 +78,11 @@ protocol Navigation: class {
     weak var rootController : RootController? {get set}
     var selectedNavigationItem : NavigationItem? {get set}
     
-    func triggerActionWithItem(navigationItem: NavigationItem)
+    func triggerActionWithItem(_ navigationItem: NavigationItem)
 }
 
 protocol DeepLinkHandling {
-    func handleDeeplink(deepLink: DPLDeepLink)
+    func handleDeeplink(_ deepLink: DPLDeepLink)
 }
 
 extension DPLDeepLink {

@@ -11,12 +11,12 @@ import Kingfisher
 
 extension UIImageView {
     
-    public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?, optionsInfo: KingfisherOptionsInfo?, completionHandler: CompletionHandler?) {
-        if let url = url where url.absoluteString.utf16.count > 0 {
+    public func sh_setImageWithURL(_ url: URL?, placeholderImage: UIImage?, optionsInfo: KingfisherOptionsInfo?, completionHandler: CompletionHandler?) {
+        if let url = url, url.absoluteString.utf16.count > 0 {
             if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             } else {
-                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(.Large), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
+                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(.large), placeholderImage: placeholderImage, optionsInfo: optionsInfo, completionHandler: completionHandler)
             }
         } else if let placeholderImage = placeholderImage {
             self.image = placeholderImage
@@ -25,12 +25,12 @@ extension UIImageView {
         }
     }
     
-    public func sh_setImageWithURL(url: NSURL?, placeholderImage: UIImage?) {
-        if let url = url where url.absoluteString.utf16.count > 0 {
+    public func sh_setImageWithURL(_ url: URL?, placeholderImage: UIImage?) {
+        if let url = url, url.absoluteString.utf16.count > 0 {
             if let variation = estimateAppropriateVariation() {
                 kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(variation), placeholderImage: placeholderImage)
             } else {
-                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(.Large), placeholderImage: placeholderImage)
+                kf_setImageWithURL(url.imageUrlByAppendingVaraitionComponent(.large), placeholderImage: placeholderImage)
             }
         } else if let placeholderImage = placeholderImage {
             self.image = placeholderImage
@@ -43,12 +43,12 @@ extension UIImageView {
         kf_cancelDownloadTask()
     }
     
-    private func estimateAppropriateVariation() -> ImageVariation? {
-        let scale = UIScreen.mainScreen().scale
+    fileprivate func estimateAppropriateVariation() -> ImageVariation? {
+        let scale = UIScreen.main.scale
         let scaledWidth = floor(bounds.size.width * scale)
         let scaledHeight = floor(bounds.size.height * scale)
         
-        for variation: ImageVariation in [.Small, .Medium, .Large] {
+        for variation: ImageVariation in [.small, .medium, .large] {
             if scaledWidth <= variation.size.width && scaledHeight <= variation.size.height {
                 return variation
             }

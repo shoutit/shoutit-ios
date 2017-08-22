@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let router = DPLDeepLinkRouter()
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         applyAppearance()
         configureLoggingServices()
@@ -44,26 +44,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureURLCache()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionStarted), name: AppseeSessionStartedNotification, object: nil)
+        NotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionStarted), name: AppseeSessionStartedNotification, object: nil)
         
         Appsee.start(Constants.AppSee.appKey)
         
         var firstLaunch = false
         
-        if (NSUserDefaults.standardUserDefaults().boolForKey("HasLaunchedOnce") == false) {
+        if (UserDefaults.standard.bool(forKey: "HasLaunchedOnce") == false) {
             firstLaunch = true
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "HasLaunchedOnce")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(true, forKey: "HasLaunchedOnce")
+            UserDefaults.standard.synchronize()
         }
         
-        if (launchOptions?[UIApplicationLaunchOptionsURLKey] == nil && firstLaunch) {
+        if (launchOptions?[UIApplicationLaunchOptionsKey.url] == nil && firstLaunch) {
             FBSDKAppLinkUtility.fetchDeferredAppLink({ (url, error) in
                 // to decide what needs to be done here, completion closure takes link from where app is installed
             })
             
             FBSDKAppLinkUtility.fetchDeferredAppInvite({ (url) in
                 // to decide what needs to be done here, url - refferal
-                let promoCode = FBSDKAppLinkUtility.appInvitePromotionCodeFromURL(url)
+                let promoCode = FBSDKAppLinkUtility.appInvitePromotionCode(from: url)
                 Account.sharedInstance.invitationCode = promoCode
             })
         }
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerRoutes()
         
-        guard let launch = launchOptions, userInfo = launch[UIApplicationLaunchOptionsRemoteNotificationKey], userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
+        guard let launch = launchOptions, let userInfo = launch[UIApplicationLaunchOptionsKey.remoteNotification], let userInfoData = userInfo["data"] as? [AnyHashable: Any] else {
             return true
         }
         
@@ -91,10 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // handle the URL that your application receives at the end of the authentication process -- Google
-    func application(application: UIApplication,
-        openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    func application(_ application: UIApplication,
+        open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-        if FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation) {
+        if FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }
         
@@ -104,14 +104,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let parsedUrl = BFURL.init(inboundURL: url, sourceApplication: sourceApplication)
         
-        if ((parsedUrl.appLinkData) != nil) {
+        if ((parsedUrl?.appLinkData) != nil) {
             return self.router.handleURL(parsedUrl.targetURL, withCompletion: nil)
         }
         
         return self.router.handleURL(url, withCompletion:nil)
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
@@ -120,13 +120,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MixpanelHelper.handleAppDidEnterBackground()
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         LocationManager.sharedInstance.startUpdatingLocationIfPermissionsGranted()
         
         MixpanelHelper.handleUserDidOpenApp()
         
-        if case .Logged(let user)? = Account.sharedInstance.loginState {
+        if case .logged(let user)? = Account.sharedInstance.loginState {
             Account.sharedInstance.pusherManager.tryToConnect()
             Account.sharedInstance.facebookManager.checkExpiryDateWithProfile(user)
         }
@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Push notifications
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
     
         guard let currentUserId = Account.sharedInstance.user?.id else {
             return
@@ -148,22 +148,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        guard let userInfoData = userInfo["data"] as? [NSObject : AnyObject] else {
+        guard let userInfoData = userInfo["data"] as? [AnyHashable: Any] else {
             return
         }
         
-        if application.applicationState == .Inactive || application.applicationState == .Background {
+        if application.applicationState == .inactive || application.applicationState == .background {
             handlePushNotificationData(userInfoData, dispatchAfter: 0)
         }
     }
     
-    func handlePushNotificationData(data: [NSObject: AnyObject], dispatchAfter: Double) {
+    func handlePushNotificationData(_ data: [AnyHashable: Any], dispatchAfter: Double) {
         
-        if let appPath = data["app_url"] as? String, urlToOpen = NSURL(string:appPath) {
+        if let appPath = data["app_url"] as? String, let urlToOpen = URL(string:appPath) {
             
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(dispatchAfter * Double(NSEC_PER_SEC)))
+            let delayTime = DispatchTime.now() + Double(Int64(dispatchAfter * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.router.handleURL(urlToOpen, withCompletion:nil)
             }
             
@@ -171,12 +171,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let token = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.description.trimmingCharacters(in: CharacterSet(charactersIn: "<>")).replacingOccurrences(of: " ", with: "")
         Account.sharedInstance.apnsToken = token
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error)
     }
 }
@@ -207,14 +207,14 @@ private extension AppDelegate {
         UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
         
         // Disable AutoLayout Constraints Warnings
-        NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
         let paperTrailLogger = RMPaperTrailLogger.sharedInstance() as RMPaperTrailLogger!
-        paperTrailLogger.host = "logs4.papertrailapp.com" //Your host here
-        paperTrailLogger.port = 33179 //Your port number here
-        paperTrailLogger.programName = "guest"
+        paperTrailLogger?.host = "logs4.papertrailapp.com" //Your host here
+        paperTrailLogger?.port = 33179 //Your port number here
+        paperTrailLogger?.programName = "guest"
         
-        DDLog.addLogger(paperTrailLogger)
+        DDLog.add(paperTrailLogger)
         
         NewRelicAgent.startWithApplicationToken(Constants.NewRelic.appId)
         
@@ -222,44 +222,44 @@ private extension AppDelegate {
     
     func applyAppearance() {
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(),
-                                                            NSFontAttributeName : UIFont.systemFontOfSize(20)]
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .PrimaryGreen)
-        UINavigationBar.appearance().barTintColor = UIColor(shoutitColor: .PrimaryGreen)
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white,
+                                                            NSFontAttributeName : UIFont.systemFont(ofSize: 20)]
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().backgroundColor = UIColor(shoutitColor: .primaryGreen)
+        UINavigationBar.appearance().barTintColor = UIColor(shoutitColor: .primaryGreen)
+        UIBarButtonItem.appearance().tintColor = UIColor.white
     }
     
-    func configureAPS(application: UIApplication) {
+    func configureAPS(_ application: UIApplication) {
         
         let textAction = UIMutableUserNotificationAction()
         textAction.identifier = "ANSWER_ACTION"
         textAction.title = "Answer"
-        textAction.activationMode = .Background
-        textAction.authenticationRequired = false
-        textAction.destructive = true
+        textAction.activationMode = .background
+        textAction.isAuthenticationRequired = false
+        textAction.isDestructive = true
         
         if #available(iOS 9.0, *) {
-            textAction.behavior = .Default
+            textAction.behavior = .default
         } else {
             // Fallback on earlier versions
         }
         
         let category = UIMutableUserNotificationCategory()
         category.identifier = "VIDEO_CALL_CATEGORY"
-        category.setActions([textAction], forContext: .Default)
-        category.setActions([textAction], forContext: .Minimal)
+        category.setActions([textAction], for: .default)
+        category.setActions([textAction], for: .minimal)
         
         let categories = NSSet(object: category) as! Set<UIUserNotificationCategory>
         
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories)
+        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: categories)
         application.registerUserNotificationSettings(notificationSettings)
         application.registerForRemoteNotifications()
     }
     
     func configureURLCache() {
-        let URLCache = NSURLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
-        NSURLCache.setSharedURLCache(URLCache)
+        let URLCache = Foundation.URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
+        Foundation.URLCache.setSharedURLCache(URLCache)
     }
 }
 
@@ -276,7 +276,7 @@ extension AppDelegate {
         
     }
     
-    func routeToNavigationItem(navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
+    func routeToNavigationItem(_ navigationItem: NavigationItem, withDeeplink deeplink: DPLDeepLink) {
         
         guard let applicationMainController = self.window?.rootViewController as? ApplicationMainViewController else {
             return
@@ -293,7 +293,7 @@ extension AppDelegate {
 // Appsee
 extension AppDelegate {
     
-    func sessionStarted(notification: NSNotification) {
+    func sessionStarted(_ notification: Foundation.Notification) {
         
         Crashlytics.sharedInstance().setObjectValue("https://dashboard.appsee.com/3rdparty/crashlytics/\(Appsee.generate3rdPartyID("Crashlytics", persistent: false))", forKey: "AppseeSessionUrl")
     }

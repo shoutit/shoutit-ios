@@ -26,7 +26,7 @@ public struct Category: Hashable, Equatable {
 
 extension Category: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Category> {
+    public static func decode(_ j: JSON) -> Decoded<Category> {
         return curry(Category.init)
             <^> j <| "name"
             <*> j <|? "icon"
@@ -41,7 +41,7 @@ extension Category: Decodable {
 extension Category: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "slug"    : self.slug.encode() ])
     }
 }

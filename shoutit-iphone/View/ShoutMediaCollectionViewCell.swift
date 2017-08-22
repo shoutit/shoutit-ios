@@ -17,33 +17,33 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
     @IBOutlet var editIconImageView : UIImageView?
     @IBOutlet var videoIconImageView : UIImageView!
     
-    private var disposeBag = DisposeBag()
+    fileprivate var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         self.layer.cornerRadius = 5.0
         self.layer.masksToBounds = true
     }
     
-    func fillWith(attachment: MediaAttachment?) {
+    func fillWith(_ attachment: MediaAttachment?) {
         
-        if let attachment = attachment, image = attachment.image {
+        if let attachment = attachment, let image = attachment.image {
             imageView.image = image
-            editIconImageView?.hidden = false
+            editIconImageView?.isHidden = false
             videoIconImageView.hidden = attachment.type != .Video
-        } else if let attachment = attachment, thumbURL = attachment.thumbRemoteURL {
+        } else if let attachment = attachment, let thumbURL = attachment.thumbRemoteURL {
             imageView.sh_setImageWithURL(thumbURL, placeholderImage: nil)
-            editIconImageView?.hidden = false
+            editIconImageView?.isHidden = false
             videoIconImageView.hidden = attachment.type != .Video
         } else {
             imageView.image = nil
-            editIconImageView?.hidden = true
-            videoIconImageView.hidden = true
+            editIconImageView?.isHidden = true
+            videoIconImageView.isHidden = true
         }
     }
     
-    func fillWith(uploadTask: MediaUploadingTask?) {
+    func fillWith(_ uploadTask: MediaUploadingTask?) {
         guard let task = uploadTask else {
-            progressView.hidden = true
+            progressView.isHidden = true
             return
         }
         
@@ -58,26 +58,26 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
         }.addDisposableTo(disposeBag)
     }
     
-    func setActive(active: Bool) {
-        imageView.hidden = !active
-        contentView.backgroundColor = active ? UIColor(shoutitColor: .LightGreen) : UIColor(shoutitColor: .SeparatorGray)
+    func setActive(_ active: Bool) {
+        imageView.isHidden = !active
+        contentView.backgroundColor = active ? UIColor(shoutitColor: .lightGreen) : UIColor(shoutitColor: .separatorGray)
     }
     
-    func fillWithTaskStatus(status: MediaUploadingTaskStatus, attachment: MediaAttachment) {
+    func fillWithTaskStatus(_ status: MediaUploadingTaskStatus, attachment: MediaAttachment) {
         switch (status) {
-        case .Uploading:
-            progressView.hidden = false
-            progressView.setIndicatorStatus(.Running)
-            editIconImageView?.hidden = true
-            videoIconImageView.hidden = true
-        case .Error:
-            progressView.hidden = true
-            progressView.setIndicatorStatus(.None)
-            editIconImageView?.hidden = false
-            videoIconImageView.hidden = true
-        case .Uploaded:
-            progressView.hidden = true
-            editIconImageView?.hidden = false
+        case .uploading:
+            progressView.isHidden = false
+            progressView.setIndicatorStatus(.running)
+            editIconImageView?.isHidden = true
+            videoIconImageView.isHidden = true
+        case .error:
+            progressView.isHidden = true
+            progressView.setIndicatorStatus(.none)
+            editIconImageView?.isHidden = false
+            videoIconImageView.isHidden = true
+        case .uploaded:
+            progressView.isHidden = true
+            editIconImageView?.isHidden = false
             videoIconImageView.hidden = attachment.type != .Video
         }
     }

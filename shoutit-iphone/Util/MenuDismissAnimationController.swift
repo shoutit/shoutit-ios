@@ -9,8 +9,8 @@
 import UIKit
 
 final class MenuDismissAnimationController: MenuAnimationController {
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? MenuTableViewController
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as? MenuTableViewController
         
         let rightMargin : CGFloat = 70.0
       
@@ -18,16 +18,16 @@ final class MenuDismissAnimationController: MenuAnimationController {
             fatalError()
         }
         
-        UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { () -> Void in
-            guard let transitionContainer = transitionContext.containerView() else {
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: { () -> Void in
+            guard let transitionContainer = transitionContext.containerView else {
                 fatalError()
             }
             
-            if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
-                fromView.frame = CGRectMake(CGRectGetWidth(transitionContainer.frame), 0, CGRectGetWidth(transitionContainer.frame) - rightMargin, CGRectGetHeight(transitionContainer.frame))
+            if (UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft) {
+                fromView.frame = CGRect(x: transitionContainer.frame.width, y: 0, width: transitionContainer.frame.width - rightMargin, height: transitionContainer.frame.height)
                 
             } else {
-                fromView.frame = CGRectMake(-CGRectGetWidth(transitionContainer.frame) + rightMargin, 0, CGRectGetWidth(transitionContainer.frame) - rightMargin, CGRectGetHeight(transitionContainer.frame))
+                fromView.frame = CGRect(x: -transitionContainer.frame.width + rightMargin, y: 0, width: transitionContainer.frame.width - rightMargin, height: transitionContainer.frame.height)
                 
             }
             
@@ -35,11 +35,11 @@ final class MenuDismissAnimationController: MenuAnimationController {
                 overlay.alpha = 0
             }
             
-            }) { (finished) -> Void in
+            }, completion: { (finished) -> Void in
                 fromViewController?.overlayView = nil
                 fromView.removeFromSuperview()
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-        }
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }) 
         
     }
 }

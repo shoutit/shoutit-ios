@@ -17,7 +17,7 @@ final class ConversationLocationCell: UITableViewCell, ConversationCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
     @IBOutlet weak var avatarImageView: UIImageView? {
         didSet {
-            avatarImageView?.userInteractionEnabled = true
+            avatarImageView?.isUserInteractionEnabled = true
             addAvatarButtonToAvatarImageView()
         }
     }
@@ -29,13 +29,13 @@ final class ConversationLocationCell: UITableViewCell, ConversationCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .None
+        self.selectionStyle = .none
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.activityIndicator?.hidden = false
-        self.showLabel?.hidden = true
+        self.activityIndicator?.isHidden = false
+        self.showLabel?.isHidden = true
         unHideImageView()
         reuseDisposeBag = DisposeBag()
     }

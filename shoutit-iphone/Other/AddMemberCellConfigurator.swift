@@ -13,7 +13,7 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
 
     var members : [Profile]!
     
-    override func configureCell(cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
+    override func configureCell(_ cell: ProfileTableViewCell, cellViewModel: ProfilesListCellViewModel, showsListenButton: Bool) {
         
         let profile : Profile = cellViewModel.profile
         
@@ -36,6 +36,6 @@ class AddMemberCellConfigurator: ProfileCellConfigurator {
         
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         
-        cell.listenButton.hidden = true
+        cell.listenButton.isHidden = true
     }
 }

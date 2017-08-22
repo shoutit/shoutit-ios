@@ -30,7 +30,7 @@ public struct FilteredDiscoverItemsParams: Params, PagedParams, LocalizedParams 
         self.pageSize = pageSize
         
         if country == nil && location?.country == nil && useLocaleBasedCountryCodeWhenNil {
-            self.country = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
+            self.country = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String
         } else {
             self.country = country ?? location?.country ?? ""
         }

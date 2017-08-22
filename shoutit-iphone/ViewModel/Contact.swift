@@ -39,7 +39,7 @@ public struct ContactsParams : Params {
 }
 
 extension Contact: Decodable {
-    public static func decode(j: JSON) -> Decoded<Contact> {
+    public static func decode(_ j: JSON) -> Decoded<Contact> {
         let a = curry(Contact.init)
             <^> j <|? "first_name"
             <*> j <|? "last_name"
@@ -56,7 +56,7 @@ extension Contact: Decodable {
 
 extension Contact: Encodable {
     public func encode() -> JSON {
-        return JSON.Object(["first_name": self.firstName.encode(),
+        return JSON.object(["first_name": self.firstName.encode(),
             "last_name" : self.lastName.encode(),
             "name" : self.name.encode(),
             "mobiles" : self.mobiles.encode(),

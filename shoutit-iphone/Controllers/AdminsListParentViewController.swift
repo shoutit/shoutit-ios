@@ -19,7 +19,7 @@ final class AdminsListParentViewController: UIViewController {
     var viewModel: AdminsListViewModel!
     weak var flowDelegate: FlowController?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +30,12 @@ final class AdminsListParentViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupViews() {
+    fileprivate func setupViews() {
         disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
-        addAdminsButton.contentHorizontalAlignment = Platform.isRTL ? .Right : .Left
+        addAdminsButton.contentHorizontalAlignment = Platform.isRTL ? .right : .left
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         addAdminsButton
             .rx_tap
@@ -61,9 +61,9 @@ final class AdminsListParentViewController: UIViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-        if let controller = segue.destinationViewController as? AdminsListTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let controller = segue.destination as? AdminsListTableViewController {
             controller.viewModel = viewModel
             controller.flowDelegate = flowDelegate
         }
@@ -72,14 +72,14 @@ final class AdminsListParentViewController: UIViewController {
     // MARL: - Actions
     
     @IBAction func searchAction() {
-        flowDelegate?.showSearchInContext(.General)
+        flowDelegate?.showSearchInContext(.general)
     }
 }
 
 private extension AdminsListParentViewController {
     
     func addAdmin() {
-        guard case .Some(.Page(let user, _)) = Account.sharedInstance.loginState else {
+        guard case .some(.page(let user, _)) = Account.sharedInstance.loginState else {
             assertionFailure()
             return
         }

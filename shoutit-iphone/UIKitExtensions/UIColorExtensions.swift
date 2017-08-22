@@ -9,33 +9,33 @@
 import UIKit
 
 enum ShoutitColor: Int {
-    case PrimaryGreen = 0x35dd69
-    case ShoutitBlack = 0x1d1d1d
-    case ShoutitButtonGreen = 0x4CB950
-    case BackgroundWhite = 0xfafafa
-    case BackgroundLightGray = 0xF4F4F4
-    case BackgroundGrey = 0x333333
-    case ShoutGreen = 0xa6d280
-    case ShoutRed = 0xca3c3c
-    case ShoutDarkGreen = 0x658529
-    case MessageBubbleLightGreen = 0x91f261
-    case ShoutDetailProfileImageLightGrey = 0xe8e8e8
-    case DiscoverBorder = 0xc2c2c2
-    case FontGrayColor = 0x646464
-    case ButtonBackgroundGray = 0xD6D6D6
-    case FontLighterGray = 0x58585A
-    case SeparatorGray = 0xe0e0e0
-    case ShoutitLightBlueColor = 0x40C4FF
-    case CellBackgroundGrayColor = 0xEFEFEF
-    case PlaceholderGray = 0x8c8c8c
-    case SearchBarGray = 0xf7f7f7
-    case SearchBarTextFieldGray = 0xE2E3E6
-    case FailureRed = 0xFF5252
-    case SuccessGreen = 0x4BA63F
-    case LightGreen = 0xC8E6C9
-    case TextFieldBorderGrayColor = 0xC3C3C3
-    case PromotedShoutYellowBackgroundColor = 0xffd700
-    case PromoteActionYellowColor = 0xFFAC40
+    case primaryGreen = 0x35dd69
+    case shoutitBlack = 0x1d1d1d
+    case shoutitButtonGreen = 0x4CB950
+    case backgroundWhite = 0xfafafa
+    case backgroundLightGray = 0xF4F4F4
+    case backgroundGrey = 0x333333
+    case shoutGreen = 0xa6d280
+    case shoutRed = 0xca3c3c
+    case shoutDarkGreen = 0x658529
+    case messageBubbleLightGreen = 0x91f261
+    case shoutDetailProfileImageLightGrey = 0xe8e8e8
+    case discoverBorder = 0xc2c2c2
+    case fontGrayColor = 0x646464
+    case buttonBackgroundGray = 0xD6D6D6
+    case fontLighterGray = 0x58585A
+    case separatorGray = 0xe0e0e0
+    case shoutitLightBlueColor = 0x40C4FF
+    case cellBackgroundGrayColor = 0xEFEFEF
+    case placeholderGray = 0x8c8c8c
+    case searchBarGray = 0xf7f7f7
+    case searchBarTextFieldGray = 0xE2E3E6
+    case failureRed = 0xFF5252
+    case successGreen = 0x4BA63F
+    case lightGreen = 0xC8E6C9
+    case textFieldBorderGrayColor = 0xC3C3C3
+    case promotedShoutYellowBackgroundColor = 0xffd700
+    case promoteActionYellowColor = 0xFFAC40
     
     var alpha: Float {
         switch self {
@@ -53,49 +53,49 @@ extension UIColor {
 }
 
 extension UIColor {
-    static func colorFromHexAlphaString(hexStringWithAlpha: String) -> UIColor {
+    static func colorFromHexAlphaString(_ hexStringWithAlpha: String) -> UIColor {
         
-        let baseString = hexStringWithAlpha.stringByReplacingOccurrencesOfString("#", withString: "")
+        let baseString = hexStringWithAlpha.replacingOccurrences(of: "#", with: "")
         
         var alpha, red, blue, green : CGFloat
         
         switch baseString.characters.count {
         case 3:
             alpha = 1.0
-            red = colorComponentFrom(baseString, start: 0, length: 1)
-            green = colorComponentFrom(baseString, start: 1, length: 1)
-            blue = colorComponentFrom(baseString, start: 2, length: 1)
+            red = colorComponentFrom(baseString as NSString, start: 0, length: 1)
+            green = colorComponentFrom(baseString as NSString, start: 1, length: 1)
+            blue = colorComponentFrom(baseString as NSString, start: 2, length: 1)
             
         case 4:
-            alpha = colorComponentFrom(baseString, start: 0, length: 1)
-            red = colorComponentFrom(baseString, start: 1, length: 1)
-            green = colorComponentFrom(baseString, start: 2, length: 1)
-            blue = colorComponentFrom(baseString, start: 3, length: 1)
+            alpha = colorComponentFrom(baseString as NSString, start: 0, length: 1)
+            red = colorComponentFrom(baseString as NSString, start: 1, length: 1)
+            green = colorComponentFrom(baseString as NSString, start: 2, length: 1)
+            blue = colorComponentFrom(baseString as NSString, start: 3, length: 1)
         case 6:
             alpha = 1.0
-            red = colorComponentFrom(baseString, start: 0, length: 2)
-            green = colorComponentFrom(baseString, start: 2, length: 2)
-            blue = colorComponentFrom(baseString, start: 4, length: 2)
+            red = colorComponentFrom(baseString as NSString, start: 0, length: 2)
+            green = colorComponentFrom(baseString as NSString, start: 2, length: 2)
+            blue = colorComponentFrom(baseString as NSString, start: 4, length: 2)
         case 8:
-            alpha = colorComponentFrom(baseString, start: 0, length: 2)
-            red = colorComponentFrom(baseString, start: 2, length: 2)
-            green = colorComponentFrom(baseString, start: 4, length: 2)
-            blue = colorComponentFrom(baseString, start: 6, length: 2)
+            alpha = colorComponentFrom(baseString as NSString, start: 0, length: 2)
+            red = colorComponentFrom(baseString as NSString, start: 2, length: 2)
+            green = colorComponentFrom(baseString as NSString, start: 4, length: 2)
+            blue = colorComponentFrom(baseString as NSString, start: 6, length: 2)
         default:
-            return UIColor.blackColor()
+            return UIColor.black
         }
         
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    static func colorComponentFrom(string: NSString, start : Int, length : Int) -> CGFloat {
-        let subString = string.substringWithRange(NSMakeRange(start, length))
+    static func colorComponentFrom(_ string: NSString, start : Int, length : Int) -> CGFloat {
+        let subString = string.substring(with: NSMakeRange(start, length))
         
         let fullHex : NSString = length == 2 ? subString : ("\(subString)\(subString)" as NSString)
         
         var hexComponent : UInt32 = 0
         
-        NSScanner(string: fullHex as String).scanHexInt(&hexComponent)
+        Scanner(string: fullHex as String).scanHexInt32(&hexComponent)
         
         return CGFloat(CGFloat(hexComponent)/255.0)
     }

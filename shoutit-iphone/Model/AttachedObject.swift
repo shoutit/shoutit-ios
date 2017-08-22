@@ -15,7 +15,7 @@ public struct AttachedObject: Decodable {
     let shout : Shout?
     let message : Message?
     
-    public static func decode(j: JSON) -> Decoded<AttachedObject> {
+    public static func decode(_ j: JSON) -> Decoded<AttachedObject> {
         return curry(AttachedObject.init)
             <^> j <|? "profile"
             <*> j <|? "shout"

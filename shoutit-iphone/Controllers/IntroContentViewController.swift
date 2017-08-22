@@ -14,6 +14,6 @@ class IntroContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.clearColor()
+        view.backgroundColor = UIColor.clear
     }
 }

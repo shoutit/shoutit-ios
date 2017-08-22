@@ -17,18 +17,18 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
     weak var flowDelegate : FlowController?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    private let cellIdentifier = "NotificationsCellIdentifier"
-    private let disposeBag = DisposeBag()
-    private var transactions : [Transaction] = []
+    fileprivate let cellIdentifier = "NotificationsCellIdentifier"
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var transactions : [Transaction] = []
     
     var loading : Bool = false {
         didSet {
             if loading {
                 self.activityIndicator.startAnimating()
-                self.activityIndicator.hidden = false
+                self.activityIndicator.isHidden = false
             } else {
                 self.activityIndicator.stopAnimating()
-                self.activityIndicator.hidden = true
+                self.activityIndicator.isHidden = true
             }
         }
     }
@@ -40,7 +40,7 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
         
         self.refreshControl = UIRefreshControl()
         
-        self.refreshControl?.addTarget(self, action: #selector(reloadTransactions), forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(reloadTransactions), for: .valueChanged)
         
         self.tableView.emptyDataSetDelegate = self
         self.tableView.emptyDataSetSource = self
@@ -50,12 +50,12 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
     }
     
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.refreshControl?.endRefreshing()
     }
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: NSLocalizedString("No transactions to show", comment: "No Transactions Message"))
     }
     
@@ -82,13 +82,13 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
         
         APICreditsService.requestTransactions(before: lastTransaction.createdAt).subscribe { [weak self] (event) in
             switch event {
-            case .Next(let transactions):
+            case .next(let transactions):
                 
                 if transactions.count > 0 {
                     self?.loading = false
                 } else {
                     self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.hidden = true
+                    self?.activityIndicator.isHidden = true
                 }
                 
                 self?.appendTransactions(transactions)
@@ -100,36 +100,36 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
             }.addDisposableTo(disposeBag)
     }
     
-    private func appendTransactions(messages: [Transaction]) {
-        self.transactions.appendContentsOf(messages)
+    fileprivate func appendTransactions(_ messages: [Transaction]) {
+        self.transactions.append(contentsOf: messages)
         self.transactions = self.transactions.unique()
         self.tableView.reloadData()
     }
     
-    private func insertMessage(transaction: Transaction) {
+    fileprivate func insertMessage(_ transaction: Transaction) {
         
         self.tableView.beginUpdates()
         
-        self.transactions.insert(transaction, atIndex: 0)
-        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
+        self.transactions.insert(transaction, at: 0)
+        self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         
         self.tableView.endUpdates()
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return transactions.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! NotificationsTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NotificationsTableViewCell
         
         let transaction =  transactions[indexPath.row]
         
@@ -138,29 +138,29 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let transaction =  transactions[indexPath.row]
         openMessageObject(transaction)
     }
     
-    func openMessageObject(transaction: Transaction) {
-        guard let path = transaction.appPath, url = NSURL(string: path) else { return }
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
+    func openMessageObject(_ transaction: Transaction) {
+        guard let path = transaction.appPath, let url = URL(string: path) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
         }
     }
     
     func openNotificationSettings() {
-        if let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.sharedApplication().openURL(settingsURL)
+        if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.openURL(settingsURL)
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             loadNextPage()
         }

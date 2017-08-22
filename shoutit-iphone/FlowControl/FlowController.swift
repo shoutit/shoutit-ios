@@ -33,57 +33,57 @@ class FlowController : UserAccess {
         return false
     }
     
-    func handleDeeplink(deepLink: DPLDeepLink?) {
+    func handleDeeplink(_ deepLink: DPLDeepLink?) {
         
     }
 }
 
 protocol PartialChatDisplayable {
-    func showConversationWithId(conversationId: String)
-    func showProfileWithId(profileId: String)
-    func showShoutWithId(shoutId: String)
+    func showConversationWithId(_ conversationId: String)
+    func showProfileWithId(_ profileId: String)
+    func showShoutWithId(_ shoutId: String)
 }
 
 
 extension FlowController : PartialChatDisplayable {
-    func showConversationWithId(conversationId: String) {
+    func showConversationWithId(_ conversationId: String) {
         
-        MBProgressHUD.showHUDAddedTo(self.navigationController.visibleViewController?.view, animated: true)
+        MBProgressHUD.showAdded(to: self.navigationController.visibleViewController?.view, animated: true)
         
         _ = APIChatsService.conversationWithId(conversationId).subscribe { (event) in
             
-            MBProgressHUD.hideAllHUDsForView(self.navigationController.visibleViewController?.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: self.navigationController.visibleViewController?.view, animated: true)
         
-            if case .Next(let conversation) = event {
-                self.showConversation(.CreatedAndLoaded(conversation: conversation))
+            if case .next(let conversation) = event {
+                self.showConversation(.createdAndLoaded(conversation: conversation))
             }
         
         }
         
     }
     
-    func showProfileWithId(profileId: String) {
-        MBProgressHUD.showHUDAddedTo(self.navigationController.visibleViewController?.view, animated: true)
+    func showProfileWithId(_ profileId: String) {
+        MBProgressHUD.showAdded(to: self.navigationController.visibleViewController?.view, animated: true)
         
         _ = APIProfileService.retrieveProfileWithUsername(profileId).subscribe { (event) in
             
-            MBProgressHUD.hideAllHUDsForView(self.navigationController.visibleViewController?.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: self.navigationController.visibleViewController?.view, animated: true)
             
-            if case .Next(let profile) = event {
+            if case .next(let profile) = event {
                 self.showProfile(Profile.profileWithUser(profile))
             }
             
         }
     }
     
-    func showShoutWithId(shoutId: String) {
-        MBProgressHUD.showHUDAddedTo(self.navigationController.visibleViewController?.view, animated: true)
+    func showShoutWithId(_ shoutId: String) {
+        MBProgressHUD.showAdded(to: self.navigationController.visibleViewController?.view, animated: true)
         
         _ = APIShoutsService.retrieveShoutWithId(shoutId).subscribe { (event) in
             
-            MBProgressHUD.hideAllHUDsForView(self.navigationController.visibleViewController?.view, animated: true)
+            MBProgressHUD.hideAllHUDs(for: self.navigationController.visibleViewController?.view, animated: true)
             
-            if case .Next(let shout) = event {
+            if case .next(let shout) = event {
                 self.showShout(shout)
             }
             

@@ -26,7 +26,7 @@ public struct Message: Decodable, Hashable, Equatable {
         }
     }
     
-    public static func decode(j: JSON) -> Decoded<Message> {
+    public static func decode(_ j: JSON) -> Decoded<Message> {
         let a = curry(Message.init)
             <^> j <| "id"
             <*> j <|? "conversation_id"
@@ -40,16 +40,16 @@ public struct Message: Decodable, Hashable, Equatable {
         return b
     }
     
-    public static func messageWithText(text: String) -> Message {
+    public static func messageWithText(_ text: String) -> Message {
         return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text, attachments: nil)
     }
     
-    public static func messageWithAttachment(attachment: MessageAttachment) -> Message {
+    public static func messageWithAttachment(_ attachment: MessageAttachment) -> Message {
         return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: nil, attachments: [attachment])
     }
     
     public static func generateId() -> String {
-        return NSProcessInfo.processInfo().globallyUniqueString
+        return ProcessInfo.processInfo.globallyUniqueString
     }
 }
 
@@ -58,10 +58,10 @@ extension Message {
         return DateFormatters.sharedInstance.stringFromDateEpoch(self.createdAt)
     }
     
-    public func day() -> NSDate {
-        let unitFlags: NSCalendarUnit = [.Day, .Month, .Year]
-        let comps = NSCalendar.currentCalendar().components(unitFlags, fromDate: NSDate(timeIntervalSince1970: NSTimeInterval(self.createdAt)))
-        return NSCalendar.currentCalendar().dateFromComponents(comps)!
+    public func day() -> Date {
+        let unitFlags: NSCalendar.Unit = [.day, .month, .year]
+        let comps = (Calendar.current as NSCalendar).components(unitFlags, from: Date(timeIntervalSince1970: TimeInterval(self.createdAt)))
+        return Calendar.current.date(from: comps)!
     }
     
     public func isOutgoing(forUserWithId id: String) -> Bool {
@@ -73,8 +73,8 @@ extension Message {
         return false
     }
     
-    public func isSameSenderAs(message: Message?) -> Bool {
-        if let user = user, secondUser = message?.user {
+    public func isSameSenderAs(_ message: Message?) -> Bool {
+        if let user = user, let secondUser = message?.user {
             return user.id == secondUser.id
         }
         
@@ -99,11 +99,11 @@ extension Message: Encodable {
             encoded["text"] = text.encode()
         }
         
-        if let attachments = attachments, attachment = attachments.first {
+        if let attachments = attachments, let attachment = attachments.first {
             encoded["attachments"] = [attachment.encode()].encode()
         }
         
-        return JSON.Object(encoded)
+        return JSON.object(encoded)
     }
 }
 

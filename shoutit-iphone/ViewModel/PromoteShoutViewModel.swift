@@ -27,7 +27,7 @@ class PromoteShoutViewModel {
         return APIShoutsService.getPromotionOptions()
     }
     
-    func promoteShoutWithOption(option: PromotionOption) -> Observable<Promotion> {
+    func promoteShoutWithOption(_ option: PromotionOption) -> Observable<Promotion> {
         return APIShoutsService.promoteShout(PromoteShoutParams(shout: shout, option: option))
     }
 }

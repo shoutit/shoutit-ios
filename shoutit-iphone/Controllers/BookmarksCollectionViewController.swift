@@ -10,7 +10,7 @@ import UIKit
 
 final class BookmarksCollectionViewController: ShoutsCollectionViewController {
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.viewModel.reloadContent()

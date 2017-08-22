@@ -12,9 +12,9 @@ class CreatePublicChatSelectionTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var tickImageView: UIImageView!
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        tickImageView.hidden = !selected
+        tickImageView.isHidden = !selected
     }
 }
 

@@ -11,30 +11,30 @@ import ShoutitKit
 import RxSwift
 
 protocol ShoutProvider {
-    func shoutForIndexPath(indexPath: NSIndexPath) -> Shout?
-    func indexPathForShout(shout: Shout?) -> NSIndexPath?
-    func replaceShoutAndReload(shout: Shout)
+    func shoutForIndexPath(_ indexPath: IndexPath) -> Shout?
+    func indexPathForShout(_ shout: Shout?) -> IndexPath?
+    func replaceShoutAndReload(_ shout: Shout)
 }
 
 protocol Bookmarking : ShoutProvider {
     var bookmarksDisposeBag : DisposeBag? { get set }
-    func switchShoutBookmarkShout(sender: UIButton)
+    func switchShoutBookmarkShout(_ sender: UIButton)
 }
 
 class BookmarkManager {
-    static func addShoutToBookmarks(shout: Shout) -> Observable<Success> {
+    static func addShoutToBookmarks(_ shout: Shout) -> Observable<Success> {
         return APIShoutsService.bookmarkShout(shout)
     }
     
-    static func removeFromBookmarks(shout: Shout) -> Observable<Success> {
+    static func removeFromBookmarks(_ shout: Shout) -> Observable<Success> {
         return APIShoutsService.removeFromBookmarksShout(shout)
     }
 }
 
 extension Bookmarking where Self : UICollectionViewController {
-    func switchShoutBookmarkShout(sender: UIButton) {
+    func switchShoutBookmarkShout(_ sender: UIButton) {
         let item = sender.tag
-        let indexPath = NSIndexPath(forItem: item, inSection: 0)
+        let indexPath = IndexPath(item: item, section: 0)
         
         guard let shout = self.shoutForIndexPath(indexPath) else {
             return
@@ -49,7 +49,7 @@ extension Bookmarking where Self : UICollectionViewController {
         if shout.isBookmarked ?? false {
             APIShoutsService.removeFromBookmarksShout(shout).subscribe({ [weak self] (event) in
                 switch event {
-                case .Next(let success):
+                case .next(let success):
                     self?.showSuccessMessage(success.message)
                     self?.switchToNonBookmarked(wShout)
                 case .Error(let error):
@@ -62,7 +62,7 @@ extension Bookmarking where Self : UICollectionViewController {
             
             APIShoutsService.bookmarkShout(shout).subscribe({ [weak self] (event) in
                 switch event {
-                case .Next(let success):
+                case .next(let success):
                     self?.showSuccessMessage(success.message)
                     self?.switchToBookmarked(wShout)
                 case .Error(let error):
@@ -75,7 +75,7 @@ extension Bookmarking where Self : UICollectionViewController {
         
     }
     
-    func switchToBookmarked(shout: Shout?) {
+    func switchToBookmarked(_ shout: Shout?) {
         guard let shout = shout else {
             return
         }
@@ -85,7 +85,7 @@ extension Bookmarking where Self : UICollectionViewController {
         }
     }
     
-    func switchToNonBookmarked(shout: Shout?) {
+    func switchToNonBookmarked(_ shout: Shout?) {
         guard let shout = shout else {
             return
         }

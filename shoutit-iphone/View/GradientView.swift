@@ -12,25 +12,25 @@ final class GradientView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         // Draw the gradient background
         let context = UIGraphicsGetCurrentContext();
         let colorSpace = CGColorSpaceCreateDeviceGray();
         
         // Define the shading callbacks
-        var callbacks = CGFunctionCallbacks(version: 0, evaluate: {(info: UnsafeMutablePointer<Void>, inData: UnsafePointer<CGFloat>, outData: UnsafeMutablePointer<CGFloat>) -> Void in
+        var callbacks = CGFunctionCallbacks(version: 0, evaluate: {(info: UnsafeMutableRawPointer, inData: UnsafePointer<CGFloat>, outData: UnsafeMutablePointer<CGFloat>) -> Void in
             
             let p = inData[0]
             outData[0] = 0.0;
             let d = pow(p, 2.0);
             let slope = d/(d + pow(1.0 - p, 2.0));
             outData[1] = (1.0 - slope) * 0.5;
-            }, releaseInfo: nil)
+            } as! CGFunctionEvaluateCallback, releaseInfo: nil)
         
         // As input to our function we want 1 value in the range [0.0, 1.0].
         // This is our position within the 'gradient'.
@@ -44,12 +44,12 @@ final class GradientView: UIView {
         let range: [CGFloat] = [0.0, 1.0, 0.0, 1.0]
         
         // Create the shading finction
-        let function = CGFunctionCreate(nil, domainDimension, domain, rangeDimension, range, &callbacks)
+        let function = CGFunction(info: nil, domainDimension: domainDimension, domain: domain, rangeDimension: rangeDimension, range: range, callbacks: &callbacks)
         
         // Create the shading object
-        let shading = CGShadingCreateAxial(colorSpace, CGPointMake(1, rect.size.height*0.1), CGPointMake(1, rect.size.height), function, true, true)
+        let shading = CGShading(axialSpace: colorSpace, start: CGPoint(x: 1, y: rect.size.height*0.1), end: CGPoint(x: 1, y: rect.size.height), function: function!, extendStart: true, extendEnd: true)
         
         // Draw the shading
-        CGContextDrawShading(context, shading);
+        context?.drawShading(shading!);
     }
 }

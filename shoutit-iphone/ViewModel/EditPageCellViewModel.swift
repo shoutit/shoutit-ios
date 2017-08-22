@@ -12,41 +12,41 @@ import ShoutitKit
 enum EditPageCellViewModel {
     
     enum Identity  : Int {
-        case Name
-        case About
-        case IsPublished
-        case Description
-        case Phone
-        case Founded
-        case Impressum
-        case Overview
-        case Mission
-        case GeneralInfo
+        case name
+        case about
+        case isPublished
+        case description
+        case phone
+        case founded
+        case impressum
+        case overview
+        case mission
+        case generalInfo
     }
     
-    case BasicText(value: String, placeholder: String, identity: Identity)
-    case RichText(value: String, placeholder: String, identity: Identity)
-    case Location(value: Address, placeholder: String, identity: Identity)
-    case Switch(value: Bool, placeholder: String, identity: Identity)
+    case basicText(value: String, placeholder: String, identity: Identity)
+    case richText(value: String, placeholder: String, identity: Identity)
+    case location(value: Address, placeholder: String, identity: Identity)
+    case `switch`(value: Bool, placeholder: String, identity: Identity)
     
     var reuseIdentifier: String {
         switch self {
-        case .BasicText: return "EditPageTextFieldCell"
-        case .RichText: return "EditPageTextViewCell"
-        case .Location: return "EditPageSelectButtonCell"
-        case .Switch: return "EditPageSwitchTableViewCell"
+        case .basicText: return "EditPageTextFieldCell"
+        case .richText: return "EditPageTextViewCell"
+        case .location: return "EditPageSelectButtonCell"
+        case .switch: return "EditPageSwitchTableViewCell"
         }
     }
     
     var identity: Identity {
         switch self {
-        case .BasicText(_, _, let identity):
+        case .basicText(_, _, let identity):
             return identity
-        case .RichText(_, _, let identity):
+        case .richText(_, _, let identity):
             return identity
-        case .Location(_, _, let identity):
+        case .location(_, _, let identity):
             return identity
-        case .Switch(_, _, let identity):
+        case .switch(_, _, let identity):
             return identity
         }
     }
@@ -54,43 +54,43 @@ enum EditPageCellViewModel {
     // MARK: - Conenience init
     
     init(name: String) {
-        self = .BasicText(value: name, placeholder: NSLocalizedString("Name", comment: "Edit page placeholder text"), identity: .Name)
+        self = .basicText(value: name, placeholder: NSLocalizedString("Name", comment: "Edit page placeholder text"), identity: .name)
     }
     
     init(about: String) {
-        self = .RichText(value: about, placeholder: NSLocalizedString("About", comment: "Edit page placeholder text"), identity: .About)
+        self = .richText(value: about, placeholder: NSLocalizedString("About", comment: "Edit page placeholder text"), identity: .about)
     }
     
     init(description: String) {
-        self = .RichText(value: description, placeholder: NSLocalizedString("Description", comment: "Edit page placeholder text"), identity: .Description)
+        self = .richText(value: description, placeholder: NSLocalizedString("Description", comment: "Edit page placeholder text"), identity: .description)
     }
     
     init(phone: String) {
-        self = .BasicText(value: phone, placeholder: NSLocalizedString("Phone", comment: "Edit page placeholder text"), identity: .Phone)
+        self = .basicText(value: phone, placeholder: NSLocalizedString("Phone", comment: "Edit page placeholder text"), identity: .phone)
     }
     
     init(founded: String) {
-        self = .BasicText(value: founded, placeholder: NSLocalizedString("Founded", comment: "Edit page placeholder text"), identity: .Founded)
+        self = .basicText(value: founded, placeholder: NSLocalizedString("Founded", comment: "Edit page placeholder text"), identity: .founded)
     }
     
     init(impressum: String) {
-        self = .RichText(value: impressum, placeholder: NSLocalizedString("Impressum", comment: "Edit page placeholder text"), identity: .Impressum)
+        self = .richText(value: impressum, placeholder: NSLocalizedString("Impressum", comment: "Edit page placeholder text"), identity: .impressum)
     }
     
     init(overview: String) {
-        self = .RichText(value: overview, placeholder: NSLocalizedString("Overview", comment: "Edit page placeholder text"), identity: .Overview)
+        self = .richText(value: overview, placeholder: NSLocalizedString("Overview", comment: "Edit page placeholder text"), identity: .overview)
     }
     
     init(mission: String) {
-        self = .RichText(value: mission, placeholder: NSLocalizedString("Mission", comment: "Edit page placeholder text"), identity: .Mission)
+        self = .richText(value: mission, placeholder: NSLocalizedString("Mission", comment: "Edit page placeholder text"), identity: .mission)
     }
     
     init(general_info: String) {
-        self = .RichText(value: general_info, placeholder: NSLocalizedString("General Info", comment: "Edit page placeholder text"), identity: .GeneralInfo)
+        self = .richText(value: general_info, placeholder: NSLocalizedString("General Info", comment: "Edit page placeholder text"), identity: .generalInfo)
     }
     
     init(published: Bool) {
-        self = .Switch(value: published, placeholder: NSLocalizedString("Published", comment: "Edit Page placeholder"), identity: .IsPublished)
+        self = .switch(value: published, placeholder: NSLocalizedString("Published", comment: "Edit Page placeholder"), identity: .isPublished)
     }
     
 }

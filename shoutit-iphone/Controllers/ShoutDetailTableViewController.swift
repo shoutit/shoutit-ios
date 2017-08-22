@@ -61,14 +61,14 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     }
     
     // RX
-    private var headerDisposeBag = DisposeBag()
+    fileprivate var headerDisposeBag = DisposeBag()
     let disposeBag = DisposeBag()
     
     // navigation
     weak var flowDelegate: FlowController?
     
     // data sources
-    private var dataSource: ShoutDetailTableViewDataSource! {
+    fileprivate var dataSource: ShoutDetailTableViewDataSource! {
         didSet {
             tableView.dataSource = dataSource
             
@@ -86,19 +86,19 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
                     collectionView.dataSource = self?.relatedShoutsDataSource
                     collectionView.delegate = self
                     if #available(iOS 9.0, *) {
-                        collectionView.semanticContentAttribute = .ForceLeftToRight
+                        collectionView.semanticContentAttribute = .forceLeftToRight
                     }
-                    if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-                        collectionView.transform = CGAffineTransformMakeScale(-1, 1)
+                    if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
+                        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
                     }
                 }
                 .addDisposableTo(disposeBag)
             
         }
     }
-    private var otherShoutsDataSource: ShoutDetailOtherShoutsCollectionViewDataSource!
-    private var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
-    private var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource! {
+    fileprivate var otherShoutsDataSource: ShoutDetailOtherShoutsCollectionViewDataSource!
+    fileprivate var relatedShoutsDataSource: ShoutDetailRelatedShoutsCollectionViewDataSource!
+    fileprivate var imagesDataSource: ShoutDetailImagesPageViewControllerDataSource! {
         didSet {
             photosPageViewController.dataSource = imagesDataSource
             photosPageViewController.delegate = imagesDataSource
@@ -106,7 +106,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     }
     
     // children
-    private var photosPageViewController: PhotoBrowserPageViewController!
+    fileprivate var photosPageViewController: PhotoBrowserPageViewController!
     
     // MARK: - Lifecycle
     
@@ -121,7 +121,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(controller: self)
         imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(controller: self)
         
-        imagesDataSource.showDetailOfMedia.asDriver(onErrorJustReturn: .Loading).driveNext { [weak self] (viewModel) in
+        imagesDataSource.showDetailOfMedia.asDriver(onErrorJustReturn: .loading).driveNext { [weak self] (viewModel) in
             self?.showMediaPreviewWithSelectedMedia(viewModel)
         }.addDisposableTo(disposeBag)
         
@@ -129,7 +129,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         hydrateHeader()
         showNativeAd()
         
-        self.likeButton.hidden = Account.sharedInstance.user?.isGuest == true
+        self.likeButton.isHidden = Account.sharedInstance.user?.isGuest == true
     }
     
     func updateLikeButtonState() {
@@ -142,20 +142,20 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     
     func updateBookmarkButtonState() {
         if viewModel.shout.isBookmarked ?? false {
-            self.bookmarkButton.setImage(UIImage(named: "bookmark_on"), forState: .Normal)
+            self.bookmarkButton.setImage(UIImage(named: "bookmark_on"), for: UIControlState())
         } else {
-            self.bookmarkButton.setImage(UIImage(named: "bookmark_off"), forState: .Normal)
+            self.bookmarkButton.setImage(UIImage(named: "bookmark_off"), for: UIControlState())
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.reloadShoutDetails()
     }
     
     //FBAudienceImplementaion
     
-    func bindWithAd(nativeAd: FBNativeAd) {
+    func bindWithAd(_ nativeAd: FBNativeAd) {
         
         if let title = nativeAd.title {
             self.adTitlelabel.text = title
@@ -166,28 +166,28 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         }
         
         if let callToAction = nativeAd.callToAction {
-            self.adCallToActionButton.hidden = false
-            self.adCallToActionButton.setTitle(callToAction, forState: .Normal)
+            self.adCallToActionButton.isHidden = false
+            self.adCallToActionButton.setTitle(callToAction, for: UIControlState())
         } else {
-            self.adCallToActionButton.hidden = true
+            self.adCallToActionButton.isHidden = true
         }
         
-        nativeAd.icon?.loadImageAsyncWithBlock({ [weak self] (image) -> Void in
+        nativeAd.icon?.loadAsync(block: { [weak self] (image) -> Void in
             self?.adIconImageView?.image = image
         })
         self.adCoverMediaView.nativeAd = nativeAd
         
         self.adChoicesView.nativeAd = nativeAd
-        self.adChoicesView.corner = .TopRight
-        self.adChoicesView.hidden = false
+        self.adChoicesView.corner = .topRight
+        self.adChoicesView.isHidden = false
         
-        nativeAd.registerViewForInteraction(self.adUIView, withViewController: self)
+        nativeAd.registerView(forInteraction: self.adUIView, with: self)
     }
     
-    func nativeAd(nativeAd: FBNativeAd, didFailWithError error: NSError) {
+    func nativeAd(_ nativeAd: FBNativeAd, didFailWithError error: NSError) {
         print("Ad failed to load with error: %@", error)
-        adBGView.hidden = true
-        adUIView.hidden = true
+        adBGView.isHidden = true
+        adUIView.isHidden = true
         
         DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
@@ -197,17 +197,17 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     func showNativeAd() {
         nativeAd = FBNativeAd(placementID: Constants.FacebookAudience.detailAdID)
         nativeAd.delegate = self
-        nativeAd.loadAd()
+        nativeAd.load()
     }
     
-    func nativeAdDidLoad(nativeAd: FBNativeAd) {
+    func nativeAdDidLoad(_ nativeAd: FBNativeAd) {
         DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
         bindWithAd(nativeAd)
     }
     
     // MARK: - Setup
     
-    private func hydrateHeader() {
+    fileprivate func hydrateHeader() {
         headerView.authorNameLabel.text = viewModel.shout.user?.name
         headerView.authorProfileImageView.sh_setImageWithURL(viewModel.shout.user?.imagePath?.toURL(), placeholderImage: viewModel.shout.user?.type == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
         
@@ -231,13 +231,13 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         headerView.setConstraintForPriceLabelVisible(visible)
         
         if let firstImageController = self.imagesDataSource.firstViewController() {
-            photosPageViewController.setViewControllers([firstImageController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            photosPageViewController.setViewControllers([firstImageController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
             imagesDataSource.updatePageControlWithPageViewController(photosPageViewController, currentController: nil)
         }
         
         // size
-        let size = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-        if !CGSizeEqualToSize(size, headerView.frame.size) {
+        let size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        if !size.equalTo(headerView.frame.size) {
             headerView.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width, height: size.height)
             tableView.tableHeaderView = headerView
         }
@@ -248,8 +248,8 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let pageViewController = segue.destinationViewController as? PhotoBrowserPageViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let pageViewController = segue.destination as? PhotoBrowserPageViewController {
             photosPageViewController = pageViewController
         }
     }
@@ -257,7 +257,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
 
 
 extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
-    private func showMediaPreviewWithSelectedMedia(selectedMedia: ShoutDetailShoutImageViewModel) {
+    fileprivate func showMediaPreviewWithSelectedMedia(_ selectedMedia: ShoutDetailShoutImageViewModel) {
         guard selectedMedia.canShowPreview() else {
             return
         }
@@ -279,11 +279,11 @@ extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
         self.navigationController?.showViewController(photoBrowser, sender: nil)
     }
     
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    func numberOfPhotosInPhotoBrowser(_ photoBrowser: MWPhotoBrowser!) -> UInt {
         return UInt(imagesDataSource.viewModel.imagesViewModels.count)
     }
     
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
         let photos = imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()}
         
         return photos[Int(index)]
@@ -294,41 +294,41 @@ extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
 
 extension ShoutDetailTableViewController {
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellModel = viewModel.cellModels[indexPath.row]
         switch cellModel {
-        case .KeyValue(_, _, _, _, _, let filter?, _):
+        case .keyValue(_, _, _, _, _, let filter?, _):
             self.flowDelegate?.showTag(filter)
-        case .KeyValue(_, _, _, _, _, _, let tag?):
+        case .keyValue(_, _, _, _, _, _, let tag?):
             self.flowDelegate?.showTag(tag)
         default:
             break
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellModel = viewModel.cellModels[indexPath.row]
         switch cellModel {
-        case .SectionHeader:
+        case .sectionHeader:
             return 54
-        case .Description(let description):
+        case .description(let description):
             let horizontalMargins: CGFloat = 2 * 20
             let verticalMargins: CGFloat = 2 * 10
             let availableWidth = tableView.bounds.width - horizontalMargins
-            let size = (description as NSString).boundingRectWithSize(CGSize(width: availableWidth, height: CGFloat.max),
-                                                                      options: [NSStringDrawingOptions.UsesLineFragmentOrigin],
-                                                                      attributes: [NSFontAttributeName : UIFont.sh_systemFontOfSize(14, weight: .Regular)],
+            let size = (description as NSString).boundingRect(with: CGSize(width: availableWidth, height: CGFloat.greatestFiniteMagnitude),
+                                                                      options: [NSStringDrawingOptions.usesLineFragmentOrigin],
+                                                                      attributes: [NSFontAttributeName : UIFont.sh_systemFontOfSize(14, weight: .regular)],
                                                                       context: nil).size
             return size.height + verticalMargins
-        case .KeyValue:
+        case .keyValue:
             return 40
-        case .Regular:
+        case .regular:
             return 40
-        case .Button:
+        case .button:
             return 49
-        case .OtherShouts:
+        case .otherShouts:
             return dataSource.otherShoutsHeight
-        case .RelatedShouts:
+        case .relatedShouts:
             return 130
         }
     }
@@ -336,7 +336,7 @@ extension ShoutDetailTableViewController {
 
 extension ShoutDetailTableViewController: UICollectionViewDelegate {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let index = (collectionView as? IndexedCollectionView)?.index else {
             assertionFailure()
@@ -346,9 +346,9 @@ extension ShoutDetailTableViewController: UICollectionViewDelegate {
         let cellViewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
         
         switch cellViewModels[indexPath.row] {
-        case .Content(let shout):
+        case .content(let shout):
             flowDelegate?.showShout(shout)
-        case .SeeAll:
+        case .seeAll:
             flowDelegate?.showRelatedShoutsForShout(viewModel.shout)
         default:
             break
@@ -358,9 +358,9 @@ extension ShoutDetailTableViewController: UICollectionViewDelegate {
 
 extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         guard let index = (collectionView as? IndexedCollectionView)?.index else {
             assert(false)
@@ -368,7 +368,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
         }
         
         let viewModels = index == 0 ? viewModel.otherShoutsCellModels : viewModel.relatedShoutsCellModels
-        if let first = viewModels.first, case ShoutDetailShoutCellViewModel.Content = first {
+        if let first = viewModels.first, case ShoutDetailShoutCellViewModel.content = first {
             let itemSize = (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
             if index == 1 {
                 return itemSize
@@ -386,7 +386,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.bounds.width - 20, height: 120)
     }
     
-    @IBAction func likeButtonAction(sender: LikeButton) {
+    @IBAction func likeButtonAction(_ sender: LikeButton) {
         if viewModel.shout.isLiked ?? false {
             unlikeShout()
         } else {
@@ -398,7 +398,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     func likeShout() {
         APIShoutsService.likeShout(viewModel.shout).subscribe { [weak self] (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self?.showSuccessMessage(success.message)
                 
                 if let likedShout = self?.viewModel.shout.copyWithLiked(true) {
@@ -416,7 +416,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     func unlikeShout() {
         APIShoutsService.unlikeShout(viewModel.shout).subscribe { [weak self] (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self?.showSuccessMessage(success.message)
                 
                 if let likedShout = self?.viewModel.shout.copyWithLiked(false) {
@@ -433,7 +433,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     }
     
     
-    @IBAction func bookmarkButtonAction(sender: UIButton) {
+    @IBAction func bookmarkButtonAction(_ sender: UIButton) {
         if viewModel.shout.isBookmarked ?? false {
             removeFromBookmarks()
         } else {
@@ -444,7 +444,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     func bookMarkShout() {
         BookmarkManager.addShoutToBookmarks(viewModel.shout).subscribe { [weak self] (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self?.showSuccessMessage(success.message)
                 if let newShout = self?.viewModel.shout.copyWithBookmark(true) {
                     self?.viewModel.reloadShout(newShout)
@@ -460,7 +460,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
     func removeFromBookmarks() {
         BookmarkManager.removeFromBookmarks(viewModel.shout).subscribe { [weak self] (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self?.showSuccessMessage(success.message)
                 if let newShout = self?.viewModel.shout.copyWithBookmark(false) {
                     self?.viewModel.reloadShout(newShout)

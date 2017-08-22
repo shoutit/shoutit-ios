@@ -9,29 +9,29 @@
 import UIKit
 
 enum ProfileCollectionViewSection: Int {
-    case Pages = 0
-    case Shouts = 1
+    case pages = 0
+    case shouts = 1
     
     var cellReuseIdentifier: String {
         switch self {
-        case .Pages:
+        case .pages:
             return "ProfileCollectionViewCellKindPages"
-        case .Shouts:
+        case .shouts:
             return "ProfileCollectionViewCellKindShouts"
         }
     }
 }
 
 enum ProfileCollectionViewSupplementaryView {
-    case Cover
-    case Info
-    case ListSectionHeader
-    case CreatePageButtonFooter
-    case GridSectionHeader
-    case SeeAllShoutsButtonFooter
+    case cover
+    case info
+    case listSectionHeader
+    case createPageButtonFooter
+    case gridSectionHeader
+    case seeAllShoutsButtonFooter
     
-    init?(indexPath: NSIndexPath) {
-        for view in [Cover, Info, ListSectionHeader, CreatePageButtonFooter, GridSectionHeader, SeeAllShoutsButtonFooter] {
+    init?(indexPath: IndexPath) {
+        for view in [ProfileCollectionViewSupplementaryView.cover, ProfileCollectionViewSupplementaryView.info, ProfileCollectionViewSupplementaryView.listSectionHeader, ProfileCollectionViewSupplementaryView.createPageButtonFooter, ProfileCollectionViewSupplementaryView.gridSectionHeader, ProfileCollectionViewSupplementaryView.seeAllShoutsButtonFooter] {
             if view.indexPath == indexPath {
                 self = view
                 return
@@ -41,32 +41,32 @@ enum ProfileCollectionViewSupplementaryView {
         return nil
     }
     
-    var indexPath: NSIndexPath {
+    var indexPath: IndexPath {
         switch self {
-        case .Cover:
-            return NSIndexPath(forItem: 0, inSection: 0)
-        case .Info:
-            return NSIndexPath(forItem: 1, inSection: 0)
-        case .ListSectionHeader:
-            return NSIndexPath(forItem: 2, inSection: 0)
-        case .CreatePageButtonFooter:
-            return NSIndexPath(forItem: 3, inSection: 0)
-        case .GridSectionHeader:
-            return NSIndexPath(forItem: 4, inSection: 0)
-        case .SeeAllShoutsButtonFooter:
-            return NSIndexPath(forItem: 5, inSection: 0)
+        case .cover:
+            return IndexPath(item: 0, section: 0)
+        case .info:
+            return IndexPath(item: 1, section: 0)
+        case .listSectionHeader:
+            return IndexPath(item: 2, section: 0)
+        case .createPageButtonFooter:
+            return IndexPath(item: 3, section: 0)
+        case .gridSectionHeader:
+            return IndexPath(item: 4, section: 0)
+        case .seeAllShoutsButtonFooter:
+            return IndexPath(item: 5, section: 0)
         }
     }
     
     var kind: ProfileCollectionViewSupplementaryViewKind {
         switch self {
-        case .Cover:
+        case .cover:
             return ProfileCollectionViewSupplementaryViewKind.Cover
-        case .Info:
+        case .info:
             return ProfileCollectionViewSupplementaryViewKind.Info
-        case .ListSectionHeader, .GridSectionHeader:
+        case .listSectionHeader, .gridSectionHeader:
             return ProfileCollectionViewSupplementaryViewKind.SectionHeader
-        case .CreatePageButtonFooter, .SeeAllShoutsButtonFooter:
+        case .createPageButtonFooter, .seeAllShoutsButtonFooter:
             return ProfileCollectionViewSupplementaryViewKind.FooterButton
         }
     }

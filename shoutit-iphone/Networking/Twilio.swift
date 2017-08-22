@@ -14,7 +14,7 @@ import TwilioCommon
 final class Twilio: NSObject {
     
     // consts
-    private struct TwilioErrorCode {
+    fileprivate struct TwilioErrorCode {
         static let ParticipantUnavailable = 106
     }
     
@@ -24,14 +24,14 @@ final class Twilio: NSObject {
             createTwilioClient()
         }
     }
-    private unowned var account: Account
-    private var client: TwilioConversationsClient?
-    private var accessManager: TwilioAccessManager?
-    private var authenticatedId : String?
+    fileprivate unowned var account: Account
+    fileprivate var client: TwilioConversationsClient?
+    fileprivate var accessManager: TwilioAccessManager?
+    fileprivate var authenticatedId : String?
     
     // helpers vars
-    private var connecting : Bool = false
-    lazy private var retryScheduler: Twilio.RetryScheduler = {[unowned self] in
+    fileprivate var connecting : Bool = false
+    lazy fileprivate var retryScheduler: Twilio.RetryScheduler = {[unowned self] in
         return RetryScheduler() {
             self.connectIfNeeded()
         }
@@ -39,8 +39,8 @@ final class Twilio: NSObject {
     var sentInvitations : [TWCOutgoingInvite] = []
     
     // RX
-    private var disposeBag = DisposeBag()
-    private var userChangeBag = DisposeBag?()
+    fileprivate var disposeBag = DisposeBag()
+    fileprivate var userChangeBag = DisposeBag?()
     
     // MARK: - Lifecycle
     
@@ -50,8 +50,8 @@ final class Twilio: NSObject {
         
         connectIfNeeded()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(connectIfNeeded), name: UIApplicationWillEnterForegroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(disconnect), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(connectIfNeeded), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disconnect), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         
         subsribeForUserChange()
     }
@@ -60,15 +60,15 @@ final class Twilio: NSObject {
     deinit {
         userChangeBag = nil
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
     
     // MARK: - Public
     
     func connectIfNeeded() {
         switch account.loginState {
-        case .Logged(_)?, .Page(_)?:
+        case .logged(_)?, .page(_)?:
             retriveToken()
         default:
             disconnect()
@@ -89,7 +89,7 @@ final class Twilio: NSObject {
         self.retryScheduler.resetAttemptsCount()
     }
     
-    func makeCallTo(profile: Profile, media: TWCLocalMedia) -> Observable<TWCConversation> {
+    func makeCallTo(_ profile: Profile, media: TWCLocalMedia) -> Observable<TWCConversation> {
         return APIChatsService.twilioVideoIdentity(profile.username)
             .flatMap { (identity) -> Observable<TWCConversation> in
                 return self
@@ -124,7 +124,7 @@ final class Twilio: NSObject {
         }
     }
     
-    private func inviteWithTwilioIdentity(identity: TwilioIdentity, media: TWCLocalMedia) -> Observable<TWCConversation> {
+    fileprivate func inviteWithTwilioIdentity(_ identity: TwilioIdentity, media: TWCLocalMedia) -> Observable<TWCConversation> {
         
         return Observable.create{[unowned self] (observer) -> Disposable in
             let params = VideoCallParams(identity: identity.identity, missed: false)
@@ -154,7 +154,7 @@ final class Twilio: NSObject {
 
 private extension Twilio {
     
-    @objc private func retriveToken() {
+    @objc func retriveToken() {
         
         if connecting || retryScheduler.waitingForNextRetryAttempt {
             return
@@ -168,7 +168,7 @@ private extension Twilio {
             self?.connecting = false
             
             switch event {
-            case .Next(let authData):
+            case .next(let authData):
                 self?.authData = authData
             case .Error(_):
                 break
@@ -177,7 +177,7 @@ private extension Twilio {
             }.addDisposableTo(disposeBag)
     }
     
-    private func createTwilioClient() {
+    func createTwilioClient() {
         guard let authData = authData else {
             return
         }
@@ -187,7 +187,7 @@ private extension Twilio {
         self.client?.listen()
     }
     
-    private func subsribeForUserChange() {
+    func subsribeForUserChange() {
         // release previous subscripitons
         let bag = DisposeBag()
         
@@ -198,7 +198,7 @@ private extension Twilio {
             .observeOn(MainScheduler.instance)
             .subscribeNext { [weak self] (loginchanged) in
                 guard let `self` = self else { return }
-                self.performSelector(#selector(self.connectIfNeeded), withObject: nil, afterDelay: 2.0)
+                self.perform(#selector(self.connectIfNeeded), with: nil, afterDelay: 2.0)
             }
             .addDisposableTo(bag)
     }
@@ -206,17 +206,17 @@ private extension Twilio {
 
 private extension Twilio {
     
-    private class RetryScheduler {
+    class RetryScheduler {
         
-        private(set) var waitingForNextRetryAttempt = false
-        let callback: Void -> Void
-        private let numberOfRetries = 3
-        private let retriesInterval: NSTimeInterval = 30
+        fileprivate(set) var waitingForNextRetryAttempt = false
+        let callback: (Void) -> Void
+        fileprivate let numberOfRetries = 3
+        fileprivate let retriesInterval: TimeInterval = 30
         
-        private var numberOfRetriesLeft = 3
-        private var retryTimer: NSTimer?
+        fileprivate var numberOfRetriesLeft = 3
+        fileprivate var retryTimer: Timer?
         
-        init(callback: (Void -> Void)) {
+        init(callback: @escaping ((Void) -> Void)) {
             self.callback = callback
         }
         
@@ -235,10 +235,10 @@ private extension Twilio {
             invalidateRetryTimer()
         }
         
-        private func scheduleRetry() {
+        fileprivate func scheduleRetry() {
             guard retryTimer == nil else { return }
             waitingForNextRetryAttempt = true
-            retryTimer = NSTimer.scheduledTimerWithTimeInterval(retriesInterval, target: self, selector: #selector(handleRetryTimerDidFinishCountdown), userInfo: nil, repeats: false)
+            retryTimer = Timer.scheduledTimer(timeInterval: retriesInterval, target: self, selector: #selector(handleRetryTimerDidFinishCountdown), userInfo: nil, repeats: false)
         }
         
         @objc func handleRetryTimerDidFinishCountdown() {
@@ -246,7 +246,7 @@ private extension Twilio {
             callback()
         }
         
-        private func invalidateRetryTimer() {
+        fileprivate func invalidateRetryTimer() {
             waitingForNextRetryAttempt = false
             retryTimer?.invalidate()
             retryTimer = nil
@@ -257,22 +257,22 @@ private extension Twilio {
 // Conversations Client Delegate
 extension Twilio: TwilioConversationsClientDelegate {
     
-    func conversationsClientDidStartListeningForInvites(conversationsClient: TwilioConversationsClient) {
+    func conversationsClientDidStartListeningForInvites(_ conversationsClient: TwilioConversationsClient) {
         retryScheduler.resetAttemptsCount()
     }
     
-    func conversationsClient(conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
+    func conversationsClient(_ conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
     }
     
-    func conversationsClient(conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
-        let notification = NSNotification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
-        NSNotificationCenter.defaultCenter().postNotification(notification)
+    func conversationsClient(_ conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
+        let notification = Foundation.Notification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
+        NotificationCenter.defaultCenter().postNotification(notification)
     }
     
-    func conversationsClientDidStopListeningForInvites(conversationsClient: TwilioConversationsClient, error: NSError?) {
+    func conversationsClientDidStopListeningForInvites(_ conversationsClient: TwilioConversationsClient, error: NSError?) {
     }
     
-    func conversationsClient(conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {
+    func conversationsClient(_ conversationsClient: TwilioConversationsClient, didFailToStartListeningWithError error: NSError) {
         if error.code == 100 {
             retryScheduler.retry()
         }
@@ -282,11 +282,11 @@ extension Twilio: TwilioConversationsClientDelegate {
 // Access Manager
 extension Twilio: TwilioAccessManagerDelegate {
     
-    func accessManagerTokenExpired(accessManager: TwilioAccessManager!) {
+    func accessManagerTokenExpired(_ accessManager: TwilioAccessManager!) {
         retryScheduler.retry()
     }
     
-    func accessManager(accessManager: TwilioAccessManager!, error: NSError!) {
+    func accessManager(_ accessManager: TwilioAccessManager!, error: NSError!) {
         fatalError(error.localizedDescription)
     }
 }

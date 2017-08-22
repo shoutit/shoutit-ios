@@ -9,7 +9,7 @@
 import Foundation
 
 extension Array {
-    public func each(@noescape each: (Element) -> ()){
+    public func each(_ each: (Element) -> ()){
         for object: Element in self {
             each(object)
         }
@@ -23,25 +23,25 @@ extension Array where Element: Equatable {
         }
     }
     
-    public mutating func removeElementIfExists(element: Element) {
+    public mutating func removeElementIfExists(_ element: Element) {
         var indexToRemove: Int?
-        for (index, value) in self.enumerate() {
+        for (index, value) in self.enumerated() {
             if element == value {
                 indexToRemove = index
                 break
             }
         }
         if let index = indexToRemove {
-            self.removeAtIndex(index)
+            self.remove(at: index)
         }
     }
 }
 
-public extension SequenceType {
+public extension Sequence {
     
     /// Categorises elements of self into a dictionary, with the keys given by keyFunc
-    public func categorise<U : Hashable>(@noescape keyFunc: Generator.Element -> U) -> [U:[Generator.Element]] {
-        var dict: [U:[Generator.Element]] = [:]
+    public func categorise<U : Hashable>(_ keyFunc: (Iterator.Element) -> U) -> [U:[Iterator.Element]] {
+        var dict: [U:[Iterator.Element]] = [:]
         for el in self {
             let key = keyFunc(el)
             if case nil = dict[key]?.append(el) { dict[key] = [el] }

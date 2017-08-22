@@ -15,7 +15,7 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     let viewModel = DiscoverPreviewViewModel()
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     var items : [DiscoverItem] = []
     
@@ -27,7 +27,7 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         setupCollectionView()
     }
     
-    private func setupCollectionView() {
+    fileprivate func setupCollectionView() {
         
         guard let collection = self.collectionView else { return }
         
@@ -38,11 +38,11 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         }
         
         if #available(iOS 9.0, *) {
-            collectionView?.semanticContentAttribute = .ForceLeftToRight
+            collectionView?.semanticContentAttribute = .forceLeftToRight
         }
         
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft {
-            collectionView?.transform = CGAffineTransformMakeScale(-1, 1)
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
+            collectionView?.transform = CGAffineTransform(scaleX: -1, y: 1)
         }
         
         viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
@@ -72,15 +72,15 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
     
     // MARK: UICollectionViewDataSource
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.item == indexForSeeAll() {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DiscoverPreviewCellSeeAll", forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverPreviewCellSeeAll", for: indexPath)
             cell.transform = collectionView.transform
             return cell
         }
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(viewModel.cellReuseIdentifier(), forIndexPath: indexPath) as! DiscoverItemCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: viewModel.cellReuseIdentifier(), for: indexPath) as! DiscoverItemCell
         cell.transform = collectionView.transform
         
         let element = items[indexPath.item]
@@ -89,11 +89,11 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (items.count > 0) ? items.count + 1 : 0
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 }

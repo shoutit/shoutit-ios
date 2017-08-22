@@ -22,7 +22,7 @@ final class ProfileTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        heightConstraint.constant = 1 / UIScreen.mainScreen().scale
+        heightConstraint.constant = 1 / UIScreen.main.scale
     }
     
     override func prepareForReuse() {

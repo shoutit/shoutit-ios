@@ -27,16 +27,16 @@ enum FacebookPermissions: String {
 }
 
 final class SHFBSDKLoginManager: FBSDKLoginManager {
-    @objc func applicationDidBecomeActive(application: UIApplication) {
+    @objc func applicationDidBecomeActive(_ application: UIApplication) {
         // override method to disable implicit login cancellation
     }
 }
 
 class FacebookManager {
     
-    private let account: Account
-    private let loginManager: SHFBSDKLoginManager
-    private let disposeBag = DisposeBag()
+    fileprivate let account: Account
+    fileprivate let loginManager: SHFBSDKLoginManager
+    fileprivate let disposeBag = DisposeBag()
     
     init(account: Account) {
         self.account = account
@@ -46,42 +46,42 @@ class FacebookManager {
 
 extension FacebookManager {
     
-    func hasPermissions(permissions: FacebookPermissions) -> Bool {
-        guard case .Some(.Logged(let user)) = account.loginState else { return false }
+    func hasPermissions(_ permissions: FacebookPermissions) -> Bool {
+        guard case .some(.logged(let user)) = account.loginState else { return false }
         guard let facebookAccount = user.linkedAccounts?.facebook else { return false }
-        guard let currentAccessToken = FBSDKAccessToken.currentAccessToken() else { return false }
+        guard let currentAccessToken = FBSDKAccessToken.current() else { return false }
         return facebookAccount.scopes.contains(permissions.rawValue) && currentAccessToken.hasGranted(permissions.rawValue)
     }
     
-    func checkExpiryDateWithProfile(profile: DetailedUserProfile) {
+    func checkExpiryDateWithProfile(_ profile: DetailedUserProfile) {
         guard let facebookAccount = profile.linkedAccounts?.facebook else { return }
         
-        if NSDate().timeIntervalSince1970 >= NSTimeInterval(facebookAccount.expiresAtEpoch) {
+        if Date().timeIntervalSince1970 >= TimeInterval(facebookAccount.expiresAtEpoch) {
             renewPermissions()
         }
     }
     
-    func requestReadPermissionsFromViewController(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<String> {
+    func requestReadPermissionsFromViewController(_ permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<String> {
         
         return Observable.create{[unowned self] (observer) -> Disposable in
             
             self.loginManager
-                .logInWithReadPermissions(permissions.map{$0.rawValue},
-                fromViewController: viewController) { (result, error) -> Void in
+                .logIn(withReadPermissions: permissions.map{$0.rawValue},
+                from: viewController) { (result, error) -> Void in
                     
                     switch (result, error) {
                     case let (_, e?):
                         observer.onError(e)
                     case let (r?, _):
                         if result.isCancelled {
-                            observer.onError(LocalError.Cancelled)
+                            observer.onError(LocalError.cancelled)
                         } else {
                             observer.onNext(r.token.tokenString)
                             observer.onCompleted()
                         }
                     default:
                         assertionFailure()
-                        observer.onError(LocalError.UnknownError)
+                        observer.onError(LocalError.unknownError)
                     }
             }
             
@@ -89,14 +89,14 @@ extension FacebookManager {
         }
     }
     
-    func linkWithReadPermissions(permissions: [FacebookPermissions] = FacebookPermissions.loginReadPermissions, viewController: UIViewController) -> Observable<Success> {
+    func linkWithReadPermissions(_ permissions: [FacebookPermissions] = FacebookPermissions.loginReadPermissions, viewController: UIViewController) -> Observable<Success> {
         return hasBasicReadPermissionsObservable()
             .flatMap{[unowned self] (hasReadPermissions) -> Observable<String> in
                 if !hasReadPermissions {
                     return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
                 }
                 
-                guard let currentAccessToken = FBSDKAccessToken.currentAccessToken(), token = currentAccessToken.tokenString else {
+                guard let currentAccessToken = FBSDKAccessToken.current(), let token = currentAccessToken.tokenString else {
                     return self.requestReadPermissionsFromViewController(FacebookPermissions.loginReadPermissions, viewController: viewController)
                 }
                 
@@ -104,15 +104,15 @@ extension FacebookManager {
             
             }
             .flatMap{ (token) in
-                return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))
+                return APIProfileService.linkSocialAccountWithParams(.facebook(token: token))
         }
     }
 
     func unlinkFacebookAccount() -> Observable<Success> {
-        return APIProfileService.unlinkSocialAccountWithParams(.Facebook(token: nil))
+        return APIProfileService.unlinkSocialAccountWithParams(.facebook(token: nil))
     }
     
-    func requestPublishPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Success> {
+    func requestPublishPermissions(_ permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Success> {
         
         return hasBasicReadPermissionsObservable()
             .flatMap{[unowned self] (hasReadPermissions) -> Observable<Void> in
@@ -129,18 +129,18 @@ extension FacebookManager {
                 return self.facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController)
             }
             .flatMap{ (token) in
-                return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))
+                return APIProfileService.linkSocialAccountWithParams(.facebook(token: token))
             }
     }
     
-    func requestManagePermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
+    func requestManagePermissions(_ permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Void> {
         
         return self.facebookPublishPermssionsObservableWithViewController(permissions, viewController: viewController).flatMap{ (token) in
                 return Observable.just(Void())
         }
     }
     
-    func extendUserReadPermissions(permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Success> {
+    func extendUserReadPermissions(_ permissions: [FacebookPermissions], viewController: UIViewController) -> Observable<Success> {
         return hasBasicReadPermissionsObservable()
             .flatMap{(hasBasicReadPermissions) -> Observable<[FacebookPermissions]> in
                 if hasBasicReadPermissions {
@@ -152,7 +152,7 @@ extension FacebookManager {
             .flatMap {[unowned self](composedPermissions) -> Observable<String> in
                 self.requestReadPermissionsFromViewController(composedPermissions, viewController: viewController)
             }
-            .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.Facebook(token: token))}
+            .flatMap{ (token) in return APIProfileService.linkSocialAccountWithParams(.facebook(token: token))}
     }
     
     
@@ -163,25 +163,25 @@ extension FacebookManager {
 
 private extension FacebookManager {
     
-    func facebookPublishPermssionsObservableWithViewController(permissions:[FacebookPermissions], viewController: UIViewController) -> Observable<String> {
+    func facebookPublishPermssionsObservableWithViewController(_ permissions:[FacebookPermissions], viewController: UIViewController) -> Observable<String> {
         
         return Observable.create{[unowned self] (observer) -> Disposable in
             self.loginManager
-                .logInWithPublishPermissions(permissions.map({$0.rawValue}), fromViewController: viewController) { (result, error) in
+                .logIn(withPublishPermissions: permissions.map({$0.rawValue}), from: viewController) { (result, error) in
                     
                     switch (result, error) {
                     case let (_, e?):
                         observer.onError(e)
                     case let (r?, _):
                         if result.isCancelled {
-                            observer.onError(LocalError.Cancelled)
+                            observer.onError(LocalError.cancelled)
                         } else {
                             observer.onNext(r.token.tokenString)
                             observer.onCompleted()
                         }
                     default:
                         assertionFailure()
-                        observer.onError(LocalError.UnknownError)
+                        observer.onError(LocalError.unknownError)
                     }
             }
             
@@ -202,9 +202,9 @@ private extension FacebookManager {
         
         FBSDKAccessToken.refreshCurrentAccessToken {[unowned self] (fbsdkgraphrequestconnection, result, error) in
             guard error == nil else { return }
-            guard let currentAccessToken = FBSDKAccessToken.currentAccessToken() else { return }
+            guard let currentAccessToken = FBSDKAccessToken.current() else { return }
             APIProfileService
-                .linkSocialAccountWithParams(.Facebook(token: currentAccessToken.tokenString))
+                .linkSocialAccountWithParams(.facebook(token: currentAccessToken.tokenString))
                 .subscribe{(_) in }
                 .addDisposableTo(self.disposeBag)
         }

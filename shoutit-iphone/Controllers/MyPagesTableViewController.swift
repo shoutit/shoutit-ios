@@ -14,7 +14,7 @@ import ShoutitKit
 class MyPagesTableViewController: UITableViewController {
     
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
-        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        let view = Bundle.main.loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)?[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
         return view
     }()
@@ -25,9 +25,9 @@ class MyPagesTableViewController: UITableViewController {
         }
     }
     weak var flowDelegate: FlowController?
-    private var cellConfigurator: MyPageCellConfigurator!
+    fileprivate var cellConfigurator: MyPageCellConfigurator!
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -46,34 +46,34 @@ class MyPagesTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.pager.refreshContent()
     }
     
     // MARK: - Setup
     
-    private func registerReusables() {
+    fileprivate func registerReusables() {
         tableView.register(MyPageTableViewCell.self)
     }
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel.pager.state
             .asObservable()
             .subscribeNext {[weak self] (state) in
                 switch state {
-                case .Idle:
+                case .idle:
                     break
-                case .Loading:
+                case .loading:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showActivity()
-                case .Loaded, .LoadedAllContent, .LoadingMore, .Refreshing:
+                case .loaded, .loadedAllContent, .loadingMore, .refreshing:
                     self?.tableView.tableHeaderView = nil
-                case .NoContent:
+                case .noContent:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showMessage(NSLocalizedString("You have no pages", comment: "My pages empty placeholder text"))
-                case .Error(let error):
+                case .error(let error):
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                 }
@@ -84,16 +84,16 @@ class MyPagesTableViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let models = viewModel.pager.getCellViewModels() else { return 0 }
         return models.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cells = viewModel.pager.getCellViewModels() else { preconditionFailure() }
         let cell: MyPageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let cellModel = cells[indexPath.row]
@@ -103,18 +103,18 @@ class MyPagesTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         guard let cells = viewModel.pager.getCellViewModels() else { assertionFailure(); return; }
         let cellViewModel = cells[indexPath.row]
         showActionSheetForPage(cellViewModel.profile)
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height - 50 {
             viewModel.pager.fetchNextPage()
         }
@@ -123,51 +123,51 @@ class MyPagesTableViewController: UITableViewController {
 
 private extension MyPagesTableViewController {
     
-    func showActionSheetForPage(page: Profile) {
+    func showActionSheetForPage(_ page: Profile) {
         let viewPageString = NSLocalizedString("View Page", comment: "My pages acttion sheet option")
         let useAsPageString = NSLocalizedString("Use Shoutit as this Page", comment: "My pages acttion sheet option")
         let editPageString = NSLocalizedString("Edit Page", comment: "My pages acttion sheet option")
         
-        let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        let viewPageOption = UIAlertAction(title: viewPageString, style: .Default) { [weak self] (_) in
+        let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let viewPageOption = UIAlertAction(title: viewPageString, style: .default) { [weak self] (_) in
             self?.viewPage(page)
         }
-        let useAsPageOption = UIAlertAction(title: useAsPageString, style: .Default) { [weak self] (_) in
+        let useAsPageOption = UIAlertAction(title: useAsPageString, style: .default) { [weak self] (_) in
             self?.useShoutitAsPage(page)
         }
-        let editPageOption = UIAlertAction(title: editPageString, style: .Default) { [weak self] (_) in
+        let editPageOption = UIAlertAction(title: editPageString, style: .default) { [weak self] (_) in
             self?.editPage(page)
         }
-        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil)
         
         actionSheetController.addAction(viewPageOption)
         actionSheetController.addAction(useAsPageOption)
         actionSheetController.addAction(editPageOption)
         actionSheetController.addAction(cancelAction)
         
-        presentViewController(actionSheetController, animated: true, completion: nil)
+        present(actionSheetController, animated: true, completion: nil)
     }
     
-    func viewPage(page: Profile) {
+    func viewPage(_ page: Profile) {
         flowDelegate?.showPage(page)
     }
     
-    func useShoutitAsPage(page: Profile) {
+    func useShoutitAsPage(_ page: Profile) {
         showProgressHUD()
         viewModel.fetchPage(page).observeOn(MainScheduler.instance).subscribe {[weak self] (event) in
             self?.hideProgressHUD()
             switch event {
-            case .Next(let detailedPage):
+            case .next(let detailedPage):
                 Account.sharedInstance.switchToPage(detailedPage)
             case .Error(let error):
                 self?.showError(error)
-            case .Completed:
+            case .completed:
                 return
             }
         }.addDisposableTo(disposeBag)
     }
     
-    func editPage(page: Profile) {
+    func editPage(_ page: Profile) {
         self.flowDelegate?.showEditPage(page)
         
     }

@@ -9,6 +9,30 @@
 import Foundation
 import Argo
 import Ogra
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 public struct DetailedUserProfile: DetailedProfile {
     
@@ -55,7 +79,7 @@ public struct DetailedUserProfile: DetailedProfile {
 
 extension DetailedUserProfile: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<DetailedUserProfile> {
+    public static func decode(_ j: JSON) -> Decoded<DetailedUserProfile> {
         let a =  curry(DetailedUserProfile.init)
             <^> j <| "id"
             <*> j <| "type"
@@ -106,7 +130,7 @@ extension DetailedUserProfile: Decodable {
 extension DetailedUserProfile: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "id" : self.id.encode(),
             "type" : self.type.encode(),
             "api_url" : self.apiPath.encode(),
@@ -147,11 +171,11 @@ extension DetailedUserProfile: Encodable {
 
 
 extension DetailedUserProfile {
-    public func updatedProfileWithStats(stts: ProfileStats?) -> DetailedUserProfile {
+    public func updatedProfileWithStats(_ stts: ProfileStats?) -> DetailedUserProfile {
         return DetailedUserProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: self.isListening, listenersCount: self.listenersCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, conversation: self.conversation, stats: stts, birthday: self.birthday)
     }
     
-    public func updatedProfileWithNewListnersCount(lstCount: Int, isListening: Bool? = nil) -> DetailedUserProfile {
+    public func updatedProfileWithNewListnersCount(_ lstCount: Int, isListening: Bool? = nil) -> DetailedUserProfile {
         return DetailedUserProfile(id: self.id, type: self.type, apiPath: self.apiPath, webPath: self.webPath, username: self.username, name: self.name, firstName: self.firstName, lastName: self.lastName, isActivated: self.isActivated, imagePath: self.imagePath, coverPath: self.coverPath, isListening: isListening != nil ? isListening : self.isListening, listenersCount: lstCount, gender: self.gender, video: self.video, dateJoinedEpoch: self.dateJoinedEpoch, bio: self.bio, about: self.about, location: self.location, email: self.email, mobile: self.mobile, website: self.website, linkedAccounts: self.linkedAccounts, pushTokens: self.pushTokens, isPasswordSet: self.isPasswordSet, isListener: self.isListener, shoutsPath: self.shoutsPath, listenersPath: self.listenersPath, listeningMetadata: self.listeningMetadata, listeningPath: self.listeningPath, isOwner: self.isOwner, chatPath: self.chatPath, conversation: self.conversation, stats: self.stats, birthday: self.birthday)
     }
 }

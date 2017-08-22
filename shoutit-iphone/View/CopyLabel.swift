@@ -20,20 +20,20 @@ class CopyLabel: ResponsiveLabel {
         sharedInit()
     }
     
-    func showMenu(sender: AnyObject?) {
+    func showMenu(_ sender: AnyObject?) {
         becomeFirstResponder()
-        let menu = UIMenuController.sharedMenuController()
-        if !menu.menuVisible {
+        let menu = UIMenuController.shared
+        if !menu.isMenuVisible {
             menu.setTargetRect(bounds, inView: self)
             menu.setMenuVisible(true, animated: true)
         }
     }
     
     
-    override func copy(sender: AnyObject?) {
-        let board = UIPasteboard.generalPasteboard()
+    override func copy(_ sender: AnyObject?) {
+        let board = UIPasteboard.general
         board.string = text
-        let menu = UIMenuController.sharedMenuController()
+        let menu = UIMenuController.shared
         menu.setMenuVisible(false, animated: true)
     }
     
@@ -41,7 +41,7 @@ class CopyLabel: ResponsiveLabel {
         return true
     }
     
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+    override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
         if action == #selector(NSObject.copy(_:)) {
             return true
         }

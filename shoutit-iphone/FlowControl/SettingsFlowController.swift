@@ -13,11 +13,11 @@ import ShoutitKit
 
 class SettingsOption {
     let name: String
-    let action: (SettingsOption -> Void)
+    let action: ((SettingsOption) -> Void)
     var detail: String?
-    var refresh: (SettingsOption -> Void)?
+    var refresh: ((SettingsOption) -> Void)?
     
-    init(name: String, action: (SettingsOption -> Void), detail: String? = nil) {
+    init(name: String, action: @escaping ((SettingsOption) -> Void), detail: String? = nil) {
         self.name = name
         self.action = action
         self.detail = detail
@@ -33,50 +33,50 @@ final class SettingsFlowController: FlowController {
         // create initial view controller
         let controller = Wireframe.settingsViewController()
         controller.models = self.settingsOptions()
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {
         return true
     }
     
-    private func showAccountSettings() {
+    fileprivate func showAccountSettings() {
         let controller = Wireframe.settingsViewController()
         controller.models = self.accountSettingsOptions()
         controller.title = NSLocalizedString("Account", comment: "")
         controller.ignoreMenuButton = true
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    private func showNotificationsSettings() {
-        if let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.sharedApplication().openURL(settingsURL)
+    fileprivate func showNotificationsSettings() {
+        if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.openURL(settingsURL)
         }
     }
     
-    private func showEmailSettings() {
+    fileprivate func showEmailSettings() {
         let controller = Wireframe.settingsFromViewController()
         controller.viewModel = ChangeEmailSettingsFormViewModel()
         controller.ignoreMenuButton = true
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    private func showPasswordSettings() {
+    fileprivate func showPasswordSettings() {
         let controller = Wireframe.settingsFromViewController()
         controller.viewModel = ChangePasswordSettingsFormViewModel()
         controller.ignoreMenuButton = true
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    private func showLinkedAccountsSettings() {
+    fileprivate func showLinkedAccountsSettings() {
         let controller = Wireframe.settingsViewController()
         controller.models = self.linkedAccountsOptions()
         controller.title = NSLocalizedString("Linked Accounts", comment: "")
         controller.ignoreMenuButton = true
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
-    private func settingsOptions() -> Variable<[SettingsOption]> {
+    fileprivate func settingsOptions() -> Variable<[SettingsOption]> {
         return Variable([
             SettingsOption(name: NSLocalizedString("Account", comment: "Settings cell title"), action: {[unowned self] (option) in
                 self.showAccountSettings()
@@ -90,7 +90,7 @@ final class SettingsFlowController: FlowController {
             ])
     }
     
-    private func accountSettingsOptions() -> Variable<[SettingsOption]> {
+    fileprivate func accountSettingsOptions() -> Variable<[SettingsOption]> {
         var options : [SettingsOption] = []
         
         
@@ -107,22 +107,22 @@ final class SettingsFlowController: FlowController {
                 
                 do {
                     try Account.sharedInstance.logout()
-                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.UserDidLogoutNotification, object: nil)
+                    NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Constants.Notification.UserDidLogoutNotification), object: nil)
                 } catch let error {
                     self.navigationController.showError(error)
                 }
         }))
         
-        if case .Logged(_)? = Account.sharedInstance.loginState {
+        if case .logged(_)? = Account.sharedInstance.loginState {
             options.insert(SettingsOption(name: NSLocalizedString("Password", comment: "Settings cell title"), action: {[unowned self] (option) in
                     self.showPasswordSettings()
-            }), atIndex: 1)
+            }), at: 1)
         }
         
         return Variable(options)
     }
     
-    private func linkedAccountsOptions() -> Variable<[SettingsOption]> {
+    fileprivate func linkedAccountsOptions() -> Variable<[SettingsOption]> {
         let facebookOption = SettingsOption(name: NSLocalizedString("Facebook", comment: "Settings cell title"), action: {[unowned self] (option) in
             let manager  = Account.sharedInstance.linkedAccountsManager
             
@@ -136,7 +136,7 @@ final class SettingsFlowController: FlowController {
                     manager.unlinkFacebook(controller, disposeBag: controller.disposeBag)
                 })
                 
-                self.navigationController.presentViewController(alert, animated: true, completion: nil)
+                self.navigationController.present(alert, animated: true, completion: nil)
             } else {
                 Account.sharedInstance.linkedAccountsManager.linkFacebook(controller, disposeBag: controller.disposeBag, option: option)
             }
@@ -155,7 +155,7 @@ final class SettingsFlowController: FlowController {
                     manager.unlinkGoogle(controller, disposeBag: controller.disposeBag, option: option)
                 })
                 
-                self.navigationController.presentViewController(alert, animated: true, completion: nil)
+                self.navigationController.present(alert, animated: true, completion: nil)
             } else {
                 manager.linkGoogle(controller, disposeBag: controller.disposeBag)
             }
@@ -174,7 +174,7 @@ final class SettingsFlowController: FlowController {
                     manager.unlinkFacebookPage(controller, disposeBag: controller.disposeBag)
                 })
                 
-                self.navigationController.presentViewController(alert, animated: true, completion: nil)
+                self.navigationController.present(alert, animated: true, completion: nil)
             } else {
                 manager.linkFacebookPage(controller, disposeBag: controller.disposeBag)
             }

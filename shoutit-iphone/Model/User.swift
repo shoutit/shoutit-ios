@@ -41,9 +41,9 @@ public enum UserType: String {
 
 extension UserType: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<UserType> {
+    public static func decode(_ j: JSON) -> Decoded<UserType> {
         switch j {
-        case .String(let string):
+        case .string(let string):
             if let userType = UserType(rawValue: string) {
                 return pure(userType)
             }
@@ -71,9 +71,9 @@ public enum Gender: String {
 
 extension Gender: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Gender> {
+    public static func decode(_ j: JSON) -> Decoded<Gender> {
         switch j {
-        case .String(let string):
+        case .string(let string):
             if let gender = Gender(rawValue: string) {
                 return pure(gender)
             }

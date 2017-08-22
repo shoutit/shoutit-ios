@@ -10,23 +10,23 @@ import UIKit
 
 final class BubbleView: UIView {
 
-    @IBInspectable var fillColor : UIColor! = UIColor.grayColor()
-    @IBInspectable var strokeColor : UIColor! = UIColor.lightGrayColor()
+    @IBInspectable var fillColor : UIColor! = UIColor.gray
+    @IBInspectable var strokeColor : UIColor! = UIColor.lightGray
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.contentMode = .Redraw
+        self.contentMode = .redraw
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
 
-        let rectangle : UIBezierPath = UIBezierPath(roundedRect: rect, byRoundingCorners: .AllCorners, cornerRadii: CGSize(width: 10, height: 10))
+        let rectangle : UIBezierPath = UIBezierPath(roundedRect: rect, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 10, height: 10))
         
         fillColor.setFill()
         strokeColor.setStroke()
 
-        rectangle.lineWidth = 1.0 / UIScreen.mainScreen().nativeScale
+        rectangle.lineWidth = 1.0 / UIScreen.main.nativeScale
         
         rectangle.fill()
         rectangle.stroke()

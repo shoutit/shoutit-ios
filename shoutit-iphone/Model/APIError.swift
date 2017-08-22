@@ -19,7 +19,7 @@ public struct APIError {
 
 extension APIError: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<APIError> {
+    public static func decode(_ j: JSON) -> Decoded<APIError> {
         let a = curry(APIError.init)
             <^> j <| "code"
             <*> j <| "message"
@@ -37,13 +37,13 @@ extension APIError: ShoutitError {
             return message
         }
         
-        guard var location = detailedError.location?.componentsSeparatedByString(".").last else {
+        guard var location = detailedError.location?.components(separatedBy: ".").last else {
             return detailedError.message
         }
         
         location = String(location.characters.map{$0 == "_" ? " " : $0})
         
-        return ("\(location.capitalizedString): \(detailedError.message)")
+        return ("\(location.capitalized): \(detailedError.message)")
     }
 }
 
@@ -56,7 +56,7 @@ public struct APIDetailedError {
 
 extension APIDetailedError: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<APIDetailedError> {
+    public static func decode(_ j: JSON) -> Decoded<APIDetailedError> {
         return curry(APIDetailedError.init)
             <^> j <|? "reason"
             <*> j <| "message"

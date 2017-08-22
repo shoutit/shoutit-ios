@@ -9,7 +9,7 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
     // shows 1 or two letter abbreviation for units.
     // does not include 'ago' text ... just {value}{unit-abbreviation}
@@ -17,33 +17,33 @@ extension NSDate {
     public var timeAgoSimple: String {
         let components = self.dateComponents()
         
-        if components.year > 0 {
+        if components.year! > 0 {
             return "\(components.year)yr"
         }
         
-        if components.month > 0 {
+        if components.month! > 0 {
             return "\(components.month)mo"
         }
         
         // TODO: localize for other calanders
-        if components.day >= 7 {
-            let value = components.day/7
+        if components.day! >= 7 {
+            let value = components.day!/7
             return "\(value)w"
         }
         
-        if components.day > 0 {
+        if components.day! > 0 {
             return "\(components.day)d"
         }
         
-        if components.hour > 0 {
+        if components.hour! > 0 {
             return "\(components.hour)h"
         }
         
-        if components.minute > 0 {
+        if components.minute! > 0 {
             return "\(components.minute)m"
         }
         
-        if components.second > 0 {
+        if components.second! > 0 {
             return "\(components.second)s"
         }
         
@@ -53,16 +53,16 @@ extension NSDate {
     public var timeAgo: String {
         let components = self.dateComponents()
         
-        if components.year > 0 {
-            if components.year < 2 {
+        if components.year! > 0 {
+            if components.year! < 2 {
                 return "Last year"
             } else {
                 return "\(components.year) years ago"
             }
         }
         
-        if components.month > 0 {
-            if components.month < 2 {
+        if components.month! > 0 {
+            if components.month! < 2 {
                 return "Last month"
             } else {
                 return "\(components.month) months ago"
@@ -70,8 +70,8 @@ extension NSDate {
         }
         
         // TODO: localize for other calanders
-        if components.day >= 7 {
-            let week = components.day/7
+        if components.day! >= 7 {
+            let week = components.day!/7
             if week < 2 {
                 return "Last week"
             } else {
@@ -79,32 +79,32 @@ extension NSDate {
             }
         }
         
-        if components.day > 0 {
-            if components.day < 2 {
+        if components.day! > 0 {
+            if components.day! < 2 {
                 return "Yesterday"
             } else  {
                 return "\(components.day) days ago"
             }
         }
         
-        if components.hour > 0 {
-            if components.hour < 2 {
+        if components.hour! > 0 {
+            if components.hour! < 2 {
                 return "An hour ago"
             } else {
                 return "\(components.hour) hours ago"
             }
         }
         
-        if components.minute > 0 {
-            if components.minute < 2 {
+        if components.minute! > 0 {
+            if components.minute! < 2 {
                 return "A minute ago"
             } else {
                 return "\(components.minute) minutes ago"
             }
         }
         
-        if components.second > 0 {
-            if components.second < 5 {
+        if components.second! > 0 {
+            if components.second! < 5 {
                 return "Just now"
             } else {
                 return "\(components.second) seconds ago"
@@ -114,9 +114,9 @@ extension NSDate {
         return ""
     }
     
-    private func dateComponents() -> NSDateComponents {
-        let calander = NSCalendar.currentCalendar()
-        return calander.components([.Second, .Minute, .Hour, .Day, .Month, .Year], fromDate: self, toDate: NSDate(), options: [])
+    fileprivate func dateComponents() -> DateComponents {
+        let calander = Calendar.current
+        return (calander as NSCalendar).components([.second, .minute, .hour, .day, .month, .year], from: self, to: Date(), options: [])
     }
     
 }

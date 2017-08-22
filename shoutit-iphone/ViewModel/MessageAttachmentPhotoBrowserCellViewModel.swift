@@ -14,7 +14,7 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
     
     var attachment: MessageAttachment? {
         didSet {
-            if case .Some(.VideoAttachment(let video)) = attachment?.type() {
+            if case .some(.videoAttachment(let video)) = attachment?.type() {
                 isVideo = true
                 if isThumbnail {
                     loadUnderlyingImageAndNotify()
@@ -29,17 +29,17 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
     }
     var underlyingImage: UIImage?
     var isVideo: Bool
-    private var webImageOperation: SDWebImageOperation?
-    private var videoURLLoadedBlock: (NSURL -> Void)?
-    private let isThumbnail: Bool
-    private var loadingInProgress = false
-    private unowned let parent: MessageAttachmentPhotoBrowserViewModel
+    fileprivate var webImageOperation: SDWebImageOperation?
+    fileprivate var videoURLLoadedBlock: ((URL) -> Void)?
+    fileprivate let isThumbnail: Bool
+    fileprivate var loadingInProgress = false
+    fileprivate unowned let parent: MessageAttachmentPhotoBrowserViewModel
     
     init(attachment: MessageAttachment?, isThumbnail: Bool, parent: MessageAttachmentPhotoBrowserViewModel) {
         self.parent = parent
         self.attachment = attachment
         self.isThumbnail = isThumbnail
-        if case .VideoAttachment(_)? = attachment?.type() {
+        if case .videoAttachment(_)? = attachment?.type() {
             self.isVideo = true
         } else {
             self.isVideo = false
@@ -71,27 +71,27 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
         }
         
         let path: String
-        if case .ImageAttachment(let p)? = attachment.type() {
+        if case .imageAttachment(let p)? = attachment.type() {
             path = p
-        } else if case .VideoAttachment(let video)? = attachment.type() {
+        } else if case .videoAttachment(let video)? = attachment.type() {
             path = video.thumbnailPath
         } else {
             loadingInProgress = false
             return
         }
         
-        SDWebImageManager.sharedManager()
-            .downloadImageWithURL(path.toURL(), options: [], progress: {[weak self] (receivedSize, expectedSize) in
+        SDWebImageManager.shared()
+            .downloadImage(with: path.toURL() as! URL, options: [], progress: {[weak self] (receivedSize, expectedSize) in
                 guard let `self` = self else { return }
                 if (expectedSize > 0) {
                     let progress = Float(receivedSize) / Float(expectedSize)
-                    let dict = NSDictionary(objects: [NSNumber(float: progress), self], forKeys: ["progress", "photo"])
-                    NSNotificationCenter.defaultCenter().postNotificationName(MWPHOTO_PROGRESS_NOTIFICATION, object: dict)
+                    let dict = NSDictionary(objects: [NSNumber(value: progress as Float), self], forKeys: ["progress" as NSCopying, "photo" as NSCopying])
+                    NotificationCenter.defaultCenter().postNotificationName(MWPHOTO_PROGRESS_NOTIFICATION, object: dict)
                 }
             }) {[weak self] (image, error, cacheType, finished, imageURL) in
                 self?.webImageOperation = nil
                 self?.underlyingImage = image
-                dispatch_async(dispatch_get_main_queue(), { 
+                DispatchQueue.main.async(execute: { 
                     self?.imageLoadingComplete()
                 })
         }
@@ -102,12 +102,12 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
         underlyingImage = nil
     }
     
-    func getVideoURL(completion: ((NSURL!) -> Void)!) {
+    func getVideoURL(_ completion: ((URL?) -> Void)!) {
         guard let attachment = attachment else {
             videoURLLoadedBlock = completion
             return
         }
-        if case .Some(.VideoAttachment(let video)) = attachment.type() {
+        if case .some(.videoAttachment(let video)) = attachment.type() {
             completion(video.path.toURL())
         }
     }
@@ -125,8 +125,8 @@ private extension MessageAttachmentPhotoBrowserCellViewModel {
     }
     
     func postCompleteNotification() {
-        dispatch_async(dispatch_get_main_queue()) { 
-            NSNotificationCenter.defaultCenter().postNotificationName(MWPHOTO_LOADING_DID_END_NOTIFICATION, object: self)
+        DispatchQueue.main.async { 
+            NotificationCenter.defaultCenter().postNotificationName(MWPHOTO_LOADING_DID_END_NOTIFICATION, object: self)
         }
     }
 }

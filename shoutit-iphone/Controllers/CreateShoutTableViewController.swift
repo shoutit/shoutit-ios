@@ -14,9 +14,9 @@ import ShoutitKit
 
 class CreateShoutTableViewController: UITableViewController {
 
-    private let headerReuseIdentifier = "CreateShoutSectionHeaderReuseIdentifier"
+    fileprivate let headerReuseIdentifier = "CreateShoutSectionHeaderReuseIdentifier"
     let disposeBag = DisposeBag()
-    private let facebookTappedSubject: PublishSubject<Void> = PublishSubject()
+    fileprivate let facebookTappedSubject: PublishSubject<Void> = PublishSubject()
     
     var type : ShoutitKit.ShoutType!
     
@@ -35,10 +35,10 @@ class CreateShoutTableViewController: UITableViewController {
         setupRX()
         
         tableView.allowsSelection = true
-        self.tableView.registerNib(UINib(nibName: "SectionHeaderWithDetailsButton", bundle: nil), forHeaderFooterViewReuseIdentifier: "SectionHeaderWithDetailsButton")
+        self.tableView.register(UINib(nibName: "SectionHeaderWithDetailsButton", bundle: nil), forHeaderFooterViewReuseIdentifier: "SectionHeaderWithDetailsButton")
     }
     
-    private func setupAppearance() {
+    fileprivate func setupAppearance() {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
     }
     
@@ -48,7 +48,7 @@ class CreateShoutTableViewController: UITableViewController {
     
     // RX
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         viewModel.detailsSectionViewModel.currencies
             .asDriver()
@@ -69,7 +69,7 @@ class CreateShoutTableViewController: UITableViewController {
         Observable.of(categoriesObserver, reloadObserver)
             .merge()
             .subscribeNext {[weak self] in
-                self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                self?.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             }
             .addDisposableTo(disposeBag)
         
@@ -117,20 +117,20 @@ class CreateShoutTableViewController: UITableViewController {
     
     // MARK: Media Selection
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let imagesController = segue.destinationViewController as? SelectShoutImagesController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let imagesController = segue.destination as? SelectShoutImagesController {
             self.imagesController = imagesController
             imagesController.mediaPicker
                 .presentingSubject
                 .observeOn(MainScheduler.instance).subscribeNext{[weak self] (controllerToShow) in
                     if let controllerToShow = controllerToShow {
-                        self?.navigationController?.presentViewController(controllerToShow, animated: true, completion: nil)
+                        self?.navigationController?.present(controllerToShow, animated: true, completion: nil)
                     }
                 }
                 .addDisposableTo(disposeBag)
         }
         
-        if let descriptionViewController = segue.destinationViewController as? ShoutDescriptionViewController {
+        if let descriptionViewController = segue.destination as? ShoutDescriptionViewController {
             descriptionViewController.initialText = self.viewModel.shoutParams.text.value
             descriptionViewController.completionSubject.asObservable().subscribeNext({ (description) in
                 self.viewModel.shoutParams.text.value = description
@@ -141,9 +141,9 @@ class CreateShoutTableViewController: UITableViewController {
 
     // MARK: Select Currency
     
-    @IBAction func selectCurrency(sender: UIButton) {
+    @IBAction func selectCurrency(_ sender: UIButton) {
         let actionSheetController = viewModel.currenciesActionSheet(nil)
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
+        self.present(actionSheetController, animated: true, completion: nil)
     }
 }
 
@@ -151,64 +151,64 @@ class CreateShoutTableViewController: UITableViewController {
 
 extension CreateShoutTableViewController {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sectionViewModels.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.sectionViewModels[section].cellViewModels.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         switch cellViewModel {
-        case .Category:
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellCategory", forIndexPath: indexPath) as! CreateShoutSelectCell
+        case .category:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutCellCategory", for: indexPath) as! CreateShoutSelectCell
             viewModel.fillCategoryCell(cell)
             cell.selectButton
-                .rx_controlEvent(.TouchUpInside)
+                .rx_controlEvent(.touchUpInside)
                 .asDriver()
                 .driveNext{ [weak self] () -> Void in
                     let actionSheetController = self?.viewModel.categoriesActionSheet({ (alertAction) -> Void in
                         self?.tableView.reloadData()
                     })
-                    self?.presentViewController(actionSheetController!, animated: true, completion: nil)
+                    self?.present(actionSheetController!, animated: true, completion: nil)
                 }
                 .addDisposableTo(cell.reuseDisposeBag)
             
             return cell
-        case .Description:
-            let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell", forIndexPath: indexPath) as! CreateShoutDescriptionTableViewCell
+        case .description:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as! CreateShoutDescriptionTableViewCell
             cell.textLabel?.text = NSLocalizedString("Description", comment: "Create Shout Description Button Title")
             
             cell.detailTextLabel?.text = self.viewModel.shoutParams.text.value
             
-            cell.selectionStyle = .None
+            cell.selectionStyle = .none
             
             return cell
-        case .FilterChoice(let filter):
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellOption", forIndexPath: indexPath) as! CreateShoutSelectCell
+        case .filterChoice(let filter):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutCellOption", for: indexPath) as! CreateShoutSelectCell
             viewModel.fillFilterCell(cell, withFilter: filter)
             cell.selectButton
-                .rx_controlEvent(.TouchUpInside)
+                .rx_controlEvent(.touchUpInside)
                 .asDriver()
                 .driveNext{ [weak self] () -> Void in
                     guard let actionSheetController = self?.viewModel.filterActionSheet(forFilter: filter, handler: { (alertAction) -> Void in
-                        self?.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }) else {
                         return
                     }
                     
-                    self?.presentViewController(actionSheetController, animated: true, completion: nil)
+                    self?.present(actionSheetController, animated: true, completion: nil)
                 }
                 .addDisposableTo(cell.reuseDisposeBag)
             return cell
-        case .Location:
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutCellLocation", forIndexPath: indexPath) as! CreateShoutSelectCell
+        case .location:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutCellLocation", for: indexPath) as! CreateShoutSelectCell
             viewModel.fillLocationCell(cell)
             cell.selectButton
-                .rx_controlEvent(.TouchUpInside)
+                .rx_controlEvent(.touchUpInside)
                 .asDriver()
                 .driveNext({ [weak self] () -> Void in
                     
@@ -219,13 +219,13 @@ extension CreateShoutTableViewController {
                         self?.tableView.reloadData()
                     }
                     
-                    self?.navigationController?.showViewController(controller, sender: nil)
+                    self?.navigationController?.show(controller, sender: nil)
                     
                     })
                 .addDisposableTo(cell.reuseDisposeBag)
             return cell
-        case .Mobile:
-            let cell = tableView.dequeueReusableCellWithIdentifier("createShoutCellMobile", forIndexPath: indexPath) as! CreateShoutMobileCell
+        case .mobile:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "createShoutCellMobile", for: indexPath) as! CreateShoutMobileCell
             cell.mobileTextField
                 .rx_text
                 .flatMap{ (text) -> Observable<String?> in
@@ -240,8 +240,8 @@ extension CreateShoutTableViewController {
                 }
             }
             return cell
-        case .Facebook:
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreateShoutSelectableCell", forIndexPath: indexPath) as! CreateShoutSelectableCell
+        case .facebook:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutSelectableCell", for: indexPath) as! CreateShoutSelectableCell
             cell.selectionTitleLabel.text = NSLocalizedString("Facebook", comment: "Facebook cell title on sharing options in create shout view")
             cell.setBorders(cellIsFirst: true, cellIsLast: true)
             viewModel
@@ -256,7 +256,7 @@ extension CreateShoutTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.sectionViewModels[section].title
     }
 }
@@ -265,7 +265,7 @@ extension CreateShoutTableViewController {
 
 extension CreateShoutTableViewController {
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
             return viewModel.detailsSectionViewModel.hideFilters ? 0 : 40
@@ -274,66 +274,66 @@ extension CreateShoutTableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.5
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         switch cellViewModel {
-        case .Mobile: return 80
-        case .Description: return 60.0
-        case .Facebook: return 70.0
+        case .mobile: return 80
+        case .description: return 60.0
+        case .facebook: return 70.0
         default: return 70
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
         
-        if case .Description = cellViewModel {
+        if case .description = cellViewModel {
             showDescriptionViewController()
         }
         
-        guard case .Facebook = cellViewModel else { return }
+        guard case .facebook = cellViewModel else { return }
         facebookTappedSubject.onNext()
     }
     
     func showDescriptionViewController() {
-        self.performSegueWithIdentifier("shoutDescription", sender: nil)
+        self.performSegue(withIdentifier: "shoutDescription", sender: nil)
     }
     
     
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let sectionHeader = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("SectionHeaderWithDetailsButton") as? SectionHeaderWithDetailsButton {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let sectionHeader = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeaderWithDetailsButton") as? SectionHeaderWithDetailsButton {
             sectionHeader.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-            sectionHeader.infoButton.hidden = section != 2
+            sectionHeader.infoButton.isHidden = section != 2
             sectionHeader.infoButton.tag = section
-            sectionHeader.infoButton.addTarget(self, action: #selector(showSharingAlert), forControlEvents: .TouchUpInside)
+            sectionHeader.infoButton.addTarget(self, action: #selector(showSharingAlert), for: .touchUpInside)
             return sectionHeader
         }
         
         return nil
     }
     
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let cellViewModel = viewModel.sectionViewModels[indexPath.section].cellViewModels[indexPath.row]
-        if case .Facebook = cellViewModel {
+        if case .facebook = cellViewModel {
             return true
         }
-        if case .Description = cellViewModel {
+        if case .description = cellViewModel {
             return true
         }
         return false
     }
     
     func showSharingAlert() {
-        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Create Shout Share Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Create Shout Share Alert Message"), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Earn Shoutit Credit", comment: "Create Shout Share Alert Title"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Create Shout Share Alert Message"), preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .Default, handler: { (alertaction) in
+        alert.addAction(UIAlertAction(title: LocalizedString.ok, style: .default, handler: { (alertaction) in
         }))
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
 }

@@ -16,8 +16,8 @@ class EditPageTableViewController: UITableViewController {
 
     
     enum UploadType {
-        case Cover
-        case Avatar
+        case cover
+        case avatar
     }
     
     var viewModel: EditPageTableViewModel! {
@@ -29,14 +29,14 @@ class EditPageTableViewController: UITableViewController {
     }
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // UI
     @IBOutlet weak var headerView: EditPageTableViewHeaderView!
     @IBOutlet weak var cancelBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
-    weak private var dateField : UITextField?
+    weak fileprivate var dateField : UITextField?
     
     // children
     lazy var mediaPickerController: MediaPickerController = {[unowned self] in
@@ -62,7 +62,7 @@ class EditPageTableViewController: UITableViewController {
         // setup photos
         fillHeader()
         
-        self.tableView.keyboardDismissMode = .OnDrag
+        self.tableView.keyboardDismissMode = .onDrag
         self.tableView.estimatedRowHeight = 80.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -79,14 +79,14 @@ class EditPageTableViewController: UITableViewController {
     }
     
     func loadDetailedProfile() {
-        self.tableView.userInteractionEnabled = false
+        self.tableView.isUserInteractionEnabled = false
         self.showProgressHUD()
         
         self.viewModel.fetchPageProfile()?.subscribe({ [weak self] (event) in
-            self?.tableView.userInteractionEnabled = true
+            self?.tableView.isUserInteractionEnabled = true
             self?.hideProgressHUD()
             switch event {
-                case .Next(let page):
+                case .next(let page):
                     Account.sharedInstance.switchToPage(page)
                     self?.viewModel = EditPageTableViewModel(page: page)
                     self?.tableView.reloadData()
@@ -100,13 +100,13 @@ class EditPageTableViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         cancelBarButtonItem
             .rx_tap
             .asDriver()
             .driveNext {[unowned self] in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
         
@@ -114,7 +114,7 @@ class EditPageTableViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext {[unowned self] in
-                self.uploadType = .Cover
+                self.uploadType = .cover
                 self.mediaPickerController.showMediaPickerController()
             }
             .addDisposableTo(disposeBag)
@@ -123,7 +123,7 @@ class EditPageTableViewController: UITableViewController {
             .rx_tap
             .asDriver()
             .driveNext {[unowned self] in
-                self.uploadType = .Avatar
+                self.uploadType = .avatar
                 self.mediaPickerController.showMediaPickerController()
             }
             .addDisposableTo(disposeBag)
@@ -135,16 +135,16 @@ class EditPageTableViewController: UITableViewController {
             }
             .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
                 switch status {
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
-                case .Progress(let show):
+                case .progress(let show):
                     if show {
-                        MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                        MBProgressHUD.showAdded(to: self?.view, animated: true)
                     } else {
-                        MBProgressHUD.hideAllHUDsForView(self?.view, animated: true)
+                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
                     }
-                case .Ready:
-                    self?.dismissViewControllerAnimated(true, completion: nil)
+                case .ready:
+                    self?.dismiss(animated: true, completion: nil)
                 }
             }
             .addDisposableTo(disposeBag)
@@ -155,27 +155,27 @@ class EditPageTableViewController: UITableViewController {
 
 extension EditPageTableViewController {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.cells.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellViewModel = viewModel.cells[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellViewModel.reuseIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.reuseIdentifier, for: indexPath)
         
         switch cellViewModel {
-        case .BasicText(let value, let placeholder, let identity):
+        case .basicText(let value, let placeholder, let identity):
             let cell = cell as! EditPageTextFieldTableViewCell
             cell.placeholderLabel.text = placeholder
             cell.textField.placeholder = nil
             cell.textField.text = value
             cell.textField.inputView = nil
-            if case .Phone = identity {
-                cell.textField.keyboardType = .PhonePad
+            if case .phone = identity {
+                cell.textField.keyboardType = .phonePad
             }
             cell.textField
                 .rx_text
@@ -185,7 +185,7 @@ extension EditPageTableViewController {
                 }
                 .addDisposableTo(cell.disposeBag)
             
-        case .RichText(let value, let placeholder, _):
+        case .richText(let value, let placeholder, _):
             let cell = cell as! EditPageTextViewTableViewCell
             
             cell.setContent(value)
@@ -200,13 +200,13 @@ extension EditPageTableViewController {
                     self.tableView.endUpdates()
                 }
                 .addDisposableTo(cell.disposeBag)
-        case .Switch(let value, let placeholder, _):
+        case .switch(let value, let placeholder, _):
                 let cell = cell as! EditPageSwitchTableViewCell
-                cell.switchButton.on = value
+                cell.switchButton.isOn = value
                 cell.placeholderLabel.text = placeholder
             
-                cell.switchButton.rx_controlEvent(.ValueChanged).asDriver().driveNext({ (x) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: cell.switchButton.on)
+                cell.switchButton.rx_controlEvent(.valueChanged).asDriver().driveNext({ (x) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: cell.switchButton.isOn)
                 }).addDisposableTo(cell.disposeBag)
         default:
             return cell
@@ -221,7 +221,7 @@ extension EditPageTableViewController {
 
 extension EditPageTableViewController {
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
         
 //        let cellViewModel = viewModel.cells[indexPath.row]
@@ -236,15 +236,15 @@ extension EditPageTableViewController {
 
 extension EditPageTableViewController: MediaPickerControllerDelegate {
     
-    func attachmentSelected(attachment: MediaAttachment, mediaPicker: MediaPickerController) {
+    func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         
         guard let uploadType = uploadType else { return }
         
-        let task = uploadType == .Cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)
-        let progressType: EditPageTableViewHeaderView.ProgressType = uploadType == .Avatar ? .Avatar : .Cover
-        let progressView = uploadType == .Avatar ? self.headerView.avatarUploadProgressView : self.headerView.coverUploadProgressView
-        let imageView = uploadType == .Cover ? self.headerView.coverImageView : self.headerView.avatarImageView
-        imageView.image = attachment.image
+        let task = uploadType == .cover ? viewModel.uploadCoverAttachment(attachment) : viewModel.uploadAvatarAttachment(attachment)
+        let progressType: EditPageTableViewHeaderView.ProgressType = uploadType == .avatar ? .avatar : .cover
+        let progressView = uploadType == .avatar ? self.headerView.avatarUploadProgressView : self.headerView.coverUploadProgressView
+        let imageView = uploadType == .cover ? self.headerView.coverImageView : self.headerView.avatarImageView
+        imageView?.image = attachment.image
         
         task.status
             .asDriver()
@@ -266,7 +266,7 @@ extension EditPageTableViewController: MediaPickerControllerDelegate {
 
 extension EditPageTableViewController: UITextViewDelegate {
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return textView.text.utf16.count < viewModel.charactersLimit || text.utf16.count == 0
     }
 }

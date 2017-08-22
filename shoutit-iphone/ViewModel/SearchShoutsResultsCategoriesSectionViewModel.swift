@@ -15,7 +15,7 @@ extension SearchShoutsResultsViewModel {
         
         unowned var parent: SearchShoutsResultsViewModel
         
-        private(set) var state: Variable<PagedViewModelState<SearchShoutsResultsCategoryCellViewModel, Int, ShoutitKit.Category>> = Variable(.Idle)
+        fileprivate(set) var state: Variable<PagedViewModelState<SearchShoutsResultsCategoryCellViewModel, Int, ShoutitKit.Category>> = Variable(.idle)
         
         init(parent: SearchShoutsResultsViewModel) {
             self.parent = parent

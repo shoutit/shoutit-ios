@@ -9,12 +9,12 @@
 import Foundation
 
 protocol StaticPageDisplayable {
-    func showStaticPage(url: NSURL, title: String?) -> Void
+    func showStaticPage(_ url: URL, title: String?) -> Void
 }
 
 extension FlowController : StaticPageDisplayable {
     
-    func showStaticPage(url: NSURL, title: String?) -> Void {
+    func showStaticPage(_ url: URL, title: String?) -> Void {
         let controller = Wireframe.staticPageViewController()
     
         controller.urlToLoad = url
@@ -22,7 +22,7 @@ extension FlowController : StaticPageDisplayable {
         controller.titleToShow = title
         
         let nav = ModalNavigationController(rootViewController: controller)
-        navigationController.presentViewController(nav, animated: true, completion: nil)
+        navigationController.present(nav, animated: true, completion: nil)
         
     }
 }

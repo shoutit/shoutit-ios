@@ -13,21 +13,21 @@ final class ModalNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
-        self.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationBar.barTintColor = UIColor(shoutitColor: .primaryGreen)
+        self.navigationBar.tintColor = UIColor.white
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }
 
 extension ModalNavigationController: UINavigationControllerDelegate {
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
         
         if viewController !== self.viewControllers[0] {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: #selector(UIViewController.pop))
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .plain, target: viewController, action: #selector(UIViewController.pop))
         }
     }
 }

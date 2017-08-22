@@ -13,7 +13,7 @@ import RxSwift
 final class SettingsTableViewController: UITableViewController {
     
     // consts
-    private let cellReuseID = "SettingsTableViewCell"
+    fileprivate let cellReuseID = "SettingsTableViewCell"
     
     // model
     var models: Variable<[SettingsOption]>!
@@ -34,7 +34,7 @@ final class SettingsTableViewController: UITableViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         Account.sharedInstance.userSubject.subscribeNext{ (user) in
             for option in self.models.value {
@@ -53,9 +53,9 @@ final class SettingsTableViewController: UITableViewController {
                 cell.subtitleLabel?.text = option.detail
                 let isLastCell = self?.models.value.count == row + 1
                 cell.separatorMarginConstraint.constant = isLastCell ? 0.0 : 10.0
-                cell.separatorHeightConstraint.constant = isLastCell ? 1.0 : 1.0 / UIScreen.mainScreen().scale
-                cell.separatorView.backgroundColor = isLastCell ? UIColor(shoutitColor: .SeparatorGray) : UIColor.blackColor().colorWithAlphaComponent(0.12)
-                cell.selectionStyle = .None
+                cell.separatorHeightConstraint.constant = isLastCell ? 1.0 : 1.0 / UIScreen.main.scale
+                cell.separatorView.backgroundColor = isLastCell ? UIColor(shoutitColor: .separatorGray) : UIColor.black.withAlphaComponent(0.12)
+                cell.selectionStyle = .none
             }
             .addDisposableTo(disposeBag)
         
@@ -69,7 +69,7 @@ final class SettingsTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
@@ -77,7 +77,7 @@ final class SettingsTableViewController: UITableViewController {
         return ignoreMenuButton
     }
     
-    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return .None
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
     }
 }

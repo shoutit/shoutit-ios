@@ -27,7 +27,7 @@ final class LoginFlowController: FlowController {
         let controller = Wireframe.introViewController()
         controller.viewModel = IntroViewModel()
         controller.flowDelegate = self
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }
 
@@ -40,8 +40,8 @@ extension LoginFlowController  {
         let controller = Wireframe.loginMethodChoiceViewController()
         controller.viewModel = LoginMethodChoiceViewModel()
         controller.flowDelegate = self
-        controller.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: controller, action: #selector(LoginMethodChoiceViewController.dismiss))
-        navigationController.showViewController(controller, sender: nil)
+        controller.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: controller, action: #selector(LoginMethodChoiceViewController.dismiss))
+        navigationController.show(controller, sender: nil)
     }
 }
 

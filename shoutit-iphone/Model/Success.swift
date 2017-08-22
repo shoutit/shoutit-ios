@@ -19,7 +19,7 @@ public struct Success {
 }
 
 extension Success: Decodable {
-    public static func decode(j: JSON) -> Decoded<Success> {
+    public static func decode(_ j: JSON) -> Decoded<Success> {
         return curry(Success.init)
             <^> j <| "success"
     }

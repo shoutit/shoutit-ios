@@ -18,7 +18,7 @@ final class FilterLocationChoiceWrapperViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     // RX
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -29,9 +29,9 @@ final class FilterLocationChoiceWrapperViewController: UIViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-        if let locationController = segue.destinationViewController as? SelectShoutLocationViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let locationController = segue.destination as? SelectShoutLocationViewController {
             locationController.finishedBlock = {[weak self](success, address) in
                 self?.finishedBlock?(success, address)
                 self?.pop()
@@ -41,7 +41,7 @@ final class FilterLocationChoiceWrapperViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         backButton
             .rx_tap
             .asDriver()

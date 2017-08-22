@@ -15,15 +15,15 @@ class MessageAttachmentPhotoBrowserViewModel: NSObject {
     let pageSize = 20
     let conversation: ShoutitKit.Conversation
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
-    private(set) var requestDisposeBag: DisposeBag = DisposeBag()
-    private(set) var state: Variable<PagedViewModelState<MessageAttachment, Int, MessageAttachment>> = Variable(.Idle)
-    private(set) var cellViewModels: [MessageAttachmentPhotoBrowserCellViewModel]?
-    private(set) var thumbnailCellViewModels: [MessageAttachmentPhotoBrowserCellViewModel]?
-    private(set) var numberOfResults: Int? {
+    fileprivate(set) var requestDisposeBag: DisposeBag = DisposeBag()
+    fileprivate(set) var state: Variable<PagedViewModelState<MessageAttachment, Int, MessageAttachment>> = Variable(.idle)
+    fileprivate(set) var cellViewModels: [MessageAttachmentPhotoBrowserCellViewModel]?
+    fileprivate(set) var thumbnailCellViewModels: [MessageAttachmentPhotoBrowserCellViewModel]?
+    fileprivate(set) var numberOfResults: Int? {
         didSet {
-            guard let number = numberOfResults where oldValue == nil else { return }
+            guard let number = numberOfResults, oldValue == nil else { return }
             hydrateCellViewModelsArrayWithNumberOfItems(number)
             reloadSubject.onNext()
         }
@@ -36,33 +36,33 @@ class MessageAttachmentPhotoBrowserViewModel: NSObject {
     }
     
     func loadContent() {
-        state.value = .Loading
+        state.value = .loading
         fetchPage(1)
     }
     
     func fetchNextPage() {
-        if case .LoadedAllContent = state.value { return }
-        guard case .Loaded(let cells, let page, _) = state.value else { return }
+        if case .loadedAllContent = state.value { return }
+        guard case .loaded(let cells, let page, _) = state.value else { return }
         let pageToLoad = page + 1
-        self.state.value = .LoadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
+        self.state.value = .loadingMore(cells: cells, currentPage: page, loadingPage: pageToLoad)
         fetchPage(pageToLoad)
     }
 }
 
 private extension MessageAttachmentPhotoBrowserViewModel {
     
-    private func fetchPage(page: Int) {
+    func fetchPage(_ page: Int) {
         
         requestDisposeBag = DisposeBag()
         
         createFetchPageObservableForPage(page)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let results):
+                case .next(let results):
                     self?.appendItems(results, forPage: page)
                 case .Error(let error):
                     assert(false, error.sh_message)
-                    self?.state.value = .Error(error)
+                    self?.state.value = .error(error)
                 default:
                     break
                 }
@@ -70,11 +70,11 @@ private extension MessageAttachmentPhotoBrowserViewModel {
             .addDisposableTo(requestDisposeBag)
     }
     
-    private func createFetchPageObservableForPage(page: Int) -> Observable<PagedResults<MessageAttachment>> {
+    func createFetchPageObservableForPage(_ page: Int) -> Observable<PagedResults<MessageAttachment>> {
         return APIChatsService.getAttachmentsForConversationWithId(conversation.id, params: PageParams(page: page, pageSize: pageSize))
     }
     
-    private func appendItems(results: PagedResults<MessageAttachment>, forPage page: Int) {
+    func appendItems(_ results: PagedResults<MessageAttachment>, forPage page: Int) {
         
         defer {
             numberOfResults = results.count ?? numberOfResults
@@ -82,12 +82,12 @@ private extension MessageAttachmentPhotoBrowserViewModel {
         let items = results.results.filter{($0.images ?? []).count > 0 || ($0.videos ?? []).count > 0}
         let lastPageDidLoad = results.nextPath == nil
         
-        if case .LoadingMore(var cells, _, let loadingPage) = self.state.value where loadingPage == page {
+        if case .loadingMore(var cells, _, let loadingPage) = self.state.value, loadingPage == page {
             cells += items
             if lastPageDidLoad {
-                state.value = .LoadedAllContent(cells: cells, page: page)
+                state.value = .loadedAllContent(cells: cells, page: page)
             } else {
-                state.value = .Loaded(cells: cells, page: page, lastPageResults: results)
+                state.value = .loaded(cells: cells, page: page, lastPageResults: results)
             }
             return
         }
@@ -95,25 +95,25 @@ private extension MessageAttachmentPhotoBrowserViewModel {
         assert(page == 1)
         
         if items.count == 0 {
-            state.value = .NoContent
+            state.value = .noContent
             return
         }
         
         if lastPageDidLoad {
-            state.value = .LoadedAllContent(cells: items, page: page)
+            state.value = .loadedAllContent(cells: items, page: page)
         } else {
-            state.value = .Loaded(cells: items, page: page, lastPageResults: results)
+            state.value = .loaded(cells: items, page: page, lastPageResults: results)
         }
     }
     
-    private func observeLoadingState() {
+    func observeLoadingState() {
         
         state.asObservable()
             .subscribeNext {[weak self] (status) in
                 switch status {
-                case .Loaded(let attachments, _, _):
+                case .loaded(let attachments, _, _):
                     self?.refreshViewModelsWithAttachments(attachments)
-                case .LoadedAllContent(let attachments, _):
+                case .loadedAllContent(let attachments, _):
                     self?.refreshViewModelsWithAttachments(attachments)
                 default:
                     break
@@ -122,8 +122,8 @@ private extension MessageAttachmentPhotoBrowserViewModel {
             .addDisposableTo(disposeBag)
     }
     
-    private func refreshViewModelsWithAttachments(attachments: [MessageAttachment]) {
-        guard let cellViewModels = self.cellViewModels, thumbnailCellViewModels = self.thumbnailCellViewModels else { return }
+    func refreshViewModelsWithAttachments(_ attachments: [MessageAttachment]) {
+        guard let cellViewModels = self.cellViewModels, let thumbnailCellViewModels = self.thumbnailCellViewModels else { return }
         let zipped = zip(zip(attachments, cellViewModels), thumbnailCellViewModels).map {($0.0.0, $0.0.1, $0.1)}
         for (attachment, cellViewModel, thumbnailCellViewModel) in zipped {
             cellViewModel.attachment = attachment
@@ -134,11 +134,11 @@ private extension MessageAttachmentPhotoBrowserViewModel {
 
 private extension MessageAttachmentPhotoBrowserViewModel {
     
-    private func hydrateCellViewModelsArrayWithNumberOfItems(number: Int) {
+    func hydrateCellViewModelsArrayWithNumberOfItems(_ number: Int) {
         let models = state.value.getCellViewModels() ?? []
         let nilsToAppend = number - models.count
-        let nils = [MessageAttachment?](count: nilsToAppend, repeatedValue: nil)
-        let hydratedArray = models.map{Optional.Some($0)} + nils
+        let nils = [MessageAttachment?](repeating: nil, count: nilsToAppend)
+        let hydratedArray = models.map{Optional.some($0)} + nils
         cellViewModels = hydratedArray.map{MessageAttachmentPhotoBrowserCellViewModel(attachment: $0, isThumbnail: false, parent: self)}
         thumbnailCellViewModels = hydratedArray.map{MessageAttachmentPhotoBrowserCellViewModel(attachment: $0, isThumbnail: true, parent: self)}
     }
@@ -146,15 +146,15 @@ private extension MessageAttachmentPhotoBrowserViewModel {
 
 extension MessageAttachmentPhotoBrowserViewModel: MWPhotoBrowserDelegate {
     
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    func numberOfPhotosInPhotoBrowser(_ photoBrowser: MWPhotoBrowser!) -> UInt {
         return UInt(cellViewModels?.count ?? 0)
     }
     
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
         return cellViewModels?[Int(index)]
     }
     
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
         return thumbnailCellViewModels?[Int(index)]
     }
 }

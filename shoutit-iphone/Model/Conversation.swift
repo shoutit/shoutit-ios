@@ -31,7 +31,7 @@ public struct Conversation: ConversationInterface {
 
 extension Conversation: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<Conversation> {
+    public static func decode(_ j: JSON) -> Decoded<Conversation> {
         let a = curry(Conversation.init)
             <^> j <| "id"
             <*> j <|? "created_at"
@@ -74,7 +74,7 @@ public func ==(lhs: Conversation, rhs: Conversation) -> Bool {
 
 extension Conversation {
     
-    public func coParticipant(currentUserId: String?) -> Profile? {
+    public func coParticipant(_ currentUserId: String?) -> Profile? {
         var prof : Profile?
         self.users?.each({ (profile) -> () in
             if profile.value.id != currentUserId {
@@ -99,11 +99,11 @@ extension Conversation {
         }
         
         switch attachmentType {
-        case .LocationAttachment: return NSLocalizedString("Location", comment: "Last Message Text")
-        case .ImageAttachment: return NSLocalizedString("Image", comment: "Last Message Text")
-        case .VideoAttachment: return NSLocalizedString("Video", comment: "Last Message Text")
-        case .ShoutAttachment: return NSLocalizedString("Shout", comment: "Last Message Text")
-        case .ProfileAttachment: return NSLocalizedString("Profile", comment: "Last Message Text")
+        case .locationAttachment: return NSLocalizedString("Location", comment: "Last Message Text")
+        case .imageAttachment: return NSLocalizedString("Image", comment: "Last Message Text")
+        case .videoAttachment: return NSLocalizedString("Video", comment: "Last Message Text")
+        case .shoutAttachment: return NSLocalizedString("Shout", comment: "Last Message Text")
+        case .profileAttachment: return NSLocalizedString("Profile", comment: "Last Message Text")
         }
     }
 }
@@ -120,7 +120,7 @@ extension Conversation : Reportable {
 
 // Public Chats Helpers
 extension Conversation {
-    public func isAdmin(profileId: String?) -> Bool {
+    public func isAdmin(_ profileId: String?) -> Bool {
         guard let profileId = profileId else {
             return false
         }

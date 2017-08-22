@@ -13,15 +13,15 @@ import ShoutitKit
 
 final class PostSignupSuggestionViewModel {
     
-    private let disposeBag = DisposeBag()
-    let state: Variable<LoadingState> = Variable(.Idle)
+    fileprivate let disposeBag = DisposeBag()
+    let state: Variable<LoadingState> = Variable(.idle)
     
-    private(set) var usersSection: PostSignupSuggestionsSectionViewModel = PostSignupSuggestionsSectionViewModel(section: .Users, models:[])
-    private(set) var pagesSection: PostSignupSuggestionsSectionViewModel = PostSignupSuggestionsSectionViewModel(section: .Pages, models:[])
+    fileprivate(set) var usersSection: PostSignupSuggestionsSectionViewModel = PostSignupSuggestionsSectionViewModel(section: .users, models:[])
+    fileprivate(set) var pagesSection: PostSignupSuggestionsSectionViewModel = PostSignupSuggestionsSectionViewModel(section: .pages, models:[])
     
     func fetchSections() {
         
-        state.value = .Loading
+        state.value = .loading
         
         guard let location = Account.sharedInstance.user?.location else {
             return
@@ -32,17 +32,17 @@ final class PostSignupSuggestionViewModel {
             .requestSuggestionsWithParams(params)
             .subscribe { (event) in
                 switch event {
-                case .Next(let suggestions):
+                case .next(let suggestions):
                     if let users = suggestions.users {
                         self.usersSection.updateCellsWithModels(users.map{$0 as Suggestable})
                     }
                     if let pages = suggestions.pages {
                         self.pagesSection.updateCellsWithModels(pages.map{$0 as Suggestable})
                     }
-                    self.state.value = .ContentLoaded
+                    self.state.value = .contentLoaded
                 case .Error(let error):
-                    self.state.value = .Error(error)
-                case .Completed:
+                    self.state.value = .error(error)
+                case .completed:
                     break
                 }
             }

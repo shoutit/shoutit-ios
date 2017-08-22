@@ -11,17 +11,17 @@ import ShoutitKit
 
 enum FiltersCellViewModel {
     
-    case ShoutTypeChoice(shoutType: ShoutType?)
-    case SortTypeChoice(sortType: SortType?, loaded: (Void -> Bool))
-    case CategoryChoice(category: ShoutitKit.Category?, enabled: Bool, loaded: (Void -> Bool))
-    case PriceRestriction(from: Int?, to: Int?)
-    case LocationChoice(location: Address?)
-    case DistanceRestriction(distanceOption: FiltersState.DistanceRestriction)
-    case FilterValueChoice(filter: Filter, selectedValues: [FilterValue])
+    case shoutTypeChoice(shoutType: ShoutType?)
+    case sortTypeChoice(sortType: SortType?, loaded: ((Void) -> Bool))
+    case categoryChoice(category: ShoutitKit.Category?, enabled: Bool, loaded: ((Void) -> Bool))
+    case priceRestriction(from: Int?, to: Int?)
+    case locationChoice(location: Address?)
+    case distanceRestriction(distanceOption: FiltersState.DistanceRestriction)
+    case filterValueChoice(filter: Filter, selectedValues: [FilterValue])
     
     func buttonTitle() -> String? {
         switch self {
-        case .ShoutTypeChoice(let shoutType):
+        case .shoutTypeChoice(let shoutType):
             if let type = shoutType {
                 switch type {
                 case .Offer: return NSLocalizedString("Only Offers", comment: "Filter shout type")
@@ -29,29 +29,29 @@ enum FiltersCellViewModel {
                 }
             }
             return NSLocalizedString("Offers and Requests", comment: "Filter shout type")
-        case .SortTypeChoice(let sortType, _):
+        case .sortTypeChoice(let sortType, _):
             return sortType?.name
-        case .CategoryChoice(let category, _, _):
+        case .categoryChoice(let category, _, _):
             if let category = category {
                 return category.name
             }
             return NSLocalizedString("All Categories", comment: "Default category - filter button title")
-        case .PriceRestriction:
+        case .priceRestriction:
             return nil
-        case .LocationChoice(let location):
+        case .locationChoice(let location):
             if let location = location {
                 return location.address
             }
             return NSLocalizedString("Choose location", comment: "Displayed on filter button when no location is chosen")
-        case .DistanceRestriction(let distanceOption):
+        case .distanceRestriction(let distanceOption):
             switch distanceOption {
-            case .Distance(let kilometers):
+            case .distance(let kilometers):
                 return "\(kilometers) km"
-            case .EntireCountry:
+            case .entireCountry:
                 return NSLocalizedString("Entire country", comment: "Default Range Search")
             }
-        case .FilterValueChoice(_, let values):
-            return values.map{$0.name}.joinWithSeparator(", ")
+        case .filterValueChoice(_, let values):
+            return values.map{$0.name}.joined(separator: ", ")
         }
     }
 }

@@ -15,7 +15,7 @@ protocol ChatsListViewModel {
 
 extension ChatsListViewModel {
     
-    func handlePusherEvent(event: PTPusherEvent) {
+    func handlePusherEvent(_ event: PTPusherEvent) {
         
         guard event.eventType() == .NewMessage else { return }
         guard let _ : Message = event.object() else { return }

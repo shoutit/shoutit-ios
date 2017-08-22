@@ -60,7 +60,7 @@ public extension ContactProtocol {
     }
 }
 
-public class AddressBookRecordLabel {
+open class AddressBookRecordLabel {
 
     public enum LabelType: String {
         case Main = "LabelMain"
@@ -71,20 +71,20 @@ public class AddressBookRecordLabel {
         case PhoneMobile = "LabelPhoneMobile"
     }
 
-    public var label: String?
-    public var value: protocol<NSCopying, NSSecureCoding>
+    open var label: String?
+    open var value: NSCopying & NSSecureCoding
     
-    public init(label: String?, value: protocol<NSCopying, NSSecureCoding>) {
+    public init(label: String?, value: NSCopying & NSSecureCoding) {
         self.label = label
         self.value = value
     }
     
-    public init(label: LabelType, value: protocol<NSCopying, NSSecureCoding>) {
+    public init(label: LabelType, value: NSCopying & NSSecureCoding) {
         self.label = label.rawValue
         self.value = value
     }
     
-    internal class func convertLabel(mappings: [String:String], label: String?) -> String? {
+    internal class func convertLabel(_ mappings: [String:String], label: String?) -> String? {
         guard let label = label else {
             return nil
         }

@@ -12,7 +12,7 @@ final class CreateShoutButton: UIButton {
     
     override func awakeFromNib() {
         
-        if (UIApplication.sharedApplication().userInterfaceLayoutDirection == .RightToLeft) {
+        if (UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft) {
             self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -30.0, bottom: 0, right: 0.0)
         } else {
             self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -10.0)

@@ -14,119 +14,119 @@ import ShoutitKit
 
 final class APIProfileService {
     
-    static func searchProfileWithParams(params: SearchParams) -> Observable<PagedResults<Profile>> {
+    static func searchProfileWithParams(_ params: SearchParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url)
     }
     
-    static func listen(listen: Bool, toProfileWithUsername username: String) -> Observable<ListenSuccess> {
+    static func listen(_ listen: Bool, toProfileWithUsername username: String) -> Observable<ListenSuccess> {
         let url = APIManager.baseURL + "/profiles/\(username)/listen"
         let method: Alamofire.Method = listen ? .POST : .DELETE
-        return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .URL, headers: nil)
+        return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: .url, headers: nil)
     }
     
-    static func retrieveProfileWithUsername(username: String, additionalPageIdHeader: String? = nil) -> Observable<DetailedUserProfile> {
+    static func retrieveProfileWithUsername(_ username: String, additionalPageIdHeader: String? = nil) -> Observable<DetailedUserProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
         let headers: [String : String]? = additionalPageIdHeader != nil ? ["Authorization-Page-Id" : additionalPageIdHeader!] : nil
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: headers)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url, headers: headers)
     }
     
-    static func retrievePageProfileWithUsername(username: String, additionalPageIdHeader: String? = nil) -> Observable<DetailedPageProfile> {
+    static func retrievePageProfileWithUsername(_ username: String, additionalPageIdHeader: String? = nil) -> Observable<DetailedPageProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
         let headers: [String : String]? = additionalPageIdHeader != nil ? ["Authorization-Page-Id" : additionalPageIdHeader!] : nil
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL, headers: headers)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url, headers: headers)
     }
     
-    static func retrieveProfileWithTwilioUsername(twilio: String) -> Observable<Profile> {
+    static func retrieveProfileWithTwilioUsername(_ twilio: String) -> Observable<Profile> {
         let url = APIManager.baseURL + "/twilio/profile?identity=\(twilio)"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .URL)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url)
     }
     
-    static func editUserWithUsername(username: String, withParams params: EditProfileParams) -> Observable<DetailedUserProfile> {
+    static func editUserWithUsername(_ username: String, withParams params: EditProfileParams) -> Observable<DetailedUserProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .json)
     }
     
     
-    static func editPageWithUsername(username: String, withParams params: EditPageParams) -> Observable<DetailedPageProfile> {
+    static func editPageWithUsername(_ username: String, withParams params: EditPageParams) -> Observable<DetailedPageProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .json)
     }
     
     static func nullifyPushTokens() -> Observable<Void> {
         let url = APIManager.baseURL + "/profiles/me"
         let tokens = PushTokens(apns: nil, gcm: nil)
         let params = APNParams(tokens: tokens)
-        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .json)
     }
     
-    static func updateAPNsWithUsername<T: Decodable where T == T.DecodedType, T: User>(username: String, withParams params: APNParams) -> Observable<T> {
+    static func updateAPNsWithUsername<T: Decodable>(_ username: String, withParams params: APNParams) -> Observable<T> where T == T.DecodedType, T: User {
         let url = APIManager.baseURL + "/profiles/\(username)"
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .json)
     }
     
-    static func editEmailForUserWithUsername(username: String, withEmailParams params: EmailParams) -> Observable<DetailedUserProfile> {
+    static func editEmailForUserWithUsername(_ username: String, withEmailParams params: EmailParams) -> Observable<DetailedUserProfile> {
         let url = APIManager.baseURL + "/profiles/\(username)"
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .json)
     }
     
-    static func homeShoutsWithParams(params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
+    static func homeShoutsWithParams(_ params: FilteredShoutsParams) -> Observable<PagedResults<Shout>> {
         let url = APIManager.baseURL + "/profiles/me/home"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func getListeningProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
+    static func getListeningProfilesForUsername(_ username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles/\(username)/listening"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func getListenersProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
+    static func getListenersProfilesForUsername(_ username: String, params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles/\(username)/listeners"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func getInterestsProfilesForUsername(username: String, params: PageParams) -> Observable<PagedResults<Tag>> {
+    static func getInterestsProfilesForUsername(_ username: String, params: PageParams) -> Observable<PagedResults<Tag>> {
         let url = APIManager.baseURL + "/profiles/\(username)/interests"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func linkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<Success> {
+    static func linkSocialAccountWithParams(_ params: SocialAccountLinkParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/me/link"
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func unlinkSocialAccountWithParams(params: SocialAccountLinkParams) -> Observable<Success> {
+    static func unlinkSocialAccountWithParams(_ params: SocialAccountLinkParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/me/link"
-        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func unlinkFacebookPage(params: SocialAccountLinkParams) -> Observable<Success> {
+    static func unlinkFacebookPage(_ params: SocialAccountLinkParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/me/facebook_page"
-        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.DELETE, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func linkFacebookPage(params: SocialAccountLinkParams) -> Observable<Success> {
+    static func linkFacebookPage(_ params: SocialAccountLinkParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/profiles/me/facebook_page"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func getMutualProfiles(params: PageParams) -> Observable<PagedResults<Profile>> {
+    static func getMutualProfiles(_ params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles/me/mutual_friends"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func getMutualContacts(params: PageParams) -> Observable<PagedResults<Profile>> {
+    static func getMutualContacts(_ params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles/me/mutual_contacts"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
     }
     
-    static func updateProfileContacts(params: ContactsParams) -> Observable<Void> {
+    static func updateProfileContacts(_ params: ContactsParams) -> Observable<Void> {
         let url = APIManager.baseURL + "/profiles/me/contacts"
-        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .JSON, headers: ["Accept": "application/json"])
+        return APIGenericService.basicRequestWithMethod(.PATCH, url: url, params: params, encoding: .json, headers: ["Accept": "application/json"])
     }
     
-    static func getPagesForUsername(username: String, pageParams: PageParams) -> Observable<PagedResults<Profile>> {
+    static func getPagesForUsername(_ username: String, pageParams: PageParams) -> Observable<PagedResults<Profile>> {
         let url = APIManager.baseURL + "/profiles/\(username)/pages"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: pageParams, encoding: .URL, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.GET, url: url, params: pageParams, encoding: .url, headers: ["Accept": "application/json"])
     }
 }

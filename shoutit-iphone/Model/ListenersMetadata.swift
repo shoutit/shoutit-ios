@@ -24,7 +24,7 @@ public struct ListenersMetadata {
 
 extension ListenersMetadata: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<ListenersMetadata> {
+    public static func decode(_ j: JSON) -> Decoded<ListenersMetadata> {
         return curry(ListenersMetadata.init)
             <^> j <| "pages"
             <*> j <| "users"
@@ -35,7 +35,7 @@ extension ListenersMetadata: Decodable {
 extension ListenersMetadata: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "pages"    : self.pages.encode(),
             "users"  : self.users.encode(),
             "tags" : self.tags.encode(),

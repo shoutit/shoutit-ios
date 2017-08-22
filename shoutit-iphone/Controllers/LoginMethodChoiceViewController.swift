@@ -29,7 +29,7 @@ final class LoginMethodChoiceViewController: UIViewController {
     weak var flowDelegate: LoginFlowController?
     
     // rx
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -47,16 +47,16 @@ final class LoginMethodChoiceViewController: UIViewController {
     }
     
     override func dismiss() {
-        if let navigationController = self.navigationController where navigationController.viewControllers[0] !== self {
+        if let navigationController = self.navigationController, navigationController.viewControllers[0] !== self {
             pop()
         } else {
-            navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            navigationController?.dismiss(animated: true, completion: nil)
         }
     }
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         // user actions observers
         loginWithFacebookButton
@@ -117,9 +117,9 @@ final class LoginMethodChoiceViewController: UIViewController {
         
         viewModel.progressHUDSubject.subscribeNext{[weak self](show) in
             if show {
-                MBProgressHUD.showHUDAddedTo(self?.view, animated: true)
+                MBProgressHUD.showAdded(to: self?.view, animated: true)
             } else {
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
             }
         }.addDisposableTo(disposeBag)
     }
@@ -127,17 +127,17 @@ final class LoginMethodChoiceViewController: UIViewController {
 
 extension LoginMethodChoiceViewController: GIDSignInUIDelegate {
     
-    func signIn(signIn: GIDSignIn!,
+    func signIn(_ signIn: GIDSignIn!,
          presentViewController viewController: UIViewController!) {
         if let viewController = viewController as? UINavigationController {
-            viewController.navigationBar.tintColor = UIColor(shoutitColor: .PrimaryGreen)
-            viewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .PrimaryGreen)]
+            viewController.navigationBar.tintColor = UIColor(shoutitColor: .primaryGreen)
+            viewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .primaryGreen)]
         }
-        self.presentViewController(viewController, animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: nil)
     }
     
-    func signIn(signIn: GIDSignIn!,
+    func signIn(_ signIn: GIDSignIn!,
          dismissViewController viewController: UIViewController!) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -18,27 +18,27 @@ class PromotionOptionTableViewCell: UITableViewCell {
     @IBOutlet weak var creditsLabel: UILabel?
     @IBOutlet weak var daysLabelBackground: UIView?
   
-    func bindWithOption(option: PromotionOption) {
+    func bindWithOption(_ option: PromotionOption) {
         self.nameLabel?.text = option.name
         self.labelText?.text = option.label.name
         self.labelBackground?.backgroundColor = option.label.color()
         
         if let days = option.days {
             self.daysLabel?.text = "\(days) \(NSLocalizedString("days", comment: ""))"
-            self.daysLabel?.hidden = false
-            self.daysLabelBackground?.hidden = false
+            self.daysLabel?.isHidden = false
+            self.daysLabelBackground?.isHidden = false
         } else {
-            self.daysLabel?.hidden = true
-            self.daysLabelBackground?.hidden = true
+            self.daysLabel?.isHidden = true
+            self.daysLabelBackground?.isHidden = true
         }
         self.creditsLabel?.text = "\(option.credits) \(NSLocalizedString("Credits", comment: ""))"
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         
     }
     
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         
     }
 }

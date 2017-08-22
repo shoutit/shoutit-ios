@@ -13,7 +13,7 @@ import ShoutitKit
 
 class ConversationGroupWrapperViewController: UIViewController {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet weak var createPublicChatButton: UIButton!
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
@@ -31,7 +31,7 @@ class ConversationGroupWrapperViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setupRx() {
+    fileprivate func setupRx() {
         
         createPublicChatButton
             .rx_tap
@@ -42,15 +42,15 @@ class ConversationGroupWrapperViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func setupViews() {
+    fileprivate func setupViews() {
         disclosureIndicatorImageView.image = UIImage.rightGreenArrowDisclosureIndicator()
-        createPublicChatButton.contentHorizontalAlignment = Platform.isRTL ? .Right : .Left
+        createPublicChatButton.contentHorizontalAlignment = Platform.isRTL ? .right : .left
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let controller = segue.destinationViewController as? ConversationListTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? ConversationListTableViewController {
             controller.flowDelegate = self.flowDelegate
             controller.viewModel = PublicChatsListViewModel()
         }

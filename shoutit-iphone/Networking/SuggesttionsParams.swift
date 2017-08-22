@@ -28,17 +28,17 @@ public struct SuggestionsParams: Params {
     
     public var params: [String : AnyObject] {
         return [
-            "type" : type.parameters(),
-            "page_size" : pageSize,
-            "country" : country,
-            "state" : state,
-            "city" : city,
-            "page" : page
+            "type" : type.parameters() as AnyObject,
+            "page_size" : pageSize as AnyObject,
+            "country" : country as AnyObject,
+            "state" : state as AnyObject,
+            "city" : city as AnyObject,
+            "page" : page as AnyObject
         ]
     }
 }
 
-public struct SuggestionsTypes: OptionSetType {
+public struct SuggestionsTypes: OptionSet {
     
     public let rawValue: Int
     

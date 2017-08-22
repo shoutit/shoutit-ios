@@ -18,7 +18,7 @@ public struct LoginAccounts {
 
 extension LoginAccounts: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<LoginAccounts> {
+    public static func decode(_ j: JSON) -> Decoded<LoginAccounts> {
         return curry(LoginAccounts.init)
             <^> j <|? "facebook"
             <*> j <|? "gplus"
@@ -29,7 +29,7 @@ extension LoginAccounts: Decodable {
 extension LoginAccounts: Encodable {
     
     public func encode() -> JSON {
-        return JSON.Object([
+        return JSON.object([
             "facebook"  : self.facebook.encode(),
             "gplus"    : self.gplus.encode(),
             "facebook_page" : self.facebookPage.encode()

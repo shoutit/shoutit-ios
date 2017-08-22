@@ -20,19 +20,19 @@ final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
         if hideFilters {
             return internal_cellViewModels
         }
-        return internal_cellViewModels + filters.map{CreateShoutCellViewModel.FilterChoice(filter: $0)}
+        return internal_cellViewModels + filters.map{CreateShoutCellViewModel.filterChoice(filter: $0)}
     }
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let hideFilters: Bool
     
     // private
-    private var internal_cellViewModels: [CreateShoutCellViewModel]
-    private unowned var parent: CreateShoutViewModel
+    fileprivate var internal_cellViewModels: [CreateShoutCellViewModel]
+    fileprivate unowned var parent: CreateShoutViewModel
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     let categories : Variable<[ShoutitKit.Category]> = Variable([])
     let currencies : Variable<[Currency]> = Variable([])
-    private(set) var filters : [Filter] = []
+    fileprivate(set) var filters : [Filter] = []
     
     init(cellViewModels: [CreateShoutCellViewModel], parent: CreateShoutViewModel, hideFilters: Bool) {
         self.internal_cellViewModels = cellViewModels
@@ -41,7 +41,7 @@ final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
         fetchData()
     }
     
-    private func fetchData() {
+    fileprivate func fetchData() {
         fetchCategories()
         fetchCurrencies()
     }
@@ -49,7 +49,7 @@ final class CreateShoutDetailsSectionViewModel: CreateShoutSectionViewModel {
 
 extension CreateShoutDetailsSectionViewModel {
     
-    func setCategory(category: ShoutitKit.Category?) {
+    func setCategory(_ category: ShoutitKit.Category?) {
         
         parent.shoutParams.filters.value = [:]
         parent.shoutParams.category.value = category
@@ -60,7 +60,7 @@ extension CreateShoutDetailsSectionViewModel {
         }
         self.filters = filters
         
-        guard let shout = parent.shoutParams.shout, shoutFilters = shout.filters else { return }
+        guard let shout = parent.shoutParams.shout, let shoutFilters = shout.filters else { return }
         
         for filter in filters {
             for fl in shoutFilters {
@@ -103,7 +103,7 @@ private extension CreateShoutDetailsSectionViewModel {
         APIMiscService.requestCurrencies()
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let currencies):
+                case .next(let currencies):
                     self?.currencies.value = currencies
                     self?.fillCurrencyFromShout()
                 case .Error(let error):
@@ -119,7 +119,7 @@ private extension CreateShoutDetailsSectionViewModel {
         APIMiscService.requestCategories()
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let categories):
+                case .next(let categories):
                     self?.categories.value = categories
                     self?.fillCategoryFromShout()
                 case .Error(let error):

@@ -14,7 +14,7 @@ import MBProgressHUD
 final class PostSignupInterestsViewController: UIViewController {
     
     // consts
-    private let cellReuseID = "PostSignupCategoryTableViewCell"
+    fileprivate let cellReuseID = "PostSignupCategoryTableViewCell"
     
     // IB outlets
     @IBOutlet weak var tableView: UITableView! {
@@ -26,7 +26,7 @@ final class PostSignupInterestsViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     lazy var tableViewPlaceholder: TableViewPlaceholderView = {[unowned self] in
-        let view = NSBundle.mainBundle().loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)[0] as! TableViewPlaceholderView
+        let view = Bundle.main.loadNibNamed("TableViewPlaceholderView", owner: nil, options: nil)?[0] as! TableViewPlaceholderView
         view.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: self.tableView.bounds.height)
         return view
     }()
@@ -39,7 +39,7 @@ final class PostSignupInterestsViewController: UIViewController {
     weak var flowSimpleDelegate : FlowController?
     
     // Rx
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -51,35 +51,35 @@ final class PostSignupInterestsViewController: UIViewController {
         viewModel.fetchCategories()
         
         if self.flowSimpleDelegate != nil {
-            self.skipButton.hidden = true
+            self.skipButton.isHidden = true
         }
     }
     
     // MARK: - Setup
     
-    private func setupRX() {
+    fileprivate func setupRX() {
         
         // table view
         Observable
             .combineLatest(viewModel.state.asObservable(), viewModel.categories.asObservable()){($0, $1)}
             .filter {[weak self] (loadingState, cellViewModels) -> Bool in
                 switch loadingState {
-                case .Idle:
+                case .idle:
                     self?.tableView.tableHeaderView = nil
                     return false
-                case .Loading:
+                case .loading:
                     self?.tableViewPlaceholder.showActivity()
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
-                case .ContentUnavailable:
+                case .contentUnavailable:
                     self?.tableViewPlaceholder.showMessage(NSLocalizedString("Categories unavilable", comment: "Post signup 1 placeholder"))
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
-                case .Error(let error):
+                case .error(let error):
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     return false
-                case .ContentLoaded:
+                case .contentLoaded:
                     self?.tableView.tableHeaderView = nil
                     return true
                 }
@@ -87,10 +87,10 @@ final class PostSignupInterestsViewController: UIViewController {
             .map{$1}
             .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
                 cell.nameLabel.text = element.category.name
-                if let path = element.category.icon, url = path.toURL() {
+                if let path = element.category.icon, let url = path.toURL() {
                     cell.iconImageView.kf_setImageWithURL(url, placeholderImage: nil)
                 }
-                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
             }
             .addDisposableTo(disposeBag)
         
@@ -114,19 +114,19 @@ final class PostSignupInterestsViewController: UIViewController {
         let nextTap = nextButton.rx_tap
         nextTap
             .subscribeNext{[unowned self] in
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                MBProgressHUD.showAdded(to: self.view, animated: true)
             }
             .addDisposableTo(disposeBag)
         
         nextTap
             .flatMapLatest{self.viewModel.listenToSelectedCategories()}
             .subscribe{[weak self] (event) in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                MBProgressHUD.hide(for: self?.view, animated: true)
                 switch event {
-                case .Next:
+                case .next:
                     if let simpleFlow = self?.flowSimpleDelegate{
                         
-                        self?.dismissViewControllerAnimated(true, completion: {
+                        self?.dismiss(animated: true, completion: {
                             simpleFlow.presentSuggestions()
                         })
                         
@@ -142,11 +142,11 @@ final class PostSignupInterestsViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
     
-    private func setupAppearance() {
+    fileprivate func setupAppearance() {
         tableViewContainer.layer.cornerRadius = 10
-        tableViewContainer.layer.borderColor = UIColor.lightGrayColor().CGColor
+        tableViewContainer.layer.borderColor = UIColor.lightGray.cgColor
         tableViewContainer.layer.borderWidth = 0.5
-        tableViewContainer.layer.shadowColor = UIColor.grayColor().CGColor
+        tableViewContainer.layer.shadowColor = UIColor.gray.cgColor
         tableViewContainer.layer.shadowOpacity = 0.6
         tableViewContainer.layer.shadowRadius = 3.0
         tableViewContainer.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -165,8 +165,8 @@ extension PostSignupInterestsViewController {
 
 extension PostSignupInterestsViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return .None
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
     }
 }
 

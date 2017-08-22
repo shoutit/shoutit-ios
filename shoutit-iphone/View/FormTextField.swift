@@ -13,19 +13,19 @@ final class FormTextField: BorderedMaterialTextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.font = UIFont.systemFontOfSize(18.0)
+        self.font = UIFont.systemFont(ofSize: 18.0)
         self.textColor = MaterialColor.black
         
         self.titleLabel = UILabel()
-        self.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
+        self.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
         self.titleLabelColor = MaterialColor.grey.lighten1
-        self.titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
-        self.clearButtonMode = .WhileEditing
+        self.titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
+        self.clearButtonMode = .whileEditing
         
         self.detailLabel = UILabel()
-        self.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
+        self.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
         self.detailLabelActiveColor = MaterialColor.red.accent3
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
 }

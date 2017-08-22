@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol ShoutitError: ErrorType {
+public protocol ShoutitError: Error {
     var userMessage: String {get}
 }
 
-extension ErrorType {
+extension Error {
     public var sh_message: String {
         if let e = self as? ShoutitError {
             return e.userMessage

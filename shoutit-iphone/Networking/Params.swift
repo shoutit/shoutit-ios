@@ -21,8 +21,8 @@ public protocol PagedParams {
 extension PagedParams {
     public var pagedParams: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["page"] = page
-        p["page_size"] = pageSize
+        p["page"] = page as AnyObject
+        p["page_size"] = pageSize as AnyObject
         return p
     }
 }
@@ -34,7 +34,7 @@ public protocol LocalizedParams {
 extension LocalizedParams {
     public var localizedParams: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["country"] = country
+        p["country"] = country as AnyObject
         return p
 
     }

@@ -35,8 +35,8 @@ final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewC
     
     // MARK: - UIPageViewControllerDataSource
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         guard let controller = viewController as? PhotoBrowserPhotoViewController else {
             return nil
@@ -53,8 +53,8 @@ final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewC
         return nextController
     }
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let controller = viewController as? PhotoBrowserPhotoViewController else {
             return nil
@@ -73,7 +73,7 @@ final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewC
     
     // MARK: - UIPageViewControllerDelegate
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
         guard let controller = pageViewController as? PhotoBrowserPageViewController else {
             assert(false)
@@ -90,7 +90,7 @@ final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewC
     
     // MARK: - Helpers
     
-    private func viewControllerWithViewModel(viewModel: ShoutDetailShoutImageViewModel) -> PhotoBrowserPhotoViewController {
+    fileprivate func viewControllerWithViewModel(_ viewModel: ShoutDetailShoutImageViewModel) -> PhotoBrowserPhotoViewController {
         
         let viewController = Wireframe.photoBrowserPhotoViewController()
         viewController.viewModel = viewModel
@@ -101,7 +101,7 @@ final class ShoutDetailImagesPageViewControllerDataSource: NSObject, UIPageViewC
         return viewController
     }
     
-    func updatePageControlWithPageViewController(pageViewController: PhotoBrowserPageViewController, currentController: PhotoBrowserPhotoViewController?) {
+    func updatePageControlWithPageViewController(_ pageViewController: PhotoBrowserPageViewController, currentController: PhotoBrowserPhotoViewController?) {
         
         pageViewController.pageControl.numberOfPages = viewModel.imagesViewModels.count
         pageViewController.pageControl.currentPage = currentController?.index ?? 0

@@ -10,6 +10,6 @@ import Foundation
 
 
 enum SearchSuggestionCellViewModel {
-    case RecentSearch(phrase: String)
-    case APISuggestion(phrase: String)
+    case recentSearch(phrase: String)
+    case apiSuggestion(phrase: String)
 }

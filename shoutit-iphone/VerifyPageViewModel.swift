@@ -15,7 +15,7 @@ import ShoutitKit
 final class VerifyPageViewModel {
     typealias ResponseType = PageVerification
     
-    private(set) var page: DetailedPageProfile
+    fileprivate(set) var page: DetailedPageProfile
 
     var email: Variable<String>
     var contactPerson: Variable<String>
@@ -35,16 +35,16 @@ final class VerifyPageViewModel {
     }
     
     let successSubject: PublishSubject<ResponseType> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
+    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let updateVerificationSubject: PublishSubject<ResponseType> = PublishSubject()
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
-    private(set) var mediaUploadTasks: [MediaUploadingTask] = []
+    fileprivate(set) var mediaUploadTasks: [MediaUploadingTask] = []
     lazy var mediaUploader: MediaUploader = {
         //TODO Which bucket should we use?
-        return MediaUploader(bucket: .UserImage)
+        return MediaUploader(bucket: .userImage)
     }()
     
     
@@ -70,7 +70,7 @@ final class VerifyPageViewModel {
                 .subscribe {[weak self] event in
                     self?.progressSubject.onNext(false)
                     switch event {
-                    case .Next((let pageVerification)):
+                    case .next((let pageVerification)):
                         self?.successSubject.onNext(pageVerification)
                     case .Error(let error):
                         self?.errorSubject.onNext(error)
@@ -91,7 +91,7 @@ final class VerifyPageViewModel {
             .subscribe {[weak self] event in
                 self?.progressSubject.onNext(false)
                 switch event {
-                case .Next((let pageVerification)):
+                case .next((let pageVerification)):
                     self?.populateWithVerification(pageVerification)
                     self?.updateVerificationSubject.onNext(pageVerification)
                 case .Error(let error):
@@ -104,19 +104,19 @@ final class VerifyPageViewModel {
     
     
     
-    func uploadAttachment(attachment: MediaAttachment) -> MediaUploadingTask {
+    func uploadAttachment(_ attachment: MediaAttachment) -> MediaUploadingTask {
         let task = mediaUploader.uploadAttachment(attachment)
         mediaUploadTasks.append(task)
         return task
     }
     
-    private func contentReady() throws {
-        for task in mediaUploadTasks where task.status.value == .Uploading {
+    fileprivate func contentReady() throws {
+        for task in mediaUploadTasks where task.status.value == .uploading {
             throw LightError(userMessage: LocalizedString.Media.waitUntilUpload)
         }
     }
     
-    private func populateWithVerification(verification: PageVerification) {
+    fileprivate func populateWithVerification(_ verification: PageVerification) {
         self.email.value = verification.businessEmail
         self.contactPerson.value = verification.contactPerson
         self.contactNumber.value = verification.contactNumber
@@ -127,7 +127,7 @@ final class VerifyPageViewModel {
         }
     }
     
-    private func buildParams() -> PageVerificationParams {
+    fileprivate func buildParams() -> PageVerificationParams {
         let emailParam = email.value
         let contactPersonParam = contactPerson.value
         let contactNumberParam = contactNumber.value

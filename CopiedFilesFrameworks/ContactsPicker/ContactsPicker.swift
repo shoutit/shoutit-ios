@@ -10,23 +10,23 @@ import Foundation
 
 public protocol AddressBookProtocol {
     
-    func requestAccessToAddressBook( completion: (Bool, NSError?) -> Void )
+    func requestAccessToAddressBook( _ completion: (Bool, NSError?) -> Void )
 
     func retrieveAddressBookRecordsCount() throws -> Int
 
-    func addContactToAddressBook(contact: ContactProtocol) throws -> ContactProtocol
+    func addContactToAddressBook(_ contact: ContactProtocol) throws -> ContactProtocol
     
-    func updateContact(contact: ContactProtocol)
+    func updateContact(_ contact: ContactProtocol)
     
     func deleteAllContacts() throws
     
-    func deleteContactWithIdentifier(identifier: String?) throws
+    func deleteContactWithIdentifier(_ identifier: String?) throws
     
     func queryBuilder() -> AddressBookQueryBuilder
     
-    func findContactWithIdentifier(identifier: String?) -> ContactProtocol?
+    func findContactWithIdentifier(_ identifier: String?) -> ContactProtocol?
     
-    func findContactsMatchingName(name: String) throws -> [ContactProtocol]
+    func findContactsMatchingName(_ name: String) throws -> [ContactProtocol]
     
     func findAllContacts() throws -> [ContactProtocol]
 
@@ -37,9 +37,9 @@ public protocol AddressBookFactory {
     func createAddressBook() throws -> AddressBookProtocol
 }
 
-public class APIVersionAddressBookFactory : AddressBookFactory {
+open class APIVersionAddressBookFactory : AddressBookFactory {
     
-    public func createAddressBook() throws -> AddressBookProtocol {
+    open func createAddressBook() throws -> AddressBookProtocol {
 
         if #available(iOS 9.0, *) {
             return CNAddressBookImpl()
@@ -50,8 +50,8 @@ public class APIVersionAddressBookFactory : AddressBookFactory {
     }
 }
 
-public class AddressBook: AddressBookProtocol {
-    private var internalAddressBook: AddressBookProtocol!
+open class AddressBook: AddressBookProtocol {
+    fileprivate var internalAddressBook: AddressBookProtocol!
     
     public convenience init() throws {
         try self.init(factory: APIVersionAddressBookFactory())
@@ -61,47 +61,47 @@ public class AddressBook: AddressBookProtocol {
         internalAddressBook = try factory.createAddressBook()
     }
     
-    public func requestAccessToAddressBook(completion: (Bool, NSError?) -> Void) {
+    open func requestAccessToAddressBook(_ completion: (Bool, NSError?) -> Void) {
         internalAddressBook.requestAccessToAddressBook(completion)
     }
     
-    public func retrieveAddressBookRecordsCount() throws -> Int {
+    open func retrieveAddressBookRecordsCount() throws -> Int {
         return try internalAddressBook.retrieveAddressBookRecordsCount()
     }
     
-    public func addContactToAddressBook(contact: ContactProtocol) throws -> ContactProtocol {
+    open func addContactToAddressBook(_ contact: ContactProtocol) throws -> ContactProtocol {
         return try internalAddressBook.addContactToAddressBook(contact)
     }
     
-    public func updateContact(contact: ContactProtocol) {
+    open func updateContact(_ contact: ContactProtocol) {
         internalAddressBook.updateContact(contact)
     }
     
-    public func deleteContactWithIdentifier(identifier: String?) throws {
+    open func deleteContactWithIdentifier(_ identifier: String?) throws {
         try internalAddressBook.deleteContactWithIdentifier(identifier)
     }
     
-    public func deleteAllContacts() throws {
+    open func deleteAllContacts() throws {
         try internalAddressBook.deleteAllContacts()
     }
     
-    public func commitChangesToAddressBook() throws {
+    open func commitChangesToAddressBook() throws {
         try internalAddressBook.commitChangesToAddressBook()
     }
     
-    public func queryBuilder() -> AddressBookQueryBuilder {
+    open func queryBuilder() -> AddressBookQueryBuilder {
         return internalAddressBook.queryBuilder()
     }
     
-    public func findContactWithIdentifier(identifier: String?) -> ContactProtocol? {
+    open func findContactWithIdentifier(_ identifier: String?) -> ContactProtocol? {
         return internalAddressBook.findContactWithIdentifier(identifier)
     }
     
-    public func findAllContacts() throws -> [ContactProtocol] {
+    open func findAllContacts() throws -> [ContactProtocol] {
         return try internalAddressBook.findAllContacts()
     }
     
-    public func findContactsMatchingName(name: String) throws -> [ContactProtocol] {
+    open func findContactsMatchingName(_ name: String) throws -> [ContactProtocol] {
         return try internalAddressBook.findContactsMatchingName(name)
     }
 }

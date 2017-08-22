@@ -10,7 +10,7 @@ import Foundation
 import Argo
 
 
-public struct PagedResults<T: Decodable where T.DecodedType == T> {
+public struct PagedResults<T: Decodable> where T.DecodedType == T {
     public let count: Int?
     public let previousPath: String?
     public let nextPath: String?
@@ -26,7 +26,7 @@ public struct PagedResults<T: Decodable where T.DecodedType == T> {
 
 extension PagedResults: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<PagedResults<T>> {
+    public static func decode(_ j: JSON) -> Decoded<PagedResults<T>> {
         let a = curry(PagedResults<T>.init)
             <^> j <|? "count"
             <*> j <|? "previous"
@@ -52,10 +52,10 @@ extension PagedResults {
             return nil
         }
         
-        if let range : Range<String.Index> = next.rangeOfString("?before=") {
+        if let range : Range<String.Index> = next.range(of: "?before=") {
             
-            let paramsRange : Range<String.Index> = range.startIndex..<next.endIndex
-            let params = next.substringWithRange(paramsRange)
+            let paramsRange : Range<String.Index> = range.lowerBound..<next.endIndex
+            let params = next.substring(with: paramsRange)
             
             return params
         }

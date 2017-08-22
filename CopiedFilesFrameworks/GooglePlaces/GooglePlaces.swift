@@ -9,18 +9,18 @@
 import Foundation
 import Alamofire
 
-public class GooglePlaces: GoogleMapsService {
+open class GooglePlaces: GoogleMapsService {
     
-    public static let placeAutocompleteURLString = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
+    open static let placeAutocompleteURLString = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
     
-    public class func placeAutocomplete(forInput input: String,
+    open class func placeAutocomplete(forInput input: String,
         offset: Int? = nil,
         locationCoordinate: LocationCoordinate2D? = nil,
         radius: Int? = nil,
         language: String? = nil,
         types: [PlaceType]? = nil,
         components: String? = nil,
-        completion: ((response: PlaceAutocompleteResponse?, error: NSError?) -> Void)?)
+        completion: ((_ response: PlaceAutocompleteResponse?, _ error: NSError?) -> Void)?)
     {
         var requestParameters = baseRequestParameters + [
             "input" : input
@@ -43,7 +43,7 @@ public class GooglePlaces: GoogleMapsService {
         }
         
         if let types = types {
-            requestParameters["types"] = types.map { $0.rawValue }.joinWithSeparator("|")
+            requestParameters["types"] = types.map { $0.rawValue }.joined(separator: "|")
         }
         
         if let components = components {
@@ -79,13 +79,13 @@ public class GooglePlaces: GoogleMapsService {
             var error: NSError?
             
             switch response.status {
-            case .None:
+            case .none:
                 let userInfo = [
                     NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed"),
                     NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed")
                 ]
                 error = NSError(domain: "GooglePlacesError", code: -1, userInfo: userInfo)
-            case .Some(let status):
+            case .some(let status):
                 switch status {
                 case .OK:
                     break
@@ -112,7 +112,7 @@ extension GooglePlaces {
     
     public static let placeDetailsURLString = "https://maps.googleapis.com/maps/api/place/details/json"
     
-    public class func placeDetails(forPlaceID placeID: String, extensions: String? = nil, language: String? = nil, completion: ((response: PlaceDetailsResponse?, error: NSError?) -> Void)?) {
+    public class func placeDetails(forPlaceID placeID: String, extensions: String? = nil, language: String? = nil, completion: ((_ response: PlaceDetailsResponse?, _ error: NSError?) -> Void)?) {
         var requestParameters = baseRequestParameters + [
             "placeid" : placeID
         ]
@@ -154,13 +154,13 @@ extension GooglePlaces {
             var error: NSError?
             
             switch response.status {
-            case .None:
+            case .none:
                 let userInfo = [
                     NSLocalizedDescriptionKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed"),
                     NSLocalizedFailureReasonErrorKey : NSLocalizedString("StatusCodeError", value: "Status Code not found", comment: "Translation not Needed")
                 ]
                 error = NSError(domain: "GooglePlacesError", code: -1, userInfo: userInfo)
-            case .Some(let status):
+            case .some(let status):
                 switch status {
                 case .OK:
                     break

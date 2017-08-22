@@ -12,15 +12,15 @@ import Argo
 import ShoutitKit
 
 
-class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.DecodedType == ItemType>: Pager<Int, CellViewModelType, ItemType> {
+class NumberedPagePager<CellViewModelType, ItemType: Decodable>: Pager<Int, CellViewModelType, ItemType> where ItemType.DecodedType == ItemType {
     
     let pageSize: Int
     
-    var cellViewModelsComparisonBlock: ((lhs: CellViewModelType, rhs: CellViewModelType) -> Bool)?
+    var cellViewModelsComparisonBlock: ((_ lhs: CellViewModelType, _ rhs: CellViewModelType) -> Bool)?
     init(
-        itemToCellViewModelBlock: ItemType -> CellViewModelType,
-        cellViewModelToItemBlock: CellViewModelType -> ItemType,
-        fetchItemObservableFactory: (Int -> Observable<PagedResults<ItemType>>),
+        itemToCellViewModelBlock: (ItemType) -> CellViewModelType,
+        cellViewModelToItemBlock: (CellViewModelType) -> ItemType,
+        fetchItemObservableFactory: ((Int) -> Observable<PagedResults<ItemType>>),
         pageSize: Int = 20,
         showAds: Bool = false)
     {
@@ -37,22 +37,22 @@ class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.De
             showAds: showAds)
     }
     
-    func reloadItemAtIndex(index: Int) {
+    func reloadItemAtIndex(_ index: Int) {
         let page = index / pageSize + 1
         reloadItemsAtPage(page)
     }
     
     // MARK: - Fetch
     
-    private func reloadItemsAtPage(page: Int) {
+    fileprivate func reloadItemsAtPage(_ page: Int) {
         fetchItemObservableFactory(page)
             .subscribe {[weak self] (event) in
                 switch event {
-                case .Next(let results):
+                case .next(let results):
                     self?.replaceItemsAtPage(page, withResults: results)
                 case .Error(let error):
                     assert(false, error.sh_message)
-                    self?.state.value = .Error(error)
+                    self?.state.value = .error(error)
                 default:
                     break
                 }
@@ -66,50 +66,50 @@ class NumberedPagePager<CellViewModelType, ItemType: Decodable where ItemType.De
         let newViewModel = itemToCellViewModelBlock(item)
         
         switch state.value {
-        case .Loaded(let models, let numberOfPages, let lastResults):
+        case .loaded(let models, let numberOfPages, let lastResults):
             var newModels : [CellViewModelType] = models
             
-            newModels.removeAtIndex(idx)
-            newModels.insert(newViewModel, atIndex: idx)
+            newModels.remove(at: idx)
+            newModels.insert(newViewModel, at: idx)
             
-            state.value = .Loaded(cells: newModels, page: numberOfPages, lastPageResults: lastResults)
-        case .LoadedAllContent(let models, let numberOfPages):
+            state.value = .loaded(cells: newModels, page: numberOfPages, lastPageResults: lastResults)
+        case .loadedAllContent(let models, let numberOfPages):
             var newModels : [CellViewModelType] = models
             
-            newModels.removeAtIndex(idx)
-            newModels.insert(newViewModel, atIndex: idx)
+            newModels.remove(at: idx)
+            newModels.insert(newViewModel, at: idx)
             
-            state.value = .LoadedAllContent(cells: newModels, page: numberOfPages)
+            state.value = .loadedAllContent(cells: newModels, page: numberOfPages)
         default: break
         }
         
     }
     
-    private func replaceItemsAtPage(page: Int, withResults results: PagedResults<ItemType>) {
+    fileprivate func replaceItemsAtPage(_ page: Int, withResults results: PagedResults<ItemType>) {
         
         switch state.value {
-        case .Loaded(let models, let numberOfPages, let lastResults):
+        case .loaded(let models, let numberOfPages, let lastResults):
             guard numberOfPages >= page else { return }
             let swappedModels = swapCellViewModels(models, withProfiles: results.results, atPage: page)
-            state.value = .Loaded(cells: swappedModels, page: numberOfPages, lastPageResults: lastResults)
-        case .LoadedAllContent(let models, let numberOfPages):
+            state.value = .loaded(cells: swappedModels, page: numberOfPages, lastPageResults: lastResults)
+        case .loadedAllContent(let models, let numberOfPages):
             guard numberOfPages >= page else { return }
             let swappedModels = swapCellViewModels(models, withProfiles: results.results, atPage: page)
-            state.value = .LoadedAllContent(cells: swappedModels, page: numberOfPages)
+            state.value = .loadedAllContent(cells: swappedModels, page: numberOfPages)
         default:
             break
         }
     }
     
-    private func swapCellViewModels(currentCellViewModels: [CellViewModelType], withProfiles profiles: [ItemType], atPage page: Int) -> [CellViewModelType] {
+    fileprivate func swapCellViewModels(_ currentCellViewModels: [CellViewModelType], withProfiles profiles: [ItemType], atPage page: Int) -> [CellViewModelType] {
         
         let pageStartIndex = (page - 1) * pageSize
         let pageEndIndex = pageStartIndex + profiles.count
-        let range: Range<Int> = pageStartIndex..<pageEndIndex
+        let range: CountableRange<Int> = pageStartIndex..<pageEndIndex
         let newModels = profiles.map{itemToCellViewModelBlock($0)}
         
         var models = currentCellViewModels
-        models.replaceRange(range, with: newModels)
+        models.replaceSubrange(range, with: newModels)
         return models
     }
 }

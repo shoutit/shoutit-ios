@@ -10,21 +10,21 @@ import Foundation
 
 public enum SocialAccountLinkParams: Params {
     
-    case Facebook(token: String?)
-    case Google(code: String?)
-    case FacebookPage(pageId: String?)
+    case facebook(token: String?)
+    case google(code: String?)
+    case facebookPage(pageId: String?)
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         switch self {
-        case .Facebook(let token):
-            p["account"] = "facebook"
-            p["facebook_access_token"] = token
-        case .Google(let code):
-            p["account"] = "gplus"
-            p["gplus_code"] = code
-        case .FacebookPage(let pageId):
-            p["facebook_page_id"] = pageId
+        case .facebook(let token):
+            p["account"] = "facebook" as AnyObject
+            p["facebook_access_token"] = token as AnyObject
+        case .google(let code):
+            p["account"] = "gplus" as AnyObject
+            p["gplus_code"] = code as AnyObject
+        case .facebookPage(let pageId):
+            p["facebook_page_id"] = pageId as AnyObject
         }
         return p
     }

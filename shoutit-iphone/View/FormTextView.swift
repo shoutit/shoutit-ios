@@ -14,17 +14,17 @@ final class FormTextView: BorderedMaterialTextView {
         super.awakeFromNib()
         
         placeholderLabel = UILabel()
-        placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .Regular)
-        placeholderLabel!.textColor = UIColor(shoutitColor: .DiscoverBorder)
+        placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .regular)
+        placeholderLabel!.textColor = UIColor(shoutitColor: .discoverBorder)
         
         titleLabel = UILabel()
-        titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        titleLabelColor = UIColor(shoutitColor: .DiscoverBorder)
-        titleLabelActiveColor = UIColor(shoutitColor: .ShoutitLightBlueColor)
+        titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
+        titleLabelColor = UIColor(shoutitColor: .discoverBorder)
+        titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
         
         detailLabel = UILabel()
-        detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .Medium)
-        detailLabelActiveColor = UIColor(shoutitColor: .DiscoverBorder)
+        detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
+        detailLabelActiveColor = UIColor(shoutitColor: .discoverBorder)
         detailLabelHidden = false
     }
 }

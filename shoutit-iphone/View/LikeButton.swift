@@ -11,11 +11,11 @@ import UIKit
 class LikeButton: UIButton {
 
     func setLiked() {
-        self.setImage(UIImage(named: "like_on"), forState: .Normal)
+        self.setImage(UIImage(named: "like_on"), for: UIControlState())
     }
     
     func setUnliked() {
-        self.setImage(UIImage(named: "like_off"), forState: .Normal)
+        self.setImage(UIImage(named: "like_off"), for: UIControlState())
     }
 
 }

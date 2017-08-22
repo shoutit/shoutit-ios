@@ -15,7 +15,7 @@ public struct InvitationCode: Decodable {
     public let code: String
     
 
-    public static func decode(j: JSON) -> Decoded<InvitationCode> {
+    public static func decode(_ j: JSON) -> Decoded<InvitationCode> {
         return curry(InvitationCode.init)
             <^> j <| "id"
             <*> j <| "created_at"

@@ -14,15 +14,15 @@ import ShoutitKit
 
 final class APIPublicChatsService {
     
-    static func requestPublicChatsWithParams(params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<MiniConversation>> {
+    static func requestPublicChatsWithParams(_ params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<MiniConversation>> {
         let baseURL = APIManager.baseURL + "/public_chats"
         let url = explicitURL ?? baseURL
         let params: ConversationsListParams? = explicitURL == nil ? params : nil
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .URL, responseJsonPath: nil)
+        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, responseJsonPath: nil)
     }
     
-    static func requestCreatePublicChatWithParams(params: CreatePublicChatParams) -> Observable<Conversation> {
+    static func requestCreatePublicChatWithParams(_ params: CreatePublicChatParams) -> Observable<Conversation> {
         let url = APIManager.baseURL + "/public_chats"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .JSON)
+        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
     }
 }

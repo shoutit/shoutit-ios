@@ -10,7 +10,7 @@ import UIKit
 
 final class SHNavigationViewController: UINavigationController, UINavigationControllerDelegate {
     
-    var willShowViewControllerPreferringTabBarHidden: (Bool -> Void)?
+    var willShowViewControllerPreferringTabBarHidden: ((Bool) -> Void)?
     var ignoreToggleMenu : Bool = false
     var ignoreTabbarAppearance : Bool = false
 
@@ -22,7 +22,7 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
         super.init(coder: aDecoder)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -34,18 +34,18 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationBar.barTintColor = UIColor(shoutitColor: .PrimaryGreen)
-        navigationBar.tintColor = UIColor.whiteColor()
+        navigationBar.barTintColor = UIColor(shoutitColor: .primaryGreen)
+        navigationBar.tintColor = UIColor.white
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle : UIStatusBarStyle {
         if topViewController is SearchViewController {
-            return .Default
+            return .default
         }
-        return .LightContent
+        return .lightContent
     }
     
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    override var childViewControllerForStatusBarStyle : UIViewController? {
         return nil
     }
     
@@ -54,7 +54,7 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
         willShowViewControllerPreferringTabBarHidden?(topViewController.prefersTabbarHidden())
     }
     
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         willShowViewControllerPreferringTabBarHidden?(viewController.prefersTabbarHidden())
         setNavigationBarHidden(viewController.prefersNavigationBarHidden(), animated: animated)
         
@@ -62,8 +62,8 @@ final class SHNavigationViewController: UINavigationController, UINavigationCont
             return
         }
         
-        let toggleMenuBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .Plain, target: viewController, action: #selector(UIViewController.toggleMenu))
-        let backBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .Plain, target: viewController, action: #selector(UIViewController.pop))
+        let toggleMenuBarButtonItem = UIBarButtonItem(image: UIImage.menuHamburger(), style: .plain, target: viewController, action: #selector(UIViewController.toggleMenu))
+        let backBarButtonItem = UIBarButtonItem(image: UIImage.backButton(), style: .plain, target: viewController, action: #selector(UIViewController.pop))
         
         if viewControllers.count > 1 {
             if viewController.prefersMenuHamburgerHidden() {

@@ -17,7 +17,7 @@ public struct SortType {
 
 extension SortType: Decodable {
     
-    public static func decode(j: JSON) -> Decoded<SortType> {
+    public static func decode(_ j: JSON) -> Decoded<SortType> {
         return curry(SortType.init)
             <^> j <| "type"
             <*> j <| "name"

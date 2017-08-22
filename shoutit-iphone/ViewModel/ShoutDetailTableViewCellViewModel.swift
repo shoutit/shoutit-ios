@@ -10,35 +10,35 @@ import Foundation
 import ShoutitKit
 
 enum ShoutDetailTableViewCellViewModel {
-    case SectionHeader(title: String)
-    case Description(description: String)
-    case KeyValue(rowInSection: Int, sectionRowsCount: Int, key: String, value: String, imageName: String?, filter: Filter?, tag: ShoutitKit.Category?)
-    case Regular(rowInSection: Int, sectionRowsCount: Int, title: String)
-    case Button(title: String, type: ShoutDetailTableViewCellButtonType)
-    case OtherShouts
-    case RelatedShouts
+    case sectionHeader(title: String)
+    case description(description: String)
+    case keyValue(rowInSection: Int, sectionRowsCount: Int, key: String, value: String, imageName: String?, filter: Filter?, tag: ShoutitKit.Category?)
+    case regular(rowInSection: Int, sectionRowsCount: Int, title: String)
+    case button(title: String, type: ShoutDetailTableViewCellButtonType)
+    case otherShouts
+    case relatedShouts
     
     var reuseIdentifier: String {
         switch self {
-        case .SectionHeader:
+        case .sectionHeader:
             return "SectionHeader"
-        case .Description:
+        case .description:
             return "Description"
-        case .KeyValue:
+        case .keyValue:
             return "KeyValue"
-        case .Regular:
+        case .regular:
             return "Regular"
-        case .Button:
+        case .button:
             return "Button"
-        case .OtherShouts:
+        case .otherShouts:
             return "OtherShouts"
-        case .RelatedShouts:
+        case .relatedShouts:
             return "RelatedShouts"
         }
     }
 }
 
 enum ShoutDetailTableViewCellButtonType {
-    case Policies
-    case VisitProfile
+    case policies
+    case visitProfile
 }

@@ -23,8 +23,8 @@ final class EditPageTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.textView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.textView.layer.borderWidth = 1.0/UIScreen.mainScreen().nativeScale
+        self.textView.layer.borderColor = UIColor.lightGray.cgColor
+        self.textView.layer.borderWidth = 1.0/UIScreen.main.nativeScale
         self.textView.delegate = self
         
         self.textView.contentInset = UIEdgeInsets(top: -3, left: 0, bottom: 0, right: 0)
@@ -38,27 +38,27 @@ final class EditPageTextViewTableViewCell: UITableViewCell, UITextViewDelegate {
         isEditingText = false
     }
     
-    func setContent(text: String) {
+    func setContent(_ text: String) {
         self.textView.text = text
         self.textView.invalidateIntrinsicContentSize()
-        self.textViewHeight.constant = max(textView.intrinsicContentSize().height, textView.contentSize.height) + (text.characters.count > 0 ? 10.0 : 0)
+        self.textViewHeight.constant = max(textView.intrinsicContentSize.height, textView.contentSize.height) + (text.characters.count > 0 ? 10.0 : 0)
         self.layoutIfNeeded()
     }
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         self.textViewHeight.constant = textView.contentSize.height
         self.layoutIfNeeded()
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         isEditingText = true
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         isEditingText = false
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return textView.text.utf16.count < 150 || text.utf16.count == 0
     }
 }

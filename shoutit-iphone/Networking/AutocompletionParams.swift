@@ -17,7 +17,7 @@ public struct AutocompletionParams: Params {
         self.searchPhrase = phrase
         self.categoryName = categoryName
         if country == nil && useLocaleBasedCountryCodeWhenNil {
-            self.country = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
+            self.country = (Locale.current as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String
         } else {
             self.country = country
         }
@@ -25,9 +25,9 @@ public struct AutocompletionParams: Params {
     
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
-        p["search"] = searchPhrase
-        p["category"] = categoryName
-        p["country"] = country
+        p["search"] = searchPhrase as AnyObject
+        p["category"] = categoryName as AnyObject
+        p["country"] = country as AnyObject
         
         return p
     }

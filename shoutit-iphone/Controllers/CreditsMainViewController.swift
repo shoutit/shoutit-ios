@@ -14,7 +14,7 @@ class CreditsMainViewController: UITableViewController {
 
     weak var flowDelegate : FlowController?
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     @IBOutlet var creditsLabel : UILabel?
     
@@ -42,17 +42,17 @@ class CreditsMainViewController: UITableViewController {
         
     }
     
-    func fillWithLoggedUser(user: DetailedUserProfile) {
+    func fillWithLoggedUser(_ user: DetailedUserProfile) {
         fillWithStats(user.stats)
     }
 
-    func fillWithStats(stats: ProfileStats?) {
+    func fillWithStats(_ stats: ProfileStats?) {
         self.creditsLabel?.text = "\(stats?.credit ?? 0)"
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         switch (indexPath.section, indexPath.row) {
         case (0,0):
@@ -77,7 +77,7 @@ class CreditsMainViewController: UITableViewController {
     }
     
     func completeProfile() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Complete Profile", comment: "Credits Screen"), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Complete Profile", comment: "Credits Screen"), style: .default) { (action) in
             self.flowDelegate?.showEditProfile()
         }
         
@@ -85,15 +85,15 @@ class CreditsMainViewController: UITableViewController {
     }
     
     func sharingOnFacebook() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Create Shout", comment: "Credits Screen"), style: .Default) { (action) in
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.RootControllerShouldOpenNavigationItem, object: self, userInfo: ["item": NavigationItem.CreateShout.rawValue])
+        let completeAction = UIAlertAction(title: NSLocalizedString("Create Shout", comment: "Credits Screen"), style: .default) { (action) in
+            NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Constants.Notification.RootControllerShouldOpenNavigationItem), object: self, userInfo: ["item": NavigationItem.CreateShout.rawValue])
         }
         
         showAlertWith(NSLocalizedString("Sharing of Facebook", comment: "Credits Screen"), message: NSLocalizedString("Earn 1 Shoutit Credit for each shout you publicly share on Facebook", comment: "Credits Screen"), actions: [completeAction])
     }
     
     func invitingFriends() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Invite Friends", comment: "Credits Screen"), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Invite Friends", comment: "Credits Screen"), style: .default) { (action) in
             self.flowDelegate?.showInviteFriends()
         }
         
@@ -101,7 +101,7 @@ class CreditsMainViewController: UITableViewController {
     }
     
     func listningToFriends() {
-        let completeAction = UIAlertAction(title: NSLocalizedString("Find Friends", comment: "Credits Screen"), style: .Default) { (action) in
+        let completeAction = UIAlertAction(title: NSLocalizedString("Find Friends", comment: "Credits Screen"), style: .default) { (action) in
             self.flowDelegate?.showInviteFriends()
         }
         
@@ -112,15 +112,15 @@ class CreditsMainViewController: UITableViewController {
         self.flowDelegate?.showPromotingShouts()
     }
     
-    func showAlertWith(title: String, message: String, actions: [UIAlertAction]) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func showAlertWith(_ title: String, message: String, actions: [UIAlertAction]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Got it", comment: "Credits Screen Alert Option"), style: .Cancel, handler: { action in }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Got it", comment: "Credits Screen Alert Option"), style: .cancel, handler: { action in }))
         
         actions.each({ (action) in
             alert.addAction(action)
         })
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
 }

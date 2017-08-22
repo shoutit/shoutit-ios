@@ -12,13 +12,13 @@ private var constraintKey : UInt8 = 0
 
 extension UIViewController {
     
-    public func setupKeyboardNotifcationListenerForBottomLayoutGuideConstraint(constraint: NSLayoutConstraint) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.handleKyboardWillShowByModifyingBottomLayoutGuideConstraint(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIViewController.handleKeyboardWillHideByModifyingBottomLayoutGuideConstraint(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    public func setupKeyboardNotifcationListenerForBottomLayoutGuideConstraint(_ constraint: NSLayoutConstraint) {
+        NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.handleKyboardWillShowByModifyingBottomLayoutGuideConstraint(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.handleKeyboardWillHideByModifyingBottomLayoutGuideConstraint(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         bottomLayoutGuideConstraint = constraint
     }
     
-    private var bottomLayoutGuideConstraint: NSLayoutConstraint! {
+    fileprivate var bottomLayoutGuideConstraint: NSLayoutConstraint! {
         get {
             return objc_getAssociatedObject(self, &constraintKey) as? NSLayoutConstraint
         }
@@ -27,29 +27,29 @@ extension UIViewController {
         }
     }
     
-    func handleKyboardWillShowByModifyingBottomLayoutGuideConstraint(notification: NSNotification) {
+    func handleKyboardWillShowByModifyingBottomLayoutGuideConstraint(_ notification: Notification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
-        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
-        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue
-        let keyboardFrameConvertedToViewFrame = view.convertRect(keyboardFrame!, fromView: nil)
-        let options = UIViewAnimationOptions(rawValue: UInt(animationCurve) | UIViewAnimationOptions.BeginFromCurrentState.rawValue)
+        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.int32Value
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue
+        let keyboardFrameConvertedToViewFrame = view.convert(keyboardFrame!, from: nil)
+        let options = UIViewAnimationOptions(rawValue: UInt(animationCurve!) | UIViewAnimationOptions.beginFromCurrentState.rawValue)
         bottomLayoutGuideConstraint.constant = keyboardFrameConvertedToViewFrame.height
         
-        UIView.animateWithDuration(animationDuration, delay: 0, options:options, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, delay: 0, options:options, animations: { () -> Void in
             self.view.layoutIfNeeded()
         }) { (complete) -> Void in
         }
     }
     
-    func handleKeyboardWillHideByModifyingBottomLayoutGuideConstraint(notification: NSNotification) {
+    func handleKeyboardWillHideByModifyingBottomLayoutGuideConstraint(_ notification: Notification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
-        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
-        let options = UIViewAnimationOptions(rawValue: UInt(animationCurve) | UIViewAnimationOptions.BeginFromCurrentState.rawValue)
+        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.int32Value
+        let options = UIViewAnimationOptions(rawValue: UInt(animationCurve!) | UIViewAnimationOptions.beginFromCurrentState.rawValue)
         bottomLayoutGuideConstraint.constant = 0
         
-        UIView.animateWithDuration(animationDuration, delay: 0, options:options, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, delay: 0, options:options, animations: { () -> Void in
             self.view.layoutIfNeeded()
         }) { (complete) -> Void in
         }

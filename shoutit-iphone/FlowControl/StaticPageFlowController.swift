@@ -10,7 +10,7 @@ import Foundation
 
 final class StaticPageFlowController: FlowController {
     
-    init(navigationController: UINavigationController, url: NSURL) {
+    init(navigationController: UINavigationController, url: URL) {
         super.init(navigationController: navigationController)
         
         // create initial view controller

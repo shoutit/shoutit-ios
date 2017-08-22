@@ -16,7 +16,7 @@ public struct Promotion: Decodable {
     public let label: PromotionLabel?
     public let expiresAt: Int?
     
-    public static func decode(j: JSON) -> Decoded<Promotion> {
+    public static func decode(_ j: JSON) -> Decoded<Promotion> {
         return curry(Promotion.init)
             <^> j <| "id"
             <*> j <|? "days"
@@ -32,7 +32,7 @@ public struct PromotionLabel: Decodable {
     public let color: String
     public let backgroundColor: String
     
-    public static func decode(j: JSON) -> Decoded<PromotionLabel> {
+    public static func decode(_ j: JSON) -> Decoded<PromotionLabel> {
         return curry(PromotionLabel.init)
             <^> j <| "name"
             <*> j <| "description"

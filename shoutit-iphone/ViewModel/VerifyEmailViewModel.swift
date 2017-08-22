@@ -12,7 +12,7 @@ import ShoutitKit
 
 final class VerifyEmailViewModel {
     
-    private(set) var profile: DetailedUserProfile
+    fileprivate(set) var profile: DetailedUserProfile
     
     var email: Variable<String>
     
@@ -23,9 +23,9 @@ final class VerifyEmailViewModel {
     
     // RX
     let successSubject: PublishSubject<String> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorType> = PublishSubject()
+    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     func verifyEmail() {
         progressSubject.onNext(true)
@@ -33,7 +33,7 @@ final class VerifyEmailViewModel {
             .subscribe {[weak self] (event) in
                 self?.progressSubject.onNext(false)
                 switch event {
-                case .Next((let success, let detailedProfile)):
+                case .next((let success, let detailedProfile)):
                     self?.profile = detailedProfile
                     Account.sharedInstance.updateUserWithModel(detailedProfile)
                     self?.successSubject.onNext(success.message)
@@ -52,7 +52,7 @@ final class VerifyEmailViewModel {
             .subscribe {[weak self] (event) in
                 self?.progressSubject.onNext(false)
                 switch event {
-                case .Next(let detailedProfile):
+                case .next(let detailedProfile):
                     self?.profile = detailedProfile
                     Account.sharedInstance.updateUserWithModel(detailedProfile)
                     if detailedProfile.isActivated {
