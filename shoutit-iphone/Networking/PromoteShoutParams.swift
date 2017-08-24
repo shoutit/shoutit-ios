@@ -20,7 +20,7 @@ public struct PromoteShoutParams: Params {
     
     public var params: [String : AnyObject] {
         return [
-            "option" : ["id":self.option.id]
+            "option" : ["id":self.option.id] as AnyObject
             ]
     }
 }

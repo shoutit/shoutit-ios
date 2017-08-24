@@ -8,9 +8,17 @@
 
 import Foundation
 import Ogra
+import JSONCodable
 
 public protocol Params {
     var params: [String : AnyObject] {get}
+}
+
+extension Params where Self: JSONEncodable {
+    public var params: [String : AnyObject] {
+        
+        return try! self.toJSON() as! [String: AnyObject]
+    }
 }
 
 public protocol PagedParams {

@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-
+import JSONCodable
 
 public struct Tag {
     
@@ -27,27 +26,40 @@ public struct Tag {
     public let shoutsPath: String?
 }
 
-extension Tag: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Tag> {
-        let a = curry(Tag.init)
-            <^> j <| "id"
-            <*> j <| "slug"
-            <*> j <| "name"
-            <*> j <| "api_url"
-        let b = a
-            <*> j <|? "image"
-            <*> j <|? "web_path"
-            <*> j <|? "listeners_count"
-        return b
-            <*> j <|? "listeners_url"
-            <*> j <|? "is_listening"
-            <*> j <|? "shouts_url"
-    }
-}
 
 extension Tag {
     public func copyWithListnersCount(_ newListnersCount: Int, isListening: Bool? = nil) -> Tag {
         return Tag(id: self.id, slug: self.slug, name: self.name, apiPath: self.apiPath, imagePath: self.imagePath, webPath: self.webPath, listenersCount: newListnersCount, listenersPath: self.listenersPath, isListening: isListening != nil ? isListening : self.isListening, shoutsPath: self.shoutsPath)
+    }
+}
+
+extension Tag: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        slug = try decoder.decode("slug")
+        name = try decoder.decode("name")
+        apiPath = try decoder.decode("api_url")
+        imagePath = try decoder.decode("image")
+        webPath = try decoder.decode("web_path")
+        listenersCount = try decoder.decode("listeners_count")
+        listenersPath = try decoder.decode("listeners_url")
+        isListening = try decoder.decode("is_listening")
+        shoutsPath = try decoder.decode("shouts_url")
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(slug, key: "slug")
+            try encoder.encode(name, key: "name")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(imagePath, key: "image")
+            try encoder.encode(webPath, key: "web_path")
+            try encoder.encode(listenersCount, key: "listeners_count")
+            try encoder.encode(listenersPath, key: "listeners_url")
+            try encoder.encode(isListening, key: "is_listening")
+            try encoder.encode(shoutsPath, key: "shouts_url")
+        })
     }
 }

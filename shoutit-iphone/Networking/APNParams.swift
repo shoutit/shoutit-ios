@@ -7,13 +7,16 @@
 //
 
 import Foundation
-import Ogra
+import JSONCodable
 
-public struct APNParams: Params {
+
+public struct APNParams: Params, JSONEncodable {
     public let tokens: PushTokens
     
-    public var params: [String : AnyObject] {
-        return ["push_tokens" : self.tokens.encode().JSONObject()]
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(tokens, key: "push_tokens")
+        })
     }
     
     public init(tokens: PushTokens) {

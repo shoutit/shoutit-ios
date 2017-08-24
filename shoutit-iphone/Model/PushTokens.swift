@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import Argo
-
-import Ogra
+import JSONCodable
 
 public struct PushTokens {
     public let apns: String?
@@ -21,26 +19,18 @@ public struct PushTokens {
     }
 }
 
-extension PushTokens: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<PushTokens> {
-        return curry(PushTokens.init)
-            <^> j <|? "apns"
-            <*> j <|? "gcm"
-    }
-}
 
-extension PushTokens: Encodable {
-    
-    public func encode() -> JSON {
-        return JSON.object([
-            "apns"    : self.apns.encode()
-            ])
+extension PushTokens: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        apns = try decoder.decode("apns")
+        gcm = try decoder.decode("gcm")
     }
-}
-
-extension PushTokens: Params {
-    public var params: [String : AnyObject] {
-        return self.encode().JSONObject() as! [String: AnyObject]
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(apns, key: "apns")
+            try encoder.encode(gcm, key: "gcm")
+        })
     }
 }

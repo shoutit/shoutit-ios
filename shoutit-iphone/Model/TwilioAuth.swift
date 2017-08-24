@@ -7,27 +7,25 @@
 //
 
 import Foundation
-import Argo
-
-import Ogra
+import JSONCodable
 
 public struct TwilioAuth {
     public let token: String
     public let identity: String
 }
 
-extension TwilioAuth: Decodable {
-    public static func decode(_ j: JSON) -> Decoded<TwilioAuth> {
-        return curry(TwilioAuth.init)
-            <^> j <| "token"
-            <*> j <| "identity"
+extension TwilioAuth: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        token = try decoder.decode("token")
+        identity = try decoder.decode("identity")
     }
-}
-
-extension TwilioAuth: Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["token": self.token.encode(),
-            "identity" : self.identity.encode()])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(token, key: "token")
+            try encoder.encode(identity, key: "identity")
+        })
     }
 }
 
@@ -39,15 +37,15 @@ public struct TwilioIdentity {
     }
 }
 
-extension TwilioIdentity: Decodable {
-    public static func decode(_ j: JSON) -> Decoded<TwilioIdentity> {
-        return curry(TwilioIdentity.init)
-            <^> j <| "identity"
+extension TwilioIdentity: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        identity = try decoder.decode("identity")
     }
-}
-
-extension TwilioIdentity: Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["identity" : self.identity.encode()])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(identity, key: "identity")
+        })
     }
 }

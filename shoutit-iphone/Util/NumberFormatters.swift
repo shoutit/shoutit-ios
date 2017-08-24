@@ -64,7 +64,7 @@ public final class NumberFormatters {
             formatter.numberStyle = .currency
         }
         
-        return formatter.string(from: NSNumber(Double(price)/100.0))
+        return formatter.string(from: NSNumber(value: Double(price)/100.0))
     }
     
     public static func badgeCountStringWithNumber(_ number: Int) -> String {
@@ -85,6 +85,6 @@ public final class NumberFormatters {
             formatter.maximumIntegerDigits = numberOfDigits
         }
         
-        return formatter.string(from: NSNumber(number))!
+        return formatter.string(from: NSNumber(value: Int(number)))!
     }
 }

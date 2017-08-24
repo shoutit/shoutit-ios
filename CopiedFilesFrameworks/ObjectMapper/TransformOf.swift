@@ -6,7 +6,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014-2015 Hearst
+//  Copyright (c) 2014-2016 Hearst
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -30,15 +30,15 @@ open class TransformOf<ObjectType, JSONType>: TransformType {
 	public typealias Object = ObjectType
 	public typealias JSON = JSONType
 
-	fileprivate let fromJSON: (JSONType?) -> ObjectType?
-	fileprivate let toJSON: (ObjectType?) -> JSONType?
+	private let fromJSON: (JSONType?) -> ObjectType?
+	private let toJSON: (ObjectType?) -> JSONType?
 
-	public init(fromJSON: @escaping (JSONType?) -> ObjectType?, toJSON: @escaping (ObjectType?) -> JSONType?) {
+	public init(fromJSON: @escaping(JSONType?) -> ObjectType?, toJSON: @escaping(ObjectType?) -> JSONType?) {
 		self.fromJSON = fromJSON
 		self.toJSON = toJSON
 	}
 
-	open func transformFromJSON(_ value: AnyObject?) -> ObjectType? {
+	open func transformFromJSON(_ value: Any?) -> ObjectType? {
 		return fromJSON(value as? JSONType)
 	}
 

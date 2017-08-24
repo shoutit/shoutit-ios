@@ -7,18 +7,27 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
-public struct InvitationCode: Decodable {
+public struct InvitationCode {
     public let id: String
     public let createdAt: Int
     public let code: String
-    
+}
 
-    public static func decode(_ j: JSON) -> Decoded<InvitationCode> {
-        return curry(InvitationCode.init)
-            <^> j <| "id"
-            <*> j <| "created_at"
-            <*> j <| "code"
+extension InvitationCode: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        createdAt = try decoder.decode("created_at")
+        code = try decoder.decode("code")
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(createdAt, key: "created_at")
+            try encoder.encode(code, key: "code")
+        })
     }
 }

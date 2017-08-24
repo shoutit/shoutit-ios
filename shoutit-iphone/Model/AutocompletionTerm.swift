@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct AutocompletionTerm {
     public let term: String
@@ -17,10 +17,15 @@ public struct AutocompletionTerm {
     }
 }
 
-extension AutocompletionTerm: Decodable {
+extension AutocompletionTerm: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        term = try decoder.decode("term")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<AutocompletionTerm> {
-        return curry(AutocompletionTerm.init)
-            <^> j <| "term"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(term, key: "term")
+        })
     }
 }

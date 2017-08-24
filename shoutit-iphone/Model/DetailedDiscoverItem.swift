@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct DetailedDiscoverItem {
     public let id: String
@@ -28,25 +28,38 @@ public struct DetailedDiscoverItem {
     }
 }
 
-extension DetailedDiscoverItem: Decodable {
+extension DetailedDiscoverItem: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        apiUrl = try decoder.decode("api_url")
+        title = try decoder.decode("title")
+        subtitle = try decoder.decode("subtitle")
+        position = try decoder.decode("position")
+        image = try decoder.decode("image")
+        cover = try decoder.decode("cover")
+        icon = try decoder.decode("icon")
+        showChildren = try decoder.decode("show_children")
+        children = try decoder.decode("children")
+        showShouts = try decoder.decode("show_shouts")
+        shoutsPath = try decoder.decode("shouts_url")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<DetailedDiscoverItem> {
-        let f = curry(DetailedDiscoverItem.init)
-            <^> j <| "id"
-            <*> j <| "api_url"
-            <*> j <| "title"
-        let g = f
-            <*> j <|? "subtitle"
-            <*> j <| "position"
-            <*> j <|? "image"
-            <*> j <|? "cover"
-        let h = g
-            <*> j <|? "icon"
-            <*> j <| "show_children"
-            <*> j <|| "children"
-        return h
-            <*> j <| "show_shouts"
-            <*> j <|? "shouts_url"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(apiUrl, key: "api_url")
+            try encoder.encode(title, key: "title")
+            try encoder.encode(subtitle, key: "subtitle")
+            try encoder.encode(position, key: "position")
+            try encoder.encode(image, key: "image")
+            try encoder.encode(cover, key: "cover")
+            try encoder.encode(icon, key: "icon")
+            try encoder.encode(showChildren, key: "show_children")
+            try encoder.encode(children, key: "children")
+            try encoder.encode(showShouts, key: "show_shouts")
+            try encoder.encode(shoutsPath, key: "shouts_url")
+        })
     }
 }
 

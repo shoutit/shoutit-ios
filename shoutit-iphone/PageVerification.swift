@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct PageVerification {
     public let businessName: String
@@ -24,19 +23,28 @@ public struct PageVerification {
     
 }
 
-extension PageVerification: Decodable {
+
+extension PageVerification: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        businessName = try decoder.decode("business_name")
+        businessEmail = try decoder.decode("business_email")
+        message = try decoder.decode("success")
+        status = try decoder.decode("status")
+        contactNumber = try decoder.decode("contact_number")
+        contactPerson = try decoder.decode("contact_person")
+        images = try decoder.decode("images")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<PageVerification> {
-        let function = curry(PageVerification.init)
-        return function
-            <^> j <| "business_name"
-            <*> j <| "business_email"
-            <*> j <|? "success"
-            <*> j <| "status"
-            <*> j <| "contact_number"
-            <*> j <| "contact_person"
-            <*> j <||? "images"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(businessName, key: "business_name")
+            try encoder.encode(businessEmail, key: "business_email")
+            try encoder.encode(message, key: "success")
+            try encoder.encode(status, key: "status")
+            try encoder.encode(contactNumber, key: "contact_number")
+            try encoder.encode(contactPerson, key: "contact_person")
+            try encoder.encode(images, key: "images")
+        })
     }
 }
-
-

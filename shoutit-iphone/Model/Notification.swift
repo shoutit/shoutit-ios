@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
-
-public struct Notification: Decodable, Hashable, Equatable {
+public struct Notification: Hashable, Equatable {
     public let id: String
     public var read: Bool
     public let createdAt: Int
@@ -28,28 +27,40 @@ public struct Notification: Decodable, Hashable, Equatable {
         }
     }
     
-    public static func decode(_ j: JSON) -> Decoded<Notification> {
-        let a = curry(Notification.init)
-            <^> j <| "id"
-            <*> j <| "is_read"
-            <*> j <| "created_at"
-        let b = a
-            <*> j <| "type"
-            <*> j <|? "attached_object"
-            <*> j <|? "display"
-        let c = b
-            <*> j <|? "web_url"
-            <*> j <|? "app_url"
-        
-        return c
-    }
-    
     public mutating func markAsRead() {
         read = true
     }
     
     public func readCopy() -> Notification {
         return Notification(id: self.id, read: true, createdAt: self.createdAt, type: self.type, object: self.object, display: self.display, webPath: self.webPath, appPath:self.appPath)
+    }
+}
+
+extension Notification: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        read = try decoder.decode("is_read")
+        createdAt = try decoder.decode("created_at")
+        type = try decoder.decode("type")
+        self.object = try decoder.decode("attached_object")
+        display = try decoder.decode("display")
+        webPath = try decoder.decode("web_url")
+        appPath = try decoder.decode("app_url")
+        
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(read, key: "is_read")
+            try encoder.encode(createdAt, key: "created_at")
+            try encoder.encode(type, key: "type")
+            try encoder.encode(object, key: "attached_object")
+            try encoder.encode(display, key: "display")
+            try encoder.encode(webPath, key: "web_url")
+            try encoder.encode(appPath, key: "app_url")
+        })
     }
 }
 

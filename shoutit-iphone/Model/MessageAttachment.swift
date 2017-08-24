@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Argo
-import Ogra
 import CoreLocation
+import JSONCodable
 
 public enum MessageAttachmentType {
     case shoutAttachment(shout: Shout)
@@ -19,7 +18,7 @@ public enum MessageAttachmentType {
     case profileAttachment(profile: Profile)
 }
 
-public struct MessageAttachment: Decodable {
+public struct MessageAttachment {
     public let shout: Shout?
     public let location: MessageLocation?
     public let profile: Profile?
@@ -42,24 +41,26 @@ public struct MessageAttachment: Decodable {
         if let i = images, i.count > 0 { return .imageAttachment(path: i[0]) }
         return nil
     }
-    
-    public static func decode(_ j: JSON) -> Decoded<MessageAttachment> {
-        return curry(MessageAttachment.init)
-            <^> j <|? "shout"
-            <*> j <|? "location"
-            <*> j <|? "profile"
-            <*> j <||? "videos"
-            <*> j <||? "images"
+}
+
+extension MessageAttachment: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        shout = try decoder.decode("shout")
+        location = try decoder.decode("location")
+        videos = try decoder.decode("videos")
+        images = try decoder.decode("images")
+        profile = try decoder.decode("profile")
     }
     
-    public func encode() -> JSON {
-        var encoded = [String:JSON]()
-        encoded["shout"] = shout?.encode()
-        encoded["location"] = location?.encode()
-        encoded["videos"] = videos?.encode()
-        encoded["images"] = images?.encode()
-        encoded["profile"] = profile?.encode()
-        return JSON.object(encoded)
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(shout, key: "shout")
+            try encoder.encode(location, key: "location")
+            try encoder.encode(videos, key: "videos")
+            try encoder.encode(images, key: "images")
+            try encoder.encode(profile, key: "profile")
+        })
     }
 }
 
@@ -84,7 +85,7 @@ extension MessageAttachment {
     }
 }
 
-public struct MessageLocation: Decodable, Encodable {
+public struct MessageLocation {
     public let longitude: Double
     public let latitude: Double
     
@@ -92,19 +93,26 @@ public struct MessageLocation: Decodable, Encodable {
         self.longitude = longitude
         self.latitude = latitude
     }
-    
-    public static func decode(_ j: JSON) -> Decoded<MessageLocation> {
-        return curry(MessageLocation.init)
-            <^> j <| "longitude"
-            <*> j <| "latitude"
-    }
-    
-    public func encode() -> JSON {
-        return JSON.object(["longitude": longitude.encode(),
-                            "latitude": latitude.encode()])
-    }
+
     
     public func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(latitude, longitude)
+    }
+}
+
+extension MessageLocation: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        longitude = try decoder.decode("longitude")
+        latitude = try decoder.decode("latitude")
+
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(longitude, key: "longitude")
+            try encoder.encode(latitude, key: "latitude")
+
+        })
     }
 }

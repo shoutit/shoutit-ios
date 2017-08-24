@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct ProfileStats {
     public let unreadConversationCount: Int
@@ -17,23 +16,21 @@ public struct ProfileStats {
     public let credit: Int?
 }
 
-extension ProfileStats: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<ProfileStats> {
-        return curry(ProfileStats.init)
-            <^> j <| "unread_conversations_count"
-            <*> j <| "unread_notifications_count"
-            <*> j <|? "total_unread_count"
-            <*> j <|? "credit"
+extension ProfileStats: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        unreadConversationCount = try decoder.decode("unread_conversations_count")
+        unreadNotificationsCount = try decoder.decode("unread_notifications_count")
+        totalUnreadCount = try decoder.decode("total_unread_count")
+        credit = try decoder.decode("credit")
     }
-}
-
-extension ProfileStats: Encodable {
-    public func encode() -> JSON {
-        return JSON.object([
-            "unread_conversations_count" : self.unreadConversationCount.encode(),
-            "unread_notifications_count" : self.unreadNotificationsCount.encode(),
-            "total_unread_count" : self.totalUnreadCount.encode(),
-            "credit" : self.credit.encode()])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(unreadConversationCount, key: "unread_conversations_count")
+            try encoder.encode(unreadNotificationsCount, key: "unread_notifications_count")
+            try encoder.encode(totalUnreadCount, key: "total_unread_count")
+            try encoder.encode(credit, key: "credit")
+        })
     }
 }

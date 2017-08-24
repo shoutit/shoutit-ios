@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct FacebookAccount {
     public let scopes: [String]
@@ -16,24 +15,19 @@ public struct FacebookAccount {
     public let facebookId: String
 }
 
-extension FacebookAccount: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<FacebookAccount> {
-        return curry(FacebookAccount.init)
-            <^> j <|| "scopes"
-            <*> j <| "expires_at"
-            <*> j <| "facebook_id"
+extension FacebookAccount: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        scopes = try decoder.decode("scopes")
+        expiresAtEpoch = try decoder.decode("expires_at")
+        facebookId = try decoder.decode("facebook_id")
     }
-}
-
-extension FacebookAccount: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "scopes"    : scopes.encode(),
-            "expires_at"  : expiresAtEpoch.encode(),
-            "facebook_id" : facebookId.encode()
-            ]
-        )
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(scopes, key: "scopes")
+            try encoder.encode(expiresAtEpoch, key: "expires_at")
+            try encoder.encode(facebookId, key: "facebook_id")
+        })
     }
 }

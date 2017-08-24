@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 
 public struct SortType {
@@ -15,11 +15,17 @@ public struct SortType {
     public let name: String
 }
 
-extension SortType: Decodable {
+extension SortType: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        name = try decoder.decode("name")
+        type = try decoder.decode("type")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<SortType> {
-        return curry(SortType.init)
-            <^> j <| "type"
-            <*> j <| "name"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(name, key: "name")
+            try encoder.encode(type, key: "type")
+        })
     }
 }

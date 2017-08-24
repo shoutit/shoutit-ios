@@ -12,7 +12,7 @@ public struct ConversationMemberParams: Params {
     public let profileId : String
     
     public var params: [String : AnyObject] {
-        return ["profile": ["id": profileId]]
+        return ["profile": ["id": profileId] as AnyObject]
     }
     
     public init(profileId: String) {

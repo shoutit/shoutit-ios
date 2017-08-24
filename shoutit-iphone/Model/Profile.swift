@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
-
+import JSONCodable
 public struct Profile {
     public let id: String
     public let type: UserType
@@ -81,51 +79,44 @@ extension Profile {
     }
 }
 
-extension Profile: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Profile> {
-        let a =  curry(Profile.init)
-            <^> j <| "id"
-            <*> j <| "type"
-            <*> j <| "api_url"
-        let b = a
-            <*> j <|? "web_url"
-            <*> j <| "username"
-            <*> j <| "name"
-            <*> j <|? "first_name"
-            <*> j <|? "last_name"
-        let c = b
-            <*> j <| "is_activated"
-            <*> j <|? "image"
-            <*> j <|? "cover"
-            <*> j <|? "is_listening"
-        return c
-            <*> j <| "listeners_count"
-            <*> j <|? "location"
-            <*> j <|? "stats"
+extension Profile: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        type = try decoder.decode("type")
+        apiPath = try decoder.decode("api_url")
+        webPath = try decoder.decode("web_url")
+        username = try decoder.decode("username")
+        name = try decoder.decode("name")
+        firstName = try decoder.decode("first_name")
+        lastName = try decoder.decode("last_name")
+        isActivated = try decoder.decode("is_activated")
+        imagePath = try decoder.decode("image")
+        coverPath = try decoder.decode("cover")
+        isListening = try decoder.decode("is_listening")
+        listenersCount = try decoder.decode("listeners_count")
+        location = try decoder.decode("location")
+        stats = try decoder.decode("stats")
     }
-}
-
-extension Profile: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "id" : self.id.encode(),
-            "type" : self.type.encode(),
-            "api_url" : self.apiPath.encode(),
-            "web_url" : self.webPath.encode(),
-            "username" : self.username.encode(),
-            "name" : self.name.encode(),
-            "first_name" : self.firstName.encode(),
-            "last_name" : self.lastName.encode(),
-            "is_activated" : self.isActivated.encode(),
-            "image" : self.imagePath.encode(),
-            "cover" : self.coverPath.encode(),
-            "is_listening" : self.isListening.encode(),
-            "listeners_count" : self.listenersCount.encode(),
-            "location" : self.location.encode(),
-            "stats" : self.stats.encode()
-            ])
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(type, key: "type")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(webPath, key: "web_url")
+            try encoder.encode(username, key: "username")
+            try encoder.encode(name, key: "name")
+            try encoder.encode(firstName, key: "first_name")
+            try encoder.encode(lastName, key: "last_name")
+            try encoder.encode(isActivated, key: "is_activated")
+            try encoder.encode(coverPath, key: "cover")
+            try encoder.encode(imagePath, key: "image")
+            try encoder.encode(isListening, key: "is_listening")
+            try encoder.encode(listenersCount, key: "listeners_count")
+            try encoder.encode(location, key: "location")
+            try encoder.encode(stats, key: "stats")
+        })
     }
 }
 
@@ -136,8 +127,8 @@ extension Profile {
 }
 
 extension Profile: Reportable {
-    public func attachedObjectJSON() -> JSON {
-        return ["profile" : ["id" : self.id.encode()].encode()].encode()
+    public var reportTypeKey: String {
+        return "profile"
     }
     
     public func reportTitle() -> String {

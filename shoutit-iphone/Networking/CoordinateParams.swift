@@ -17,7 +17,7 @@ public struct CoordinateParams: Params {
             "location" : [
                 "latitude": coordinates.latitude,
                 "longitude": coordinates.longitude
-            ]
+            ] as AnyObject
         ]
     }
     

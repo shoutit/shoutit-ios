@@ -14,7 +14,7 @@ public struct BatchListenParams: Params {
     
     public var params: [String : AnyObject] {
         return [
-            "tags" : tagSlugs.map{["slug" : $0]}
+            "tags" : (tagSlugs.map{["slug" : $0]} as AnyObject)
         ]
     }
     

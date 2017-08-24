@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Argo
+import JSONCodable
 import Ogra
 
 public struct Contact {
@@ -26,11 +26,13 @@ public struct Contact {
     }
 }
 
-public struct ContactsParams : Params {
+public struct ContactsParams : Params, JSONEncodable {
     let contacts : [Contact]
     
-    public var params: [String : AnyObject] {
-        return ["contacts" : self.contacts.encode().JSONObject()]
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(contacts, key: "contacts")
+        })
     }
     
     public init(contacts: [Contact]) {
@@ -38,28 +40,24 @@ public struct ContactsParams : Params {
     }
 }
 
-extension Contact: Decodable {
-    public static func decode(_ j: JSON) -> Decoded<Contact> {
-        let a = curry(Contact.init)
-            <^> j <|? "first_name"
-            <*> j <|? "last_name"
-            <*> j <|? "name"
+extension Contact: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        firstName = try decoder.decode("first_name")
+        lastName = try decoder.decode("last_name")
+        name = try decoder.decode("name")
+        mobiles = try decoder.decode("mobiles")
+        emails = try decoder.decode("emails")
         
-        
-        let b = a
-            <*> j <||? "mobiles"
-            <*> j <||? "emails"
-        
-        return b
     }
-}
-
-extension Contact: Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["first_name": self.firstName.encode(),
-            "last_name" : self.lastName.encode(),
-            "name" : self.name.encode(),
-            "mobiles" : self.mobiles.encode(),
-            "emails" : self.emails.encode()])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(firstName, key: "first_name")
+            try encoder.encode(lastName, key: "last_name")
+            try encoder.encode(name, key: "name")
+            try encoder.encode(mobiles, key: "mobiles")
+            try encoder.encode(emails, key: "emails")
+        })
     }
 }

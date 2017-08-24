@@ -7,33 +7,49 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
-public struct DisplayRange: Decodable {
+public struct DisplayRange {
     public let offset: Int
     public let length: Int
-    
-    public static func decode(_ j: JSON) -> Decoded<DisplayRange> {
-        let a = curry(DisplayRange.init)
-            <^> j <| "offset"
-            <*> j <| "length"
-        
-        return a
-    }
 }
 
-public struct Display: Decodable {
+public struct Display {
     public let text: String
     public var ranges: [DisplayRange]?
     public let image: String?
+}
+
+extension DisplayRange: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        offset = try decoder.decode("offset")
+        length = try decoder.decode("length")
+    }
     
-    
-    public static func decode(_ j: JSON) -> Decoded<Display> {
-        let a = curry(Display.init)
-            <^> j <| "text"
-            <*> j <||? "ranges"
-            <*> j <|? "image"        
-        
-        return a
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(offset, key: "offset")
+            try encoder.encode(length, key: "length")
+        })
     }
 }
+
+extension Display: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        text = try decoder.decode("text")
+        ranges = try decoder.decode("ranges")
+        image = try decoder.decode("image")
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(text, key: "text")
+            try encoder.encode(ranges, key: "ranges")
+            try encoder.encode(image, key: "image")
+        })
+    }
+}
+
+

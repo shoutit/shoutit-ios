@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct FacebookPage {
     public let perms: [String]
@@ -16,24 +15,19 @@ public struct FacebookPage {
     public let name: String
 }
 
-extension FacebookPage: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<FacebookPage> {
-        return curry(FacebookPage.init)
-            <^> j <|| "perms"
-            <*> j <| "facebook_id"
-            <*> j <| "name"
+extension FacebookPage: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        perms = try decoder.decode("perms")
+        facebookId = try decoder.decode("facebook_id")
+        name = try decoder.decode("name")
     }
-}
-
-extension FacebookPage: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "perms"    : perms.encode(),
-            "facebook_id"  : facebookId.encode(),
-            "name" : name.encode()
-            ]
-        )
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(perms, key: "perms")
+            try encoder.encode(facebookId, key: "facebook_id")
+            try encoder.encode(name, key: "name")
+        })
     }
 }

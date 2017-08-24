@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct GuestUser: User {
     
@@ -25,35 +24,32 @@ public struct GuestUser: User {
     }
 }
 
-extension GuestUser: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<GuestUser> {
-        let a = curry(GuestUser.init)
-            <^> j <| "id"
-            <*> j <| "type"
-            <*> j <| "is_guest"
-            <*> j <| "api_url"
-            <*> j <| "username"
-        let b = a
-            <*> j <| "date_joined"
-            <*> j <| "location"
-            <*> j <|? "push_tokens"
-        return b
+extension GuestUser: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        
+        id = try decoder.decode("id")
+        type = try decoder.decode("type")
+        isGuest = try decoder.decode("is_guest")
+        apiPath = try decoder.decode("api_url")
+        username = try decoder.decode("username")
+        dateJoinedEpoch = try decoder.decode("date_joined")
+        location = try decoder.decode("location")
+        pushTokens = try decoder.decode("push_tokens")
+        
     }
-}
-
-extension GuestUser {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "id" : self.id.encode(),
-            "type" : self.type.encode(),
-            "is_guest" : self.isGuest.encode(),
-            "api_url" : self.apiPath.encode(),
-            "username" : self.username.encode(),
-            "date_joined" : self.dateJoinedEpoch.encode(),
-            "location" : self.location.encode(),
-            "push_tokens" : self.pushTokens.encode(),
-            ])
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            
+            try encoder.encode(id, key: "id")
+            try encoder.encode(type, key: "type")
+            try encoder.encode(isGuest, key: "is_guest")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(username, key: "username")
+            try encoder.encode(dateJoinedEpoch, key: "date_joined")
+            try encoder.encode(location, key: "location")
+            try encoder.encode(pushTokens, key: "push_tokens")
+        })
     }
 }

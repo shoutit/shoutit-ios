@@ -1,0 +1,9 @@
+{
+  "commitish" : "4.1.2",
+  "iOS" : [
+    {
+      "hash" : "b53c72a9950b744e3415b75840ab6a4b169a7a4a5a0af59678b9a3f10cf0cf99",
+      "name" : "Ogra"
+    }
+  ]
+}

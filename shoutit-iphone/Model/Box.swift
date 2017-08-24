@@ -7,27 +7,20 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
-public final class Box<T: Decodable> : Decodable, Encodable where T: Encodable, T.DecodedType == T {
+public final class Box<T> : JSONCodable where T: JSONCodable {
     public var value: T
     public init(_ value: T) {
         self.value = value
     }
     
-    public static func decode(_ j: JSON) -> Decoded<Box<T>> {
-        let value : Decoded<T.DecodedType> = T.decode(j)
-
-        switch value {
-        case .success(let val):
-            return Decoded.success(Box(val))
-        case .failure(let error):
-            return Decoded.failure(error)
-        }
+    public init(object: JSONObject) throws {
+        value = try T(object: object)
     }
     
-    public func encode() -> JSON {
-        return value.encode()
+    public func toJSON() throws -> Any {
+        return try value.toJSON()
     }
+    
 }

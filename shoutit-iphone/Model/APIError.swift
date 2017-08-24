@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct APIError {
     let code: Int
@@ -17,16 +17,24 @@ public struct APIError {
     let errors: [APIDetailedError]
 }
 
-extension APIError: Decodable {
+extension APIError: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        code = try decoder.decode("code")
+        message = try decoder.decode("message")
+        developerMessage = try decoder.decode("developer_message")
+        requestId = try decoder.decode("request_id")
+        errors = try decoder.decode("errors")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<APIError> {
-        let a = curry(APIError.init)
-            <^> j <| "code"
-            <*> j <| "message"
-            <*> j <| "developer_message"
-        return  a
-            <*> j <| "request_id"
-            <*> j <|| "errors"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(code, key: "code")
+            try encoder.encode(message, key: "message")
+            try encoder.encode(developerMessage, key: "developer_message")
+            try encoder.encode(requestId, key: "request_id")
+            try encoder.encode(errors, key: "errors")
+        })
     }
 }
 
@@ -54,13 +62,22 @@ public struct APIDetailedError {
     let locationType: String?
 }
 
-extension APIDetailedError: Decodable {
+
+extension APIDetailedError: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        reason = try decoder.decode("reason")
+        message = try decoder.decode("message")
+        location = try decoder.decode("location")
+        locationType = try decoder.decode("name")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<APIDetailedError> {
-        return curry(APIDetailedError.init)
-            <^> j <|? "reason"
-            <*> j <| "message"
-            <*> j <|? "location"
-            <*> j <|? "location_type"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(reason, key: "reason")
+            try encoder.encode(message, key: "message")
+            try encoder.encode(location, key: "location")
+            try encoder.encode(locationType, key: "location_type")
+        })
     }
 }

@@ -1,0 +1,9 @@
+{
+  "commitish" : "0.1.8",
+  "iOS" : [
+    {
+      "hash" : "4b84053c5b07cc6197ed319a8135893529ad838daffcb8d1216a065a6353595e",
+      "name" : "PaperTrailLumberjack"
+    }
+  ]
+}

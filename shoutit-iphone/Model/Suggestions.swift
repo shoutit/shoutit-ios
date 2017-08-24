@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-
+import JSONCodable
 
 public struct Suggestions {
     public let users: [Profile]?
@@ -22,12 +21,19 @@ public struct Suggestions {
     }
 }
 
-extension Suggestions: Decodable {
+extension Suggestions: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        users = try decoder.decode("users")
+        pages = try decoder.decode("pages")
+        tags = try decoder.decode("tags")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<Suggestions> {
-        return curry(Suggestions.init)
-            <^> j <||? "users"
-            <*> j <||? "pages"
-            <*> j <||? "tags"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(users, key: "users")
+            try encoder.encode(pages, key: "pages")
+            try encoder.encode(tags, key: "tags")
+        })
     }
 }

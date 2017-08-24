@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct Address {
     
@@ -31,32 +30,27 @@ public struct Address {
     }
 }
 
-extension Address: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Address> {
-        let f = curry(Address.init)
-            <^> j <|? "address"
-            <*> j <| "city"
-            <*> j <| "country"
-        return f
-            <*> j <|? "latitude"
-            <*> j <|? "longitude"
-            <*> j <| "postal_code"
-            <*> j <| "state"
+extension Address: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        address = try decoder.decode("address")
+        city = try decoder.decode("city")
+        country = try decoder.decode("country")
+        latitude = try decoder.decode("latitude")
+        longitude = try decoder.decode("longitude")
+        postalCode = try decoder.decode("postal_code")
+        state = try decoder.decode("state")
     }
-}
-
-extension Address: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "address"    : self.address.encode(),
-            "city"  : self.city.encode(),
-            "country" : self.country.encode(),
-            "latitude"    : self.latitude.encode(),
-            "longitude"  : self.longitude.encode(),
-            "postal_code" : self.postalCode.encode(),
-            "state" : self.state.encode(),
-        ])
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(address, key: "address")
+            try encoder.encode(city, key: "city")
+            try encoder.encode(country, key: "country")
+            try encoder.encode(latitude, key: "latitude")
+            try encoder.encode(longitude, key: "longitude")
+            try encoder.encode(postalCode, key: "postal_code")
+            try encoder.encode(state, key: "state")
+        })
     }
 }

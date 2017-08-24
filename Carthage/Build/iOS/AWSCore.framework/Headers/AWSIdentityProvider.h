@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -30,18 +30,10 @@ FOUNDATION_EXPORT NSString *const AWSIdentityProviderTwitter;
 
 FOUNDATION_EXPORT NSString *const AWSIdentityProviderAmazonCognitoIdentity;
 
-typedef NS_ENUM(NSInteger, AWSCognitoLoginProviderKey) {
-    AWSCognitoLoginProviderKeyUnknown,
-    AWSCognitoLoginProviderKeyFacebook,
-    AWSCognitoLoginProviderKeyGoogle,
-    AWSCognitoLoginProviderKeyLoginWithAmazon,
-    AWSCognitoLoginProviderKeyTwitter,
-} __attribute__((deprecated("Use 'AWSIdentityProvider' const strings instead. e.g. 'AWSIdentityProviderFacebook'")));
-
 FOUNDATION_EXPORT NSString *const AWSCognitoCredentialsProviderHelperErrorDomain;
 typedef NS_ENUM(NSInteger, AWSCognitoCredentialsProviderHelperErrorType) {
-    AWSCognitoCredentialsProviderHelperErrorIdentityIsNil,
-    AWSCognitoCredentialsProviderHelperErrorTokenRefreshTimeout,
+    AWSCognitoCredentialsProviderHelperErrorTypeIdentityIsNil,
+    AWSCognitoCredentialsProviderHelperErrorTypeTokenRefreshTimeout,
 };
 
 @class AWSTask<__covariant ResultType>;
@@ -72,6 +64,12 @@ typedef NS_ENUM(NSInteger, AWSCognitoCredentialsProviderHelperErrorType) {
  Each entry in logins represents a single login with an identity provider. The key is the domain of the login provider (e.g. 'graph.facebook.com') and the value is the OAuth/OpenId Connect token that results from an authentication with that login provider.
  */
 - (AWSTask<NSDictionary<NSString *, NSString *> *> *)logins;
+
+@optional
+/**
+ * If the token contains the role arn and there are multiple roles, return the custom role to assume.  This is currently only supported for SAML identity providers.
+ */
+@property (nonatomic, readonly) NSString *customRoleArn;
 
 @end
 

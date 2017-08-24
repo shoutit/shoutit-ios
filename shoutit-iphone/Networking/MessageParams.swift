@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import JSONCodable
 
-public struct MessageParams: Params {
+public struct MessageParams: Params, JSONEncodable {
     let message: Message
     
     public init(message: Message) {
         self.message = message
     }
     
-    public var params: [String : AnyObject] {
-        return self.message.encode().JSONObject() as! [String: AnyObject]
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(message, key: "message")
+        })
     }
 }

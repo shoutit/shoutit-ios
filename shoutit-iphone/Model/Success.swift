@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-
+import JSONCodable
 
 public struct Success {
     public let message: String
@@ -18,9 +17,15 @@ public struct Success {
     }
 }
 
-extension Success: Decodable {
-    public static func decode(_ j: JSON) -> Decoded<Success> {
-        return curry(Success.init)
-            <^> j <| "success"
+extension Success: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        message = try decoder.decode("success")
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(message, key: "success")
+        })
     }
 }

@@ -7,36 +7,59 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
-public struct Promotion: Decodable {
+public struct Promotion {
     public let id: String
     public let days: Int?
     public let isExpired:  Bool
     public let label: PromotionLabel?
     public let expiresAt: Int?
+}
+
+extension Promotion: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        days = try decoder.decode("days")
+        isExpired = try decoder.decode("is_expired")
+        label = try decoder.decode("label")
+        expiresAt = try decoder.decode("expires_at")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<Promotion> {
-        return curry(Promotion.init)
-            <^> j <| "id"
-            <*> j <|? "days"
-            <*> j <| "is_expired"
-            <*> j <|? "label"
-            <*> j <|? "expires_at"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(days, key: "days")
+            try encoder.encode(isExpired, key: "is_expired")
+            try encoder.encode(label, key: "label")
+            try encoder.encode(expiresAt, key: "expires_at")
+        })
     }
 }
 
-public struct PromotionLabel: Decodable {
+public struct PromotionLabel {
     public let name : String
     public let description: String
     public let color: String
     public let backgroundColor: String
+}
+
+extension PromotionLabel: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        name = try decoder.decode("name")
+        description = try decoder.decode("description")
+        color = try decoder.decode("color")
+        backgroundColor = try decoder.decode("bg_color")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<PromotionLabel> {
-        return curry(PromotionLabel.init)
-            <^> j <| "name"
-            <*> j <| "description"
-            <*> j <| "color"
-            <*> j <| "bg_color"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(name, key: "name")
+            try encoder.encode(description, key: "description")
+            try encoder.encode(color, key: "color")
+            try encoder.encode(backgroundColor, key: "bg_color")
+        })
     }
 }

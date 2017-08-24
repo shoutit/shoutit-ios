@@ -33,12 +33,12 @@ public struct EditProfileParams: Params {
         p["website"] = website as AnyObject
         p["mobile"] = mobile as AnyObject
         if let latitude = location?.latitude, let longitude = location?.longitude, let address = location?.address {
-            p["location"] = ["latitude" : latitude, "longitude" : longitude, "address" : address]
+            p["location"] = ["latitude" : latitude, "longitude" : longitude, "address" : address] as AnyObject
         }
         p["image"] = imagePath as AnyObject
         p["cover"] = coverPath as AnyObject
         p["birthday"] = birthday as AnyObject
-        p["gender"] = gender != nil ? (gender!.rawValue) : NSNull()
+        p["gender"] = (gender != nil ? (gender!.rawValue) as AnyObject : NSNull() as AnyObject)
         
         
         return p

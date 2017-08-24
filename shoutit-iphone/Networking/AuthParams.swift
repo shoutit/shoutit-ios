@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import JSONCodable
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -57,7 +58,7 @@ extension AuthParams {
         
         let coordinate = currentUserCoordinates
         
-        var locationUserParams: [String : AnyObject] = ["location" : ["latitude": coordinate.latitude, "longitude": coordinate.longitude]]
+        var locationUserParams: [String : AnyObject] = ["location" : ["latitude": coordinate.latitude, "longitude": coordinate.longitude] as AnyObject]
         if let currentUserParams = commonParams["profile"] as? [String : AnyObject] {
             for (key, value) in currentUserParams {
                 locationUserParams[key] = value
@@ -149,7 +150,7 @@ public struct LoginGuestParams: AuthParams {
     public var authParams: [String : AnyObject] {
         return [
             "profile":
-                ["push_tokens" : ["apns" : apns ?? NSNull()]]
+                ["push_tokens" : ["apns" : apns ?? NSNull()]] as AnyObject
         ]
     }
 }

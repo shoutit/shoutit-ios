@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.2.0",
+  "iOS" : [
+    {
+      "hash" : "669ae42310e089f17dc25c375c43cb2e38178d41806a5760c7c3073f970db819",
+      "name" : "AmazonS3RequestManager"
+    }
+  ]
+}

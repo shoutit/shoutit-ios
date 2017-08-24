@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import Argo
-
-import Ogra
+import JSONCodable
 
 public struct TypingInfo {
     public let id: String
@@ -21,17 +19,17 @@ public struct TypingInfo {
     }
 }
 
-extension TypingInfo: Decodable {
-    public static func decode(_ j: JSON) -> Decoded<TypingInfo> {
-        return curry(TypingInfo.init)
-            <^> j <| "id"
-            <*> j <| "username"
+extension TypingInfo: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        username = try decoder.decode("username")
     }
-}
-
-extension TypingInfo: Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["id": self.id.encode(),
-            "username" : self.username.encode()])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(username, key: "username")
+        })
     }
 }

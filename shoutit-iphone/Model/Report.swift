@@ -7,24 +7,33 @@
 //
 
 import Foundation
-import Argo
-
-import Ogra
+import JSONCodable
 
 public struct Report {
     let text: String
     let object: Reportable
 }
 
-extension Report: Encodable {
-    public func encode() -> JSON {
-        
-        var json = [String: JSON]()
-        
-        json["text"] = self.text.encode()
-        
-        json["attached_object"] = self.object.attachedObjectJSON()
-        
-        return JSON.object(json)
+struct ReportObject : JSONEncodable {
+    var id: String
+    
+    init(_ id: String) {
+        self.id = id
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+        })
+    }
+}
+
+extension Report: JSONEncodable {
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(text, key: "text")
+            try encoder.encode(ReportObject(object.id), key:object.reportTypeKey)
+        })
     }
 }

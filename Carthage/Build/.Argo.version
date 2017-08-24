@@ -1,0 +1,9 @@
+{
+  "commitish" : "v4.1.2",
+  "iOS" : [
+    {
+      "hash" : "ecb1bedcabf3c6790fcf0719c259dcf4ed8bcedf18e36f7b5f0a551f71e57fe4",
+      "name" : "Argo"
+    }
+  ]
+}

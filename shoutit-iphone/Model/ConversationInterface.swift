@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import JSONCodable
 
 public enum ConversationType : String {
     case Chat = "chat"
@@ -21,6 +22,7 @@ public protocol ConversationInterface {
     var display: ConversationDescription { get }
     var modifiedAt: Int? { get }
 }
+
 
 extension ConversationInterface {
     

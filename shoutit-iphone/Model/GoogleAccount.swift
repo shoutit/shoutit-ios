@@ -7,27 +7,21 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct GoogleAccount {
     public let gplusId: String
 }
 
-extension GoogleAccount: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<GoogleAccount> {
-        return curry(GoogleAccount.init)
-            <^> j <| "gplus_id"
+extension GoogleAccount: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        gplusId = try decoder.decode("gplus_id")
     }
-}
-
-extension GoogleAccount: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "gplus_id" : self.gplusId.encode()
-            ]
-        )
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(gplusId, key: "gplus_id")
+        })
     }
 }

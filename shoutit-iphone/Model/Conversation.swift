@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct Conversation: ConversationInterface {
     
@@ -29,35 +29,49 @@ public struct Conversation: ConversationInterface {
     public let creator: MiniProfile?
 }
 
-extension Conversation: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Conversation> {
-        let a = curry(Conversation.init)
-            <^> j <| "id"
-            <*> j <|? "created_at"
-            <*> j <|? "modified_at"
-        let b = a
-            <*> j <|? "api_url"
-            <*> j <|? "web_url"
-            <*> j <| "type"
-        let c = b
-            <*> j <||? "profiles"
-            <*> j <|? "last_message"
-            <*> j <| "unread_messages_count"
-            <*> j <|? "about"
-        let d = c
-            <*> j <||? "read_by"
-            <*> j <| "display"
-        let f = d
-            <*> j <||? "blocked"
-            <*> j <|| "admins"
-        let g = f
-            <*> j <| "attachments_count"
-            <*> j <|? "creator"
-        return g
+extension Conversation: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        createdAt = try decoder.decode("created_at")
+        modifiedAt = try decoder.decode("modified_at")
+        apiPath = try decoder.decode("api_url")
+        webPath = try decoder.decode("web_url")
+        typeString = try decoder.decode("type")
+        users = try decoder.decode("profiles")
+        lastMessage = try decoder.decode("last_message")
+        unreadMessagesCount = try decoder.decode("unread_messages_count")
+        shout = try decoder.decode("about")
+        readby = try decoder.decode("read_by")
+        display = try decoder.decode("display")
+        blocked = try decoder.decode("blocked")
+        admins = try decoder.decode("admins")
+        attachmentCount = try decoder.decode("attachments_count")
+        creator = try decoder.decode("creator")
     }
-
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(createdAt, key: "created_at")
+            try encoder.encode(modifiedAt, key: "modified_at")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(webPath, key: "web_url")
+            try encoder.encode(typeString, key: "type")
+            try encoder.encode(users, key: "profiles")
+            try encoder.encode(lastMessage, key: "last_message")
+            try encoder.encode(unreadMessagesCount, key: "unread_messages_count")
+            try encoder.encode(shout, key: "about")
+            try encoder.encode(readby, key: "read_by")
+            try encoder.encode(display, key: "display")
+            try encoder.encode(blocked, key: "blocked")
+            try encoder.encode(admins, key: "name")
+            try encoder.encode(attachmentCount, key: "attachments_count")
+            try encoder.encode(creator, key: "creator")
+        })
+    }
 }
+
 
 extension Conversation: Equatable, Hashable {
     
@@ -109,8 +123,8 @@ extension Conversation {
 }
 
 extension Conversation : Reportable {
-    public func attachedObjectJSON() -> JSON {
-        return ["conversation" : ["id" : self.id.encode()].encode()].encode()
+    public var reportTypeKey: String {
+        return "conversation"
     }
     
     public func reportTitle() -> String {

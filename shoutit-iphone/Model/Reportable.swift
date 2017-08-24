@@ -7,13 +7,14 @@
 //
 
 import Foundation
-import Argo
-
-import Ogra
+import JSONCodable
 
 public protocol Reportable {
-    func attachedObjectJSON() -> JSON
+    
     func reportTitle() -> String
+    
+    var id: String { get }
+    var reportTypeKey: String { get }
 }
 
 extension Reportable {

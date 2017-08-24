@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
-public struct Message: Decodable, Hashable, Equatable {
+public struct Message: Hashable, Equatable {
     
     public let id: String
     public let conversationId: String?
@@ -26,20 +25,6 @@ public struct Message: Decodable, Hashable, Equatable {
         }
     }
     
-    public static func decode(_ j: JSON) -> Decoded<Message> {
-        let a = curry(Message.init)
-            <^> j <| "id"
-            <*> j <|? "conversation_id"
-            <*> j <| "created_at"
-            <*> j <|? "read_url"
-        let b = a
-            <*> j <|? "profile"
-            <*> j <|? "text"
-            <*> j <||? "attachments"
-        
-        return b
-    }
-    
     public static func messageWithText(_ text: String) -> Message {
         return Message(id: generateId(), conversationId: nil, createdAt: 0, readPath: nil, user: nil, text: text, attachments: nil)
     }
@@ -50,6 +35,27 @@ public struct Message: Decodable, Hashable, Equatable {
     
     public static func generateId() -> String {
         return ProcessInfo.processInfo.globallyUniqueString
+    }
+}
+
+
+extension Message: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        conversationId = try decoder.decode("conversation_id")
+        createdAt = try decoder.decode("created_at")
+        readPath = try decoder.decode("read_url")
+        user = try decoder.decode("profile")
+        text = try decoder.decode("text")
+        attachments = try decoder.decode("attachments")
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(text, key: "text")
+            try encoder.encode(attachments, key: "attachments")
+        })
     }
 }
 
@@ -87,23 +93,6 @@ extension Message {
         }
         
         return attachments.first
-    }
-}
-
-
-extension Message: Encodable {
-    public func encode() -> JSON {
-        var encoded : [String: JSON] = [:]
-        
-        if let text = text {
-            encoded["text"] = text.encode()
-        }
-        
-        if let attachments = attachments, let attachment = attachments.first {
-            encoded["attachments"] = [attachment.encode()].encode()
-        }
-        
-        return JSON.object(encoded)
     }
 }
 

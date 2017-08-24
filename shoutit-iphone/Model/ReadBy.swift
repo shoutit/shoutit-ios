@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
-
-public struct ReadBy: Decodable, Hashable, Equatable {
+public struct ReadBy: Hashable, Equatable {
     let profileId: String
     let readAt: Int
     
@@ -19,11 +18,20 @@ public struct ReadBy: Decodable, Hashable, Equatable {
             return self.profileId.hashValue
         }
     }
+}
+
+extension ReadBy: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        profileId = try decoder.decode("profile_id")
+        readAt = try decoder.decode("read_at")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<ReadBy> {
-        return curry(ReadBy.init)
-            <^> j <| "profile_id"
-            <*> j <| "read_at"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(profileId, key: "profile_id")
+            try encoder.encode(readAt, key: "read_at")
+        })
     }
 }
 

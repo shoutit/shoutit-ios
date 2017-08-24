@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -77,98 +77,87 @@ public struct DetailedUserProfile: DetailedProfile {
     public let birthday: String?
 }
 
-extension DetailedUserProfile: Decodable {
+extension DetailedUserProfile: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        type = try decoder.decode("type")
+        apiPath = try decoder.decode("api_url")
+        webPath = try decoder.decode("web_url")
+        username = try decoder.decode("username")
+        name = try decoder.decode("name")
+        firstName = try decoder.decode("first_name")
+        lastName = try decoder.decode("last_name")
+        isActivated = try decoder.decode("is_activated")
+        imagePath = try decoder.decode("image")
+        coverPath = try decoder.decode("cover")
+        isListening = try decoder.decode("is_listening")
+        listenersCount = try decoder.decode("listeners_count")
+        gender = try decoder.decode("gender")
+        video = try decoder.decode("video")
+        dateJoinedEpoch = try decoder.decode("date_joined")
+        bio = try decoder.decode("bio")
+        about = try decoder.decode("about")
+        location = try decoder.decode("location")
+        email = try decoder.decode("email")
+        mobile = try decoder.decode("mobile")
+        website = try decoder.decode("website")
+        linkedAccounts = try decoder.decode("linked_accounts")
+        pushTokens = try decoder.decode("push_tokens")
+        isPasswordSet = try decoder.decode("is_password_set")
+        isListener = try decoder.decode("is_listener")
+        shoutsPath = try decoder.decode("shouts_url")
+        listenersPath = try decoder.decode("listeners_url")
+        listeningMetadata = try decoder.decode("listening_count")
+        listeningPath = try decoder.decode("listening_url")
+        isOwner = try decoder.decode("is_owner")
+        chatPath = try decoder.decode("chat_url")
+        conversation = try decoder.decode("conversation")
+        stats = try decoder.decode("stats")
+        birthday = try decoder.decode("birthday")
+        
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<DetailedUserProfile> {
-        let a =  curry(DetailedUserProfile.init)
-            <^> j <| "id"
-            <*> j <| "type"
-            <*> j <| "api_url"
-            <*> j <|? "web_url"
-        let b = a
-            <*> j <| "username"
-            <*> j <| "name"
-            <*> j <|? "first_name"
-            <*> j <|? "last_name"
-        let c = b
-            <*> j <| "is_activated"
-            <*> j <|? "image"
-            <*> j <|? "cover"
-            <*> j <|? "is_listening"
-        let d = c
-            <*> j <| "listeners_count"
-            <*> j <|? "gender"
-            <*> j <|? "video"
-            <*> j <| "date_joined"
-            <*> j <|? "bio"
-        let e = d
-            <*> j <|? "about"
-            <*> j <| "location"
-            <*> j <|? "email"
-            <*> j <|? "mobile"
-            <*> j <|? "website"
-        let f = e
-            <*> j <|? "linked_accounts"
-            <*> j <|? "push_tokens"
-            <*> j <|? "is_password_set"
-            <*> j <|? "is_listener"
-        let g = f
-            <*> j <|? "shouts_url"
-            <*> j <| "listeners_url"
-            <*> j <|? "listening_count"
-            <*> j <|? "listening_url"
-            <*> j <| "is_owner"
-        let h = g
-            <*> j <|? "chat_url"
-            <*> j <|? "conversation"
-            <*> j <|? "stats"
-            <*> j <|? "birthday"
-        return h
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(type, key: "type")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(webPath, key: "web_url")
+            try encoder.encode(username, key: "username")
+            try encoder.encode(name, key: "name")
+            try encoder.encode(firstName, key: "first_name")
+            try encoder.encode(lastName, key: "last_name")
+            try encoder.encode(isActivated, key: "is_activated")
+            try encoder.encode(coverPath, key: "cover")
+            try encoder.encode(imagePath, key: "image")
+            try encoder.encode(isListening, key: "is_listening")
+            try encoder.encode(listenersCount, key: "listeners_count")
+            try encoder.encode(gender, key: "gender")
+            try encoder.encode(video, key: "video")
+            try encoder.encode(dateJoinedEpoch, key: "date_joined")
+            try encoder.encode(bio, key: "bio")
+            try encoder.encode(about, key: "about")
+            try encoder.encode(location, key: "location")
+            try encoder.encode(email, key: "email")
+            try encoder.encode(mobile, key: "mobile")
+            try encoder.encode(website, key: "website")
+            try encoder.encode(linkedAccounts, key: "linked_accounts")
+            try encoder.encode(pushTokens, key: "push_tokens")
+            try encoder.encode(isPasswordSet, key: "is_password_set")
+            try encoder.encode(isListener, key: "is_listener")
+            try encoder.encode(shoutsPath, key: "shouts_url")
+            try encoder.encode(listenersPath, key: "listeners_url")
+            try encoder.encode(listeningMetadata, key: "listening_count")
+            try encoder.encode(listeningPath, key: "listening_url")
+            try encoder.encode(isOwner, key: "is_owner")
+            try encoder.encode(chatPath, key: "chat_url")
+            try encoder.encode(conversation, key: "conversation")
+            try encoder.encode(stats, key: "stats")
+            try encoder.encode(birthday, key: "birthday")
+        })
     }
 }
-
-extension DetailedUserProfile: Encodable {
-    
-    public func encode() -> JSON {
-        return JSON.object([
-            "id" : self.id.encode(),
-            "type" : self.type.encode(),
-            "api_url" : self.apiPath.encode(),
-            "web_url" : self.webPath.encode(),
-            "username" : self.username.encode(),
-            "name" : self.name.encode(),
-            "first_name" : self.firstName.encode(),
-            "last_name" : self.lastName.encode(),
-            "is_activated" : self.isActivated.encode(),
-            "image" : self.imagePath.encode(),
-            "cover" : self.coverPath.encode(),
-            "is_listening" : self.isListening.encode(),
-            "listeners_count" : self.listenersCount.encode(),
-            "gender" : self.gender.encode(),
-            "video" : self.video.encode(),
-            "date_joined" : self.dateJoinedEpoch.encode(),
-            "bio" : self.bio.encode(),
-            "about" : self.about.encode(),
-            "location" : self.location.encode(),
-            "email" : self.email.encode(),
-            "mobile" : self.mobile.encode(),
-            "website" : self.website.encode(),
-            "linked_accounts" : self.linkedAccounts.encode(),
-            "push_tokens" : self.pushTokens.encode(),
-            "is_password_set" : self.isPasswordSet.encode(),
-            "is_listener" : self.isListener.encode(),
-            "shouts_url" : self.shoutsPath.encode(),
-            "listeners_url" : self.listenersPath.encode(),
-            "listening_count" : self.listeningMetadata.encode(),
-            "listening_url" : self.listeningPath.encode(),
-            "is_owner" : self.isOwner.encode(),
-            "chat_url" : self.chatPath.encode(),
-            "stats" : self.stats.encode(),
-            "birthday" : self.birthday.encode()
-            ])
-    }
-}
-
 
 extension DetailedUserProfile {
     public func updatedProfileWithStats(_ stts: ProfileStats?) -> DetailedUserProfile {

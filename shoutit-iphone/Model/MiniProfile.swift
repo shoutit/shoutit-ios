@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct MiniProfile {
     public let id: String
@@ -21,12 +21,20 @@ public struct MiniProfile {
     }
 }
 
-extension MiniProfile: Decodable {
+extension MiniProfile: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        username = try decoder.decode("username")
+        name = try decoder.decode("name")
+        
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<MiniProfile> {
-        return curry(MiniProfile.init)
-            <^> j <| "id"
-            <*> j <| "username"
-            <*> j <|? "name"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(name, key: "name")
+            try encoder.encode(username, key: "username")
+            try encoder.encode(name, key: "name")
+        })
     }
 }

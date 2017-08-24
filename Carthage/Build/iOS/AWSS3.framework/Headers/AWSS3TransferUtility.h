@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, AWSS3TransferUtilityErrorType) {
     AWSS3TransferUtilityErrorRedirection,
     AWSS3TransferUtilityErrorClientError,
     AWSS3TransferUtilityErrorServerError,
+    AWSS3TransferUtilityErrorLocalFileNotFound
 };
 
 FOUNDATION_EXPORT NSString *const AWSS3TransferUtilityURLSessionDidBecomeInvalidNotification;
@@ -90,10 +91,10 @@ typedef void (^AWSS3TransferUtilityProgressBlock) (AWSS3TransferUtilityTask *tas
 
  *Swift*
 
-     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
          let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YourIdentityPoolId")
          let configuration = AWSServiceConfiguration(region: .USEast1, credentialsProvider: credentialProvider)
-         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+         AWSServiceManager.default().defaultServiceConfiguration = configuration
 
          return true
      }
@@ -114,7 +115,7 @@ typedef void (^AWSS3TransferUtilityProgressBlock) (AWSS3TransferUtilityTask *tas
 
  *Swift*
 
-     let S3TransferUtility = AWSS3TransferUtility.defaultS3TransferUtility()
+     let S3TransferUtility = AWSS3TransferUtility.default()
 
  *Objective-C*
 
@@ -131,10 +132,10 @@ typedef void (^AWSS3TransferUtilityProgressBlock) (AWSS3TransferUtilityTask *tas
 
  *Swift*
 
-     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
          let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YourIdentityPoolId")
          let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialProvider)
-         AWSS3TransferUtility.registerS3TransferUtilityWithConfiguration(configuration, forKey: "USWest2S3TransferUtility")
+         AWSS3TransferUtility.register(with: configuration!, forKey: "USWest2S3TransferUtility")
 
          return true
      }
@@ -177,10 +178,10 @@ typedef void (^AWSS3TransferUtilityProgressBlock) (AWSS3TransferUtilityTask *tas
 
  *Swift*
 
-     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
          let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YourIdentityPoolId")
          let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialProvider)
-         AWSS3TransferUtility.registerS3TransferUtilityWithConfiguration(configuration, transferUtilityConfiguration: nil, forKey: "USWest2S3TransferUtility")
+         AWSS3TransferUtility.register(with: configuration!, transferUtilityConfiguration: nil, forKey: "USWest2S3TransferUtility")
 
          return true
      }
@@ -274,7 +275,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  @param key               The Amazon S3 object key name.
  @param contentType       `Content-Type` of the data.
  @param expression        The container object to configure the upload request.
- @param completionHandler The completion hanlder when the upload completes.
+ @param completionHandler The completion handler when the upload completes.
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityUploadTask`.
  */
@@ -283,7 +284,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
                                                       key:(NSString *)key
                                               contentType:(NSString *)contentType
                                                expression:(nullable AWSS3TransferUtilityUploadExpression *)expression
-                                         completionHander:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
+                                        completionHandler:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
 
 /**
  Uploads the file to the specified Amazon S3 bucket.
@@ -293,7 +294,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  @param key               The Amazon S3 object key name.
  @param contentType       `Content-Type` of the file.
  @param expression        The container object to configure the upload request.
- @param completionHandler The completion hanlder when the upload completes.
+ @param completionHandler The completion handler when the upload completes.
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityUploadTask`.
  */
@@ -302,7 +303,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
                                                       key:(NSString *)key
                                               contentType:(NSString *)contentType
                                                expression:(nullable AWSS3TransferUtilityUploadExpression *)expression
-                                         completionHander:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
+                                        completionHandler:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
 
 /**
  Downloads the specified Amazon S3 object as `NSData`.
@@ -310,14 +311,14 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  @param bucket            The Amazon S3 bucket name.
  @param key               The Amazon S3 object key name.
  @param expression        The container object to configure the download request.
- @param completionHandler The completion hanlder when the download completes.
+ @param completionHandler The completion handler when the download completes.
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityDownloadTask`.
  */
 - (AWSTask<AWSS3TransferUtilityDownloadTask *> *)downloadDataFromBucket:(NSString *)bucket
                                                                     key:(NSString *)key
                                                              expression:(nullable AWSS3TransferUtilityDownloadExpression *)expression
-                                                       completionHander:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
+                                                      completionHandler:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
 
 /**
  Downloads the specified Amazon S3 object to a file URL.
@@ -326,7 +327,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  @param bucket            The Amazon S3 bucket name.
  @param key               The Amazon S3 object key name.
  @param expression        The container object to configure the download request.
- @param completionHandler The completion hanlder when the download completes.
+ @param completionHandler The completion handler when the download completes.
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityDownloadTask`.
  */
@@ -334,7 +335,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
                                                         bucket:(NSString *)bucket
                                                            key:(NSString *)key
                                                     expression:(nullable AWSS3TransferUtilityDownloadExpression *)expression
-                                              completionHander:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
+                                             completionHandler:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
 
 /**
  Assigns progress feedback and completion handler blocks. This method should be called when the app was suspended while the transfer is still happening.

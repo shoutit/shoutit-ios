@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
-
-public struct PagedResults<T: Decodable> where T.DecodedType == T {
+public struct PagedResults<T: JSONCodable> {
     public let count: Int?
     public let previousPath: String?
     public let nextPath: String?
@@ -24,17 +23,23 @@ public struct PagedResults<T: Decodable> where T.DecodedType == T {
     }
 }
 
-extension PagedResults: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<PagedResults<T>> {
-        let a = curry(PagedResults<T>.init)
-            <^> j <|? "count"
-            <*> j <|? "previous"
-        let b = a
-            <*> j <|? "next"
-            <*> j <|| "results"
-        return b
+extension PagedResults: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        count = try decoder.decode("count")
+        previousPath = try decoder.decode("previous")
+        nextPath = try decoder.decode("next")
+        results = try decoder.decode("results")
     }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(results, key: "results")
+        })
+    }
+}
+
+extension PagedResults {
     
     public init(_ results: [T]) {
         self.results = results

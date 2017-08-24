@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct AttachmentCount {
     public let shout: Int
@@ -23,13 +23,21 @@ public struct AttachmentCount {
     }
 }
 
-extension AttachmentCount: Decodable {
+extension AttachmentCount: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        shout = try decoder.decode("shout")
+        media = try decoder.decode("media")
+        profile = try decoder.decode("profile")
+        location = try decoder.decode("location")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<AttachmentCount> {
-        return curry(AttachmentCount.init)
-            <^> j <| "shout"
-            <*> j <| "media"
-            <*> j <| "profile"
-            <*> j <| "location"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(shout, key: "shout")
+            try encoder.encode(media, key: "media")
+            try encoder.encode(profile, key: "profile")
+            try encoder.encode(location, key: "location")
+        })
     }
 }

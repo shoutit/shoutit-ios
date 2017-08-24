@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 public struct DetailedPageProfile: DetailedProfile {
     
@@ -86,89 +85,77 @@ public struct DetailedPageProfile: DetailedProfile {
     }
 }
 
-
-
-extension DetailedPageProfile: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<DetailedPageProfile> {
-        let a =  curry(DetailedPageProfile.init)
-            <^> j <| "id"
-            <*> j <| "type"
-            <*> j <| "api_url"
-            <*> j <|? "web_url"
-        let b = a
-            <*> j <| "username"
-            <*> j <| "name"
-            <*> j <|? "first_name"
-            <*> j <|? "last_name"
-        let c = b
-            <*> j <| "is_activated"
-            <*> j <| "is_verified"
-            <*> j <|? "image"
-            <*> j <|? "cover"
-            <*> j <|? "is_listening"
-        let d = c
-            <*> j <| "listeners_count"
-            <*> j <|? "website"
-            <*> j <|? "about"
-        let e = d
-            <*> j <|? "is_published"
-            <*> j <|? "stats"
-            <*> j <|? "phone"
-            <*> j <|? "founded"
-        let f = e
-            <*> j <|? "description"
-            <*> j <|? "impressum"
-            <*> j <|? "overview"
-        let g = f
-            <*> j <|? "mission"
-            <*> j <|? "general_info"
-            <*> j <|? "listening_count"
-        let h = g
-            <*> j <| "date_joined"
-            <*> j <| "location"
-            <*> j <|? "push_tokens"
-            <*> j <|? "admin"
-            <*> j <|? "linked_accounts"
-        return h
+extension DetailedPageProfile: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        type = try decoder.decode("type")
+        apiPath = try decoder.decode("api_url")
+        webPath = try decoder.decode("web_url")
+        username = try decoder.decode("username")
+        name = try decoder.decode("name")
+        firstName = try decoder.decode("first_name")
+        lastName = try decoder.decode("last_name")
+        isActivated = try decoder.decode("is_activated")
+        isVerified = try decoder.decode("is_verified")
+        imagePath = try decoder.decode("image")
+        coverPath = try decoder.decode("cover")
+        isListening = try decoder.decode("is_listening")
+        listenersCount = try decoder.decode("listeners_count")
+        website = try decoder.decode("website")
+        about = try decoder.decode("about")
+        isPublished = try decoder.decode("is_published")
+        stats = try decoder.decode("stats")
+        mobile = try decoder.decode("phone")
+        founded = try decoder.decode("founded")
+        description = try decoder.decode("description")
+        impressum = try decoder.decode("impressum")
+        overview = try decoder.decode("overview")
+        mission = try decoder.decode("mission")
+        general_info = try decoder.decode("general_info")
+        listeningMetadata = try decoder.decode("listening_count")
+        dateJoinedEpoch = try decoder.decode("date_joined")
+        location = try decoder.decode("location")
+        pushTokens = try decoder.decode("push_tokens")
+        admin = try decoder.decode("admin")
+        linkedAccounts = try decoder.decode("linked_accounts")
     }
-}
-
-extension DetailedPageProfile {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "id" : self.id.encode(),
-            "type" : self.type.encode(),
-            "api_url" : self.apiPath.encode(),
-            "web_url" : self.webPath.encode(),
-            "username" : self.username.encode(),
-            "name" : self.name.encode(),
-            "first_name" : self.firstName.encode(),
-            "last_name" : self.lastName.encode(),
-            "is_activated" : self.isActivated.encode(),
-            "is_verified" : self.isVerified.encode(),
-            "image" : self.imagePath.encode(),
-            "cover" : self.coverPath.encode(),
-            "is_listening" : self.isListening.encode(),
-            "listeners_count" : self.listenersCount.encode(),
-            "website" : self.website.encode(),
-            "about" : self.about.encode(),
-            "is_published" : self.isPublished.encode(),
-            "stats" : self.stats.encode(),
-            "phone" : self.mobile.encode(),
-            "founded" : self.founded.encode(),
-            "description" : self.description.encode(),
-            "impressum" : self.impressum.encode(),
-            "overview" : self.overview.encode(),
-            "mission" : self.mission.encode(),
-            "general_info" : self.general_info.encode(),
-            "admin" : self.admin.encode(),
-            "listening_count" : self.listeningMetadata.encode(),
-            "date_joined" : self.dateJoinedEpoch.encode(),
-            "location" : self.location.encode(),
-            "linked_accounts": self.linkedAccounts.encode()
-            ])
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(type, key: "type")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(webPath, key: "web_url")
+            try encoder.encode(username, key: "username")
+            try encoder.encode(name, key: "name")
+            try encoder.encode(firstName, key: "first_name")
+            try encoder.encode(lastName, key: "last_name")
+            try encoder.encode(isActivated, key: "is_activated")
+            try encoder.encode(isVerified, key: "is_verified")
+            try encoder.encode(imagePath, key: "image")
+            try encoder.encode(coverPath, key: "cover")
+            try encoder.encode(isListening, key: "is_listening")
+            try encoder.encode(listenersCount, key: "listeners_count")
+            try encoder.encode(website, key: "website")
+            try encoder.encode(about, key: "about")
+            try encoder.encode(isPublished, key: "is_published")
+            try encoder.encode(stats, key: "stats")
+            try encoder.encode(mobile, key: "phone")
+            try encoder.encode(founded, key: "founded")
+            try encoder.encode(description, key: "description")
+            try encoder.encode(impressum, key: "impressum")
+            try encoder.encode(overview, key: "overview")
+            try encoder.encode(mission, key: "mission")
+            try encoder.encode(general_info, key: "general_info")
+            try encoder.encode(listeningMetadata, key: "listening_count")
+            try encoder.encode(dateJoinedEpoch, key: "date_joined")
+            try encoder.encode(location, key: "location")
+            try encoder.encode(pushTokens, key: "push_tokens")
+            try encoder.encode(admin, key: "admin")
+            try encoder.encode(linkedAccounts, key: "linked_accounts")
+            
+        })
     }
 }
 

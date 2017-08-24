@@ -7,11 +7,10 @@
 //
 
 import Foundation
+import JSONCodable
 import Argo
 
-import Ogra
-
-public protocol User: Encodable {
+public protocol User: JSONEncodable {
     
     var id: String {get}
     var type: UserType {get}
@@ -24,11 +23,22 @@ public protocol User: Encodable {
     var name: String { get }
 }
 
-extension User {
+fileprivate struct BasicProfile: JSONEncodable {
+    let username: String
+    let id: String
     
-    public func basicEncodedProfile() -> [String: AnyObject]! {
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            
+            try encoder.encode(id, key: "id")
+            try encoder.encode(username, key: "username")
+        })
+    }
+}
 
-        return ["username": self.name.encode(), "id": self.id.encode()].encode().JSONObject() as! [String : AnyObject]
+extension User {
+    public func basicEncodedProfile() -> [String: AnyObject]! {
+        return try! BasicProfile(username: self.name, id: id).toJSON() as! [String: AnyObject]
     }
 }
 
@@ -39,54 +49,10 @@ public enum UserType: String {
     case User = "user"
 }
 
-extension UserType: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<UserType> {
-        switch j {
-        case .string(let string):
-            if let userType = UserType(rawValue: string) {
-                return pure(userType)
-            }
-            return .typeMismatch("UserType", actual: j)
-        default:
-            return .typeMismatch("String", actual: j)
-        }
-    }
-}
-
-extension UserType: Encodable {
-    
-    public func encode() -> JSON {
-        return self.rawValue.encode()
-    }
-}
-
 // MARK: - Gender
 
 public enum Gender: String {
     case Male = "male"
     case Female = "female"
     case Other = "other"
-}
-
-extension Gender: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Gender> {
-        switch j {
-        case .string(let string):
-            if let gender = Gender(rawValue: string) {
-                return pure(gender)
-            }
-            return .typeMismatch("Gender", actual: j)
-        default:
-            return .typeMismatch("String", actual: j)
-        }
-    }
-}
-
-extension Gender: Encodable {
-    
-    public func encode() -> JSON {
-        return self.rawValue.encode()
-    }
 }

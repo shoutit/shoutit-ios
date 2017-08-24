@@ -7,24 +7,19 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
-public struct ExpirationDate : Decodable {
+public let IntToExpirationDate = JSONTransformer<Int, ExpirationDate>(
+    decoding: {ExpirationDate($0)},
+    encoding: {$0.expireTimeStamp})
+
+
+public struct ExpirationDate {
     public let expireTimeStamp : Int
     
-    public static func decode(_ json: JSON) -> Decoded<ExpirationDate> {
-        switch json {
-        case .number(let timeStamp):
-            let date : Int = Int(Date().timeIntervalSince1970)
-            let expiresAt = date + Int(timeStamp)
-            return .success(ExpirationDate(expireTimeStamp: expiresAt))
-        default:
-            
-            return Decoded.failure(DecodeError.custom("Could not parse token expiration date"))
-        }
+    public init(_ expireTimeStamp: Int) {
+        self.expireTimeStamp = expireTimeStamp + Int(Date().timeIntervalSince1970)
     }
-    
 }
 
 public struct AuthData {
@@ -41,34 +36,27 @@ public struct AuthData {
     public let expireAt: ExpirationDate
 }
 
-extension AuthData: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<AuthData> {
-        let a = curry(AuthData.init)
-            <^> j <| "access_token"
-            <*> j <| "refresh_token"
-            <*> j <| "token_type"
-        let b = a
-            <*> j <| "expires_in"
-            <*> j <| "new_signup"
-        let c = b
-            <*> j <| "scope"
-            <*> j <| "expires_in"
-        return c
+extension AuthData: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        accessToken = try decoder.decode("access_token")
+        refreshToken = try decoder.decode("refresh_token")
+        tokenType = try decoder.decode("token_type")
+        expiresInEpoch = try decoder.decode("expires_in")
+        isNewSignUp = try decoder.decode("new_signup")
+        scope = try decoder.decode("scope")
+        expireAt = try decoder.decode("expires_in", transformer: IntToExpirationDate)
     }
-}
-
-extension AuthData: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "access_token"    : self.accessToken.encode(),
-            "refresh_token"  : self.refreshToken.encode(),
-            "token_type" : self.tokenType.encode(),
-            "expires_in"    : self.expiresInEpoch.encode(),
-            "new_signup" : self.isNewSignUp.encode(),
-            "scope" : self.scope.encode(),
-            ])
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(accessToken, key: "access_token")
+            try encoder.encode(refreshToken, key: "refresh_token")
+            try encoder.encode(tokenType, key: "token_type")
+            try encoder.encode(expiresInEpoch, key: "expires_in")
+            try encoder.encode(isNewSignUp, key: "new_signup")
+            try encoder.encode(scope, key: "scope")            
+        })
     }
 }
 

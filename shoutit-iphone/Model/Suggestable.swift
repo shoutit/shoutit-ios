@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public protocol Suggestable {
     var listenId: String {get}
     var suggestionTitle: String {get}

@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import Argo
-
-import Ogra
+import JSONCodable
 
 public struct Video: Hashable, Equatable {
     public let path: String
@@ -29,27 +27,26 @@ public struct Video: Hashable, Equatable {
     }
 }
 
-extension Video: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Video> {
-        return curry(Video.init)
-            <^> j <| "url"
-            <*> j <| "thumbnail_url"
-            <*> j <| "provider"
-            <*> j <| "id_on_provider"
-            <*> j <| "duration"
+extension Video: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        path = try decoder.decode("url")
+        thumbnailPath = try decoder.decode("thumbnail_url")
+        provider = try decoder.decode("provider")
+        idOnProvider = try decoder.decode("idOnProvider")
+        duration = try decoder.decode("duration")
+        
     }
-}
-
-extension Video: Encodable {
-    public func encode() -> JSON {
-        return JSON.object([
-            "url"    : self.path.encode(),
-            "thumbnail_url"  : self.thumbnailPath.encode(),
-            "provider" : self.provider.encode(),
-            "id_on_provider"    : self.idOnProvider.encode(),
-            "duration"  : self.duration.encode()
-            ])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(path, key: "url")
+            try encoder.encode(thumbnailPath, key: "thumbnail_url")
+            try encoder.encode(provider, key: "provider")
+            try encoder.encode(idOnProvider, key: "idOnProvider")
+            try encoder.encode(duration, key: "duration")
+            
+        })
     }
 }
 

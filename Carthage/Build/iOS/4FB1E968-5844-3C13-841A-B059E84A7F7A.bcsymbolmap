@@ -1,0 +1,142 @@
+BCSymbolMap Version: 2.0
+-[ACPStaticImagesAlternative updateFrame:]
+-[ACPStaticImagesAlternative updateColor:]
+-[ACPStaticImagesAlternative drawStatusNone]
+-[ACPStaticImagesAlternative drawStatusIndeterminate]
+-[ACPStaticImagesAlternative drawStatusRunning]
+-[ACPStaticImagesAlternative drawStatusComplete]
+-[ACPStaticImagesAlternative strokeColor]
+-[ACPStaticImagesAlternative setStrokeColor:]
+-[ACPStaticImagesAlternative bounds]
+-[ACPStaticImagesAlternative setBounds:]
+-[ACPStaticImagesAlternative .cxx_destruct]
+_OBJC_IVAR_$_ACPStaticImagesAlternative.strokeColor
+_OBJC_IVAR_$_ACPStaticImagesAlternative.bounds
+l_OBJC_PROTOCOL_$_NSObject
+l_OBJC_LABEL_PROTOCOL_$_NSObject
+l_OBJC_PROTOCOL_$_ACPStaticImagesProtocol
+l_OBJC_LABEL_PROTOCOL_$_ACPStaticImagesProtocol
+Apple LLVM version 8.1.0 (clang-802.0.42)
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPStaticImagesAlternative.m
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPStaticImagesProtocol.h
+-[ACPIndeterminateLayer layer]
+-[ACPIndeterminateLayer updateFrame:]
+-[ACPIndeterminateLayer updatePath]
+-[ACPIndeterminateLayer startAnimating]
+-[ACPIndeterminateLayer stopAnimating]
+-[ACPIndeterminateLayer updateColor:]
+-[ACPIndeterminateLayer setHidden:]
+-[ACPIndeterminateLayer removeLayer]
+-[ACPIndeterminateLayer setLayer:]
+-[ACPIndeterminateLayer colorLayer]
+-[ACPIndeterminateLayer setColorLayer:]
+-[ACPIndeterminateLayer frame]
+-[ACPIndeterminateLayer setFrame:]
+-[ACPIndeterminateLayer isAnimating]
+-[ACPIndeterminateLayer setAnimate:]
+-[ACPIndeterminateLayer .cxx_destruct]
+_OBJC_IVAR_$_ACPIndeterminateLayer._layer
+_OBJC_IVAR_$_ACPIndeterminateLayer._colorLayer
+_OBJC_IVAR_$_ACPIndeterminateLayer._frame
+_OBJC_IVAR_$_ACPIndeterminateLayer._animate
+l_OBJC_PROTOCOL_$_ACPLayerProtocol
+l_OBJC_LABEL_PROTOCOL_$_ACPLayerProtocol
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPIndeterminateLayer.m
+-[ACPProgressLayer init]
+-[ACPProgressLayer layer]
+-[ACPProgressLayer updateFrame:]
+-[ACPProgressLayer updatePath]
+-[ACPProgressLayer setProgress:]
+-[ACPProgressLayer setProgress:animated:]
+-[ACPProgressLayer updateColor:]
+-[ACPProgressLayer setHidden:]
+-[ACPProgressLayer removeLayer]
+-[ACPProgressLayer setLayer:]
+-[ACPProgressLayer colorLayer]
+-[ACPProgressLayer setColorLayer:]
+-[ACPProgressLayer frame]
+-[ACPProgressLayer setFrame:]
+-[ACPProgressLayer isAnimating]
+-[ACPProgressLayer setAnimate:]
+-[ACPProgressLayer progress]
+-[ACPProgressLayer .cxx_destruct]
+_OBJC_IVAR_$_ACPProgressLayer._progress
+_OBJC_IVAR_$_ACPProgressLayer._layer
+_OBJC_IVAR_$_ACPProgressLayer._colorLayer
+_OBJC_IVAR_$_ACPProgressLayer._frame
+_OBJC_IVAR_$_ACPProgressLayer._animate
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPProgressLayer.m
+-[ACPStaticImages updateFrame:]
+-[ACPStaticImages drawStatusNone]
+-[ACPStaticImages drawStatusIndeterminate]
+-[ACPStaticImages drawStatusRunning]
+-[ACPStaticImages drawStatusComplete]
+-[ACPStaticImages updateColor:]
+-[ACPStaticImages bounds]
+-[ACPStaticImages setBounds:]
+-[ACPStaticImages strokeColor]
+-[ACPStaticImages setStrokeColor:]
+-[ACPStaticImages .cxx_destruct]
+_OBJC_IVAR_$_ACPStaticImages.bounds
+_OBJC_IVAR_$_ACPStaticImages.strokeColor
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPStaticImages.m
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPDownloadConstants.m
+-[ACPIndeterminateGoogleLayer layer]
+-[ACPIndeterminateGoogleLayer updateFrame:]
+-[ACPIndeterminateGoogleLayer updatePath]
+-[ACPIndeterminateGoogleLayer startAnimating]
+-[ACPIndeterminateGoogleLayer stopAnimating]
+-[ACPIndeterminateGoogleLayer updateColor:]
+-[ACPIndeterminateGoogleLayer setHidden:]
+-[ACPIndeterminateGoogleLayer removeLayer]
+-[ACPIndeterminateGoogleLayer setLayer:]
+-[ACPIndeterminateGoogleLayer colorLayer]
+-[ACPIndeterminateGoogleLayer setColorLayer:]
+-[ACPIndeterminateGoogleLayer frame]
+-[ACPIndeterminateGoogleLayer setFrame:]
+-[ACPIndeterminateGoogleLayer isAnimating]
+-[ACPIndeterminateGoogleLayer setAnimate:]
+-[ACPIndeterminateGoogleLayer .cxx_destruct]
+_OBJC_IVAR_$_ACPIndeterminateGoogleLayer._layer
+_OBJC_IVAR_$_ACPIndeterminateGoogleLayer._colorLayer
+_OBJC_IVAR_$_ACPIndeterminateGoogleLayer._frame
+_OBJC_IVAR_$_ACPIndeterminateGoogleLayer._animate
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPIndeterminateGoogleLayer.m
+-[ACPDownloadView initWithFrame:]
+-[ACPDownloadView initWithCoder:]
+-[ACPDownloadView initialize]
+-[ACPDownloadView handleSingleTap:]
+-[ACPDownloadView dealloc]
+-[ACPDownloadView layoutSubviews]
+-[ACPDownloadView setIndicatorStatus:]
+-[ACPDownloadView resetAnimations]
+-[ACPDownloadView setProgress:animated:]
+-[ACPDownloadView drawRect:]
+-[ACPDownloadView progressShapelayer]
+-[ACPDownloadView indeterminateLayer]
+-[ACPDownloadView tintColorDidChange]
+-[ACPDownloadView setActionForTap:]
+-[ACPDownloadView setIndeterminateLayer:]
+-[ACPDownloadView setProgressLayer:]
+-[ACPDownloadView initializeIndeterminate]
+-[ACPDownloadView initializeProgress]
+-[ACPDownloadView setImages:]
+-[ACPDownloadView currentStatus]
+-[ACPDownloadView setCurrentStatus:]
+-[ACPDownloadView viewTappedBlock]
+-[ACPDownloadView setViewTappedBlock:]
+-[ACPDownloadView staticImages]
+-[ACPDownloadView setStaticImages:]
+-[ACPDownloadView indeterminateShapelayer]
+-[ACPDownloadView setIndeterminateShapelayer:]
+-[ACPDownloadView setProgressShapelayer:]
+-[ACPDownloadView .cxx_destruct]
+_OBJC_IVAR_$_ACPDownloadView._progressShapelayer
+_OBJC_IVAR_$_ACPDownloadView._indeterminateShapelayer
+_OBJC_IVAR_$_ACPDownloadView._currentStatus
+_OBJC_IVAR_$_ACPDownloadView._viewTappedBlock
+_OBJC_IVAR_$_ACPDownloadView._staticImages
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPDownloadView.m
+/Users/piotrbernad/appunite/shoutit-ios/Carthage/Checkouts/ACPDownload/ACPDownload/ACPDownloadView.h
+/Users/piotrbernad/Library/Caches/org.carthage.CarthageKit/DerivedData/ACPDownload/1.1.3/Build/Intermediates/ACPDownload.build/Release-iphoneos/ACPDownload iOS.build/DerivedSources/ACPDownload_vers.c

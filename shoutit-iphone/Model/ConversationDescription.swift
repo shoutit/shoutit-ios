@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Argo
-import Ogra
+import JSONCodable
 
 public struct ConversationDescription {
     
@@ -22,26 +21,20 @@ public struct ConversationDescription {
     }
 }
 
-
-extension ConversationDescription: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<ConversationDescription> {
-        let f = curry(ConversationDescription.init)
-            <^> j <|? "title"
-            <*> j <|? "sub_title"
-            <*> j <|? "image"
-            <*> j <|? "last_message_summary"
-        return f
+extension ConversationDescription: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        title = try decoder.decode("title")
+        subtitle = try decoder.decode("sub_title")
+        image = try decoder.decode("image")
+        lastMessageSummary = try decoder.decode("last_message_summary")
     }
-}
-
-extension ConversationDescription: Encodable {
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "title"    : self.title.encode(),
-            "sub_title"  : self.subtitle.encode(),
-            "image" : self.image.encode()
-            ])
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(title, key: "title")
+            try encoder.encode(subtitle, key: "sub_title")
+            try encoder.encode(image, key: "image")
+        })
     }
 }

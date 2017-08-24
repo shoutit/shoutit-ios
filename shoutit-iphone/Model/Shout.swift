@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import Argo
-import Ogra
-
-public struct Shout: Decodable, Hashable, Equatable {
+import JSONCodable
+public struct Shout: Hashable, Equatable {
     
     // MARK: Basic fields
     public let id: String
@@ -45,46 +43,6 @@ public struct Shout: Decodable, Hashable, Equatable {
     public let isBookmarked: Bool?
     public let isLiked: Bool?
     
-    public static func decode(_ j: JSON) -> Decoded<Shout> {
-        let a = curry(Shout.init)
-            <^> j <| "id"
-            <*> j <| "api_url"
-            <*> j <| "web_url"
-            <*> j <| "type"
-            <*> j <|? "location"
-        let b = a
-            <*> j <|? "title"
-            <*> j <|? "text"
-            <*> j <|? "price"
-            <*> j <|? "currency"
-        let c = b
-            <*> j <|? "thumbnail"
-            <*> j <|? "video_url"
-            <*> j <|? "profile"
-            <*> j <|? "date_published"
-        let d = c
-            <*> j <| "category"
-            <*> j <||? "tags"
-        let e = d
-            <*> j <||? "filters"
-        let f = e
-            <*> j <||? "images"
-            <*> j <||? "videos"
-            <*> j <|? "reply_url"
-        let g = f
-            <*> j <||? "related_requests"
-            <*> j <||? "related_offers"
-            <*> j <||? "conversations"
-            <*> j <|? "is_mobile_set"
-        let h = g
-            <*> j <|? "mobile"
-            <*> j <|? "promotion"
-            <*> j <|? "is_bookmarked"
-            <*> j <|? "is_liked"
-        return h
-    }
-    
-    
     public var hashValue: Int {
         get {
             return self.id.hashValue
@@ -97,17 +55,50 @@ public struct Shout: Decodable, Hashable, Equatable {
     
 }
 
-extension Shout: Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["id":self.id.encode(),
-            "api_url":self.apiPath.encode(),
-            "web_url":self.webPath.encode(),
-            "type":self.typeString.encode(),
-            "title":self.title.encode(),
-            "text":self.text.encode(),
-            "profile":self.user.encode(),
-            "price": self.price.encode()
-            ])
+extension Shout: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        id = try decoder.decode("id")
+        apiPath = try decoder.decode("api_url")
+        webPath = try decoder.decode("web_url")
+        typeString = try decoder.decode("type")
+        location = try decoder.decode("location")
+        title = try decoder.decode("title")
+        text = try decoder.decode("text")
+        price = try decoder.decode("price")
+        currency = try decoder.decode("currency")
+        thumbnailPath = try decoder.decode("thumbnail")
+        videoPath = try decoder.decode("video_url")
+        user = try decoder.decode("profile")
+        category = try decoder.decode("category")
+        tags = try decoder.decode("tags")
+        publishedAtEpoch = try decoder.decode("date_published")
+        filters = try decoder.decode("filters")
+        imagePaths = try decoder.decode("images")
+        videos = try decoder.decode("videos")
+        replyPath = try decoder.decode("reply_url")
+        relatedRequests = try decoder.decode("related_requests")
+        relatedOffers = try decoder.decode("related_offers")
+        conversations = try decoder.decode("conversations")
+        isMobileSet = try decoder.decode("is_mobile_set")
+        mobile = try decoder.decode("mobile")
+        promotion = try decoder.decode("promotion")
+        isBookmarked = try decoder.decode("is_bookmarked")
+        isLiked = try decoder.decode("is_liked")
+        
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(id, key: "id")
+            try encoder.encode(apiPath, key: "api_url")
+            try encoder.encode(webPath, key: "web_url")
+            try encoder.encode(typeString, key: "type")
+            try encoder.encode(title, key: "title")
+            try encoder.encode(text, key: "text")
+            try encoder.encode(price, key: "price")
+            try encoder.encode(user, key: "profile")
+        })
     }
 }
 
@@ -142,8 +133,8 @@ public extension Shout {
 }
 
 extension Shout: Reportable {
-    public func attachedObjectJSON() -> JSON {
-        return ["shout" : ["id" : self.id.encode()].encode()].encode()
+    public var reportTypeKey: String {
+        return "shout"
     }
     
     public func reportTitle() -> String {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 public struct Filter: Hashable, Equatable {
     public let name: String?
@@ -22,20 +22,27 @@ public struct Filter: Hashable, Equatable {
     }
 }
 
-extension Filter: Decodable {
-    
-    public static func decode(_ j: JSON) -> Decoded<Filter> {
-        
-        let f = curry(Filter.init)
-            <^> j <|? "name"
-            <*> j <| "slug"
-            <*> j <||? "values"
-        return f
-            <*> j <|? "value"
-            <*> j <|? "id"
-    }
-}
-
 public func ==(lhs: Filter, rhs: Filter) -> Bool {
     return lhs.slug == rhs.slug
+}
+
+extension Filter: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+            name = try decoder.decode("name")
+            slug = try decoder.decode("slug")
+            values = try decoder.decode("values")
+            value = try decoder.decode("value")
+            id = try decoder.decode("id")
+    }
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(name, key: "name")
+            try encoder.encode(slug, key: "slug")
+            try encoder.encode(values, key: "values")
+            try encoder.encode(value, key: "value")
+            try encoder.encode(id, key: "id")
+        })
+    }
 }

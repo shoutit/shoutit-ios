@@ -7,22 +7,13 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
-public struct Currency: Decodable {
+public struct Currency {
     
     public let code: String
     public let country: String
     public let name: String
-    
-    public static func decode(_ j: JSON) -> Decoded<Currency> {
-        let f = curry(Currency.init)
-            <^> j <| "code"
-            <*> j <| "country"
-            <*> j <| "name"
-        return f
-    }
     
     public init(code: String, country: String, name: String) {
         self.code = code
@@ -31,13 +22,20 @@ public struct Currency: Decodable {
     }
 }
 
-extension Currency: Encodable {
+extension Currency: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        code = try decoder.decode("code")
+        country = try decoder.decode("country")
+        name = try decoder.decode("name")
+    }
     
-    public func encode() -> JSON {
-        return JSON.object([
-            "code"    : self.code.encode(),
-            "country"  : self.country.encode(),
-            "name" : self.name.encode()
-            ])
+    
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(code, key: "code")
+            try encoder.encode(country, key: "country")
+            try encoder.encode(name, key: "name")
+        })
     }
 }

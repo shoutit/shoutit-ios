@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Argo
-import Ogra
+import JSONCodable
 
 public struct FilterResult {
     public let filter : Filter
@@ -20,9 +19,12 @@ public struct FilterResult {
     }
 }
 
-extension FilterResult: Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["slug": filter.slug.encode(),
-                            "value": value.encode()])
+extension FilterResult: JSONEncodable {
+  
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(filter.slug, key: "slug")
+            try encoder.encode(value, key: "value")
+        })
     }
 }

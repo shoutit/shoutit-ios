@@ -16,6 +16,6 @@ public struct ProfileIdParams: Params {
     }
     
     public var params: [String : AnyObject] {
-        return ["profile" : ["id" : id]]
+        return ["profile" : ["id" : id] as AnyObject]
     }
 }

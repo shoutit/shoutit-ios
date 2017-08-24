@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 
 public struct Mobile {
@@ -17,10 +17,15 @@ public struct Mobile {
     }
 }
 
-extension Mobile: Decodable {
+extension Mobile: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
+        phone = try decoder.decode("mobile")
+    }
     
-    public static func decode(_ j: JSON) -> Decoded<Mobile> {
-        return curry(Mobile.init)
-            <^> j <| "mobile"
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(phone, key: "mobile")
+        })
     }
 }
