@@ -18,7 +18,7 @@ final class APIAuthService {
     fileprivate static let authResetPasswordURL = APIManager.baseURL + "/auth/reset_password"
     
     static func resetPassword(_ params: ResetPasswordParams) -> Observable<Success> {
-        return APIGenericService.requestWithMethod(.POST, url: authResetPasswordURL, params: params, encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: authResetPasswordURL, params: params, encoding: JSONEncoding.default)
     }
     
     static func getOAuthToken<T: User>(_ params: AuthParams) -> Observable<(AuthData, T)> where T: Decodable, T == T.DecodedType {
@@ -26,7 +26,7 @@ final class APIAuthService {
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .json)
+                .request(.post, oauth2AccessTokenURL, parameters: params.params, encoding: JSONEncoding.default)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -54,7 +54,7 @@ final class APIAuthService {
         
         return Observable.create({ (observer) -> Disposable in
             let request = APIManager.manager()
-                .request(.POST, oauth2AccessTokenURL, parameters: params.params, encoding: .json)
+                .request(.post, oauth2AccessTokenURL, parameters: params.params, encoding: JSONEncoding.default)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -76,11 +76,11 @@ final class APIAuthService {
     
     static func verifyEmail(_ params: EmailParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/auth/verify_email"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: params, encoding: JSONEncoding.default)
     }
     
     static func changePasswordWithParams(_ params: ChangePasswordParams) -> Observable<Success> {
         let url = APIManager.baseURL + "/auth/change_password"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: params, encoding: JSONEncoding.default)
     }
 }

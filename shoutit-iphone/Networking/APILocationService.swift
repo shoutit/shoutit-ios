@@ -21,7 +21,7 @@ final class APILocationService {
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.PATCH, url, parameters: params.params, encoding: .json)
+                .request(.patch, url, parameters: params.params, encoding: JSONEncoding.default)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }
@@ -54,7 +54,7 @@ final class APILocationService {
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.PATCH, url, parameters: params.params, encoding: .json)
+                .request(.patch, url, parameters: params.params, encoding: JSONEncoding.default)
             let cancel = AnonymousDisposable {
                 request.cancel()
             }

@@ -17,10 +17,10 @@ final class APICreditsService {
     fileprivate static let invitationCodeURL = APIManager.baseURL + "/credit/invitation_code"
     
     static func requestTransactions(_ type: String = "in", before: Int?) -> Observable<[Transaction]> {
-        return APIGenericService.requestWithMethod(.GET, url: transactionsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: .url, responseJsonPath: ["results"])
+        return APIGenericService.requestWithMethod(.get, url: transactionsURL, params: BeforeTimestampParams(beforeTimeStamp: before), encoding: URLEncoding.default, responseJsonPath: ["results"])
     }
 
     static func requestInvitationCode() -> Observable<InvitationCode> {
-        return APIGenericService.requestWithMethod(.GET, url: invitationCodeURL, params: NopParams(), encoding: .url, responseJsonPath:nil)
+        return APIGenericService.requestWithMethod(.get, url: invitationCodeURL, params: NopParams(), encoding: URLEncoding.default, responseJsonPath:nil)
     }
 }

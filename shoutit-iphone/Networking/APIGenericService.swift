@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import Argo
+import JSONCodable
 import RxSwift
 import RxCocoa
 import ShoutitKit
@@ -80,13 +80,13 @@ final class APIGenericService {
         return observable
     }
     
-    static func requestWithMethod<P: Params, T: Decodable>(
-        _ method: Alamofire.Method,
-        url: URLStringConvertible,
+    static func requestWithMethod<P: Params, T: JSONDecodable>(
+        _ method: HTTPMethod,
+        url: URLConvertible,
         params: P?,
         encoding: ParameterEncoding = .url,
         responseJsonPath: [String]? = nil,
-        headers: [String: String]? = nil) -> Observable<T> where T == T.DecodedType {
+        headers: [String: String]? = nil) -> Observable<T> {
         
         let observable : Observable<T> = Observable.create {(observer) -> Disposable in
             
@@ -129,13 +129,13 @@ final class APIGenericService {
         return observable
     }
     
-    static func requestWithMethod<P: Params, T: Decodable>(
-        _ method: Alamofire.Method,
-        url: URLStringConvertible,
+    static func requestWithMethod<P: Params, T: JSONDecodable>(
+        _ method: HTTPMethod,
+        url: URLConvertible,
         params: P?,
         encoding: ParameterEncoding = .url,
         responseJsonPath: [String]? = nil,
-        headers: [String: String]? = nil) -> Observable<[T]> where T == T.DecodedType {
+        headers: [String: String]? = nil) -> Observable<[T]> {
         
         let observable : Observable<[T]> = Observable.create {(observer) -> Disposable in
             
@@ -281,18 +281,21 @@ final class APIGenericService {
         return j
     }
     
-    static func parseJson<T: Decodable>(_ json: AnyObject, failureExpected: Bool = false) throws -> T where T == T.DecodedType {
-        let decoded: Decoded<T> = decode(json)
-        switch decoded {
-        case .success(let object):
-            return object
-        case .failure(let decodeError):
-            if !failureExpected {
-                debugPrint(json)
-                assertionFailure("\(decodeError.description) in model of type \(T.self)")
-            }
-            throw decodeError
-        }
+    static func parseJson<T: JSONDecodable>(_ json: AnyObject, failureExpected: Bool = false) throws -> T {
+        
+        let object = try T(json: json)
+        return object
+//        let decoded: Decoded<T> = decode(json)
+//        switch decoded {
+//        case .success(let object):
+//            return object
+//        case .failure(let decodeError):
+//            if !failureExpected {
+//                debugPrint(json)
+//                assertionFailure("\(decodeError.description) in model of type \(T.self)")
+//            }
+//            throw decodeError
+//        }
     }
     
     static func parseJsonArray<T: Decodable>(_ json: AnyObject) throws -> [T] where T == T.DecodedType {

@@ -50,7 +50,7 @@ open class GooglePlaces: GoogleMapsService {
             requestParameters["components"] = components
         }
         
-        let request = Alamofire.request(.GET, placeAutocompleteURLString, parameters: requestParameters).responseJSON { response in
+        let request = Alamofire.request(.get, placeAutocompleteURLString, parameters: requestParameters).responseJSON { response in
             if response.result.isFailure {
                 NSLog("Error: GET failed")
                 completion?(response: nil, error: NSError(domain: "GooglePlacesError", code: -1, userInfo: nil))
@@ -125,7 +125,7 @@ extension GooglePlaces {
             requestParameters["language"] = language
         }
         
-        let request = Alamofire.request(.GET, placeDetailsURLString, parameters: requestParameters).responseJSON { response in
+        let request = Alamofire.request(.get, placeDetailsURLString, parameters: requestParameters).responseJSON { response in
             if response.result.isFailure {
                 NSLog("Error: GET failed")
                 completion?(response: nil, error: NSError(domain: "GooglePlacesError", code: -1, userInfo: nil))

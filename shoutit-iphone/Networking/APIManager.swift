@@ -27,17 +27,17 @@ final class APIManager {
     static var tokenExpiresAt : Int?
     static var authData : AuthData?
     
-    static func manager() -> Alamofire.Manager {
+    static func manager() -> Alamofire.SessionManager {
         if apiManager == nil {
-            let defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.httpAdditionalHeaders ?? [:]
+            let defaultHeaders = Alamofire.SessionManager.sharedInstance.session.configuration.httpAdditionalHeaders ?? [:]
             let configuration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = defaultHeaders
-            apiManager = Alamofire.Manager(configuration: configuration)
+            apiManager = Alamofire.SessionManager(configuration: configuration)
         }
         return apiManager!
     }
     
-    fileprivate static var apiManager: Alamofire.Manager?
+    fileprivate static var apiManager: Alamofire.SessionManager?
     
     // MARK: - Token
     
@@ -74,18 +74,6 @@ final class APIManager {
             return reachability.isReachable()
         } catch {
             return false
-        }
-    }
-}
-
-extension Alamofire.Response {
-    
-    func success(_ success: (Value) -> Void, failure:(Error) -> Void) {
-        switch self.result {
-        case .success(let value):
-            success(value)
-        case .failure(let error):
-            failure(error)
         }
     }
 }

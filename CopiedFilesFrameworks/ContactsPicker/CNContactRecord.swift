@@ -164,7 +164,7 @@ internal class CNAdapter {
         return cnContact
     }
     
-    fileprivate class func convertPhoneNumbers(_ phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue<<#ValueType: NSCopying & NSSecureCoding#>>] {
+    fileprivate class func convertPhoneNumbers(_ phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue] {
         
         guard let phoneNumbers = phoneNumbers else {
             return [CNLabeledValue]()
@@ -185,7 +185,7 @@ internal class CNAdapter {
         })
     }
     
-    fileprivate class func convertEmailAddresses(_ emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue<<#ValueType: NSCopying & NSSecureCoding#>>] {
+    fileprivate class func convertEmailAddresses(_ emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue] {
         
         guard let emailAddresses = emailAddresses else {
             return [CNLabeledValue]()
@@ -202,7 +202,7 @@ internal class CNAdapter {
         
     }
     
-    internal class func convertCNLabeledValues(_ cnLabeledValues: [CNLabeledValue<<#ValueType: NSCopying & NSSecureCoding#>>]) -> [AddressBookRecordLabel] {
+    internal class func convertCNLabeledValues(_ cnLabeledValues: [CNLabeledValue]) -> [AddressBookRecordLabel] {
         var abLabels = [AddressBookRecordLabel]()
         
         let mappings = DictionaryUtils.dictionaryWithSwappedKeysAndValues(cnMappings)

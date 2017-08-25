@@ -37,108 +37,108 @@ final class APIChatsService {
     static func requestConversationsWithParams(_ params: ConversationsListParams, explicitURL: String? = nil) -> Observable<PagedResults<MiniConversation>> {
         let url = explicitURL ?? conversationsURL
         let params: ConversationsListParams? = explicitURL == nil ? params : nil
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url)
+        return APIGenericService.requestWithMethod(.get, url: url, params: params, encoding: URLEncoding.default)
     }
     
     static func getMessagesForConversationWithId(_ conversationId: String) -> Observable<PagedResults<Message>> {
         let url = messagesURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url, responseJsonPath: nil)
+        return APIGenericService.requestWithMethod(.get, url: url, params: NopParams(), encoding: URLEncoding.default, responseJsonPath: nil)
     }
     
     static func getShoutsForConversationWithId(_ id: String, params: PageParams) -> Observable<PagedResults<Shout>> {
         let url = shoutsURL.replacingOccurrences(of: "*", with: id)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url)
+        return APIGenericService.requestWithMethod(.get, url: url, params: params, encoding: URLEncoding.default)
     }
     
     static func getAttachmentsForConversationWithId(_ id: String, params: PageParams) -> Observable<PagedResults<MessageAttachment>> {
         let url = mediaURL.replacingOccurrences(of: "*", with: id)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url)
+        return APIGenericService.requestWithMethod(.get, url: url, params: params, encoding: URLEncoding.default)
     }
     
     static func moreMessagesForConversationWithId(_ conversationId: String, nextPageParams: String?) -> Observable<PagedResults<Message>> {
         let url = messagesURL.replacingOccurrences(of: "*", with: conversationId) + (nextPageParams ?? "")
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .url, responseJsonPath: nil)
+        return APIGenericService.requestWithMethod(.get, url: url, params: NopParams(), encoding: URLEncoding.default, responseJsonPath: nil)
     }
     
     static func markConversationAsRead(_ conversation: Conversation) -> Observable<Void> {
         let url = conversationReadURL.replacingOccurrences(of: "*", with: conversation.id)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .json)
+        return APIGenericService.basicRequestWithMethod(.post, url: url, params: NopParams(), encoding: JSONEncoding.default)
     }
     
     static func markMessageAsRead(_ message: Message) -> Observable<Void> {
         let url = readMessageURL.replacingOccurrences(of: "*", with: message.id)
-        return APIGenericService.basicRequestWithMethod(.POST, url: url, params: NopParams(), encoding: .json)
+        return APIGenericService.basicRequestWithMethod(.post, url: url, params: NopParams(), encoding: JSONEncoding.default)
     }
     
     static func replyWithMessage(_ message: Message, onConversationWithId id: String) -> Observable<Message> {
         let url = replyURL.replacingOccurrences(of: "*", with: id)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: MessageParams(message: message), encoding: JSONEncoding.default)
     }
     
     static func twilioVideoAuth() -> Observable<TwilioAuth> {
-        return APIGenericService.requestWithMethod(.POST, url: twilioURL, params: NopParams())
+        return APIGenericService.requestWithMethod(.post, url: twilioURL, params: NopParams())
     }
     
     static func twilioVideoCallWithParams(_ params: VideoCallParams) -> Observable<Void> {
-        return APIGenericService.basicRequestWithMethod(.POST, url: twilioVideCallURL, params: params, encoding: .json)
+        return APIGenericService.basicRequestWithMethod(.post, url: twilioVideCallURL, params: params, encoding: JSONEncoding.default)
     }
     
     static func twilioVideoIdentity(_ username: String) -> Observable<TwilioIdentity> {
-        return APIGenericService.requestWithMethod(.GET, url: twilioIdentityURL + "?profile=\(username)", params: NopParams())
+        return APIGenericService.requestWithMethod(.get, url: twilioIdentityURL + "?profile=\(username)", params: NopParams())
     }
         
     static func startConversationWithUsername(_ username: String, message: Message) -> Observable<Message> {
         let url = conversationWithUserURL.replacingOccurrences(of: "*", with: username)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: MessageParams(message: message), encoding: JSONEncoding.default)
     }
     
     static func startConversationAboutShout(_ shout: Shout, message: Message) -> Observable<Message> {
         let url = replyShoutsURL.replacingOccurrences(of: "*", with: shout.id)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: MessageParams(message: message), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: MessageParams(message: message), encoding: JSONEncoding.default)
     }
     
     static func deleteConversationWithId(_ conversationId: String) -> Observable<Void> {
         let url = conversationURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.basicRequestWithMethod(.DELETE, url: url, params: NopParams(), encoding: .json)
+        return APIGenericService.basicRequestWithMethod(.delete, url: url, params: NopParams(), encoding: JSONEncoding.default)
     }
     
     static func conversationWithId(_ conversationId: String) -> Observable<Conversation> {
         let url = conversationURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: NopParams(), encoding: .json)
+        return APIGenericService.requestWithMethod(.get, url: url, params: NopParams(), encoding: JSONEncoding.default)
     }
     
     static func updateConversationWithId(_ conversationId: String, params: ConversationUpdateParams) -> Observable<Conversation> {
         let url = conversationURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.PATCH, url: url, params: params, encoding: .json)
+        return APIGenericService.requestWithMethod(.patch, url: url, params: params, encoding: JSONEncoding.default)
     }
     
     static func addMemberToConversationWithId(_ conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationAddProfileURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: JSONEncoding.default)
     }
     
     static func removeMemberFromConversationWithId(_ conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationRemoveProfileURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: JSONEncoding.default)
     }
     
     static func blockProfileInConversationWithId(_ conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationBlockProfileURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: JSONEncoding.default)
     }
     
     static func unblockProfileInConversationWithId(_ conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationUnblockProfileURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: JSONEncoding.default)
     }
     
     static func promoteToAdminProfileInConversationWithId(_ conversationId: String, profile: Profile) -> Observable<Success> {
         let url = conversationPromoteAdminProfileURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.POST, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: ConversationMemberParams(profileId: profile.id), encoding: JSONEncoding.default)
     }
     
     static func getBlockedProfilesForConversation(_ conversationId: String, params: PageParams) -> Observable<PagedResults<Profile>> {
         let url = conversationBlockedProfilesURL.replacingOccurrences(of: "*", with: conversationId)
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.get, url: url, params: params, encoding: URLEncoding.default, headers: ["Accept": "application/json"])
     }
 }

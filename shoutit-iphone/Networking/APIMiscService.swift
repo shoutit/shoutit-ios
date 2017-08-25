@@ -20,11 +20,11 @@ final class APIMiscService {
     fileprivate static let reportURL = APIManager.baseURL + "/misc/reports"
     
     static func requestCategories() -> Observable<[ShoutitKit.Category]> {
-        return APIGenericService.requestWithMethod(.GET, url: categoriesURL, params: NopParams(), encoding: .json)
+        return APIGenericService.requestWithMethod(.get, url: categoriesURL, params: NopParams(), encoding: JSONEncoding.default)
     }
     
     static func requestSuggestionsWithParams(_ params: SuggestionsParams) -> Observable<Suggestions> {
-        return APIGenericService.requestWithMethod(.GET, url: suggestionURL, params: params, encoding: .url)
+        return APIGenericService.requestWithMethod(.get, url: suggestionURL, params: params, encoding: URLEncoding.default)
     }
     
     static func requestSuggestedUsersWithParams(_ params: SuggestionsParams) -> Observable<PagedResults<Profile>> {
@@ -58,15 +58,15 @@ final class APIMiscService {
     }
     
     static func requestCurrencies() -> Observable<[Currency]> {
-        return APIGenericService.requestWithMethod(.GET, url: currenciesURL, params: NopParams(), encoding: .json)
+        return APIGenericService.requestWithMethod(.get, url: currenciesURL, params: NopParams(), encoding: JSONEncoding.default)
     }
     
     static func geocode(_ params: GeocodeParams) -> Observable<Address> {
         let url = APIManager.baseURL + "/misc/geocode"
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url)
+        return APIGenericService.requestWithMethod(.get, url: url, params: params, encoding: URLEncoding.default)
     }
 
     static func makeReport(_ report: Report) -> Observable<Void> {
-        return APIGenericService.basicRequestWithMethod(.POST, url: reportURL, params: report.encode(), encoding: .json)
+        return APIGenericService.basicRequestWithMethod(.post, url: reportURL, params: report.encode(), encoding: JSONEncoding.default)
     }
 }

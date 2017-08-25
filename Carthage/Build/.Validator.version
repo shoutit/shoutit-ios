@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "95cfb505d7886379f2af04dde7e5f38a69f6edd4b96b24d6ab42cce5b2878c23",
+      "name" : "Validator"
+    }
+  ],
+  "commitish" : "v2.1.1",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}

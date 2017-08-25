@@ -18,11 +18,11 @@ final class APIPublicChatsService {
         let baseURL = APIManager.baseURL + "/public_chats"
         let url = explicitURL ?? baseURL
         let params: ConversationsListParams? = explicitURL == nil ? params : nil
-        return APIGenericService.requestWithMethod(.GET, url: url, params: params, encoding: .url, responseJsonPath: nil)
+        return APIGenericService.requestWithMethod(.get, url: url, params: params, encoding: URLEncoding.default, responseJsonPath: nil)
     }
     
     static func requestCreatePublicChatWithParams(_ params: CreatePublicChatParams) -> Observable<Conversation> {
         let url = APIManager.baseURL + "/public_chats"
-        return APIGenericService.requestWithMethod(.POST, url: url, params: params, encoding: .json)
+        return APIGenericService.requestWithMethod(.post, url: url, params: params, encoding: JSONEncoding.default)
     }
 }
