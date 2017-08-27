@@ -37,10 +37,10 @@ final class EditProfileTableViewController: UITableViewController {
         pickerSettings.allowsVideos = false
         let controller = MediaPickerController(delegate: self, settings: pickerSettings)
         
-        controller.presentingSubject.observeOn(MainScheduler.instance).subscribeNext {[weak self] controller in
+        controller.presentingSubject.observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] controller in
             guard let controller = controller else { return }
-            self?.presentViewController(controller, animated: true, completion: nil)
-        }.addDisposableTo(self.disposeBag)
+            self?.present(controller, animated: true, completion: nil)
+        }).addDisposableTo(self.disposeBag)
         
         return controller
     }()
@@ -84,50 +84,54 @@ final class EditProfileTableViewController: UITableViewController {
     fileprivate func setupRX() {
         
         cancelBarButtonItem
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.dismiss(animated: true, completion: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.coverButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.uploadType = .cover
                 self.mediaPickerController.showMediaPickerController()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.avatarButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.uploadType = .avatar
                 self.mediaPickerController.showMediaPickerController()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         saveBarButtonItem
-            .rx_tap
+            .rx.tap
             .flatMapFirst {[unowned self] () -> Observable<EditProfileTableViewModel.OperationStatus> in
                 return self.viewModel.save()
             }
-            .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
+            .observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (status) in
                 switch status {
                 case .error(let error):
                     self?.showError(error)
                 case .progress(let show):
                     if show {
-                        MBProgressHUD.showAdded(to: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
                     } else {
-                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
                     }
                 case .ready:
                     self?.dismiss(animated: true, completion: nil)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }
@@ -158,11 +162,11 @@ extension EditProfileTableViewController {
                 cell.textField.keyboardType = .phonePad
             }
             cell.textField
-                .rx_text
+                .rx.text
                 .asDriver()
-                .driveNext{[unowned self] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                }
+                .drive(onNext: { [weak self] (text) in
+                    self?.viewModel.mutateModelForIndex(indexPath.row, object: text)
+                })
                 .addDisposableTo(cell.disposeBag)
         case .date(let value, let placeholder, _):
             let cell = cell as! EditProfileTextFieldTableViewCell
@@ -180,11 +184,11 @@ extension EditProfileTableViewController {
             cell.textField.inputView = picker
             
             cell.textField
-                .rx_text
+                .rx.text
                 .asDriver()
-                .driveNext{[unowned self] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                }
+                .drive(onNext: { [weak self] (text) in
+                    self?.viewModel.mutateModelForIndex(indexPath.row, object: text)
+                })
                 .addDisposableTo(cell.disposeBag)
         case .gender(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
@@ -192,16 +196,16 @@ extension EditProfileTableViewController {
             cell.selectButton.showIcon(false)
             cell.selectButton.setTitle((value != nil ? (value!.capitalized) : (genderValues().first!.capitalized)), for: UIControlState())
             cell.selectButton
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext({ [weak self] () -> Void in
+                .drive(onNext: { [weak self] () -> Void in
                     
                     
                     let controller = UIAlertController(title: NSLocalizedString("Select Gender", comment: "Edit Profile"), message: nil, preferredStyle: .actionSheet)
                     
                     self?.genderValues().each({ (genderString) in
                     controller.addAction(UIAlertAction(title: genderString.capitalized, style: .default, handler: { (alert) in
-                        self?.viewModel.mutateModelForIndex(indexPath.row, object: genderString)
+                        self?.viewModel.mutateModelForIndex(indexPath.row, object: genderString as AnyObject)
                         self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }))
                     })
@@ -215,13 +219,13 @@ extension EditProfileTableViewController {
             cell.textView.placeholderLabel?.text = placeholder
             cell.textView.text = value
             cell.textView.delegate = self
-            cell.textView.rx_text
+            cell.textView.rx.text
                 .observeOn(MainScheduler.instance)
-                .distinctUntilChanged()
-                .subscribeNext{[unowned self, weak textView = cell.textView] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                    textView?.detailLabel?.text = "\(text.utf16.count)/\(self.viewModel.charactersLimit)"
-                }
+                .distinctUntilChanged( { $0 == $1 })
+                .subscribe(onNext: {[unowned self, weak textView = cell.textView] (text) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text as AnyObject)
+                    textView?.detailLabel?.text = "\(text?.utf16.count)/\(self.viewModel.charactersLimit)"
+                })
                 .addDisposableTo(cell.disposeBag)
         case .location(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
@@ -229,14 +233,14 @@ extension EditProfileTableViewController {
             cell.selectButton.iconImageView.image = UIImage(named: value.country)
             cell.selectButton.setTitle(value.address, for: UIControlState())
             cell.selectButton
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext({ [weak self] () -> Void in
+                .drive(onNext: { [weak self] () -> Void in
                     
                     let controller = Wireframe.changeShoutLocationController()
                     
-                    controller.finishedBlock = {[weak indexPath](success, place) -> Void in
-                        if let place = place, let indexPath = indexPath {
+                    controller.finishedBlock = { (success, place) -> Void in
+                        if let place = place {
                             let newViewModel = EditProfileCellViewModel(location: place)
                             self?.viewModel.cells[indexPath.row] = newViewModel
                             self?.tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -299,16 +303,16 @@ extension EditProfileTableViewController: MediaPickerControllerDelegate {
         
         task.status
             .asDriver()
-            .driveNext{[weak self] (status) in
+            .drive(onNext: { [weak self] (status) in
                 self?.headerView.hydrateProgressView(progressType, withStatus: status)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         task.progress
             .asDriver()
-            .driveNext{[weak progressView] (progress) in
+            .drive(onNext: {[weak progressView] (progress) in
                 progressView?.setProgress(progress, animated: true)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         self.uploadType = nil

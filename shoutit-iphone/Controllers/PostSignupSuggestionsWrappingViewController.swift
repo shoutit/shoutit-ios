@@ -54,25 +54,25 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
                 doneButton.setTitle(LocalizedString.next, for: UIControlState())
                 doneButton.backgroundColor = UIColor(shoutitColor: .shoutitLightBlueColor)
                 doneButton
-                    .rx_tap
-                    .subscribeNext {[unowned self] in
+                    .rx.tap
+                    .subscribe(onNext: {[unowned self] in
                         self.flipToNextViewController()
                         self.pageControl.currentPage += 1
-                    }
+                    })
                     .addDisposableTo(doneButtonDisposeBag)
             case .done:
                 doneButton.setTitle(LocalizedString.done, for: UIControlState())
                 doneButton.backgroundColor = UIColor(shoutitColor: .primaryGreen)
                 doneButton
-                    .rx_tap
-                    .subscribeNext {[unowned self] in
+                    .rx.tap
+                    .subscribe(onNext: {[unowned self] in
                         if let _ = self.flowSimpleDelegate {
                             self.dismiss(animated: true, completion: nil)
                             return
                         }
                         
                         self.loginDelegate?.didFinishLoginProcessWithSuccess(true)
-                    }
+                    })
                     .addDisposableTo(doneButtonDisposeBag)
             }
         }
@@ -105,10 +105,10 @@ final class PostSignupSuggestionsWrappingViewController: UIViewController {
     fileprivate func setupRX() {
         
         skipButton
-            .rx_tap
-            .subscribeNext {[unowned self] in
+            .rx.tap
+            .subscribe(onNext: {[unowned self] in
                 self.loginDelegate?.didFinishLoginProcessWithSuccess(true)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

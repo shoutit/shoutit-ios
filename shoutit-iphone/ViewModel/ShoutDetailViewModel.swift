@@ -89,7 +89,7 @@ final class ShoutDetailViewModel {
                 case .next(let shout):
                     self?.shout = shout
                     self?.reloadImages()
-                case .Error(let error):
+                case .error(let error):
                     self?.imagesViewModels = [ShoutDetailShoutImageViewModel.error(error: error)]
                 case .completed:
                     break
@@ -105,7 +105,7 @@ final class ShoutDetailViewModel {
                     if let strongSelf = self {
                         strongSelf.otherShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(otherShouts.prefix(4)), withSeeAllCell: false)
                     }
-                case .Error(let error):
+                case .error(let error):
                     self?.otherShoutsCellModels = [ShoutDetailShoutCellViewModel.error(error: error)]
                 case .completed:
                     break
@@ -121,7 +121,7 @@ final class ShoutDetailViewModel {
                     if let strongSelf = self {
                         strongSelf.relatedShoutsCellModels = strongSelf.cellViewModelsWithModels(Array(relatedShouts.prefix(6)), withSeeAllCell: true)
                     }
-                case .Error(let error):
+                case .error(let error):
                     if let strongSelf = self {
                         strongSelf.relatedShoutsCellModels = [ShoutDetailShoutCellViewModel.error(error: error)]
                     }

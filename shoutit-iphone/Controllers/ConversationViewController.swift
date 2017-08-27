@@ -118,56 +118,56 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         viewModel.fetchFullConversation()
         viewModel.fetchMessages()
         
-        viewModel.messages.asDriver().driveNext { [weak self] (messages) -> Void in
+        viewModel.messages.asDriver().drive(onNext: { [weak self] (messages) -> Void in
             self?.tableView?.reloadData()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        viewModel.typingUsers.asDriver(onErrorJustReturn: nil).driveNext { [weak self] (profile) -> Void in
+        viewModel.typingUsers.asDriver(onErrorJustReturn: nil).drive(onNext: { [weak self] (profile) -> Void in
             guard let profile = profile else { return }
             self?.typingIndicatorView?.insertUsername(profile.username)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        viewModel.sendingMessages.asDriver().driveNext { [weak self] (messages) in
+        viewModel.sendingMessages.asDriver().drive(onNext: { [weak self] (messages) in
             if messages.count > 0 {
                 self?.showSendingMessage()
             } else {
                 self?.hideSendingMessage()
             }
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        viewModel.presentingSubject.subscribeNext { [weak self] (controller) in
+        viewModel.presentingSubject.subscribe(onNext: { [weak self] (controller) in
             guard let controller = controller else { return }
             self?.navigationController?.present(controller, animated: true, completion: nil)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         viewModel.conversation.asObservable()
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (conversationExistance) in
+            .subscribe(onNext: {[weak self] (conversationExistance) in
                 if let shout = conversationExistance.shout {
                     self?.setTopicShout(shout)
                 }
                 self?.setupBarButtonItemsForConversationState(conversationExistance)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
     fileprivate func setupAttachmentManager() {
-        attachmentManager.attachmentSelected.subscribeNext { [weak self] (attachment) in
+        attachmentManager.attachmentSelected.subscribe(onNext: { [weak self] (attachment) in
             self?.viewModel.sendMessageWithAttachment(attachment)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         attachmentManager.presentingSubject
-            .subscribeNext { [weak self] (controller) in
+            .subscribe(onNext: { [weak self] (controller) in
                 guard let controller = controller else { return }
                 self?.navigationController?.present(controller, animated: true, completion: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         attachmentManager.pushingSubject
-            .subscribeNext { [weak self] (controller) in
+            .subscribe(onNext: { [weak self] (controller) in
                 guard let controller = controller else { return }
                 self?.navigationController?.show(controller, sender: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
     }
@@ -291,7 +291,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         
         loadMoreBag = DisposeBag()
         
-        viewModel.loadMoreState.asDriver().driveNext({ [weak self] (state) -> Void in
+        viewModel.loadMoreState.asDriver().drive(onNext: { [weak self] (state) -> Void in
             self?.loadMoreView?.setState(state)
             self?.tableView?.reloadData()
         }).addDisposableTo(loadMoreBag)
@@ -337,7 +337,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }
     }
     
-    override func didPressRightButton(_ sender: AnyObject!) {
+    override func didPressRightButton(_ sender: Any!) {
         textView.refreshFirstResponder()
         
         if viewModel.sendMessageWithText(textView.text) {
@@ -345,7 +345,7 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         }
     }
     
-    override func didPressLeftButton(_ sender: AnyObject!) {
+    override func didPressLeftButton(_ sender: Any!) {
         textView.resignFirstResponder()
         
         flowDelegate?.showAttachmentControllerWithTransitioningDelegate(self) {[weak self] (type) in

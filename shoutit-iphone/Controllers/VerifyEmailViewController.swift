@@ -51,62 +51,66 @@ final class VerifyEmailViewController: UIViewController {
         
         // buttons
         resendButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext{ [unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.viewModel.verifyEmail()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         verifyButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.viewModel.updateUser()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         cancelBarButtonItem
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[weak self] in
+            .drive(onNext: { [weak self] in
                 self?.navigationController?.dismiss(animated: true, completion: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // subjects
         
         viewModel.progressSubject
-            .distinctUntilChanged()
+            .distinctUntilChanged( { $0 == $1 })
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (show) in
+            .subscribe(onNext: {[weak self] (show) in
                 if show {
-                    MBProgressHUD.showAdded(to: self?.view, animated: true)
+                    if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
                 } else {
-                    MBProgressHUD.hide(for: self?.view, animated: true)
+                    if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
                 }
-            }
+                }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.successSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (message) in
+            .subscribe(onNext: {[weak self] (message) in
                 let block = self?.successBlock
                 self?.navigationController?.dismiss(animated: true, completion: {
                     block??(message)
                 })
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.errorSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (error) in
+            .subscribe(onNext: {[weak self] (error) in
                 self?.showError(error)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // text field
-        emailTextField.rx_text.bindTo(viewModel.email).addDisposableTo(disposeBag)
+        emailTextField.rx.text.bind(to: viewModel.email).addDisposableTo(disposeBag)
         
         // validation
         emailTextField.addValidator(ShoutitValidator.validateEmail, withDisposeBag: disposeBag)

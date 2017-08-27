@@ -108,7 +108,7 @@ final class EditProfileTableViewModel {
                     case .next(let loggedUser):
                         Account.sharedInstance.updateUserWithModel(loggedUser)
                         observer.onNext(.ready)
-                    case .Error(let error):
+                    case .error(let error):
                         observer.onNext(.error(error: error))
                         observer.onCompleted()
                     case .completed:

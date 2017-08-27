@@ -38,7 +38,7 @@ class FacebookFriendsListParentViewController: UIViewController {
                 switch event {
                 case .next(let code):
                     self?.inviteFriendsByFacebookUsingCode(code)
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default: break
                 }

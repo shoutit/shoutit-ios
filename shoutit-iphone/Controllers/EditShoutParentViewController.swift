@@ -53,7 +53,9 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
         
         APIShoutsService.updateShoutWithParams(parameters, uid: editController.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in
             
-            MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+            if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
             
             if (self?.dismissAfter ?? false) == true{
                 self?.navigationController?.dismiss(animated: true, completion: nil)
@@ -62,7 +64,9 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
             }
             
         }, onError: { [weak self] (error) -> Void in
-                MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+                if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
                 self?.showError(error)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }

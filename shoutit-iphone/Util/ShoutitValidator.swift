@@ -10,11 +10,11 @@ import Foundation
 import ShoutitKit
 import Validator
 
-extension ValidationError: ShoutitError {
-    public var userMessage: String {
-        return message
-    }
-}
+//extension ValidationError: ShoutitError {
+//    public var userMessage: String {
+//        return message
+//    }
+//}
 
 struct ShoutitValidator {
     

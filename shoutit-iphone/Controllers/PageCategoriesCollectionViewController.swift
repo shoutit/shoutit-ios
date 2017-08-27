@@ -24,10 +24,10 @@ class PageCategoriesCollectionViewController: UICollectionViewController {
     }
     
     func fetchCategories() {
-        APIPageService.getPageCategories().subscribeNext { [weak self] (categories) in
+        APIPageService.getPageCategories().subscribe(onNext: { [weak self] (categories) in
             self?.categories = categories
             self?.collectionView?.reloadData()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
     }
     

@@ -51,7 +51,7 @@ open class BorderedMaterialTextField : UITextField {
      the image property, then this value does not need to be set, since the
      visualLayer's maskToBounds is set to true by default.
      */
-    open var masksToBounds: Bool {
+    open override var masksToBounds: Bool {
         get {
             return layer.masksToBounds
         }
@@ -68,7 +68,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// A property that accesses the layer.frame.origin.x property.
-    open var x: CGFloat {
+    open override var x: CGFloat {
         get {
             return layer.frame.origin.x
         }
@@ -78,7 +78,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// A property that accesses the layer.frame.origin.y property.
-    open var y: CGFloat {
+    open override var y: CGFloat {
         get {
             return layer.frame.origin.y
         }
@@ -93,7 +93,7 @@ open class BorderedMaterialTextField : UITextField {
      value that is not .None, the height will be adjusted to maintain the correct
      shape.
      */
-    open var width: CGFloat {
+    open override var width: CGFloat {
         get {
             return layer.frame.size.width
         }
@@ -111,7 +111,7 @@ open class BorderedMaterialTextField : UITextField {
      value that is not .None, the width will be adjusted to maintain the correct
      shape.
      */
-    open var height: CGFloat {
+    open override var height: CGFloat {
         get {
             return layer.frame.size.height
         }
@@ -124,14 +124,14 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// A property that accesses the backing layer's shadowColor.
-    open var shadowColor: UIColor? {
+    open  override var shadowColor: UIColor? {
         didSet {
         layer.shadowColor = shadowColor?.cgColor
         }
     }
     
     /// A property that accesses the backing layer's shadowOffset.
-    open var shadowOffset: CGSize {
+    open override var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -141,7 +141,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// A property that accesses the backing layer's shadowOpacity.
-    open var shadowOpacity: Float {
+    open override var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -151,7 +151,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// A property that accesses the backing layer's shadowRadius.
-    open var shadowRadius: CGFloat {
+    open override var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -165,9 +165,10 @@ open class BorderedMaterialTextField : UITextField {
      for the backing layer. This is the preferred method of setting depth
      in order to maintain consitency across UI objects.
      */
-    open var depth: MaterialDepth {
+    open var sh_depth: Material.DepthPreset {
         didSet {
-        let value: MaterialDepthType = MaterialDepthToValue(depth)
+        let value = DepthPresetToValue(sh_depth)
+            
         shadowOffset = value.offset
         shadowOpacity = value.opacity
         shadowRadius = value.radius
@@ -179,9 +180,9 @@ open class BorderedMaterialTextField : UITextField {
      property has a value of .Circle when the cornerRadius is set, it will
      become .None, as it no longer maintains its circle shape.
      */
-    open var cornerRadius: MaterialRadius {
+    open var sh_cornerRadius: Material.CornerRadiusPreset {
         didSet {
-        if let v: MaterialRadius = cornerRadius {
+        if let v: Material.CornerRadiusPreset = sh_cornerRadius {
             layer.cornerRadius = MaterialRadiusToValue(v)
             if .circle == shape {
                 shape = .none
@@ -195,7 +196,7 @@ open class BorderedMaterialTextField : UITextField {
      width or height property is set, the other will be automatically adjusted
      to maintain the shape of the object.
      */
-    open var shape: MaterialShape {
+    open var shape: Material.ShapePreset {
         didSet {
         if .none != shape {
             if width < height {
@@ -211,21 +212,21 @@ open class BorderedMaterialTextField : UITextField {
      A property that accesses the layer.borderWith using a MaterialBorder
      enum preset.
      */
-    open var borderWidth: MaterialBorder {
+    open var sh_borderWidth: Material.BorderWidthPreset {
         didSet {
-        layer.borderWidth = MaterialBorderToValue(borderWidth)
+        layer.borderWidth = borderWidth.cgFloatValue
         }
     }
     
     /// A property that accesses the layer.borderColor property.
-    open var borderColor: UIColor? {
+    open override var borderColor: UIColor? {
         didSet {
         layer.borderColor = borderColor?.cgColor
         }
     }
     
     /// A property that accesses the layer.position property.
-    open var position: CGPoint {
+    open override var position: CGPoint {
         get {
             return layer.position
         }
@@ -235,7 +236,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// A property that accesses the layer.zPosition property.
-    open var zPosition: CGFloat {
+    open override var zPosition: CGFloat {
         get {
             return layer.zPosition
         }
@@ -376,7 +377,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// Overriding the layout callback for sublayers.
-    open override func layoutSublayersOfLayer(_ layer: CALayer) {
+    open func layoutSublayersOfLayer(_ layer: CALayer) {
         super.layoutSublayersOfLayer(layer)
         if self.layer == layer {
             bottomBorderLayer.frame = CGRect(x: -9, y: -20, width: bounds.width + 18, height: bounds.height + bottomBorderLayerDistance + 20)
@@ -433,7 +434,7 @@ open class BorderedMaterialTextField : UITextField {
      running an animation.
      - Parameter anim: The currently running CAAnimation instance.
      */
-    open override func animationDidStart(_ anim: CAAnimation) {
+    open func animationDidStart(_ anim: CAAnimation) {
         (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStart?(anim)
     }
     
@@ -445,7 +446,7 @@ open class BorderedMaterialTextField : UITextField {
      because it was completed or interrupted. True if completed, false
      if interrupted.
      */
-    open override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    open func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
             if let b: CABasicAnimation = a as? CABasicAnimation {
                 layer.setValue(nil == b.toValue ? b.byValue : b.toValue, forKey: b.keyPath!)
@@ -510,7 +511,7 @@ open class BorderedMaterialTextField : UITextField {
     }
     
     /// Manages the layout for the shape of the view instance.
-    internal func layoutShape() {
+    open override func layoutShape() {
         if .circle == shape {
             layer.cornerRadius = width / 2
         }

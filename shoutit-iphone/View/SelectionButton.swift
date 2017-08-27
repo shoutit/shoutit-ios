@@ -28,7 +28,7 @@ final class SelectionButton: UIButton, UIGestureRecognizerDelegate {
     @IBInspectable var ib_fieldTitleLabelType: Int = 0
     @IBInspectable var ib_iconImageType: Int = 0
     @IBInspectable var fieldTitleLabelFontColor: UIColor = UIColor(shoutitColor: .discoverBorder)
-    @IBInspectable var borderWidth: CGFloat = 1
+    @IBInspectable var sh_borderWidth: CGFloat = 1
     
     // constraints
     fileprivate var _constraints: [NSLayoutConstraint] = []

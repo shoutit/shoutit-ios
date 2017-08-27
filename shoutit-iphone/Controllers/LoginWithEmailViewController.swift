@@ -103,47 +103,53 @@ final class LoginWithEmailViewController: UIViewController, ContainerController 
     fileprivate func setupRX() {
         
         feedbackButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showFeedbackInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         helpButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showHelpInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         aboutButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showAboutInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // view model subjects
-        viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+        viewModel.errorSubject.subscribe(onNext: {[weak self] (error) -> Void in
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 self?.showError(error)
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+        viewModel.loginSuccessSubject.subscribe(onNext: {[weak self] (isNewSignup) -> Void in
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 if isNewSignup {
                     self?.flowDelegate?.showPostSignupInterests()
                 } else {
                     self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        viewModel.successSubject.subscribeNext{[weak self] (message) in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+        viewModel.successSubject.subscribe(onNext: { [weak self] (message) in
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 self?.showSuccessMessage(message)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

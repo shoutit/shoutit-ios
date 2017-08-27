@@ -76,7 +76,7 @@ final class PageProfileCollectionViewModel: ProfileCollectionViewModelInterface 
                 case .next(let value):
                     self?.listSection = self?.listSectionWithModels(value, isLoading: false)
                     self?.reloadSubject.onNext()
-                case .Error(let error):
+                case .error(let error):
                     self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
                     self?.reloadSubject.onNext()
                 default:

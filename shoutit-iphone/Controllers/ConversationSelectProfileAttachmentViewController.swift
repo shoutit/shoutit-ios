@@ -48,16 +48,16 @@ class ConversationSelectProfileAttachmentViewController: UIViewController, Conta
     fileprivate func setupRX() {
         
         listChoiceSegmentedControl
-            .rx_value
+            .rx.value
             .asDriver()
-            .driveNext {[unowned self] (value) in
+            .drive(onNext: {[unowned self] (value) in
                 if value == 0 {
                     self.changeContentTo(self.listeningViewController)
                 }
                 else if value == 1 {
                     self.changeContentTo(self.listenersViewController)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

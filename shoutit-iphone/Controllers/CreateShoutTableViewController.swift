@@ -52,66 +52,66 @@ class CreateShoutTableViewController: UITableViewController {
         
         viewModel.detailsSectionViewModel.currencies
             .asDriver()
-            .driveNext { [weak self] (currencies) -> Void in
+            .drive(onNext: { [weak self] (currencies) -> Void in
                 self?.headerView.currencyButton.showActivity(currencies.count == 0)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.shoutParams.currency
             .asDriver()
-            .driveNext { [weak self] (currency) -> Void in
+            .drive(onNext: { [weak self] (currency) -> Void in
                 self?.headerView.setCurrency(currency)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         let categoriesObserver = viewModel.detailsSectionViewModel.categories.asDriver().map{_ in return Void()}
         let reloadObserver = viewModel.detailsSectionViewModel.reloadSubject.asDriver(onErrorJustReturn: Void())
         Observable.of(categoriesObserver, reloadObserver)
             .merge()
-            .subscribeNext {[weak self] in
+            .subscribe(onNext: {[weak self] in
                 self?.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.shoutParams.category
             .asDriver()
-            .driveNext {[weak self] (category) -> Void in
+            .drive(onNext: { [weak self] (category) -> Void in
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.titleTextField
-            .rx_text
+            .rx.text
             .flatMap{ (text) -> Observable<String?> in
                 return Observable.just(text)
             }
-            .bindTo(viewModel.shoutParams.title)
+            .bind(to: viewModel.shoutParams.title)
             .addDisposableTo(disposeBag)
         
         headerView.priceTextField
-            .rx_text
+            .rx.text
             .flatMap{ (stringValue) -> Observable<Double?> in
-                if stringValue.characters.count == 0 {
+                if stringValue?.characters.count == 0 {
                     return Observable.just(nil)
                 }
                 
-                return Observable.just(stringValue.doubleValue)
+                return Observable.just(stringValue!.doubleValue)
             }
-            .bindTo(viewModel.shoutParams.price)
+            .bind(to: viewModel.shoutParams.price)
             .addDisposableTo(disposeBag)
         
         viewModel.errorSubject.observeOn(MainScheduler.instance)
-            .subscribeNext { [weak self] (error) in
+            .subscribe(onNext: { [weak self] (error) in
                 self?.showError(error)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         facebookTappedSubject
             .asObserver()
-            .subscribeNext {[weak self] in
+            .subscribe(onNext: {[weak self] in
                 guard let `self` = self else { return }
                 self.viewModel.sharingSectionViewModel.togglePublishToFacebookFromViewController(self)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -122,17 +122,17 @@ class CreateShoutTableViewController: UITableViewController {
             self.imagesController = imagesController
             imagesController.mediaPicker
                 .presentingSubject
-                .observeOn(MainScheduler.instance).subscribeNext{[weak self] (controllerToShow) in
+                .observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (controllerToShow) in
                     if let controllerToShow = controllerToShow {
                         self?.navigationController?.present(controllerToShow, animated: true, completion: nil)
                     }
-                }
+                })
                 .addDisposableTo(disposeBag)
         }
         
         if let descriptionViewController = segue.destination as? ShoutDescriptionViewController {
             descriptionViewController.initialText = self.viewModel.shoutParams.text.value
-            descriptionViewController.completionSubject.asObservable().subscribeNext({ (description) in
+            descriptionViewController.completionSubject.asObservable().subscribe(onNext: { (description) in
                 self.viewModel.shoutParams.text.value = description
                 self.tableView.reloadData()
             }).addDisposableTo(disposeBag)
@@ -167,14 +167,14 @@ extension CreateShoutTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutCellCategory", for: indexPath) as! CreateShoutSelectCell
             viewModel.fillCategoryCell(cell)
             cell.selectButton
-                .rx_controlEvent(.touchUpInside)
+                .rx.controlEvent(.touchUpInside)
                 .asDriver()
-                .driveNext{ [weak self] () -> Void in
+                .drive(onNext: { [weak self] () -> Void in
                     let actionSheetController = self?.viewModel.categoriesActionSheet({ (alertAction) -> Void in
                         self?.tableView.reloadData()
                     })
                     self?.present(actionSheetController!, animated: true, completion: nil)
-                }
+                })
                 .addDisposableTo(cell.reuseDisposeBag)
             
             return cell
@@ -191,9 +191,9 @@ extension CreateShoutTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutCellOption", for: indexPath) as! CreateShoutSelectCell
             viewModel.fillFilterCell(cell, withFilter: filter)
             cell.selectButton
-                .rx_controlEvent(.touchUpInside)
+                .rx.controlEvent(.touchUpInside)
                 .asDriver()
-                .driveNext{ [weak self] () -> Void in
+                .drive(onNext: { [weak self] () -> Void in
                     guard let actionSheetController = self?.viewModel.filterActionSheet(forFilter: filter, handler: { (alertAction) -> Void in
                         self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }) else {
@@ -201,16 +201,16 @@ extension CreateShoutTableViewController {
                     }
                     
                     self?.present(actionSheetController, animated: true, completion: nil)
-                }
+                })
                 .addDisposableTo(cell.reuseDisposeBag)
             return cell
         case .location:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateShoutCellLocation", for: indexPath) as! CreateShoutSelectCell
             viewModel.fillLocationCell(cell)
             cell.selectButton
-                .rx_controlEvent(.touchUpInside)
+                .rx.controlEvent(.touchUpInside)
                 .asDriver()
-                .driveNext({ [weak self] () -> Void in
+                .drive(onNext: { [weak self] () -> Void in
                     
                     let controller = Wireframe.changeShoutLocationController()
                     
@@ -227,11 +227,11 @@ extension CreateShoutTableViewController {
         case .mobile:
             let cell = tableView.dequeueReusableCell(withIdentifier: "createShoutCellMobile", for: indexPath) as! CreateShoutMobileCell
             cell.mobileTextField
-                .rx_text
+                .rx.text
                 .flatMap{ (text) -> Observable<String?> in
                     return Observable.just(text)
                 }
-                .bindTo(viewModel.shoutParams.mobile)
+                .bind(to: viewModel.shoutParams.mobile)
                 .addDisposableTo(cell.reuseDisposeBag)
             
             if let shout = self.viewModel.shoutParams.shout {
@@ -247,9 +247,9 @@ extension CreateShoutTableViewController {
             viewModel
                 .shoutParams
                 .publishToFacebook
-                .asDriver().driveNext{[weak cell] (publish) in
+                .asDriver().drive(onNext: {[weak cell] (publish) in
                     cell?.ticked = publish
-                }
+                })
                 .addDisposableTo(cell.reuseDisposeBag)
             
             return cell

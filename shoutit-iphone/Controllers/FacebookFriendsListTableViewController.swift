@@ -22,13 +22,13 @@ class FacebookFriendsListTableViewController: ProfilesListTableViewController {
         self.fbRefreshControl.addTarget(self, action: #selector(fbRefresh), for: UIControlEvents.valueChanged)
         self.tableView?.addSubview(fbRefreshControl)
         
-        Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { (event) in
+        Account.sharedInstance.pusherManager.mainChannelSubject.subscribe(onNext: { (event) in
             
             if event.eventType() == .ProfileChange {
                 self.viewModel.pager.refreshContent()
             }
             
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     func fbRefresh(_ sender:AnyObject) {

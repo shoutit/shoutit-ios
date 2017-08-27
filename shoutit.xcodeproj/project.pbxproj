@@ -217,7 +217,6 @@
 		AE32C5D41D0564C5009A49C5 /* FilteredDiscoverItemsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B3454D1CA57DE80066DF15 /* FilteredDiscoverItemsParams.swift */; };
 		AE32C5D51D0564C5009A49C5 /* SearchParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F524731C9AFC2800EA622F /* SearchParams.swift */; };
 		AE32C5D61D0564C5009A49C5 /* AutocompletionParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */; };
-		AE32C5D71D0564C5009A49C5 /* ArgoJsonParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B3454B1CA572D10066DF15 /* ArgoJsonParams.swift */; };
 		AE32C5D81D0564C5009A49C5 /* CoordinateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */; };
 		AE32C5D91D0564C5009A49C5 /* EmailParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2778F981CAC11E400BBDD5F /* EmailParams.swift */; };
 		AE32C5DA1D0564C5009A49C5 /* GeocodeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B4AAD61CB51D4500926474 /* GeocodeParams.swift */; };
@@ -338,11 +337,9 @@
 		AEC8529D1D2E7FE90060A32D /* FBNativeAdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8529A1D2E7F330060A32D /* FBNativeAdExtension.swift */; };
 		AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
-		AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
 		AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
 		AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
-		AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291771D08676D000F9DAF /* Argo.framework */; };
 		AED6361D1D356C700005E1A5 /* VerifyBussinessDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */; };
 		AED636221D356CF40005E1A5 /* VerifyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */; };
 		AED636251D3582C50005E1A5 /* PageVerificationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED636241D3582C50005E1A5 /* PageVerificationParams.swift */; };
@@ -883,7 +880,6 @@
 		B2F71A651D0EF791002C1D74 /* NSString+DPLQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A551D0EF791002C1D74 /* NSString+DPLQuery.m */; };
 		B2F71A661D0EF791002C1D74 /* NSString+DPLTrim.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A571D0EF791002C1D74 /* NSString+DPLTrim.m */; };
 		B2F71A671D0EF791002C1D74 /* UINavigationController+DPLRouting.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A591D0EF791002C1D74 /* UINavigationController+DPLRouting.m */; };
-		B2F71A6A1D0EF7C9002C1D74 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A681D0EF7BF002C1D74 /* Curry.swift */; };
 		B2FA5CCC1D11A9A2007034F8 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE54A6B71D1173D9002F1430 /* Promotion.swift */; };
 		B2FA5CCE1D11AA1C007034F8 /* Promotion+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CCD1D11AA1C007034F8 /* Promotion+Colors.swift */; };
 		B2FA5CD11D11AB22007034F8 /* Transaction+AttributedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD01D11AB22007034F8 /* Transaction+AttributedStrings.swift */; };
@@ -1378,7 +1374,6 @@
 		AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LikeButton.swift; path = View/LikeButton.swift; sourceTree = "<group>"; };
 		AED291751D08676D000F9DAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AmazonS3RequestManager.framework; path = ../Carthage/Build/iOS/AmazonS3RequestManager.framework; sourceTree = "<group>"; };
-		AED291771D08676D000F9DAF /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = ../Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		AED291791D08676D000F9DAF /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = ../Carthage/Build/iOS/AWSCognito.framework; sourceTree = "<group>"; };
 		AED2917A1D08676D000F9DAF /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = ../Carthage/Build/iOS/AWSCore.framework; sourceTree = "<group>"; };
 		AED2917C1D08676D000F9DAF /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = ../Carthage/Build/iOS/AWSS3.framework; sourceTree = "<group>"; };
@@ -2076,7 +2071,6 @@
 		B2B345451CA5584D0066DF15 /* LightError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LightError.swift; path = Other/LightError.swift; sourceTree = "<group>"; };
 		B2B345471CA5586E0066DF15 /* InternalParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternalParseError.swift; path = Other/InternalParseError.swift; sourceTree = "<group>"; };
 		B2B345491CA558960066DF15 /* PusherError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherError.swift; path = Other/PusherError.swift; sourceTree = "<group>"; };
-		B2B3454B1CA572D10066DF15 /* ArgoJsonParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArgoJsonParams.swift; path = Networking/ArgoJsonParams.swift; sourceTree = "<group>"; };
 		B2B3454D1CA57DE80066DF15 /* FilteredDiscoverItemsParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilteredDiscoverItemsParams.swift; path = Networking/FilteredDiscoverItemsParams.swift; sourceTree = "<group>"; };
 		B2B4AACE1CB436FB00926474 /* CategoryFiltersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersTableViewCell.swift; path = View/CategoryFiltersTableViewCell.swift; sourceTree = "<group>"; };
 		B2B4AAD11CB43CB400926474 /* CategoryFiltersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryFiltersViewModel.swift; path = ViewModel/CategoryFiltersViewModel.swift; sourceTree = "<group>"; };
@@ -2468,7 +2462,6 @@
 		B2F71A571D0EF791002C1D74 /* NSString+DPLTrim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+DPLTrim.m"; path = "CopiedFilesFrameworks/DeeplinkKit/NSString+DPLTrim.m"; sourceTree = SOURCE_ROOT; };
 		B2F71A581D0EF791002C1D74 /* UINavigationController+DPLRouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+DPLRouting.h"; path = "CopiedFilesFrameworks/DeeplinkKit/UINavigationController+DPLRouting.h"; sourceTree = SOURCE_ROOT; };
 		B2F71A591D0EF791002C1D74 /* UINavigationController+DPLRouting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+DPLRouting.m"; path = "CopiedFilesFrameworks/DeeplinkKit/UINavigationController+DPLRouting.m"; sourceTree = SOURCE_ROOT; };
-		B2F71A681D0EF7BF002C1D74 /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Curry.swift; path = CopiedFilesFrameworks/Curry.swift; sourceTree = SOURCE_ROOT; };
 		B2FA5CCD1D11AA1C007034F8 /* Promotion+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Promotion+Colors.swift"; path = "Model/Promotion+Colors.swift"; sourceTree = "<group>"; };
 		B2FA5CD01D11AB22007034F8 /* Transaction+AttributedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+AttributedStrings.swift"; path = "Model/Transaction+AttributedStrings.swift"; sourceTree = "<group>"; };
 		B2FA5CD21D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ShowDetailContainerViewController+AlertFactory.swift"; path = "Controllers/ShowDetailContainerViewController+AlertFactory.swift"; sourceTree = "<group>"; };
@@ -2532,7 +2525,6 @@
 				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
 				B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */,
 				B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */,
-				AED291B71D0981BB000F9DAF /* Argo.framework in Frameworks */,
 				B2415F531D009E8100669C52 /* libsqlite3.0.tbd in Frameworks */,
 				B2985F901C72950F00EEA9A2 /* CoreData.framework in Frameworks */,
 				B2985F8C1C7294F300EEA9A2 /* Accelerate.framework in Frameworks */,
@@ -2594,7 +2586,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */,
-				AED291A01D086A87000F9DAF /* Argo.framework in Frameworks */,
 				AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */,
 				AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */,
 				AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */,
@@ -4151,7 +4142,6 @@
 				B2B3454D1CA57DE80066DF15 /* FilteredDiscoverItemsParams.swift */,
 				B2F524731C9AFC2800EA622F /* SearchParams.swift */,
 				B249D5681CA3F8EE004F57A6 /* AutocompletionParams.swift */,
-				B2B3454B1CA572D10066DF15 /* ArgoJsonParams.swift */,
 				B21217CB1CA5BD78001BAEFC /* CoordinateParams.swift */,
 				B2778F981CAC11E400BBDD5F /* EmailParams.swift */,
 				B2B4AAD61CB51D4500926474 /* GeocodeParams.swift */,
@@ -5465,7 +5455,6 @@
 			isa = PBXGroup;
 			children = (
 				AE76E2A41D4749DC00C7F2CB /* PaperTrail */,
-				B2F71A681D0EF7BF002C1D74 /* Curry.swift */,
 				AEB3F3921D0995E800393428 /* DeeplinkKit */,
 				AEB3F3021D09950B00393428 /* Pusher */,
 				AEB3F4021D09A1BF00393428 /* ResponsiveLabel */,
@@ -5523,7 +5512,6 @@
 				AED2917A1D08676D000F9DAF /* AWSCore.framework */,
 				AED291791D08676D000F9DAF /* AWSCognito.framework */,
 				B212D1431D0B33BC00E9E19D /* Validator.framework */,
-				AED291771D08676D000F9DAF /* Argo.framework */,
 				AED291761D08676D000F9DAF /* AmazonS3RequestManager.framework */,
 				AED291751D08676D000F9DAF /* Alamofire.framework */,
 				B212D1261D0B023600E9E19D /* ACPDownload.framework */,
@@ -6616,9 +6604,7 @@
 				AE32C5A61D055C33009A49C5 /* PushTokens.swift in Sources */,
 				AE32C5E91D05657D009A49C5 /* Constants.swift in Sources */,
 				AE32C59F1D055C33009A49C5 /* Address.swift in Sources */,
-				B2F71A6A1D0EF7C9002C1D74 /* Curry.swift in Sources */,
 				AE3DC4051D21206900C460CC /* PageCategory.swift in Sources */,
-				AE32C5D71D0564C5009A49C5 /* ArgoJsonParams.swift in Sources */,
 				AE32C5D81D0564C5009A49C5 /* CoordinateParams.swift in Sources */,
 				BF0CB0101D33AF7F00EC96FB /* DetailedPageProfile.swift in Sources */,
 				AE32C5B71D055C33009A49C5 /* Reportable.swift in Sources */,
@@ -7786,8 +7772,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -7929,8 +7913,6 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"AmazonS3RequestManager\"",
-					"-framework",
-					"\"Argo\"",
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
@@ -8940,8 +8922,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -9129,8 +9109,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -9317,8 +9295,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -9503,8 +9479,6 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"AmazonS3RequestManager\"",
-					"-framework",
-					"\"Argo\"",
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
@@ -9692,8 +9666,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -9872,8 +9844,6 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"AmazonS3RequestManager\"",
-					"-framework",
-					"\"Argo\"",
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
@@ -10054,8 +10024,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -10235,8 +10203,6 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"AmazonS3RequestManager\"",
-					"-framework",
-					"\"Argo\"",
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
@@ -10419,8 +10385,6 @@
 					"-framework",
 					"\"AmazonS3RequestManager\"",
 					"-framework",
-					"\"Argo\"",
-					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
 					"\"Bolts\"",
@@ -10599,8 +10563,6 @@
 					"\"Alamofire\"",
 					"-framework",
 					"\"AmazonS3RequestManager\"",
-					"-framework",
-					"\"Argo\"",
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",

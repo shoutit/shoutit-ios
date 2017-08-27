@@ -52,7 +52,7 @@ extension Bookmarking where Self : UICollectionViewController {
                 case .next(let success):
                     self?.showSuccessMessage(success.message)
                     self?.switchToNonBookmarked(wShout)
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                     self?.switchToBookmarked(wShout)
                 default: break
@@ -65,7 +65,7 @@ extension Bookmarking where Self : UICollectionViewController {
                 case .next(let success):
                     self?.showSuccessMessage(success.message)
                     self?.switchToBookmarked(wShout)
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                     self?.switchToNonBookmarked(wShout)
                 default: break

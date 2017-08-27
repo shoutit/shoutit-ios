@@ -49,13 +49,13 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
         
         fillWithTaskStatus(task.status.value, attachment: task.attachment)
         
-        task.progress.asDriver().driveNext{ [weak self] (progress) in
+        task.progress.asDriver().drive(onNext: { [weak self] (progress) in
             self?.progressView.setProgress(progress, animated: true)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        task.status.asDriver().driveNext { [weak self] (status) in
+        task.status.asDriver().drive(onNext: { [weak self] (status) in
             self?.fillWithTaskStatus(status, attachment: task.attachment)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     func setActive(_ active: Bool) {

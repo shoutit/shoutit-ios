@@ -62,11 +62,12 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
     @IBAction func reloadTransactions() {
         loading = true
         
-        APICreditsService.requestTransactions(before: nil).subscribeNext { [weak self] (transactions) -> Void in
+      
+        APICreditsService.requestTransactions(before: nil).subscribe(onNext: { [weak self] (transactions) -> Void in
             self?.loading = false
             self?.refreshControl?.endRefreshing()
             self?.appendTransactions(transactions)
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
     }
     
     func loadNextPage() {
@@ -92,7 +93,7 @@ class CreditTransactionsTableViewController: UITableViewController, DZNEmptyData
                 }
                 
                 self?.appendTransactions(transactions)
-            case .Error:
+            case .error:
                 self?.loading = false
             default:
                 break;

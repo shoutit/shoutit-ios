@@ -31,11 +31,11 @@ final class DiscoverPreviewParentController: UIViewController {
             .viewModel
             .mainItemObservable
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (item) -> Void in
+            .subscribe(onNext: {[weak self] (item) -> Void in
                 if let discover = item {
                     self?.titleLabel?.text = discover.title
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }   

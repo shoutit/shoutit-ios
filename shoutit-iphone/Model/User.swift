@@ -8,7 +8,6 @@
 
 import Foundation
 import JSONCodable
-import Argo
 
 public protocol User: JSONEncodable {
     

@@ -44,16 +44,16 @@ final class ProfileCollectionViewController: UICollectionViewController {
         
         viewModel.reloadSubject
             .debounce(0.5, scheduler: MainScheduler.instance)
-            .subscribeNext {[weak self] in
+            .subscribe(onNext: { [weak self] in
                 self?.collectionView?.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.successMessageSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext{[weak self] (message) in
+            .subscribe(onNext: { [weak self] (message) in
                 self?.showSuccessMessage(message)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         registerReusables()
@@ -175,7 +175,7 @@ extension ProfileCollectionViewController {
             cell.listenButton.setImage(listenButtonImage, for: UIControlState())
             cell.listenButton.isHidden = cellViewModel.hidesListeningButton()
             
-            cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
+            cell.listenButton.rx.tap.asDriver().drive(onNext: {[weak self, weak cellViewModel] in
                 guard self != nil && self!.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
                 cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
                     switch event {
@@ -200,7 +200,7 @@ extension ProfileCollectionViewController {
                         break
                     }
                 }).addDisposableTo(cell.reuseDisposeBag)
-            }.addDisposableTo(cell.reuseDisposeBag)
+            }).addDisposableTo(cell.reuseDisposeBag)
             
             return cell
         }
@@ -232,27 +232,27 @@ extension ProfileCollectionViewController {
             
             // setup navigation bar buttons
             coverView.menuButton
-                .rx_tap
-                .subscribeNext{[unowned self] in
+                .rx.tap
+                .subscribe(onNext: { [unowned self] in
                     self.toggleMenu()
-                }
+                })
                 .addDisposableTo(coverView.reuseDisposeBag)
             
             if let navigationController = navigationController, self === navigationController.viewControllers[0] {
                 coverView.setBackButtonHidden(true)
             } else {
                 coverView.backButton
-                    .rx_tap
+                    .rx.tap
                     .asDriver()
-                    .driveNext{[unowned self] in
+                    .drive(onNext: { [unowned self] in
                         self.navigationController?.popViewController(animated: true)
-                    }
+                    })
                     .addDisposableTo(coverView.reuseDisposeBag)
             }
             /*
             coverView.cartButton
-                .rx_tap
-                .subscribeNext{[unowned self] in
+                .rx.tap
+                .subscribe(onNext: { [unowned self] in
                     self.flowDelegate?.showCart()
                 }
                 .addDisposableTo(coverView.reuseDisposeBag)
@@ -260,8 +260,8 @@ extension ProfileCollectionViewController {
             
             coverView
                 .searchButton
-                .rx_tap
-                .subscribeNext{[unowned self] in
+                .rx.tap
+                .subscribe(onNext: { [unowned self] in
                     guard let model = self.viewModel.model else { return }
                     switch model {
                     case .tagModel(let tag):
@@ -269,7 +269,7 @@ extension ProfileCollectionViewController {
                     case .profileModel(let profile):
                         self.flowDelegate?.showSearchInContext(.profileShouts(profile: profile))
                     }
-                }
+                })
                 .addDisposableTo(coverView.reuseDisposeBag)
             
             
@@ -292,7 +292,7 @@ extension ProfileCollectionViewController {
             let infoView = supplementeryView as! ProfileCollectionInfoSupplementaryView
             
             switch viewModel.avatar {
-            case .Local(let image):
+            case .local(let image):
                 infoView.avatarImageView.contentMode = .center
                 infoView.avatarImageView.image = image
             case .remote(let url):
@@ -317,8 +317,8 @@ extension ProfileCollectionViewController {
             infoView.verifyAccountButton.setTitle(viewModel.verifyButtonTitle, for: UIControlState())
             setButtons(viewModel.infoButtons, inSupplementaryView: infoView, disposeBag: infoView.reuseDisposeBag)
             infoView.verifyAccountButton
-                .rx_tap.asDriver()
-                .driveNext{ [weak self] in
+                .rx.tap.asDriver()
+                .drive(onNext: { [weak self] in
                     guard let loginState = Account.sharedInstance.loginState else {
                         return
                     }
@@ -341,7 +341,7 @@ extension ProfileCollectionViewController {
                     self?.flowDelegate?.showVerifyEmailView(user, successBlock: { (message) in
                         self?.showSuccessMessage(message)
                     })
-                }
+                })
                 .addDisposableTo(infoView.reuseDisposeBag)
             
             // adjust constraints for data
@@ -371,10 +371,10 @@ extension ProfileCollectionViewController {
             createPageButtonFooter.type = viewModel.listSection.footerButtonStyle
             createPageButtonFooter.button.setTitle(viewModel.listSection.footerButtonTitle, for: UIControlState())
             createPageButtonFooter.button
-                .rx_tap
-                .subscribeNext {[unowned self] in
+                .rx.tap
+                .subscribe(onNext: {[unowned self] in
                     self.flowDelegate?.showCreateShout()
-                }
+                })
                 .addDisposableTo(createPageButtonFooter.reuseDisposeBag!)
         case .gridSectionHeader:
             let gridSectionHeader = supplementeryView as! ProfileCollectionSectionHeaderSupplementaryView
@@ -385,8 +385,8 @@ extension ProfileCollectionViewController {
             seeAllShoutsFooter.type = viewModel.gridSection.footerButtonStyle
             seeAllShoutsFooter.button.setTitle(viewModel.gridSection.footerButtonTitle, for: UIControlState())
             seeAllShoutsFooter.button
-                .rx_tap
-                .subscribeNext{[unowned self] in
+                .rx.tap
+                .subscribe(onNext: {[unowned self] (state) in
                     guard let model = self.viewModel.model else { return }
                     switch model {
                     case .profileModel(let profile):
@@ -395,7 +395,7 @@ extension ProfileCollectionViewController {
                         self.flowDelegate?.showShoutsForTag(tag)
                         
                     }
-                }
+                })
                 .addDisposableTo(seeAllShoutsFooter.reuseDisposeBag!)
         }
         
@@ -438,7 +438,7 @@ extension ProfileCollectionViewController {
             
             guard let listenObservable = viewModel.listen() else { return }
             
-            button.rx_tap
+            button.rx.tap
                 .filter{[unowned self] () -> Bool in
                     let isGuest = Account.sharedInstance.user?.isGuest ?? true
                     if isGuest {
@@ -454,45 +454,45 @@ extension ProfileCollectionViewController {
                     }
                     return listenObservable
                 }
-                .subscribeError{[weak button] (_) in
+                .subscribe(onError: {[weak button] (_) in
                     if let button = button as? ProfileInfoHeaderButton {
                         button.setImage(buttonModel.image, countText: nil)
                         button.setTitleText(buttonModel.title)
                     }
-                }
+                })
                 .addDisposableTo(disposeBag)
         case .listening:
-            button.rx_tap
+            button.rx.tap
                 .asDriver()
-                .driveNext{[weak self] in
+                .drive(onNext: { [weak self] in
                     guard let model = self?.viewModel.model else { return }
                     guard case .profileModel(let profile) = model else { return }
                     guard profile.username == Account.sharedInstance.user?.username else { return }
                     self?.flowDelegate?.showListeningForUsername(profile.username)
-                }
+                })
                 .addDisposableTo(disposeBag)
         case .listeners:
-            button.rx_tap
+            button.rx.tap
                 .asDriver()
-                .driveNext{[weak self] in
+                .drive(onNext: { [weak self] in
                     guard let model = self?.viewModel.model else { return }
                     guard case .profileModel(let profile) = model else { return }
                     guard profile.username == Account.sharedInstance.user?.username else { return }
                     self?.flowDelegate?.showListenersForUsername(profile.username)
-                }
+                })
                 .addDisposableTo(disposeBag)
         case .interests:
-            button.rx_tap
+            button.rx.tap
                 .asDriver()
-                .driveNext{[weak self] in
+                .drive(onNext: { [weak self] in
                     guard let model = self?.viewModel.model else { return }
                     guard case .profileModel(let profile) = model else { return }
                     guard profile.username == Account.sharedInstance.user?.username else { return }
                     self?.flowDelegate?.showInterestsForUsername(profile.username)
-                }
+                })
                 .addDisposableTo(disposeBag)
         case .more:
-            button.rx_tap.asDriver().driveNext({ [weak self] in
+            button.rx.tap.asDriver().drive(onNext: { [weak self] in
                 self?.moreAction()
             }).addDisposableTo(disposeBag)
         case .editProfile:
@@ -507,23 +507,23 @@ extension ProfileCollectionViewController {
                 
                 btn.setBadgeNumber(shouldShowFillProfileBadge ? 1 : 0)
             }
-            button.rx_tap.asDriver().driveNext{[weak self] in
+            button.rx.tap.asDriver().drive(onNext: { [weak self] in
                 self?.flowDelegate?.showEditProfile()
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
         case .chat:
-            button.rx_tap.asDriver().driveNext({ [weak self] in
+            button.rx.tap.asDriver().drive(onNext: { [weak self] in
                 self?.startChat()
             }).addDisposableTo(disposeBag)
         case .notification:
-            Account.sharedInstance.statsSubject.subscribeNext{ (stats) in
+            Account.sharedInstance.statsSubject.subscribe(onNext: { (stats) in
                 if let btn = button as? BadgeButton {
                     btn.setBadgeNumber(stats?.unreadNotificationsCount ?? 0)
                 }
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
                 
-            button.rx_tap.asDriver().driveNext{[weak self] in
+            button.rx.tap.asDriver().drive(onNext: { [weak self] in
                 self?.flowDelegate?.showNotifications()
-                }.addDisposableTo(disposeBag)
+                }).addDisposableTo(disposeBag)
         default:
             break
         }
@@ -541,7 +541,7 @@ extension ProfileCollectionViewController {
                 button.setImage(buttonModel.image, countText: nil)
             }
         } else {
-            button.setImage(buttonModel.image, for: .Normal)
+            button.setImage(buttonModel.image, for: .normal)
         }
     }
     
@@ -554,14 +554,14 @@ extension ProfileCollectionViewController {
         let alert = reportable.reportAlert { (report) in
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+            APIMiscService.makeReport(report).subscribe({ [unowned self] (event) in
+                MBProgressHUD.hide(for: self.view, animated: true)
                 
                 switch event {
                 case .next:
-                    self?.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: "Reported Message"))
-                case .Error(let error):
-                    self?.showError(error)
+                    self.showSuccessMessage(NSLocalizedString("Profile Reported Successfully", comment: "Reported Message"))
+                case .error(let error):
+                    self.showError(error)
                 default:
                     break
                 }

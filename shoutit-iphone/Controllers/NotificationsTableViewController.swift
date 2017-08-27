@@ -64,13 +64,13 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     func registerForNotificationUpdates() {
         pusherBag = DisposeBag()
         
-        Account.sharedInstance.pusherManager.mainChannelSubject.subscribeNext { [weak self] (event) in
+        Account.sharedInstance.pusherManager.mainChannelSubject.subscribe(onNext: { [weak self] (event) in
             if event.eventType() == .NewNotification {
                 if let notification : Notification = event.object() {
                     self?.insertMessage(notification)
                 }
             }
-        }.addDisposableTo(pusherBag!)
+        }).addDisposableTo(pusherBag!)
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -80,11 +80,11 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
     @IBAction func reloadNotifications() {
         loading = true
         
-        APINotificationsService.requestNotificationsBefore(nil).subscribeNext { [weak self] (messages) -> Void in
+        APINotificationsService.requestNotificationsBefore(nil).subscribe(onNext: { [weak self] (messages) -> Void in
             self?.loading = false
             self?.refreshControl?.endRefreshing()
             self?.appendMessages(messages)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     func loadNextPage() {

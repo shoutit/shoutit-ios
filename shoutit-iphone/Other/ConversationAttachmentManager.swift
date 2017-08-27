@@ -39,10 +39,10 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
         
         mediaPicker.presentingSubject
             .asDriver(onErrorJustReturn: nil)
-            .driveNext { [weak self] (controller) in
+            .drive(onNext: { [weak self] (controller) in
                 guard let controller = controller else { return }
                 self?.presentingSubject.onNext(controller)
-            }
+            })
             .addDisposableTo(self.disposeBag)
         
         return mediaPicker
@@ -64,11 +64,11 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     func attachmentSelected(_ attachment: MediaAttachment, mediaPicker: MediaPickerController) {
         let task = uploader.uploadAttachment(attachment)
         
-        let subscription = task.status.asDriver().driveNext { [weak self] (status) in
+        let subscription = task.status.asDriver().drive(onNext: { [weak self] (status) in
             if status == .uploaded {
                 self?.taskCompleted(task)
             }
-        }
+        })
         
         tasks[task] = subscription
     }
@@ -121,10 +121,10 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
 
         let controller = Wireframe.selectShoutAttachmentController()
         
-        controller.shoutPublishSubject.subscribeNext { [weak self] (shout) in
+        controller.shoutPublishSubject.subscribe(onNext: { [weak self] (shout) in
             let attachment = MessageAttachment(shout: shout, location: nil, profile: nil, videos: nil, images: nil)
             self?.showConfirmationControllerForAttachment(attachment)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         self.pushingSubject.onNext(controller)
     }

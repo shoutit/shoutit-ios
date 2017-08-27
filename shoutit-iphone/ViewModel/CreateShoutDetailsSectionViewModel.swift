@@ -106,7 +106,7 @@ private extension CreateShoutDetailsSectionViewModel {
                 case .next(let currencies):
                     self?.currencies.value = currencies
                     self?.fillCurrencyFromShout()
-                case .Error(let error):
+                case .error(let error):
                     print(error)
                 default:
                     break
@@ -122,7 +122,7 @@ private extension CreateShoutDetailsSectionViewModel {
                 case .next(let categories):
                     self?.categories.value = categories
                     self?.fillCategoryFromShout()
-                case .Error(let error):
+                case .error(let error):
                     print(error)
                 default:
                     break

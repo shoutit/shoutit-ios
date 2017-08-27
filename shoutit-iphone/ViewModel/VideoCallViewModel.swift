@@ -26,7 +26,7 @@ class VideoCallViewModel {
     let videoDisabled: Variable<Bool>
     fileprivate(set) var localMedia: TWCLocalMedia
     let state: Variable<State>
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     fileprivate let disposeBag = DisposeBag()
     
     fileprivate var callDurationTimer: Timer?
@@ -75,7 +75,7 @@ class VideoCallViewModel {
             .twilioManager
             .makeCallTo(callingToProfile, media: localMedia).subscribe({[weak self] (event) in
                 switch event {
-                case .Error(let error):
+                case .error(let error):
                     self?.state.value = .CallFailed
                     self?.errorSubject.onNext(error)
                 case .Next(let conversation):
@@ -122,9 +122,9 @@ private extension VideoCallViewModel {
         
         APIProfileService
             .retrieveProfileWithTwilioUsername(identity)
-            .subscribeNext { [weak self] (profile) in
+            .subscribe(onNext: { [weak self] (profile) in
                 self?.callerProfile.value = profile
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

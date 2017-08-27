@@ -28,10 +28,10 @@ final class ConversationSelectShoutController: UITableViewController {
         APIShoutsService.listShoutsWithParams(params).flatMap({ (result) -> Observable<[Shout]> in
             return Observable.just(result.results)
         })
-        .asDriver(onErrorJustReturn: []).driveNext { [weak self] (shouts) in
+        .asDriver(onErrorJustReturn: []).drive(onNext: { [weak self] (shouts) in
             self?.shouts = shouts
             self?.tableView.reloadData()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         tableView.tableFooterView = UIView()
     }

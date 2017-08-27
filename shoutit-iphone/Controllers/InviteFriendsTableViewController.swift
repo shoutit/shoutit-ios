@@ -149,7 +149,7 @@ class InviteFriendsTableViewController: UITableViewController {
                     self.showFacebookContacts()
                 case .Error(LocalError.cancelled):
                     break
-                case .Error(let error):
+                case .error(let error):
                     self.showError(error)
                 default:
                     break
@@ -210,7 +210,7 @@ class InviteFriendsTableViewController: UITableViewController {
             switch event {
             case .next(_):
                 self?.showUserContacts()
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             default: break
             }
@@ -244,7 +244,7 @@ class InviteFriendsTableViewController: UITableViewController {
             switch event {
             case .next(let code):
                     self?.inviteFriendsByFacebookUsingCode(code)
-            case .Error(let error):
+            case .error(let error):
                     self?.showError(error)
                 default: break
             }

@@ -14,13 +14,15 @@ import Validator
 
 extension BorderedMaterialTextField {
     
-    func addValidator(_ validator: ((String) -> ValidationResult), withDisposeBag disposeBag: DisposeBag) {
+    func addValidator(_ validator: @escaping ((String) -> ValidationResult), withDisposeBag disposeBag: DisposeBag) {
         
-        self.rx_text
+        self.rx.text
             .throttle(0.3, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribeNext{[unowned self] (email) in
-                guard email.characters.count > 0 else {
+            .distinctUntilChanged( { (lhs, rhs) throws -> Bool in
+                return lhs == rhs
+            })
+            .subscribe(onNext: {[unowned self] (email) in
+                guard let email = email, email.characters.count > 0 else {
                     self.detailLabelHidden = true
                     return
                 }
@@ -31,7 +33,7 @@ extension BorderedMaterialTextField {
                     self.detailLabelHidden = false
                     self.detailLabel?.text = error.first?.message
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

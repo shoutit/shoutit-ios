@@ -31,10 +31,10 @@ class ConversationInfoViewController: UITableViewController {
         
         controller.presentingSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] controller in
+            .subscribe(onNext: {[weak self] controller in
                 guard let controller = controller else { return }
-                self?.presentViewController(controller, animated: true, completion: nil)
-            }
+                self?.present(controller, animated: true, completion: nil)
+            })
             .addDisposableTo(self.disposeBag)
         
         return controller
@@ -60,19 +60,19 @@ class ConversationInfoViewController: UITableViewController {
     fileprivate func setupRX() {
         
         headerView.chatImageButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.mediaPickerController.showMediaPickerController()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.chatSubjectTextField
-            .rx_text
+            .rx.text
             .asDriver()
-            .driveNext {[weak self] (text) in
-                self?.viewModel.chatSubject = text
-            }
+            .drive(onNext: { [weak self] (text) in
+                self?.viewModel.chatSubject = text ?? ""
+            })
             .addDisposableTo(disposeBag)
         
         
@@ -82,7 +82,7 @@ class ConversationInfoViewController: UITableViewController {
     func registerForConversationUpdates() {
         socketsBag = DisposeBag()
         
-        Account.sharedInstance.pusherManager.conversationObservable(self.viewModel.conversation).subscribeNext { (event) -> Void in
+        Account.sharedInstance.pusherManager.conversationObservable(self.viewModel.conversation).subscribe(onNext: { (event) -> Void in
             if event.eventType() == .ConversationUpdate {
                 if let conversation: Conversation = event.object() {
                     self.viewModel.conversation = conversation
@@ -93,7 +93,7 @@ class ConversationInfoViewController: UITableViewController {
                     assertionFailure("Expected Conversation Object")
                 }
             }
-        }.addDisposableTo(socketsBag!)
+        }).addDisposableTo(socketsBag!)
     }
 
     fileprivate func fillViews() {
@@ -135,25 +135,29 @@ class ConversationInfoViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
         navigationItem.rightBarButtonItem?
-            .rx_tap
+            .rx.tap
             .flatMapFirst{[unowned self] in
                 return self.viewModel.saveChat()
             }
             .observeOn(MainScheduler.instance)
-            .subscribeNext{[weak self] (status) in
+            .subscribe(onNext: { [weak self] (status) in
                 switch status {
                 case .error(let error):
                     self?.showError(error)
                 case .progress(let show):
                     if show {
-                        MBProgressHUD.showAdded(to: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
                     } else {
-                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
                     }
                 case .ready:
                     self?.pop()
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -234,7 +238,7 @@ class ConversationInfoViewController: UITableViewController {
                 switch event {
                     case .next(let success):
                         self.showSuccessMessage(success.message)
-                    case .Error(let error):
+                    case .error(let error):
                         self.showError(error)
                     default:
                         break
@@ -344,7 +348,7 @@ class ConversationInfoViewController: UITableViewController {
             case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
-            case .Error(let error):
+            case .error(let error):
                 self.showError(error)
             default:
                 break
@@ -360,7 +364,7 @@ class ConversationInfoViewController: UITableViewController {
             case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
-            case .Error(let error):
+            case .error(let error):
                 self.showError(error)
             default:
                 break
@@ -375,7 +379,7 @@ class ConversationInfoViewController: UITableViewController {
             case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
-            case .Error(let error):
+            case .error(let error):
                 self.showError(error)
             default:
                 break
@@ -389,7 +393,7 @@ class ConversationInfoViewController: UITableViewController {
             case .next(let success):
                 self.showSuccessMessage(success.message)
                 self.navigationController?.popToViewController(self, animated: true)
-            case .Error(let error):
+            case .error(let error):
                 self.showError(error)
             default:
                 break
@@ -450,7 +454,7 @@ class ConversationInfoViewController: UITableViewController {
                 switch event {
                 case .next(_):
                     self?.showSuccessMessage(NSLocalizedString("Conversation reported succesfully", comment: "Conversation Reported Message"))
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default:
                     break
@@ -480,7 +484,7 @@ class ConversationInfoViewController: UITableViewController {
             case .next(_):
                 self?.showSuccessMessage(NSLocalizedString("Conversation Deleted succesfully", comment: "Delete Conversation Message"))
                 self?.navigationController?.popToRootViewController(animated: true)
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             default:
                 break
@@ -498,7 +502,7 @@ extension ConversationInfoViewController: MediaPickerControllerDelegate {
         
         task.status
             .asDriver()
-            .driveNext{[weak self] (status) in
+            .drive(onNext: { [weak self] (status) in
                 switch status {
                 case .error:
                     self?.headerView.setupImageViewWithStatus(.noImage)
@@ -507,14 +511,14 @@ extension ConversationInfoViewController: MediaPickerControllerDelegate {
                 case .uploading:
                     self?.headerView.setupImageViewWithStatus(.uploading)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         task.progress
             .asDriver()
-            .driveNext{[weak headerView] (progress) in
+            .drive(onNext: {[weak headerView] (progress) in
                 headerView?.chatImageProgressView.setProgress(progress, animated: true)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

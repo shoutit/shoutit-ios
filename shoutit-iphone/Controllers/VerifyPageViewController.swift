@@ -60,10 +60,10 @@ class VerifyPageViewController: UITableViewController {
         pickerSettings.allowsVideos = false
         let controller = MediaPickerController(delegate: self, settings: pickerSettings)
         
-        controller.presentingSubject.observeOn(MainScheduler.instance).subscribeNext {[weak self] controller in
+        controller.presentingSubject.observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] controller in
             guard let controller = controller else { return }
-            self?.presentViewController(controller, animated: true, completion: nil)
-            }.addDisposableTo(self.disposeBag)
+            self?.present(controller, animated: true, completion: nil)
+            }).addDisposableTo(self.disposeBag)
         
         return controller
         }()
@@ -78,24 +78,24 @@ class VerifyPageViewController: UITableViewController {
     
     func setupRX() {
         saveButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[weak self] in
+            .drive(onNext: { [weak self] in
                 self?.viewModel.verifyPage()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         cancelBarButtonItem
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext({[weak self] in
+            .drive(onNext:{[weak self] in
                     self?.navigationController?.dismiss(animated: true, completion:nil)
                 })
             .addDisposableTo(disposeBag)
         
         viewModel.updateVerificationSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext({[weak self] (verification) in
+            .subscribe(onNext:{[weak self] (verification) in
                     self?.populateWithVerification(verification)
                 })
             .addDisposableTo(disposeBag)
@@ -103,50 +103,54 @@ class VerifyPageViewController: UITableViewController {
 
         
         viewModel.progressSubject
-            .distinctUntilChanged()
+            .distinctUntilChanged( { $0 == $1 })
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (show) in
+            .subscribe(onNext: {[weak self] (show) in
                 if show {
-                    MBProgressHUD.showAdded(to: self?.view, animated: true)
+                    if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
                 } else {
-                    MBProgressHUD.hide(for: self?.view, animated: true)
+                    if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
                 }
-            }
+                }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.successSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (message) in
+            .subscribe(onNext: {[weak self] (message) in
                 self?.navigationController?.dismiss(animated: true, completion:nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.errorSubject
         .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (error) in
+            .subscribe(onNext: {[weak self] (error) in
                 self?.showError(error)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         
         for (index, tapGestureRecognizer) in tapGestureRecognizers.enumerated() {
            tapGestureRecognizer
-            .rx_event
+            .rx.event
             .asDriver()
-            .driveNext({[unowned self] (UIGestureRecognizer) in
+            .drive(onNext:{[unowned self] (UIGestureRecognizer) in
                 self.selectedImageViewIndex = index
                 self.mediaPickerController.showMediaPickerController()
             })
             .addDisposableTo(disposeBag)
         }
         
-        businessEmail.rx_text.bindTo(viewModel.email).addDisposableTo(disposeBag)
-        contactPersonTextField.rx_text.bindTo(viewModel.contactPerson).addDisposableTo(disposeBag)
-        contactNumberTextfield.rx_text.bindTo(viewModel.contactNumber).addDisposableTo(disposeBag)
-        businessNameTextField.rx_text.bindTo(viewModel.businessName).addDisposableTo(disposeBag)
-        viewModel.verificationStatus.asDriver().driveNext { (status) in
+        businessEmail.rx.text.bind(to: viewModel.email).addDisposableTo(disposeBag)
+        contactPersonTextField.rx.text.bind(to: viewModel.contactPerson).addDisposableTo(disposeBag)
+        contactNumberTextfield.rx.text.bind(to: viewModel.contactNumber).addDisposableTo(disposeBag)
+        businessNameTextField.rx.text.bind(to: viewModel.businessName).addDisposableTo(disposeBag)
+        viewModel.verificationStatus.asDriver().drive(onNext: { (status) in
             self.verificationStatusLabel.text = status
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     fileprivate func populateWithVerification(_ verification: PageVerification) {
@@ -180,7 +184,7 @@ extension VerifyPageViewController: MediaPickerControllerDelegate {
         
         task.status
             .asDriver()
-            .driveNext{[weak progressView] (status) in
+            .drive(onNext: {[weak progressView] (status) in
                 switch (status) {
                 case .uploading:
                     progressView?.isHidden = false
@@ -191,14 +195,14 @@ extension VerifyPageViewController: MediaPickerControllerDelegate {
                 case .uploaded:
                     progressView?.isHidden = true
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         task.progress
             .asDriver()
-            .driveNext{[weak progressView] (progress) in
+            .drive(onNext: {[weak progressView] (progress) in
                 progressView?.setProgress(progress, animated: true)
-            }
+            })
             .addDisposableTo(disposeBag)
 
         

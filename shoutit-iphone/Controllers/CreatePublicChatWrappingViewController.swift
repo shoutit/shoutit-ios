@@ -44,24 +44,28 @@ final class CreatePublicChatWrappingViewController: UIViewController {
     fileprivate func setupRX() {
         
         createButton
-            .rx_tap
+            .rx.tap
             .flatMapFirst {[unowned self] () -> Observable<CreatePublicChatViewModel.OperationStatus> in
                 return self.viewModel.createChat()
             }
-            .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
+            .observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (status) in
                 switch status {
                 case .error(let error):
                     self?.showError(error)
                 case .progress(let show):
                     if show {
-                        MBProgressHUD.showAdded(to: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
                     } else {
-                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
                     }
                 case .ready:
                     self?.dismiss()
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

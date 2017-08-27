@@ -60,7 +60,7 @@ private extension MessageAttachmentPhotoBrowserViewModel {
                 switch event {
                 case .next(let results):
                     self?.appendItems(results, forPage: page)
-                case .Error(let error):
+                case .error(let error):
                     assert(false, error.sh_message)
                     self?.state.value = .error(error)
                 default:
@@ -109,7 +109,7 @@ private extension MessageAttachmentPhotoBrowserViewModel {
     func observeLoadingState() {
         
         state.asObservable()
-            .subscribeNext {[weak self] (status) in
+            .subscribe(onNext: {[weak self] (status) in
                 switch status {
                 case .loaded(let attachments, _, _):
                     self?.refreshViewModelsWithAttachments(attachments)
@@ -118,7 +118,7 @@ private extension MessageAttachmentPhotoBrowserViewModel {
                 default:
                     break
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

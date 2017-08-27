@@ -10,19 +10,19 @@ import UIKit
 
 final class CustomUIButton: UIButton {
 
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable var sh_cornerRadius: CGFloat = 0 {
         didSet {
             applyCornerRadius()
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable var sh_borderWidth: CGFloat = 0 {
         didSet {
             applyBorder()
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.clear
+    @IBInspectable var sh_borderColor: UIColor = UIColor.clear
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,12 +31,12 @@ final class CustomUIButton: UIButton {
     }
     
     fileprivate func applyCornerRadius() {
-        layer.cornerRadius = cornerRadius
-        layer.masksToBounds = cornerRadius > 0
+        layer.cornerRadius = sh_cornerRadius
+        layer.masksToBounds = sh_cornerRadius > 0
     }
     
     fileprivate func applyBorder() {
-        layer.borderWidth = borderWidth / UIScreen.main.scale
-        layer.borderColor = borderColor.cgColor
+        layer.borderWidth = sh_borderWidth / UIScreen.main.scale
+        layer.borderColor = sh_borderColor.cgColor
     }
 }

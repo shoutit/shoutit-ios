@@ -49,45 +49,49 @@ final class IntroViewController: UIViewController {
     fileprivate func setupRX() {
         
         // view model signals
-        viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
+        viewModel.errorSubject.subscribe(onNext: {[weak self] (error) -> Void in
                 self?.showError(error)
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
         
-        viewModel.loginSuccessSubject.subscribeNext {[weak self] in
+        viewModel.loginSuccessSubject.subscribe(onNext: {[weak self] in
                 self?.flowDelegate?.didFinishLoginProcessWithSuccess(false)
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        viewModel.progressHUDSubject.subscribeNext{[weak self](show) in
+        viewModel.progressHUDSubject.subscribe(onNext: { [weak self] (show) -> Void in
             if show {
-                MBProgressHUD.showAdded(to: self?.view, animated: true)
+                if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
             } else {
-                MBProgressHUD.hide(for: self?.view, animated: true)
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
             }
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
         
         // login
         loginButton
-            .rx_tap
-            .subscribeNext {[unowned self] in
+            .rx.tap
+            .subscribe(onNext: {[unowned self] in
                 self.flowDelegate?.showLoginChoice()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // skip
         skipButton
-            .rx_tap
-            .subscribeNext {[unowned self] in
+            .rx.tap
+            .subscribe(onNext: {[unowned self] in
                 self.viewModel.fetchGuestUser()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // help
         helpButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: {[unowned self] in
                 self.flowDelegate?.showHelpInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

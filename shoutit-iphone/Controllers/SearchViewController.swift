@@ -90,46 +90,46 @@ final class SearchViewController: UIViewController {
         
         // user actions observers
         segmentedControl
-            .rx_value
+            .rx.value
             .skip(1)
             .observeOn(MainScheduler.instance)
-            .subscribeNext{[weak self] (segment) in
+            .subscribe(onNext: { [weak self] (segment) in
                 if segment == 0 { self?.viewModel.segmentedControlState.value = .shown(option: .shouts) }
                 else if segment == 1 { self?.viewModel.segmentedControlState.value = .shown(option: .users) }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // view model observers
         viewModel
             .sectionViewModel
             .asDriver()
-            .driveNext {[weak self] (sectionViewModel) in
+            .drive(onNext: { [weak self] (sectionViewModel) in
                 switch sectionViewModel {
                 case .categories, .suggestions:
                     self?.tableView.tableHeaderView = nil
                 case .loadingPlaceholder:
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showActivity()
-                case .MessagePlaceholder(let message, let image):
+                case .messagePlaceholder(let message, let image):
                     self?.tableView.tableHeaderView = self?.tableViewPlaceholder
                     self?.tableViewPlaceholder.showMessage(message, image: image)
                 }
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel
             .segmentedControlState
             .asDriver()
-            .distinctUntilChanged()
+            .distinctUntilChanged( { $0 == $1 })
             .throttle(animationDuration)
-            .driveNext {[weak self] (state) in
+            .drive(onNext: { [weak self] (state) in
                 if case .hidden = state {
                     self?.showSegmentedControl(false)
                 } else {
                     self?.showSegmentedControl(true)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -179,9 +179,9 @@ final class SearchViewController: UIViewController {
             let headerView = Bundle.main.loadNibNamed("SearchRecentsHeaderView", owner: nil, options: nil)?.first as! SearchRecentsHeaderView
             headerView.titleLabel.text = title
             headerView.clearButton.setTitle(buttonTitle, for: UIControlState())
-            headerView.clearButton.rx_tap.asDriver().driveNext{[unowned self] () in
-                self.viewModel.clearRecentSearches()
-            }.addDisposableTo(disposeBag)
+            headerView.clearButton.rx.tap.asDriver().drive(onNext: { [weak self] () in
+                self?.viewModel.clearRecentSearches()
+            }).addDisposableTo(disposeBag)
             return headerView
         }
     }
@@ -205,7 +205,7 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch viewModel.sectionViewModel.value {
-        case .loadingPlaceholder, .MessagePlaceholder:
+        case .loadingPlaceholder, .messagePlaceholder:
             return 0
         case .categories(let cells, _):
             return cells.count
@@ -216,7 +216,7 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch viewModel.sectionViewModel.value {
-        case .loadingPlaceholder, .MessagePlaceholder:
+        case .loadingPlaceholder, .messagePlaceholder:
             fatalError()
         case .categories(let cells, _):
             let cellModel = cells[indexPath.row]
@@ -224,7 +224,7 @@ extension SearchViewController: UITableViewDataSource {
             cell.titleLabel.text = cellModel.category.name
             
             if let path = cellModel.category.icon, let url = URL(string: path) {
-                cell.thumbnailImageView.kf_setImageWithURL(url, placeholderImage: nil)
+                cell.thumbnailImageView.kf.setImage(with:url, placeholder: nil)
             }
             let numberOfRows = self.tableView(tableView, numberOfRowsInSection: indexPath.section)
             cell.setConstraintForPosition(isLast: indexPath.row == numberOfRows - 1)
@@ -238,11 +238,11 @@ extension SearchViewController: UITableViewDataSource {
                 cell.showLeadingIcon(nil)
                 cell.accessoryButton.setImage(UIImage.searchFillArrow(), for: UIControlState())
                 cell.accessoryButton
-                    .rx_tap
+                    .rx.tap
                     .asDriver()
-                    .driveNext{[weak self] () in
+                    .drive(onNext: { [weak self] in
                         self?.searchBar.text = cell.titleLabel.text
-                    }
+                    })
                     .addDisposableTo(cell.reuseDisposeBag)
                 return cell
             case .recentSearch(let phrase):
@@ -250,11 +250,11 @@ extension SearchViewController: UITableViewDataSource {
                 cell.showLeadingIcon(UIImage.searchRecentsIcon())
                 cell.accessoryButton.setImage(UIImage.searchRecentRemoveIcon(), for: UIControlState())
                 cell.accessoryButton
-                    .rx_tap
+                    .rx.tap
                     .asDriver()
-                    .driveNext{[weak self] () in
+                    .drive(onNext: { [weak self] in
                         self?.viewModel.removeRecentSearchPhrase(phrase)
-                    }
+                    })
                     .addDisposableTo(cell.reuseDisposeBag)
                 return cell
             }
@@ -266,7 +266,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch viewModel.sectionViewModel.value {
-        case .loadingPlaceholder, .MessagePlaceholder:
+        case .loadingPlaceholder, .messagePlaceholder:
             return nil
         case .categories(_, let header):
             return sectionPlaceholderWithType(header)
@@ -277,7 +277,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch viewModel.sectionViewModel.value {
-        case .loadingPlaceholder, .MessagePlaceholder:
+        case .loadingPlaceholder, .messagePlaceholder:
             return 0
         case .categories(_, let header):
             guard let headerView = sectionPlaceholderWithType(header) else {

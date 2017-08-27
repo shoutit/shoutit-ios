@@ -27,9 +27,9 @@ class MessageAttachmentPhotoBrowserViewController: PhotoBrowser {
         viewModel
             .reloadSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] in
+            .subscribe(onNext: {[weak self] in
                 self?.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

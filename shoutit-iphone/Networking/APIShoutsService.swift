@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import Argo
 import RxSwift
 import RxCocoa
 import ShoutitKit

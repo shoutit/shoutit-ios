@@ -42,18 +42,18 @@ final class PromoteShoutTableViewController: UITableViewController {
     }
     
     func setupRx() {
-        self.viewModel.getPromotionLabels().subscribeNext { [weak self] (labels) in
+        self.viewModel.getPromotionLabels().subscribe(onNext: { [weak self] (labels) in
             self?.headerView?.presentPromotionLabels(labels)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        self.viewModel.getPromotionOptions().subscribeNext { [weak self] (labels) in
+        self.viewModel.getPromotionOptions().subscribe(onNext: { [weak self] (labels) in
             self?.options = labels
             self?.tableView.reloadData()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
+        Account.sharedInstance.statsSubject.subscribe(onNext: { [weak self] (stats) in
             self?.creditsBalanceLabel.text = "\(stats?.credit ?? 0)"
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -116,7 +116,7 @@ final class PromoteShoutTableViewController: UITableViewController {
                 case .next(let promotion):
                     self?.navigationController?.showSuccessMessage(NSLocalizedString("Shout Promoted successfully", comment: "Promoted Shout Success Message"))
                     self?.shoutPromoted(promotion)
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default:
                     break

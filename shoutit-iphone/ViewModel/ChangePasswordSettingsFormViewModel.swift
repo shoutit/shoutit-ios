@@ -15,7 +15,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
     fileprivate let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let successSubject: PublishSubject<Success> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     
     let title = NSLocalizedString("Change password", comment: "Change password screen title")
     var cellViewModels: [SettingsFormCellViewModel] = []
@@ -65,7 +65,7 @@ final class ChangePasswordSettingsFormViewModel: SettingsFormViewModel {
                 switch event {
                 case .next(let success):
                     self?.successSubject.onNext(success)
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

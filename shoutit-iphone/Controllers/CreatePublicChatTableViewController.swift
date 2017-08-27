@@ -26,10 +26,10 @@ class CreatePublicChatTableViewController: UITableViewController {
         
         controller.presentingSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] controller in
+            .subscribe(onNext: {[weak self] controller in
                 guard let controller = controller else { return }
-                self?.presentViewController(controller, animated: true, completion: nil)
-            }
+                self?.present(controller, animated: true, completion: nil)
+            })
             .addDisposableTo(self.disposeBag)
         
         return controller
@@ -50,19 +50,19 @@ class CreatePublicChatTableViewController: UITableViewController {
     fileprivate func setupRX() {
         
         headerView.chatImageButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.mediaPickerController.showMediaPickerController()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.chatSubjectTextField
-            .rx_text
+            .rx.text
             .asDriver()
-            .driveNext {[weak self] (text) in
-                self?.viewModel.chatSubject = text
-            }
+            .drive(onNext: { [weak self] (text) in
+                self?.viewModel.chatSubject = text ?? ""
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -97,13 +97,13 @@ extension CreatePublicChatTableViewController {
             cell.button.setTitle(location.address, for: UIControlState())
             cell.button.iconImageView.image = UIImage(named: location.country)
             cell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext({ [weak self] () -> Void in
+                .drive(onNext: { [weak self] () -> Void in
                     
                     let controller = Wireframe.changeShoutLocationController()
                     
-                    controller.finishedBlock = {[weak indexPath](success, place) -> Void in
+                    controller.finishedBlock = {(success, place) -> Void in
                         if let place = place, let indexPath = indexPath {
                             let newViewModel = CreatePublicChatCellViewModel.location(location: place)
                             self?.viewModel.sections[indexPath.section].cellViewModels[indexPath.row] = newViewModel
@@ -156,7 +156,7 @@ extension CreatePublicChatTableViewController: MediaPickerControllerDelegate {
         
         task.status
             .asDriver()
-            .driveNext{[weak self] (status) in
+            .drive(onNext: { [weak self] (status) in
                 switch status {
                 case .error:
                     self?.headerView.setupImageViewWithStatus(.noImage)
@@ -165,14 +165,14 @@ extension CreatePublicChatTableViewController: MediaPickerControllerDelegate {
                 case .uploading:
                     self?.headerView.setupImageViewWithStatus(.uploading)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         task.progress
             .asDriver()
-            .driveNext{[weak headerView] (progress) in
+            .drive(onNext: {[weak headerView] (progress) in
                 headerView?.chatImageProgressView.setProgress(progress, animated: true)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

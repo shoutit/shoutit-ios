@@ -33,15 +33,15 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // setup layer
-        view.layer.borderColor = UIColor.lightGrayColor().CGColor
+        view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 0.5
         view.layer.cornerRadius = 10
         
         // register cells
-        tableView.registerNib(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")
+        tableView.register(UINib(nibName: "PostSignupSuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostSignupSuggestionsTableViewCell")
         
         // configure table view
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         
         // configure rx
         setupRX()
@@ -49,13 +49,13 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.scrollEnabled = tableView.contentSize.height > tableView.frame.height
+        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.height
     }
     
     fileprivate func setupRX() {
         
         viewModel.state.asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 switch state {
                 case .idle:
                     self?.tableView.tableHeaderView = nil
@@ -73,27 +73,27 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
                 }
                 
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        tableView.rx_itemSelected
-            .subscribeNext{[unowned self] (indexPath) in
+        tableView.rx.itemSelected
+            .subscribe(onNext: {[unowned self] (indexPath) in
                 let cellViewModel = self.sectionViewModel.cells[indexPath.row]
                 cellViewModel.selected = !cellViewModel.selected
                 self.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         guard case LoadingState.contentLoaded = viewModel.state.value else {
             return 0
         }
@@ -109,25 +109,26 @@ final class PostSignupSuggestionsTableViewController: UITableViewController {
         return sectionViewModel.cells.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard case LoadingState.contentLoaded = viewModel.state.value else {
             fatalError()
         }
         
         let cellViewModel = sectionViewModel.cells[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostSignupSuggestionsTableViewCell", forIndexPath: indexPath) as! PostSignupSuggestionsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostSignupSuggestionsTableViewCell", for: indexPath as IndexPath) as! PostSignupSuggestionsTableViewCell
         cell.nameLabel.text = cellViewModel.item.suggestionTitle
         
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.item.thumbnailURL, placeholderImage: cellViewModel.item.userType == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
         
         
         let image = cellViewModel.selected ? UIImage.suggestionAccessoryViewSelected() : UIImage.suggestionAccessoryView()
-        cell.listenButton.setImage(image, forState: .Normal)
+        cell.listenButton.setImage(image, for: .normal)
         
         cell.reuseDisposeBag = DisposeBag()
-        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorProtocol?)> in
+        cell.listenButton.rx.tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: Error?)> in
             return cellViewModel.listen()
-        }).subscribeNext({[weak self] (successMessage, error) in
+        }).subscribe(onNext:{[weak self] (successMessage, error) in
             if let successMessage = successMessage {
                 self?.showSuccessMessage(successMessage)
             } else if let error = error {

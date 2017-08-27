@@ -51,7 +51,7 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
                     switch event {
                     case .next:
                         observer.onNext(.ready)
-                    case .Error(let error):
+                    case .error(let error):
                         observer.onNext(.error(error: error))
                         observer.onCompleted()
                     case .completed:

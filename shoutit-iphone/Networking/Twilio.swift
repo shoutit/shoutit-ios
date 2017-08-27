@@ -40,7 +40,7 @@ final class Twilio: NSObject {
     
     // RX
     fileprivate var disposeBag = DisposeBag()
-    fileprivate var userChangeBag = DisposeBag?()
+    fileprivate var userChangeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -115,7 +115,7 @@ final class Twilio: NSObject {
                             .subscribe{ (event) in
                                 switch event {
                                 case .Next: print("Call missed")
-                                case .Error(let error): print("Call missed \(error)")
+                                case .error(let error): print("Call missed \(error)")
                                 default: break
                                 }
                             }
@@ -196,10 +196,10 @@ private extension Twilio {
         //  fetch token with small delay to avoid disposing client
         account.loginSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext { [weak self] (loginchanged) in
+            .subscribe(onNext: { [weak self] (loginchanged) in
                 guard let `self` = self else { return }
                 self.perform(#selector(self.connectIfNeeded), with: nil, afterDelay: 2.0)
-            }
+            })
             .addDisposableTo(bag)
     }
 }

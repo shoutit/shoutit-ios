@@ -40,7 +40,7 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
             .flatMap{ (item) in
                 return APIDiscoverService.discoverItems(forDiscoverItem: item!)
             }
-            .subscribeNext { [weak self] detailedItem -> Void in
+            .subscribe(onNext: { [weak self] detailedItem -> Void in
                 
                 guard let `self` = self else { return }
                 self.items.on(.next((detailedItem.simpleForm(), detailedItem.children)))
@@ -51,12 +51,12 @@ final class DiscoverGeneralViewModel: DiscoverViewModel {
                     .flatMap({ (result) -> Observable<[Shout]> in
                         return Observable.just(result.results)
                     })
-                    .subscribeNext{[weak self] (shouts) -> Void in
+                    .subscribe(onNext: { [weak self] (shouts) -> Void in
                         self?.shouts.on(.next(shouts))
                         self?.adManager.handleNewShouts(shouts)
-                    }
+                    })
                     .addDisposableTo(self.disposeBag)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

@@ -53,30 +53,30 @@ final class FiltersViewController: UIViewController {
         
         // UI observing
         doneButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext{[weak self] in
+            .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 let state = self.viewModel.composeFiltersState()
                 self.completionBlock?(state)
                 self.dismiss(animated: true, completion: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         resetButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.viewModel.resetFilters()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // view model observing
         viewModel.reloadSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] () in
+            .subscribe(onNext: {[weak self] () in
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }
@@ -100,11 +100,11 @@ extension FiltersViewController: UITableViewDataSource {
             shoutTypeCell.button.fieldTitleLabel.text = NSLocalizedString("Type", comment: "Shout type button title label")
             shoutTypeCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             shoutTypeCell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext{[weak self] in
+                .drive(onNext: { [weak self] in
                     self?.presentShoutChoiceActionSheet()
-                }
+                })
                 .addDisposableTo(shoutTypeCell.reuseDisposeBag)
         case .sortTypeChoice(_, let loaded):
             let sortTypeCell = cell as! LabeledSelectButtonFilterTableViewCell
@@ -113,11 +113,11 @@ extension FiltersViewController: UITableViewDataSource {
             sortTypeCell.button.showActivity(!loaded())
             
             sortTypeCell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext{[weak self] () in
+                .drive(onNext: { [weak self] in
                     self?.presentSortTypeChoiceActionSheet()
-                }
+                })
                 .addDisposableTo(sortTypeCell.reuseDisposeBag)
             
         case .categoryChoice(let category, let enabled, let loaded):
@@ -125,38 +125,38 @@ extension FiltersViewController: UITableViewDataSource {
             categoryCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             categoryCell.button.showIcon(category?.icon != nil)
             if let path = category?.icon, let url = path.toURL() {
-                categoryCell.button.iconImageView.kf_setImageWithURL(url, placeholderImage: nil)
+                categoryCell.button.iconImageView.kf.setImage(with: url, placeholder: nil)
             }
             categoryCell.button.isEnabled = enabled
             categoryCell.button.alpha = enabled ? 1.0 : 0.5
             categoryCell.button.showActivity(!loaded())
             
             categoryCell.button
-                .rx_tap
+                .rx.tap
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[weak self] () in
+                .subscribe(onNext: { [weak self] in
                     self?.presentCategoryChoiceActionSheet()
-                }
+                })
                 .addDisposableTo(categoryCell.reuseDisposeBag)
         case .priceRestriction(let from, let to):
             let priceCell = cell as! LimitingTextFieldsFilterTableViewCell
             priceCell.minimumValueTextField.text = from != nil ? String(from!) : nil
             priceCell.maximumValueTextField.text = to != nil ? String(to!) : nil
             priceCell.minimumValueTextField
-                .rx_text
+                .rx.text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[weak self] (value) in
-                    self?.viewModel.changeMinimumPriceTo(Int(value))
-                }
+                .subscribe(onNext: { [weak self] (value) in
+                    self?.viewModel.changeMinimumPriceTo(Int(value ?? 0))
+                })
                 .addDisposableTo(priceCell.reuseDisposeBag)
             priceCell.maximumValueTextField
-                .rx_text
+                .rx.text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[weak self] (value) in
-                    self?.viewModel.changeMaximumPriceTo(Int(value))
-                }
+                .subscribe(onNext: { [weak self] (value) in
+                    self?.viewModel.changeMaximumPriceTo(Int(value ?? 0))
+                })
                 .addDisposableTo(priceCell.reuseDisposeBag)
         case .locationChoice(let address):
             let locationCell = cell as! SelectButtonFilterTableViewCell
@@ -168,35 +168,35 @@ extension FiltersViewController: UITableViewDataSource {
                 locationCell.button.showIcon(false)
             }
             locationCell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext{[weak self] () in
+                .drive(onNext: { [weak self] in
                     self?.presentLocationChoiceController()
-                }
+                })
                 .addDisposableTo(locationCell.reuseDisposeBag)
         case .distanceRestriction(let distanceOption):
             let distanceCell = cell as! SliderFilterTableViewCell
             distanceCell.slider.value = viewModel.sliderValueForDistanceRestrictionOption(distanceOption)
             distanceCell.slider
-                .rx_value
+                .rx.value
                 .asDriver()
-                .driveNext{[unowned self] (value) in
+                .drive(onNext: { [unowned self] (value) in
                     let option = self.viewModel.distanceRestrictionOptionForSliderValue(value)
                     let newViewModel = FiltersCellViewModel.distanceRestriction(distanceOption: option)
                     self.viewModel.cellViewModels[indexPath.row] = newViewModel
                     distanceCell.currentValueLabel.text = newViewModel.buttonTitle()
-                }
+                })
                 .addDisposableTo(distanceCell.reuseDisposeBag)
         case .filterValueChoice(let filter, let selectedValues):
             let filterCell = cell as! BigLabelButtonFilterTableViewCell
             filterCell.button.fieldTitleLabel.text = filter.name
             filterCell.button.setTitle(cellViewModel.buttonTitle(), for: UIControlState())
             filterCell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext{[unowned self] in
-                    self.presentFilterChoiceScreenWithFilter(filter, selectedValues: selectedValues)
-                }
+                .drive(onNext: { [weak self] in
+                    self?.presentFilterChoiceScreenWithFilter(filter, selectedValues: selectedValues)
+                })
                 .addDisposableTo(filterCell.reuseDisposeBag)
         }
         

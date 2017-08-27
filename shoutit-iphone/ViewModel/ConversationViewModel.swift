@@ -83,7 +83,7 @@ final class ConversationViewModel {
         socketsConnected = true
         socketsBag = DisposeBag()
         // handle presence/typing/join/left
-        Account.sharedInstance.pusherManager.conversationObservable(conversation).subscribeNext { (event) -> Void in
+        Account.sharedInstance.pusherManager.conversationObservable(conversation).subscribe(onNext: { (event) -> Void in
             if event.eventType() == .UserTyping {
                 if let user : TypingInfo = event.object() {
                     self.typingUsers.onNext(user)
@@ -95,16 +95,16 @@ final class ConversationViewModel {
                     
                     APIChatsService
                         .markMessageAsRead(msg)
-                        .subscribeNext{}
+                        .subscribe(onNext: {})
                         .addDisposableTo(self.disposeBag)
                 }
             }
             if event.eventType() == .ConversationUpdate {
                 if let conversation: Conversation = event.object() {
-                    self.conversation.value = .CreatedAndLoaded(conversation: conversation)
+                    self.conversation.value = .createdAndLoaded(conversation: conversation)
                 }
             }
-        }.addDisposableTo(socketsBag!)
+        }).addDisposableTo(socketsBag!)
     }
     
     func unsubscribeSockets() {
@@ -133,7 +133,7 @@ final class ConversationViewModel {
                     self?.conversation.value = .createdAndLoaded(conversation: conversation)
                     self?.fetchMessages()
                     self?.removeFromSending(message)
-                case .Error(let error):
+                case .error(let error):
                     debugPrint(error)
                     self?.removeFromSending(message)
                 default:
@@ -153,7 +153,7 @@ final class ConversationViewModel {
     
     func fetchMessages() {
         guard let conversation = conversation.value.conversationInterface else { return }
-        APIChatsService.getMessagesForConversationWithId(conversation.id).subscribeNext {[weak self] (response) -> Void in
+        APIChatsService.getMessagesForConversationWithId(conversation.id).subscribe(onNext: {[weak self] (response) -> Void in
             let messages : [Message] = response.results
             
             self?.nextPageParams = response.beforeParamsString()
@@ -161,7 +161,7 @@ final class ConversationViewModel {
             if messages.count > 0 {
                 self?.loadMoreState.value = .readyToLoad
             }
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         createSocketObservable()
         registerForTyping()
@@ -170,9 +170,9 @@ final class ConversationViewModel {
     func fetchFullConversation() {
         guard case .created(let conversation) = self.conversation.value else { return }
         APIChatsService.conversationWithId(conversation.id)
-            .subscribeNext {[weak self] (conversation) in
+            .subscribe(onNext: {[weak self] (conversation) in
                 self?.conversation.value = .createdAndLoaded(conversation: conversation)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -183,9 +183,9 @@ final class ConversationViewModel {
             .flatMapLatest({ (obs) -> Observable<Bool> in
                 return obs.take(1)
             })
-            .subscribeNext { _ in
+            .subscribe(onNext: { _ in
                 Account.sharedInstance.pusherManager.sendTypingEventToConversation(conversation)
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
     }
     
     func triggerLoadMore() {
@@ -351,15 +351,15 @@ final class ConversationViewModel {
         self.addToSending(msg)
         
         APIChatsService.replyWithMessage(msg, onConversationWithId: conversation.id)
-            .doOnNext{[weak self] (message) in
+            .do(onNext: { [weak self] (message) in
                 guard let `self` = self else { return }
                 APIChatsService
                     .conversationWithId(conversation.id)
-                    .subscribeNext{ (updatedConversation) in
+                    .subscribe(onNext: { (updatedConversation) in
                         self.conversation.value = .createdAndLoaded(conversation: updatedConversation)
-                    }
+                    })
                     .addDisposableTo(self.disposeBag)
-            }
+            })
             .subscribe(onNext: { [weak self] (message) -> Void in
                 self?.appendMessages([message])
                 self?.removeFromSending(msg)

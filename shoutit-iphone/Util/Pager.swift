@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import Argo
+import JSONCodable
 import ShoutitKit
 import FBAudienceNetwork
 import CocoaLumberjackSwift
@@ -18,7 +18,7 @@ enum PagerError: Error {
     case indexExceedsBounds
 }
 
-class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable> where ItemType.DecodedType == ItemType {
+class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: JSONCodable> {
     
     fileprivate(set) var requestDisposeBag: DisposeBag = DisposeBag()
     fileprivate(set) var state: Variable<PagedViewModelState<CellViewModelType, PageIndexType, ItemType>> = Variable(.idle)
@@ -127,7 +127,7 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: Decodable> wh
                 switch event {
                 case .next(let results):
                     self?.appendItems(results, forPage: page)
-                case .Error(let error):
+                case .error(let error):
                     assert(false, error.sh_message)
                     self?.state.value = .error(error)
                 default:
@@ -200,7 +200,7 @@ extension Pager {
     }
     
     func subscribeForChangesToInjectAds() {
-        self.state.asDriver().driveNext { [weak self] state in
+        self.state.asDriver().drive(onNext: { [weak self] state in
             
             var existingModels : [CellViewModelType] = []
             
@@ -220,7 +220,7 @@ extension Pager {
                 self?.adProvider.loadNextAd()
             }
             
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
     }
     
     func shouldLoadAdsIfNeededForModels(_ models: [CellViewModelType]) -> Bool {

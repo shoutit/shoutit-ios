@@ -38,30 +38,30 @@ final class SettingsFormViewController: UITableViewController {
         viewModel
             .progressSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (show) in
+            .subscribe(onNext: {[weak self] (show) in
                 guard let `self` = self else { return }
                 if show {
                     MBProgressHUD.showAdded(to: self.view, animated: true)
                 } else {
                     MBProgressHUD.hide(for: self.view, animated: true)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel
             .errorSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self](error) in
+            .subscribe(onNext: {[weak self](error) in
                 self?.showError(error)
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
         
         viewModel
             .successSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext { [weak self] (success) in
+            .subscribe(onNext: { [weak self] (success) in
                 self?.showSuccessMessage(success.message)
                 self?.pop()
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
     }
     
     override func ignoresToggleMenu() -> Bool {
@@ -87,11 +87,11 @@ extension SettingsFormViewController {
             let buttonCell = cell as! SettingsFormButtonTableViewCell
             buttonCell.button.setTitle(title, for: UIControlState())
             buttonCell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext{
+                .drive(onNext: {
                     action()
-                }
+                })
                 .addDisposableTo(buttonCell.reuseDisposeBag)
         case .textField(let value, let type):
             let textFieldCell = cell as! SettingsFormTextFieldTableViewCell
@@ -99,11 +99,11 @@ extension SettingsFormViewController {
             textFieldCell.textField.placeholder = type.placeholder
             textFieldCell.textField.isSecureTextEntry = type.secureTextEntry
             textFieldCell.textField
-                .rx_text
+                .rx.text
                 .asDriver()
-                .driveNext{[unowned self](text) in
+                .drive(onNext: { [unowned self](text) in
                     self.viewModel.cellViewModels[indexPath.row] = .textField(value: text, type: type)
-                }
+                })
                 .addDisposableTo(textFieldCell.reuseDisposeBag)
             
             if let validator = type.validator {

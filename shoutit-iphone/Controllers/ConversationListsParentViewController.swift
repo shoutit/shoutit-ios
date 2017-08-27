@@ -72,16 +72,16 @@ class ConversationListsParentViewController: UIViewController, ContainerControll
     fileprivate func setupRX() {
         
         listChoiceSegmentedControl
-            .rx_value
+            .rx.value
             .asDriver()
-            .driveNext {[unowned self] (value) in
+            .drive(onNext: {[unowned self] (value) in
                 if value == 0 {
                     self.changeContentTo(self.myChatsViewController)
                 }
                 else if value == 1 {
                     self.changeContentTo(self.publicChatsViewController)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

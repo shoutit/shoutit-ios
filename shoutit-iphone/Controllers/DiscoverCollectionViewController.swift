@@ -49,13 +49,13 @@ final class DiscoverCollectionViewController: UICollectionViewController, UIColl
             viewModel = DiscoverGeneralViewModel()
         }
         
-        viewModel.items.asObservable().observeOn(MainScheduler.instance).subscribeNext {[weak self] (result) in
+        viewModel.items.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (result) in
             self?.collectionView?.reloadData()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        viewModel.shouts.asObservable().observeOn(MainScheduler.instance).subscribeNext({ [weak self] (result) -> Void in
+        viewModel.shouts.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (result) in
             self?.collectionView?.reloadData()
-            }).addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         viewModel.retriveDiscoverItems()
         

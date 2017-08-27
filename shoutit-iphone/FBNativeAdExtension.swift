@@ -8,16 +8,16 @@
 
 import Foundation
 import FBAudienceNetwork
-import Argo
-import Ogra
+import JSONCodable
 
-extension FBNativeAd : Decodable, Encodable {
-    public func encode() -> JSON {
-        return JSON.object(["fake": "object".encode()])
+extension FBNativeAd: JSONCodable {
+    public init(object: JSONObject) throws {
+        let decoder = JSONDecoder(object: object)
     }
     
-    public static func decode(_ j: JSON) -> Decoded<FBNativeAd> {
-        let decoded : Decoded<FBNativeAd> = .success(FBNativeAd(placementID: ""))
-        return decoded
-    }   
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+        })
+    }
 }
+

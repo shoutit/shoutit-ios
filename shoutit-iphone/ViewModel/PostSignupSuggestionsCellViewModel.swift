@@ -21,7 +21,7 @@ final class PostSignupSuggestionsCellViewModel {
         self.item = item
     }
     
-    func listen() -> Observable<(successMessage: String?, error: ErrorProtocol?)> {
+    func listen() -> Observable<(successMessage: String?, error: Error?)> {
 
         let selected = !self.selected
         return Observable.create{[unowned self] (observer) -> Disposable in
@@ -32,7 +32,7 @@ final class PostSignupSuggestionsCellViewModel {
                 switch event {
                 case .completed:
                     observer.onCompleted()
-                case .Error(let error):
+                case .error(let error):
                     self?.selected = !selected
                     observer.onNext((successMessage: nil, error: error))
                     observer.onCompleted()

@@ -13,7 +13,7 @@ import ShoutitKit
 
 final class AdminsListViewModel {
     
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     let successSubject: PublishSubject<Success> = PublishSubject()
     let pager: NumberedPagePager<ProfilesListCellViewModel, Profile>
     
@@ -47,7 +47,7 @@ final class AdminsListViewModel {
                 case .next(let success):
                     self?.successSubject.onNext(success)
                     self?.pager.refreshContent()
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

@@ -13,7 +13,7 @@ import ShoutitKit
 final class CreateShoutViewModel: NSObject {
     
     fileprivate let disposeBag = DisposeBag()
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     
     var shoutParams : ShoutParams!
     
@@ -61,7 +61,7 @@ extension CreateShoutViewModel {
             cell?.selectButton.setTitle(category.name, for: UIControlState())
             if let imagePath = category.icon, let imageURL = URL(string: imagePath) {
                 cell?.selectButton.showIcon(true)
-                cell?.selectButton.iconImageView.kf_setImageWithURL(imageURL, placeholderImage: nil)
+                cell?.selectButton.iconImageView.kf.setImage(with:imageURL, placeholderImage: nil)
             }
         } else {
             cell?.selectButton.showIcon(false)

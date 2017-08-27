@@ -147,8 +147,8 @@ final class SearchViewModel {
         
         searchState
             .asObservable()
-            .distinctUntilChanged()
-            .subscribeNext {[unowned self] (searchState) in
+            .distinctUntilChanged( { $0 == $1 })
+            .subscribe(onNext: {[unowned self] (searchState) in
                 switch searchState {
                 case .active, .typing:
                     if case (.general, .hidden(let option)) = (self.context, self.segmentedControlState.value) {
@@ -161,15 +161,15 @@ final class SearchViewModel {
                         self.segmentedControlState.value = .hidden(option: option)
                     }
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         segmentedControlState
             .asObservable()
-            .distinctUntilChanged()
-            .subscribeNext {[weak self] (_) in
+            .distinctUntilChanged( { $0 == $1 })
+            .subscribe(onNext: {[weak self] (_) in
                 self?.reloadContent()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -182,8 +182,8 @@ final class SearchViewModel {
                 switch event {
                 case .next(let categories):
                     self?.setSectionViewModelWithCategories(categories)
-                case .Error(let error):
-                    self?.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: error.sh_message, image: nil)
+                case .error(let error):
+                    self?.sectionViewModel.value = SearchSectionViewModel.messagePlaceholder(message: error.sh_message, image: nil)
                 default:
                     break
                 }
@@ -203,8 +203,8 @@ final class SearchViewModel {
                 switch event {
                 case .next(let autocompletions):
                     self?.setSectionsViewModelWithAutocompletion(autocompletions)
-                case .Error(let error):
-                    self?.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: error.sh_message, image: nil)
+                case .error(let error):
+                    self?.sectionViewModel.value = SearchSectionViewModel.messagePlaceholder(message: error.sh_message, image: nil)
                 default:
                     break
                 }
@@ -218,7 +218,7 @@ final class SearchViewModel {
         
         if categories.count == 0 {
             let message = NSLocalizedString("No categores are available", comment: "")
-            self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: message, image: nil)
+            self.sectionViewModel.value = SearchSectionViewModel.messagePlaceholder(message: message, image: nil)
         } else {
             let header = SearchSectionViewModel.HeaderType.titleCentered(title: NSLocalizedString("Categories", comment: "Main search screen categories header"))
             let cells = categories.map{SearchCategoryCellViewModel(category: $0)}
@@ -227,7 +227,7 @@ final class SearchViewModel {
     }
     
     fileprivate func setSectionViewModelWithEmptyScreen() {
-        self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: nil, image: nil)
+        self.sectionViewModel.value = SearchSectionViewModel.messagePlaceholder(message: nil, image: nil)
     }
     
     fileprivate func setSectionViewModelWithRecentSearches() {
@@ -253,7 +253,7 @@ final class SearchViewModel {
     }
     
     fileprivate func setSectionViewModelWithUsersPlaceholder() {
-        self.sectionViewModel.value = SearchSectionViewModel.MessagePlaceholder(message: NSLocalizedString("Search Users", comment: "Search users placeholder"), image: UIImage.searchUsersPlaceholder())
+        self.sectionViewModel.value = SearchSectionViewModel.messagePlaceholder(message: NSLocalizedString("Search Users", comment: "Search users placeholder"), image: UIImage.searchUsersPlaceholder())
     }
     
     // MARK: - Compose requests

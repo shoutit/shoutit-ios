@@ -134,7 +134,7 @@ class CreatePageInfoViewController: UITableViewController {
                 if case .some(.logged(_)) = Account.sharedInstance.loginState {
                     Account.sharedInstance.switchToPage(page)
                 }
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             
             default: break

@@ -21,7 +21,7 @@ final class IntroViewModel {
     func fetchGuestUser() {
         
         self.progressHUDSubject.onNext(true)
-        let params = LoginGuestParams(apns: Account.sharedInstance.apnsToken, mixPanelId: MixpanelHelper.getDistictId(), currentUserLocation: LocationManager.sharedInstance.currentLocation.coordinate)
+        let params = LoginGuestParams(apns: Account.sharedInstance.apnsToken as AnyObject?, mixPanelId: MixpanelHelper.getDistictId(), currentUserLocation: LocationManager.sharedInstance.currentLocation.coordinate)
         
         let observable: Observable<(AuthData, GuestUser)> = APIAuthService.getOAuthToken(params)
         observable
@@ -31,7 +31,7 @@ final class IntroViewModel {
                 case .next((let authData, let user)):
                     try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                     self?.loginSuccessSubject.onNext(())
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

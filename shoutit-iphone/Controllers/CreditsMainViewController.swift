@@ -36,9 +36,9 @@ class CreditsMainViewController: UITableViewController {
     }
     
     func setupRx() {
-        Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
+        Account.sharedInstance.statsSubject.subscribe(onNext: { [weak self] (stats) in
             self?.fillWithStats(stats)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
     }
     

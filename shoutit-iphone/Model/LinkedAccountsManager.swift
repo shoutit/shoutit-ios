@@ -62,7 +62,7 @@ class LinkedAccountsManager : NSObject {
             MBProgressHUD.hideAllHUDs(for: controller.view, animated: true)
             
             switch event {
-            case .Error(let error): controller.showError(error)
+            case .error(let error): controller.showError(error)
             case .next (let success): controller.showSuccessMessage(success.message)
             default: break
             }
@@ -82,7 +82,7 @@ class LinkedAccountsManager : NSObject {
             MBProgressHUD.hideAllHUDs(for: controller.view, animated: true)
             
             switch event {
-            case .Error(let error): controller.showError(error)
+            case .error(let error): controller.showError(error)
             case .next (let success): controller.showSuccessMessage(success.message)
             default: break
             }
@@ -119,7 +119,7 @@ class LinkedAccountsManager : NSObject {
             case .next(let success):
                 Account.sharedInstance.fetchUserProfile()
                 self?.presentingController?.showSuccessMessage(success.message)
-            case .Error(let error):
+            case .error(let error):
                 self?.presentingController?.showError(error)
                 
             default: break
@@ -139,7 +139,7 @@ class LinkedAccountsManager : NSObject {
                     self?.showPagesSelectionActionSheetFrom(controller, disposeBag: disposeBag, option: option)
                 case .Error(LocalError.cancelled):
                     break
-                case .Error(let error):
+                case .error(let error):
                     controller.showError(error)
                 default:
                     break
@@ -189,7 +189,7 @@ class LinkedAccountsManager : NSObject {
                     case .next(let success):
                         Account.sharedInstance.fetchUserProfile()
                         controller.showSuccessMessage(success.message)
-                    case .Error(let error):
+                    case .error(let error):
                         controller.showError(error)
                     default: break
                     }
@@ -216,7 +216,7 @@ class LinkedAccountsManager : NSObject {
             case .next(_):
                 Account.sharedInstance.fetchUserProfile()
                 self?.presentingController?.showSuccessMessage(NSLocalizedString("Facebook Page Unlinked", comment: "UnLink Page Message"))
-            case .Error(let error):
+            case .error(let error):
                 self?.presentingController?.showError(error)
                 
             default: break
@@ -241,7 +241,7 @@ extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
                 self?.presentingController?.showSuccessMessage(success.message)
                 self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
                 Account.sharedInstance.fetchUserProfile()
-            case .Error(let error):
+            case .error(let error):
                 self?.presentingController?.showError(error)
             
             default: break

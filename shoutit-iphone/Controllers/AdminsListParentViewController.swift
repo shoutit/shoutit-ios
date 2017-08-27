@@ -38,24 +38,24 @@ final class AdminsListParentViewController: UIViewController {
     fileprivate func setupRX() {
         
         addAdminsButton
-            .rx_tap
-            .asDriver().driveNext{ [weak self] in
+            .rx.tap
+            .asDriver().drive(onNext: { [weak self] in
                 self?.addAdmin()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel
             .errorSubject
-            .observeOn(MainScheduler.instance).subscribeNext { [weak self] (error) in
+            .observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (error) in
                 self?.showError(error)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel
             .successSubject
-            .observeOn(MainScheduler.instance).subscribeNext { [weak self] (success) in
+            .observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] (success) in
                 self?.showSuccessMessage(success.message)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

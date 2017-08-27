@@ -27,7 +27,7 @@ class CreatePageViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let categoriesController = segue.destination as? PageCategoriesCollectionViewController {
-            categoriesController.selectedCategory.subscribeNext({ (category) in
+            categoriesController.selectedCategory.subscribe(onNext: { (category) in
                 self.flowDelegate?.showCreatePageInfo(category, loginViewModel: self.viewModel)
             }).addDisposableTo(disposeBag)
         }

@@ -54,7 +54,7 @@ enum ProfileCollectionInfoButton {
             } else {
                 return NSLocalizedString("Listen", comment: "Profile Button Title")
             }
-        case .Custom(let title, _):
+        case .custom(let title, _):
             return title
         default:
             return ""
@@ -83,7 +83,7 @@ enum ProfileCollectionInfoButton {
             return UIImage.profileEditUserIcon()
         case .more:
             return UIImage.profileMoreIcon()
-        case .Custom(_, let icon):
+        case .custom(_, let icon):
             return icon ?? UIImage()
         case .hiddenButton:
             return UIImage()
@@ -117,7 +117,7 @@ enum ProfileCollectionInfoButton {
             return .smallRight
         case .more:
             return .smallRight
-        case .Custom:
+        case .custom:
             return .bigCenter
         case .hiddenButton(let position):
             return position

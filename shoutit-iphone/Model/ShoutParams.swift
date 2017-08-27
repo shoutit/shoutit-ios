@@ -8,9 +8,7 @@
 
 import UIKit
 import RxSwift
-import Argo
-
-import Ogra
+import JSONCodable
 import ShoutitKit
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -87,55 +85,78 @@ public struct ShoutParams {
     }
 }
 
-extension ShoutParams: Encodable {
+extension ShoutParams: JSONEncodable {
     
-    public func encode() -> JSON {
-        
-        var values : [String: JSON] = [:]
-        
-        values["type"] = self.type.value.rawValue.encode()
-        values["title"] = self.title.value.encode()
-        values["text"] = self.text.value.encode()
-        values["mobile"] = self.mobile.value.encode()
-        
-        if self.price.value > 0 {
-            values["price"] = (Int(self.price.value! * 100)).encode()
-            if let currency = self.currency.value?.code {
-                values["currency"] = currency.encode()
-            }
-        } else if self.price.value == 0 {
-            values["price"] = JSON.number(0)
-            if let currency = self.currency.value?.code {
-                values["currency"] = currency.encode()
-            }
-        } else {
-            values["price"] = JSON.null
-            values["currency"] = JSON.null
-        }
+    public func toJSON() throws -> Any {
+        return try JSONEncoder.create({ (encoder) -> Void in
+            try encoder.encode(type.value, key: "type")
+            try encoder.encode(title.value, key: "title")
+            try encoder.encode(text.value, key: "text")
+            try encoder.encode(mobile.value, key: "mobile")
+            
+            if self.price.value > 0 {
+                try encoder.encode((Int(self.price.value! * 100)), key: "price")
                 
-        values["images"] = self.images.value.encode()
-        values["videos"] = self.videos.value.encode()
-        
-        if let category = self.category.value {
-            values["category"] = category.encode()
-        } else {
-           values["category"] = JSON.null
-        }
-        
-        values["location"] = self.location.value.encode()
-        
-        values["publish_to_facebook"] = self.publishToFacebook.value.encode()
-        
-        var shoutFilters : [JSON] = []
-        
-        for (filter, filterValue) in self.filters.value {
-            shoutFilters.append(FilterResult(filter: filter, value: filterValue).encode())
-        }
-        
-        if shoutFilters.count > 0 {
-            values["filters"] = shoutFilters.encode()
-        }
-
-        return JSON.object(values)
+                if let currency = self.currency.value?.code {
+                    try encoder.encode(currency, key: "currency")
+                }
+            } else if self.price.value == 0 {
+                try encoder.encode(0, key: "price")
+                
+                if let currency = self.currency.value?.code {
+                    try encoder.encode(currency, key: "currency")
+                }
+            } else {
+                try encoder.encode(nil, key: "price")
+                try encoder.encode(nil, key: "currency")
+                
+            }
+            
+            try encoder.encode(images.value, key: "images")
+            try encoder.encode(videos.value, key: "videos")
+            
+            if let category = self.category.value {
+               try encoder.encode(category, key: "category")
+            } else {
+               try encoder.encode(nil, key: "category")
+            }
+            
+            try encoder.encode(location.value, key: "location")
+            try encoder.encode(publishToFacebook.value, key: "publish_to_facebook")
+            
+            
+            try encoder.encode(filters.value, key: "filters")
+        })
     }
+
+    
+//    public func encode() -> JSON {
+//        
+//        var values : [String: JSON] = [:]
+//        
+//        values["images"] = self.images.value.encode()
+//        values["videos"] = self.videos.value.encode()
+//        
+//        if let category = self.category.value {
+//            values["category"] = category.encode()
+//        } else {
+//           values["category"] = JSON.null
+//        }
+//        
+//        values["location"] = self.location.value.encode()
+//        
+//        values["publish_to_facebook"] = self.publishToFacebook.value.encode()
+//        
+//        var shoutFilters : [JSON] = []
+//        
+//        for (filter, filterValue) in self.filters.value {
+//            shoutFilters.append(FilterResult(filter: filter, value: filterValue).encode())
+//        }
+//        
+//        if shoutFilters.count > 0 {
+//            values["filters"] = shoutFilters.encode()
+//        }
+//
+//        return JSON.object(values)
+//    }
 }

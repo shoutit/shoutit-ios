@@ -36,7 +36,7 @@ final class SettingsTableViewController: UITableViewController {
     
     fileprivate func setupRX() {
         
-        Account.sharedInstance.userSubject.subscribeNext{ (user) in
+        Account.sharedInstance.userSubject.subscribe(onNext: { (user) in
             for option in self.models.value {
                 if let refresh = option.refresh {
                     refresh(option)
@@ -44,10 +44,10 @@ final class SettingsTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
             
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         // bind table view
         models.asObservable()
-            .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
+            .bind(to: tableView.rx.itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
                 
                 cell.titleLabel.text = option.name
                 cell.subtitleLabel?.text = option.detail
@@ -60,10 +60,10 @@ final class SettingsTableViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         
         tableView
-            .rx_modelSelected(SettingsOption.self)
-            .subscribeNext { (option) in
+            .rx.modelSelected(SettingsOption.self)
+            .subscribe(onNext: { (option) in
                 option.action(option)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

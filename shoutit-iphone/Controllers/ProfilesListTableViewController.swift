@@ -62,7 +62,7 @@ class ProfilesListTableViewController: UITableViewController {
         
         viewModel.pager.state
             .asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 switch state {
                 case .idle:
                     break
@@ -79,7 +79,7 @@ class ProfilesListTableViewController: UITableViewController {
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                 }
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -107,7 +107,7 @@ class ProfilesListTableViewController: UITableViewController {
             return cell
         }
         
-        cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
+        cell.listenButton.rx.tap.asDriver().drive(onNext: {[weak self, weak cellModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
             cellModel?.toggleIsListening()
@@ -142,7 +142,7 @@ class ProfilesListTableViewController: UITableViewController {
                         break
                     }
                 }).addDisposableTo(cell.reuseDisposeBag)
-        }.addDisposableTo(cell.reuseDisposeBag)
+        }).addDisposableTo(cell.reuseDisposeBag)
         
         return cell
     }

@@ -151,9 +151,9 @@ final class MenuTableViewController: UITableViewController, Navigation {
     
     func subscribeForStatsChange(){
         
-        Account.sharedInstance.statsSubject.subscribeNext{ (stats) in
+        Account.sharedInstance.statsSubject.subscribe(onNext: { (stats) in
             self.tableView.reloadData()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
 }
 

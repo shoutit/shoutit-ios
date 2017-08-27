@@ -36,14 +36,14 @@ final class ResetPasswordViewController: UITableViewController {
     
     fileprivate func setupRX() {
         
-        backToLoginButton.rx_tap
+        backToLoginButton.rx.tap
             .asDriver()
-            .driveNext {[weak self] in
+            .drive(onNext: { [weak self] in
                 self?.delegate?.presentLogin()
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        resetPasswordButton.rx_tap.filter {
+        resetPasswordButton.rx.tap.filter {
             if case .invalid(let errors) = ShoutitValidator.validateEmail(self.emailTextField.text) {
                 if let error = errors.first {
                     self.delegate?.showLoginErrorMessage(error.message)
@@ -53,10 +53,12 @@ final class ResetPasswordViewController: UITableViewController {
             
             return true
             }
-            .subscribeNext{[unowned self] in
-                MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
+            .subscribe(onNext: { [unowned self] in
+                if let view = self.parent?.view {
+                    MBProgressHUD.showAdded(to: view, animated: true)
+                }
                 self.viewModel.resetPasswordForEmail(self.emailTextField.text!)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // add validators

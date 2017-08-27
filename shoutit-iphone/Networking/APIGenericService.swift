@@ -22,7 +22,7 @@ final class APIGenericService {
     
     static func basicRequestWithMethod<P: Params>(
         _ method: Alamofire.Method,
-        url: URLStringConvertible,
+        url: String,
         params: P?,
         encoding: ParameterEncoding = .url,
         headers: [String: String]? = nil) -> Observable<Void> {
@@ -219,7 +219,7 @@ final class APIGenericService {
             self.isRefreshingToken = false
             switch event {
             case .next(_): self.refreshTokenSubject.onNext(true)
-            case .Error(let error):
+            case .error(let error):
                 print(error)
                 do {
                     try Account.sharedInstance.logout()
@@ -298,15 +298,17 @@ final class APIGenericService {
 //        }
     }
     
-    static func parseJsonArray<T: Decodable>(_ json: AnyObject) throws -> [T] where T == T.DecodedType {
-        let decoded: Decoded<[T]> = decode(json)
-        switch decoded {
-        case .success(let object):
-            return object
-        case .failure(let decodeError):
-            debugPrint(json)
-            assertionFailure("\(decodeError.description) in model of type \(T.self)")
-            throw decodeError
-        }
+    static func parseJsonArray<T: JSONDecodable>(_ json: AnyObject) throws -> [T] {
+        let object = try T(json: json)
+        return object
+//        let decoded: Decoded<[T]> = decode(json)
+//        switch decoded {
+//        case .success(let object):
+//            return object
+//        case .failure(let decodeError):
+//            debugPrint(json)
+//            assertionFailure("\(decodeError.description) in model of type \(T.self)")
+//            throw decodeError
+//        }
     }
 }

@@ -98,24 +98,24 @@ final class VideoCallViewController: UIViewController {
     fileprivate func setupRX() {
         
         audioButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self] in
                 self?.viewModel.muteAudio()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         videoButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext { [weak self] in
+            .drive(onNext: { [weak self] in
                 self?.viewModel.disableVideo()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.state
             .asDriver()
-            .driveNext { [weak self] (state) in
+            .drive(onNext: { [weak self] (state) in
                 
                 guard let `self` = self else { return }
                 
@@ -142,53 +142,53 @@ final class VideoCallViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                     self.viewModel.stopTimer()
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.callerProfile
             .asDriver()
-            .driveNext { [weak self] (profile) in
+            .drive(onNext: { [weak self] (profile) in
                 self?.callerNameLabel.text = profile?.name
                 self?.callerAvatarImageView.sh_setImageWithURL(profile?.imagePath?.toURL(), placeholderImage: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.conversation
             .asDriver()
-            .driveNext { [weak self] (conversation) in
+            .drive(onNext: { [weak self] (conversation) in
                 conversation?.delegate = self
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.audioMuted
             .asDriver()
-            .driveNext { [weak self] (muted) in
+            .drive(onNext: { [weak self] (muted) in
                 self?.audioButton.setOn(muted)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.videoDisabled
             .asDriver()
-            .driveNext { [weak self] (disabled) in
+            .drive(onNext: { [weak self] (disabled) in
                 self?.videoButton.setOn(disabled)
                 self?.localCameraView.isHidden = disabled
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.ticks
             .asDriver()
-            .driveNext {[weak self] (timeInteval) in
+            .drive(onNext: { [weak self] (timeInteval) in
                 guard let `self` = self else { return }
                 guard case .inCall = self.viewModel.state.value else { return }
                 self.messageLabel.text = NumberFormatters.minutesAndSecondsUserDisplayableStringWithTimeInterval(timeInteval)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.errorSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (error) in
+            .subscribe(onNext: {[weak self] (error) in
                 self?.showError(error)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -278,18 +278,18 @@ private extension VideoCallViewController {
     
     func startPreview() {
         guard let camera = camera else { return }
-        guard camera.capturing == false else { return }
+        guard camera.isCapturing == false else { return }
         camera.startPreview()
         guard let previewView = camera.previewView else {
             return
         }
         localCameraView.addSubview(previewView)
-        previewView.contentMode = .ScaleAspectFit
+        previewView.contentMode = .scaleAspectFit
         previewView.translatesAutoresizingMaskIntoConstraints = false
         cameraPreviewViewConstraints = []
         let views = ["preview" : previewView]
-        cameraPreviewViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[preview]|", options: [], metrics: nil, views: views)
-        cameraPreviewViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[preview]|", options: [], metrics: nil, views: views)
+        cameraPreviewViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "H:|[preview]|", options: [], metrics: nil, views: views)
+        cameraPreviewViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "V:|[preview]|", options: [], metrics: nil, views: views)
         cameraPreviewViewConstraints!.forEach{ $0.isActive = true }
         setPreviewOnFullScreen()
     }
@@ -345,12 +345,12 @@ extension VideoCallViewController: TWCVideoViewRendererDelegate {
 
 extension VideoCallViewController: TWCLocalMediaDelegate {
     
-    func localMedia(_ media: TWCLocalMedia, didAddVideoTrack videoTrack: TWCVideoTrack) {
+    func localMedia(_ media: TWCLocalMedia, didAdd videoTrack: TWCVideoTrack) {
         addLocalCallRendererWithVideoTrack(videoTrack)
         videoTrack.delegate = self
     }
     
-    func localMedia(_ media: TWCLocalMedia, didRemoveVideoTrack videoTrack: TWCVideoTrack) {
+    func localMedia(_ media: TWCLocalMedia, didRemove videoTrack: TWCVideoTrack) {
         removeLocalCallRendererFromVideoTrack(videoTrack)
         restartPreview()
     }
@@ -387,7 +387,7 @@ extension VideoCallViewController: TWCConversationDelegate {
         viewModel.state.value = .callEnded
     }
     
-    func conversation(_ conversation: TWCConversation, didConnectParticipant participant: TWCParticipant) {
+    func conversation(_ conversation: TWCConversation, didConnect participant: TWCParticipant) {
         viewModel.state.value = .inCall
         participant.delegate = self
         if let videoTrack = participant.media.videoTracks.first, remoteCameraViewRenderer == nil {
@@ -427,8 +427,8 @@ private extension VideoCallViewController {
         localCameraRendererViewConstraints = []
         let views = ["view" : renderer.view]
         localCameraView.addSubview(renderer.view)
-        localCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views)
-        localCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views)
+        localCameraRendererViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views)
+        localCameraRendererViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views)
         localCameraRendererViewConstraints!.forEach{ $0.isActive = true }
     }
     
@@ -451,8 +451,8 @@ private extension VideoCallViewController {
         remoteCameraRendererViewConstraints = []
         let views = ["view" : renderer.view]
         remoteCameraView.addSubview(renderer.view)
-        remoteCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: views)
-        remoteCameraRendererViewConstraints! += NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views)
+        remoteCameraRendererViewConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views)
+        remoteCameraRendererViewConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views)
         remoteCameraRendererViewConstraints!.forEach{ $0.isActive = true }
     }
     
@@ -470,7 +470,7 @@ private extension VideoCallViewController {
     func createRendererForVideoTrack(_ videoTrack: TWCVideoTrack) -> TWCVideoViewRenderer {
         let renderer = TWCVideoViewRenderer(delegate: self)
         renderer.view.translatesAutoresizingMaskIntoConstraints = false
-        renderer.view.contentMode = .ScaleAspectFit
+        renderer.view.contentMode = .scaleAspectFit
         videoTrack.addRenderer(renderer)
         return renderer
     }

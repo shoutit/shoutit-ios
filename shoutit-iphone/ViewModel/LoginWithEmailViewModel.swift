@@ -35,7 +35,7 @@ final class LoginWithEmailViewModel {
             switch event {
             case .next(let success):
                 self.successSubject.onNext(success.message)
-            case .Error(let error):
+            case .error(let error):
                 self.errorSubject.onNext(error)
             case .completed:
                 break
@@ -52,7 +52,7 @@ final class LoginWithEmailViewModel {
                 case .next(let authData, let user):
                     try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                     self?.loginSuccessSubject.onNext(authData.isNewSignUp)
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break
@@ -70,7 +70,7 @@ final class LoginWithEmailViewModel {
                 case .next(let authData, let user):
                     try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                     self?.loginSuccessSubject.onNext(authData.isNewSignUp)
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

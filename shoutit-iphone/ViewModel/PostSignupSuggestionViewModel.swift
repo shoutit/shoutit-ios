@@ -40,7 +40,7 @@ final class PostSignupSuggestionViewModel {
                         self.pagesSection.updateCellsWithModels(pages.map{$0 as Suggestable})
                     }
                     self.state.value = .contentLoaded
-                case .Error(let error):
+                case .error(let error):
                     self.state.value = .error(error)
                 case .completed:
                     break

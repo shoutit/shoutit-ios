@@ -11,6 +11,12 @@ import Contacts
 
 @available(iOS 9.0, *)
 internal class CNAddressBookImpl: AddressBookProtocol {
+    func requestAccessToAddressBook(_ completion: (Bool, NSError?) -> Void) {
+        contactStore.requestAccess(for: CNEntityType.contacts) { (access, err) -> Void in
+            completion(access, err as! NSError)
+        }
+    }
+
     
     fileprivate var contactStore: CNContactStore!
     fileprivate var saveRequest: CNSaveRequest = CNSaveRequest()
@@ -33,12 +39,6 @@ internal class CNAddressBookImpl: AddressBookProtocol {
     
     internal init() {
         contactStore = CNContactStore()
-    }
-    
-    func requestAccessToAddressBook(_ completion: @escaping (Bool, NSError?) -> Void) {
-        contactStore.requestAccess(for: CNEntityType.contacts) { (access, err) -> Void in
-            completion(access, err as! NSError)
-        }
     }
     
     func retrieveAddressBookRecordsCount() throws -> Int {

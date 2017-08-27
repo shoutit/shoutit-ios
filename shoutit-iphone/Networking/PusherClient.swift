@@ -8,8 +8,7 @@
 
 import Foundation
 import RxSwift
-import Argo
-import Ogra
+import JSONCodable
 import Reachability
 import ShoutitKit
 
@@ -58,9 +57,9 @@ final class PusherClient : NSObject {
         
         
         NotificationCenter.default
-          .rx_notification(ReachabilityChangedNotification)
+          .rx.notification(ReachabilityChangedNotification)
           .asObservable()
-          .subscribeNext { (notification) in
+          .subscribe(onNext: { (notification) in
             if APIManager.isNetworkReachable() == false {
                 return
             }
@@ -68,7 +67,7 @@ final class PusherClient : NSObject {
             if self.pusherInstance?.connection.connected == false {
                 self.tryToConnect()
             }
-          }.addDisposableTo(disposeBag)
+          }).addDisposableTo(disposeBag)
     }
     
     func setAuthorizationToken(_ token: String) {
@@ -131,7 +130,7 @@ final class PusherClient : NSObject {
     
     fileprivate func subscribeToMainChannel() {
         
-        mainChannelObservable().subscribeNext { (event) -> Void in
+        mainChannelObservable().subscribe(onNext: { (event) -> Void in
             self.mainChannelSubject.onNext(event)
             
             if event.eventType() == .StatsUpdate {
@@ -140,9 +139,9 @@ final class PusherClient : NSObject {
                 if let stats : ProfileStats = event.object() {
                     
                     switch self.account.loginState {
-                    case .Some(.Page):
+                    case .some(.Page):
                         self.account.updateAdminStats(stats)
-                    case .Some(.Logged):
+                    case .some(.Logged):
                         self.account.updateMainStats(stats)
                     default: break
                     }
@@ -155,11 +154,11 @@ final class PusherClient : NSObject {
             
             if event.eventType() == .ProfileChange {
                 switch self.account.loginState {
-                case .Some(.Logged):
+                case .some(.Logged):
                     if let profile : DetailedUserProfile = event.object() {
                         self.account.updateUserWithModel(profile)
                     }
-                case .Some(.Guest):
+                case .some(.Guest):
                     if let guest : GuestUser = event.object() {
                         self.account.updateUserWithModel(guest)
                     }
@@ -168,7 +167,7 @@ final class PusherClient : NSObject {
             }
 
             
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     func unsubscribePages() {
@@ -182,7 +181,7 @@ final class PusherClient : NSObject {
     }
     
     func subscribeToPageMainChannel(_ page: DetailedPageProfile) {
-        mainPageChannelObservable(page).subscribeNext { (event) -> Void in
+        mainPageChannelObservable(page).subscribe(onNext: { (event) -> Void in
             
             
             
@@ -196,11 +195,11 @@ final class PusherClient : NSObject {
             
             if event.eventType() == .ProfileChange {
                 switch self.account.loginState {
-                case .Some(.Logged):
+                case .some(.Logged):
                     if let profile : DetailedPageProfile = event.object() {
                         self.account.updateUserWithModel(profile)
                     }
-                case .Some(.Guest):
+                case .some(.Guest):
                     if let guest : GuestUser = event.object() {
                         self.account.updateUserWithModel(guest)
                     }
@@ -209,7 +208,7 @@ final class PusherClient : NSObject {
             }
             
             
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
     }
     
     func unsubscribeFromPageMainChannel(_ page: DetailedPageProfile) {
@@ -250,32 +249,32 @@ extension PusherClient : PTPusherDelegate {
         
     }
     
-    func pusher(_ pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, withRequest request: NSMutableURLRequest!) {
+    func pusher(_ pusher: PTPusher!, willAuthorizeChannel channel: PTPusherChannel!, with request: NSMutableURLRequest!) {
         request.setValue(authToken, forHTTPHeaderField: "Authorization")
     }
     
     // Subscriptions
     
-    func pusher(_ pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
+    func pusher(_ pusher: PTPusher!, didSubscribeTo channel: PTPusherChannel!) {
       
     }
     
-    func pusher(_ pusher: PTPusher!, didUnsubscribeFromChannel channel: PTPusherChannel!) {
+    @objc func pusher(_ pusher: PTPusher!, didUnsubscribeFrom channel: PTPusherChannel!) {
       
         self.subscribedChannels.removeElementIfExists(channel.name)
     }
     
     // Error handling
     
-    func pusher(_ pusher: PTPusher!, didReceiveErrorEvent errorEvent: PTPusherErrorEvent!) {
+    func pusher(_ pusher: PTPusher!, didReceive errorEvent: PTPusherErrorEvent!) {
        
     }
     
-    func pusher(_ pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
+    func pusher(_ pusher: PTPusher!, didFailToSubscribeTo channel: PTPusherChannel!, withError error: Error!) {
        
     }
     
-    func pusher(_ pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: NSError!, willAttemptReconnect: Bool) {
+    func pusher(_ pusher: PTPusher!, connection: PTPusherConnection!, didDisconnectWithError error: Error!, willAttemptReconnect: Bool) {
        
     
         if !keepDisconnected {
@@ -283,7 +282,7 @@ extension PusherClient : PTPusherDelegate {
         }
     }
     
-    func pusher(_ pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
+    func pusher(_ pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: Error!) {
         
     }
 }
@@ -294,8 +293,8 @@ extension PusherClient {
         return Observable.create { (observer) -> Disposable in
             
             guard let channelName = self.generateMainChannelIdentifier() else {
-                observer.onError(PusherError.WrongChannelName)
-                return AnonymousDisposable { }
+                observer.onError(PusherError.wrongChannelName)
+                return Disposables.create { }
             }
             
             let channel : PTPusherChannel
@@ -304,7 +303,7 @@ extension PusherClient {
             if let ch = self.pusherInstance?.channelNamed(channelName) {
                 channel = ch
             } else {
-                guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
+                guard let ch = self.pusherInstance?.subscribe(toChannelNamed: channelName) else {
                     return AnonymousDisposable { }
                 }
                 
@@ -336,7 +335,7 @@ extension PusherClient {
             if let ch = self.pusherInstance?.channelNamed(channelName) {
                 channel = ch
             } else {
-                guard let ch = self.pusherInstance?.subscribeToChannelNamed(channelName) else {
+                guard let ch = self.pusherInstance?.subscribe(toChannelNamed: channelName) else {
                     return AnonymousDisposable { }
                 }
                 
@@ -380,7 +379,7 @@ extension PusherClient {
             if let ch = self.pusherInstance?.channelNamed(conversation.channelName()) {
                 channel = ch
             } else {
-                guard let ch = self.pusherInstance?.subscribeToChannelNamed(conversation.channelName()) else {
+                guard let ch = self.pusherInstance?.subscribe(toChannelNamed: conversation.channelName()) else {
                     assertionFailure()
                     return AnonymousDisposable{}
                 }

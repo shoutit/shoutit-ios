@@ -47,7 +47,7 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         
         viewModel.displayable.applyOnLayout(collection.collectionViewLayout as? UICollectionViewFlowLayout)
         
-        viewModel.displayable.selectedIndexPath.asDriver(onErrorJustReturn: nil).driveNext({ [weak self] (indexPath) -> Void in
+        viewModel.displayable.selectedIndexPath.asDriver(onErrorJustReturn: nil).drive(onNext: { [weak self] (indexPath) -> Void in
             
             if let indexPath = indexPath {
                 if indexPath.item == self?.indexForSeeAll() {
@@ -63,10 +63,10 @@ final class DiscoverPreviewCollectionViewController: UICollectionViewController 
         
         viewModel.dataSource
             .observeOn(MainScheduler.instance)
-            .subscribeNext{ [weak self] (items) -> Void in
+            .subscribe(onNext: { [weak self] (items) -> Void in
                 self?.items = items
                 self?.collectionView?.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

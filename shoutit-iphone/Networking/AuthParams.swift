@@ -136,9 +136,9 @@ public struct SignupParams: AuthParams {
 public struct LoginGuestParams: AuthParams {
     
     public let grantType = "shoutit_guest"
-    public var apns: NSObject?
+    public var apns: AnyObject?
 
-    public init(apns: NSObject?, mixPanelId: String, currentUserLocation: CLLocationCoordinate2D) {
+    public init(apns: AnyObject?, mixPanelId: String, currentUserLocation: CLLocationCoordinate2D) {
         self.apns = apns
         self.mixPanelDistinctId = mixPanelId
         self.currentUserCoordinates = currentUserLocation

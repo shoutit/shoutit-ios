@@ -54,7 +54,7 @@ final class AdminsListTableViewController: UITableViewController {
         
         viewModel.pager.state
             .asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 switch state {
                 case .idle:
                     break
@@ -71,7 +71,7 @@ final class AdminsListTableViewController: UITableViewController {
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                 }
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -94,7 +94,7 @@ final class AdminsListTableViewController: UITableViewController {
         
         cellConfigurator.configureCell(cell, cellViewModel: cellModel, showsListenButton: true)
         
-        cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellModel] in
+        cell.listenButton.rx.tap.asDriver().drive(onNext: {[weak self, weak cellModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
             cellModel?.toggleIsListening()
@@ -129,7 +129,7 @@ final class AdminsListTableViewController: UITableViewController {
                         break
                     }
                     }).addDisposableTo(cell.reuseDisposeBag)
-            }.addDisposableTo(cell.reuseDisposeBag)
+            }).addDisposableTo(cell.reuseDisposeBag)
         
         return cell
     }

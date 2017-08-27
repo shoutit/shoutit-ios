@@ -34,18 +34,18 @@ final class TabbarController: UIViewController, Navigation {
         
         for button in tabs! {
             button
-                .rx_tap
-                .subscribeNext {[unowned self] in
+                .rx.tap
+                .subscribe(onNext: {[unowned self] in
                     self.tabs!.each { $0.isSelected = false }
                     button.isSelected = true
                     self.triggerActionWithItem(NavigationItem(rawValue: button.navigationItem)!)
-                }
+                })
                 .addDisposableTo(self.disposeBag)
         }
         
-        Account.sharedInstance.statsSubject.subscribeNext { [weak self] (stats) in
+        Account.sharedInstance.statsSubject.subscribe(onNext: { [weak self] (stats) in
             self?.fillBadgesWithStats(stats)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
     }
     

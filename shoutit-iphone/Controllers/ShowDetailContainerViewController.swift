@@ -124,9 +124,9 @@ class ShowDetailContainerViewController: UIViewController {
         
         viewModel.reloadObservable
             .observeOn(MainScheduler.instance)
-            .subscribeNext { [weak self] in
+            .subscribe(onNext: { [weak self] in
                 self?.layoutButtons(reload: true)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -168,9 +168,9 @@ class ShowDetailContainerViewController: UIViewController {
     fileprivate func addActionToButton(_ button: UIButton, withModel model: ShoutDetailTabbarButton) {
         
         button
-            .rx_tap
+            .rx.tap
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] in
+            .subscribe(onNext: {[weak self] in
                 switch model {
                 case .call:
                     self?.makeCall()
@@ -193,7 +193,7 @@ class ShowDetailContainerViewController: UIViewController {
                 default:
                     fatalError()
                 }
-            }
+            })
             .addDisposableTo(buttonsDisposeBag)
     }
 }
@@ -216,12 +216,14 @@ private extension ShowDetailContainerViewController {
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
             APIMiscService.makeReport(report).subscribe({ [weak self] (event) in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 
                 switch event {
                 case .next:
                     self?.showSuccessMessage(NSLocalizedString("Shout Reported Successfully", comment: ""))
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default:
                     break
@@ -238,7 +240,7 @@ private extension ShowDetailContainerViewController {
         let reportHandler: ((Void) -> Void)? = isShoutOwnedByCurrentUser ? nil : reportAction
         let deleteHandler: ((Void) -> Void)? = isShoutOwnedByCurrentUser ? deleteAction : nil
         let alert = moreAlert(reportHandler, deleteHandler: deleteHandler)
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func deleteAction() {
@@ -253,7 +255,7 @@ private extension ShowDetailContainerViewController {
                     self?.showSuccessMessage(NSLocalizedString("Shout deleted Successfully", comment: ""))
                     NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.ShoutDeletedNotification, object: self, userInfo: nil)
                     self?.navigationController?.popViewControllerAnimated(true)
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default:
                     break
@@ -261,14 +263,16 @@ private extension ShowDetailContainerViewController {
                 }).addDisposableTo(self.disposeBag)
         }
         
-        self.navigationController?.presentViewController(alert, animated: true, completion: nil)
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     func makeCall() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         viewModel.makeCall()
             .subscribe {[weak self] (event) in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 switch event {
                 case .next(let mobile):
                     guard let url = URL(string: "telprompt://\(mobile.phone)") else {
@@ -276,7 +280,7 @@ private extension ShowDetailContainerViewController {
                         return
                     }
                     UIApplication.shared.openURL(url)
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default:
                     break

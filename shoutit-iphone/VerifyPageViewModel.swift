@@ -35,7 +35,7 @@ final class VerifyPageViewModel {
     }
     
     let successSubject: PublishSubject<ResponseType> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let updateVerificationSubject: PublishSubject<ResponseType> = PublishSubject()
     
@@ -72,7 +72,7 @@ final class VerifyPageViewModel {
                     switch event {
                     case .next((let pageVerification)):
                         self?.successSubject.onNext(pageVerification)
-                    case .Error(let error):
+                    case .error(let error):
                         self?.errorSubject.onNext(error)
                     default:
                         break
@@ -94,7 +94,7 @@ final class VerifyPageViewModel {
                 case .next((let pageVerification)):
                     self?.populateWithVerification(pageVerification)
                     self?.updateVerificationSubject.onNext(pageVerification)
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

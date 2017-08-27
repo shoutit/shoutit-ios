@@ -56,9 +56,9 @@ final class IncomingCallController: UIViewController {
     fileprivate func fetchCallingProfile() {
         APIProfileService
             .retrieveProfileWithTwilioUsername(invitation.from)
-            .subscribeNext { [weak self] (profile) in
+            .subscribe(onNext: { [weak self] (profile) in
                 self?.hydrateViewWithProfile(profile)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

@@ -22,6 +22,6 @@ extension FlowController : FilterDisplayable {
         nav.navigationBarHidden = true
         nav.transitioningDelegate = filterTransition
         nav.modalPresentationStyle = .Custom
-        navigationController.presentViewController(nav, animated: true, completion: nil)
+        navigationController.present(nav, animated: true, completion: nil)
     }
 }

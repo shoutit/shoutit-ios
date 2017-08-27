@@ -36,26 +36,26 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
             viewModel
                 .reloadObservable
                 .observeOn(MainScheduler.instance)
-                .subscribeNext {[weak self] in
+                .subscribe(onNext: {[weak self] in
                     self?.tableView.reloadData()
                     self?.hydrateHeader()
-                }
+                })
                 .addDisposableTo(disposeBag)
             
             viewModel
                 .reloadOtherShoutsSubject
                 .observeOn(MainScheduler.instance)
-                .subscribeNext {[weak self] in
+                .subscribe(onNext: {[weak self] in
                     self?.dataSource.otherShoutsCollectionView?.reloadData()
-                }
+                })
                 .addDisposableTo(disposeBag)
             
             viewModel
                 .reloadRelatedShoutsSubject
                 .observeOn(MainScheduler.instance)
-                .subscribeNext {[weak self] in
+                .subscribe(onNext: {[weak self] in
                     self?.dataSource.relatedShoutsCollectionView?.reloadData()
-                }
+                })
                 .addDisposableTo(disposeBag)
         }
     }
@@ -74,15 +74,15 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
             
             dataSource.otherShoutsCollectionViewSetSubject
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[weak self] (collectionView) in
+                .subscribe(onNext: { [weak self] (collectionView) in
                     collectionView.dataSource = self?.otherShoutsDataSource
                     collectionView.delegate = self
-                }
+                })
                 .addDisposableTo(disposeBag)
             
             dataSource.relatedShoutsCollectionViewSetSubject
                 .observeOn(MainScheduler.instance)
-                .subscribeNext{[weak self] (collectionView) in
+                .subscribe(onNext: { [weak self] (collectionView) in
                     collectionView.dataSource = self?.relatedShoutsDataSource
                     collectionView.delegate = self
                     if #available(iOS 9.0, *) {
@@ -91,7 +91,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
                     if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
                         collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
                     }
-                }
+                })
                 .addDisposableTo(disposeBag)
             
         }
@@ -121,9 +121,9 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         relatedShoutsDataSource = ShoutDetailRelatedShoutsCollectionViewDataSource(controller: self)
         imagesDataSource = ShoutDetailImagesPageViewControllerDataSource(controller: self)
         
-        imagesDataSource.showDetailOfMedia.asDriver(onErrorJustReturn: .loading).driveNext { [weak self] (viewModel) in
+        imagesDataSource.showDetailOfMedia.asDriver(onErrorJustReturn: .loading).drive(onNext: { [weak self] (viewModel) in
             self?.showMediaPreviewWithSelectedMedia(viewModel)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         // display data
         hydrateHeader()
@@ -219,12 +219,12 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         
         headerDisposeBag = DisposeBag()
         headerView.showProfileButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext{[unowned self] in
+            .drive(onNext: { [unowned self] in
                 guard let user = self.viewModel.shout.user else { return }
                 self.flowDelegate?.showProfile(user)
-            }
+            })
             .addDisposableTo(headerDisposeBag)
         
         let visible = viewModel.priceString() != nil && !viewModel.priceString()!.isEmpty
@@ -264,7 +264,7 @@ extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
         
         let photoBrowser = PhotoBrowser(photos: imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()})
 
-        photoBrowser.delegate = self
+        photoBrowser?.delegate = self
         
         let idx : UInt
         
@@ -274,16 +274,16 @@ extension ShoutDetailTableViewController : MWPhotoBrowserDelegate {
             idx = 0
         }
         
-        photoBrowser.setCurrentPhotoIndex(idx)
+        photoBrowser?.setCurrentPhotoIndex(idx)
         
-        self.navigationController?.showViewController(photoBrowser, sender: nil)
+        self.navigationController?.show(photoBrowser!, sender: nil)
     }
     
-    func numberOfPhotosInPhotoBrowser(_ photoBrowser: MWPhotoBrowser!) -> UInt {
+    func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
         return UInt(imagesDataSource.viewModel.imagesViewModels.count)
     }
     
-    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
         let photos = imagesDataSource.viewModel.imagesViewModels.flatMap{$0.mwPhoto()}
         
         return photos[Int(index)]
@@ -405,7 +405,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
                     self?.viewModel.reloadShout(likedShout)
                     self?.updateLikeButtonState()
                 }
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             default: break
                 
@@ -424,7 +424,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
                     self?.updateLikeButtonState()
                 }
                 
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             default: break
                 
@@ -449,7 +449,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
                 if let newShout = self?.viewModel.shout.copyWithBookmark(true) {
                     self?.viewModel.reloadShout(newShout)
                 }
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             default:
                 break
@@ -465,7 +465,7 @@ extension ShoutDetailTableViewController: UICollectionViewDelegateFlowLayout {
                 if let newShout = self?.viewModel.shout.copyWithBookmark(false) {
                     self?.viewModel.reloadShout(newShout)
                 }
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             default:
                 break

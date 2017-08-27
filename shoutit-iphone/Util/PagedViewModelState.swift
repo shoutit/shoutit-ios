@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 import ShoutitKit
 
-enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: Decodable> where ItemType.DecodedType == ItemType {
+enum PagedViewModelState <CellViewModelType, PageIndexType, ItemType: JSONCodable> {
     case idle
     case loading
     case loaded(cells: [CellViewModelType], page: PageIndexType, lastPageResults: PagedResults<ItemType>)

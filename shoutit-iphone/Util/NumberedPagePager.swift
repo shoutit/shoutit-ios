@@ -8,11 +8,11 @@
 
 import Foundation
 import RxSwift
-import Argo
 import ShoutitKit
+import Alamofire
+import JSONCodable
 
-
-class NumberedPagePager<CellViewModelType, ItemType: Decodable>: Pager<Int, CellViewModelType, ItemType> where ItemType.DecodedType == ItemType {
+class NumberedPagePager<CellViewModelType, ItemType: JSONCodable>: Pager<Int, CellViewModelType, ItemType> {
     
     let pageSize: Int
     
@@ -50,7 +50,7 @@ class NumberedPagePager<CellViewModelType, ItemType: Decodable>: Pager<Int, Cell
                 switch event {
                 case .next(let results):
                     self?.replaceItemsAtPage(page, withResults: results)
-                case .Error(let error):
+                case .error(let error):
                     assert(false, error.sh_message)
                     self?.state.value = .error(error)
                 default:

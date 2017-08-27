@@ -100,25 +100,25 @@ private extension HomeViewController {
     func bindToDiscoverItems(_ discoverController: DiscoverPreviewCollectionViewController) {
         discoverController.viewModel.state
             .asObservable()
-            .subscribeNext{ [weak self] (state) -> Void in
+            .subscribe(onNext: { [weak self] (state) -> Void in
                 let newValue = state == .loaded
                 self?.discoverVisible = newValue
-            }
+            })
             .addDisposableTo(disposeBag)
         
         discoverController.selectedModel
             .asDriver()
-            .driveNext {[weak self] (item) -> Void in
+            .drive(onNext: { [weak self] (item) -> Void in
                 guard let item = item else { return }
                 self?.flowDelegate?.showDiscoverForDiscoverItem(item)
-            }.addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
         
         discoverController.seeAllSubject
             .asObservable()
             .skip(1)
-            .subscribeNext {[weak self] (controller) -> Void in
+            .subscribe(onNext: {[weak self] (controller) -> Void in
                 self?.flowDelegate?.showDiscover()
-            }
+            })
             .addDisposableTo(disposeBag)
         
     }
@@ -132,9 +132,9 @@ private extension HomeViewController {
                 let newHeight : CGFloat = self.maxDiscoverHeight - (offset ?? CGPoint.zero).y
                 return max(min(self.maxDiscoverHeight, newHeight), 0)
             }
-            .subscribeNext{ [weak self] (newHeight) -> Void in
+            .subscribe(onNext: { [weak self] (newHeight) -> Void in
                 self?.layoutDiscoverSectionWith(newHeight)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

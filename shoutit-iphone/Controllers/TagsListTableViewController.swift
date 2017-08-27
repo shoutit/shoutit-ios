@@ -55,7 +55,7 @@ final class TagsListTableViewController: UITableViewController {
         
         viewModel.pager.state
             .asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 switch state {
                 case .idle:
                     break
@@ -72,7 +72,7 @@ final class TagsListTableViewController: UITableViewController {
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                 }
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -99,7 +99,7 @@ final class TagsListTableViewController: UITableViewController {
         cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.tag.imagePath?.toURL(), placeholderImage: UIImage.squareAvatarPlaceholder())
         cell.listenButton.setImage(listenButtonImage, for: UIControlState())
         
-        cell.listenButton.rx_tap.asDriver().driveNext {[weak self, weak cellViewModel] in
+        cell.listenButton.rx.tap.asDriver().drive(onNext: {[weak self, weak cellViewModel] in
             guard let `self` = self else { return }
             guard self.checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
             cellViewModel?.toggleIsListening().observeOn(MainScheduler.instance).subscribe({[weak cell] (event) in
@@ -132,7 +132,7 @@ final class TagsListTableViewController: UITableViewController {
                     break
                 }
                 }).addDisposableTo(cell.reuseDisposeBag)
-            }.addDisposableTo(cell.reuseDisposeBag)
+            }).addDisposableTo(cell.reuseDisposeBag)
         
         
         return cell

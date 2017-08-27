@@ -78,7 +78,7 @@ class ShoutsCollectionViewController: UICollectionViewController {
         
         viewModel.pager.state
             .asDriver()
-            .driveNext {[weak self] (state) in
+            .drive(onNext: { [weak self] (state) in
                 
                 switch state {
                 case .loading: self?.refreshControl.beginRefreshing()
@@ -96,7 +96,7 @@ class ShoutsCollectionViewController: UICollectionViewController {
                     self?.collectionView?.reloadData()
                 default: break;
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -171,7 +171,7 @@ extension ShoutsCollectionViewController {
         case .idle:
             fatalError()
         case .error(let error):
-            return placeholderCellWithMessage(message: error.sh_message, activityIndicator: false)
+            return placeholderCellWithMessage(error.sh_message, false)
         case .noContent:
             return placeholderCellWithMessage(self.viewModel.noContentMessage(), false)
         case .loading:
@@ -190,21 +190,21 @@ extension ShoutsCollectionViewController {
         view.backgroundColor = viewModel.headerBackgroundColor()
         view.setSubtitleHidden(viewModel.subtitleHidden())
         view.filterButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext{[unowned self] in
-                self.flowDelegate?.showFiltersWithState(self.viewModel.getFiltersState(), completionBlock: { (state) in
-                    self.viewModel.applyFilters(state)
+            .drive(onNext: { [weak self] in
+                self?.flowDelegate?.showFiltersWithState((self?.viewModel.getFiltersState())!, completionBlock: { (state) in
+                    self?.viewModel.applyFilters(state)
                 })
-            }
+            })
             .addDisposableTo(view.reuseDisposeBag)
         
         view.layoutButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext{[weak view, weak self] in
+            .drive(onNext: {[weak view, weak self] in
                 self?.toggleLayout(view?.layoutButton)
-            }
+            })
             .addDisposableTo(view.reuseDisposeBag)
         
         return view

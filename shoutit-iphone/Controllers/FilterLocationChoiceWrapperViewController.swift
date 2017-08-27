@@ -43,11 +43,11 @@ final class FilterLocationChoiceWrapperViewController: UIViewController {
     
     fileprivate func setupRX() {
         backButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext{[unowned self] in
-                self.pop()
-            }
+            .drive(onNext: { [weak self] in
+                self?.pop()
+            })
             .addDisposableTo(disposeBag)
     }
 }

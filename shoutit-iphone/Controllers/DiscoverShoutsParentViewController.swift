@@ -48,9 +48,9 @@ final class DiscoverShoutsParentViewController: UIViewController {
     }
     
     private func setupRX() {
-        searchButton.rx_tap
+        searchButton.rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.flowDelegate?.showSearchInContext(.DiscoverShouts(item: self.viewModel.discoverItem))
             }
             .addDisposableTo(disposeBag)

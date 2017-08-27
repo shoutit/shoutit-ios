@@ -44,10 +44,10 @@ class EditPageTableViewController: UITableViewController {
         pickerSettings.allowsVideos = false
         let controller = MediaPickerController(delegate: self, settings: pickerSettings)
         
-        controller.presentingSubject.observeOn(MainScheduler.instance).subscribeNext {[weak self] controller in
+        controller.presentingSubject.observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] controller in
             guard let controller = controller else { return }
-            self?.presentViewController(controller, animated: true, completion: nil)
-            }.addDisposableTo(self.disposeBag)
+            self?.present(controller, animated: true, completion: nil)
+            }).addDisposableTo(self.disposeBag)
         
         return controller
         }()
@@ -103,50 +103,54 @@ class EditPageTableViewController: UITableViewController {
     fileprivate func setupRX() {
         
         cancelBarButtonItem
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.dismiss(animated: true, completion: nil)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.coverButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.uploadType = .cover
                 self.mediaPickerController.showMediaPickerController()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         headerView.avatarButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.uploadType = .avatar
                 self.mediaPickerController.showMediaPickerController()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         saveBarButtonItem
-            .rx_tap
+            .rx.tap
             .flatMapFirst {[unowned self] () -> Observable<EditPageTableViewModel.OperationStatus> in
                 return self.viewModel.save()
             }
-            .observeOn(MainScheduler.instance).subscribeNext {[weak self] (status) in
+            .observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] (status) in
                 switch status {
                 case .error(let error):
                     self?.showError(error)
                 case .progress(let show):
                     if show {
-                        MBProgressHUD.showAdded(to: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
                     } else {
-                        MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+                        if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
                     }
                 case .ready:
                     self?.dismiss(animated: true, completion: nil)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }
@@ -178,11 +182,11 @@ extension EditPageTableViewController {
                 cell.textField.keyboardType = .phonePad
             }
             cell.textField
-                .rx_text
+                .rx.text
                 .asDriver()
-                .driveNext{[unowned self] (text) in
+                .drive(onNext: { [unowned self] (text) in
                     self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                }
+                })
                 .addDisposableTo(cell.disposeBag)
             
         case .richText(let value, let placeholder, _):
@@ -190,23 +194,23 @@ extension EditPageTableViewController {
             
             cell.setContent(value)
             cell.placeholderLabel.text = placeholder
-            cell.textView.rx_text
+            cell.textView.rx.text
                 .observeOn(MainScheduler.instance)
-                .distinctUntilChanged()
-                .subscribeNext{[unowned self] (text) in
+                .distinctUntilChanged( { $0 == $1 } )
+                .subscribe(onNext: {[unowned self] (text) in
                     if cell.isEditingText == false { return }
                     self.tableView.beginUpdates()
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text as AnyObject)
                     self.tableView.endUpdates()
-                }
+                })
                 .addDisposableTo(cell.disposeBag)
         case .switch(let value, let placeholder, _):
                 let cell = cell as! EditPageSwitchTableViewCell
                 cell.switchButton.isOn = value
                 cell.placeholderLabel.text = placeholder
             
-                cell.switchButton.rx_controlEvent(.valueChanged).asDriver().driveNext({ (x) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: cell.switchButton.isOn)
+                cell.switchButton.rx.controlEvent(.valueChanged).asDriver().drive(onNext: { (x) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: cell.switchButton.isOn as AnyObject)
                 }).addDisposableTo(cell.disposeBag)
         default:
             return cell
@@ -248,16 +252,16 @@ extension EditPageTableViewController: MediaPickerControllerDelegate {
         
         task.status
             .asDriver()
-            .driveNext{[weak self] (status) in
+            .drive(onNext: { [weak self] (status) in
                 self?.headerView.hydrateProgressView(progressType, withStatus: status)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         task.progress
             .asDriver()
-            .driveNext{[weak progressView] (progress) in
+            .drive(onNext: {[weak progressView] (progress) in
                 progressView?.setProgress(progress, animated: true)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         self.uploadType = nil

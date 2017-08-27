@@ -162,17 +162,17 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     func setupObservers() {
         
         setupKeyboardOffsetNotifcationObserver()
-        _ = searchBar.rx_text.bindTo(viewModel.searchTextObservable).addDisposableTo(disposeBag)
+        _ = searchBar.rx.text.bind(to: viewModel.searchTextObservable).addDisposableTo(disposeBag)
 
         viewModel.finalObservable?
-            .bindTo(tableView.rx_itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
+            .bind(to: tableView.rx.itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
                 cell.textLabel?.text = "\(element.description!)"
             }.addDisposableTo(disposeBag)
         
         
-        tableView.rx_modelSelected(GooglePlaces.PlaceAutocompleteResponse.Prediction.self)
+        tableView.rx.modelSelected(GooglePlaces.PlaceAutocompleteResponse.Prediction.self)
             .asDriver()
-            .driveNext {[weak self] selectedLocation in
+            .drive(onNext: { [weak self] selectedLocation in
                 
                 guard let `self` = self else { return }
                 
@@ -189,16 +189,16 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
                         let params = GeocodeParams(latitude: place!.geometryLocation!.latitude, longitude: place!.geometryLocation!.longitude)
                         return APIMiscService.geocode(params)
                     }
-                    .subscribeNext{ [weak self] (address) -> Void in
+                    .subscribe(onNext: { [weak self] (address) -> Void in
                         self?.finishWithAddress(address)
-                    }
+                    })
                     .addDisposableTo(self.disposeBag)
-            }
+            })
             .addDisposableTo(disposeBag)
 
-        Account.sharedInstance.userSubject.subscribeNext { (_) in
+        Account.sharedInstance.userSubject.subscribe(onNext: { (_) in
             self.loadInitialState()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     func finishWithAddress(_ address: Address) {
@@ -211,23 +211,23 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
         let params = CoordinateParams(coordinates: coordinates)
         
         if case .some(.page(_,_)) = Account.sharedInstance.loginState {
-            APILocationService.updateLocationForPage(username, withParams: params).subscribeNext {[weak self] (_) in
+            APILocationService.updateLocationForPage(username, withParams: params).subscribe(onNext: {[weak self] (_) in
                 if let finish = self?.finishedBlock {
                     self?.searchBar.text = ""
                     self?.hideProgressHUD()
                     finish(true, address)
                 }
-                }.addDisposableTo(disposeBag)
+                }).addDisposableTo(disposeBag)
             
             return
         }
         
-        APILocationService.updateLocationForUser(username, withParams: params).subscribeNext {[weak self] (_) in
+        APILocationService.updateLocationForUser(username, withParams: params).subscribe(onNext: {[weak self] (_) in
             if let finish = self?.finishedBlock {
                 self?.searchBar.text = ""
                 self?.hideProgressHUD()
                 finish(true, address)
             }
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
 }

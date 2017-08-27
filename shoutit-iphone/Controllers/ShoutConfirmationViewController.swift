@@ -45,26 +45,26 @@ final class ShoutConfirmationViewController: UIViewController {
             let alert = rate.promptHelpfulAlert({ [weak self] (decision) in
                 if decision == true {
                     let alert = rate.promptRateAlert({ (rate) in })
-                    self?.presentViewController(alert, animated: true, completion: nil)
+                    self?.present(alert, animated: true, completion: nil)
                 } else {
                     let alert = rate.promptFeedbackAlert({ (feedback) in
-                        if feedback { UserVoice.presentUserVoiceContactUsFormForParentViewController(self) }
+                        if feedback { UserVoice.presentContactUsForm(forParentViewController: self) }
                     })
-                    self?.presentViewController(alert, animated: true, completion: nil)
+                    self?.present(alert, animated: true, completion: nil)
                 }
                 })
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
     fileprivate func setupRx() {
         
-        shareButton.rx_tap
+        shareButton.rx.tap
             .asDriver()
-            .driveNext{[unowned self] in
-                self.displayShareSheet()
-            }
+            .drive(onNext: { [weak self] in
+                self?.displayShareSheet()
+            })
             .addDisposableTo(disposeBag)
     }
     

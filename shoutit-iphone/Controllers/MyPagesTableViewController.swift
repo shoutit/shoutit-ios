@@ -61,7 +61,7 @@ class MyPagesTableViewController: UITableViewController {
         
         viewModel.pager.state
             .asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 switch state {
                 case .idle:
                     break
@@ -78,7 +78,7 @@ class MyPagesTableViewController: UITableViewController {
                     self?.tableViewPlaceholder.showMessage(error.sh_message)
                 }
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -159,7 +159,7 @@ private extension MyPagesTableViewController {
             switch event {
             case .next(let detailedPage):
                 Account.sharedInstance.switchToPage(detailedPage)
-            case .Error(let error):
+            case .error(let error):
                 self?.showError(error)
             case .completed:
                 return

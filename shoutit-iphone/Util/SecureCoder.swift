@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import Argo
-import Ogra
+import JSONCodable
 
 final class SecureCoder {
     
     // MARK: - WRITE
     
-    static func writeObject<T: Encodable>(_ object: T, toFileAtPath path: String) {
+    static func writeObject<T: JSONEncodable>(_ object: T, toFileAtPath path: String) {
         let json = object.encode()
         let dictionary = json.JSONObject()
         let success = NSKeyedArchiver.archiveRootObject(dictionary, toFile: path)
@@ -23,7 +22,7 @@ final class SecureCoder {
     
     // MARK: - READ
     
-    static func readObjectFromFile<T: Decodable>(_ path: String) -> T? where T == T.DecodedType {
+    static func readObjectFromFile<T: JSONDecodable>(_ path: String) -> T? where T == T.DecodedType {
         
         guard let contents = NSKeyedUnarchiver.unarchiveObject(withFile: path) else {
             return nil
@@ -40,7 +39,7 @@ final class SecureCoder {
     
     // MARK: - TO DATA
     
-    static func dataWithJsonConvertible<T: Encodable>(_ object: T) -> Data {
+    static func dataWithJsonConvertible<T: JSONEncodable>(_ object: T) -> Data {
         
         let json = object.encode()
         let dictionary = json.JSONObject()
@@ -49,11 +48,13 @@ final class SecureCoder {
     
     // MARK: - FROM DATA
     
-    static func objectWithData<T: Decodable>(_ data: Data) -> T? where T == T.DecodedType {
+    static func objectWithData<T: JSONDecodable>(_ data: Data) -> T? {
         
         guard let contents = NSKeyedUnarchiver.unarchiveObject(with: data) else {
             return nil
         }
+        
+        
         
         let decoded: Decoded<T> = Argo.decode(contents)
         return decoded.value

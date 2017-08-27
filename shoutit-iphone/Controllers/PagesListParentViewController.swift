@@ -75,34 +75,34 @@ class PagesListParentViewController: UIViewController, ContainerController {
     fileprivate func setupRX() {
         
         listChoiceSegmentedControl
-            .rx_value
+            .rx.value
             .asDriver()
-            .driveNext { [unowned self] (value) in
+            .drive(onNext: { [unowned self] (value) in
                 if value == 0 {
                     self.changeContentTo(self.myPagesViewController)
                 }
                 else if value == 1 {
                     self.changeContentTo(self.publicPagesViewController)
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         createPageButton
-            .rx_tap
-            .asDriver().driveNext { [weak self] in
+            .rx.tap
+            .asDriver().drive(onNext: { [weak self] in
                 self?.showCreatePageView()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
     fileprivate func showCreatePageView() {
         let viewModel = LoginWithEmailViewModel()
         
-        viewModel.loginSuccessSubject.subscribeNext { (created) in
+        viewModel.loginSuccessSubject.subscribe(onNext: { (created) in
             if created {
                 self.navigationController?.popToViewController(self, animated: true)
             }
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         self.flowDelegate?.showCreatePage(viewModel)
     }

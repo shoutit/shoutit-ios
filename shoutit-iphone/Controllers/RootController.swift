@@ -69,10 +69,10 @@ final class RootController: UIViewController, ContainerController {
 //                return false
 //            }
             .observeOn(MainScheduler.instance)
-            .subscribeNext {_ in
+            .subscribe(onNext: {_ in
                 self.sh_invalidateControllersCache()
                 self.openItem(.Home)
-            }
+            })
             .addDisposableTo(disposeBag)
         
     }
@@ -123,16 +123,16 @@ final class RootController: UIViewController, ContainerController {
                 let alert = rate.promptRateAlert({ (rate) in })
                 
                 
-                currentFlowController?.navigationController.presentViewController(alert, animated: true, completion: nil)
+                currentFlowController?.navigationController.present(alert, animated: true, completion: nil)
             } else {
                 let alert = rate.promptFeedbackAlert({ (feedback) in
                     if feedback { UserVoice.presentUserVoiceContactUsFormForParentViewController(currentFlowController?.navigationController) }
                 })
-                currentFlowController?.navigationController.presentViewController(alert, animated: true, completion: nil)
+                currentFlowController?.navigationController.present(alert, animated: true, completion: nil)
             }
             })
         
-        currentFlowController.navigationController.presentViewController(alert, animated: true, completion: nil)
+        currentFlowController.navigationController.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Status bar
@@ -355,24 +355,24 @@ extension RootController {
     fileprivate func registerForNotifications() {
         
         NotificationCenter.default
-            .rx_notification(Constants.Notification.UserDidLogoutNotification)
-            .subscribeNext { [unowned self] notification in
+            .rx.notification(Constants.Notification.UserDidLogoutNotification)
+            .subscribe(onNext: { [unowned self] notification in
                 self.openItem(.Home)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         NotificationCenter.default
-            .rx_notification(Constants.Notification.ToggleMenuNotification)
-            .subscribeNext { notification in
+            .rx.notification(Constants.Notification.ToggleMenuNotification)
+            .subscribe(onNext: { notification in
                 self.toggleMenuAction()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         NotificationCenter.default
-            .rx_notification(Constants.Notification.IncomingCallNotification)
-            .subscribeNext { notification in
+            .rx.notification(Constants.Notification.IncomingCallNotification)
+            .subscribe(onNext: { notification in
                 self.incomingCall(notification)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

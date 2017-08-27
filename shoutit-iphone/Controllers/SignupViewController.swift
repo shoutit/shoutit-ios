@@ -68,40 +68,45 @@ final class SignupViewController: UITableViewController {
         
         // user actions
         switchToLoginButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.delegate?.presentLogin()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         createPageButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.delegate?.presentCreatePage()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         signupButton
-            .rx_tap
-            .filter(signupActionFilterClosure).subscribeNext{
-                MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
+            .rx.tap
+            .filter(signupActionFilterClosure).subscribe(onNext: {
+                if let view = self.parent?.view {
+                    MBProgressHUD.showAdded(to: view, animated: true)
+                }
+                
                 self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, invitationCode: Account.sharedInstance.invitationCode)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // return button
-        nameTextField.rx_controlEvent(.editingDidEndOnExit).subscribeNext{[weak self] in
+        nameTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { [weak self] in
             self?.emailTextField.becomeFirstResponder()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        emailTextField.rx_controlEvent(.editingDidEndOnExit).subscribeNext{[weak self] in
+        emailTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { [weak self] in
             self?.passwordTextField.becomeFirstResponder()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        passwordTextField.rx_controlEvent(.editingDidEndOnExit).filter(signupActionFilterClosure).subscribeNext{[unowned self] in
-            MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
+        passwordTextField.rx.controlEvent(.editingDidEndOnExit).filter(signupActionFilterClosure).subscribe(onNext: { [unowned self] in
+            if let view = self.parent?.view {
+                MBProgressHUD.showAdded(to: view, animated: true)
+            }
             self.viewModel.signupWithName(self.nameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, invitationCode: Account.sharedInstance.invitationCode)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         // add validators
         nameTextField.addValidator(ShoutitValidator.validateName, withDisposeBag: disposeBag)
@@ -136,8 +141,8 @@ final class SignupViewController: UITableViewController {
         }
         
         // set attributed
-        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(termsResponder, to: AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)], range: termsRange)
-        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(policyResponder, to: AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)], range: policyRange)
+        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(termsResponder, to: AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(value: NSUnderlineStyle.styleSingle.rawValue)], range: termsRange)
+        attributedString.setAttributes([RLTapResponderAttributeName : unsafeBitCast(policyResponder, to: AnyObject.self), NSUnderlineStyleAttributeName : NSNumber(value: NSUnderlineStyle.styleSingle.rawValue)], range: policyRange)
         
         // assign string
         termsAndPolicyLabel.setAttributedText(attributedString, withTruncation: false)

@@ -30,9 +30,9 @@ class HomeShoutsViewController : ShoutsCollectionViewController {
             return oldUser?.id == newUser?.id && oldUser?.location.address == newUser?.location.address
         }
         .skip(1)
-        .subscribeNext { [weak self] (user) in
+        .subscribe(onNext: { [weak self] (user) in
                 self?.viewModel.reloadContent()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

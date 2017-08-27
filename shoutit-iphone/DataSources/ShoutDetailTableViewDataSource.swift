@@ -87,9 +87,9 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
             buttonCell.button.setTitle(title, for: UIControlState())
             buttonCell.reuseDisposeBag = DisposeBag()
             buttonCell.button
-                .rx_tap
+                .rx.tap
                 .asDriver()
-                .driveNext{[unowned self] in
+                .drive(onNext: { [unowned self] in
                     switch type {
                     case .policies:
                         break
@@ -97,7 +97,7 @@ final class ShoutDetailTableViewDataSource: NSObject, UITableViewDataSource {
                         guard let profile = self.viewModel.shout.user else { return }
                         self.controller.flowDelegate?.showProfile(profile)
                     }
-                }
+                })
                 .addDisposableTo(buttonCell.reuseDisposeBag!)
             
         case .otherShouts:

@@ -19,7 +19,7 @@ final class ChangeLocationViewModel: AnyObject {
     required init() {
         finalObservable = searchTextObservable
             .debounce(0.3, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
+            .distinctUntilChanged( { $0 == $1 })
             .flatMap { txt in
                 return self.geocoder.rx_response(txt)
             }

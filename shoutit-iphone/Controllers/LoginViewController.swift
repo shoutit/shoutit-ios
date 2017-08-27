@@ -39,8 +39,8 @@ final class LoginViewController: UITableViewController {
         setupRX()
         setupSwitchToSignupLabel()
         
-        Appsee.markViewAsSensitive(emailTextField)
-        Appsee.markViewAsSensitive(passwordTextField)
+        Appsee.markView(asSensitive: emailTextField)
+        Appsee.markView(asSensitive: passwordTextField)
     }
     
     // MARK: - Setup
@@ -62,31 +62,35 @@ final class LoginViewController: UITableViewController {
         }
         
         // response to user actions
-        switchToSignupButton.rx_tap.subscribeNext{[weak self] in
+        switchToSignupButton.rx.tap.subscribe(onNext: { [weak self] in
             self?.delegate?.presentSignup()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        loginButton.rx_tap.filter(loginActionFilterClosure).subscribeNext{[unowned self] in
-            MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
-            self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
-        }.addDisposableTo(disposeBag)
-        
-        forgotPasswordButton.rx_tap
-            .asDriver()
-            .driveNext {[weak self] in
-                self?.delegate?.presentResetPassword()
+        loginButton.rx.tap.filter(loginActionFilterClosure).subscribe(onNext: { [unowned self] in
+            if let view = self.parent?.view {
+                MBProgressHUD.showAdded(to: view, animated: true)
             }
+            self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
+        }).addDisposableTo(disposeBag)
+        
+        forgotPasswordButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.delegate?.presentResetPassword()
+            })
             .addDisposableTo(disposeBag)
         
         // on return actions
-        emailTextField.rx_controlEvent(.editingDidEndOnExit).subscribeNext{[weak self] in
+        emailTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: { [weak self] in
             self?.passwordTextField.becomeFirstResponder()
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        passwordTextField.rx_controlEvent(.editingDidEndOnExit).filter(loginActionFilterClosure).subscribeNext{[unowned self] in
-            MBProgressHUD.showAdded(to: self.parent?.view, animated: true)
+        passwordTextField.rx.controlEvent(.editingDidEndOnExit).filter(loginActionFilterClosure).subscribe(onNext: { [unowned self] in
+            if let view = self.parent?.view {
+                MBProgressHUD.showAdded(to: view, animated: true)
+            }
             self.viewModel.loginWithEmail(self.emailTextField.text!, password: self.passwordTextField.text!)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
         // validation
         emailTextField.addValidator(ShoutitValidator.validateUniversalEmailOrUsernameField, withDisposeBag: disposeBag)

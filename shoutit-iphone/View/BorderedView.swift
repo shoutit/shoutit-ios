@@ -12,8 +12,8 @@ final class BorderedView: UIView {
     
     // boreders
     var borders: UIRectEdge = .all
-    @IBInspectable var  borderColor: UIColor = UIColor(shoutitColor: .cellBackgroundGrayColor)
-    @IBInspectable var cornerRadius: CGFloat = 2.0
+    @IBInspectable var  sh_borderColor: UIColor = UIColor(shoutitColor: .cellBackgroundGrayColor)
+    @IBInspectable var sh_cornerRadius: CGFloat = 2.0
     
     override func awakeFromNib() {
         super.awakeFromNib()

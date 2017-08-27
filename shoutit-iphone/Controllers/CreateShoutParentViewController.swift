@@ -185,7 +185,9 @@ class CreateShoutParentViewController: UIViewController {
         
         APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { [weak self] (shout) -> Void in
             
-            MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+            if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
             
             let confirmation = Wireframe.shoutConfirmationController()
             
@@ -195,7 +197,9 @@ class CreateShoutParentViewController: UIViewController {
             
             }, onError: { [weak self] (error) -> Void in
                 
-                MBProgressHUD.hideAllHUDs(for: self?.view, animated: true)
+                if let view = self?.view {
+                            MBProgressHUD.hideAllHUDs(for: view, animated: true)
+                        }
                 self?.showError(error)
                 
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)

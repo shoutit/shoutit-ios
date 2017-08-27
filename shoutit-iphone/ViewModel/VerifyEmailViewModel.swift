@@ -23,7 +23,7 @@ final class VerifyEmailViewModel {
     
     // RX
     let successSubject: PublishSubject<String> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     fileprivate let disposeBag = DisposeBag()
     
@@ -37,7 +37,7 @@ final class VerifyEmailViewModel {
                     self?.profile = detailedProfile
                     Account.sharedInstance.updateUserWithModel(detailedProfile)
                     self?.successSubject.onNext(success.message)
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break
@@ -63,7 +63,7 @@ final class VerifyEmailViewModel {
                         let error = LightError(userMessage: message)
                         self?.errorSubject.onNext(error)
                     }
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

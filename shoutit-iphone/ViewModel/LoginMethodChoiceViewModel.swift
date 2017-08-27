@@ -40,7 +40,7 @@ final class LoginMethodChoiceViewModel {
                     self.authenticateWithParameters(params)
                 case .Error(LocalError.cancelled):
                     self.progressHUDSubject.onNext(false)
-                case .Error(let error):
+                case .error(let error):
                     self.errorSubject.onNext(error)
                     self.progressHUDSubject.onNext(false)
                 default:
@@ -64,7 +64,7 @@ final class LoginMethodChoiceViewModel {
                 case .next(let authData, let user):
                     try! Account.sharedInstance.loginUser(user, withAuthData: authData)
                     self?.loginSuccessSubject.onNext(authData.isNewSignUp)
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

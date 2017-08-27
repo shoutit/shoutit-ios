@@ -49,22 +49,22 @@ final class CategoryFiltersViewController: UIViewController {
     
     fileprivate func setupRx() {
         
-        backButton.rx_tap
+        backButton.rx.tap
             .asDriver()
-            .driveNext{[unowned self] in
+            .drive(onNext: { [unowned self] in
                 self.completionBlock?(self.viewModel.selectedFilterValues())
                 self.pop()
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        resetButton.rx_tap
+        resetButton.rx.tap
             .asDriver()
-            .driveNext{[unowned self] in
+            .drive(onNext: { [unowned self] in
                 for i in 0..<self.viewModel.cellViewModels.count {
                     self.viewModel.cellViewModels[i].selected = false
                 }
                 self.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
 }

@@ -68,21 +68,21 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
     fileprivate func setupRX() {
         
         viewModel.state.asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 self?.tableView.reloadData()
                 self?.tableView.reloadEmptyDataSet()
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        tableView.rx_itemSelected
-            .subscribeNext{[unowned self] (indexPath) in
+        tableView.rx.itemSelected
+            .subscribe(onNext: {[unowned self] (indexPath) in
                 
                 let cellViewModel = self.sectionViewModel.cells[indexPath.row]
                 if let profile = cellViewModel.item as? Profile {
                     self.flowDelegate?.showProfile(profile)
                 }
                 
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -140,9 +140,9 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         cell.listenButton.setImage(image, for: UIControlState())
         
         cell.reuseDisposeBag = DisposeBag()
-        cell.listenButton.rx_tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: ErrorProtocol?)> in
+        cell.listenButton.rx.tap.flatMapFirst({ () -> Observable<(successMessage: String?, error: Error?)> in
             return cellViewModel.listen()
-        }).subscribeNext({[weak self] (successMessage, error) in
+        }).subscribe(onNext:{[weak self] (successMessage, error) in
             if let successMessage = successMessage {
                 self?.showSuccessMessage(successMessage)
                 

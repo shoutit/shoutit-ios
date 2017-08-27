@@ -8,9 +8,9 @@
 
 import Foundation
 import Alamofire
-import Argo
 import RxSwift
 import ShoutitKit
+import JSONCodable
 
 final class APIProfileService {
     
@@ -60,7 +60,7 @@ final class APIProfileService {
         return APIGenericService.basicRequestWithMethod(.patch, url: url, params: params, encoding: JSONEncoding.default)
     }
     
-    static func updateAPNsWithUsername<T: Decodable>(_ username: String, withParams params: APNParams) -> Observable<T> where T == T.DecodedType, T: User {
+    static func updateAPNsWithUsername<T: JSONDecodable>(_ username: String, withParams params: APNParams) -> Observable<T> where T: User {
         let url = APIManager.baseURL + "/profiles/\(username)"
         return APIGenericService.requestWithMethod(.patch, url: url, params: params, encoding: JSONEncoding.default)
     }

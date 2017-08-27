@@ -30,7 +30,7 @@ extension ConversationViewController {
             // override issue where url highlighting appears after cell reloads
             cell.messageLabel.setNeedsLayout()
             cell.messageLabel.layoutIfNeeded()
-            cell.messageLabel.enabled = true
+            cell.messageLabel.isEnabled = true
         case let cell as ConversationPictureCell:
             setThumbWithMessageAttachment(message.attachment(), onCell: cell)
         case let cell as ConversationShoutCell:
@@ -76,10 +76,10 @@ private extension ConversationViewController {
             cell.hydrateAvatarImageView(imageView, withAvatarPath: message.user?.imagePath)
             if let profile = message.user {
                 cell.avatarButton?
-                    .rx_tap
-                    .asDriver().driveNext{ [weak self] in
+                    .rx.tap
+                    .asDriver().drive(onNext: { [weak self] in
                         self?.flowDelegate?.showProfile(profile)
-                    }
+                    })
                     .addDisposableTo(cell.reuseDisposeBag)
             }
         }

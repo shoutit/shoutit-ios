@@ -18,9 +18,9 @@ extension GooglePlaces {
         public var htmlAttributions: [String] = []
         
         public init() {}
-        public init?(_ map: Map) { }
+        public init?(map: Map) { }
         
-        public mutating func mapping(_ map: Map) {
+        public mutating func mapping(map: Map) {
             status <- (map["status"], EnumTransform())
             errorMessage <- map["error_message"]
             
@@ -93,9 +93,9 @@ extension GooglePlaces {
             public var website: String?
             
             public init() {}
-            public init?(_ map: Map) { }
+            public init?(map: Map) { }
             
-            public mutating func mapping(_ map: Map) {
+            public mutating func mapping(map: Map) {
                 addressComponents <- map["address_components"]
                 formattedAddress <- map["formatted_address"]
                 formattedPhoneNumber <- map["formatted_phone_number"]
@@ -134,9 +134,9 @@ extension GooglePlaces {
                 public var shortName: String?
                 
                 public init() {}
-                public init?(_ map: Map) { }
+                public init?(map: Map) { }
                 
-                public mutating func mapping(_ map: Map) {
+                public mutating func mapping(map: Map) {
                     types <- map["types"]
                     longName <- map["long_name"]
                     shortName <- map["short_name"]
@@ -154,9 +154,9 @@ extension GooglePlaces {
                 public var weekdayText: [String] = []
                 
                 public init() {}
-                public init?(_ map: Map) { }
+                public init?(map: Map) { }
                 
-                public mutating func mapping(_ map: Map) {
+                public mutating func mapping(map: Map) {
                     openNow <- map["open_now"]
                     periods <- map["periods"]
                     weekdayText <- map["weekday_text"]
@@ -170,9 +170,9 @@ extension GooglePlaces {
                     public var close: DayTime?
                     
                     public init() {}
-                    public init?(_ map: Map) { }
+                    public init?(map: Map) { }
                     
-                    public mutating func mapping(_ map: Map) {
+                    public mutating func mapping(map: Map) {
                         open <- map["open"]
                         close <- map["close"]
                     }
@@ -185,9 +185,9 @@ extension GooglePlaces {
                         public var time: Int?
                         
                         public init() {}
-                        public init?(_ map: Map) { }
+                        public init?(map: Map) { }
                         
-                        public mutating func mapping(_ map: Map) {
+                        public mutating func mapping(map: Map) {
                             day <- map["day"]
                             time <- map["time"]
                         }
@@ -209,9 +209,9 @@ extension GooglePlaces {
                 public var htmlAttributions: [String] = []
                 
                 public init() {}
-                public init?(_ map: Map) { }
+                public init?(map: Map) { }
                 
-                public mutating func mapping(_ map: Map) {
+                public mutating func mapping(map: Map) {
                     photoReference <- map["photo_reference"]
                     height <- map["height"]
                     width <- map["width"]
@@ -238,9 +238,9 @@ extension GooglePlaces {
                 public var scope: Scope?
                 
                 public init() {}
-                public init?(_ map: Map) { }
+                public init?(map: Map) { }
                 
-                public mutating func mapping(_ map: Map) {
+                public mutating func mapping(map: Map) {
                     placeID <- map["place_id"]
                     scope <- (map["scope"], EnumTransform())
                 }
@@ -292,9 +292,9 @@ extension GooglePlaces {
                 public var zagatSelected: Bool = false
                 
                 public init() {}
-                public init?(_ map: Map) { }
+                public init?(map: Map) { }
                 
-                public mutating func mapping(_ map: Map) {
+                public mutating func mapping(map: Map) {
                     aspects <- map["aspects"]
                     authorName <- map["author_name"]
                     authorURL <- (map["author_url"], URLTransform())
@@ -315,9 +315,9 @@ extension GooglePlaces {
                     public var rating: Float?
                     
                     public init() {}
-                    public init?(_ map: Map) { }
+                    public init?(map: Map) { }
                     
-                    public mutating func mapping(_ map: Map) {
+                    public mutating func mapping(map: Map) {
                         type <- map["type"]
                         rating <- map["rating"]
                     }
@@ -325,7 +325,7 @@ extension GooglePlaces {
                     /**
                      the name of the aspect that is being rated.
                      */
-                    public enum Type: String {
+                    public enum `Type`: String {
                         case Appeal = "appeal"
                         case Atmosphere = "atmosphere"
                         case Decor = "decor"

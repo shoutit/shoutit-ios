@@ -88,7 +88,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
         }
     }
     
-    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, listnersCount: Int?, error: ErrorProtocol?)> {
+    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, listnersCount: Int?, error: Error?)> {
         
         return Observable.create{ (observer) -> Disposable in
             
@@ -100,7 +100,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
                 case .next(let success):
                     observer.onNext((listening: self.isListening, successMessage: success.message, listnersCount: success.newListnersCount, error: nil))
                     observer.onCompleted()
-                case .Error(let error):
+                case .error(let error):
                     self.isListening = !self.isListening
                     observer.onNext((listening: self.isListening, successMessage: nil, listnersCount: nil, error: error))
                     observer.onError(error)

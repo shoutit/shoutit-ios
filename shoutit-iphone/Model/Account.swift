@@ -249,7 +249,7 @@ final class Account {
     }
     
     func logout() throws {
-        APIProfileService.nullifyPushTokens().subscribeNext{}.addDisposableTo(disposeBag)
+        APIProfileService.nullifyPushTokens().subscribe(onNext: {}).addDisposableTo(disposeBag)
         try clearUserData()
         GIDSignIn.sharedInstance().signOut()
         facebookManager.logout()
@@ -286,7 +286,7 @@ extension Account {
             switch event {
             case .next(let profile):
                 self.loginState = .logged(user: profile)
-            case .Error(let error): debugPrint(error)
+            case .error(let error): debugPrint(error)
             default: break
             }
             }.addDisposableTo(disposeBag)

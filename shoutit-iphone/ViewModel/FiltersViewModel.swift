@@ -191,7 +191,7 @@ private extension FiltersViewModel {
                 case .next(let categories):
                     self?.categories.value = .loaded(values: categories)
                     self?.reloadSubject.onNext()
-                case .Error(let error):
+                case .error(let error):
                     debugPrint(error)
                     self?.categories.value = .cantLoadContent
                 default:
@@ -209,7 +209,7 @@ private extension FiltersViewModel {
                     self?.sortTypes.value = .loaded(values: sortTypes)
                     self?.handleSortDidLoad()
                     self?.reloadSubject.onNext()
-                case .Error(let error):
+                case .error(let error):
                     debugPrint(error)
                     self?.sortTypes.value = .cantLoadContent
                 default:

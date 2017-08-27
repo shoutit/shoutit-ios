@@ -67,19 +67,19 @@
             .share()
         
         mainItemObservable
-            .subscribeNext {[weak self] (mainItem) -> Void in
+            .subscribe(onNext: {[weak self] (mainItem) -> Void in
                 if let _ = mainItem {
                     self?.state.value = .loading
                 } else {
                     self?.state.value = .noItems
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
         
         dataSource
-            .subscribeNext {[weak self] (items) -> Void in
+            .subscribe(onNext: {[weak self] (items) -> Void in
                 self?.state.value = .loaded
-            }
+            })
             .addDisposableTo(disposeBag)
         
     }

@@ -85,43 +85,45 @@ final class PostSignupInterestsViewController: UIViewController {
                 }
             }
             .map{$1}
-            .bindTo(tableView.rx_itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
+            .bind(to: tableView.rx.itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
                 cell.nameLabel.text = element.category.name
                 if let path = element.category.icon, let url = path.toURL() {
-                    cell.iconImageView.kf_setImageWithURL(url, placeholderImage: nil)
+                    cell.iconImageView.kf.setImage(with:url, placeholderImage: nil)
                 }
                 cell.accessoryType = element.selected ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
             }
             .addDisposableTo(disposeBag)
         
         tableView
-            .rx_modelSelected(PostSignupInterestCellViewModel.self)
-            .subscribeNext { (cellViewModel) in
+            .rx.modelSelected(PostSignupInterestCellViewModel.self)
+            .subscribe(onNext: { (cellViewModel) in
                 cellViewModel.selected = !cellViewModel.selected
                 self.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // buttons
         
         skipButton
-            .rx_tap
-            .subscribeNext {[unowned self] in
+            .rx.tap
+            .subscribe(onNext: {[unowned self] in
                 self.loginDelegate?.didFinishLoginProcessWithSuccess(true)
-            }
+            })
             .addDisposableTo(disposeBag)
         
-        let nextTap = nextButton.rx_tap
+        let nextTap = nextButton.rx.tap
         nextTap
-            .subscribeNext{[unowned self] in
+            .subscribe(onNext:{[unowned self] in
                 MBProgressHUD.showAdded(to: self.view, animated: true)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         nextTap
             .flatMapLatest{self.viewModel.listenToSelectedCategories()}
-            .subscribe{[weak self] (event) in
-                MBProgressHUD.hide(for: self?.view, animated: true)
+                .subscribe(onNext: {[weak self] (event) in
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 switch event {
                 case .next:
                     if let simpleFlow = self?.flowSimpleDelegate{
@@ -133,12 +135,12 @@ final class PostSignupInterestsViewController: UIViewController {
                         return
                     }
                     self?.loginDelegate?.showPostSignupSuggestions()
-                case .Error(let error):
+                case .error(let error):
                     self?.showError(error)
                 default:
                     break
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

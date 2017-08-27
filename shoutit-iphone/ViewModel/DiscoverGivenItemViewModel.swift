@@ -23,19 +23,19 @@ final class DiscoverGivenItemViewModel: DiscoverViewModel {
         
         APIDiscoverService
             .discoverItems(forDiscoverItem: self.itemToShow)
-            .subscribeNext { [weak self] detailedItem -> Void in
+            .subscribe(onNext: { [weak self] detailedItem -> Void in
                 self?.items.on(.next((detailedItem.simpleForm(), detailedItem.children)))
                 let params = FilteredShoutsParams(discoverId: detailedItem.id, page: 1, pageSize: 4, skipLocation: true)
                 APIShoutsService.listShoutsWithParams(params)
                     .flatMap({ (result) -> Observable<[Shout]> in
                         return Observable.just(result.results)
                     })
-                    .subscribeNext{ [weak self] (shouts) -> Void in
+                    .subscribe(onNext: { [weak self] (shouts) -> Void in
                         self?.shouts.on(.next(shouts))
                         self?.adManager.handleNewShouts(shouts)
-                    }
+                    })
                     .addDisposableTo((self?.disposeBag)!)
-            }
+            })
             .addDisposableTo(disposeBag)
         
     }

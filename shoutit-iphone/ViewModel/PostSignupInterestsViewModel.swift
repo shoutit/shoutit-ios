@@ -50,7 +50,7 @@ final class PostSignupInterestsViewModel {
             case .next(let categories):
                 self?.categories.value = categories.map{PostSignupInterestCellViewModel(category: $0)}
                 self?.state.value = self?.categories.value.count > 0 ? .contentLoaded : .contentUnavailable
-            case .Error(let error):
+            case .error(let error):
                 self?.state.value = .error(error)
             default:
                 break

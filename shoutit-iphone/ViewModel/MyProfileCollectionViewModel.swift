@@ -46,12 +46,12 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
         listSection = listSectionWithModels([], isLoading: true)
         Account.sharedInstance.loginStateSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (loginState) in
+            .subscribe(onNext: {[weak self] (loginState) in
                 if case .some(.logged(let user)) = loginState {
                     self?.detailedUser = user
                     self?.reloadSubject.onNext()
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -80,7 +80,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                     self?.reloadSubject.onNext()
-                case .Error(let error):
+                case .error(let error):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
                     self?.reloadSubject.onNext()
                 default:
@@ -96,7 +96,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .next(let value):
                     self?.listSection = self?.listSectionWithModels(value, isLoading: false)
                     self?.reloadSubject.onNext()
-                case .Error(let error):
+                case .error(let error):
                     self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
                     self?.reloadSubject.onNext()
                 default:

@@ -34,11 +34,11 @@ class ConversationGroupWrapperViewController: UIViewController {
     fileprivate func setupRx() {
         
         createPublicChatButton
-            .rx_tap
+            .rx.tap
             .asDriver()
-            .driveNext {[weak self] in
+            .drive(onNext: { [weak self] in
                 self?.flowDelegate?.showCreatePublicChat()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

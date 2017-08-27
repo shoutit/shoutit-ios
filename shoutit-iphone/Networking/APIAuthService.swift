@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Argo
 import Alamofire
 import RxSwift
 import ShoutitKit
@@ -21,7 +20,7 @@ final class APIAuthService {
         return APIGenericService.requestWithMethod(.post, url: authResetPasswordURL, params: params, encoding: JSONEncoding.default)
     }
     
-    static func getOAuthToken<T: User>(_ params: AuthParams) -> Observable<(AuthData, T)> where T: Decodable, T == T.DecodedType {
+    static func getOAuthToken<T: User>(_ params: AuthParams) -> Observable<(AuthData, T)> {
         
         return Observable.create {(observer) -> Disposable in
             

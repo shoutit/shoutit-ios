@@ -102,7 +102,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .next(let value):
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
-                case .Error(let error):
+                case .error(let error):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
                 default:
                     break
@@ -116,7 +116,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
             case .next(let tags):
                 self?.listSection = self?.listSectionWithModels(tags, isLoading: false)
                 self?.reloadSubject.onNext(())
-            case .Error(let error):
+            case .error(let error):
                 self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
                 self?.reloadSubject.onNext(())
             default:

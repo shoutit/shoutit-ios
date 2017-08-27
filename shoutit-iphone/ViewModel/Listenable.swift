@@ -17,7 +17,7 @@ protocol Listenable: class {
 
 extension Listenable {
     
-    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, newListnersCount: Int?, error: ErrorProtocol?)> {
+    func toggleIsListening() -> Observable<(listening: Bool, successMessage: String?, newListnersCount: Int?, error: Error?)> {
         
         return Observable.create{[weak self] (observer) -> Disposable in
             
@@ -34,7 +34,7 @@ extension Listenable {
                     
                     observer.onNext((listening: self.isListening, successMessage: success.message, newListnersCount:success.newListnersCount, error: nil))
                     observer.onCompleted()
-                case .Error(let error):
+                case .error(let error):
                     self.isListening = !self.isListening
                     observer.onNext((listening: self.isListening, successMessage: nil, newListnersCount:nil, error: error))
                     observer.onError(error)

@@ -60,75 +60,79 @@ final class LoginMethodChoiceViewController: UIViewController {
         
         // user actions observers
         loginWithFacebookButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.viewModel.loginWithFacebookFromViewController(self)
-            }
+            })
             .addDisposableTo(disposeBag)
         
         loginWithGoogleButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.viewModel.loginWithGoogle()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         loginWithEmailButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showLoginWithEmail()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         feedbackButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showFeedbackInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         helpButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showHelpInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         aboutButton
-            .rx_tap
-            .subscribeNext{[unowned self] in
+            .rx.tap
+            .subscribe(onNext: { [unowned self] in
                 self.flowDelegate?.showAboutInterface()
-            }
+            })
             .addDisposableTo(disposeBag)
         
         // view model observers
         
-        viewModel.errorSubject.subscribeNext {[weak self] (error) -> Void in
+        viewModel.errorSubject.subscribe(onNext: {[weak self] (error) -> Void in
             self?.showError(error)
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        viewModel.loginSuccessSubject.subscribeNext {[weak self] (isNewSignup) -> Void in
+        viewModel.loginSuccessSubject.subscribe(onNext: {[weak self] (isNewSignup) -> Void in
             if isNewSignup {
                 self?.flowDelegate?.showPostSignupInterests()
             } else {
                 self?.flowDelegate?.didFinishLoginProcessWithSuccess(true)
             }
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
         
-        viewModel.progressHUDSubject.subscribeNext{[weak self](show) in
+        viewModel.progressHUDSubject.subscribe(onNext: { [weak self](show) in
             if show {
-                MBProgressHUD.showAdded(to: self?.view, animated: true)
+                if let view = self?.view {
+                            MBProgressHUD.showAdded(to: view, animated: true)
+                        }
             } else {
-                MBProgressHUD.hide(for: self?.view, animated: true)
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
             }
-        }.addDisposableTo(disposeBag)
+        }).addDisposableTo(disposeBag)
     }
 }
 
 extension LoginMethodChoiceViewController: GIDSignInUIDelegate {
     
-    func signIn(_ signIn: GIDSignIn!,
-         presentViewController viewController: UIViewController!) {
+    func sign(_ signIn: GIDSignIn!,
+              present viewController: UIViewController!) {
         if let viewController = viewController as? UINavigationController {
             viewController.navigationBar.tintColor = UIColor(shoutitColor: .primaryGreen)
             viewController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor(shoutitColor: .primaryGreen)]
@@ -136,8 +140,8 @@ extension LoginMethodChoiceViewController: GIDSignInUIDelegate {
         self.present(viewController, animated: true, completion: nil)
     }
     
-    func signIn(_ signIn: GIDSignIn!,
-         dismissViewController viewController: UIViewController!) {
+    func sign(_ signIn: GIDSignIn!,
+              dismiss viewController: UIViewController!) {
         self.dismiss(animated: true, completion: nil)
     }
 }

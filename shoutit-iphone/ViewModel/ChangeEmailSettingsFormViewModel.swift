@@ -15,7 +15,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
     fileprivate let disposeBag = DisposeBag()
     let progressSubject: PublishSubject<Bool> = PublishSubject()
     let successSubject: PublishSubject<Success> = PublishSubject()
-    let errorSubject: PublishSubject<ErrorProtocol> = PublishSubject()
+    let errorSubject: PublishSubject<Error> = PublishSubject()
     
     let title = NSLocalizedString("Change email", comment: "Change Email screen title")
     var cellViewModels: [SettingsFormCellViewModel] = []
@@ -53,7 +53,7 @@ final class ChangeEmailSettingsFormViewModel: SettingsFormViewModel {
                 case .next(let user):
                     Account.sharedInstance.updateUserWithModel(user)
                     self?.successSubject.onNext(Success(message: NSLocalizedString("Email Changed", comment: "Change Email Success Message")))
-                case .Error(let error):
+                case .error(let error):
                     self?.errorSubject.onNext(error)
                 default:
                     break

@@ -13,14 +13,14 @@ import RxCocoa
 extension UITextField {
     
     func addNextTextField(_ textField: UITextField, withDisposeBag disposeBag: DisposeBag) {
-        self.rx_controlEvent(.editingDidEndOnExit)
-            .subscribeNext{
+        self.rx.controlEvent(.editingDidEndOnExit)
+            .subscribe(onNext: { (_) in
                 textField.becomeFirstResponder()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
-    func addOnReturnAction(_ action: (Void) -> Void, withDisposeBag disposeBag: DisposeBag) {
-        self.rx_controlEvent(.editingDidEndOnExit).subscribeNext(action).addDisposableTo(disposeBag)
+    func addOnReturnAction(_ action: @escaping (Void) -> Void, withDisposeBag disposeBag: DisposeBag) {
+        self.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext:action).addDisposableTo(disposeBag)
     }
 }

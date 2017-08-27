@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Argo
+import JSONCodable
 
 enum PusherEventType : String {
     
@@ -32,18 +32,18 @@ extension PTPusherEvent {
         return type
     }
     
-    func object<T: Decodable>() -> T? where T == T.DecodedType {
-        
-        let decoded: Decoded<T> = decode(self.data)
-
-        switch decoded {
-        case .Success(let object):
-            return object
-        case .Failure(let decodeError):
-            debugPrint("Could not parse pusher object \(decodeError)")
-            debugPrint(self.data)
-            return nil
-        }
-    }
+//    func object<T: Decodable>() -> T? where T == T.DecodedType {
+//        
+//        let decoded: Decoded<T> = decode(self.data)
+//
+//        switch decoded {
+//        case .Success(let object):
+//            return object
+//        case .Failure(let decodeError):
+//            debugPrint("Could not parse pusher object \(decodeError)")
+//            debugPrint(self.data)
+//            return nil
+//        }
+//    }
 }
 

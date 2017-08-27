@@ -67,9 +67,9 @@ final class ConversationListTableViewController: UITableViewController {
         Account.sharedInstance
             .pusherManager
             .mainChannelSubject
-            .subscribeNext { [weak self] (event) in
+            .subscribe(onNext: { [weak self] (event) in
                 self?.viewModel.handlePusherEvent(event)
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -86,7 +86,7 @@ final class ConversationListTableViewController: UITableViewController {
         
         viewModel.pager.state
             .asObservable()
-            .subscribeNext {[weak self] (state) in
+            .subscribe(onNext: {[weak self] (state) in
                 switch state {
                 case .idle:
                     break
@@ -108,7 +108,7 @@ final class ConversationListTableViewController: UITableViewController {
                     self?.refreshControl?.endRefreshing()
                 }
                 self?.tableView.reloadData()
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     

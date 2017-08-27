@@ -39,7 +39,7 @@ final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewMode
                     case .Error(LocalError.Cancelled):
                         self?.parent.shoutParams.publishToFacebook.value = publish
                         break
-                    case .Error(let error):
+                    case .error(let error):
                         self?.parent.errorSubject.onNext(error)
                     case .Completed:
                         break

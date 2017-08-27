@@ -44,12 +44,12 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
         listSection = listSectionWithModels([], isLoading: true)
         Account.sharedInstance.loginStateSubject
             .observeOn(MainScheduler.instance)
-            .subscribeNext {[weak self] (loginState) in
+            .subscribe(onNext: {[weak self] (loginState) in
                 if case .some(.page(_, let page)) = loginState {
                     self?.detailedPage = page
                     self?.reloadSubject.onNext()
                 }
-            }
+            })
             .addDisposableTo(disposeBag)
     }
     
@@ -94,7 +94,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .next(let value):
                     self?.listSection = self?.listSectionWithModels(value, isLoading: false)
                     self?.reloadSubject.onNext()
-                case .Error(let error):
+                case .error(let error):
                     self?.listSection = self?.listSectionWithModels([], isLoading: false, errorMessage: error.sh_message)
                     self?.reloadSubject.onNext()
                 default:
