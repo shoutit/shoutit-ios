@@ -47,7 +47,7 @@ protocol ProfileCollectionViewModelInterface: class, ProfileCollectionViewLayout
     func reloadWithNewListnersCount(_ newListnersCount: Int?, isListening: Bool)
     
     // more handling
-    func moreAlert(_ completion: (_ alertController: UIAlertController) -> Void) -> UIAlertController?
+    func moreAlert(_ completion: @escaping (_ alertController: UIAlertController) -> Void) -> UIAlertController?
 }
 
 // MARK: - Default implementations
@@ -110,7 +110,7 @@ extension ProfileCollectionViewModelInterface {
         
         if let reportable = self.reportable {
             alertController.addAction(UIAlertAction(title: reportable.reportTitle(), style: .default, handler: { (action) in
-                completion(alertController: alertController)
+                completion(alertController)
             }))
         }
         

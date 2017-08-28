@@ -20,7 +20,7 @@ extension FlowController: ProfilesListDisplayable {
         controller.title = NSLocalizedString("Add Admin", comment: "New admin choice view header")
         let viewModel = ListenersProfilesListViewModel(username: profile.username, showListenButtons: true)
         viewModel.pager.itemExclusionRule = { (profile) in
-            return profile.type == .Page
+            return profile.type == UserType.Page
         }
         
         controller.viewModel = viewModel

@@ -17,7 +17,7 @@ final class PagesFlowController: FlowController {
         let controller = Wireframe.pagesListParentViewController()
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

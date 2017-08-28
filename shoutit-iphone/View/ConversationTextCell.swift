@@ -43,23 +43,23 @@ final class ConversationTextCell: UITableViewCell, ConversationCell {
     }
     
     fileprivate func setupURLResponder() {
-        messageLabel.userInteractionEnabled = true
+        messageLabel.isUserInteractionEnabled = true
         let urlResponder: _PatternTapResponder = { [weak self] (url) in
             self?.urlHandler?(url)
         }
-        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
-                                                NSUnderlineStyleAttributeName : 1,
+        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .shoutitLightBlueColor) ,
+                                                NSUnderlineStyleAttributeName : 1 as AnyObject,
                                                 RLTapResponderAttributeName : unsafeBitCast(urlResponder, to: AnyObject.self)]
-        messageLabel.enableURLDetectionWithAttributes(attributes)
+        messageLabel.enableURLDetection(attributes: attributes)
     }
     
     fileprivate func setupPhoneNumberResponder() {
-        messageLabel.userInteractionEnabled = true
+        messageLabel.isUserInteractionEnabled = true
         let urlResponder: _PatternTapResponder = { [weak self] (url) in
             self?.phoneNumberHandler?(url)
         }
-        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .ShoutitLightBlueColor) ,
-                                                NSUnderlineStyleAttributeName : 1,
+        let attributes: [String : AnyObject] = [NSForegroundColorAttributeName : UIColor(shoutitColor: .shoutitLightBlueColor) ,
+                                                NSUnderlineStyleAttributeName : 1 as AnyObject,
                                                 RLTapResponderAttributeName : unsafeBitCast(urlResponder, to: AnyObject.self)]
         messageLabel.enablePhoneNumberDetectionWithAttribtues(attributes)
     }

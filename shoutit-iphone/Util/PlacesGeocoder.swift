@@ -46,7 +46,7 @@ public final class PlacesGeocoder: AnyObject {
                 
             }
       
-            return AnonymousDisposable {
+            return Disposables.create {
                 
             }
         }
@@ -69,7 +69,7 @@ public final class PlacesGeocoder: AnyObject {
                 observer.on(.next(response?.result))
             })
             
-            return AnonymousDisposable {
+            return Disposables.create {
                 
             }
         }

@@ -17,8 +17,8 @@ extension FlowController : MediaDisplayable {
     
     func showMediaForConversation(_ conversation: Conversation) {
         let viewModel = MessageAttachmentPhotoBrowserViewModel(conversation: conversation)
-        let controller = MessageAttachmentPhotoBrowserViewController(delegate: viewModel)
+        guard let controller = MessageAttachmentPhotoBrowserViewController(delegate: viewModel) else { return }
         controller.viewModel = viewModel
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
 }

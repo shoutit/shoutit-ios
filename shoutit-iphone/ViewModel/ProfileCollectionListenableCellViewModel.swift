@@ -116,7 +116,7 @@ final class ProfileCollectionListenableCellViewModel: ProfileCollectionCellViewM
                 APITagsService.listen(self.isListening, toTagWithSlug: tag.slug).subscribe(subscribeBlock).addDisposableTo(self.disposeBag)
             }
             
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
 }

@@ -37,14 +37,14 @@ final class IncomingCallController: UIViewController {
     @IBAction func discardAction(_ sender: AnyObject) {
         self.dismiss(animated: true) { [weak self] in
             guard let `self` = self else { return }
-            self.discardHandler?(invitation: self.invitation)
+            self.discardHandler?(self.invitation)
         }
     }
     
     @IBAction func answerAction(_ sender: AnyObject) {
         self.dismiss(animated: true) { [weak self] in
             guard let `self` = self else { return }
-            self.answerHandler?(invitation: self.invitation)
+            self.answerHandler?(self.invitation)
         }
     }
     

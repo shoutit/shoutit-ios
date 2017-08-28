@@ -21,44 +21,57 @@ final class APIGenericService {
     static let disposeBag = DisposeBag()
     
     static func basicRequestWithMethod<P: Params>(
-        _ method: Alamofire.Method,
+        _ method: HTTPMethod,
         url: String,
         params: P?,
-        encoding: ParameterEncoding = .url,
-        headers: [String: String]? = nil) -> Observable<Void> {
+        encoding: ParameterEncoding = URLEncoding.default,
+        headers: HTTPHeaders? = nil) -> Observable<Void> {
         
         let observable : Observable<Void> = Observable.create {(observer) -> Disposable in
             
-            let request = APIManager.manager()
-                .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
-            let cancel = AnonymousDisposable {
+            let request = APIManager.manager().request(url, method: method, parameters: params?.params, encoding: encoding, headers: headers)
+            
+            let cancel = Disposables.create {
                 request.cancel()
             }
             
-            
-            request.responseData{ (response) in
-                guard let responseData = response.data, responseData.count > 0 else {
-                    observer.onNext()
-                    observer.onCompleted()
-                    return
-                }
-                do {
-                    let dataObject = try JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.mutableContainers)
+            request
+                .validate({ (request, response, data) -> Request.ValidationResult in
+                    if (200..<300) ~= response.statusCode {
+                        return .success
+                    }
                     
-                    print(dataObject)
+                    guard let data = data else {
+                        return .success
+                    }
+                    
+                    do {
+                        let dataObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    
+                        guard let json = dataObject as? [String : AnyObject], let errorJson = json["error"] else {
+                            assertionFailure()
+                            return .failure(InternalParseError.invalidJson)
+                        }
                     
                     
-                    let result : Result<AnyObject, NSError> = Result.success(dataObject)
-                    let resp : Response<AnyObject, NSError> = Response(request: response.request, response: response.response, data: responseData, result: result)
+                        let error = try APIError(object: json)
+                        
+                        return .failure(error)
+                        
+                    } catch (let serializationError) {
+                        return .failure(serializationError)
+                    }
                     
-                    _ = try validateResponseAndExtractJson(resp)
-                    observer.onNext()
-                    observer.onCompleted()
+                })
+                .response(completionHandler: { (response) in
+                    guard let responseData = response.data, responseData.count > 0 else {
+                        observer.onNext()
+                        observer.onCompleted()
+                        return
+                    }
+                
                     
-                } catch let error {
-                    observer.onError(error)
-                }
-            }
+                })
             
             return cancel
         }
@@ -84,15 +97,16 @@ final class APIGenericService {
         _ method: HTTPMethod,
         url: URLConvertible,
         params: P?,
-        encoding: ParameterEncoding = .url,
+        encoding: ParameterEncoding = URLEncoding.default,
         responseJsonPath: [String]? = nil,
         headers: [String: String]? = nil) -> Observable<T> {
         
         let observable : Observable<T> = Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
-            let cancel = AnonymousDisposable {
+                .request(url, method: method, parameters: params?.params, encoding: encoding, headers: headers)
+            
+            let cancel = Disposables.create {
                 request.cancel()
             }
             
@@ -133,15 +147,16 @@ final class APIGenericService {
         _ method: HTTPMethod,
         url: URLConvertible,
         params: P?,
-        encoding: ParameterEncoding = .url,
+        encoding: ParameterEncoding = URLEncoding.default,
         responseJsonPath: [String]? = nil,
         headers: [String: String]? = nil) -> Observable<[T]> {
         
         let observable : Observable<[T]> = Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(method, url, parameters: params?.params, encoding: encoding, headers: headers)
-            let cancel = AnonymousDisposable {
+                .request(url, method: method, parameters: params?.params, encoding: encoding, headers: headers)
+            
+            let cancel = Disposables.create {
                 request.cancel()
             }
             
@@ -234,34 +249,28 @@ final class APIGenericService {
     
     // MARK: - Helpers
     
-    static func validateResponseAndExtractJson(_ response: Response<AnyObject, NSError>) throws -> AnyObject {
+    static func validateResponseAndExtractJson(_ response: DataResponse<Any>) throws -> AnyObject {
         
         switch response.result {
-        case .success(let originalJson):
+        case .success:
             if let httpResponse = response.response, (200..<300) ~= httpResponse.statusCode {
-                return originalJson
+                return response.value as AnyObject
             }
             
-            guard let json = originalJson as? [String : AnyObject], let errorJson = json["error"] else {
+            guard let json = response.value as? [String : AnyObject], let errorJson = json["error"] as? [String: Any] else {
                 assertionFailure()
                 throw InternalParseError.invalidJson
             }
             
-            let decoded: Decoded<APIError> = decode(errorJson)
-            switch decoded {
-            case .success(let error):
-                throw error
-            case .failure(let decodeError):
-                assertionFailure(decodeError.description)
-                throw decodeError
-            }
+            let error = try APIError(object: errorJson)
             
+            throw error
         case .failure(let error):
             throw error
         }
     }
     
-    static func extractJsonFromJson(_ json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
+    static func extractJsonFromJson(_ json: AnyObject, withPathComponents components: [String]?) throws -> JSONObject {
         guard let components = components else {
             return json
         }
@@ -281,34 +290,11 @@ final class APIGenericService {
         return j
     }
     
-    static func parseJson<T: JSONDecodable>(_ json: AnyObject, failureExpected: Bool = false) throws -> T {
-        
-        let object = try T(json: json)
-        return object
-//        let decoded: Decoded<T> = decode(json)
-//        switch decoded {
-//        case .success(let object):
-//            return object
-//        case .failure(let decodeError):
-//            if !failureExpected {
-//                debugPrint(json)
-//                assertionFailure("\(decodeError.description) in model of type \(T.self)")
-//            }
-//            throw decodeError
-//        }
+    static func parseJson<T: JSONDecodable>(_ json: JSONObject, failureExpected: Bool = false) throws -> T {
+        return try T(object: json)
     }
     
-    static func parseJsonArray<T: JSONDecodable>(_ json: AnyObject) throws -> [T] {
-        let object = try T(json: json)
-        return object
-//        let decoded: Decoded<[T]> = decode(json)
-//        switch decoded {
-//        case .success(let object):
-//            return object
-//        case .failure(let decodeError):
-//            debugPrint(json)
-//            assertionFailure("\(decodeError.description) in model of type \(T.self)")
-//            throw decodeError
-//        }
+    static func parseJsonArray<T: JSONDecodable>(_ json: [JSONObject]) throws -> [T] {
+        return try T(object: json)
     }
 }

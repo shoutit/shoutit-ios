@@ -125,7 +125,11 @@ extension ShoutParams: JSONEncodable {
             try encoder.encode(publishToFacebook.value, key: "publish_to_facebook")
             
             
-            try encoder.encode(filters.value, key: "filters")
+            let filterResults = filters.value.map({ (filter, filterValue) -> (FilterResult) in
+                return FilterResult(filter: filter, value: filterValue)
+            })
+            
+            try encoder.encode(filterResults, key: "filters")
         })
     }
 
@@ -133,7 +137,7 @@ extension ShoutParams: JSONEncodable {
 //    public func encode() -> JSON {
 //        
 //        var values : [String: JSON] = [:]
-//        
+//
 //        values["images"] = self.images.value.encode()
 //        values["videos"] = self.videos.value.encode()
 //        

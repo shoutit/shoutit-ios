@@ -61,7 +61,7 @@ extension CreateShoutViewModel {
             cell?.selectButton.setTitle(category.name, for: UIControlState())
             if let imagePath = category.icon, let imageURL = URL(string: imagePath) {
                 cell?.selectButton.showIcon(true)
-                cell?.selectButton.iconImageView.kf.setImage(with:imageURL, placeholderImage: nil)
+                cell?.selectButton.iconImageView.kf.setImage(with:imageURL, placeholder: nil)
             }
         } else {
             cell?.selectButton.showIcon(false)

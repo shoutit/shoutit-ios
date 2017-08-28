@@ -53,12 +53,13 @@ final class MediaUploader: AnyObject {
         guard let user = Account.sharedInstance.user else { fatalError("Uploading without user account not supported.") }
         let task = MediaUploadingTask(attachment: attachment)
         let destination = task.attachment.remoteFilename(user)
-        let request = amazonManager.putObject(originalData, destinationPath: destination)
+        
+        let request = amazonManager.upload(originalData, to: destination)
         task.request = request
         task.attachment.remoteURL = URL(string: bucket.bucketBasePath() + destination)
-        if let data = task.attachment.image?.dataRepresentation(), attachment.type == .Video {
+        if let data = task.attachment.image?.dataRepresentation(), attachment.type == .video {
             let destination = task.attachment.thumbRemoteFilename(user)
-            amazonManager.putObject(data, destinationPath: destination)
+            amazonManager.upload(data, to: destination)
             task.attachment.thumbRemoteURL = URL(string: bucket.bucketBasePath() + destination)
         }
         tasks.append(task)
@@ -84,6 +85,6 @@ final class MediaUploader: AnyObject {
     }
     
     fileprivate func createAmazonS3Manager() {
-        amazonManager = AmazonS3RequestManager(bucket: bucket.bucketName(), region: .euWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
+        amazonManager = AmazonS3RequestManager(bucket: bucket.bucketName(), region: .EUWest1, accessKey: amazonAccessKey, secret: amazonSecretKey)
     }
 }

@@ -30,13 +30,13 @@ final class ApplicationMainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showLogin), name: Constants.Notification.UserDidLogoutNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showLogin), name: NSNotification.Name(rawValue: Constants.Notification.UserDidLogoutNotification), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self, name: Constants.Notification.UserDidLogoutNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Constants.Notification.UserDidLogoutNotification), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

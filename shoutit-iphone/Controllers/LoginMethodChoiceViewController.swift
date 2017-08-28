@@ -46,7 +46,7 @@ final class LoginMethodChoiceViewController: UIViewController {
         setupRX()
     }
     
-    override func dismiss() {
+    public func dismisss() {
         if let navigationController = self.navigationController, navigationController.viewControllers[0] !== self {
             pop()
         } else {

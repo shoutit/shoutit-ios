@@ -97,9 +97,9 @@ extension SearchShoutsResultsViewModel {
                                               skipLocation: false)
             case .categoryShouts(let category):
                 params = FilteredShoutsParams(searchPhrase: phrase,
-                                              category: category.slug,
                                               page: page,
                                               pageSize: pageSize,
+                                              category: category.slug,
                                               useLocaleBasedCountryCodeWhenNil: true,
                                               currentUserLocation: Account.sharedInstance.user?.location,
                                               skipLocation: false)

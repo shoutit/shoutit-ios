@@ -47,7 +47,7 @@ open class BorderedMaterialTextView: UITextView {
      the image property, then this value does not need to be set, since the
      visualLayer's maskToBounds is set to true by default.
      */
-    open var masksToBounds: Bool {
+    open override var masksToBounds: Bool {
         get {
             return layer.masksToBounds
         }
@@ -64,7 +64,7 @@ open class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the layer.frame.origin.x property.
-    open var x: CGFloat {
+    open override var x: CGFloat {
         get {
             return layer.frame.origin.x
         }
@@ -74,7 +74,7 @@ open class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the layer.frame.origin.y property.
-    open var y: CGFloat {
+    open override var y: CGFloat {
         get {
             return layer.frame.origin.y
         }
@@ -89,7 +89,7 @@ open class BorderedMaterialTextView: UITextView {
      value that is not .None, the height will be adjusted to maintain the correct
      shape.
      */
-    open var width: CGFloat {
+    open override var width: CGFloat {
         get {
             return layer.frame.size.width
         }
@@ -107,7 +107,7 @@ open class BorderedMaterialTextView: UITextView {
      value that is not .None, the width will be adjusted to maintain the correct
      shape.
      */
-    open var height: CGFloat {
+    open override var height: CGFloat {
         get {
             return layer.frame.size.height
         }
@@ -120,14 +120,14 @@ open class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the backing layer's shadowColor.
-    open var shadowColor: UIColor? {
+    open override var shadowColor: UIColor? {
         didSet {
             layer.shadowColor = shadowColor?.cgColor
         }
     }
     
     /// A property that accesses the backing layer's shadowOffset.
-    open var shadowOffset: CGSize {
+    open override var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -137,7 +137,7 @@ open class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the backing layer's shadowOpacity.
-    open var shadowOpacity: Float {
+    open override var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -147,7 +147,7 @@ open class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the backing layer's shadowRadius.
-    open var shadowRadius: CGFloat {
+    open override var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -170,7 +170,7 @@ open class BorderedMaterialTextView: UITextView {
      for the backing layer. This is the preferred method of setting depth
      in order to maintain consitency across UI objects.
      */
-    open var depth: MaterialDepth {
+    open var depth: Material.Depth {
         didSet {
             let value: MaterialDepthType = MaterialDepthToValue(depth)
             shadowOffset = value.offset
@@ -184,7 +184,7 @@ open class BorderedMaterialTextView: UITextView {
      property has a value of .Circle when the cornerRadius is set, it will
      become .None, as it no longer maintains its circle shape.
      */
-    open var cornerRadius: MaterialRadius {
+    open override var cornerRadius: Material.Radius {
         didSet {
             if let v: MaterialRadius = cornerRadius {
                 layer.cornerRadius = MaterialRadiusToValue(v)
@@ -200,7 +200,7 @@ open class BorderedMaterialTextView: UITextView {
      width or height property is set, the other will be automatically adjusted
      to maintain the shape of the object.
      */
-    open var shape: MaterialShape {
+    open override var shape: Material.Shape {
         didSet {
             if .none != shape {
                 if width < height {
@@ -216,21 +216,21 @@ open class BorderedMaterialTextView: UITextView {
      A property that accesses the layer.borderWith using a MaterialBorder
      enum preset.
      */
-    open var borderWidth: MaterialBorder {
+    open override var borderWidth: Material.Border {
         didSet {
             layer.borderWidth = MaterialBorderToValue(borderWidth)
         }
     }
     
     /// A property that accesses the layer.borderColor property.
-    open var borderColor: UIColor? {
+    open override var borderColor: UIColor? {
         didSet {
             layer.borderColor = borderColor?.cgColor
         }
     }
     
     /// A property that accesses the layer.position property.
-    open var position: CGPoint {
+    open override var position: CGPoint {
         get {
             return layer.position
         }
@@ -240,7 +240,7 @@ open class BorderedMaterialTextView: UITextView {
     }
     
     /// A property that accesses the layer.zPosition property.
-    open var zPosition: CGFloat {
+    open override var zPosition: CGFloat {
         get {
             return layer.zPosition
         }
@@ -264,7 +264,7 @@ open class BorderedMaterialTextView: UITextView {
     open var titleLabelColor: UIColor? {
         didSet {
             titleLabel?.textColor = titleLabelColor
-            MaterialAnimation.animationDisabled { [unowned self] in
+            Material.Animation.animationDisabled { [unowned self] in
                 self.bottomBorderLayer.borderColor = self.titleLabelColor?.cgColor
             }
         }
@@ -356,7 +356,7 @@ open class BorderedMaterialTextView: UITextView {
      Text container UIEdgeInset preset property. This updates the
      textContainerInset property with a preset value.
      */
-    open var textContainerInsetPreset: MaterialEdgeInset = .none {
+    open override var textContainerInsetPreset: Material.EdgeInset {
         didSet {
             textContainerInset = MaterialEdgeInsetToValue(textContainerInsetPreset)
         }
@@ -555,7 +555,7 @@ open class BorderedMaterialTextView: UITextView {
      */
     fileprivate func prepareView() {
         textContainerInset = MaterialEdgeInsetToValue(.none)
-        backgroundColor = MaterialColor.white
+        backgroundColor = Material.Color.white
         masksToBounds = false
         removeNotificationHandlers()
         prepareNotificationHandlers()
@@ -575,7 +575,7 @@ open class BorderedMaterialTextView: UITextView {
             v.font = font
             v.textAlignment = textAlignment
             v.numberOfLines = 0
-            v.backgroundColor = MaterialColor.clear
+            v.backgroundColor = Material.Color.clear
             addSubview(v)
             reloadView()
             handleTextViewTextDidChange()

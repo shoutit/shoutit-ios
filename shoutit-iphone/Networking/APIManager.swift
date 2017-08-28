@@ -29,7 +29,8 @@ final class APIManager {
     
     static func manager() -> Alamofire.SessionManager {
         if apiManager == nil {
-            let defaultHeaders = Alamofire.SessionManager.sharedInstance.session.configuration.httpAdditionalHeaders ?? [:]
+            let defaultHeaders =
+                Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders ?? [:]
             let configuration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = defaultHeaders
             apiManager = Alamofire.SessionManager(configuration: configuration)
@@ -52,26 +53,30 @@ final class APIManager {
     fileprivate static func _setAuthToken(_ token: String?, expiresAt: Int?, pageId: String?) {
         self.tokenExpiresAt = expiresAt
         
-        var defaultHeaders = Alamofire.Manager.sharedInstance.session.configuration.httpAdditionalHeaders ?? [:]
+        var defaultHeaders = Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
         defaultHeaders["Authorization-Page-Id"] = pageId
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = defaultHeaders
-        apiManager = Alamofire.Manager(configuration: configuration)
+        apiManager = Alamofire.SessionManager(configuration: configuration)
         
-        KingfisherManager.sharedManager.downloader.requestModifier = {(request: NSMutableURLRequest) in
+        let modifier = AnyModifier { request in
+            var r = request
             var headerFields = request.allHTTPHeaderFields ?? [String : String]()
             headerFields["Authorization"] = token
-            request.allHTTPHeaderFields = headerFields
+            r.allHTTPHeaderFields = headerFields
+            return r
         }
+        
+        KingfisherManager.shared.defaultOptions = [KingfisherOptionsInfo.Element.requestModifier(modifier)]
     }
     
     // MARK: - Reachability
     
     static func isNetworkReachable() -> Bool {
         do {
-            let reachability = try Reachability.reachabilityForInternetConnection()
-            return reachability.isReachable()
+            let reachability = try Reachability()
+            return reachability?.isReachable ?? true
         } catch {
             return false
         }

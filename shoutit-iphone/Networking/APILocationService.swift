@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import RxSwift
 import ShoutitKit
+import JSONCodable
 
 final class APILocationService {
     fileprivate static let usersURL = APIManager.baseURL + "/profiles/*"
@@ -20,18 +21,19 @@ final class APILocationService {
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.patch, url, parameters: params.params, encoding: JSONEncoding.default)
-            let cancel = AnonymousDisposable {
+                .request(url, method: .patch, parameters: params.params, encoding: JSONEncoding.default)
+            
+            let cancel = Disposables.create {
                 request.cancel()
             }
             
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    if let loggedUser: DetailedUserProfile = try? APIGenericService.parseJson(json, failureExpected: true) {
+                    if let loggedUser: DetailedUserProfile = try? APIGenericService.parseJson(json as! JSONObject, failureExpected: true) {
                         Account.sharedInstance.updateUserWithModel(loggedUser)
                         observer.onNext(loggedUser)
-                    } else if let guestUser: GuestUser = try? APIGenericService.parseJson(json, failureExpected: true) {
+                    } else if let guestUser: GuestUser = try? APIGenericService.parseJson(json as! JSONObject, failureExpected: true) {
                         Account.sharedInstance.updateUserWithModel(guestUser)
                         observer.onNext(guestUser)
                     } else {
@@ -53,8 +55,9 @@ final class APILocationService {
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.patch, url, parameters: params.params, encoding: JSONEncoding.default)
-            let cancel = AnonymousDisposable {
+                .request(url, method: .patch, parameters: params.params, encoding: JSONEncoding.default)
+            
+            let cancel = Disposables.create {
                 request.cancel()
             }
             

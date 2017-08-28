@@ -9,8 +9,9 @@
 import Foundation
 
 open class GoogleMapsService {
-    enum Error: Error {
-        case apiKeyNotExisted
+    
+    enum GError: Error {
+        case apiKeyNotExisted = "apiKeyNotExisted"
     }
     
     fileprivate static var _APIKey: String?
@@ -34,7 +35,7 @@ open class GoogleMapsService {
     class func APIKey() throws -> String {
         guard let APIKey = _APIKey else {
             NSLog("Error: Please provide an API key")
-            throw Error.apiKeyNotExisted
+            throw GError.apiKeyNotExisted
         }
         return APIKey
     }

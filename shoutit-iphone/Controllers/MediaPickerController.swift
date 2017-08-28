@@ -70,9 +70,9 @@ final class MediaPickerController: NSObject, MediaPicker  {
             
             let options = PHImageRequestOptions()
             
-            options.deliveryMode = .FastFormat
+            options.deliveryMode = .fastFormat
             
-            PHImageManager.defaultManager().requestImageForAsset(photo,
+            PHImageManager.defaultManager().requestImage(for: photo,
                 targetSize: self.pickerSettings.targetSize,
                 contentMode: self.pickerSettings.contentMode,
                 options: options,
@@ -96,7 +96,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let attachment = MediaAttachment(type: .Image,
+            let attachment = MediaAttachment(type: .image,
                                              uid: MediaAttachment.generateUid(),
                                              remoteURL: nil,
                                              thumbRemoteURL: nil,

@@ -126,7 +126,7 @@ private extension MessageAttachmentPhotoBrowserCellViewModel {
     
     func postCompleteNotification() {
         DispatchQueue.main.async { 
-            NotificationCenter.defaultCenter().postNotificationName(MWPHOTO_LOADING_DID_END_NOTIFICATION, object: self)
+            NotificationCenter.defaultCenter.postNotificationName(NSNotification.Name(rawValue: MWPHOTO_LOADING_DID_END_NOTIFICATION), object: self)
         }
     }
 }

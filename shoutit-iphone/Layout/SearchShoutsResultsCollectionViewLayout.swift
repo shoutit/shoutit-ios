@@ -108,7 +108,7 @@ final class SearchShoutsResultsCollectionViewLayout: UICollectionViewLayout {
             let sectionType = delegate?.sectionTypeForSection(section) ?? .layoutModeDependent
             
             // header attributes
-            let headerAttributes = ShoutsCollectionViewLayoutAttributes(forSupplementaryViewOfKind: sectionType.headerKind, withIndexPath: IndexPath(item: 0, section: section))
+            let headerAttributes = ShoutsCollectionViewLayoutAttributes(forSupplementaryViewOfKind: sectionType.headerKind, with: IndexPath(item: 0, section: section))
             headerAttributes.zIndex = headersZIndex
             let headerHeight = sectionType.headerHeight
             let sectionHeight = sectionHeights[section]

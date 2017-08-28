@@ -22,7 +22,7 @@ enum ShoutAdItem {
     
     func  itemType() -> ShoutAdItemType {
         switch self {
-        case shout( _):
+        case .shout( _):
             return .shout
         default:
             return .ad
@@ -126,7 +126,7 @@ class AdManager : NSObject, FBNativeAdDelegate  {
         DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
     }
     
-    func nativeAd(_ nativeAd: FBNativeAd, didFailWithError error: NSError) {
+    func nativeAd(_ nativeAd: FBNativeAd, didFailWithError error: Error) {
         DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     

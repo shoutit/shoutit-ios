@@ -455,7 +455,6 @@
 		B23ABC8A1C751B5900CC69E6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ABC891C751B5900CC69E6 /* StringExtensions.swift */; };
 		B23CA23E1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23D1C8DD8B6008E85F9 /* EditProfileTableViewHeaderView.swift */; };
 		B23CA2401C8DE4DE008E85F9 /* EditProfileDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA23F1C8DE4DE008E85F9 /* EditProfileDisplayable.swift */; };
-		B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2431C8DE8EA008E85F9 /* BorderedMaterialTextView.swift */; };
 		B23CA2461C8DEAC6008E85F9 /* EditProfileTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2451C8DEAC6008E85F9 /* EditProfileTextFieldTableViewCell.swift */; };
 		B23CA2481C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2471C8DEAD6008E85F9 /* EditProfileTextViewTableViewCell.swift */; };
 		B23CA24A1C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2491C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift */; };
@@ -6200,7 +6199,6 @@
 				B2E43CA71D104430006C6AD2 /* CreditsFlowController.swift in Sources */,
 				B232BC871CF5F05300A36432 /* CreateShoutSectionViewModel.swift in Sources */,
 				B28379A81C74939B009AFF01 /* ProfileCollectionViewModelInterface.swift in Sources */,
-				B23CA2441C8DE8EA008E85F9 /* BorderedMaterialTextView.swift in Sources */,
 				B2F71A671D0EF791002C1D74 /* UINavigationController+DPLRouting.m in Sources */,
 				AE83518F1C5F7DE60055C71F /* OrdersFlowController.swift in Sources */,
 				B2E715621C6E1B65007F95CF /* ProfileInfoHeaderButton.swift in Sources */,

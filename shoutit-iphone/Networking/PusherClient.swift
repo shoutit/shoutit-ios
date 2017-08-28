@@ -50,7 +50,7 @@ final class PusherClient : NSObject {
         pusherInstance?.authorizationURL = URL(string: pusherURL)
         
         do {
-            reachability = try Reachability.reachabilityForInternetConnection()
+            reachability = try Reachability()
             try reachability.startNotifier()
         } catch let error { print(error) }
         
@@ -64,7 +64,7 @@ final class PusherClient : NSObject {
                 return
             }
                     
-            if self.pusherInstance?.connection.connected == false {
+            if self.pusherInstance?.connection.isConnected == false {
                 self.tryToConnect()
             }
           }).addDisposableTo(disposeBag)
@@ -139,9 +139,9 @@ final class PusherClient : NSObject {
                 if let stats : ProfileStats = event.object() {
                     
                     switch self.account.loginState {
-                    case .some(.Page):
+                    case .some(.page):
                         self.account.updateAdminStats(stats)
-                    case .some(.Logged):
+                    case .some(.logged):
                         self.account.updateMainStats(stats)
                     default: break
                     }
@@ -154,11 +154,11 @@ final class PusherClient : NSObject {
             
             if event.eventType() == .ProfileChange {
                 switch self.account.loginState {
-                case .some(.Logged):
+                case .some(.logged):
                     if let profile : DetailedUserProfile = event.object() {
                         self.account.updateUserWithModel(profile)
                     }
-                case .some(.Guest):
+                case .some(.guest):
                     if let guest : GuestUser = event.object() {
                         self.account.updateUserWithModel(guest)
                     }
@@ -195,11 +195,11 @@ final class PusherClient : NSObject {
             
             if event.eventType() == .ProfileChange {
                 switch self.account.loginState {
-                case .some(.Logged):
+                case .some(.logged):
                     if let profile : DetailedPageProfile = event.object() {
                         self.account.updateUserWithModel(profile)
                     }
-                case .some(.Guest):
+                case .some(.guest):
                     if let guest : GuestUser = event.object() {
                         self.account.updateUserWithModel(guest)
                     }
@@ -304,7 +304,7 @@ extension PusherClient {
                 channel = ch
             } else {
                 guard let ch = self.pusherInstance?.subscribe(toChannelNamed: channelName) else {
-                    return AnonymousDisposable { }
+                    return Disposables.create { }
                 }
                 
                 self.subscribedChannels.append(channelName)
@@ -312,15 +312,18 @@ extension PusherClient {
                 channel = ch
             }
             
-            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.NewListen.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.NewNotification.rawValue) {observer.onNext($0)}
+ 
             
-            return AnonymousDisposable {
+            channel.bind(toEventNamed: PusherEventType.NewMessage.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.StatsUpdate.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.ProfileChange.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.NewListen.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.NewNotification.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            
+            return Disposables.create {
                 channel.unsubscribe()
             }
+     
         }
     }
     
@@ -336,7 +339,7 @@ extension PusherClient {
                 channel = ch
             } else {
                 guard let ch = self.pusherInstance?.subscribe(toChannelNamed: channelName) else {
-                    return AnonymousDisposable { }
+                    return Disposables.create { }
                 }
                 
                 self.subscribedChannels.append(channelName)
@@ -344,13 +347,13 @@ extension PusherClient {
                 channel = ch
             }
             
-            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.StatsUpdate.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.ProfileChange.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.NewListen.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.NewNotification.rawValue) {observer.onNext($0)}
+            channel.bind(toEventNamed:PusherEventType.NewMessage.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.StatsUpdate.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.ProfileChange.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.NewListen.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.NewNotification.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
             
-            return AnonymousDisposable {
+            return Disposables.create {
                 channel.unsubscribe()
             }
         }
@@ -381,7 +384,7 @@ extension PusherClient {
             } else {
                 guard let ch = self.pusherInstance?.subscribe(toChannelNamed: conversation.channelName()) else {
                     assertionFailure()
-                    return AnonymousDisposable{}
+                    return Disposables.create{}
                 }
                 
                 self.subscribedChannels.append(conversation.channelName())
@@ -390,15 +393,15 @@ extension PusherClient {
             }
             
             
-            let cancel = AnonymousDisposable {
+            let cancel = Disposables.create {
                 channel.unsubscribe()
             }
             
-            channel.bindToEventNamed(PusherEventType.UserTyping.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.JoinedChat.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.LeftChat.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.NewMessage.rawValue) {observer.onNext($0)}
-            channel.bindToEventNamed(PusherEventType.ConversationUpdate.rawValue) {observer.onNext($0)}
+            channel.bind(toEventNamed:PusherEventType.UserTyping.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.JoinedChat.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.LeftChat.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.NewMessage.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.ConversationUpdate.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
             
             return cancel
         })

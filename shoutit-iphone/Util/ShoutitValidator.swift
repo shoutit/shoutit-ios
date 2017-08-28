@@ -10,15 +10,9 @@ import Foundation
 import ShoutitKit
 import Validator
 
-//extension ValidationError: ShoutitError {
-//    public var userMessage: String {
-//        return message
-//    }
-//}
-
 struct ShoutitValidator {
     
-    enum ValidationError: ValidationErrorType {
+    enum ValidationError: ShoutitError {
         case invalidEmail
         case invalidEmailOrUsername
         case invalidFirstname
@@ -39,6 +33,10 @@ struct ShoutitValidator {
                 return NSLocalizedString("Password should have between 6 and 20 characters", comment: "Password characters number should be between 6-20")
             }
         }
+        
+        public var userMessage: String {
+            return message
+        }
     }
     
     static func validateUniversalEmailOrUsernameField(_ string: String?) -> ValidationResult {
@@ -49,8 +47,9 @@ struct ShoutitValidator {
             return .invalid([error])
         }
         
-        let emailValidationRule = ValidationRulePattern(pattern: .EmailAddress, failureError: error)
-        let usernameValidationRule = ValidationRulePattern(pattern: "^[a-z0-9A-Z_-]{2,20}$", failureError: error)
+        let emailValidationRule = ValidationRulePattern(pattern: EmailValidationPattern.standard, error: error)
+
+        let usernameValidationRule = ValidationRulePattern(pattern: "^[a-z0-9A-Z_-]{2,20}$", error: error)
         
         if case .valid = string.validate(rule: usernameValidationRule) {
             return .valid
@@ -68,7 +67,8 @@ struct ShoutitValidator {
             return .invalid([error])
         }
         
-        let emailValidationRule = ValidationRulePattern(pattern: .EmailAddress, failureError: error)
+        let emailValidationRule = ValidationRulePattern(pattern: EmailValidationPattern.standard, error: error)
+        
         return email.validate(rule: emailValidationRule)
     }
     
@@ -80,7 +80,7 @@ struct ShoutitValidator {
             return .invalid([error])
         }
         
-        let passwordValidationRule = ValidationRulePattern(pattern: "^.{6,20}$", failureError: error)
+        let passwordValidationRule = ValidationRulePattern(pattern: "^.{6,20}$", error: error)
         return password.validate(rule: passwordValidationRule)
     }
     
@@ -92,7 +92,7 @@ struct ShoutitValidator {
             return .invalid([error])
         }
         
-        let nameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", failureError: error)
+        let nameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", error: error)
         return name.validate(rule: nameValidationRule)
     }
     
@@ -104,7 +104,7 @@ struct ShoutitValidator {
             return .invalid([error])
         }
         
-        let firstnameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", failureError: error)
+        let firstnameValidationRule = ValidationRulePattern(pattern: "^.{2,30}$", error: error)
         return firstname.validate(rule: firstnameValidationRule)
     }
     
@@ -116,7 +116,7 @@ struct ShoutitValidator {
             return .invalid([error])
         }
         
-        let lastnameValidationRule = ValidationRulePattern(pattern: "^.{1,30}$", failureError: error)
+        let lastnameValidationRule = ValidationRulePattern(pattern: "^.{1,30}$", error: error)
         return lastname.validate(rule: lastnameValidationRule)
     }
 }

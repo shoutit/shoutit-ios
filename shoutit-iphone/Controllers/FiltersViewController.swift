@@ -147,15 +147,22 @@ extension FiltersViewController: UITableViewDataSource {
                 .skip(1)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] (value) in
-                    self?.viewModel.changeMinimumPriceTo(Int(value ?? 0))
+                    guard let value = value else {
+                        return
+                    }
+                    self?.viewModel.changeMinimumPriceTo(Int(value) ?? 0)
                 })
                 .addDisposableTo(priceCell.reuseDisposeBag)
+            
             priceCell.maximumValueTextField
                 .rx.text
                 .skip(1)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] (value) in
-                    self?.viewModel.changeMaximumPriceTo(Int(value ?? 0))
+                    guard let value = value else {
+                        return
+                    }
+                    self?.viewModel.changeMaximumPriceTo(Int(value) ?? 0)
                 })
                 .addDisposableTo(priceCell.reuseDisposeBag)
         case .locationChoice(let address):

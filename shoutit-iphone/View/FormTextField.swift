@@ -14,17 +14,17 @@ final class FormTextField: BorderedMaterialTextField {
         super.awakeFromNib()
         
         self.font = UIFont.systemFont(ofSize: 18.0)
-        self.textColor = MaterialColor.black
+        self.textColor = Material.Color.black
         
         self.titleLabel = UILabel()
         self.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
-        self.titleLabelColor = MaterialColor.grey.lighten1
+        self.titleLabelColor = Material.Color.grey.lighten1
         self.titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
         self.clearButtonMode = .whileEditing
         
         self.detailLabel = UILabel()
         self.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
-        self.detailLabelActiveColor = MaterialColor.red.accent3
+        self.detailLabelActiveColor = Material.Color.red.accent3
         
         self.backgroundColor = UIColor.clear
     }

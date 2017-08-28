@@ -12,6 +12,12 @@ import RxCocoa
 import MBProgressHUD
 import Material
 
+extension Error {
+    public var message: String {
+        return self.localizedDescription
+    }
+}
+
 final class ResetPasswordViewController: UITableViewController {
     
     // UI

@@ -63,7 +63,7 @@ class CreatePublicChatViewModel: ConversationSubjectEditable {
                 observer.onNext(.error(error: error))
                 observer.onCompleted()
             }
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
     

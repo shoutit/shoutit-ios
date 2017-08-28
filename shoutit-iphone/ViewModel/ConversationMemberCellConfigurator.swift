@@ -41,7 +41,7 @@ class ConversationMemberCellConfigurator: ProfileCellConfigurator {
         
         cell.listenersCountLabel.attributedText = subtitle
         
-        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: cellViewModel.profile.type == .Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
+        cell.thumbnailImageView.sh_setImageWithURL(cellViewModel.profile.imagePath?.toURL(), placeholderImage: cellViewModel.profile.type == UserType.Page ? UIImage.squareAvatarPagePlaceholder() : UIImage.squareAvatarPlaceholder())
         
         
         cell.listenButton.isHidden = true

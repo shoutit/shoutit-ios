@@ -145,16 +145,17 @@ private extension MessageAttachmentPhotoBrowserViewModel {
 }
 
 extension MessageAttachmentPhotoBrowserViewModel: MWPhotoBrowserDelegate {
+
     
-    func numberOfPhotosInPhotoBrowser(_ photoBrowser: MWPhotoBrowser!) -> UInt {
-        return UInt(cellViewModels?.count ?? 0)
+    func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(cellViewModels?.count ?? 0) ?? 0
     }
     
-    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
         return cellViewModels?[Int(index)]
     }
     
-    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, thumbPhotoAt index: UInt) -> MWPhotoProtocol! {
         return thumbnailCellViewModels?[Int(index)]
     }
 }

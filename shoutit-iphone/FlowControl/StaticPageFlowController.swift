@@ -19,7 +19,7 @@ final class StaticPageFlowController: FlowController {
         controller.flowDelegate = self
         controller.urlToLoad = url
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

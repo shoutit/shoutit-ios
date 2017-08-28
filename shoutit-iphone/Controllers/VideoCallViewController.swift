@@ -288,8 +288,8 @@ private extension VideoCallViewController {
         previewView.translatesAutoresizingMaskIntoConstraints = false
         cameraPreviewViewConstraints = []
         let views = ["preview" : previewView]
-        cameraPreviewViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "H:|[preview]|", options: [], metrics: nil, views: views)
-        cameraPreviewViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "V:|[preview]|", options: [], metrics: nil, views: views)
+        cameraPreviewViewConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "H:|[preview]|", options: [], metrics: nil, views: views)
+        cameraPreviewViewConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "V:|[preview]|", options: [], metrics: nil, views: views)
         cameraPreviewViewConstraints!.forEach{ $0.isActive = true }
         setPreviewOnFullScreen()
     }
@@ -427,8 +427,8 @@ private extension VideoCallViewController {
         localCameraRendererViewConstraints = []
         let views = ["view" : renderer.view]
         localCameraView.addSubview(renderer.view)
-        localCameraRendererViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views)
-        localCameraRendererViewConstraints! += NSLayoutConstraintconstraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views)
+        localCameraRendererViewConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views)
+        localCameraRendererViewConstraints! += NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views)
         localCameraRendererViewConstraints!.forEach{ $0.isActive = true }
     }
     

@@ -226,7 +226,7 @@ final class Account {
             default: break
             }
         }
-        else if let model = model as? DetailedPageProfile, let admin = model.admin, model.type == .Page {
+        else if let model = model as? DetailedPageProfile, let admin = model.admin, model.type == UserType.Page {
             switch (loginState, force) {
             case (.page(_)?, _), (.none, _), (_, true): loginState = .page(user: admin.value, page: model)
             default: break

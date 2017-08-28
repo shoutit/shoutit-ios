@@ -29,7 +29,7 @@ final class ConversationAttachmentManager: MediaPickerControllerDelegate {
     lazy var mediaPickerController: MediaPickerController = {[unowned self] in
         let settings = MediaPickerSettings(thumbnailSize: CGSize(width: 100, height: 100),
                                            targetSize: PHImageManagerMaximumSize,
-                                           contentMode: .AspectFill,
+                                           contentMode: .aspectFill,
                                            videoLength: 10.0,
                                            maximumItems: 1,
                                            maximumVideos: 1,

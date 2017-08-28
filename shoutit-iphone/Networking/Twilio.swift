@@ -141,7 +141,7 @@ final class Twilio: NSObject {
                 self.sentInvitations.append(invite)
             }
             
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
     

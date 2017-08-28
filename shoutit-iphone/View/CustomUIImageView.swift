@@ -10,7 +10,7 @@ import UIKit
 
 final class CustomUIImageView: UIImageView {
     
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable override var cornerRadius: CGFloat {
         didSet {
         applyCornerRadius()
         }

@@ -11,6 +11,19 @@ import Alamofire
 import RxSwift
 import RxCocoa
 import ShoutitKit
+import JSONCodable
+
+struct JSONParams: Params {
+    let object: JSONObject
+    
+    init(_ object: JSONObject) {
+        self.object = object
+    }
+    
+    var params: [String : AnyObject] {
+        return object as [String : AnyObject]
+    }
+}
 
 final class APIShoutsService {
     
@@ -48,13 +61,13 @@ final class APIShoutsService {
                                                    headers: ["Accept": "application/json"])
     }
 
-    static func createShoutWithParams(_ params: Argo.JSON) -> Observable<Shout> {
-        return APIGenericService.requestWithMethod(.post, url: shoutsURL, params: params, encoding: JSONEncoding.default, headers: ["Accept": "application/json"])
+    static func createShoutWithParams(_ params: JSONObject) -> Observable<Shout> {
+        return APIGenericService.requestWithMethod(.post, url: shoutsURL, params: JSONParams(params), encoding: JSONEncoding.default, headers: ["Accept": "application/json"])
     }
     
-    static func updateShoutWithParams(_ params: Argo.JSON, uid: String) -> Observable<Shout> {
+    static func updateShoutWithParams(_ params: JSONObject, uid: String) -> Observable<Shout> {
         let url = shoutsURL + "/\(uid)"
-        return APIGenericService.requestWithMethod(.patch, url: url, params: params, encoding: JSONEncoding.default, headers: ["Accept": "application/json"])
+        return APIGenericService.requestWithMethod(.patch, url: url, params: JSONParams(params), encoding: JSONEncoding.default, headers: ["Accept": "application/json"])
     }
     
     static func retrievePhoneNumberForShoutWithId(_ id: String) -> Observable<Mobile> {

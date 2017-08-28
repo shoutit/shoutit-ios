@@ -22,6 +22,18 @@ enum PusherEventType : String {
     case NewNotification = "new_notification"
 }
 
+public extension JSONDecodable {
+    init(JSONData: Data) throws {
+        let result = try JSONSerialization.jsonObject(with: JSONData, options: JSONSerialization.ReadingOptions(rawValue: 0))
+        
+        guard let converted = result as? [String: AnyObject] else {
+            throw JSONDecodableError.dictionaryTypeExpectedError(key: "n/a", elementType: type(of: result))
+        }
+        
+        try self.init(object: converted)
+    }
+}
+
 extension PTPusherEvent {
     
     func eventType() -> PusherEventType {
@@ -32,18 +44,15 @@ extension PTPusherEvent {
         return type
     }
     
-//    func object<T: Decodable>() -> T? where T == T.DecodedType {
-//        
-//        let decoded: Decoded<T> = decode(self.data)
-//
-//        switch decoded {
-//        case .Success(let object):
-//            return object
-//        case .Failure(let decodeError):
-//            debugPrint("Could not parse pusher object \(decodeError)")
-//            debugPrint(self.data)
-//            return nil
-//        }
-//    }
+    func object<T: JSONDecodable>() -> T? {
+        
+        do {
+            let decoded: T = try T(JSONData: self.data as! Data)
+            return decoded
+        } catch let error {
+            debugPrint("Could not parse pusher object \(error)")
+            return nil
+        }
+    }
 }
 

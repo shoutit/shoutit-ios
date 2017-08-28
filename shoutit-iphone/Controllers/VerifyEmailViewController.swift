@@ -119,17 +119,17 @@ final class VerifyEmailViewController: UIViewController {
     fileprivate func setupTextField() {
         
         emailTextField.font = UIFont.systemFont(ofSize: 18.0)
-        emailTextField.textColor = MaterialColor.black
+        emailTextField.textColor = Material.Color.black
             
         emailTextField.titleLabel = UILabel()
         emailTextField.titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
-        emailTextField.titleLabelColor = MaterialColor.grey.lighten1
+        emailTextField.titleLabelColor = Material.Color.grey.lighten1
         emailTextField.titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
         emailTextField.clearButtonMode = .whileEditing
             
         emailTextField.detailLabel = UILabel()
         emailTextField.detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
-        emailTextField.detailLabelActiveColor = MaterialColor.red.accent3
+        emailTextField.detailLabelActiveColor = Material.Color.red.accent3
         
         emailTextField.text = viewModel.email.value
     }

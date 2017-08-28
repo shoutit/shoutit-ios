@@ -104,7 +104,7 @@ extension CreatePublicChatTableViewController {
                     let controller = Wireframe.changeShoutLocationController()
                     
                     controller.finishedBlock = {(success, place) -> Void in
-                        if let place = place, let indexPath = indexPath {
+                        if let place = place {
                             let newViewModel = CreatePublicChatCellViewModel.location(location: place)
                             self?.viewModel.sections[indexPath.section].cellViewModels[indexPath.row] = newViewModel
                             self?.tableView.reloadRows(at: [indexPath], with: .automatic)

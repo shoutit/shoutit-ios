@@ -11,7 +11,7 @@ import RxSwift
 import ShoutitKit
 
 final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
-    
+
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
     let successMessageSubject: PublishSubject<String> = PublishSubject()
@@ -64,7 +64,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                     self?.reloadSubject.onNext(())
                 case .completed:
                     break
-                case .Error:
+                case .error:
                     self?.reloadSubject.onNext(())
                 }
                 })
@@ -78,7 +78,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                     let shouts = Array(value.prefix(4))
                     self?.gridSection = self?.gridSectionWithModels(shouts, isLoading: false)
                     self?.reloadSubject.onNext()
-                case .Error(let error as NSError):
+                case .error(let error as NSError):
                     self?.gridSection = self?.gridSectionWithModels([], isLoading: false, errorMessage: error.localizedDescription)
                     self?.reloadSubject.onNext()
                 default:
@@ -109,7 +109,7 @@ final class MyPageCollectionViewModel: ProfileCollectionViewModelInterface {
                 case .next(let value):
                     self?.verification = value
                     self?.reloadSubject.onNext()
-                case .Error(_):
+                case .error(_):
                     self?.reloadSubject.onNext()
                 default:
                     break

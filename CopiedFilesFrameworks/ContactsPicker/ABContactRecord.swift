@@ -114,7 +114,7 @@ internal class ABRecordAdapter {
             let phoneNumberMultiValue = createMultiValue(kABPersonPhoneProperty)
             
             for phoneNumberLabeledValue in phoneNumbers {
-                ABMultiValueAddValueAndLabel(phoneNumberMultiValue, phoneNumberLabeledValue.value, AddressBookRecordLabel.convertLabel(abMappings, label: phoneNumberLabeledValue.label), nil)
+                ABMultiValueAddValueAndLabel(phoneNumberMultiValue, phoneNumberLabeledValue.value, AddressBookRecordLabel.convertLabel(abMappings, label: phoneNumberLabeledValue.label) as! CFString, nil)
             }
             setValueToRecord(person, key: kABPersonPhoneProperty, phoneNumberMultiValue)
         }
@@ -123,7 +123,7 @@ internal class ABRecordAdapter {
             let emailAddressesMultiValue = createMultiValue(kABPersonEmailProperty)
             
             for emailLabeledValue in emailAddresses {
-                ABMultiValueAddValueAndLabel(emailAddressesMultiValue, emailLabeledValue.value, AddressBookRecordLabel.convertLabel(abMappings, label: emailLabeledValue.label), nil)
+                ABMultiValueAddValueAndLabel(emailAddressesMultiValue, emailLabeledValue.value, AddressBookRecordLabel.convertLabel(abMappings, label: emailLabeledValue.label) as! CFString, nil)
             }
             
             setValueToRecord(person, key: kABPersonEmailProperty, emailAddressesMultiValue)
@@ -157,7 +157,7 @@ internal class ABRecordAdapter {
     }
     
     internal class func addLabelToMultiValue(_ multivalue: ABMutableMultiValue, label: AddressBookRecordLabel) {
-        ABMultiValueAddValueAndLabel(multivalue, label.value, AddressBookRecordLabel.convertLabel(abMappings, label: label.label), nil)
+        ABMultiValueAddValueAndLabel(multivalue, label.value, AddressBookRecordLabel.convertLabel(abMappings, label: label.label) as! CFString, nil)
     }
     
     internal class func createMultiValue(_ type: ABPropertyID) -> ABMutableMultiValue {
@@ -200,7 +200,7 @@ internal class ABRecordAdapter {
             if let cfLabel = optionalCFLabel {
                 optionalLabel = cfLabel as String?
             }
-            return AddressBookRecordLabel(label: AddressBookRecordLabel.convertLabel(labelMappings, label: optionalLabel), value: v)
+            return AddressBookRecordLabel(label: AddressBookRecordLabel.convertLabel(labelMappings, label: optionalLabel), value: v as NSCopying & NSSecureCoding)
         } else {
             return nil
         }

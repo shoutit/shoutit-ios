@@ -41,7 +41,7 @@ final class PostSignupSuggestionsCellViewModel {
                 }
             }.addDisposableTo(self.disposeBag)
             
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
 }

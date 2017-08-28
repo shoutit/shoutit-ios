@@ -26,7 +26,7 @@ final class APIAuthService {
             
             let request = APIManager.manager()
                 .request(.post, oauth2AccessTokenURL, parameters: params.params, encoding: JSONEncoding.default)
-            let cancel = AnonymousDisposable {
+            let cancel = Disposables.create {
                 request.cancel()
             }
             
@@ -54,7 +54,7 @@ final class APIAuthService {
         return Observable.create({ (observer) -> Disposable in
             let request = APIManager.manager()
                 .request(.post, oauth2AccessTokenURL, parameters: params.params, encoding: JSONEncoding.default)
-            let cancel = AnonymousDisposable {
+            let cancel = Disposables.create {
                 request.cancel()
             }
             

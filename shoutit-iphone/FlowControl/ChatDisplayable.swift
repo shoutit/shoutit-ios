@@ -20,6 +20,8 @@ protocol ChatDisplayable {
 }
 
 extension FlowController : ChatDisplayable {
+
+
     
     func showConversation(_ conversation: ConversationViewModel.ConversationExistance) {
         let controller = Wireframe.conversationController()
@@ -50,7 +52,7 @@ extension FlowController : ChatDisplayable {
         self.navigationController.show(controller, sender: nil)
     }
     
-    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate? = nil, completion: @escaping ((_ type: PickerAttachmentType) -> Void)) -> Void {
+    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate?, completion: @escaping ((PickerAttachmentType) -> Void)) {
         let controller = Wireframe.conversationAttachmentController()
         
         controller.completion = completion
@@ -69,15 +71,15 @@ extension FlowController : ChatDisplayable {
     }
     
     func showImagePreview(_ imageURL: URL) -> Void {
-        let controller = PhotoBrowser(photos: [MWPhoto(URL: imageURL)])
+        guard let controller = PhotoBrowser(photos: [Photo(url: imageURL)]) else { return }
         
         self.navigationController.showViewController(controller, sender: nil)
     }
     
     func showVideoPreview(_ videoURL: URL, thumbnailURL: URL) -> Void {
-        let controller = PhotoBrowser(photos: [MWPhoto(videoURL: videoURL, thumbnailURL: thumbnailURL)])
+        guard let controller = PhotoBrowser(photos: [MWPhoto(videoURL: videoURL, thumbnailURL: thumbnailURL)]) else { return }
         
-        self.navigationController.showViewController(controller, sender: nil)
+        self.navigationController.show(controller, sender: nil)
     }
     
     func startVideoCallWithProfile(_ profile: Profile) -> Void {

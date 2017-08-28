@@ -22,7 +22,7 @@ extension CLGeocoder {
                 observer.on(.completed)
             })
             
-            return AnonymousDisposable {
+            return Disposables.create {
                 return self.cancelGeocode()
             }
         }

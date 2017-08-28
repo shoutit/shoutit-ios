@@ -22,7 +22,7 @@ extension Listenable {
         return Observable.create{[weak self] (observer) -> Disposable in
             
             guard let `self` = self else {
-                return NopDisposable.instance
+                return Disposables.create {}
             }
             
             self.isListening = !self.isListening

@@ -73,7 +73,7 @@ extension FacebookManager {
                     case let (_, e?):
                         observer.onError(e)
                     case let (r?, _):
-                        if result.isCancelled {
+                        if (result?.isCancelled ?? false) {
                             observer.onError(LocalError.cancelled)
                         } else {
                             observer.onNext(r.token.tokenString)
@@ -85,7 +85,7 @@ extension FacebookManager {
                     }
             }
             
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
     
@@ -173,7 +173,7 @@ private extension FacebookManager {
                     case let (_, e?):
                         observer.onError(e)
                     case let (r?, _):
-                        if result.isCancelled {
+                        if result?.isCancelled ?? false {
                             observer.onError(LocalError.cancelled)
                         } else {
                             observer.onNext(r.token.tokenString)
@@ -185,7 +185,7 @@ private extension FacebookManager {
                     }
             }
             
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
     
@@ -194,7 +194,7 @@ private extension FacebookManager {
         return Observable.create{[unowned self] (observer) -> Disposable in
             observer.onNext(self.hasPermissions(.Email) && self.hasPermissions(.PublicProfile))
             observer.onCompleted()
-            return NopDisposable.instance
+            return Disposables.create {}
         }
     }
     

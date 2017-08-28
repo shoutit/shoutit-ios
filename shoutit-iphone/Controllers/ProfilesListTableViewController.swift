@@ -190,9 +190,15 @@ class ProfilesListTableViewController: UITableViewController {
 }
 
 extension ProfilesListTableViewController : FBSDKAppInviteDialogDelegate {
-    func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+    /*!
+     @abstract Sent to the delegate when the app invite encounters an error.
+     @param appInviteDialog The FBSDKAppInviteDialog that completed.
+     @param error The error.
+     */
+    func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: Error!) {
         
     }
+
     
     func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [AnyHashable: Any]!) {
         

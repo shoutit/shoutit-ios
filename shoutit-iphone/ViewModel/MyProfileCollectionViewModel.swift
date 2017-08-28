@@ -11,6 +11,7 @@ import RxSwift
 import ShoutitKit
 
 final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
+
     
     let disposeBag = DisposeBag()
     let reloadSubject: PublishSubject<Void> = PublishSubject()
@@ -66,7 +67,7 @@ final class MyProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                     self?.reloadSubject.onNext(())
                 case .completed:
                     break
-                case .Error:
+                case .error:
                     self?.reloadSubject.onNext(())
                 }
                 })

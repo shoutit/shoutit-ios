@@ -10,10 +10,10 @@ import Foundation
 import FBAudienceNetwork
 import JSONCodable
 
-extension FBNativeAd: JSONCodable {
-    public init(object: JSONObject) throws {
-        let decoder = JSONDecoder(object: object)
-    }
+extension FBNativeAd: JSONEncodable {
+//    public required convenience init(object: JSONObject) throws {
+//        let decoder = JSONDecoder(object: object)
+//    }
     
     public func toJSON() throws -> Any {
         return try JSONEncoder.create({ (encoder) -> Void in
