@@ -30,7 +30,7 @@ final class ConversationAttachmentViewController: UIViewController {
     
     fileprivate func dismissWithType(_ type: PickerAttachmentType) {
         self.dismiss(animated: true) { 
-            self.completion(type: type)
+            self.completion(type)
         }
     }
     

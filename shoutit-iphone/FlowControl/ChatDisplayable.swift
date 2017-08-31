@@ -9,10 +9,12 @@
 import Foundation
 import ShoutitKit
 
+typealias AttachmentCompletion = ((_ type: PickerAttachmentType) -> Void)
+
 protocol ChatDisplayable {
     func showConversation(_ conversation: ConversationViewModel.ConversationExistance) -> Void
     func showConversationInfo(_ conversation: Conversation) -> Void
-    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate?, completion: ((_ type: PickerAttachmentType) -> Void)) -> Void
+    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate?, completion: @escaping AttachmentCompletion) -> Void
     func showLocation(_ coordinate: CLLocationCoordinate2D) -> Void
     func showImagePreview(_ imageURL: URL) -> Void
     func showVideoPreview(_ videoURL: URL, thumbnailURL: URL) -> Void
@@ -20,8 +22,6 @@ protocol ChatDisplayable {
 }
 
 extension FlowController : ChatDisplayable {
-
-
     
     func showConversation(_ conversation: ConversationViewModel.ConversationExistance) {
         let controller = Wireframe.conversationController()
@@ -52,7 +52,7 @@ extension FlowController : ChatDisplayable {
         self.navigationController.show(controller, sender: nil)
     }
     
-    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate?, completion: @escaping ((PickerAttachmentType) -> Void)) {
+    func showAttachmentControllerWithTransitioningDelegate(_ transitionDelegate: UIViewControllerTransitioningDelegate?, completion: @escaping AttachmentCompletion) {
         let controller = Wireframe.conversationAttachmentController()
         
         controller.completion = completion
@@ -71,9 +71,9 @@ extension FlowController : ChatDisplayable {
     }
     
     func showImagePreview(_ imageURL: URL) -> Void {
-        guard let controller = PhotoBrowser(photos: [Photo(url: imageURL)]) else { return }
+        guard let controller = PhotoBrowser(photos: [MWPhoto(url: imageURL)]) else { return }
         
-        self.navigationController.showViewController(controller, sender: nil)
+        self.navigationController.show(controller, sender: nil)
     }
     
     func showVideoPreview(_ videoURL: URL, thumbnailURL: URL) -> Void {

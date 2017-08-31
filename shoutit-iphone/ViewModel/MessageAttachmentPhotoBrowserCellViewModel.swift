@@ -80,8 +80,14 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
             return
         }
         
+        
+        guard let url = path.toURL() else {
+            return
+        }
+        
         SDWebImageManager.shared()
-            .downloadImage(with: path.toURL() as! URL, options: [], progress: {[weak self] (receivedSize, expectedSize) in
+            .imageDownloader?
+            .downloadImage(with: url, options: [], progress: {[weak self] (receivedSize, expectedSize) in
                 guard let `self` = self else { return }
                 if (expectedSize > 0) {
                     let progress = Float(receivedSize) / Float(expectedSize)
@@ -125,8 +131,8 @@ private extension MessageAttachmentPhotoBrowserCellViewModel {
     }
     
     func postCompleteNotification() {
-        DispatchQueue.main.async { 
-            NotificationCenter.defaultCenter.postNotificationName(NSNotification.Name(rawValue: MWPHOTO_LOADING_DID_END_NOTIFICATION), object: self)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: MWPHOTO_LOADING_DID_END_NOTIFICATION), object: self)
         }
     }
 }

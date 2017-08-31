@@ -121,6 +121,6 @@ final class PhotoBrowserPhotoViewController: UIViewController {
             return
         }
         
-        tapHandler(viewModel: viewModel)
+        tapHandler(viewModel)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 import ShoutitKit
+import JSONCodable
 
 final class EditShoutParentViewController: CreateShoutParentViewController {
 
@@ -47,11 +48,14 @@ final class EditShoutParentViewController: CreateShoutParentViewController {
         
         assignAttachments()
         
-        let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
+        guard let parameters = try? self.createShoutTableController.viewModel.shoutParams.toJSON() else {
+            assertionFailure("could not serialize parameters")
+            return
+        }
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        APIShoutsService.updateShoutWithParams(parameters, uid: editController.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in
+        APIShoutsService.updateShoutWithParams(parameters as! JSONObject, uid: editController.shout.id).subscribe(onNext: { [weak self] (shout) -> Void in
             
             if let view = self?.view {
                             MBProgressHUD.hideAllHUDs(for: view, animated: true)

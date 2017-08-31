@@ -72,7 +72,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
             
             options.deliveryMode = .fastFormat
             
-            PHImageManager.defaultManager().requestImage(for: photo,
+            PHImageManager.default().requestImage(for: photo,
                 targetSize: self.pickerSettings.targetSize,
                 contentMode: self.pickerSettings.contentMode,
                 options: options,
@@ -143,7 +143,7 @@ final class MediaPickerController: NSObject, MediaPicker  {
         videoProcessor.generateMovieData(url) {[weak self] (data) -> Void in
             guard let `self` = self, let data = data else { return }
             let image = self.videoProcessor.generateThumbImage(url)
-            let attachment = MediaAttachment(type: .Video,
+            let attachment = MediaAttachment(type: .video,
                                              uid: MediaAttachment.generateUid(),
                                              remoteURL: nil,
                                              thumbRemoteURL: nil,

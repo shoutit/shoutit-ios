@@ -83,12 +83,6 @@ extension LocationManager: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        if CLLocationCoordinate2DIsValid(newLocation.coordinate) {
-            currentLocation = newLocation
-        }
-    }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: LocationManagerDidChangeAuthorizationStatus), object: manager)
     }

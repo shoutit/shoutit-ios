@@ -64,10 +64,10 @@ final class APILocationService {
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    if let loggedUser: DetailedPageProfile = try? APIGenericService.parseJson(json, failureExpected: true) {
+                    if let loggedUser: DetailedPageProfile = try? APIGenericService.parseJson(json as! JSONObject, failureExpected: true) {
                         Account.sharedInstance.updateUserWithModel(loggedUser)
                         observer.onNext(loggedUser)
-                    } else if let guestUser: GuestUser = try? APIGenericService.parseJson(json, failureExpected: true) {
+                    } else if let guestUser: GuestUser = try? APIGenericService.parseJson(json as! JSONObject, failureExpected: true) {
                         Account.sharedInstance.updateUserWithModel(guestUser)
                         observer.onNext(guestUser)
                     } else {
