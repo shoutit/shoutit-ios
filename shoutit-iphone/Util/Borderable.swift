@@ -16,12 +16,12 @@ protocol Borderable {
 extension Borderable where Self: UIView {
     
     func setBorders(cellIsFirst first: Bool, cellIsLast last: Bool) {
-        var borders: UIRectEdge = [.Left, .Right]
+        var borders: UIRectEdge = [.left, .right]
         if first {
-            borders = borders.union(.Top)
+            borders = borders.union(.top)
         }
         if last {
-            borders = borders.union(.Bottom)
+            borders = borders.union(.bottom)
         }
         
         internalContentView.borders = borders

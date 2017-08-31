@@ -45,6 +45,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 open class BorderedMaterialTextField : UITextField {
+    /*
     /**
      This property is the same as clipsToBounds. It crops any of the view's
      contents from bleeding past the view's frame. If an image is set using
@@ -607,4 +608,5 @@ open class BorderedMaterialTextField : UITextField {
             }) 
         }
     }
+ */
 }

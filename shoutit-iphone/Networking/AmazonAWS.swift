@@ -22,7 +22,7 @@ final class AmazonAWS: NSObject {
     
     static func configureS3() {
         let credsProvider = AWSStaticCredentialsProvider(accessKey: Constants.AWS.SH_S3_ACCESS_KEY_ID, secretKey: Constants.AWS.SH_S3_SECRET_ACCESS_KEY)
-        let configuration = AWSServiceConfiguration(region: AWSRegionType.euWest1, credentialsProvider: credsProvider)
+        let configuration = AWSServiceConfiguration(region: AWSRegionType.EUWest1, credentialsProvider: credsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
     }
     
@@ -36,7 +36,7 @@ final class AmazonAWS: NSObject {
     
     func getShoutImageTask(_ image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask<AnyObject>? {
         let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(generateKeyWithExtenstion("jpg"))
-        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, progress: progress)?.continue(successBlock: { (task) -> AnyObject! in
+        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_SHOUT_BUCKET, progress: progress)?.continueWith(block: { (task) -> AnyObject! in
             self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_SHOUT_URL, (filePath as NSString).lastPathComponent))
             return nil
         })
@@ -44,7 +44,7 @@ final class AmazonAWS: NSObject {
     
     func getUserImageTask(_ image: UIImage, progress: AWSNetworkingDownloadProgressBlock? = nil) -> AWSTask<AnyObject>? {
         let filePath = (NSTemporaryDirectory() as NSString).appendingPathComponent(generateKeyWithExtenstion("jpg"))
-        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET, progress: progress)?.continue(successBlock: { (task) -> AnyObject! in
+        return getImageTask(image, filePath: filePath, bucket: Constants.AWS.SH_AMAZON_USER_BUCKET, progress: progress)?.continueWith(block: { (task) -> AnyObject! in
             self.images.append(String(format: "%@%@", Constants.AWS.SH_AWS_USER_URL, (filePath as NSString).lastPathComponent))
             return nil
         })
@@ -111,6 +111,7 @@ final class AmazonAWS: NSObject {
         request?.body = fileURL
         request?.contentLength = contentLength as NSNumber
         request?.uploadProgress = progress
-        return AWSS3TransferManager.default().upload(request)
+        guard let rq = request else { return nil }
+        return AWSS3TransferManager.default().upload(rq)
     }
 }

@@ -19,9 +19,7 @@ final class MenuDismissAnimationController: MenuAnimationController {
         }
         
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: { () -> Void in
-            guard let transitionContainer = transitionContext.containerView else {
-                fatalError()
-            }
+            let transitionContainer = transitionContext.containerView
             
             if (UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft) {
                 fromView.frame = CGRect(x: transitionContainer.frame.width, y: 0, width: transitionContainer.frame.width - rightMargin, height: transitionContainer.frame.height)

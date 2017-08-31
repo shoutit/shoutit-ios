@@ -10,7 +10,7 @@ import UIKit
 
 final class AlertBarView: UIView {
     
-    enum Type {
+    enum `Type` {
         case success
         case error
     }

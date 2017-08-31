@@ -140,7 +140,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
     // MARK: - ProfileCollectionInfoSupplementaryViewDataSource
     
     var avatar: ProfileCollectionInfoSupplementeryViewAvatar {
-        return .Local(image: UIImage.profileTagAvatar())
+        return .local(image: UIImage.profileTagAvatar())
     }
     var infoButtons: [ProfileCollectionInfoButton] {
         let listenersCountString = NumberFormatters.numberToShortString(tag?.listenersCount ?? 0)

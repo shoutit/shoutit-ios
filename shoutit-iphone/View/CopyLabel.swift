@@ -11,7 +11,7 @@ import UIKit
 
 class CopyLabel: ResponsiveLabel {
     func sharedInit() {
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(showMenu)))
     }
     
@@ -24,13 +24,13 @@ class CopyLabel: ResponsiveLabel {
         becomeFirstResponder()
         let menu = UIMenuController.shared
         if !menu.isMenuVisible {
-            menu.setTargetRect(bounds, inView: self)
+            menu.setTargetRect(bounds, in: self)
             menu.setMenuVisible(true, animated: true)
         }
     }
     
     
-    override func copy(_ sender: AnyObject?) {
+    override func copy(_ sender: Any?) {
         let board = UIPasteboard.general
         board.string = text
         let menu = UIMenuController.shared
@@ -41,7 +41,7 @@ class CopyLabel: ResponsiveLabel {
         return true
     }
     
-    override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(NSObject.copy(_:)) {
             return true
         }

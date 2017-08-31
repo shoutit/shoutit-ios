@@ -8,12 +8,14 @@
 
 import Foundation
 
+enum GError: String {
+    case apiKeyNotExisted = "apiKeyNotExisted"
+}
+
+extension GError: Error {}
+
 open class GoogleMapsService {
-    
-    enum GError: Error {
-        case apiKeyNotExisted = "apiKeyNotExisted"
-    }
-    
+
     fileprivate static var _APIKey: String?
     
     /**

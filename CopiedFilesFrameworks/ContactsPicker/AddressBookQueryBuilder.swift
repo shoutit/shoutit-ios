@@ -36,10 +36,35 @@ public protocol AddressBookQueryBuilder {
     func keysToFetch(_ keys: [AddressBookRecordProperty]) -> AddressBookQueryBuilder
     func matchingPredicate(_ predicate: ContactPredicate) -> AddressBookQueryBuilder
     func query() throws -> [ContactProtocol]
-    func queryAsync(_ completion: ContactResults)
+    func queryAsync(_ completion: @escaping ContactResults)
 }
 
 internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressBookQueryBuilder {
+
+    func queryAsync(_ completion: @escaping ([ContactProtocol]?, Error?) -> ()) {
+        let priority = DispatchQueue.GlobalQueuePriority.default
+        DispatchQueue.global(priority: priority).async {
+            do {
+                let results = try self.query()
+                DispatchQueue.main.async {
+                    completion(results, nil)
+                }
+            }
+            catch let e {
+                DispatchQueue.main.async {
+                    completion(nil, e)
+                }
+            }
+            
+            
+        }
+    }
+
+    func matchingPredicate(_ predicate: (ContactProtocol) -> (Bool)) -> AddressBookQueryBuilder {
+        self.predicate = predicate
+        return self
+    }
+
     
     internal var keysToFetch = AddressBookRecordProperty.allValues
     
@@ -57,11 +82,6 @@ internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressB
         return self
     }
     
-    func matchingPredicate(_ predicate: @escaping ContactPredicate) -> AddressBookQueryBuilder {
-        self.predicate = predicate
-        return self
-    }
-    
     func query() throws -> [ContactProtocol] {
         let contacts = try queryImpl()
         if let predicate = self.predicate {
@@ -76,22 +96,5 @@ internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressB
         return [ContactProtocol]()
     }
     
-    func queryAsync(_ completion: @escaping ContactResults) {
-        let priority = DispatchQueue.GlobalQueuePriority.default
-        DispatchQueue.global(priority: priority).async {
-            do {
-                let results = try self.query()
-                DispatchQueue.main.async {
-                    completion(results, nil)
-                }
-            }
-            catch let e {
-                DispatchQueue.main.async {
-                    completion(nil, e)
-                }
-            }
-            
-
-        }
-    }
+   
 }

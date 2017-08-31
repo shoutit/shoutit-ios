@@ -17,7 +17,7 @@ final class ChatsFlowController: FlowController {
         let controller = Wireframe.chatsViewController()
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func handleDeeplink(_ deepLink: DPLDeepLink?) {

@@ -34,14 +34,14 @@ final class CreateShoutSocialSharingSectionViewModel: CreateShoutSectionViewMode
                 .requestPublishPermissions([.PublishActions], viewController: controller)
                 .subscribe {[weak self] (event) in
                     switch event {
-                    case .Next:
+                    case .next:
                         self?.parent.shoutParams.publishToFacebook.value = !publish
-                    case .Error(LocalError.Cancelled):
+                    case .error(LocalError.cancelled):
                         self?.parent.shoutParams.publishToFacebook.value = publish
                         break
                     case .error(let error):
                         self?.parent.errorSubject.onNext(error)
-                    case .Completed:
+                    case .completed:
                         break
                     }
                 }

@@ -38,11 +38,11 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: JSONCodable> 
     let lastPageDidLoadExaminationBlock: ((PagedResults<ItemType>) -> Bool)
     var itemExclusionRule: ((ItemType) -> Bool)? // return true if item should be excluded
     
-    init(itemToCellViewModelBlock: (ItemType) -> CellViewModelType,
-         cellViewModelToItemBlock: (CellViewModelType) -> ItemType,
-         fetchItemObservableFactory: ((PageIndexType) -> Observable<PagedResults<ItemType>>),
-         nextPageComputerBlock: ((PageIndexType, PagedResults<ItemType>) -> PageIndexType),
-         lastPageDidLoadExaminationBlock: ((PagedResults<ItemType>) -> Bool),
+    init(itemToCellViewModelBlock: @escaping (ItemType) -> CellViewModelType,
+         cellViewModelToItemBlock: @escaping (CellViewModelType) -> ItemType,
+         fetchItemObservableFactory: @escaping ((PageIndexType) -> Observable<PagedResults<ItemType>>),
+         nextPageComputerBlock: @escaping ((PageIndexType, PagedResults<ItemType>) -> PageIndexType),
+         lastPageDidLoadExaminationBlock: @escaping ((PagedResults<ItemType>) -> Bool),
          firstPageIndex: PageIndexType,
          showAds : Bool = false) {
         self.itemToCellViewModelBlock = itemToCellViewModelBlock

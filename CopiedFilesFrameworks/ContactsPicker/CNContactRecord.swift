@@ -164,14 +164,14 @@ internal class CNAdapter {
         return cnContact
     }
     
-    fileprivate class func convertPhoneNumbers(_ phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue] {
+    fileprivate class func convertPhoneNumbers(_ phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue<CNPhoneNumber>] {
         
         guard let phoneNumbers = phoneNumbers else {
             return [CNLabeledValue]()
         }
         
         return phoneNumbers.map({
-            ( LabeledValue) -> CNLabeledValue in
+            ( LabeledValue) -> CNLabeledValue<CNPhoneNumber> in
             
             let label = AddressBookRecordLabel.convertLabel(cnMappings, label: LabeledValue.label)
             var phoneNumber: CNPhoneNumber

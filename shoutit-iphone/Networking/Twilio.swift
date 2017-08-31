@@ -40,7 +40,7 @@ final class Twilio: NSObject {
     
     // RX
     fileprivate var disposeBag = DisposeBag()
-    fileprivate var userChangeBag = DisposeBag()
+    fileprivate var userChangeBag: DisposeBag? = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -129,7 +129,7 @@ final class Twilio: NSObject {
         return Observable.create{[unowned self] (observer) -> Disposable in
             let params = VideoCallParams(identity: identity.identity, missed: false)
             APIChatsService.twilioVideoCallWithParams(params).subscribe{}.addDisposableTo(self.disposeBag)
-            let invite = self.client?.inviteToConversation(identity.identity, localMedia: media, handler: { (conversation, error) in
+            let invite = self.client?.invite(toConversation: identity.identity, localMedia: media, handler: { (conversation, error) in
                 if let conversation = conversation {
                     observer.onNext(conversation)
                     observer.onCompleted()
@@ -257,14 +257,14 @@ private extension Twilio {
 // Conversations Client Delegate
 extension Twilio: TwilioConversationsClientDelegate {
     
-    func conversationsClientDidStartListeningForInvites(_ conversationsClient: TwilioConversationsClient) {
+    func conversationsClientDidStartListening(forInvites conversationsClient: TwilioConversationsClient) {
         retryScheduler.resetAttemptsCount()
     }
     
     func conversationsClient(_ conversationsClient: TwilioConversationsClient, inviteDidCancel invite: TWCIncomingInvite) {
     }
     
-    func conversationsClient(_ conversationsClient: TwilioConversationsClient, didReceiveInvite invite: TWCIncomingInvite) {
+    func conversationsClient(_ conversationsClient: TwilioConversationsClient, didReceive invite: TWCIncomingInvite) {
         let notification = Foundation.Notification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
         NotificationCenter.defaultCenter().postNotification(notification)
     }
@@ -281,12 +281,12 @@ extension Twilio: TwilioConversationsClientDelegate {
 
 // Access Manager
 extension Twilio: TwilioAccessManagerDelegate {
+    func accessManager(_ accessManager: TwilioAccessManager!, error: Error!) {
+        fatalError(error.localizedDescription)
+    }
+
     
     func accessManagerTokenExpired(_ accessManager: TwilioAccessManager!) {
         retryScheduler.retry()
-    }
-    
-    func accessManager(_ accessManager: TwilioAccessManager!, error: NSError!) {
-        fatalError(error.localizedDescription)
     }
 }

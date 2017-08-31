@@ -87,27 +87,30 @@ class MessageAttachmentPhotoBrowserCellViewModel: NSObject, MWPhotoProtocol {
         
         SDWebImageManager.shared()
             .imageDownloader?
-            .downloadImage(with: url, options: [], progress: {[weak self] (receivedSize, expectedSize) in
-                guard let `self` = self else { return }
-                if (expectedSize > 0) {
-                    let progress = Float(receivedSize) / Float(expectedSize)
-                    let dict = NSDictionary(objects: [NSNumber(value: progress as Float), self], forKeys: ["progress" as NSCopying, "photo" as NSCopying])
-                    NotificationCenter.defaultCenter().postNotificationName(MWPHOTO_PROGRESS_NOTIFICATION, object: dict)
-                }
-            }) {[weak self] (image, error, cacheType, finished, imageURL) in
+            .downloadImage(with: url, options: [], progress: { [weak self] (receivedSize, expectedSize, url) in
+                guard expectedSize > 0 else { return }
+                
+                let progress = Float(receivedSize) / Float(expectedSize)
+                let dict = NSDictionary(objects: [NSNumber(value: progress as Float), self], forKeys: ["progress" as NSCopying, "photo" as NSCopying])
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: MWPHOTO_PROGRESS_NOTIFICATION), object: dict)
+                
+            }, completed: { [weak self] (image, data, error, finished) in
                 self?.webImageOperation = nil
                 self?.underlyingImage = image
-                DispatchQueue.main.async(execute: { 
+                
+                DispatchQueue.main.async(execute: {
                     self?.imageLoadingComplete()
                 })
-        }
+            })
+        
     }
+    
     
     func unloadUnderlyingImage() {
         loadingInProgress = false
         underlyingImage = nil
     }
-    
+
     func getVideoURL(_ completion: ((URL?) -> Void)!) {
         guard let attachment = attachment else {
             videoURLLoadedBlock = completion

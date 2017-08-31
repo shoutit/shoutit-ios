@@ -18,7 +18,7 @@ protocol MediaPicker : PhotosMenuControllerDelegate, UIImagePickerControllerDele
 struct MediaPickerSettings {
     var thumbnailSize : CGSize = CGSize(width: 100, height: 100)
     var targetSize : CGSize = PHImageManagerMaximumSize
-    var contentMode : PHImageContentMode = .AspectFill
+    var contentMode : PHImageContentMode = .aspectFill
     var videoLength : TimeInterval = 10.0
     var maximumItems : Int = 5
     var maximumVideos : Int = 1
@@ -43,7 +43,7 @@ struct MediaAttachment : Hashable, Equatable {
     
     func remoteFilename(_ user: User) -> String {
         
-        if self.type == .Image {
+        if self.type == .image {
             return "\(Int(Date().timeIntervalSince1970))_\(arc4random()%100)_\(user.id).jpg"
         }
         
@@ -77,11 +77,11 @@ func ==(lhs: MediaAttachment, rhs: MediaAttachment) -> Bool {
 extension MediaAttachment {
     
     func asMessageAttachment() -> MessageAttachment {
-        if self.type == .Image {
+        if self.type == .image {
             return MessageAttachment(shout: nil, location: nil, profile: nil, videos: nil, images: [(self.remoteURL?.absoluteString)!])
         }
         
-        if self.type == .Video {
+        if self.type == .video {
             return MessageAttachment(shout: nil, location: nil, profile: nil, videos: [self.asVideoObject()!], images: nil)
         }
         

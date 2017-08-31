@@ -19,9 +19,9 @@ extension FlowController : FilterDisplayable {
         viewController.viewModel = FiltersViewModel(filtersState: state)
         viewController.completionBlock = completionBlock
         let nav = UINavigationController(rootViewController: viewController)
-        nav.navigationBarHidden = true
+        nav.isNavigationBarHidden = true
         nav.transitioningDelegate = filterTransition
-        nav.modalPresentationStyle = .Custom
+        nav.modalPresentationStyle = .custom
         navigationController.present(nav, animated: true, completion: nil)
     }
 }

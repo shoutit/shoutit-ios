@@ -264,15 +264,15 @@ class InviteFriendsTableViewController: UITableViewController {
     fileprivate func inviteTwitterFriends() {
         let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
         
-        vc.setInitialText(Constants.Invite.inviteText)
-        vc.add(URL(string: Constants.Invite.inviteURL))
+        vc?.setInitialText(Constants.Invite.inviteText)
+        vc?.add(URL(string: Constants.Invite.inviteURL))
         
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
 }
 
 extension InviteFriendsTableViewController : FBSDKAppInviteDialogDelegate {
-    func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+    func appInviteDialog(_ appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: Error!) {
         
     }
     

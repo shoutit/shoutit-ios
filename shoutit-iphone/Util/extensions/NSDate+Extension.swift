@@ -18,11 +18,11 @@ extension Date {
         let components = self.dateComponents()
         
         if components.year! > 0 {
-            return "\(components.year)yr"
+            return "\(String(describing: components.year))yr"
         }
         
         if components.month! > 0 {
-            return "\(components.month)mo"
+            return "\(String(describing: components.month))mo"
         }
         
         // TODO: localize for other calanders
@@ -32,19 +32,19 @@ extension Date {
         }
         
         if components.day! > 0 {
-            return "\(components.day)d"
+            return "\(String(describing: components.day))d"
         }
         
         if components.hour! > 0 {
-            return "\(components.hour)h"
+            return "\(String(describing: components.hour))h"
         }
         
         if components.minute! > 0 {
-            return "\(components.minute)m"
+            return "\(String(describing: components.minute))m"
         }
         
         if components.second! > 0 {
-            return "\(components.second)s"
+            return "\(String(describing: components.second))s"
         }
         
         return ""
@@ -57,7 +57,7 @@ extension Date {
             if components.year! < 2 {
                 return "Last year"
             } else {
-                return "\(components.year) years ago"
+                return "\(String(describing: components.year)) years ago"
             }
         }
         
@@ -65,7 +65,7 @@ extension Date {
             if components.month! < 2 {
                 return "Last month"
             } else {
-                return "\(components.month) months ago"
+                return "\(String(describing: components.month)) months ago"
             }
         }
         

@@ -79,14 +79,14 @@ final class RootController: UIViewController, ContainerController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(openItemFromNotification), name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openItemFromNotification), name: NSNotification.Name(rawValue: Constants.Notification.RootControllerShouldOpenNavigationItem), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkRateApp), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: Constants.Notification.RootControllerShouldOpenNavigationItem, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Constants.Notification.RootControllerShouldOpenNavigationItem), object: nil)
         NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
@@ -126,7 +126,7 @@ final class RootController: UIViewController, ContainerController {
                 currentFlowController?.navigationController.present(alert, animated: true, completion: nil)
             } else {
                 let alert = rate.promptFeedbackAlert({ (feedback) in
-                    if feedback { UserVoice.presentUserVoiceContactUsFormForParentViewController(currentFlowController?.navigationController) }
+                    if feedback { UserVoice.presentContactUsForm(forParentViewController: currentFlowController?.navigationController) }
                 })
                 currentFlowController?.navigationController.present(alert, animated: true, completion: nil)
             }
@@ -189,7 +189,7 @@ final class RootController: UIViewController, ContainerController {
         }
         
         if let presentedNavigation = self.presentedViewController as? UINavigationController, let presentedStaticPage = presentedNavigation.visibleViewController as? StaticPageViewController {
-            presentedStaticPage.dismissViewControllerAnimated(true, completion: { [weak self] in
+            presentedStaticPage.dismiss(animated: true, completion: { [weak self] in
                     self?.openItem(navigationItem, deepLink: deepLink)
                 })
             return
@@ -316,17 +316,17 @@ final class RootController: UIViewController, ContainerController {
         case .StaticPage:
             
             
-            guard let url = deepLink?.URL else { return }
+            guard let url = deepLink?.url else { return }
             
-            let urlComponents = URLComponents(URL: url, resolvingAgainstBaseURL: false)
+            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
             
             let queryItems = urlComponents?.queryItems
             
             guard let path = queryItems?.filter({$0.name == "page"}).first, let urlPath = path.value, let fullURL = URL(string: urlPath) else { return }
             
-            let staticComponents = URLComponents(URL: fullURL, resolvingAgainstBaseURL: false)
+            let staticComponents = URLComponents(url: fullURL, resolvingAgainstBaseURL: false)
                 
-            guard let titleComponent = staticComponents?.queryItems?.filter({$0.name == "title"}).first, let destinationURL = staticComponents?.URL, let title = titleComponent.value else { return }
+            guard let titleComponent = staticComponents?.queryItems?.filter({$0.name == "title"}).first, let destinationURL = staticComponents?.asURL, let title = titleComponent.value else { return }
             
             currentFlowController.showStaticPage(destinationURL, title: title)
         case .Search:
@@ -355,21 +355,21 @@ extension RootController {
     fileprivate func registerForNotifications() {
         
         NotificationCenter.default
-            .rx.notification(Constants.Notification.UserDidLogoutNotification)
+            .rx.notification(Notification.Name(rawValue: Constants.Notification.UserDidLogoutNotification))
             .subscribe(onNext: { [unowned self] notification in
                 self.openItem(.Home)
             })
             .addDisposableTo(disposeBag)
         
         NotificationCenter.default
-            .rx.notification(Constants.Notification.ToggleMenuNotification)
+            .rx.notification(Notification.Name(rawValue: Constants.Notification.ToggleMenuNotification))
             .subscribe(onNext: { notification in
                 self.toggleMenuAction()
             })
             .addDisposableTo(disposeBag)
         
         NotificationCenter.default
-            .rx.notification(Constants.Notification.IncomingCallNotification)
+            .rx.notification(Notification.Name(rawValue: Constants.Notification.IncomingCallNotification))
             .subscribe(onNext: { notification in
                 self.incomingCall(notification)
             })
@@ -386,7 +386,7 @@ extension RootController {
         let media = TWCLocalMedia()
         
         controller.answerHandler = { (invitation) in
-            invitation.acceptWithLocalMedia(media, completion: { (conversation, error) in
+            invitation.accept(with: media, completion: { (conversation, error) in
                 if let error = error {
                     debugPrint(error)
                     return
@@ -501,7 +501,7 @@ private extension RootController {
         if let presentedMenu = self.presentedViewController as? MenuTableViewController {
             presentedMenu.dismiss(animated: true, completion: nil)
         }
-        UserVoice.presentUserVoiceInterfaceForParentViewController(self.parentViewController!)
+        UserVoice.presentInterface(forParentViewController: self.parent!)
     }
     
     func showCreateShout(_ deepLink: DPLDeepLink? = nil) {

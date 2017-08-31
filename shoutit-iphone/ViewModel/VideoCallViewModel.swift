@@ -45,8 +45,8 @@ class VideoCallViewModel {
         self.conversation = Variable(conversation)
         self.callerProfile = Variable(nil)
         self.localMedia = localMedia ?? TWCLocalMedia()
-        self.state = Variable(.Calling)
-        self.audioMuted =  Variable(localMedia?.microphoneMuted ?? false)
+        self.state = Variable(.calling)
+        self.audioMuted =  Variable(localMedia?.isMicrophoneMuted ?? false)
         self.videoDisabled = Variable(false)
         if let identity = conversation.participants.first?.identity {
             fetchCallingProfileWithIdentity(identity)
@@ -76,9 +76,9 @@ class VideoCallViewModel {
             .makeCallTo(callingToProfile, media: localMedia).subscribe({[weak self] (event) in
                 switch event {
                 case .error(let error):
-                    self?.state.value = .CallFailed
+                    self?.state.value = .callFailed
                     self?.errorSubject.onNext(error)
-                case .Next(let conversation):
+                case .next(let conversation):
                     self?.conversation.value = conversation
                 default:
                     break
@@ -101,16 +101,16 @@ class VideoCallViewModel {
     }
     
     func muteAudio() {
-        localMedia.microphoneMuted = !localMedia.microphoneMuted
-        audioMuted.value = localMedia.microphoneMuted
+        localMedia.isMicrophoneMuted = !localMedia.isMicrophoneMuted
+        audioMuted.value = localMedia.isMicrophoneMuted
     }
     
     func disableVideo() {
         guard let videoTrack = localMedia.videoTracks.first as? TWCLocalVideoTrack else {
             return
         }
-        videoTrack.enabled = !videoTrack.enabled
-        videoDisabled.value = !videoTrack.enabled
+        videoTrack.isEnabled = !videoTrack.isEnabled
+        videoDisabled.value = !videoTrack.isEnabled
     }
 }
 

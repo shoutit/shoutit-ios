@@ -71,12 +71,12 @@ class RateApp {
     }
     
     func promptEnjoyAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("Enjoying Shoutit Marketplace?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Enjoying Shoutit Marketplace?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Rate App Alert Option"), style: .default, handler: { (action) in
             completion(true)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Not really", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Not really", comment: "Rate App Alert Option"), style: .default, handler: { (action) in
             completion(false)
         }))
         
@@ -84,12 +84,12 @@ class RateApp {
     }
     
     func promptHelpfulAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("Do you think Shoutit is helpful?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Do you think Shoutit is helpful?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Rate App Alert Option"), style: .default, handler: { (action) in
             completion(true)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Not really", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Not really", comment: "Rate App Alert Option"), style: .default, handler: { (action) in
             completion(false)
         }))
         
@@ -98,14 +98,14 @@ class RateApp {
     
     func promptRateAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
         
-        let alert = UIAlertController(title: NSLocalizedString("How about a rating on the AppStore?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("How about a rating on the AppStore?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok, sure", comment: "Rate App Alert Option"), style: .Default, handler: { [weak self] (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok, sure", comment: "Rate App Alert Option"), style: .default, handler: { [weak self] (action) in
             self?.openRateApp()
-            NSUserDefaults.standardUserDefaults().setAlreadyPrompted(true)
+            UserDefaults.standard.setAlreadyPrompted(true)
             completion(true)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("No, thanks", comment: "Rate App Alert Option"), style: .Default, handler: { [weak self] (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No, thanks", comment: "Rate App Alert Option"), style: .default, handler: { [weak self] (action) in
             self?.resetCounters()
             completion(false)
         }))
@@ -114,13 +114,13 @@ class RateApp {
     }
     
     func promptFeedbackAlert(_ completion: @escaping ((Bool) -> Void)) -> UIAlertController {
-        let alert = UIAlertController(title: NSLocalizedString("Would you mind giving us some feedback?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("Would you mind giving us some feedback?", comment: "Rate App Alert Title"), message: nil, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok, sure", comment: "Rate App Alert Option"), style: .Default, handler: { (action) in
-            NSUserDefaults.standardUserDefaults().setAlreadyPrompted(true)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok, sure", comment: "Rate App Alert Option"), style: .default, handler: { (action) in
+            UserDefaults.standard.setAlreadyPrompted(true)
             completion(true)
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("No, thanks", comment: "Rate App Alert Option"), style: .Default, handler: { [weak self] (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No, thanks", comment: "Rate App Alert Option"), style: .default, handler: { [weak self] (action) in
             self?.resetCounters()
             completion(false)
         }))
@@ -129,7 +129,7 @@ class RateApp {
     }
     
     func openRateApp() {
-        UIApplication.sharedApplication().openURL(URL(string: RateAppURL)!)
+        UIApplication.shared.openURL(URL(string: RateAppURL)!)
     }
 }
 
