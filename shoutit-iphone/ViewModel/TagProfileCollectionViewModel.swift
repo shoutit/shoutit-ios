@@ -89,7 +89,7 @@ final class TagProfileCollectionViewModel: ProfileCollectionViewModelInterface {
                     self?.reloadSubject.onNext(())
                 case .completed:
                     break
-                case .Error:
+                case .error:
                     self?.reloadSubject.onNext(())
                 }
                 })

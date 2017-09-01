@@ -63,6 +63,7 @@
 		246F25C51F4D7589002D510A /* TransformOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F25AE1F4D7589002D510A /* TransformOperators.swift */; };
 		246F25C61F4D7589002D510A /* TransformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F25AF1F4D7589002D510A /* TransformType.swift */; };
 		246F25C71F4D7589002D510A /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F25B01F4D7589002D510A /* URLTransform.swift */; };
+		247340961F5968FF00D4DA36 /* BorderedMaterialTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CA2431C8DE8EA008E85F9 /* BorderedMaterialTextView.swift */; };
 		2474E0051D1ACDA60085D9DD /* InvitationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C64811D1A8DFD00BC0CEE /* InvitationCode.swift */; };
 		2474E00A1D1C15A40085D9DD /* CreatePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */; };
 		2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */; };
@@ -114,7 +115,6 @@
 		604A0DE51BEEA189002A80E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A0DE41BEEA189002A80E7 /* UIColor+Extensions.swift */; };
 		606ED3051BF8AADD0064C53E /* UIImage+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 606ED3041BF8AADD0064C53E /* UIImage+Extention.m */; };
 		60DD76D91C01F9F8007C5334 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */; };
-		6D66575F91DE9ADE619CA06B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0FB754506806CFD2A18E2F /* CoreText.framework */; };
 		AC1C93E91BE90D2A009400BE /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E61BE90D2A009400BE /* policy.html */; };
 		AC1C93EA1BE90D2A009400BE /* rules.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E71BE90D2A009400BE /* rules.html */; };
 		AC1C93EB1BE90D2A009400BE /* termsofservice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1C93E81BE90D2A009400BE /* termsofservice.html */; };
@@ -243,7 +243,6 @@
 		AE44A8851D6B064F0039357B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8317A321EB92E1F40C2A541 /* SystemConfiguration.framework */; };
 		AE44A8871D6B08540039357B /* Appsee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE44A8861D6B08540039357B /* Appsee.framework */; };
 		AE44A8881D6B1AE40039357B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28AA5808B4049585E32D125D /* AVFoundation.framework */; };
-		AE44A8D11D6C5EB70039357B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE44A8D01D6C5EB70039357B /* Info.plist */; };
 		AE4CB1F61CAAB0AA009E066B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F51CAAB0AA009E066B /* VideoToolbox.framework */; };
 		AE4CB1F81CAAB0B2009E066B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1F71CAAB0B2009E066B /* AudioToolbox.framework */; };
 		AE4CB1FC1CAAB0CD009E066B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE4CB1FB1CAAB0CD009E066B /* CoreMedia.framework */; };
@@ -322,8 +321,6 @@
 		AEADF3451CA58A910051DABA /* IncomingShoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3441CA58A910051DABA /* IncomingShoutCell.xib */; };
 		AEADF3471CA58A9F0051DABA /* OutgoingShoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEADF3461CA58A9F0051DABA /* OutgoingShoutCell.xib */; };
 		AEADF3491CA58FF40051DABA /* ConversationShoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEADF3481CA58FF40051DABA /* ConversationShoutCell.swift */; };
-		AEAE36A21CD0B25300AA18AE /* shoutit-Local-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AEAE36A11CD0B25300AA18AE /* shoutit-Local-Release.xcconfig */; };
-		AEAE36AA1CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AEAE36A91CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig */; };
 		AEBB697F1C6B287200D48E4F /* ChangeLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB697E1C6B287200D48E4F /* ChangeLocationTableViewController.swift */; };
 		AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB69821C6B2F4800D48E4F /* ChangeLocationViewModel.swift */; };
 		AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBB69861C6B359B00D48E4F /* CoreLocation.framework */; };
@@ -417,17 +414,6 @@
 		B21D8A9D1D0B40A000EE1549 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */; };
 		B21EA3B51C63DC5E0013E99F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21EA3B41C63DC5E0013E99F /* LocationManager.swift */; };
 		B227BFAD1C57942E003A2D76 /* xcconfigs in Resources */ = {isa = PBXBuildFile; fileRef = B227BFAC1C57942E003A2D76 /* xcconfigs */; };
-		B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */; };
-		B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */; };
-		B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB31C579597003A2D76 /* shoutit-Profile.xcconfig */; };
-		B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB41C579597003A2D76 /* shoutit-Release.xcconfig */; };
-		B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB51C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig */; };
-		B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB61C579597003A2D76 /* shoutit-Staging-Debug.xcconfig */; };
-		B227BFC21C579597003A2D76 /* shoutit-Staging-Profile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB71C579597003A2D76 /* shoutit-Staging-Profile.xcconfig */; };
-		B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB81C579597003A2D76 /* shoutit-Staging-Release.xcconfig */; };
-		B227BFC41C579597003A2D76 /* shoutit-Staging-Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFB91C579597003A2D76 /* shoutit-Staging-Test.xcconfig */; };
-		B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */; };
-		B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B227BFBB1C579597003A2D76 /* shoutit.xcconfig */; };
 		B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E6461C2445690061F56C /* CustomUIButton.swift */; };
 		B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068E64C1C2472260061F56C /* CustomUIView.swift */; };
 		B22CACD91CBD506600316E4B /* ConversationPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22CACD81CBD506600316E4B /* ConversationPictureCell.swift */; };
@@ -2575,7 +2561,6 @@
 				B2463C581D10259B0006BD6E /* Crashlytics.framework in Frameworks */,
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
 				F3D553D4DE1D62D562D1788A /* AssetsLibrary.framework in Frameworks */,
-				6D66575F91DE9ADE619CA06B /* CoreText.framework in Frameworks */,
 				14E48B110F6CBF2841C3E264 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5656,7 +5641,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Shoutit;
 				TargetAttributes = {
 					6027CF301BE74EAE00124C28 = {
@@ -5732,9 +5717,7 @@
 				B2D441721CB816FB009782AF /* VideoCalls.storyboard in Resources */,
 				AE63FB191D12D2DF005A35CD /* PromotionLabelView.xib in Resources */,
 				B2F7197A1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight.png in Resources */,
-				B227BFC01C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig in Resources */,
 				AEADF3321CA48B740051DABA /* OutgoingPictureCell.xib in Resources */,
-				B227BFBE1C579597003A2D76 /* shoutit-Profile.xcconfig in Resources */,
 				B2D442001CB81B91009782AF /* PostSignupSuggestionsTableViewCell.xib in Resources */,
 				B2D441251CB8167D009782AF /* InviteFriends.storyboard in Resources */,
 				B2F7197E1D0EEEF5002C1D74 /* UIBarButtonItemGrid@2x.png in Resources */,
@@ -5746,20 +5729,17 @@
 				B2E8F1F71CFE03690051DA58 /* DiscoverPreview.storyboard in Resources */,
 				B2BC1EC61CF5A2BC00E56ECF /* Nemo.strings in Resources */,
 				B2D441C11CB81A24009782AF /* OutgoingLocationCell.xib in Resources */,
-				B227BFC11C579597003A2D76 /* shoutit-Staging-Debug.xcconfig in Resources */,
 				B2D441901CB81987009782AF /* PlaceholderCollectionViewCell.xib in Resources */,
 				B22CCD691CD3BDAB0019AB27 /* Localizable.strings in Resources */,
 				AEC5CB021D25153D009168D7 /* DiscoverItemCell.xib in Resources */,
 				AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */,
 				B2D441B81CB81A17009782AF /* IncomingLocationCell.xib in Resources */,
-				AE44A8D11D6C5EB70039357B /* Info.plist in Resources */,
 				B2D441A61CB819D2009782AF /* TableViewPlaceholderView.xib in Resources */,
 				249F78251C9963CF00FCB9A6 /* ConversationDayHeader.xib in Resources */,
 				B2E7E2F21C592BAD0078C743 /* Shout.storyboard in Resources */,
 				B2D441D31CB81A61009782AF /* DiscoverShoutsHeaderView.xib in Resources */,
 				B211F0711D12C858008DEEBC /* Promote.storyboard in Resources */,
 				AC7028041C1AA66200262622 /* uv_idea.png in Resources */,
-				B227BFBD1C579597003A2D76 /* shoutit-Debug.xcconfig in Resources */,
 				B2F719671D0EEEF5002C1D74 /* ImageSelectedOff@3x.png in Resources */,
 				B2F719651D0EEEF5002C1D74 /* ImageSelectedOff.png in Resources */,
 				B2F719741D0EEEF5002C1D74 /* PlayButtonOverlayLargeTap.png in Resources */,
@@ -5778,7 +5758,6 @@
 				B2E7E2E91C592B970078C743 /* Discover.storyboard in Resources */,
 				B2F7196C1D0EEEF5002C1D74 /* ImageSelectedSmallOff@2x.png in Resources */,
 				B2F719721D0EEEF5002C1D74 /* PlayButtonOverlayLarge@2x.png in Resources */,
-				AEAE36A21CD0B25300AA18AE /* shoutit-Local-Release.xcconfig in Resources */,
 				B2D4418F1CB8195E009782AF /* PagesCollectionViewCell.xib in Resources */,
 				B2D441441CB816B0009782AF /* ShoutDetail.storyboard in Resources */,
 				B2D441091CB81632009782AF /* Root.storyboard in Resources */,
@@ -5793,10 +5772,7 @@
 				AC5340CC1BED44850065A578 /* GoogleService-Info.plist in Resources */,
 				B2F719811D0EEEF5002C1D74 /* VideoOverlay@2x.png in Resources */,
 				B2F7196A1D0EEEF5002C1D74 /* ImageSelectedOn@3x.png in Resources */,
-				AEAE36AA1CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig in Resources */,
 				B26CEE341C6E54A50091470D /* ProfileCollectionCoverSupplementaryView.xib in Resources */,
-				B227BFC41C579597003A2D76 /* shoutit-Staging-Test.xcconfig in Resources */,
-				B227BFC21C579597003A2D76 /* shoutit-Staging-Profile.xcconfig in Resources */,
 				B2F524861C9C7F8A00EA622F /* SearchShoutsResultsCategoriesHeaderSupplementeryView.xib in Resources */,
 				B2F719751D0EEEF5002C1D74 /* PlayButtonOverlayLargeTap@2x.png in Resources */,
 				B2E715641C6E2F85007F95CF /* ProfileCollectionSectionHeaderSupplementaryView.xib in Resources */,
@@ -5809,7 +5785,6 @@
 				B2E53E9A1CA2AEB400F43481 /* ShoutsExpandedCollectionViewCell.xib in Resources */,
 				B27230641CE0F8DA003547EA /* IncomingProfileCell.xib in Resources */,
 				B2D441561CB816C8009782AF /* Notifications.storyboard in Resources */,
-				B227BFBC1C579597003A2D76 /* shoutit-AppStore.xcconfig in Resources */,
 				B2F7197C1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				B2D440DB1CB81466009782AF /* Filter.storyboard in Resources */,
 				AE9BB9151D242E4E00973541 /* Bookmarks.storyboard in Resources */,
@@ -5819,15 +5794,12 @@
 				B2F7196D1D0EEEF5002C1D74 /* ImageSelectedSmallOff@3x.png in Resources */,
 				B2F7197D1D0EEEF5002C1D74 /* UIBarButtonItemGrid.png in Resources */,
 				B2D029451D1C1FF800A29D8B /* Pages.storyboard in Resources */,
-				B227BFC31C579597003A2D76 /* shoutit-Staging-Release.xcconfig in Resources */,
 				B2E7E2FB1C592BC80078C743 /* LoginStoryboard.storyboard in Resources */,
 				AC1C93EA1BE90D2A009400BE /* rules.html in Resources */,
 				B2E7E2FE1C592BCE0078C743 /* Profile.storyboard in Resources */,
 				B2D441DC1CB81A6D009782AF /* DiscoverShoutFooterView.xib in Resources */,
 				B2F719701D0EEEF5002C1D74 /* ImageSelectedSmallOn@3x.png in Resources */,
-				B227BFBF1C579597003A2D76 /* shoutit-Release.xcconfig in Resources */,
 				B2F7197B1D0EEEF5002C1D74 /* UIBarButtonItemArrowRight@2x.png in Resources */,
-				B227BFC61C579597003A2D76 /* shoutit.xcconfig in Resources */,
 				B2D441301CB81690009782AF /* HTML.storyboard in Resources */,
 				B2D441991CB819AA009782AF /* SeeAllCollectionViewCell.xib in Resources */,
 				B2F719681D0EEEF5002C1D74 /* ImageSelectedOn.png in Resources */,
@@ -5842,7 +5814,6 @@
 				B2D441691CB816EE009782AF /* VerifyEmail.storyboard in Resources */,
 				AC7028011C1AA66200262622 /* uv_article@2x.png in Resources */,
 				B2D9B10C1C9881CF00924941 /* SearchSuggestionTableViewCell.xib in Resources */,
-				B227BFC51C579597003A2D76 /* shoutit-Test.xcconfig in Resources */,
 				B2F5248A1C9C7FC600EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.xib in Resources */,
 				B2F719691D0EEEF5002C1D74 /* ImageSelectedOn@2x.png in Resources */,
 				B2F719801D0EEEF5002C1D74 /* VideoOverlay.png in Resources */,
@@ -6122,6 +6093,7 @@
 				249F78271C99641D00FCB9A6 /* ConversationDayHeader.swift in Sources */,
 				B2F71A2E1D0EF643002C1D74 /* PTPusherAPI.m in Sources */,
 				AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */,
+				247340961F5968FF00D4DA36 /* BorderedMaterialTextView.swift in Sources */,
 				B2B5D03E1C80AABC0068A6AF /* ShoutDisplayable.swift in Sources */,
 				AE76E34F1D47507600C7F2CB /* DDASLLogCapture.m in Sources */,
 				246C18221C8D6C4200DD6DE0 /* MediaPickerController.swift in Sources */,
@@ -7638,6 +7610,7 @@
 			baseConfigurationReference = B227BFB41C579597003A2D76 /* shoutit-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -7647,8 +7620,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -7681,6 +7656,7 @@
 			baseConfigurationReference = B227BFB31C579597003A2D76 /* shoutit-Profile.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -7690,8 +7666,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -8016,6 +7994,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8089,6 +8068,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8156,6 +8136,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8223,6 +8204,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8290,6 +8272,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8357,6 +8340,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8424,6 +8408,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8496,6 +8481,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8568,6 +8554,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8641,6 +8628,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8709,6 +8697,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8777,6 +8766,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
@@ -8831,6 +8821,7 @@
 			baseConfigurationReference = AEAE36A11CD0B25300AA18AE /* shoutit-Local-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -8840,8 +8831,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -9011,6 +9004,7 @@
 			baseConfigurationReference = AEAE36A91CD0D45400AA18AE /* shoutit-Local-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -9020,13 +9014,16 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -9198,6 +9195,7 @@
 			baseConfigurationReference = B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -9207,8 +9205,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -9383,6 +9383,7 @@
 			baseConfigurationReference = B227BFBA1C579597003A2D76 /* shoutit-Test.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -9392,8 +9393,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -9568,6 +9571,7 @@
 			baseConfigurationReference = B227BFB81C579597003A2D76 /* shoutit-Staging-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -9577,8 +9581,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -9754,6 +9760,7 @@
 			baseConfigurationReference = B227BFB51C579597003A2D76 /* shoutit-Staging-AppStore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -9763,8 +9770,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -9933,6 +9942,7 @@
 			baseConfigurationReference = B227BFB71C579597003A2D76 /* shoutit-Staging-Profile.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -9942,8 +9952,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
@@ -10112,6 +10124,7 @@
 			baseConfigurationReference = B227BFB21C579597003A2D76 /* shoutit-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -10121,13 +10134,16 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -10292,6 +10308,7 @@
 			baseConfigurationReference = B227BFB61C579597003A2D76 /* shoutit-Staging-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -10301,13 +10318,16 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -10473,6 +10493,7 @@
 			baseConfigurationReference = B227BFB11C579597003A2D76 /* shoutit-AppStore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -10482,8 +10503,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_BITCODE = NO;

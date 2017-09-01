@@ -34,12 +34,17 @@ public enum AddressBookRecordProperty {
 
 public protocol AddressBookQueryBuilder {
     func keysToFetch(_ keys: [AddressBookRecordProperty]) -> AddressBookQueryBuilder
-    func matchingPredicate(_ predicate: ContactPredicate) -> AddressBookQueryBuilder
+    func matchingPredicate(_ predicate: @escaping ContactPredicate) -> AddressBookQueryBuilder
     func query() throws -> [ContactProtocol]
     func queryAsync(_ completion: @escaping ContactResults)
 }
 
 internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressBookQueryBuilder {
+   
+    func matchingPredicate(_ predicate: @escaping (ContactProtocol) -> (Bool)) -> AddressBookQueryBuilder {
+        self.predicate = predicate
+        return self
+    }
 
     func queryAsync(_ completion: @escaping ([ContactProtocol]?, Error?) -> ()) {
         let priority = DispatchQueue.GlobalQueuePriority.default
@@ -58,11 +63,6 @@ internal class InternalAddressBookQueryBuilder<T: AddressBookProtocol>: AddressB
             
             
         }
-    }
-
-    func matchingPredicate(_ predicate: (ContactProtocol) -> (Bool)) -> AddressBookQueryBuilder {
-        self.predicate = predicate
-        return self
     }
 
     

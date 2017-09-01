@@ -92,7 +92,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         } else if let delegate = delegate, delegate.sectionContentModeForSection(ProfileCollectionViewSection.pages.rawValue) == .default {
             for item in 0 ..< collectionView.numberOfItems(inSection: ProfileCollectionViewSection.pages.rawValue) {
                 let indexPath = IndexPath(item: item, section: ProfileCollectionViewSection.pages.rawValue)
-                let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+                let attributes = ProfileCollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(x: 0, y: yOffset, width: collectionWidth, height: pagesCellHeight)
                 cachedAttributes.append(attributes)
                 
@@ -115,7 +115,7 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
             for item in 0 ..< collectionView.numberOfItems(inSection: ProfileCollectionViewSection.shouts.rawValue) {
                 
                 let indexPath = IndexPath(item: item, section: ProfileCollectionViewSection.shouts.rawValue)
-                let attributes = ProfileCollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+                let attributes = ProfileCollectionViewLayoutAttributes(forCellWith: indexPath)
                 let leftCell = item % numberOfShoutsPerRow == 0
                 let x = leftCell ? shoutsCellSpacing : cellWidth + CGFloat(numberOfShoutsPerRow) * shoutsCellSpacing
                 attributes.frame = CGRect(x: x, y: yOffset, width: cellWidth, height: shoutsCellHeight)

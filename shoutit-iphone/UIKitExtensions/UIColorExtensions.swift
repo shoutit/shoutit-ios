@@ -89,7 +89,7 @@ extension UIColor {
     }
     
     static func colorComponentFrom(_ string: NSString, start : Int, length : Int) -> CGFloat {
-        let subString = string.substring(with: NSMakeRange(start, length))
+        let subString = string.substring(with: NSMakeRange(start, length)) as NSString
         
         let fullHex : NSString = length == 2 ? subString : ("\(subString)\(subString)" as NSString)
         

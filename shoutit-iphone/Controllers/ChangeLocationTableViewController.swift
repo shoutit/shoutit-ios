@@ -162,12 +162,14 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     func setupObservers() {
         
         setupKeyboardOffsetNotifcationObserver()
-        _ = searchBar.rx.text.bind(to: viewModel.searchTextObservable).addDisposableTo(disposeBag)
+        // ref
+//        _ = searchBar.rx.text.bind(to: viewModel.searchTextObservable).addDisposableTo(disposeBag)
 
-        viewModel.finalObservable?
-            .bind(to: tableView.rx.itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
-                cell.textLabel?.text = "\(element.description!)"
-            }.addDisposableTo(disposeBag)
+        // ref
+//        viewModel.finalObservable?
+//            .bind(to: tableView.rx.itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
+//                cell.textLabel?.text = "\(element.description!)"
+//            }.addDisposableTo(disposeBag)
         
         
         tableView.rx.modelSelected(GooglePlaces.PlaceAutocompleteResponse.Prediction.self)

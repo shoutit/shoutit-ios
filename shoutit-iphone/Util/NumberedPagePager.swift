@@ -18,8 +18,8 @@ class NumberedPagePager<CellViewModelType, ItemType: JSONCodable>: Pager<Int, Ce
     
     var cellViewModelsComparisonBlock: ((_ lhs: CellViewModelType, _ rhs: CellViewModelType) -> Bool)?
     init(
-        itemToCellViewModelBlock: (ItemType) -> CellViewModelType,
-        cellViewModelToItemBlock: (CellViewModelType) -> ItemType,
+        itemToCellViewModelBlock: @escaping (ItemType) -> CellViewModelType,
+        cellViewModelToItemBlock: @escaping (CellViewModelType) -> ItemType,
         fetchItemObservableFactory: ((Int) -> Observable<PagedResults<ItemType>>),
         pageSize: Int = 20,
         showAds: Bool = false)

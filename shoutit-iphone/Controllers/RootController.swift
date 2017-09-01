@@ -326,9 +326,9 @@ final class RootController: UIViewController, ContainerController {
             
             let staticComponents = URLComponents(url: fullURL, resolvingAgainstBaseURL: false)
                 
-            guard let titleComponent = staticComponents?.queryItems?.filter({$0.name == "title"}).first, let destinationURL = staticComponents?.asURL, let title = titleComponent.value else { return }
+            guard let titleComponent = staticComponents?.queryItems?.filter({$0.name == "title"}).first, let destinationURL = try? staticComponents?.asURL(), let title = titleComponent.value else { return }
             
-            currentFlowController.showStaticPage(destinationURL, title: title)
+            currentFlowController.showStaticPage(destinationURL!, title: title)
         case .Search:
             currentFlowController.showSearchInContext(.general)
         default:

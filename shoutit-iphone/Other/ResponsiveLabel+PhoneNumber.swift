@@ -13,7 +13,7 @@ extension ResponsiveLabel {
     func enablePhoneNumberDetectionWithAttribtues(_ attributes: [AnyHashable: Any]) {
         let types: NSTextCheckingResult.CheckingType = [.phoneNumber]
         guard let detector = try? NSDataDetector(types: types.rawValue) else { return }
-        let patternDescriptor = PatternDescriptor(regex: detector, withSearchType: .All, withPatternAttributes: attributes)
+        let patternDescriptor = PatternDescriptor(regex: detector, with: .all, withPatternAttributes: attributes)
         enablePatternDetection(patternDescriptor)
     }
 }

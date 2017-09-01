@@ -46,7 +46,7 @@ extension UIViewController {
         }
         let viewCenter = view.bounds.midY
         let viewMinusKeyboardCenter = view.bounds.minY + (view.bounds.height - keyboardHeight) * 0.5
-        hud?.yOffset = Float(viewMinusKeyboardCenter - viewCenter)
+        hud.yOffset = viewMinusKeyboardCenter - viewCenter
     }
     
     public func hideProgressHUD(_ animated: Bool = true) {

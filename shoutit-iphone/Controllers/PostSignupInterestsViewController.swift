@@ -85,14 +85,15 @@ final class PostSignupInterestsViewController: UIViewController {
                 }
             }
             .map{$1}
-            .bind(to: tableView.rx.itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
-                cell.nameLabel.text = element.category.name
-                if let path = element.category.icon, let url = path.toURL() {
-                    cell.iconImageView.kf.setImage(with:url, placeholderImage: nil)
-                }
-                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
-            }
-            .addDisposableTo(disposeBag)
+        // ref
+//            .bind(to: tableView.rx.itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
+//                cell.nameLabel.text = element.category.name
+//                if let path = element.category.icon, let url = path.toURL() {
+//                    cell.iconImageView.kf.setImage(with:url, placeholderImage: nil)
+//                }
+//                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+//            }
+//            .addDisposableTo(disposeBag)
         
         tableView
             .rx.modelSelected(PostSignupInterestCellViewModel.self)
@@ -120,7 +121,7 @@ final class PostSignupInterestsViewController: UIViewController {
         
         nextTap
             .flatMapLatest{self.viewModel.listenToSelectedCategories()}
-                .subscribe(onNext: {[weak self] (event) in
+                .subscribe({[weak self] (event) in
                 if let view = self?.view {
                     MBProgressHUD.hide(for: view, animated: true)
                 }

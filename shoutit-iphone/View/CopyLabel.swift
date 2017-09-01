@@ -37,12 +37,15 @@ class CopyLabel: ResponsiveLabel {
         menu.setMenuVisible(false, animated: true)
     }
     
-    override func canBecomeFirstResponder() -> Bool {
+    
+    override var canBecomeFirstResponder: Bool {
         return true
     }
     
+    
+    
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(NSObject.copy(_:)) {
+        if action == #selector(NSObject.copy) {
             return true
         }
         return false

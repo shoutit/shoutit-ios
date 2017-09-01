@@ -94,33 +94,35 @@ final class Twilio: NSObject {
             .flatMap { (identity) -> Observable<TWCConversation> in
                 return self
                     .inviteWithTwilioIdentity(identity, media: media)
-                    .retryWhen{ (errorObservable) -> Observable<Int> in
-                        let rangeObservable = Observable.range(start: 0, count: 3)
-                        return Observable.zip(rangeObservable, errorObservable, resultSelector: { (attempt, error) -> (Int, ErrorType) in
-                            return (attempt, error)
-                        }).flatMap({ (attempt, error) -> Observable<Int> in
-                            if (error as NSError).code == TwilioErrorCode.ParticipantUnavailable && attempt < 2 {
-                                if self.sentInvitations.count > 0 {
-                                    let invitation = self.sentInvitations.removeLast()
-                                    invitation.cancel()
-                                }
-                                return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .UserInteractive))
-                            } else {
-                                return Observable.error(error)
-                            }
-                        })
-                    }
-                    .doOnError { (error) in
+                    .do(onError: { (error) in
                         APIChatsService.twilioVideoCallWithParams(VideoCallParams(identity: identity.identity, missed: true))
                             .subscribe{ (event) in
                                 switch event {
-                                case .Next: print("Call missed")
+                                case .next: print("Call missed")
                                 case .error(let error): print("Call missed \(error)")
                                 default: break
                                 }
                             }
                             .addDisposableTo(self.disposeBag)
-                    }
+                    })
+                    // ref
+//                    .retryWhen({ (errorObservable) -> Observable<Int> in
+//                        let rangeObservable = Observable.range(start: 0, count: 3)
+//                        return Observable.zip(rangeObservable, errorObservable, resultSelector: { (attempt, error) -> (Int, ErrorType) in
+//                            return (attempt, error)
+//                        }).flatMap({ (attempt, error) -> Observable<Int> in
+//                            if (error as NSError).code == TwilioErrorCode.ParticipantUnavailable && attempt < 2 {
+//                                if self.sentInvitations.count > 0 {
+//                                    let invitation = self.sentInvitations.removeLast()
+//                                    invitation.cancel()
+//                                }
+//                                return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .UserInteractive))
+//                            } else {
+//                                return Observable.error(error)
+//                            }
+//                        })
+//                    })
+                
         }
     }
     
@@ -170,7 +172,7 @@ private extension Twilio {
             switch event {
             case .next(let authData):
                 self?.authData = authData
-            case .Error(_):
+            case .error(_):
                 break
             default: break
             }
@@ -265,8 +267,11 @@ extension Twilio: TwilioConversationsClientDelegate {
     }
     
     func conversationsClient(_ conversationsClient: TwilioConversationsClient, didReceive invite: TWCIncomingInvite) {
-        let notification = Foundation.Notification(name: Constants.Notification.IncomingCallNotification, object: invite, userInfo: nil)
-        NotificationCenter.defaultCenter().postNotification(notification)
+        
+        let notification = Notification(name: Notification.Name(rawValue: Constants.Notification.IncomingCallNotification), object: invite)
+        
+        
+        NotificationCenter.default.post(notification)
     }
     
     func conversationsClientDidStopListeningForInvites(_ conversationsClient: TwilioConversationsClient, error: NSError?) {

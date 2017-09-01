@@ -48,7 +48,7 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
         shout.videos?.each { (video) -> () in
             attachments.append(
                 MediaAttachment(
-                    type: .Video,
+                    type: .video,
                     uid: MediaAttachment.generateUid(),
                     remoteURL: URL(string: video.path),
                     thumbRemoteURL: URL(string: video.thumbnailPath),
@@ -76,7 +76,7 @@ final class EditShoutTableViewController: CreateShoutTableViewController {
             
             attachments.append(
                 MediaAttachment(
-                    type: .Image,
+                    type: .image,
                     uid: MediaAttachment.generateUid(),
                     remoteURL: URL(string: imgPath),
                     thumbRemoteURL: URL(string: imgPath),

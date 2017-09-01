@@ -18,7 +18,7 @@ final class AdminsFlowController: FlowController {
         controller.viewModel = AdminsListViewModel()
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

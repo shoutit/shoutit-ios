@@ -11,13 +11,13 @@ import AddressBook
 
 @available(iOS 8.0, *)
 internal class ABAddressBookImpl: AddressBookProtocol {
-    func requestAccessToAddressBook(_ completion: (Bool, NSError?) -> Void) {
+    func requestAccessToAddressBook(_ completion: @escaping (Bool, Error?) -> Void) {
         ABAddressBookRequestAccessWithCompletion(addressBook) {
             (access : Bool, error : CFError!) -> Void in
             if access {
                 completion(access, nil)
             } else {
-                completion(access, error as NSError)
+                completion(access, error)
             }
         }
     }
@@ -157,9 +157,7 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         }
         else {
             if let error = err {
-                let cfError = error.takeRetainedValue()
-                let nsError: NSError? = cfError as NSError?
-                return nsError
+                return error.takeRetainedValue()
             } else {
                 return nil
             }

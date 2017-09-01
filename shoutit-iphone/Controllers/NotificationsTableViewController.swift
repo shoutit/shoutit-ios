@@ -66,7 +66,7 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
         
         Account.sharedInstance.pusherManager.mainChannelSubject.subscribe(onNext: { [weak self] (event) in
             if event.eventType() == .NewNotification {
-                if let notification : Notification = event.object() {
+                if let notification : ShoutitKit.Notification = event.object() {
                     self?.insertMessage(notification)
                 }
             }
@@ -110,7 +110,7 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
                 }
                 
                 self?.appendMessages(messages)
-            case .Error:
+            case .error:
                 self?.loading = false
             default:
                 break;
@@ -194,12 +194,16 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
         MBProgressHUD.showAdded(to: self.tableView, animated: true)
         
         APINotificationsService.markAllAsRead().subscribe(onNext: { [weak self] () -> Void in
-            MBProgressHUD.hideAllHUDs(for: self?.tableView, animated: true)
+            if let tableView = self?.tableView {
+                MBProgressHUD.hideAllHUDs(for: tableView, animated: true)
+            }
             
             self?.messages = readedNotifications
             self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
-            MBProgressHUD.hideAllHUDs(for: self?.tableView, animated: true)
+            if let tableView = self?.tableView {
+                MBProgressHUD.hideAllHUDs(for: tableView, animated: true)
+            }
             self?.tableView.reloadData()
         }, onCompleted: { () -> Void in
                 
@@ -212,20 +216,24 @@ class NotificationsTableViewController: UITableViewController, DZNEmptyDataSetDe
         
         MBProgressHUD.showAdded(to: self.tableView, animated: true)
         
-        APINotificationsService.markNotificationAsRead(notification).subscribe(onNext: {
-            MBProgressHUD.hideAllHUDs(for: self.tableView, animated: true)
+        APINotificationsService.markNotificationAsRead(notification).subscribe(onNext: { [weak self] in
+            if let tableView = self?.tableView {
+                MBProgressHUD.hideAllHUDs(for: tableView, animated: true)
+            }
             
             if let idx = notificationIdx {
                 
                 let readedCopy = notification.readCopy()
                 
-                self.messages.remove(at: idx)
-                self.messages.insert(readedCopy, at: idx)
+                self?.messages.remove(at: idx)
+                self?.messages.insert(readedCopy, at: idx)
             }
             
-            self.tableView.reloadData()
+            self?.tableView.reloadData()
         }, onError: { [weak self] (error) -> Void in
-            MBProgressHUD.hideAllHUDs(for: self?.tableView, animated: true)
+            if let tableView = self?.tableView {
+                MBProgressHUD.hideAllHUDs(for: tableView, animated: true)
+            }
             self?.showError(error)
             self?.tableView.reloadData()
         }, onCompleted: { () -> Void in

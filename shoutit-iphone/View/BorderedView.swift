@@ -29,7 +29,7 @@ final class BorderedView: UIView {
         var blue: CGFloat = 0.0
         var green: CGFloat = 0.0
         var alpha: CGFloat = 0.0
-        borderColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        borderColor?.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         context?.setStrokeColor(red: red, green: green, blue: blue, alpha: alpha)
         
         let top = borders.contains(.top)
@@ -64,45 +64,42 @@ final class BorderedView: UIView {
         if top && left {
             context?.beginPath()
             context?.move(to: CGPoint(x: rect.minX, y: rect.minY + cornerRadius))
-            CGContextAddArcToPoint(context,
-                                   rect.minX,
-                                   rect.minY,
-                                   rect.minX + cornerRadius,
-                                   rect.minY,
-                                   cornerRadius)
+            context?.addArc(tangent1End: CGPoint(x: rect.minX,
+                                                 y: rect.minY),
+                            tangent2End: CGPoint(x: rect.minX + cornerRadius,
+                                                 y: rect.minY),
+                            radius: cornerRadius)
             context?.strokePath()
         }
         if top && right {
             context?.beginPath()
             context?.move(to: CGPoint(x: rect.maxX - cornerRadius, y: rect.minY))
-            CGContextAddArcToPoint(context,
-                                   rect.maxX,
-                                   rect.minY,
-                                   rect.maxX,
-                                   rect.minY + cornerRadius,
-                                   cornerRadius)
+            context?.addArc(tangent1End: CGPoint(x: rect.maxX,
+                                                 y: rect.minY),
+                            tangent2End: CGPoint(x: rect.maxX,
+                                                 y: rect.minY + cornerRadius),
+                            radius: cornerRadius)
             context?.strokePath()
         }
         if bottom && left {
             context?.beginPath()
             context?.move(to: CGPoint(x: rect.minX, y: rect.maxY - cornerRadius))
-            CGContextAddArcToPoint(context,
-                                   rect.minX,
-                                   rect.maxY,
-                                   rect.minX + cornerRadius,
-                                   rect.maxY,
-                                   cornerRadius)
+            context?.addArc(tangent1End: CGPoint(x: rect.minX,
+                                                 y: rect.maxY),
+                            tangent2End: CGPoint(x: rect.minX + cornerRadius,
+                                                 y: rect.maxY ),
+                            radius: cornerRadius)
             context?.strokePath()
         }
         if bottom && right {
             context?.beginPath()
             context?.move(to: CGPoint(x: rect.maxX - cornerRadius, y: rect.maxY))
-            CGContextAddArcToPoint(context,
-                                   rect.maxX,
-                                   rect.maxY,
-                                   rect.maxX,
-                                   rect.maxY - cornerRadius,
-                                   cornerRadius)
+            context?.addArc(tangent1End: CGPoint(x: rect.maxX,
+                                                 y: rect.maxY),
+                            tangent2End: CGPoint(x: rect.maxX,
+                                                 y: rect.maxY - cornerRadius ),
+                            radius: cornerRadius)
+      
             context?.strokePath()
         }
         

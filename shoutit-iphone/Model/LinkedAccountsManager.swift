@@ -137,7 +137,7 @@ class LinkedAccountsManager : NSObject {
                 case .next(_):
                     debugPrint("permissionsGranted")
                     self?.showPagesSelectionActionSheetFrom(controller, disposeBag: disposeBag, option: option)
-                case .Error(LocalError.cancelled):
+                case .error(LocalError.cancelled):
                     break
                 case .error(let error):
                     controller.showError(error)
@@ -228,43 +228,37 @@ class LinkedAccountsManager : NSObject {
 }
 
 extension LinkedAccountsManager : GIDSignInDelegate, GIDSignInUIDelegate {
-    @objc func signIn(_ signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error != nil {
             self.presentingController?.showError(error)
             return
         }
         
-        APIProfileService.linkSocialAccountWithParams(.Google(code: user.serverAuthCode)).subscribe { [weak self] (event) in
+        APIProfileService.linkSocialAccountWithParams(.google(code: user.serverAuthCode)).subscribe { [weak self] (event) in
             switch event {
-            case .Next(let success):
+            case .next(let success):
                 self?.presentingController?.showSuccessMessage(success.message)
                 self?.googleSettingsOption?.detail = self?.nameForGoogleAccount()
                 Account.sharedInstance.fetchUserProfile()
             case .error(let error):
                 self?.presentingController?.showError(error)
-            
+                
             default: break
             }
-        
+            
             self?.presentingController = nil
-        }.addDisposableTo(disposeBag)
-        
-        
-        
+            }.addDisposableTo(disposeBag)
     }
-    
-    @objc func signIn(_ signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
-        
+  
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         presentingController = nil
-        
     }
     
-    func signIn(_ signIn: GIDSignIn!, presentViewController viewController: UIViewController!) {
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         presentingController?.present(viewController, animated: true, completion: nil)
     }
     
-    func signIn(_ signIn: GIDSignIn!, dismissViewController viewController: UIViewController!) {
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         viewController.dismiss(animated: true, completion: nil)
     }
 

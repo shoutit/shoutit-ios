@@ -115,7 +115,7 @@ final class APIGenericService {
                     let originalJson = try validateResponseAndExtractJson(response)
                     let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
 //                    debugPrint(json)
-                    let object: T = try parseJson(json)
+                    let object: T = try parseJson(json as! JSONObject)
                     observer.onNext(object)
                     observer.onCompleted()
                 } catch let error {
@@ -164,7 +164,7 @@ final class APIGenericService {
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)
                     let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
-                    let object: [T] = try parseJsonArray(json)
+                    let object: [T] = try parseJsonArray(json as! [JSONObject])
                     observer.onNext(object)
                     observer.onCompleted()
                 } catch let error {
@@ -270,7 +270,7 @@ final class APIGenericService {
         }
     }
     
-    static func extractJsonFromJson(_ json: AnyObject, withPathComponents components: [String]?) throws -> JSONObject {
+    static func extractJsonFromJson(_ json: AnyObject, withPathComponents components: [String]?) throws -> AnyObject {
         guard let components = components else {
             return json
         }
@@ -295,6 +295,9 @@ final class APIGenericService {
     }
     
     static func parseJsonArray<T: JSONDecodable>(_ json: [JSONObject]) throws -> [T] {
-        return try T(object: json)
+        let t: [T] = try Array<T>(JSONArray: json)
+        return t
     }
 }
+
+

@@ -11,8 +11,9 @@ import Foundation
 public extension URL {
     
     func imageUrlByAppendingVaraitionComponent(_ varation: ImageVariation) -> URL {
-        guard let fileExtension = pathExtension else { assertionFailure(); return self; }
-        guard let originalPath = deletingPathExtension().absoluteString else { assertionFailure(); return self; }
+        let fileExtension = pathExtension
+        let originalPath = deletingPathExtension().absoluteString
+        
         guard let noExtensionURL = URL(string: originalPath + varation.pathComponent) else { assertionFailure(); return self; }
         return noExtensionURL.appendingPathExtension(fileExtension)
     }

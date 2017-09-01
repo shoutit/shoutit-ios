@@ -29,11 +29,11 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
         if let attachment = attachment, let image = attachment.image {
             imageView.image = image
             editIconImageView?.isHidden = false
-            videoIconImageView.hidden = attachment.type != .Video
+            videoIconImageView.isHidden = attachment.type != .video
         } else if let attachment = attachment, let thumbURL = attachment.thumbRemoteURL {
             imageView.sh_setImageWithURL(thumbURL, placeholderImage: nil)
             editIconImageView?.isHidden = false
-            videoIconImageView.hidden = attachment.type != .Video
+            videoIconImageView.isHidden = attachment.type != .video
         } else {
             imageView.image = nil
             editIconImageView?.isHidden = true
@@ -78,7 +78,7 @@ final class ShoutMediaCollectionViewCell: UICollectionViewCell {
         case .uploaded:
             progressView.isHidden = true
             editIconImageView?.isHidden = false
-            videoIconImageView.hidden = attachment.type != .Video
+            videoIconImageView.isHidden = attachment.type != .video
         }
     }
     

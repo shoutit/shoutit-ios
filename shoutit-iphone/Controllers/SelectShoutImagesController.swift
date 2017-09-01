@@ -156,7 +156,7 @@ private extension SelectShoutImagesController {
     }
     
     func checkIfAttachmentCanBeAdded(_ attachment: MediaAttachment) -> Bool {
-        if attachment.type == .Video {
+        if attachment.type == .video {
             if checkIfVideoCanBeAdded() == false {
                 toManyMoviesAlert()
                 return false
@@ -170,7 +170,7 @@ private extension SelectShoutImagesController {
         var numberOfVideosAttached = 0
         
         for (_, attachment) in self.attachments {
-            if attachment.type == .Video {
+            if attachment.type == .video {
                 numberOfVideosAttached += 1
             }
         }

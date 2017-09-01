@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureURLCache()
         
-        NotificationCenter.defaultCenter().addObserver(self, selector: #selector(sessionStarted), name: AppseeSessionStartedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sessionStarted), name: NSNotification.Name.AppseeSessionStarted, object: nil)
         
         Appsee.start(Constants.AppSee.appKey)
         
@@ -98,17 +98,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        if GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation) {
+        if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }
         
         let parsedUrl = BFURL.init(inboundURL: url, sourceApplication: sourceApplication)
         
         if ((parsedUrl?.appLinkData) != nil) {
-            return self.router.handleURL(parsedUrl.targetURL, withCompletion: nil)
+            return self.router.handle(parsedUrl!.targetURL, withCompletion: nil)
         }
         
-        return self.router.handleURL(url, withCompletion:nil)
+        return self.router.handle(url, withCompletion:nil)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -164,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let delayTime = DispatchTime.now() + Double(Int64(dispatchAfter * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
-                self.router.handleURL(urlToOpen, withCompletion:nil)
+                self.router.handle(urlToOpen, withCompletion:nil)
             }
             
             
@@ -199,12 +199,16 @@ private extension AppDelegate {
         AmazonAWS.configureS3()
         
         //UserVoice
-        let config = UVConfig(site: "shoutit.uservoice.com")
+        guard let config = UVConfig(site: "shoutit.uservoice.com") else {
+            assertionFailure("Could not read config file")
+            return
+        }
+        
         config.showForum = false
         config.topicId = 79840
         config.forumId = 290071
         UserVoice.initialize(config)
-        UVStyleSheet.instance().navigationBarTintColor = UIColor.blackColor()
+        UVStyleSheet.instance().navigationBarTintColor = UIColor.black
         
         // Disable AutoLayout Constraints Warnings
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -214,9 +218,9 @@ private extension AppDelegate {
         paperTrailLogger?.port = 33179 //Your port number here
         paperTrailLogger?.programName = "guest"
         
-        DDLog.add(paperTrailLogger)
+        DDLog.add(paperTrailLogger!)
         
-        NewRelicAgent.startWithApplicationToken(Constants.NewRelic.appId)
+        NewRelicAgent.start(withApplicationToken: Constants.NewRelic.appId)
         
     }
     
@@ -259,7 +263,8 @@ private extension AppDelegate {
     
     func configureURLCache() {
         let URLCache = Foundation.URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
-        Foundation.URLCache.setSharedURLCache(URLCache)
+        Foundation.URLCache.shared = URLCache
+        
     }
 }
 
@@ -269,8 +274,8 @@ extension AppDelegate {
         let routableElements : [NavigationItem] = [.Home, .Discover, .Browse, .Search, .Chats, .PublicChats, .Conversation, .Settings, .Notifications, .Profile, .Shout, .CreateShout, .CreditsTransations, .StaticPage]
         
         for route in routableElements {
-            self.router.registerBlock({ [weak self] (deeplink) in
-                self?.routeToNavigationItem(route, withDeeplink: deeplink)
+            self.router.register({ [weak self] (deeplink) in
+                self?.routeToNavigationItem(route, withDeeplink: deeplink!)
             }, forRoute: route.rawValue)
         }
         

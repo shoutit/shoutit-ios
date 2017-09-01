@@ -110,7 +110,8 @@ final class VerifyEmailViewController: UIViewController {
             .addDisposableTo(disposeBag)
         
         // text field
-        emailTextField.rx.text.bind(to: viewModel.email).addDisposableTo(disposeBag)
+        // ref
+//        emailTextField.rx.text.bind(to: viewModel.email).addDisposableTo(disposeBag)
         
         // validation
         emailTextField.addValidator(ShoutitValidator.validateEmail, withDisposeBag: disposeBag)

@@ -18,9 +18,6 @@ final class OverlayDismissAnimationController: OverlayAnimationController {
         }
         
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: { () -> Void in
-            guard let _ = transitionContext.containerView else {
-                fatalError()
-            }
             
             fromView.alpha = 0.0
             

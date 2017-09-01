@@ -245,16 +245,18 @@ private extension ShowDetailContainerViewController {
     
     func deleteAction() {
         let alert = deleteAlert {
-            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             
             APIShoutsService.deleteShoutWithId(self.viewModel.shout.id).subscribeOn(MainScheduler.instance).subscribe({ [weak self] (event) in
-                MBProgressHUD.hideHUDForView(self?.view, animated: true)
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
                 
                 switch event {
-                case .Next:
+                case .next:
                     self?.showSuccessMessage(NSLocalizedString("Shout deleted Successfully", comment: ""))
-                    NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notification.ShoutDeletedNotification, object: self, userInfo: nil)
-                    self?.navigationController?.popViewControllerAnimated(true)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.Notification.ShoutDeletedNotification), object: self)
+                    self?.navigationController?.popViewController(animated: true)
                 case .error(let error):
                     self?.showError(error)
                 default:

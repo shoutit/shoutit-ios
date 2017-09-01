@@ -61,7 +61,7 @@ class RecentPhotosCollectionViewController: UICollectionViewController, UICollec
         
         super.init(collectionViewLayout: collectionViewFlowLayout)
         
-        self.addPhotoAction = UIAlertAction(title: NSString.localizedStringWithFormat(NSLocalizedString("Add %d Photos", bundle: Bundle.main, comment: "") as NSString, 0) as String, style: .Default, handler: { (action) -> Void in
+        self.addPhotoAction = UIAlertAction(title: NSString.localizedStringWithFormat(NSLocalizedString("Add %d Photos", bundle: Bundle.main, comment: "") as NSString, 0) as String, style: .default, handler: { (action) -> Void in
             self.delegate?.recentPhotosCollectionViewController(self, didFinishPickingPhotos: self.selectedAssets)
         })
         self.addPhotoAction.isEnabled = false

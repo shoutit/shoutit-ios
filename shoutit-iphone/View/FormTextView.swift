@@ -7,24 +7,24 @@
 //
 
 import UIKit
-// REF BorderedMaterialTextView
-final class FormTextView: UITextView {
+
+final class FormTextView: BorderedMaterialTextView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // REF
-//        placeholderLabel = UILabel()
-//        placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .regular)
-//        placeholderLabel!.textColor = UIColor(shoutitColor: .discoverBorder)
-//        
-//        titleLabel = UILabel()
-//        titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
-//        titleLabelColor = UIColor(shoutitColor: .discoverBorder)
-//        titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
-//        
-//        detailLabel = UILabel()
-//        detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
-//        detailLabelActiveColor = UIColor(shoutitColor: .discoverBorder)
-//        detailLabelHidden = false
+        placeholderLabel = UILabel()
+        placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .regular)
+        placeholderLabel!.textColor = UIColor(shoutitColor: .discoverBorder)
+        
+        titleLabel = UILabel()
+        titleLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
+        titleLabelColor = UIColor(shoutitColor: .discoverBorder)
+        titleLabelActiveColor = UIColor(shoutitColor: .shoutitLightBlueColor)
+        
+        detailLabel = UILabel()
+        detailLabel!.font = UIFont.sh_systemFontOfSize(12, weight: .medium)
+        detailLabelActiveColor = UIColor(shoutitColor: .discoverBorder)
+        detailLabelHidden = false
     }
 }

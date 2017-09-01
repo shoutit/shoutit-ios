@@ -18,9 +18,9 @@ extension GooglePlaces {
         public var predictions: [Prediction] = []
         
         public init() {}
-        public init?(_ map: Map) { }
+        public init?(map: Map) { }
         
-        public mutating func mapping(_ map: Map) {
+        public mutating func mapping(map: Map) {
             status <- (map["status"], EnumTransform())
             errorMessage <- map["error_message"]
             
@@ -38,7 +38,7 @@ extension GooglePlaces {
             public var matchedSubstring: [MatchedSubstring] = []
             
             public init() {}
-            public init?(_ map: Map) { }
+            public init?(map: Map) { }
             
             public mutating func mapping(_ map: Map) {
                 description <- map["description"]
@@ -92,7 +92,7 @@ extension GooglePlaces {
             public var offset: Int?
             
             public init() {}
-            public init?(_ map: Map) { }
+            public init?(map: Map) { }
             
             public mutating func mapping(_ map: Map) {
                 length <- map["length"]

@@ -170,10 +170,10 @@ open class BorderedMaterialTextView: UITextView {
      for the backing layer. This is the preferred method of setting depth
      in order to maintain consitency across UI objects.
      */
-    open var depth: Material.Depth {
+    open var sh_depth: Material.DepthPreset {
         didSet {
-            let value: MaterialDepthType = MaterialDepthToValue(depth)
-            shadowOffset = value.offset
+            let value = DepthPresetToValue(preset: sh_depth)
+            shadowOffset = value.offset.asSize
             shadowOpacity = value.opacity
             shadowRadius = value.radius
         }
@@ -184,14 +184,14 @@ open class BorderedMaterialTextView: UITextView {
      property has a value of .Circle when the cornerRadius is set, it will
      become .None, as it no longer maintains its circle shape.
      */
-    open override var cornerRadius: Material.Radius {
+    open var sh_cornerRadius: Material.CornerRadiusPreset {
         didSet {
-            if let v: MaterialRadius = cornerRadius {
-                layer.cornerRadius = MaterialRadiusToValue(v)
+                let v = sh_cornerRadius
+                layer.cornerRadius = CornerRadiusPresetToValue(preset: v)
                 if .circle == shape {
                     shape = .none
                 }
-            }
+            
         }
     }
     
@@ -200,7 +200,7 @@ open class BorderedMaterialTextView: UITextView {
      width or height property is set, the other will be automatically adjusted
      to maintain the shape of the object.
      */
-    open override var shape: Material.Shape {
+    open var shape: Material.ShapePreset {
         didSet {
             if .none != shape {
                 if width < height {
@@ -216,9 +216,9 @@ open class BorderedMaterialTextView: UITextView {
      A property that accesses the layer.borderWith using a MaterialBorder
      enum preset.
      */
-    open override var borderWidth: Material.Border {
+    open var sh_borderWidth: Material.BorderWidthPreset {
         didSet {
-            layer.borderWidth = MaterialBorderToValue(borderWidth)
+            layer.borderWidth = sh_borderWidth.cgFloatValue
         }
     }
     
@@ -264,9 +264,9 @@ open class BorderedMaterialTextView: UITextView {
     open var titleLabelColor: UIColor? {
         didSet {
             titleLabel?.textColor = titleLabelColor
-            Material.Animation.animationDisabled { [unowned self] in
+//            Material.Animation.animationDisabled { [unowned self] in
                 self.bottomBorderLayer.borderColor = self.titleLabelColor?.cgColor
-            }
+//            }
         }
     }
     
@@ -297,9 +297,9 @@ open class BorderedMaterialTextView: UITextView {
         didSet {
             if !detailLabelHidden {
                 detailLabel?.textColor = detailLabelActiveColor
-                MaterialAnimation.animationDisabled { [unowned self] in
+              
                     self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
-                }
+              
             }
         }
     }
@@ -317,15 +317,15 @@ open class BorderedMaterialTextView: UITextView {
         didSet {
             if detailLabelHidden {
                 detailLabel?.textColor = titleLabelColor
-                MaterialAnimation.animationDisabled { [unowned self] in
+                
                     self.bottomBorderLayer.borderColor = self.editing ? self.titleLabelActiveColor?.cgColor : self.titleLabelColor?.cgColor
-                }
+                
                 hideDetailLabel()
             } else {
                 detailLabel?.textColor = detailLabelActiveColor
-                MaterialAnimation.animationDisabled { [unowned self] in
+                
                     self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
-                }
+                
                 showDetailLabel()
             }
         }
@@ -356,9 +356,9 @@ open class BorderedMaterialTextView: UITextView {
      Text container UIEdgeInset preset property. This updates the
      textContainerInset property with a preset value.
      */
-    open override var textContainerInsetPreset: Material.EdgeInset {
+    open var textContainerInsetPreset: Material.EdgeInsetsPreset {
         didSet {
-            textContainerInset = MaterialEdgeInsetToValue(textContainerInsetPreset)
+            textContainerInset = EdgeInsetsPresetToValue(preset: textContainerInsetPreset)
         }
     }
     
@@ -374,10 +374,11 @@ open class BorderedMaterialTextView: UITextView {
      - Parameter aDecoder: A NSCoder instance.
      */
     public required init?(coder aDecoder: NSCoder) {
-        depth = .none
+        sh_depth = .none
         shape = .none
-        cornerRadius = .none
-        borderWidth = .none
+        sh_cornerRadius = .none
+        sh_borderWidth = .none
+        textContainerInsetPreset = .none
         super.init(coder: aDecoder)
         prepareView()
     }
@@ -390,10 +391,11 @@ open class BorderedMaterialTextView: UITextView {
      - Parameter textContainer: A NSTextContainer instance.
      */
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
-        depth = .none
+        sh_depth = .none
         shape = .none
-        cornerRadius = .none
-        borderWidth = .none
+        sh_cornerRadius = .none
+        sh_borderWidth = .none
+        textContainerInsetPreset = .none
         super.init(frame: frame, textContainer: textContainer)
         prepareView()
     }
@@ -422,9 +424,9 @@ open class BorderedMaterialTextView: UITextView {
         updatePlaceholderLabelFrame()
     }
     
-    /// Overriding the layout callback for sublayers.
-    open override func layoutSublayersOfLayer(_ layer: CALayer) {
-        super.layoutSublayersOfLayer(layer)
+    open override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        
         if self.layer == layer {
             bottomBorderLayer.frame = CGRect(x: -9, y: -20, width: bounds.width + 18, height: bounds.height + bottomBorderLayerDistance + 20)
             bottomBorderLayer.backgroundColor = UIColor.clear.cgColor
@@ -437,56 +439,56 @@ open class BorderedMaterialTextView: UITextView {
         }
     }
     
-    /**
-     A method that accepts CAAnimation objects and executes them on the
-     view's backing layer.
-     - Parameter animation: A CAAnimation instance.
-     */
-    open func animate(_ animation: CAAnimation) {
-        animation.delegate = self as! CAAnimationDelegate
-        if let a: CABasicAnimation = animation as? CABasicAnimation {
-            a.fromValue = (nil == layer.presentation() ? layer : layer.presentation() as! CALayer).value(forKeyPath: a.keyPath!)
-        }
-        if let a: CAPropertyAnimation = animation as? CAPropertyAnimation {
-            layer.add(a, forKey: a.keyPath!)
-        } else if let a: CAAnimationGroup = animation as? CAAnimationGroup {
-            layer.add(a, forKey: nil)
-        } else if let a: CATransition = animation as? CATransition {
-            layer.add(a, forKey: kCATransition)
-        }
-    }
-    
-    /**
-     A delegation method that is executed when the backing layer starts
-     running an animation.
-     - Parameter anim: The currently running CAAnimation instance.
-     */
-    open override func animationDidStart(_ anim: CAAnimation) {
-        (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStart?(anim)
-    }
-    
-    /**
-     A delegation method that is executed when the backing layer stops
-     running an animation.
-     - Parameter anim: The CAAnimation instance that stopped running.
-     - Parameter flag: A boolean that indicates if the animation stopped
-     because it was completed or interrupted. True if completed, false
-     if interrupted.
-     */
-    open override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
-            if let b: CABasicAnimation = a as? CABasicAnimation {
-                layer.setValue(nil == b.toValue ? b.byValue : b.toValue, forKey: b.keyPath!)
-            }
-            (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
-            layer.removeAnimation(forKey: a.keyPath!)
-        } else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
-            for x in a.animations! {
-                animationDidStop(x, finished: true)
-            }
-        }
-    }
-    
+//    /**
+//     A method that accepts CAAnimation objects and executes them on the
+//     view's backing layer.
+//     - Parameter animation: A CAAnimation instance.
+//     */
+//    open func animate(_ animation: CAAnimation) {
+//        animation.delegate = self as! CAAnimationDelegate
+//        if let a: CABasicAnimation = animation as? CABasicAnimation {
+//            a.fromValue = (nil == layer.presentation() ? layer : layer.presentation() as! CALayer).value(forKeyPath: a.keyPath!)
+//        }
+//        if let a: CAPropertyAnimation = animation as? CAPropertyAnimation {
+//            layer.add(a, forKey: a.keyPath!)
+//        } else if let a: CAAnimationGroup = animation as? CAAnimationGroup {
+//            layer.add(a, forKey: nil)
+//        } else if let a: CATransition = animation as? CATransition {
+//            layer.add(a, forKey: kCATransition)
+//        }
+//    }
+//    
+//    /**
+//     A delegation method that is executed when the backing layer starts
+//     running an animation.
+//     - Parameter anim: The currently running CAAnimation instance.
+//     */
+//    open override func animationDidStart(_ anim: CAAnimation) {
+//        (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStart?(anim)
+//    }
+//    
+//    /**
+//     A delegation method that is executed when the backing layer stops
+//     running an animation.
+//     - Parameter anim: The CAAnimation instance that stopped running.
+//     - Parameter flag: A boolean that indicates if the animation stopped
+//     because it was completed or interrupted. True if completed, false
+//     if interrupted.
+//     */
+//    open override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+//        if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
+//            if let b: CABasicAnimation = a as? CABasicAnimation {
+//                layer.setValue(nil == b.toValue ? b.byValue : b.toValue, forKey: b.keyPath!)
+//            }
+//            (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
+//            layer.removeAnimation(forKey: a.keyPath!)
+//        } else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
+//            for x in a.animations! {
+//                animationDidStop(x, finished: true)
+//            }
+//        }
+//    }
+//    
     /// Reloads necessary components when the view has changed.
     internal func reloadView() {
         
@@ -496,9 +498,9 @@ open class BorderedMaterialTextView: UITextView {
     internal func handleTextViewTextDidBegin() {
         editing = true
         titleLabel?.textColor = titleLabelActiveColor
-        MaterialAnimation.animationDisabled { [unowned self] in
+       
             self.bottomBorderLayer.borderColor = self.titleLabelActiveColor?.cgColor
-        }
+       
     }
     
     /// Notification handler for when text changed.
@@ -534,13 +536,13 @@ open class BorderedMaterialTextView: UITextView {
             hideTitleLabel()
         }
         titleLabel?.textColor = titleLabelColor
-        MaterialAnimation.animationDisabled { [unowned self] in
+      
             self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelColor?.cgColor : self.detailLabelActiveColor?.cgColor
-        }
+      
     }
     
     /// Manages the layout for the shape of the view instance.
-    internal func layoutShape() {
+    open override func layoutShape() {
         if .circle == shape {
             layer.cornerRadius = width / 2
         }
@@ -554,7 +556,7 @@ open class BorderedMaterialTextView: UITextView {
      when subclassing.
      */
     fileprivate func prepareView() {
-        textContainerInset = MaterialEdgeInsetToValue(.none)
+        textContainerInset = EdgeInsetsPresetToValue(preset: .none)
         backgroundColor = Material.Color.white
         masksToBounds = false
         removeNotificationHandlers()

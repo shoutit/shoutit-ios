@@ -147,7 +147,7 @@ class InviteFriendsTableViewController: UITableViewController {
                 switch event {
                 case .next(_):
                     self.showFacebookContacts()
-                case .Error(LocalError.cancelled):
+                case .error(LocalError.cancelled):
                     break
                 case .error(let error):
                     self.showError(error)

@@ -89,7 +89,7 @@ final class EditProfileTableViewModel {
     }
     
     func mutateBirthdayWithDate(_ date: Date?) {
-        cells[9] = EditProfileCellViewModel(birthday: date as! NSDate)
+        cells[9] = EditProfileCellViewModel(birthday: date!)
     }
     
     // MARK: Actions

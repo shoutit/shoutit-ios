@@ -35,7 +35,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
                 return
             }
             
-            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(MenuTableViewController.dismiss))
+            let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(MenuTableViewController.dismisss))
             overlay.addGestureRecognizer(tapGesture)
         }
     }
@@ -134,7 +134,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         triggerActionWithItem(.Credits)
     }
     
-    override func dismiss() {
+    override func dismisss() {
         self.dismiss(animated: true, completion: nil)
     }
     

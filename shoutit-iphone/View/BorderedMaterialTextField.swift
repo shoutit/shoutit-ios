@@ -45,7 +45,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 open class BorderedMaterialTextField : UITextField {
-    /*
+    
     /**
      This property is the same as clipsToBounds. It crops any of the view's
      contents from bleeding past the view's frame. If an image is set using
@@ -168,9 +168,9 @@ open class BorderedMaterialTextField : UITextField {
      */
     open var sh_depth: Material.DepthPreset {
         didSet {
-        let value = DepthPresetToValue(sh_depth)
+        let value = DepthPresetToValue(preset: sh_depth)
             
-        shadowOffset = value.offset
+        shadowOffset = value.offset.asSize
         shadowOpacity = value.opacity
         shadowRadius = value.radius
         }
@@ -184,7 +184,7 @@ open class BorderedMaterialTextField : UITextField {
     open var sh_cornerRadius: Material.CornerRadiusPreset {
         didSet {
         if let v: Material.CornerRadiusPreset = sh_cornerRadius {
-            layer.cornerRadius = MaterialRadiusToValue(v)
+            layer.cornerRadius = CornerRadiusPresetToValue(preset: v)
             if .circle == shape {
                 shape = .none
             }
@@ -215,7 +215,7 @@ open class BorderedMaterialTextField : UITextField {
      */
     open var sh_borderWidth: Material.BorderWidthPreset {
         didSet {
-        layer.borderWidth = borderWidth.cgFloatValue
+            layer.borderWidth = sh_borderWidth.cgFloatValue
         }
     }
     
@@ -270,9 +270,9 @@ open class BorderedMaterialTextField : UITextField {
     open var titleLabelColor: UIColor? {
         didSet {
         titleLabel?.textColor = titleLabelColor
-        MaterialAnimation.animationDisabled { [unowned self] in
+        
             self.bottomBorderLayer.borderColor = self.titleLabelColor?.cgColor
-        }
+        
         }
     }
     
@@ -310,9 +310,7 @@ open class BorderedMaterialTextField : UITextField {
         didSet {
         if !detailLabelHidden {
             detailLabel?.textColor = detailLabelActiveColor
-            MaterialAnimation.animationDisabled { [unowned self] in
-                self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
-            }
+            self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
         }
         }
     }
@@ -330,15 +328,12 @@ open class BorderedMaterialTextField : UITextField {
         didSet {
         if detailLabelHidden {
             detailLabel?.textColor = titleLabelColor
-            MaterialAnimation.animationDisabled { [unowned self] in
-                self.bottomBorderLayer.borderColor = self.isEditing ? self.titleLabelActiveColor?.cgColor : self.titleLabelColor?.cgColor
-            }
+            
+            self.bottomBorderLayer.borderColor = self.isEditing ? self.titleLabelActiveColor?.cgColor : self.titleLabelColor?.cgColor
             hideDetailLabel()
         } else {
             detailLabel?.textColor = detailLabelActiveColor
-            MaterialAnimation.animationDisabled { [unowned self] in
-                self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
-            }
+            self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
             showDetailLabel()
         }
         }
@@ -349,10 +344,10 @@ open class BorderedMaterialTextField : UITextField {
      - Parameter aDecoder: A NSCoder instance.
      */
     public required init?(coder aDecoder: NSCoder) {
-        depth = .none
+        sh_depth = .none
         shape = .none
-        cornerRadius = .none
-        borderWidth = .none
+        sh_cornerRadius = .none
+        sh_borderWidth = .none
         super.init(coder: aDecoder)
         prepareView()
     }
@@ -364,10 +359,10 @@ open class BorderedMaterialTextField : UITextField {
      - Parameter frame: A CGRect instance.
      */
     public override init(frame: CGRect) {
-        depth = .none
+        sh_depth = .none
         shape = .none
-        cornerRadius = .none
-        borderWidth = .none
+        sh_cornerRadius = .none
+        sh_borderWidth = .none
         super.init(frame: frame)
         prepareView()
     }
@@ -377,9 +372,10 @@ open class BorderedMaterialTextField : UITextField {
         self.init(frame: CGRect.null)
     }
     
-    /// Overriding the layout callback for sublayers.
-    open func layoutSublayersOfLayer(_ layer: CALayer) {
-        super.layoutSublayersOfLayer(layer)
+    
+    open override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        
         if self.layer == layer {
             bottomBorderLayer.frame = CGRect(x: -9, y: -20, width: bounds.width + 18, height: bounds.height + bottomBorderLayerDistance + 20)
             bottomBorderLayer.backgroundColor = UIColor.clear.cgColor
@@ -411,33 +407,39 @@ open class BorderedMaterialTextField : UITextField {
         return CGRect(x: rect.minX, y: rect.minY - 8, width: rect.width, height: rect.height)
     }
     
-    /**
-     A method that accepts CAAnimation objects and executes them on the
-     view's backing layer.
-     - Parameter animation: A CAAnimation instance.
-     */
-    open func animate(_ animation: CAAnimation) {
-        animation.delegate = self as! CAAnimationDelegate
-        if let a: CABasicAnimation = animation as? CABasicAnimation {
-            a.fromValue = (nil == layer.presentation() ? layer : layer.presentation() as! CALayer).value(forKeyPath: a.keyPath!)
-        }
-        if let a: CAPropertyAnimation = animation as? CAPropertyAnimation {
-            layer.add(a, forKey: a.keyPath!)
-        } else if let a: CAAnimationGroup = animation as? CAAnimationGroup {
-            layer.add(a, forKey: nil)
-        } else if let a: CATransition = animation as? CATransition {
-            layer.add(a, forKey: kCATransition)
-        }
-    }
+    //    /**
+    //     A method that accepts CAAnimation objects and executes them on the
+    //     view's backing layer.
+    //     - Parameter animation: A CAAnimation instance.
+    //     */
+
     
-    /**
-     A delegation method that is executed when the backing layer starts
-     running an animation.
-     - Parameter anim: The currently running CAAnimation instance.
-     */
-    open func animationDidStart(_ anim: CAAnimation) {
-        (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStart?(anim)
-    }
+    
+//    public override func animate(_ animations: CAAnimation...) {
+//        for animation in animations {
+//            animation.delegate = self as! CAAnimationDelegate
+//            if let a: CABasicAnimation = animation as? CABasicAnimation {
+//                a.fromValue = (nil == layer.presentation() ? layer : layer.presentation() as! CALayer).value(forKeyPath: a.keyPath!)
+//            }
+//            if let a: CAPropertyAnimation = animation as? CAPropertyAnimation {
+//                layer.add(a, forKey: a.keyPath!)
+//            } else if let a: CAAnimationGroup = animation as? CAAnimationGroup {
+//                layer.add(a, forKey: nil)
+//            } else if let a: CATransition = animation as? CATransition {
+//                layer.add(a, forKey: kCATransition)
+//            }
+//        }
+//    }
+    
+    
+//    /**
+//     A delegation method that is executed when the backing layer starts
+//     running an animation.
+//     - Parameter anim: The currently running CAAnimation instance.
+//     */
+//    open func animationDidStart(_ anim: CAAnimation) {
+//        (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStart?(anim)
+//    }
     
     /**
      A delegation method that is executed when the backing layer stops
@@ -447,19 +449,19 @@ open class BorderedMaterialTextField : UITextField {
      because it was completed or interrupted. True if completed, false
      if interrupted.
      */
-    open func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
-            if let b: CABasicAnimation = a as? CABasicAnimation {
-                layer.setValue(nil == b.toValue ? b.byValue : b.toValue, forKey: b.keyPath!)
-            }
-            (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
-            layer.removeAnimation(forKey: a.keyPath!)
-        } else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
-            for x in a.animations! {
-                animationDidStop(x, finished: true)
-            }
-        }
-    }
+//    open func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+//        if let a: CAPropertyAnimation = anim as? CAPropertyAnimation {
+//            if let b: CABasicAnimation = a as? CABasicAnimation {
+//                layer.setValue(nil == b.toValue ? b.byValue : b.toValue, forKey: b.keyPath!)
+//            }
+//            (delegate as? MaterialAnimationDelegate)?.materialAnimationDidStop?(anim, finished: flag)
+//            layer.removeAnimation(forKey: a.keyPath!)
+//        } else if let a: CAAnimationGroup = anim as? CAAnimationGroup {
+//            for x in a.animations! {
+//                animationDidStop(x, finished: true)
+//            }
+//        }
+//    }
     
     /**
      Prepares the view instance when intialized. When subclassing,
@@ -479,9 +481,7 @@ open class BorderedMaterialTextField : UITextField {
     /// Handler for text editing began.
     internal func textFieldDidBegin(_ textField: BorderedMaterialTextField) {
         titleLabel?.textColor = titleLabelActiveColor
-        MaterialAnimation.animationDisabled { [unowned self] in
-            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelActiveColor?.cgColor : self.detailLabelActiveColor?.cgColor
-        }
+        self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelActiveColor?.cgColor : self.detailLabelActiveColor?.cgColor
     }
     
     /// Handler for text changed.
@@ -489,9 +489,7 @@ open class BorderedMaterialTextField : UITextField {
         if 0 < text?.utf16.count {
             showTitleLabel()
             if !detailLabelHidden {
-                MaterialAnimation.animationDisabled { [unowned self] in
-                    self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
-                }
+                self.bottomBorderLayer.borderColor = self.detailLabelActiveColor?.cgColor
             }
         } else if 0 == text?.utf16.count {
             hideTitleLabel()
@@ -506,9 +504,7 @@ open class BorderedMaterialTextField : UITextField {
             hideTitleLabel()
         }
         titleLabel?.textColor = titleLabelColor
-        MaterialAnimation.animationDisabled { [unowned self] in
-            self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelColor?.cgColor : self.detailLabelActiveColor?.cgColor
-        }
+        self.bottomBorderLayer.borderColor = self.detailLabelHidden ? self.titleLabelColor?.cgColor : self.detailLabelActiveColor?.cgColor
     }
     
     /// Manages the layout for the shape of the view instance.
@@ -608,5 +604,5 @@ open class BorderedMaterialTextField : UITextField {
             }) 
         }
     }
- */
+ 
 }

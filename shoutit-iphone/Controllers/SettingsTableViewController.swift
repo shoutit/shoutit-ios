@@ -47,7 +47,7 @@ final class SettingsTableViewController: UITableViewController {
         }).addDisposableTo(disposeBag)
         // bind table view
         models.asObservable()
-            .bind(to: tableView.rx.itemsWithCellIdentifier(cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
+            .bind(to: tableView.rx.items(cellIdentifier: cellReuseID, cellType: SettingsTableViewCell.self)) {[weak self] (row, option, cell) in
                 
                 cell.titleLabel.text = option.name
                 cell.subtitleLabel?.text = option.detail

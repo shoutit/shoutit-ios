@@ -87,7 +87,7 @@ protocol DeepLinkHandling {
 
 extension DPLDeepLink {
     var navigationItem : NavigationItem? {
-        if let host = self.URL.host {
+        if let host = self.url.host {
             return NavigationItem(rawValue: host)
         }
         

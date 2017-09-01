@@ -10,7 +10,7 @@ import Foundation
 
 public protocol AddressBookProtocol {
     
-    func requestAccessToAddressBook( _ completion: (Bool, NSError?) -> Void )
+    func requestAccessToAddressBook( _ completion: @escaping (Bool, Error?) -> Void )
 
     func retrieveAddressBookRecordsCount() throws -> Int
 
@@ -51,6 +51,10 @@ open class APIVersionAddressBookFactory : AddressBookFactory {
 }
 
 open class AddressBook: AddressBookProtocol {
+    public func requestAccessToAddressBook(_ completion: @escaping (Bool, Error?) -> Void) {
+        internalAddressBook.requestAccessToAddressBook(completion)
+    }
+
     fileprivate var internalAddressBook: AddressBookProtocol!
     
     public convenience init() throws {
@@ -59,10 +63,6 @@ open class AddressBook: AddressBookProtocol {
     
     public init(factory: AddressBookFactory) throws {
         internalAddressBook = try factory.createAddressBook()
-    }
-    
-    open func requestAccessToAddressBook(_ completion: (Bool, NSError?) -> Void) {
-        internalAddressBook.requestAccessToAddressBook(completion)
     }
     
     open func retrieveAddressBookRecordsCount() throws -> Int {

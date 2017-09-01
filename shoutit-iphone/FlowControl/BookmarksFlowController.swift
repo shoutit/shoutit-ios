@@ -21,12 +21,12 @@ final class BookmarksFlowController: FlowController {
             return
         }
         
-        let viewModel = ShoutsCollectionViewModel(context: .BookmarkedShouts(user: profile))
+        let viewModel = ShoutsCollectionViewModel(context: .bookmarkedShouts(user: profile))
         
         controller.viewModel = viewModel
         controller.flowDelegate = self
         
-        navigationController.showViewController(controller, sender: nil)
+        navigationController.show(controller, sender: nil)
     }
     
     override func requiresLoggedInUser() -> Bool {

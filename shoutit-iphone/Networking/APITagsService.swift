@@ -18,7 +18,7 @@ final class APITagsService {
     
     static func listen(_ listen: Bool, toTagWithSlug slug: String) -> Observable<ListenSuccess> {
         let url = APIManager.baseURL + "/tags/\(slug)/listen"
-        let method: Alamofire.Method = listen ? .post : .delete
+        let method: HTTPMethod = listen ? .post : .delete
         return APIGenericService.requestWithMethod(method, url: url, params: NopParams(), encoding: URLEncoding.default, headers: nil)
     }
     

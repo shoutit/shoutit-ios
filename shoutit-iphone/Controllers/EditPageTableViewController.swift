@@ -91,7 +91,7 @@ class EditPageTableViewController: UITableViewController {
                     self?.viewModel = EditPageTableViewModel(page: page)
                     self?.tableView.reloadData()
                     self?.fillHeader()
-                case .Error(let erorr):
+                case .error(let erorr):
                     self?.showError(erorr)
             default: break
             }
@@ -181,13 +181,14 @@ extension EditPageTableViewController {
             if case .phone = identity {
                 cell.textField.keyboardType = .phonePad
             }
-            cell.textField
-                .rx.text
-                .asDriver()
-                .drive(onNext: { [unowned self] (text) in
-                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-                })
-                .addDisposableTo(cell.disposeBag)
+            // ref 
+//            cell.textField
+//                .rx.text
+//                .asDriver()
+//                .drive(onNext: { [unowned self] (text) in
+//                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
+//                })
+//                .addDisposableTo(cell.disposeBag)
             
         case .richText(let value, let placeholder, _):
             let cell = cell as! EditPageTextViewTableViewCell

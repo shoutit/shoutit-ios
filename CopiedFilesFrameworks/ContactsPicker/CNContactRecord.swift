@@ -106,7 +106,7 @@ internal class CNContactRecord: ContactProtocol {
     var phoneNumbers: [AddressBookRecordLabel]? {
         get {
             if wrappedContact.isKeyAvailable(CNContactPhoneNumbersKey) {
-                return CNAdapter.convertCNLabeledValues(wrappedContact.phoneNumbers)
+                return CNAdapter.convertCNLabeledValues(wrappedContact.phoneNumbers as! [CNLabeledValue<NSString>])
             } else {
                 return nil
             }
@@ -185,24 +185,24 @@ internal class CNAdapter {
         })
     }
     
-    fileprivate class func convertEmailAddresses(_ emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue] {
+    fileprivate class func convertEmailAddresses(_ emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue<NSString>] {
         
         guard let emailAddresses = emailAddresses else {
             return [CNLabeledValue]()
         }
         
         return emailAddresses.map({
-            ( LabeledValue) -> CNLabeledValue in
+            ( LabeledValue) -> CNLabeledValue<NSString> in
             
             let label = AddressBookRecordLabel.convertLabel(cnMappings, label: LabeledValue.label)
-            let value = LabeledValue.value
+            let value = LabeledValue.value as! NSString
             
             return CNLabeledValue(label: label, value: value)
         })
         
     }
     
-    internal class func convertCNLabeledValues(_ cnLabeledValues: [CNLabeledValue]) -> [AddressBookRecordLabel] {
+    internal class func convertCNLabeledValues(_ cnLabeledValues: [CNLabeledValue<NSString>]) -> [AddressBookRecordLabel] {
         var abLabels = [AddressBookRecordLabel]()
         
         let mappings = DictionaryUtils.dictionaryWithSwappedKeysAndValues(cnMappings)
@@ -212,7 +212,7 @@ internal class CNAdapter {
             abLabels.append(
                 AddressBookRecordLabel(
                     label: label,
-                    value: value)
+                    value: value as NSCopying & NSSecureCoding)
             )
         }
         

@@ -35,7 +35,7 @@ final class MixpanelHelper {
         p["api_client"] = "shoutit-ios" as AnyObject
         p["signed_user"] = Account.sharedInstance.isUserAuthenticated as AnyObject
         if let user = Account.sharedInstance.user {
-            p["is_guest"] = user.isGuest
+            p["is_guest"] = user.isGuest as AnyObject
         }
         return p
     }

@@ -38,7 +38,7 @@ final class LoginMethodChoiceViewModel {
                 case .next(let token):
                     let params = FacebookLoginParams(token: token, mixPanelDistinctId: MixpanelHelper.getDistictId(), currentUserCoordinates: LocationManager.sharedInstance.currentLocation.coordinate)
                     self.authenticateWithParameters(params)
-                case .Error(LocalError.cancelled):
+                case .error(LocalError.cancelled):
                     self.progressHUDSubject.onNext(false)
                 case .error(let error):
                     self.errorSubject.onNext(error)
@@ -76,15 +76,14 @@ final class LoginMethodChoiceViewModel {
 
 extension LoginMethodChoiceViewModel: GIDSignInDelegate {
     
-    @objc func signIn(_ signIn: GIDSignIn?, didSignInForUser user: GIDGoogleUser?, withError error: NSError?) {
-        
+    @objc func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         GIDSignIn.sharedInstance().delegate = nil
         
         if let error = error {
-            if error.code != -5 {
+//            if error.code != -5 {
                 GIDSignIn.sharedInstance().signOut()
                 errorSubject.onNext(error)
-            }
+//            }
             self.progressHUDSubject.onNext(false)
             return
         }
@@ -95,12 +94,11 @@ extension LoginMethodChoiceViewModel: GIDSignInDelegate {
         }
     }
     
-    @objc func signIn(_ signIn: GIDSignIn?, didDisconnectWithUser user:GIDGoogleUser?,
-        withError error: NSError?) {
-            GIDSignIn.sharedInstance().delegate = nil
-            if let error = error {
-                errorSubject.onNext(error)
-            }
+    @objc func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        GIDSignIn.sharedInstance().delegate = nil
+        if let error = error {
+            errorSubject.onNext(error)
+        }
     }
 }
 

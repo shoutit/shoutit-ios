@@ -11,9 +11,10 @@ import Contacts
 
 @available(iOS 9.0, *)
 internal class CNAddressBookImpl: AddressBookProtocol {
-    func requestAccessToAddressBook(_ completion: (Bool, NSError?) -> Void) {
+ 
+    func requestAccessToAddressBook(_ completion: @escaping (Bool, Error?) -> Void) {
         contactStore.requestAccess(for: CNEntityType.contacts) { (access, err) -> Void in
-            completion(access, err as! NSError)
+            completion(access, err)
         }
     }
 

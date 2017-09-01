@@ -24,7 +24,7 @@ public struct PageSignupParams: AuthParams {
     
     public var authParams: [String : AnyObject] {
         return [
-            "page_category": category.encode().JSONObject(),
+            "page_category": try! category.toJSON() as AnyObject,
             "page_name" : name,
             "email" : email,
             "name": userFullName,
@@ -49,7 +49,7 @@ public struct PageCreationParams : Params {
  
     public var params: [String : AnyObject] {
         return [
-            "page_category": category.encode().JSONObject(),
+            "page_category": try! category.toJSON() as AnyObject,
             "page_name": name
         ]
     }

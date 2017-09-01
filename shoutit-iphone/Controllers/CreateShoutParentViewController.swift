@@ -10,6 +10,7 @@ import UIKit
 import MBProgressHUD
 import RxSwift
 import ShoutitKit
+import JSONCodable
 
 class CreateShoutParentViewController: UIViewController {
     
@@ -35,7 +36,7 @@ class CreateShoutParentViewController: UIViewController {
         }
         
        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CreateShoutParentViewController.dismiss))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.dismissS))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +72,7 @@ class CreateShoutParentViewController: UIViewController {
         self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
-    override func dismiss() {
+    func dismissS() {
         let alert = UIAlertController(title: NSLocalizedString("Do you want to close?", comment: "Create Shout Alert Title"), message: NSLocalizedString("Are you sure? All Shout data will be lost.", comment: "Create Shout Alert Message"), preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: "Create Shout Alert Option"), style: .destructive, handler: { (alertaction) in
@@ -153,7 +154,7 @@ class CreateShoutParentViewController: UIViewController {
     }
     
     func imageAttachmentObject(_ attachment: MediaAttachment) -> String? {
-        if attachment.type == .Image {
+        if attachment.type == .image {
             return attachment.remoteURL?.absoluteString
         }
         
@@ -162,7 +163,7 @@ class CreateShoutParentViewController: UIViewController {
 
     
     func videoAttachmentObject(_ attachment: MediaAttachment) -> Video? {
-        if attachment.type == .Video {
+        if attachment.type == .video {
             return attachment.asVideoObject()
         }
         
@@ -179,11 +180,14 @@ class CreateShoutParentViewController: UIViewController {
         
         assignAttachments()
         
-        let parameters = self.createShoutTableController.viewModel.shoutParams.encode()
+        guard let parameters = try? self.createShoutTableController.viewModel.shoutParams.toJSON() as? JSONObject else {
+            assertionFailure("Error")
+            return
+        }
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        APIShoutsService.createShoutWithParams(parameters).subscribe(onNext: { [weak self] (shout) -> Void in
+        APIShoutsService.createShoutWithParams(parameters!).subscribe(onNext: { [weak self] (shout) -> Void in
             
             if let view = self?.view {
                             MBProgressHUD.hideAllHUDs(for: view, animated: true)

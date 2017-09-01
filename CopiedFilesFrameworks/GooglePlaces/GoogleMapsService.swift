@@ -43,7 +43,7 @@ open class GoogleMapsService {
     }
     
     /// Get a base request parameter dictionary, this will include API key
-    class var baseRequestParameters: [String : AnyObject] {
-        return try! ["key" : APIKey()] as [String : AnyObject]
+    class var baseRequestParameters: [String : String] {
+        return try! ["key" : APIKey()] as [String : String]
     }
 }

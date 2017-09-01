@@ -13,7 +13,7 @@ class SelectProfileProfilesListEventHandler: ProfilesListEventHandler {
     
     var choiceHandler: ((Profile) -> Void)
     
-    init(choiceHandler: ((Profile) -> Void)) {
+    init(choiceHandler: @escaping ((Profile) -> Void)) {
         self.choiceHandler = choiceHandler
     }
     
