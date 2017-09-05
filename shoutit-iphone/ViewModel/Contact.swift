@@ -8,7 +8,6 @@
 
 import UIKit
 import JSONCodable
-import Ogra
 
 public struct Contact {
     public let firstName: String?

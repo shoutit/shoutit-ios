@@ -1,8 +1,24 @@
 {
-  "commitish" : "0.1.8",
   "iOS" : [
     {
-      "hash" : "4b84053c5b07cc6197ed319a8135893529ad838daffcb8d1216a065a6353595e",
+      "hash" : "2d6b5309c07be711c55ba4197fd6ff63e80c0e2963204eeeb1bd7f439ca9b4db",
+      "name" : "PaperTrailLumberjack"
+    },
+    {
+      "hash" : "2d6b5309c07be711c55ba4197fd6ff63e80c0e2963204eeeb1bd7f439ca9b4db",
+      "name" : "PaperTrailLumberjack"
+    }
+  ],
+  "commitish" : "0.1.8",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+    {
+      "hash" : "397d73325f1ee2c618048927c8cf845cdf4037ad11310a97ae9f8b2e8e2bd95c",
       "name" : "PaperTrailLumberjack"
     }
   ]

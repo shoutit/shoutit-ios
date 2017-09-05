@@ -1,8 +1,23 @@
 {
-  "commitish" : "7.6.1",
   "iOS" : [
     {
-      "hash" : "0abc0c293639d9fe31c413d077a009c6f24e23579cc9e8151c220db475a06ff0",
+      "hash" : "4a74f14e66cecabb23166d024b8abc045191080048061527da92c2139c0e1c47",
+      "name" : "CocoaAsyncSocket"
+    }
+  ],
+  "commitish" : "7.6.1",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+    {
+      "hash" : "b8cf9b12b50f9e6d834d89c8215a2f339219099ff773ae899e0a6bbb924fe7b6",
+      "name" : "CocoaAsyncSocket"
+    }
+  ],
+  "Mac" : [
+    {
+      "hash" : "e2ae4a48c6b6274d1580c7b4b826e82be57dd5079590f382bb4c6bf688b52f5f",
       "name" : "CocoaAsyncSocket"
     }
   ]

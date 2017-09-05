@@ -9,17 +9,17 @@
 import Foundation
 import Contacts
 
+// ref
 
-let cnMappings = [
-    AddressBookRecordLabel.LabelType.Main.rawValue : CNLabelPhoneNumberMain,
-    AddressBookRecordLabel.LabelType.Home.rawValue : CNLabelHome,
-    AddressBookRecordLabel.LabelType.Work.rawValue : CNLabelWork,
-    AddressBookRecordLabel.LabelType.Other.rawValue : CNLabelOther,
-    AddressBookRecordLabel.LabelType.PhoneiPhone.rawValue : CNLabelPhoneNumberiPhone,
-    AddressBookRecordLabel.LabelType.PhoneMobile.rawValue : CNLabelPhoneNumberMobile
-]
-
-internal class CNContactRecord: ContactProtocol {
+//let cnMappings = [
+//    AddressBookRecordLabel.LabelType.Main.rawValue : CNLabelPhoneNumberMain,
+//    AddressBookRecordLabel.LabelType.Home.rawValue : CNLabelHome,
+//    AddressBookRecordLabel.LabelType.Work.rawValue : CNLabelWork,
+//    AddressBookRecordLabel.LabelType.Other.rawValue : CNLabelOther,
+//    AddressBookRecordLabel.LabelType.PhoneiPhone.rawValue : CNLabelPhoneNumberiPhone,
+//    AddressBookRecordLabel.LabelType.PhoneMobile.rawValue : CNLabelPhoneNumberMobile
+//]
+class CNContactRecord: ContactProtocol {
     
     internal let wrappedContact: CNMutableContact
     
@@ -31,107 +31,108 @@ internal class CNContactRecord: ContactProtocol {
         wrappedContact = cnContact
     }
     
-    var identifier: String? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactIdentifierKey) {
-                return wrappedContact.identifier
-            } else {
-                return nil
-            }
-        }
-    }
+    var identifier: String? = nil
+//    {
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactIdentifierKey) {
+//                return wrappedContact.identifier
+//            } else {
+//                return nil
+//            }
+//        }
+//    }
     
-    var firstName: String? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactGivenNameKey) {
-                return wrappedContact.givenName
-            } else {
-                return nil
-            }
-        }
-        set {
-            if let value = newValue {
-                wrappedContact.givenName = value
-            }
-        }
-    }
+    var firstName: String? = nil
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactGivenNameKey) {
+//                return wrappedContact.givenName
+//            } else {
+//                return nil
+//            }
+//        }
+//        set {
+//            if let value = newValue {
+//                wrappedContact.givenName = value
+//            }
+//        }
+//    }
     
-    var middleName: String? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactMiddleNameKey) {
-                return wrappedContact.middleName
-            } else {
-                return nil
-            }
-        }
-        set {
-            if let value = newValue {
-                wrappedContact.middleName = value
-            }
-        }
-    }
+        var middleName: String? = nil
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactMiddleNameKey) {
+//                return wrappedContact.middleName
+//            } else {
+//                return nil
+//            }
+//        }
+//        set {
+//            if let value = newValue {
+//                wrappedContact.middleName = value
+//            }
+//        }
+//    }
     
-    var lastName: String? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactFamilyNameKey) {
-                return wrappedContact.familyName
-            } else {
-                return nil
-            }
-
-        }
-        set {
-            if let value = newValue {
-                wrappedContact.familyName = value
-            }
-        }
-    }
+        var lastName: String?  = nil
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactFamilyNameKey) {
+//                return wrappedContact.familyName
+//            } else {
+//                return nil
+//            }
+//
+//        }
+//        set {
+//            if let value = newValue {
+//                wrappedContact.familyName = value
+//            }
+//        }
+//    }
     
-    var organizationName: String? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactOrganizationNameKey) {
-                return wrappedContact.organizationName
-            } else {
-                return nil
-            }
-        }
-        set {
-            if let value = newValue {
-                wrappedContact.organizationName = value
-            }
-        }
-    }
+        var organizationName: String? = nil
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactOrganizationNameKey) {
+//                return wrappedContact.organizationName
+//            } else {
+//                return nil
+//            }
+//        }
+//        set {
+//            if let value = newValue {
+//                wrappedContact.organizationName = value
+//            }
+//        }
+//    }
     
-    var phoneNumbers: [AddressBookRecordLabel]? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactPhoneNumbersKey) {
-                return CNAdapter.convertCNLabeledValues(wrappedContact.phoneNumbers as! [CNLabeledValue<NSString>])
-            } else {
-                return nil
-            }
-            
-        }
-        set {
-            wrappedContact.phoneNumbers = CNAdapter.convertPhoneNumbers(newValue)
-        }
-    }
+        var phoneNumbers: [AddressBookRecordLabel]? = []
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactPhoneNumbersKey) {
+//                return CNAdapter.convertCNLabeledValues(wrappedContact.phoneNumbers as! [CNLabeledValue<NSString>])
+//            } else {
+//                return nil
+//            }
+//            
+//        }
+//        set {
+//            wrappedContact.phoneNumbers = CNAdapter.convertPhoneNumbers(newValue)
+//        }
+//    }
     
-    var emailAddresses: [AddressBookRecordLabel]? {
-        get {
-            if wrappedContact.isKeyAvailable(CNContactEmailAddressesKey) {
-                return CNAdapter.convertCNLabeledValues(wrappedContact.emailAddresses)
-            } else {
-                return nil
-            }
-        }
-        set {
-            wrappedContact.emailAddresses = CNAdapter.convertEmailAddresses(emailAddresses)
-        }
-    }
+        var emailAddresses: [AddressBookRecordLabel]? = []
+//        get {
+//            if wrappedContact.isKeyAvailable(CNContactEmailAddressesKey) {
+//                return CNAdapter.convertCNLabeledValues(wrappedContact.emailAddresses)
+//            } else {
+//                return nil
+//            }
+//        }
+//        set {
+//            wrappedContact.emailAddresses = CNAdapter.convertEmailAddresses(emailAddresses)
+//        }
+//    }
 }
 
-@available(iOS 9.0, *)
-internal class CNAdapter {
+
+class CNAdapter {
     
     internal class func convertCNContactsToContactRecords(_ cnContacts: [CNContact]) -> [ContactProtocol] {
         return cnContacts.map({ (cnContact) -> ContactProtocol in
@@ -157,75 +158,65 @@ internal class CNAdapter {
             cnContact.middleName = middleName
         }
        
-        cnContact.phoneNumbers = convertPhoneNumbers(contact.phoneNumbers)
-        cnContact.emailAddresses = convertEmailAddresses(contact.emailAddresses)
+//        cnContact.phoneNumbers = convertPhoneNumbers(contact.phoneNumbers)
+//        cnContact.emailAddresses = convertEmailAddresses(contact.emailAddresses)
         
         return cnContact
     }
     
     fileprivate class func convertPhoneNumbers(_ phoneNumbers: [AddressBookRecordLabel]?) -> [CNLabeledValue<CNPhoneNumber>] {
         
-        guard let phoneNumbers = phoneNumbers else {
+//        guard let phoneNumbers = phoneNumbers else {
             return [CNLabeledValue]()
-        }
+//        }
         
-        return phoneNumbers.map({
-            ( LabeledValue) -> CNLabeledValue<CNPhoneNumber> in
-            
-            let label = AddressBookRecordLabel.convertLabel(cnMappings, label: LabeledValue.label)
-            var phoneNumber: CNPhoneNumber
-            if let phoneNumberAsString = LabeledValue.value as? String {
-                phoneNumber = CNPhoneNumber(stringValue: phoneNumberAsString)
-            } else {
-                phoneNumber = CNPhoneNumber()
-            }
-            
-            return CNLabeledValue(label: label, value: phoneNumber)
-        })
+//        return phoneNumbers.map({
+//            ( LabeledValue) -> CNLabeledValue<CNPhoneNumber> in
+//            
+//            let label = AddressBookRecordLabel.convertLabel(cnMappings, label: LabeledValue.label)
+//            var phoneNumber: CNPhoneNumber
+//            if let phoneNumberAsString = LabeledValue.value as? String {
+//                phoneNumber = CNPhoneNumber(stringValue: phoneNumberAsString)
+//            } else {
+//                phoneNumber = CNPhoneNumber()
+//            }
+//            
+//            return CNLabeledValue(label: label, value: phoneNumber)
+//        })
     }
     
     fileprivate class func convertEmailAddresses(_ emailAddresses: [AddressBookRecordLabel]?) -> [CNLabeledValue<NSString>] {
         
-        guard let emailAddresses = emailAddresses else {
+//        guard let emailAddresses = emailAddresses else {
             return [CNLabeledValue]()
-        }
+//        }
         
-        return emailAddresses.map({
-            ( LabeledValue) -> CNLabeledValue<NSString> in
-            
-            let label = AddressBookRecordLabel.convertLabel(cnMappings, label: LabeledValue.label)
-            let value = LabeledValue.value as! NSString
-            
-            return CNLabeledValue(label: label, value: value)
-        })
+//        return emailAddresses.map({
+//            ( LabeledValue) -> CNLabeledValue<NSString> in
+//            
+//            let label = AddressBookRecordLabel.convertLabel(cnMappings, label: LabeledValue.label)
+//            let value = LabeledValue.value as! NSString
+//            
+//            return CNLabeledValue(label: label, value: value)
+//        })
         
     }
     
     internal class func convertCNLabeledValues(_ cnLabeledValues: [CNLabeledValue<NSString>]) -> [AddressBookRecordLabel] {
-        var abLabels = [AddressBookRecordLabel]()
-        
-        let mappings = DictionaryUtils.dictionaryWithSwappedKeysAndValues(cnMappings)
-        for cnLabeledValue in cnLabeledValues {
-            let label = AddressBookRecordLabel.convertLabel(mappings, label: cnLabeledValue.label)
-            let value = cnLabeledValue.valueAsString()
-            abLabels.append(
-                AddressBookRecordLabel(
-                    label: label,
-                    value: value as NSCopying & NSSecureCoding)
-            )
-        }
-        
-        return abLabels
-    }
-}
-
-internal extension CNLabeledValue {
-    
-    internal func valueAsString() -> String {
-        if let phoneNumber = value as? CNPhoneNumber {
-            return phoneNumber.stringValue
-        } else {
-            return value as! String
-        }
+        return [AddressBookRecordLabel]()
+//        var abLabels = [AddressBookRecordLabel]()
+//        
+//        let mappings = DictionaryUtils.dictionaryWithSwappedKeysAndValues(cnMappings)
+//        for cnLabeledValue in cnLabeledValues {
+//            let label = AddressBookRecordLabel.convertLabel(mappings, label: cnLabeledValue.label)
+//            let value = cnLabeledValue.valueAsString()
+//            abLabels.append(
+//                AddressBookRecordLabel(
+//                    label: label,
+//                    value: value as NSCopying & NSSecureCoding)
+//            )
+//        }
+//        
+//        return abLabels
     }
 }

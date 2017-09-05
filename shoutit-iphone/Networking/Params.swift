@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Ogra
 import JSONCodable
 
 public protocol Params {
