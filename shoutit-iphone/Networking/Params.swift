@@ -14,6 +14,29 @@ public protocol Params {
     var params: [String : AnyObject] {get}
 }
 
+public struct JSONParams: Params {
+    public init(_ object: JSONEncodable) {
+        self.p = (try? object.toJSON() as! [String: AnyObject]) ?? [String: AnyObject]()
+    }
+    
+    public init(_ object: JSONObject) {
+        self.p = object as [String: AnyObject]
+    }
+    
+    private let p: [String: AnyObject]
+    
+    public var params: [String : AnyObject] {
+        return p
+    }
+}
+
+
+extension JSONEncodable {
+    public var params: JSONParams {
+        return JSONParams(self)
+    }
+}
+
 extension Params where Self: JSONEncodable {
     public var params: [String : AnyObject] {
         

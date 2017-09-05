@@ -12,7 +12,7 @@ class RTLShoutItemCell: DiscoverItemCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if UIApplication.sharedApplication.userInterfaceLayoutDirection == .RightToLeft {
+        if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {
             transform = CGAffineTransform(scaleX: -1, y: 1)
         }
     }

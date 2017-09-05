@@ -25,10 +25,10 @@ public struct PageSignupParams: AuthParams {
     public var authParams: [String : AnyObject] {
         return [
             "page_category": try! category.toJSON() as AnyObject,
-            "page_name" : name,
-            "email" : email,
-            "name": userFullName,
-            "password": password
+            "page_name" : name as AnyObject,
+            "email" : email as AnyObject,
+            "name": userFullName as AnyObject,
+            "password": password as AnyObject
         ]
     }
     
@@ -50,7 +50,7 @@ public struct PageCreationParams : Params {
     public var params: [String : AnyObject] {
         return [
             "page_category": try! category.toJSON() as AnyObject,
-            "page_name": name
+            "page_name": name as AnyObject
         ]
     }
 }

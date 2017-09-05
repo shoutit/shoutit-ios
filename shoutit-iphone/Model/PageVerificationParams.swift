@@ -8,6 +8,19 @@
 
 import Foundation
 import ShoutitKit
+import JSONCodable
+
+extension JSONEncodable {
+    public func encode() -> JSONObject {
+        return (try! self.toJSON() as? JSONObject) ?? JSONObject()
+    }
+}
+extension Dictionary where Key == String {
+    public func JSONObject() -> AnyObject {
+        return self as AnyObject
+    }
+}
+
 
 struct PageVerificationParams : Params {
     var businessName : String?

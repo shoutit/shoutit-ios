@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerRoutes()
         
-        guard let launch = launchOptions, let userInfo = launch[UIApplicationLaunchOptionsKey.remoteNotification], let userInfoData = userInfo["data"] as? [AnyHashable: Any] else {
+        guard let launch = launchOptions, let userInfo = launch[UIApplicationLaunchOptionsKey.remoteNotification] as? [String : Any], let userInfoData = userInfo["data"] as? [AnyHashable: Any] else {
             return true
         }
         

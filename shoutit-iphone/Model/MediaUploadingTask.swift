@@ -45,27 +45,30 @@ final class MediaUploadingTask: NSObject {
     }
     
     func trackProgress() {
-        request?.progress({ [weak self] (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-            let percent = (Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
-            self?.progress.value = percent
-        })
+        
+        // ref
+//        request?.progress({ [weak self] (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
+//            let percent = (Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
+//            self?.progress.value = percent
+//        })
     }
     
     func trackError() {
         if let request = request {
-            request.response(completionHandler: { (request, response, data, error) -> Void in
-                if let _ = error {
-                    self.changeStatusTo(.error)
-                    return
-                }
-                
-                if let _ = response {
-                    self.changeStatusTo(.uploaded)
-                    
-                    return
-                }
-
-            })
+// ref
+//            request.response(completionHandler: { (request, response, data, error) -> Void in
+//                if let _ = error {
+//                    self.changeStatusTo(.error)
+//                    return
+//                }
+//                
+//                if let _ = response {
+//                    self.changeStatusTo(.uploaded)
+//                    
+//                    return
+//                }
+//
+//            })
         }
     }
     

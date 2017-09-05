@@ -44,7 +44,7 @@ class RecentPhotosCollectionViewController: UICollectionViewController, UICollec
         return self.collectionView?.indexPathsForSelectedItems?.map({ self.assetsFetchResults![$0.item] as! PHAsset }) ?? []
     }
     
-    fileprivate var assetsFetchResults: PHFetchResult<AnyObject>?
+    fileprivate var assetsFetchResults: PHFetchResult<PHObject>?
     fileprivate let maxFetchResultsCount = 70
     fileprivate let imageManager = PHCachingImageManager()
     fileprivate var cachingImageThumbnailSize = CGSize.zero
@@ -144,7 +144,7 @@ class RecentPhotosCollectionViewController: UICollectionViewController, UICollec
                     let fetchOptions = PHFetchOptions()
                     fetchOptions.predicate = NSPredicate(format: "SELF.mediaType = %d", PHAssetMediaType.image.rawValue)
                     fetchOptions.sortDescriptors = [ NSSortDescriptor(key: "creationDate", ascending: false) ]
-                    self.assetsFetchResults = PHAsset.fetchAssets(in: fetchedAssetCollection, options: fetchOptions) as! PHFetchResult<AnyObject>
+                    self.assetsFetchResults = PHAsset.fetchAssets(in: fetchedAssetCollection, options: fetchOptions) as! PHFetchResult<AnyObject> as! PHFetchResult<PHObject>
                 }
                 
                 self.updateCachedAssets()
@@ -320,10 +320,10 @@ class RecentPhotosCollectionViewController: UICollectionViewController, UICollec
     // MARK: PHPhotoLibraryChangeObserver
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         DispatchQueue.main.async(execute: {
-            guard let assetsFetchResults = self.assetsFetchResults else { return }
+            guard let assetsFetchResults = self.assetsFetchResults as? PHFetchResult<PHObject> else { return }
             
-            if let collectionChanges = changeInstance.changeDetails(for: assetsFetchResults) {
-                self.assetsFetchResults = collectionChanges.fetchResultAfterChanges
+            if let collectionChanges = changeInstance.changeDetails(for: assetsFetchResults as! PHFetchResult<PHObject>) {
+                self.assetsFetchResults = collectionChanges.fetchResultAfterChanges as! PHFetchResult<PHObject>
                 
                 if let collectionView = self.collectionView, self.recentPhotosSection > 0 {
                     if !collectionChanges.hasIncrementalChanges || collectionChanges.hasMoves {

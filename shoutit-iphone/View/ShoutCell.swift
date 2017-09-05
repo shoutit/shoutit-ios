@@ -82,7 +82,7 @@ extension ShoutCell where Self : UICollectionViewCell {
         }
         
         if let path = shout.category.icon, let url = path.toURL(), let categoryImageView = self.shoutCategoryImage {
-            categoryImageView.kf.setImage(with:url, placeholderImage: nil)
+            categoryImageView.kf.setImage(with:url, placeholder: nil)
         }
         
         

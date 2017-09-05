@@ -13,8 +13,8 @@ struct URLHandler {
     static func callPhoneNumberWithString(_ phoneNumber: String) {
         let path = "telprompt://" + phoneNumber
         guard let url = URL(string: path) else { return }
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
         }
     }
     
@@ -30,8 +30,8 @@ struct URLHandler {
         if url.scheme?.utf16.count == 0 {
             url = URL(string: "http://\(url.absoluteString)")!
         }
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
         }
     }
 }

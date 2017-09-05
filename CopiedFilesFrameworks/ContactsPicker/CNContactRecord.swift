@@ -9,7 +9,7 @@
 import Foundation
 import Contacts
 
-@available(iOS 9.0, *)
+
 let cnMappings = [
     AddressBookRecordLabel.LabelType.Main.rawValue : CNLabelPhoneNumberMain,
     AddressBookRecordLabel.LabelType.Home.rawValue : CNLabelHome,
@@ -19,7 +19,6 @@ let cnMappings = [
     AddressBookRecordLabel.LabelType.PhoneMobile.rawValue : CNLabelPhoneNumberMobile
 ]
 
-@available(iOS 9.0, *)
 internal class CNContactRecord: ContactProtocol {
     
     internal let wrappedContact: CNMutableContact
@@ -220,7 +219,6 @@ internal class CNAdapter {
     }
 }
 
-@available(iOS 9.0, *)
 internal extension CNLabeledValue {
     
     internal func valueAsString() -> String {

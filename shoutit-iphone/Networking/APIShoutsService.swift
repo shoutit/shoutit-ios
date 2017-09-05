@@ -13,17 +13,6 @@ import RxCocoa
 import ShoutitKit
 import JSONCodable
 
-struct JSONParams: Params {
-    let object: JSONObject
-    
-    init(_ object: JSONObject) {
-        self.object = object
-    }
-    
-    var params: [String : AnyObject] {
-        return object as [String : AnyObject]
-    }
-}
 
 final class APIShoutsService {
     

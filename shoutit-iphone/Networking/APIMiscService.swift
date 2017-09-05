@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import RxSwift
 import ShoutitKit
+import JSONCodable
 
 final class APIMiscService {
     
@@ -66,6 +67,8 @@ final class APIMiscService {
     }
 
     static func makeReport(_ report: Report) -> Observable<Void> {
-        return APIGenericService.basicRequestWithMethod(.post, url: reportURL, params: report.encode(), encoding: JSONEncoding.default)
+        let par = report.params
+        
+        return APIGenericService.basicRequestWithMethod(.post, url: reportURL, params: par, encoding: JSONEncoding.default)
     }
 }

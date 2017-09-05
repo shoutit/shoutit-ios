@@ -60,9 +60,10 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         var yOffset: CGFloat = 0
         
         // create attributes
-        let coverAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.cover.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.cover.indexPath)
-        let infoAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.info.kind.rawValue, withIndexPath: ProfileCollectionViewSupplementaryView.info.indexPath)
-        
+        // ref
+        let coverAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.cover.kind.rawValue, with: ProfileCollectionViewSupplementaryView.cover.indexPath)
+        let infoAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.info.kind.rawValue, with: ProfileCollectionViewSupplementaryView.info.indexPath)
+
         // calculate frames
         coverAttributes.frame = CGRect(x: 0, y: contentYOffset, width: collectionWidth, height: max(coverViewHeight - contentYOffset, collapsedCoverViewHeight))
         yOffset += (coverViewHeight - infoOverCoverViewMargin)
@@ -198,7 +199,9 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
             return
         }
         
-        let attributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: supplementary.kind.rawValue, withIndexPath: supplementary.indexPath)
+        
+        
+        let attributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: supplementary.kind.rawValue, with: supplementary.indexPath)
         if let delegate = delegate, delegate.hidesSupplementeryView(supplementary) {
             height = 0
             attributes.isHidden = true

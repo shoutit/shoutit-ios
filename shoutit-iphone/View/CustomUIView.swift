@@ -10,28 +10,28 @@ import UIKit
 
 final class CustomUIView: UIView {
 
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable var sh_cornerRadius: CGFloat = 0 {
         didSet {
-            layer.cornerRadius = cornerRadius
+            layer.cornerRadius = sh_cornerRadius
             updateMaskToBounds()
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable var sh_borderWidth: CGFloat = 0 {
         didSet {
-            layer.borderWidth = borderWidth
+            layer.borderWidth = sh_borderWidth
             updateMaskToBounds()
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.clear {
+    @IBInspectable var sh_borderColor: UIColor = UIColor.clear {
         didSet {
-            layer.borderColor = borderColor.cgColor
+            layer.borderColor = sh_borderColor.cgColor
         }
     }
     
     func updateMaskToBounds() {
-        layer.masksToBounds = cornerRadius > 0 || borderWidth > 0
+        layer.masksToBounds = sh_cornerRadius > 0 || sh_borderWidth > 0
     }
 
 }

@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import RxSwift
 import ShoutitKit
+import JSONCodable
+
 
 final class APIAuthService {
     
@@ -20,12 +22,12 @@ final class APIAuthService {
         return APIGenericService.requestWithMethod(.post, url: authResetPasswordURL, params: params, encoding: JSONEncoding.default)
     }
     
-    static func getOAuthToken<T: User>(_ params: AuthParams) -> Observable<(AuthData, T)> {
+    static func getOAuthToken<T: User & JSONDecodable>(_ params: AuthParams) -> Observable<(AuthData, T)> {
         
         return Observable.create {(observer) -> Disposable in
             
             let request = APIManager.manager()
-                .request(.post, oauth2AccessTokenURL, parameters: params.params, encoding: JSONEncoding.default)
+                .request(oauth2AccessTokenURL, method: .post, parameters: params.params, encoding: JSONEncoding.default)
             let cancel = Disposables.create {
                 request.cancel()
             }
@@ -35,8 +37,8 @@ final class APIAuthService {
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["profile"])
-                    let authData: AuthData = try APIGenericService.parseJson(json)
+                    let userJson = try APIGenericService.extractJsonFromJson(json, withPathComponents: ["profile"]) as! JSONObject
+                    let authData: AuthData = try APIGenericService.parseJson(json as! JSONObject)
                     let user: T = try APIGenericService.parseJson(userJson)
                     observer.onNext((authData, user))
                     observer.onCompleted()
@@ -53,7 +55,7 @@ final class APIAuthService {
         
         return Observable.create({ (observer) -> Disposable in
             let request = APIManager.manager()
-                .request(.post, oauth2AccessTokenURL, parameters: params.params, encoding: JSONEncoding.default)
+                .request(oauth2AccessTokenURL, method: .post, parameters: params.params, encoding: JSONEncoding.default)
             let cancel = Disposables.create {
                 request.cancel()
             }
@@ -61,7 +63,7 @@ final class APIAuthService {
             request.responseJSON{ (response) in
                 do {
                     let json = try APIGenericService.validateResponseAndExtractJson(response)
-                    let authData: AuthData = try APIGenericService.parseJson(json)
+                    let authData: AuthData = try APIGenericService.parseJson(json as! JSONObject)
                     observer.onNext(authData)
                     observer.onCompleted()
                 } catch let error {

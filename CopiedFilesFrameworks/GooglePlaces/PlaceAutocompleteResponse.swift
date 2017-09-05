@@ -40,7 +40,7 @@ extension GooglePlaces {
             public init() {}
             public init?(map: Map) { }
             
-            public mutating func mapping(_ map: Map) {
+            public mutating func mapping(map: Map) {
                 description <- map["description"]
                 place <- (map["place_id"], TransformOf(fromJSON: { (json) -> Place? in
                     if let placeId = json {
@@ -76,9 +76,9 @@ extension GooglePlaces {
             public var value: String?
             
             public init() {}
-            public init?(_ map: Map) { }
+            public init?(map: Map) { }
             
-            public mutating func mapping(_ map: Map) {
+            public mutating func mapping(map: Map) {
                 offset <- map["offset"]
                 value <- map["value"]
             }
@@ -94,7 +94,7 @@ extension GooglePlaces {
             public init() {}
             public init?(map: Map) { }
             
-            public mutating func mapping(_ map: Map) {
+            public mutating func mapping(map: Map) {
                 length <- map["length"]
                 offset <- map["offset"]
             }

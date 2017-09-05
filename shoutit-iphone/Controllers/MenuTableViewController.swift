@@ -134,7 +134,7 @@ final class MenuTableViewController: UITableViewController, Navigation {
         triggerActionWithItem(.Credits)
     }
     
-    override func dismisss() {
+    func dismisss() {
         self.dismiss(animated: true, completion: nil)
     }
     

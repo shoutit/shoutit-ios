@@ -20,7 +20,7 @@ class NumberedPagePager<CellViewModelType, ItemType: JSONCodable>: Pager<Int, Ce
     init(
         itemToCellViewModelBlock: @escaping (ItemType) -> CellViewModelType,
         cellViewModelToItemBlock: @escaping (CellViewModelType) -> ItemType,
-        fetchItemObservableFactory: ((Int) -> Observable<PagedResults<ItemType>>),
+        fetchItemObservableFactory: @escaping ((Int) -> Observable<PagedResults<ItemType>>),
         pageSize: Int = 20,
         showAds: Bool = false)
     {

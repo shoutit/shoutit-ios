@@ -157,7 +157,9 @@ internal class ABAddressBookImpl: AddressBookProtocol {
         }
         else {
             if let error = err {
-                return error.takeRetainedValue()
+                // ref
+                return nil
+//                return error.takeRetainedValue() as? NSError
             } else {
                 return nil
             }
