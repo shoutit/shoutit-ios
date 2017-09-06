@@ -68,7 +68,6 @@
 		2474E00A1D1C15A40085D9DD /* CreatePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */; };
 		2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */; };
 		247D126E1F4EC7840077D8BB /* JSONCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247D126D1F4EC7840077D8BB /* JSONCodable.framework */; };
-		247D12721F4F47A20077D8BB /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247D12711F4F47A20077D8BB /* SDWebImage.framework */; };
 		24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */; };
 		24826B431C969A5800032FC9 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */; };
 		24826B451C969BA400032FC9 /* NotificationsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24826B441C969BA400032FC9 /* NotificationsDisplayable.swift */; };
@@ -334,7 +333,6 @@
 		AEC8529D1D2E7FE90060A32D /* FBNativeAdExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8529A1D2E7F330060A32D /* FBNativeAdExtension.swift */; };
 		AECE7ACB1D266BFF001B2F15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE7ACA1D266BFF001B2F15 /* LikeButton.swift */; };
 		AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291751D08676D000F9DAF /* Alamofire.framework */; };
-		AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
 		AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
 		AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
 		AED6361D1D356C700005E1A5 /* VerifyBussinessDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */; };
@@ -407,7 +405,6 @@
 		B21D8A951D0B3E3200EE1549 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291811D08676D000F9DAF /* Material.framework */; };
 		B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291821D08676D000F9DAF /* MBProgressHUD.framework */; };
 		B21D8A971D0B3E5100EE1549 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291831D08676D000F9DAF /* Mixpanel.framework */; };
-		B21D8A981D0B3E5E00EE1549 /* Ogra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291841D08676D000F9DAF /* Ogra.framework */; };
 		B21D8A991D0B3E7100EE1549 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291851D08676D000F9DAF /* Reachability.framework */; };
 		B21D8A9A1D0B3E7900EE1549 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291871D08676E000F9DAF /* RxCocoa.framework */; };
 		B21D8A9B1D0B3E7C00EE1549 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED291881D08676E000F9DAF /* RxSwift.framework */; };
@@ -982,7 +979,6 @@
 		2474E0091D1C15A40085D9DD /* CreatePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePageViewController.swift; path = Controllers/CreatePageViewController.swift; sourceTree = "<group>"; };
 		2474E00B1D1C1A5D0085D9DD /* VerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalButton.swift; path = View/VerticalButton.swift; sourceTree = "<group>"; };
 		247D126D1F4EC7840077D8BB /* JSONCodable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONCodable.framework; path = Carthage/Build/iOS/JSONCodable.framework; sourceTree = SOURCE_ROOT; };
-		247D12711F4F47A20077D8BB /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = SOURCE_ROOT; };
 		24826B3F1C969A1500032FC9 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewController.swift; path = Controllers/NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		24826B421C969A5800032FC9 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsTableViewCell.swift; path = View/NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		24826B441C969BA400032FC9 /* NotificationsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsDisplayable.swift; path = FlowControl/NotificationsDisplayable.swift; sourceTree = "<group>"; };
@@ -1051,7 +1047,6 @@
 		606ED3031BF8AADD0064C53E /* UIImage+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Extention.h"; path = "Util/extensions/UIImage+Extention.h"; sourceTree = "<group>"; };
 		606ED3041BF8AADD0064C53E /* UIImage+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Extention.m"; path = "Util/extensions/UIImage+Extention.m"; sourceTree = "<group>"; };
 		606ED30B1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+UIActivityIndicatorForSDWebImage.h"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
-		606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+UIActivityIndicatorForSDWebImage.m"; path = "Libraries/UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		60DD76D81C01F9F8007C5334 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Util/extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
 		762F321E525C691DDCE65E75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9376F28A446969569A86D217 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1368,12 +1363,10 @@
 		AED291811D08676D000F9DAF /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = ../Carthage/Build/iOS/Material.framework; sourceTree = "<group>"; };
 		AED291821D08676D000F9DAF /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = ../Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		AED291831D08676D000F9DAF /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = ../Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
-		AED291841D08676D000F9DAF /* Ogra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogra.framework; path = ../Carthage/Build/iOS/Ogra.framework; sourceTree = "<group>"; };
 		AED291851D08676D000F9DAF /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = ../Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		AED291861D08676E000F9DAF /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		AED291871D08676E000F9DAF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		AED291881D08676E000F9DAF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		AED291891D08676E000F9DAF /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = ../Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
 		AED6361C1D356C700005E1A5 /* VerifyBussinessDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBussinessDisplayable.swift; sourceTree = "<group>"; };
 		AED636211D356CF40005E1A5 /* VerifyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyPageViewController.swift; path = Controllers/VerifyPageViewController.swift; sourceTree = "<group>"; };
 		AED636241D3582C50005E1A5 /* PageVerificationParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageVerificationParams.swift; path = Model/PageVerificationParams.swift; sourceTree = "<group>"; };
@@ -2505,7 +2498,6 @@
 				B2415F591D009EC700669C52 /* UIKit.framework in Frameworks */,
 				B2463C5A1D1025C70006BD6E /* Fabric.framework in Frameworks */,
 				B21D8A8F1D0B3DC000EE1549 /* AWSCognito.framework in Frameworks */,
-				247D12721F4F47A20077D8BB /* SDWebImage.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
 				B21D8A8D1D0B3D7C00EE1549 /* AmazonS3RequestManager.framework in Frameworks */,
 				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
@@ -2547,7 +2539,6 @@
 				B21D8A951D0B3E3200EE1549 /* Material.framework in Frameworks */,
 				B21D8A961D0B3E4100EE1549 /* MBProgressHUD.framework in Frameworks */,
 				AEBB69871C6B359B00D48E4F /* CoreLocation.framework in Frameworks */,
-				B21D8A981D0B3E5E00EE1549 /* Ogra.framework in Frameworks */,
 				B21D8A941D0B3E1000EE1549 /* Kingfisher.framework in Frameworks */,
 				B2F719271D0ECFF7002C1D74 /* SVProgressHUD.framework in Frameworks */,
 				B2985F921C72951800EEA9A2 /* CoreBluetooth.framework in Frameworks */,
@@ -2573,7 +2564,6 @@
 				AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */,
 				AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */,
 				AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */,
-				AED291A21D086A87000F9DAF /* Ogra.framework in Frameworks */,
 				247D126E1F4EC7840077D8BB /* JSONCodable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3176,7 +3166,6 @@
 			isa = PBXGroup;
 			children = (
 				606ED30B1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
-				606ED30C1BF908280064C53E /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 			);
 			name = "UIActivityIndicator-for-SDWebImage";
 			sourceTree = "<group>";
@@ -5478,15 +5467,12 @@
 				AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */,
 				B21D8A9C1D0B40A000EE1549 /* SWXMLHash.framework */,
 				B2F719261D0ECFF7002C1D74 /* SVProgressHUD.framework */,
-				247D12711F4F47A20077D8BB /* SDWebImage.framework */,
 				B212D1381D0B27DF00E9E19D /* SocketRocket.framework */,
 				B2F719241D0ECFC9002C1D74 /* SlackTextViewController.framework */,
 				AED291861D08676E000F9DAF /* RxBlocking.framework */,
 				AED291871D08676E000F9DAF /* RxCocoa.framework */,
 				AED291881D08676E000F9DAF /* RxSwift.framework */,
-				AED291891D08676E000F9DAF /* RxTests.framework */,
 				AED291851D08676D000F9DAF /* Reachability.framework */,
-				AED291841D08676D000F9DAF /* Ogra.framework */,
 				AED291831D08676D000F9DAF /* Mixpanel.framework */,
 				AED291821D08676D000F9DAF /* MBProgressHUD.framework */,
 				AED291811D08676D000F9DAF /* Material.framework */,
@@ -7823,6 +7809,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -7963,6 +7951,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -8984,6 +8974,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				PRODUCT_MODULE_NAME = Shoutit;
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -9173,6 +9165,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				PRODUCT_MODULE_NAME = Shoutit;
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
@@ -9360,6 +9354,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -9546,6 +9542,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -9733,6 +9731,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -9913,6 +9913,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -10093,6 +10095,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -10275,6 +10279,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -10458,6 +10464,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -10638,6 +10646,8 @@
 					"\"Validator\"",
 					"-framework",
 					"\"VideoToolbox\"",
+					"-framework",
+					"\"SDWebImage\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
