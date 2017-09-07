@@ -128,7 +128,9 @@ class Pager<PageIndexType: Equatable, CellViewModelType, ItemType: JSONCodable> 
                 case .next(let results):
                     self?.appendItems(results, forPage: page)
                 case .error(let error):
-                    assert(false, error.sh_message)
+                    print(error)
+                    print(error.sh_message)
+//                    assert(false, error.sh_message)
                     self?.state.value = .error(error)
                 default:
                     break

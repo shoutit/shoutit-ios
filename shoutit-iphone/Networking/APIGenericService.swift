@@ -291,10 +291,17 @@ final class APIGenericService {
     }
     
     static func parseJson<T: JSONDecodable>(_ json: JSONObject, failureExpected: Bool = false) throws -> T {
+        print("======")
+        print(json)
+        print("======")
         return try T(object: json)
     }
     
     static func parseJsonArray<T: JSONDecodable>(_ json: [JSONObject]) throws -> [T] {
+        print("======")
+        print(json)
+        print("======")
+        
         let t: [T] = try Array<T>(JSONArray: json)
         return t
     }

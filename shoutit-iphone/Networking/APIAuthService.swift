@@ -43,6 +43,7 @@ final class APIAuthService {
                     observer.onNext((authData, user))
                     observer.onCompleted()
                 } catch let error {
+                    print(error)
                     observer.onError(error)
                 }
             }

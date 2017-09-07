@@ -9,8 +9,8 @@
 import UIKit
 import ObjectiveC
 
-var vc_associatedTimerObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 0)!
-var vc_associatedErrorBarViewObjectHandle: UnsafePointer<UInt8> = UnsafePointer(bitPattern: 1)!
+var vc_associatedTimerObjectHandle: UnsafePointer<UInt8>? = UnsafePointer(bitPattern: 0)
+var vc_associatedErrorBarViewObjectHandle: UnsafePointer<UInt8>? = UnsafePointer(bitPattern: 1)
 
 extension UIViewController {
     

@@ -189,7 +189,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
         adBGView.isHidden = true
         adUIView.isHidden = true
         
-        DDLogError("FACEBOOK_AUDIENCE: \(error)")
+//        DDLogError("FACEBOOK_AUDIENCE: \(error)")
     }
     
     var nativeAd: FBNativeAd!
@@ -201,7 +201,7 @@ final class ShoutDetailTableViewController: UITableViewController, FBNativeAdDel
     }
     
     func nativeAdDidLoad(_ nativeAd: FBNativeAd) {
-        DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
+//        DDLogVerbose("FACEBOOK_AUDIENCE: Ad Loaded - \(nativeAd.placementID)")
         bindWithAd(nativeAd)
     }
     
