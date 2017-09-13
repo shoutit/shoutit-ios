@@ -181,14 +181,15 @@ extension EditPageTableViewController {
             if case .phone = identity {
                 cell.textField.keyboardType = .phonePad
             }
-            // ref 
-//            cell.textField
-//                .rx.text
-//                .asDriver()
-//                .drive(onNext: { [unowned self] (text) in
-//                    self.viewModel.mutateModelForIndex(indexPath.row, object: text)
-//                })
-//                .addDisposableTo(cell.disposeBag)
+            
+            cell.textField
+                .rx.text
+                .map{ $0 ?? "" }
+                .asObservable()
+                .subscribe(onNext: { (text) in
+                    self.viewModel.mutateModelForIndex(indexPath.row, object: text as AnyObject)
+                })
+                .addDisposableTo(cell.disposeBag)
             
         case .richText(let value, let placeholder, _):
             let cell = cell as! EditPageTextViewTableViewCell

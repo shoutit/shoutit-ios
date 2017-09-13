@@ -85,15 +85,14 @@ final class PostSignupInterestsViewController: UIViewController {
                 }
             }
             .map{$1}
-        // ref
-//            .bind(to: tableView.rx.itemsWithCellIdentifier(cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
-//                cell.nameLabel.text = element.category.name
-//                if let path = element.category.icon, let url = path.toURL() {
-//                    cell.iconImageView.kf.setImage(with:url, placeholderImage: nil)
-//                }
-//                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
-//            }
-//            .addDisposableTo(disposeBag)
+            .bind(to: tableView.rx.items(cellIdentifier: cellReuseID, cellType: PostSignupCategoryTableViewCell.self)) { (row, element, cell) in
+                cell.nameLabel.text = element.category.name
+                if let path = element.category.icon, let url = path.toURL() {
+                    cell.iconImageView.kf.setImage(with: url)
+                }
+                cell.accessoryType = element.selected ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+            }.addDisposableTo(disposeBag)
+
         
         tableView
             .rx.modelSelected(PostSignupInterestCellViewModel.self)

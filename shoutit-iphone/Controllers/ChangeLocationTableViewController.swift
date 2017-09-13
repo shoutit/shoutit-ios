@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import CoreLocation
 import ShoutitKit
+import RxCocoa
 
 class ChangeLocationTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var currentLocationLabel : UILabel!
@@ -162,16 +163,15 @@ class ChangeLocationTableViewController: UITableViewController, UISearchBarDeleg
     func setupObservers() {
         
         setupKeyboardOffsetNotifcationObserver()
-        // ref
-//        _ = searchBar.rx.text.bind(to: viewModel.searchTextObservable).addDisposableTo(disposeBag)
+        
+        searchBar.rx.text.subscribe(onNext: { [weak self] (query) in
+            self?.viewModel.searchTextObservable.onNext(query ?? "")
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.finalObservable?.bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
+            cell.textLabel?.text = "\(element.description!)"
+        }.addDisposableTo(disposeBag)
 
-        // ref
-//        viewModel.finalObservable?
-//            .bind(to: tableView.rx.itemsWithCellIdentifier(cellIdentifier, cellType: UITableViewCell.self)) { (row, element, cell) in
-//                cell.textLabel?.text = "\(element.description!)"
-//            }.addDisposableTo(disposeBag)
-        
-        
         tableView.rx.modelSelected(GooglePlaces.PlaceAutocompleteResponse.Prediction.self)
             .asDriver()
             .drive(onNext: { [weak self] selectedLocation in

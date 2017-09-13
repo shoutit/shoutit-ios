@@ -161,14 +161,15 @@ extension EditProfileTableViewController {
             if case .mobile = identity {
                 cell.textField.keyboardType = .phonePad
             }
-            // ref
-//            cell.textField
-//                .rx.text
-//                .asDriver()
-//                .drive(onNext: { [weak self] (text) in
-//                    self?.viewModel.mutateModelForIndex(indexPath.row, object: text)
-//                })
-//                .addDisposableTo(cell.disposeBag)
+            
+            cell.textField
+                .rx.text
+                .map { $0 ?? "" }
+                .asDriver(onErrorJustReturn: "")
+                .drive(onNext: { [weak self] (text) in
+                    self?.viewModel.mutateModelForIndex(indexPath.row, object: text as AnyObject)
+                })
+                .addDisposableTo(cell.disposeBag)
         case .date(let value, let placeholder, _):
             let cell = cell as! EditProfileTextFieldTableViewCell
             cell.textField.placeholder = placeholder
@@ -184,14 +185,15 @@ extension EditProfileTableViewController {
             dateField = cell.textField
             cell.textField.inputView = picker
             
-            // ref
-//            cell.textField
-//                .rx.text
-//                .asDriver()
-//                .drive(onNext: { [weak self] (text) in
-//                    self?.viewModel.mutateModelForIndex(indexPath.row, object: text)
-//                })
-//                .addDisposableTo(cell.disposeBag)
+            
+            cell.textField
+                .rx.text
+                .map { $0 ?? "" }
+                .asDriver(onErrorJustReturn: "")
+                .drive(onNext: { [weak self] (text) in
+                    self?.viewModel.mutateModelForIndex(indexPath.row, object: text as AnyObject)
+                })
+                .addDisposableTo(cell.disposeBag)
         case .gender(let value, let placeholder, _):
             let cell = cell as! EditProfileSelectButtonTableViewCell
             cell.selectButton.fieldTitleLabel.text = placeholder

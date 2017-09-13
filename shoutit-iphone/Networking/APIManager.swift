@@ -30,8 +30,9 @@ final class APIManager {
     
     static func manager() -> Alamofire.SessionManager {
         if apiManager == nil {
-            let defaultHeaders =
+            var defaultHeaders =
                 Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders ?? [:]
+            defaultHeaders["User-Agent"] = "Shoutit Staging/com.appunite.shoutit (42000; OS Version 9.3.2 (Build 13F69))"
             let configuration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = defaultHeaders
             apiManager = Alamofire.SessionManager(configuration: configuration)
@@ -57,6 +58,7 @@ final class APIManager {
         var defaultHeaders = Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders ?? [:]
         defaultHeaders["Authorization"] = token
         defaultHeaders["Authorization-Page-Id"] = pageId
+        defaultHeaders["User-Agent"] = "Shoutit Staging/com.appunite.shoutit (42000; OS Version 9.3.2 (Build 13F69))"
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = defaultHeaders
         apiManager = Alamofire.SessionManager(configuration: configuration)
@@ -65,6 +67,7 @@ final class APIManager {
             var r = request
             var headerFields = request.allHTTPHeaderFields ?? [String : String]()
             headerFields["Authorization"] = token
+            headerFields["User-Agent"] = "Shoutit Staging/com.appunite.shoutit (42000; OS Version 9.3.2 (Build 13F69))"
             r.allHTTPHeaderFields = headerFields
             return r
         }

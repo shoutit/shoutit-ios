@@ -60,7 +60,6 @@ final class ProfileCollectionViewLayout: UICollectionViewLayout {
         var yOffset: CGFloat = 0
         
         // create attributes
-        // ref
         let coverAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.cover.kind.rawValue, with: ProfileCollectionViewSupplementaryView.cover.indexPath)
         let infoAttributes = ProfileCollectionViewLayoutAttributes(forSupplementaryViewOfKind: ProfileCollectionViewSupplementaryView.info.kind.rawValue, with: ProfileCollectionViewSupplementaryView.info.indexPath)
 

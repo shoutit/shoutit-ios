@@ -314,11 +314,26 @@ extension PusherClient {
             
  
             
-            channel.bind(toEventNamed: PusherEventType.NewMessage.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.StatsUpdate.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.ProfileChange.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.NewListen.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.NewNotification.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed: PusherEventType.NewMessage.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.StatsUpdate.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.ProfileChange.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.NewListen.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.NewNotification.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
             
             return Disposables.create {
                 channel.unsubscribe()
@@ -347,11 +362,26 @@ extension PusherClient {
                 channel = ch
             }
             
-            channel.bind(toEventNamed:PusherEventType.NewMessage.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.StatsUpdate.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.ProfileChange.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.NewListen.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.NewNotification.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.NewMessage.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.StatsUpdate.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.ProfileChange.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.NewListen.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.NewNotification.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
             
             return Disposables.create {
                 channel.unsubscribe()
@@ -397,11 +427,26 @@ extension PusherClient {
                 channel.unsubscribe()
             }
             
-            channel.bind(toEventNamed:PusherEventType.UserTyping.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.JoinedChat.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.LeftChat.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.NewMessage.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
-            channel.bind(toEventNamed:PusherEventType.ConversationUpdate.rawValue, handleWith: {observer.onNext($0)} as! PTPusherEventBlockHandler)
+            channel.bind(toEventNamed:PusherEventType.UserTyping.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.JoinedChat.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.LeftChat.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.NewMessage.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
+            channel.bind(toEventNamed:PusherEventType.ConversationUpdate.rawValue, handleWith: { (event) in
+                guard let event = event else { return }
+                observer.onNext(event)
+            })
             
             return cancel
         })

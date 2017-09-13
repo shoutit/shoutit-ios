@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import RxSwift
+import AmazonS3RequestManager
 
 enum MediaUploadingTaskStatus : Int {
     case uploading
@@ -19,7 +20,7 @@ enum MediaUploadingTaskStatus : Int {
 final class MediaUploadingTask: NSObject {
     
     var attachment : MediaAttachment
-    var request : Alamofire.Request? {
+    var request : UploadRequest? {
         didSet {
             trackProgress()
             trackError()
@@ -46,29 +47,25 @@ final class MediaUploadingTask: NSObject {
     
     func trackProgress() {
         
-        // ref
-//        request?.progress({ [weak self] (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-//            let percent = (Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))
-//            self?.progress.value = percent
-//        })
+        request?.uploadProgress(closure: { [weak self] (p) in
+            let percent = Float(p.fractionCompleted)
+            self?.progress.value = percent
+        })
     }
     
     func trackError() {
         if let request = request {
-// ref
-//            request.response(completionHandler: { (request, response, data, error) -> Void in
-//                if let _ = error {
-//                    self.changeStatusTo(.error)
-//                    return
-//                }
-//                
-//                if let _ = response {
-//                    self.changeStatusTo(.uploaded)
-//                    
-//                    return
-//                }
-//
-//            })
+            request.response(completionHandler: { (dr) in
+                if let _ = dr.error {
+                    self.changeStatusTo(.error)
+                    return
+                }
+                
+                if let _ = dr.response {
+                    self.changeStatusTo(.uploaded)
+                    return
+                }
+            })
         }
     }
     

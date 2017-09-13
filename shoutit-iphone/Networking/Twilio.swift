@@ -105,24 +105,22 @@ final class Twilio: NSObject {
                             }
                             .addDisposableTo(self.disposeBag)
                     })
-                    // ref
-//                    .retryWhen({ (errorObservable) -> Observable<Int> in
-//                        let rangeObservable = Observable.range(start: 0, count: 3)
-//                        return Observable.zip(rangeObservable, errorObservable, resultSelector: { (attempt, error) -> (Int, ErrorType) in
-//                            return (attempt, error)
-//                        }).flatMap({ (attempt, error) -> Observable<Int> in
-//                            if (error as NSError).code == TwilioErrorCode.ParticipantUnavailable && attempt < 2 {
-//                                if self.sentInvitations.count > 0 {
-//                                    let invitation = self.sentInvitations.removeLast()
-//                                    invitation.cancel()
-//                                }
-//                                return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .UserInteractive))
-//                            } else {
-//                                return Observable.error(error)
-//                            }
-//                        })
-//                    })
-                
+                .retryWhen({ (errorObservable) -> Observable<Int> in
+                    let rangeObservable = Observable.range(start: 0, count: 3)
+                    return Observable.zip(rangeObservable, errorObservable, resultSelector: { (attempt, error) -> (Int, Error) in
+                                                    return (attempt, error)
+                    }).flatMap({ (attempt, error) -> Observable<Int> in
+                                                    if (error as NSError).code == TwilioErrorCode.ParticipantUnavailable && attempt < 2 {
+                                                        if self.sentInvitations.count > 0 {
+                                                            let invitation = self.sentInvitations.removeLast()
+                                                            invitation.cancel()
+                                                        }
+                                                        return Observable.timer(10, scheduler: SerialDispatchQueueScheduler(qos: .userInteractive))
+                                                    } else {
+                                                        return Observable.error(error)
+                                                    }
+                                                })
+                })
         }
     }
     

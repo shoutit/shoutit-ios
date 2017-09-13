@@ -144,11 +144,10 @@ class VerifyPageViewController: UITableViewController {
             .addDisposableTo(disposeBag)
         }
         
-        // ref
-//        businessEmail.rx.text.bind(to: viewModel.email).addDisposableTo(disposeBag)
-//        contactPersonTextField.rx.text.bind(to: viewModel.contactPerson).addDisposableTo(disposeBag)
-//        contactNumberTextfield.rx.text.bind(to: viewModel.contactNumber).addDisposableTo(disposeBag)
-//        businessNameTextField.rx.text.bind(to: viewModel.businessName).addDisposableTo(disposeBag)
+        businessEmail.rx.text.map{ $0 ?? "" }.bind(to: viewModel.email).addDisposableTo(disposeBag)
+        contactPersonTextField.rx.text.map{ $0 ?? "" }.bind(to: viewModel.contactPerson).addDisposableTo(disposeBag)
+        contactNumberTextfield.rx.text.map{ $0 ?? "" }.bind(to: viewModel.contactNumber).addDisposableTo(disposeBag)
+        businessNameTextField.rx.text.map{ $0 ?? "" }.bind(to: viewModel.businessName).addDisposableTo(disposeBag)
         viewModel.verificationStatus.asDriver().drive(onNext: { (status) in
             self.verificationStatusLabel.text = status
         }).addDisposableTo(disposeBag)

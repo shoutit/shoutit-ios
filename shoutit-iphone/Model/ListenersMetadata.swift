@@ -25,7 +25,7 @@ extension ListenersMetadata: JSONCodable {
     public init(object: JSONObject) throws {
         let decoder = JSONDecoder(object: object)
         pages = try decoder.decode("pages")
-        users = try decoder.decode("name")
+        users = try decoder.decode("users")
         tags = try decoder.decode("tags")
     }
     

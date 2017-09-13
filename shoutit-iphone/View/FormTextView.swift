@@ -12,7 +12,7 @@ final class FormTextView: BorderedMaterialTextView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // REF
+        
         placeholderLabel = UILabel()
         placeholderLabel!.font = UIFont.sh_systemFontOfSize(18, weight: .regular)
         placeholderLabel!.textColor = UIColor(shoutitColor: .discoverBorder)
