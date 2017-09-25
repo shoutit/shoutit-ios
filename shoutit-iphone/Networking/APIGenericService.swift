@@ -303,6 +303,7 @@ final class APIGenericService {
         print("======")
         
         let t: [T] = try Array<T>(JSONArray: json)
+        print(t)
         return t
     }
 }

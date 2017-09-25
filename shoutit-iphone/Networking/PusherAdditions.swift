@@ -46,8 +46,11 @@ extension PTPusherEvent {
     
     func object<T: JSONDecodable>() -> T? {
         
+        guard let data = self.data as? Data else { return nil }
+        
         do {
-            let decoded: T = try T(JSONData: self.data as! Data)
+            
+            let decoded: T = try T(JSONData: data)
             return decoded
         } catch let error {
             debugPrint("Could not parse pusher object \(error)")

@@ -189,7 +189,7 @@ private extension SelectionButton {
         titleLabel?.setContentCompressionResistancePriority(1000, for: .horizontal)
         
         layer.cornerRadius = 4.0
-        layer.borderWidth = borderWidth
+        layer.borderWidth = sh_borderWidth
         layer.borderColor = UIColor(shoutitColor: .textFieldBorderGrayColor).cgColor
         
         if UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft {

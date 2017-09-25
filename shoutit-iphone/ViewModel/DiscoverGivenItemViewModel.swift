@@ -30,9 +30,16 @@ final class DiscoverGivenItemViewModel: DiscoverViewModel {
                     .flatMap({ (result) -> Observable<[Shout]> in
                         return Observable.just(result.results)
                     })
-                    .subscribe(onNext: { [weak self] (shouts) -> Void in
-                        self?.shouts.on(.next(shouts))
-                        self?.adManager.handleNewShouts(shouts)
+                    .subscribe({ [weak self] (event) in
+                        switch event {
+                        case .next(let shouts):
+                            self?.shouts.on(.next(shouts))
+                            self?.adManager.handleNewShouts(shouts)
+                        case .error(let error):
+                            print(error)
+                        default:
+                            break
+                        }
                     })
                     .addDisposableTo((self?.disposeBag)!)
             })

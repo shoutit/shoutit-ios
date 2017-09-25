@@ -68,7 +68,7 @@ final class TabbarButton: UIButton {
         badgeLabel.textAlignment = .center
         badgeLabel.font = UIFont.sh_systemFontOfSize(12, weight: .regular)
         badgeLabel.textColor = UIColor.white
-        badgeLabel.cornerRadius = 7.0
+        badgeLabel.sh_cornerRadius = 7.0
         badgeLabel.isHidden = true
         badgeLabel.translatesAutoresizingMaskIntoConstraints = false
         

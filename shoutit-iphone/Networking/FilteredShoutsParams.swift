@@ -149,20 +149,45 @@ public struct FilteredShoutsParams: Params, PagedParams, LocalizedParams {
     public var params: [String : AnyObject] {
         var p: [String : AnyObject] = [:]
         
-        p["search"] = searchPhrase as AnyObject
-        p["discover"] = discoverId as AnyObject
-        p["profile"] = username as AnyObject
-        p["tags"] = tag as AnyObject
+        if let searchPhrase = searchPhrase {
+            p["search"] = searchPhrase as AnyObject
+        }
+        
+        if let discoverId = discoverId {
+            p["discover"] = discoverId as AnyObject
+        }
+        
+        if let username = username {
+            p["profile"] = username as AnyObject
+        }
+        
+        if let tag = tag {
+            p["tags"] = tag as AnyObject
+        }
         
         if let shoutTypeValue =  shoutType?.rawValue {
             p["shout_type"] = shoutTypeValue as AnyObject
         }
     
-        p["category"] = category as AnyObject
-        p["min_price"] = minimumPrice as AnyObject
-        p["max_price"] = maximumPrice as AnyObject
-        p["sort"] = sort?.type as AnyObject
-        p["within"] = withinDistance as AnyObject
+        if let category = category {
+            p["category"] = category as AnyObject
+        }
+        
+        if let minimumPrice = minimumPrice {
+            p["min_price"] = minimumPrice as AnyObject
+        }
+        
+        if let maximumPrice = maximumPrice {
+            p["max_price"] = maximumPrice as AnyObject
+        }
+        
+        if let sortType = sort?.type {
+            p["sort"] = sortType as AnyObject
+        }
+        
+        if let withinDistance = withinDistance {
+            p["within"] = withinDistance as AnyObject
+        }
         
         if self.excludeId != nil {
             p["exclude"] = self.excludeId as AnyObject
