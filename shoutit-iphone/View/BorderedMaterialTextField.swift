@@ -346,8 +346,8 @@ open class BorderedMaterialTextField : UITextField {
     public required init?(coder aDecoder: NSCoder) {
         sh_depth = .none
         shape = .none
-        sh_cornerRadius = .none
-        sh_borderWidth = .none
+        sh_cornerRadius = .cornerRadius5
+        sh_borderWidth = .border1
         super.init(coder: aDecoder)
         prepareView()
     }
