@@ -1,0 +1,417 @@
+BCSymbolMap Version: 2.0
++[Mixpanel sharedInstanceWithToken:launchOptions:]
++[Mixpanel sharedInstanceWithToken:]
++[Mixpanel sharedInstance]
+_MPLogWarning
+-[Mixpanel init:]
+___17-[Mixpanel init:]_block_invoke
+___copy_helper_block_
+___destroy_helper_block_
+-[Mixpanel initWithToken:launchOptions:flushInterval:trackCrashes:]
+-[Mixpanel initWithToken:launchOptions:andFlushInterval:]
+-[Mixpanel initWithToken:andFlushInterval:]
+-[Mixpanel dealloc]
+-[Mixpanel shouldManageNetworkActivityIndicator]
+-[Mixpanel setShouldManageNetworkActivityIndicator:]
+-[Mixpanel useIPAddressForGeoLocation]
+-[Mixpanel setUseIPAddressForGeoLocation:]
++[Mixpanel assertPropertyTypes:]
++[Mixpanel assertPropertyType:depth:]
++[Mixpanel assertPropertyTypesInDictionary:depth:]
++[Mixpanel assertPropertyTypesInArray:depth:]
+-[Mixpanel defaultDistinctId]
+_MPLogInfo
+-[Mixpanel identify:]
+-[Mixpanel identify:usePeople:]
+___31-[Mixpanel identify:usePeople:]_block_invoke
+___copy_helper_block_.185
+___destroy_helper_block_.186
+-[Mixpanel createAlias:forDistinctID:]
+_MPLogError
+___38-[Mixpanel createAlias:forDistinctID:]_block_invoke
+___copy_helper_block_.192
+___destroy_helper_block_.193
+-[Mixpanel track:]
+-[Mixpanel track:properties:]
+___29-[Mixpanel track:properties:]_block_invoke
+___copy_helper_block_.266
+___destroy_helper_block_.267
+-[Mixpanel registerSuperProperties:]
+___36-[Mixpanel registerSuperProperties:]_block_invoke
+___copy_helper_block_.269
+___destroy_helper_block_.270
+-[Mixpanel registerSuperPropertiesOnce:]
+-[Mixpanel registerSuperPropertiesOnce:defaultValue:]
+___53-[Mixpanel registerSuperPropertiesOnce:defaultValue:]_block_invoke
+___copy_helper_block_.276
+___destroy_helper_block_.277
+-[Mixpanel unregisterSuperProperty:]
+___36-[Mixpanel unregisterSuperProperty:]_block_invoke
+___copy_helper_block_.279
+___destroy_helper_block_.280
+-[Mixpanel clearSuperProperties]
+___32-[Mixpanel clearSuperProperties]_block_invoke
+___copy_helper_block_.282
+___destroy_helper_block_.283
+-[Mixpanel currentSuperProperties]
+-[Mixpanel timeEvent:]
+___22-[Mixpanel timeEvent:]_block_invoke
+___copy_helper_block_.287
+___destroy_helper_block_.288
+-[Mixpanel eventElapsedTime:]
+-[Mixpanel clearTimedEvents]
+___28-[Mixpanel clearTimedEvents]_block_invoke
+___copy_helper_block_.290
+___destroy_helper_block_.291
+-[Mixpanel reset]
+___17-[Mixpanel reset]_block_invoke
+___17-[Mixpanel reset]_block_invoke_2
+___copy_helper_block_.307
+___destroy_helper_block_.308
+-[Mixpanel dispatchOnNetworkQueue:]
+___35-[Mixpanel dispatchOnNetworkQueue:]_block_invoke
+___copy_helper_block_.310
+___destroy_helper_block_.311
+-[Mixpanel setServerURL:]
+-[Mixpanel flushInterval]
+-[Mixpanel setFlushInterval:]
+-[Mixpanel startFlushTimer]
+___27-[Mixpanel startFlushTimer]_block_invoke
+___copy_helper_block_.328
+___destroy_helper_block_.329
+-[Mixpanel stopFlushTimer]
+___26-[Mixpanel stopFlushTimer]_block_invoke
+___copy_helper_block_.335
+___destroy_helper_block_.336
+-[Mixpanel flush]
+-[Mixpanel flushWithCompletion:]
+___32-[Mixpanel flushWithCompletion:]_block_invoke
+___copy_helper_block_.356
+___destroy_helper_block_.357
+-[Mixpanel filePathFor:]
+-[Mixpanel eventsFilePath]
+-[Mixpanel peopleFilePath]
+-[Mixpanel propertiesFilePath]
+-[Mixpanel variantsFilePath]
+-[Mixpanel eventBindingsFilePath]
+-[Mixpanel archive]
+-[Mixpanel archiveEvents]
+-[Mixpanel archivePeople]
+-[Mixpanel archiveProperties]
+-[Mixpanel archiveVariants]
+-[Mixpanel archiveEventBindings]
+-[Mixpanel archiveObject:withFilePath:]
+-[Mixpanel addSkipBackupAttributeToItemAtPath:]
+-[Mixpanel unarchive]
++[Mixpanel unarchiveOrDefaultFromFile:asClass:]
++[Mixpanel unarchiveFromFile:asClass:]
+-[Mixpanel unarchiveEvents]
+-[Mixpanel unarchivePeople]
+-[Mixpanel unarchiveProperties]
+-[Mixpanel unarchiveVariants]
+-[Mixpanel unarchiveEventBindings]
+-[Mixpanel description]
+-[Mixpanel deviceModel]
+-[Mixpanel watchModel]
+-[Mixpanel IFA]
+-[Mixpanel setCurrentRadio]
+___27-[Mixpanel setCurrentRadio]_block_invoke
+___copy_helper_block_.540
+___destroy_helper_block_.541
+-[Mixpanel currentRadio]
+-[Mixpanel libVersion]
++[Mixpanel libVersion]
+-[Mixpanel collectDeviceProperties]
+-[Mixpanel collectAutomaticProperties]
+-[Mixpanel setUpListeners]
+-[Mixpanel initializeGestureRecognizer]
+-[Mixpanel applicationDidBecomeActive:]
+-[Mixpanel applicationWillResignActive:]
+-[Mixpanel applicationWillTerminate:]
+-[Mixpanel applicationDidEnterBackground:]
+___42-[Mixpanel applicationDidEnterBackground:]_block_invoke
+___copy_helper_block_.639
+___destroy_helper_block_.640
+___42-[Mixpanel applicationDidEnterBackground:]_block_invoke.670
+___copy_helper_block_.673
+___destroy_helper_block_.674
+___42-[Mixpanel applicationDidEnterBackground:]_block_invoke.683
+___copy_helper_block_.684
+___destroy_helper_block_.685
+___42-[Mixpanel applicationDidEnterBackground:]_block_invoke.687
+___copy_helper_block_.690
+___destroy_helper_block_.691
+-[Mixpanel applicationWillEnterForeground:]
+___43-[Mixpanel applicationWillEnterForeground:]_block_invoke
+___copy_helper_block_.697
+___destroy_helper_block_.698
+-[Mixpanel appLinksNotificationRaised:]
+-[Mixpanel setEnableLogging:]
+-[Mixpanel enableLogging]
+-[Mixpanel people]
+-[Mixpanel setPeople:]
+-[Mixpanel distinctId]
+-[Mixpanel setDistinctId:]
+-[Mixpanel alias]
+-[Mixpanel setAlias:]
+-[Mixpanel serverURL]
+-[Mixpanel flushOnBackground]
+-[Mixpanel setFlushOnBackground:]
+-[Mixpanel checkForNotificationsOnActive]
+-[Mixpanel setCheckForNotificationsOnActive:]
+-[Mixpanel checkForVariantsOnActive]
+-[Mixpanel setCheckForVariantsOnActive:]
+-[Mixpanel showNotificationOnActive]
+-[Mixpanel setShowNotificationOnActive:]
+-[Mixpanel enableVisualABTestAndCodeless]
+-[Mixpanel setEnableVisualABTestAndCodeless:]
+-[Mixpanel miniNotificationPresentationTime]
+-[Mixpanel setMiniNotificationPresentationTime:]
+-[Mixpanel delegate]
+-[Mixpanel setDelegate:]
+-[Mixpanel nameTag]
+-[Mixpanel setNameTag:]
+-[Mixpanel taskId]
+-[Mixpanel setTaskId:]
+-[Mixpanel notificationViewController]
+-[Mixpanel setNotificationViewController:]
+-[Mixpanel network]
+-[Mixpanel setNetwork:]
+-[Mixpanel apiToken]
+-[Mixpanel setApiToken:]
+-[Mixpanel superProperties]
+-[Mixpanel setSuperProperties:]
+-[Mixpanel automaticProperties]
+-[Mixpanel setAutomaticProperties:]
+-[Mixpanel timer]
+-[Mixpanel setTimer:]
+-[Mixpanel eventsQueue]
+-[Mixpanel setEventsQueue:]
+-[Mixpanel peopleQueue]
+-[Mixpanel setPeopleQueue:]
+-[Mixpanel serialQueue]
+-[Mixpanel setSerialQueue:]
+-[Mixpanel networkQueue]
+-[Mixpanel setNetworkQueue:]
+-[Mixpanel timedEvents]
+-[Mixpanel setTimedEvents:]
+-[Mixpanel decideResponseCached]
+-[Mixpanel setDecideResponseCached:]
+-[Mixpanel hasAddedObserver]
+-[Mixpanel setHasAddedObserver:]
+-[Mixpanel automaticEventsEnabled]
+-[Mixpanel setAutomaticEventsEnabled:]
+-[Mixpanel notifications]
+-[Mixpanel setNotifications:]
+-[Mixpanel currentlyShowingNotification]
+-[Mixpanel setCurrentlyShowingNotification:]
+-[Mixpanel shownNotifications]
+-[Mixpanel setShownNotifications:]
+-[Mixpanel variants]
+-[Mixpanel setVariants:]
+-[Mixpanel eventBindings]
+-[Mixpanel setEventBindings:]
+-[Mixpanel switchboardURL]
+-[Mixpanel setSwitchboardURL:]
+-[Mixpanel .cxx_destruct]
+_instances
+_defaultProjectToken
+_init:.onceToken
+_loggingLockObject
+___block_descriptor_tmp
+_OBJC_IVAR_$_Mixpanel._flushInterval
+___block_descriptor_tmp.187
+___block_descriptor_tmp.194
+___block_descriptor_tmp.268
+___block_descriptor_tmp.271
+___block_descriptor_tmp.278
+___block_descriptor_tmp.281
+___block_descriptor_tmp.284
+___block_descriptor_tmp.289
+___block_descriptor_tmp.292
+___block_descriptor_tmp.295
+___block_literal_global
+___block_descriptor_tmp.309
+___block_descriptor_tmp.312
+_OBJC_IVAR_$_Mixpanel._serverURL
+___block_descriptor_tmp.330
+___block_descriptor_tmp.337
+___block_descriptor_tmp.358
+___block_descriptor_tmp.542
+___block_descriptor_tmp.641
+___block_descriptor_tmp.676
+___block_descriptor_tmp.686
+___block_descriptor_tmp.692
+___block_descriptor_tmp.699
+_gLoggingEnabled
+_OBJC_IVAR_$_Mixpanel._people
+_OBJC_IVAR_$_Mixpanel._distinctId
+_OBJC_IVAR_$_Mixpanel._alias
+_OBJC_IVAR_$_Mixpanel._flushOnBackground
+_OBJC_IVAR_$_Mixpanel._checkForNotificationsOnActive
+_OBJC_IVAR_$_Mixpanel._checkForVariantsOnActive
+_OBJC_IVAR_$_Mixpanel._showNotificationOnActive
+_OBJC_IVAR_$_Mixpanel._enableVisualABTestAndCodeless
+_OBJC_IVAR_$_Mixpanel._miniNotificationPresentationTime
+_OBJC_IVAR_$_Mixpanel._delegate
+_OBJC_IVAR_$_Mixpanel._nameTag
+_OBJC_IVAR_$_Mixpanel._taskId
+_OBJC_IVAR_$_Mixpanel._notificationViewController
+_OBJC_IVAR_$_Mixpanel._network
+_OBJC_IVAR_$_Mixpanel._apiToken
+_OBJC_IVAR_$_Mixpanel._superProperties
+_OBJC_IVAR_$_Mixpanel._automaticProperties
+_OBJC_IVAR_$_Mixpanel._timer
+_OBJC_IVAR_$_Mixpanel._eventsQueue
+_OBJC_IVAR_$_Mixpanel._peopleQueue
+_OBJC_IVAR_$_Mixpanel._serialQueue
+_OBJC_IVAR_$_Mixpanel._networkQueue
+_OBJC_IVAR_$_Mixpanel._timedEvents
+_OBJC_IVAR_$_Mixpanel._decideResponseCached
+_OBJC_IVAR_$_Mixpanel._hasAddedObserver
+_OBJC_IVAR_$_Mixpanel._automaticEventsEnabled
+_OBJC_IVAR_$_Mixpanel._notifications
+_OBJC_IVAR_$_Mixpanel._currentlyShowingNotification
+_OBJC_IVAR_$_Mixpanel._shownNotifications
+_OBJC_IVAR_$_Mixpanel._variants
+_OBJC_IVAR_$_Mixpanel._eventBindings
+_OBJC_IVAR_$_Mixpanel._switchboardURL
+Apple LLVM version 8.1.0 (clang-802.0.42)
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/Mixpanel.m
+/Users/peterchien/repos/mixpanel-iphone
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MixpanelPrivate.h
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/Mixpanel.h
+__destroy_helper_block_
+__copy_helper_block_
+__43-[Mixpanel applicationWillEnterForeground:]_block_invoke
+__42-[Mixpanel applicationDidEnterBackground:]_block_invoke.687
+__42-[Mixpanel applicationDidEnterBackground:]_block_invoke.683
+__42-[Mixpanel applicationDidEnterBackground:]_block_invoke.670
+__42-[Mixpanel applicationDidEnterBackground:]_block_invoke
+__27-[Mixpanel setCurrentRadio]_block_invoke
+__32-[Mixpanel flushWithCompletion:]_block_invoke
+__26-[Mixpanel stopFlushTimer]_block_invoke
+__27-[Mixpanel startFlushTimer]_block_invoke
+__35-[Mixpanel dispatchOnNetworkQueue:]_block_invoke
+__17-[Mixpanel reset]_block_invoke_2
+__17-[Mixpanel reset]_block_invoke
+__28-[Mixpanel clearTimedEvents]_block_invoke
+__22-[Mixpanel timeEvent:]_block_invoke
+__32-[Mixpanel clearSuperProperties]_block_invoke
+__36-[Mixpanel unregisterSuperProperty:]_block_invoke
+__53-[Mixpanel registerSuperPropertiesOnce:defaultValue:]_block_invoke
+__36-[Mixpanel registerSuperProperties:]_block_invoke
+__29-[Mixpanel track:properties:]_block_invoke
+__38-[Mixpanel createAlias:forDistinctID:]_block_invoke
+MPLogError
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MPLogger.h
+__31-[Mixpanel identify:usePeople:]_block_invoke
+MPLogInfo
+__17-[Mixpanel init:]_block_invoke
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/usr/include/dispatch/once.h
+MPLogWarning
++[MPNetwork sharedURLSession]
+-[MPNetwork initWithServerURL:mixpanel:]
+-[MPNetwork flushEventQueue:]
+-[MPNetwork orderAutomaticEvents:]
+-[MPNetwork flushPeopleQueue:]
+-[MPNetwork flushQueue:endpoint:]
+___33-[MPNetwork flushQueue:endpoint:]_block_invoke
+-[MPNetwork handleNetworkResponse:withError:]
++[MPNetwork buildDecideQueryForProperties:withDistinctID:andToken:]
++[MPNetwork pathForEndpoint:]
+___29+[MPNetwork pathForEndpoint:]_block_invoke
+-[MPNetwork buildGetRequestForEndpoint:withQueryItems:]
+-[MPNetwork buildPostRequestForEndpoint:andBody:]
+-[MPNetwork buildRequestForEndpoint:byHTTPMethod:withQueryItems:andBody:]
++[MPNetwork encodeArrayForAPI:]
++[MPNetwork encodeArrayAsJSONData:]
++[MPNetwork encodeJSONDataAsBase64:]
++[MPNetwork convertFoundationTypesToJSON:]
++[MPNetwork dateFormatter]
+___26+[MPNetwork dateFormatter]_block_invoke
++[MPNetwork calculateBackOffTimeFromFailures:]
++[MPNetwork parseRetryAfterTime:]
++[MPNetwork parseHTTPFailure:withError:]
+-[MPNetwork updateNetworkActivityIndicator:]
+-[MPNetwork shouldManageNetworkActivityIndicator]
+-[MPNetwork setShouldManageNetworkActivityIndicator:]
+-[MPNetwork useIPAddressForGeoLocation]
+-[MPNetwork setUseIPAddressForGeoLocation:]
+-[MPNetwork mixpanel]
+-[MPNetwork setMixpanel:]
+-[MPNetwork serverURL]
+-[MPNetwork setServerURL:]
+-[MPNetwork requestsDisabledUntilTime]
+-[MPNetwork setRequestsDisabledUntilTime:]
+-[MPNetwork consecutiveFailures]
+-[MPNetwork setConsecutiveFailures:]
+-[MPNetwork .cxx_destruct]
+_sharedURLSession.sharedSession
+_pathForEndpoint:.endPointToPath
+_pathForEndpoint:.onceToken
+___block_descriptor_tmp.161
+_dateFormatter.formatter
+_dateFormatter.onceToken
+___block_literal_global.269
+_OBJC_IVAR_$_MPNetwork._shouldManageNetworkActivityIndicator
+_OBJC_IVAR_$_MPNetwork._useIPAddressForGeoLocation
+_OBJC_IVAR_$_MPNetwork._mixpanel
+_OBJC_IVAR_$_MPNetwork._serverURL
+_OBJC_IVAR_$_MPNetwork._requestsDisabledUntilTime
+_OBJC_IVAR_$_MPNetwork._consecutiveFailures
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MPNetwork.m
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MPNetworkPrivate.h
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MPNetwork.h
+__26+[MPNetwork dateFormatter]_block_invoke
+MPLogDebug
+__29+[MPNetwork pathForEndpoint:]_block_invoke
+__33-[MPNetwork flushQueue:endpoint:]_block_invoke
+NSMakeRange
+/Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSRange.h
+-[MixpanelPeople initWithMixpanel:]
+-[MixpanelPeople description]
+-[MixpanelPeople deviceSystemVersion]
+-[MixpanelPeople collectAutomaticPeopleProperties]
+-[MixpanelPeople addPeopleRecordToQueueWithAction:andProperties:]
+___65-[MixpanelPeople addPeopleRecordToQueueWithAction:andProperties:]_block_invoke
++[MixpanelPeople pushDeviceTokenToString:]
+-[MixpanelPeople addPushDeviceToken:]
+-[MixpanelPeople removeAllPushDeviceTokens]
+-[MixpanelPeople removePushDeviceToken:]
+-[MixpanelPeople set:]
+-[MixpanelPeople set:to:]
+-[MixpanelPeople setOnce:]
+-[MixpanelPeople unset:]
+-[MixpanelPeople increment:]
+-[MixpanelPeople increment:by:]
+-[MixpanelPeople append:]
+-[MixpanelPeople union:]
+-[MixpanelPeople remove:]
+-[MixpanelPeople merge:]
+-[MixpanelPeople trackCharge:]
+-[MixpanelPeople trackCharge:withProperties:]
+-[MixpanelPeople clearCharges]
+-[MixpanelPeople deleteUser]
+-[MixpanelPeople ignoreTime]
+-[MixpanelPeople setIgnoreTime:]
+-[MixpanelPeople mixpanel]
+-[MixpanelPeople setMixpanel:]
+-[MixpanelPeople unidentifiedQueue]
+-[MixpanelPeople setUnidentifiedQueue:]
+-[MixpanelPeople distinctId]
+-[MixpanelPeople setDistinctId:]
+-[MixpanelPeople automaticPeopleProperties]
+-[MixpanelPeople setAutomaticPeopleProperties:]
+-[MixpanelPeople .cxx_destruct]
+_OBJC_IVAR_$_MixpanelPeople._ignoreTime
+_OBJC_IVAR_$_MixpanelPeople._mixpanel
+_OBJC_IVAR_$_MixpanelPeople._unidentifiedQueue
+_OBJC_IVAR_$_MixpanelPeople._distinctId
+_OBJC_IVAR_$_MixpanelPeople._automaticPeopleProperties
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MixpanelPeople.m
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MixpanelPeoplePrivate.h
+/Users/peterchien/repos/mixpanel-iphone/Mixpanel/MixpanelPeople.h
+__65-[MixpanelPeople addPeopleRecordToQueueWithAction:andProperties:]_block_invoke
+/Users/peterchien/Library/Developer/Xcode/DerivedData/HelloMixpanel-dqvgxmwzcwczaxfxpnmkuagbnavk/Build/Intermediates/Mixpanel.build/Release-appletvos/Mixpanel_tvOS.build/DerivedSources/Mixpanel_vers.c

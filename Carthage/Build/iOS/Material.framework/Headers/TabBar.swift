@@ -46,6 +46,16 @@ public enum TabBarLineAlignment: Int {
 @objc(TabBarDelegate)
 public protocol TabBarDelegate {
     /**
+     A delegation method that is executed to determine if the TabBar should
+     transition to the next tab.
+     - Parameter tabBar: A TabBar.
+     - Parameter tabItem: A TabItem.
+     - Returns: A Boolean.
+     */
+    @objc
+    optional func tabBar(tabBar: TabBar, shouldSelect tabItem: TabItem) -> Bool
+    
+    /**
      A delegation method that is executed when the tabItem will trigger the
      animation to the next tab.
      - Parameter tabBar: A TabBar.
@@ -116,7 +126,7 @@ open class TabBar: Bar {
     open weak var delegate: TabBarDelegate?
     
     /// The currently selected tabItem.
-    open fileprivate(set) var selectedTabItem: TabItem?
+    open internal(set) var selectedTabItem: TabItem?
     
     /// A preset wrapper around tabItems contentEdgeInsets.
     open var tabItemsContentEdgeInsetsPreset: EdgeInsetsPreset {
@@ -238,7 +248,7 @@ fileprivate extension TabBar {
     
     /// Prepares the divider.
     func prepareDivider() {
-        dividerColor = Color.grey.lighten3
+        dividerColor = Color.grey.lighten2
         dividerAlignment = .top
     }
     
@@ -350,6 +360,10 @@ fileprivate extension TabBar {
     /// Handles the tabItem touch event.
     @objc
     func handleLineAnimation(tabItem: TabItem) {
+        guard !(false == delegate?.tabBar?(tabBar: self, shouldSelect: tabItem)) else {
+            return
+        }
+        
         animate(to: tabItem, isTriggeredByUserInteraction: true)
     }
 }

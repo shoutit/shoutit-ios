@@ -37,7 +37,7 @@ class SuggestedProfilesTableViewController: UITableViewController, DZNEmptyDataS
         
         viewModel.fetchSections()
         
-        self.navigationItem.title = NSLocalizedString("Suggestions", comment: "")
+        self.navigationItem.titleLabel.text = NSLocalizedString("Suggestions", comment: "")
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self

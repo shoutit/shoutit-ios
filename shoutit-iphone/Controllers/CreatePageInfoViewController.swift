@@ -37,7 +37,7 @@ class CreatePageInfoViewController: UITableViewController {
         applyBackButton()
         setupFields()
         
-        self.navigationItem.title = preselectedCategory?.name ?? NSLocalizedString("Create Page", comment: "create page screen title")
+        self.self.navigationItem.titleLabel.text = preselectedCategory?.name ?? NSLocalizedString("Create Page", comment: "create page screen title")
     }
     
     func setupFields() {

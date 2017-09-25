@@ -2,7 +2,7 @@
   "commitish" : "1.2.0",
   "iOS" : [
     {
-      "hash" : "669ae42310e089f17dc25c375c43cb2e38178d41806a5760c7c3073f970db819",
+      "hash" : "fb0fb661f406fc3c5d8218af49d24f3d6f8b8a5a55257f2859afa0a3fc730727",
       "name" : "AmazonS3RequestManager"
     }
   ]

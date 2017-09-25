@@ -1,70 +1,20 @@
 {
+  "commitish" : "3.6.1",
   "iOS" : [
     {
-      "hash" : "bcbc8516c1734308c3e594af897e8e4b5e2147a833a83538108212886f9d515a",
+      "hash" : "9439c33011263bba8c582833c217a9e2cfa470b1d9c04397d9a61b2e552f77eb",
       "name" : "RxBlocking"
     },
     {
-      "hash" : "a71fcf522909cce78d1939e11aba055ad5bf5f490bf0af3502618df7fbd66125",
-      "name" : "RxCocoa"
-    },
-    {
-      "hash" : "71b4d52fd543667e3e8ca21fca0a2fe6288425670516e798405a99e27659dc6f",
-      "name" : "RxSwift"
-    },
-    {
-      "hash" : "20bb455c6cc3b9b1cc1552c60eb83ede28efbd354c0a23b3a385ce9e12a7f774",
-      "name" : "RxTest"
-    }
-  ],
-  "commitish" : "3.6.1",
-  "watchOS" : [
-    {
-      "hash" : "e16abe458f2a6c9e4dcd652791f8d2febceccb3828e82732da9cc0ec8db4d78a",
-      "name" : "RxBlocking"
-    },
-    {
-      "hash" : "7436f6e201335082495ef1fc5a0e8b014dd5555773c081d76def6237f3ecc18b",
-      "name" : "RxCocoa"
-    },
-    {
-      "hash" : "68ce35ccf336565a64edb6a86eab14eea1f5d2391196561f94c4383bdebeff4f",
-      "name" : "RxSwift"
-    }
-  ],
-  "tvOS" : [
-    {
-      "hash" : "e94e6727e802caa7e6c994d07f8a5f757588c348d1b82ab448f941ee632b3fd8",
-      "name" : "RxBlocking"
-    },
-    {
-      "hash" : "c2bb02d6df84e09cdd4c730783327237e1167acb4583ae41f9f998f158078bdf",
+      "hash" : "99de5c9f557959d11dc8f55ab47a2b90ac71b9446e6e5da0d10d4d256a710991",
       "name" : "RxTest"
     },
     {
-      "hash" : "b4374ecc87093f7cddd06e2b74f2e7eed113bf9a08bbba388204fd985c80e250",
+      "hash" : "46440583c64ab62dd6a055391046bd587c47b2c92264ee063e067fca13c973a0",
       "name" : "RxCocoa"
     },
     {
-      "hash" : "944e38d0086b1828df8922adec3525acd4c9b4d1947bb72ceb480f9a4fa950b7",
-      "name" : "RxSwift"
-    }
-  ],
-  "Mac" : [
-    {
-      "hash" : "0de7b2a87abd99bfc0521b6d9e58dc9ff89913246389b5ead479ab8c62f7b441",
-      "name" : "RxBlocking"
-    },
-    {
-      "hash" : "8a88ca38c3cb6248210f0c6a3d7273839eeab0dd9188a2148424991d10ce4f3a",
-      "name" : "RxCocoa"
-    },
-    {
-      "hash" : "ab8da1f2892ca92963ffc3505fb7a498dd7b0ffc0718fb84583e70733505d2f9",
-      "name" : "RxTest"
-    },
-    {
-      "hash" : "9926744b5c3d92b3fb0da5ac4022dfcb418044324747b7356758acb85bdb1d76",
+      "hash" : "02c29ca298831cea943e1270ea4bc755f3ceb2af4e1608ee8059c3e72d40c091",
       "name" : "RxSwift"
     }
   ]

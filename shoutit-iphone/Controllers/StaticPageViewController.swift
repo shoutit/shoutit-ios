@@ -23,7 +23,7 @@ class StaticPageViewController: UIViewController, UIWebViewDelegate {
         self.webView.delegate = self
         self.webView.loadRequest(URLRequest(url: urlToLoad))
         
-        self.navigationItem.title = self.titleToShow ?? ""
+        self.self.navigationItem.titleLabel.text = self.titleToShow ?? ""
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {

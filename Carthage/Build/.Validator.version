@@ -1,18 +1,9 @@
 {
+  "commitish" : "v3.0",
   "iOS" : [
     {
-      "hash" : "95cfb505d7886379f2af04dde7e5f38a69f6edd4b96b24d6ab42cce5b2878c23",
+      "hash" : "0619d90b0f40bc91448748cb4256a17aecda8fe9de50afaf8bbe5da809d13139",
       "name" : "Validator"
     }
-  ],
-  "commitish" : "v2.1.1",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-
   ]
 }

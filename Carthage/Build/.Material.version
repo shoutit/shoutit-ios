@@ -1,18 +1,9 @@
 {
+  "commitish" : "2.10.2",
   "iOS" : [
     {
-      "hash" : "db0fb7ea01295e136f9e8097381d47fb4499a9de2dc1ae6cf9877a6512d9e23c",
+      "hash" : "b69c1c8b6f952a26b0e7edda4db2227da1dc51563a4a0028d95f905a44bcde23",
       "name" : "Material"
     }
-  ],
-  "commitish" : "2.9.4",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-
   ]
 }

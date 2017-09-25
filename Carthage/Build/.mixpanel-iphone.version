@@ -1,26 +1,26 @@
 {
   "iOS" : [
     {
-      "hash" : "a813615e63e82daceed48248afd039d12fca4b83a8456e846d9d0bee9fad81a2",
+      "hash" : "9308a9eb7b425cea98c707d19a5dba66da5206f97a0efcb0fa6f6339d9cbec33",
       "name" : "Mixpanel"
     }
   ],
-  "commitish" : "v3.1.9",
+  "commitish" : "v3.2.0",
   "watchOS" : [
     {
-      "hash" : "408f638007d14ef23a4a2967fcbe1985d587c23c3a5c786f383ad787bd523637",
+      "hash" : "eaa7509a4b9cdecc2329b84795155e1900cae1683897648fab01fae73cea4364",
       "name" : "Mixpanel"
     }
   ],
   "tvOS" : [
     {
-      "hash" : "ffb39b23c8b6b1ec289044656a42ccd4ea936709c08ff28b82af5ba2fa605ca7",
+      "hash" : "2e04e7da8628b9848cf8166fbc4b7a47bc6de96d3f6ecdd4a47497b7ee10a399",
       "name" : "Mixpanel"
     }
   ],
   "Mac" : [
     {
-      "hash" : "4c2b04acbcebe222f2c75958f381f25a0b2ffb1a1925dd05022b8fa799673e49",
+      "hash" : "f0ab9e166857abce6dac4da8e4c7c143fff52867eba53b9c676b91ad30eeef4e",
       "name" : "Mixpanel"
     }
   ]

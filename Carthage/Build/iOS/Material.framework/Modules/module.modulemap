@@ -7,4 +7,5 @@ framework module Material {
 
 module Material.Swift {
     header "Material-Swift.h"
+    requires objc
 }

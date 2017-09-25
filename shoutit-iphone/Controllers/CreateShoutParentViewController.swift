@@ -51,9 +51,9 @@ class CreateShoutParentViewController: UIViewController {
     
     func setTitle() {
         if self.type == .Offer {
-            self.navigationItem.title = NSLocalizedString("Create Offer", comment: "Create Shout navigation item title")
+            self.self.navigationItem.titleLabel.text = NSLocalizedString("Create Offer", comment: "Create Shout navigation item title")
         } else {
-            self.navigationItem.title = NSLocalizedString("Create Request", comment: "Create Shout navigation item title")
+            self.self.navigationItem.titleLabel.text = NSLocalizedString("Create Request", comment: "Create Shout navigation item title")
         }
         
     }

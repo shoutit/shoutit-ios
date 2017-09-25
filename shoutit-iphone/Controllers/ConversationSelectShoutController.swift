@@ -21,7 +21,7 @@ final class ConversationSelectShoutController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = NSLocalizedString("Select Shout", comment: "Select Shout to send title")
+        self.navigationItem.titleLabel.text = NSLocalizedString("Select Shout", comment: "Select Shout to send title")
         
         let params = FilteredShoutsParams(username: Account.sharedInstance.user!.username, page: 1, pageSize: 30, skipLocation: true)
         

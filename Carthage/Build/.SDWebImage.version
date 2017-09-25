@@ -1,25 +1,13 @@
 {
+  "commitish" : "3.8.1",
   "iOS" : [
     {
-      "hash" : "f0eb94d9f8ef65575370c1ab17bde4a2a3554461d1f3766e6b3f4ec6b5c1c7e0",
+      "hash" : "f220216f019e8b0c0a744563a8647bdeff7fef2f24f6851711b4b02b9e8871de",
       "name" : "FLAnimatedImage"
     },
     {
-      "hash" : "6bcc9cfd702a5fbc52603b20da4ddffdd6d17affa87ac0c975acdbf7e5d9ead1",
+      "hash" : "c6ee859b2c8235d36da3c473b2528358e2ccf861d2766f127e9080132eae5f37",
       "name" : "WebImage"
     }
-  ],
-  "commitish" : "3.8.1",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-    {
-      "hash" : "9d77dcbf64baec1dc4e12025d4c3b2faaef95fbb77414d4e49cb98f6796045cc",
-      "name" : "WebImage"
-    }
-  ],
-  "Mac" : [
-
   ]
 }

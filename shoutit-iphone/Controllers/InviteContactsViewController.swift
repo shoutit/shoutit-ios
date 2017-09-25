@@ -45,7 +45,7 @@ class InviteContactsViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = NSLocalizedString("Invite Contacts", comment: "Invite Contacts screen title")
+        self.self.navigationItem.titleLabel.text = NSLocalizedString("Invite Contacts", comment: "Invite Contacts screen title")
         extractContacts()
     }
     

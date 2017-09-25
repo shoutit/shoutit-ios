@@ -248,7 +248,7 @@ class ConversationInfoViewController: UITableViewController {
         })
         
         controller.viewModel = ListenersProfilesListViewModel(username: username, showListenButtons: false)
-        controller.navigationItem.title = NSLocalizedString("Add Member", comment: "Add Chat Member Navigation Item title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Add Member", comment: "Add Chat Member Navigation Item title")
         controller.dismissAfterSelection = true
         
         let configurator = AddMemberCellConfigurator()
@@ -284,7 +284,7 @@ class ConversationInfoViewController: UITableViewController {
         })
         
         controller.viewModel = ConversationMembersListViewModel(conversation: viewModel.conversation)
-        controller.navigationItem.title = NSLocalizedString("Participants", comment: "Chat Participants Screen Title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Participants", comment: "Chat Participants Screen Title")
         
         let configurator = ConversationMemberCellConfigurator()
         
@@ -411,7 +411,7 @@ class ConversationInfoViewController: UITableViewController {
         let controller = Wireframe.conversationSelectProfileAttachmentController()
         
         controller.viewModel = ConversationBlockedListModel(conversation: viewModel.conversation)
-        controller.navigationItem.title = NSLocalizedString("Blocked", comment: "Conversation Blocked Users Title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Blocked", comment: "Conversation Blocked Users Title")
         
         let configurator = ConversationMemberCellConfigurator()
         

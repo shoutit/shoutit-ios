@@ -111,7 +111,7 @@ class InviteFriendsTableViewController: UITableViewController {
         
         controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "Suggested Users Section Title")
         
-        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "Suggested Users Screen Title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Suggestions", comment: "Suggested Users Screen Title")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)
@@ -129,7 +129,7 @@ class InviteFriendsTableViewController: UITableViewController {
         
         controller.viewModel.sectionTitle = NSLocalizedString("SUGGESTED USERS", comment: "Suggested Users Section Title")
         
-        controller.navigationItem.title = NSLocalizedString("Suggestions", comment: "Suggested Users Screen Title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Suggestions", comment: "Suggested Users Screen Title")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)
@@ -166,7 +166,7 @@ class InviteFriendsTableViewController: UITableViewController {
         guard checkIfUserIsLoggedInAndDisplayAlertIfNot() else { return }
         let controller = Wireframe.facebookProfileListController()
         
-        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "Find Friends Screen Title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Find Friends", comment: "Find Friends Screen Title")
         controller.flowDelegate = self.flowDelegate
         self.navigationController?.show(controller, sender: nil)
         
@@ -225,7 +225,7 @@ class InviteFriendsTableViewController: UITableViewController {
         
         controller.viewModel.sectionTitle = NSLocalizedString("Contacts Friends", comment: "Find Contacts Section Title")
         
-        controller.navigationItem.title = NSLocalizedString("Find Friends", comment: "Find Contacts Screen Title")
+        controller.self.navigationItem.titleLabel.text = NSLocalizedString("Find Friends", comment: "Find Contacts Screen Title")
         
         controller.eventHandler = SelectProfileProfilesListEventHandler(choiceHandler: { [weak self] (profile) in
             self?.flowDelegate?.showProfile(profile)

@@ -1,20 +1,8 @@
 {
+  "commitish" : "3.0.1",
   "iOS" : [
     {
-      "hash" : "0b35b802cdaa5d23ba2da6152bfaaaf5793df19a22e6e0327e9a2c635f041351",
-      "name" : "JSONCodable"
-    }
-  ],
-  "commitish" : "3.0.1",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-    {
-      "hash" : "302b5e951188add85e8ed9258c76c0a4fed3802602372d66a8b0e18e3bedd4bd",
+      "hash" : "0e074f864ade9a094b66e2d7f3330c16ba8889eb8dd7f6ee69591630804ffe2f",
       "name" : "JSONCodable"
     }
   ]

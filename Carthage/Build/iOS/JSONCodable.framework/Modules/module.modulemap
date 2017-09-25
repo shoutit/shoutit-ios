@@ -7,4 +7,5 @@ framework module JSONCodable {
 
 module JSONCodable.Swift {
     header "JSONCodable-Swift.h"
+    requires objc
 }

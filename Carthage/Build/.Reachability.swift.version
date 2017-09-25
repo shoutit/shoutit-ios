@@ -2,7 +2,7 @@
   "commitish" : "v3",
   "iOS" : [
     {
-      "hash" : "24817106ee91e6bea6f6532bbfdccaeee574b5ccf5ab438d05bfa3e0679e2a86",
+      "hash" : "a32e567884404b5faa286fe1988483d16adbfc25463761fcc29d00cd5ba13bd3",
       "name" : "Reachability"
     }
   ]
