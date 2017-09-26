@@ -10,6 +10,7 @@
 		026372191D3657B80071B179 /* VerifyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026372181D3657B80071B179 /* VerifyPageViewModel.swift */; };
 		0263721C1D36953E0071B179 /* PageVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0263721A1D3685AA0071B179 /* PageVerification.swift */; };
 		14E48B110F6CBF2841C3E264 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89F2B1851D9065D1C86D52B /* CoreVideo.framework */; };
+		15EE5211294CD8BD19D6A2E5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89CDA22E17F2A844DE048AE /* CoreMedia.framework */; };
 		240580401C7368CB009ED106 /* APIShoutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2405803F1C7368CB009ED106 /* APIShoutsService.swift */; };
 		240DE9331C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DE9321C9FF01C006E49D4 /* ConversationLoadMoreFooter.swift */; };
 		240F50951C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F50941C71B49900AE4A76 /* ShoutCollectionLayoutDisplayable.swift */; };
@@ -858,6 +859,7 @@
 		B2FA5CD31D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD21D11C32D007034F8 /* ShowDetailContainerViewController+AlertFactory.swift */; };
 		B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA5CD51D11C5EC007034F8 /* LocalizedString.swift */; };
 		B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FE53921CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift */; };
+		BCEE18041F902EA50211BD26 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4EF2397171FF0D95B6C47B /* BuddyBuildSDK.framework */; };
 		BF02B4391D37792300DDFBCE /* UISearchBarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BF02B4381D37792300DDFBCE /* UISearchBarAppearance.m */; };
 		BF06D1731D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF06D1721D2E484100DFF0D4 /* FacebookFriendsListParentViewController.swift */; };
 		BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B909C1D23D2EB006F8D8D /* InviteContactsViewController.swift */; };
@@ -878,6 +880,9 @@
 		BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AA91D2A46B10017D26F /* AdSupport.framework */; };
 		BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AAB1D2A46D00017D26F /* CoreMotion.framework */; };
 		BF849AAF1D2A58F80017D26F /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF849AAE1D2A58F80017D26F /* AdManager.swift */; };
+		E166926EDBC110A17C4D079F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376F28A446969569A86D217 /* CoreTelephony.framework */; };
+		EED4F3E5A4186726649D8238 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F321E525C691DDCE65E75 /* QuartzCore.framework */; };
+		F085F12BF38931EB0607765F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0FB754506806CFD2A18E2F /* CoreText.framework */; };
 		F3D553D4DE1D62D562D1788A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68426E4FF3671D9E8A8EFD7 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
@@ -1023,6 +1028,7 @@
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		24E298911CF1F23700FDB055 /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Display.swift; path = Model/Display.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		28AA5808B4049585E32D125D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4B4EF2397171FF0D95B6C47B /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		601EB8B91C2B922900D4C1AE /* DiscoverItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItemCell.swift; path = View/tabs/home/DiscoverItemCell.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
@@ -2519,6 +2525,11 @@
 				AC7027FE1C1AA66200262622 /* libUserVoice.a in Frameworks */,
 				F3D553D4DE1D62D562D1788A /* AssetsLibrary.framework in Frameworks */,
 				14E48B110F6CBF2841C3E264 /* CoreVideo.framework in Frameworks */,
+				BCEE18041F902EA50211BD26 /* BuddyBuildSDK.framework in Frameworks */,
+				F085F12BF38931EB0607765F /* CoreText.framework in Frameworks */,
+				E166926EDBC110A17C4D079F /* CoreTelephony.framework in Frameworks */,
+				EED4F3E5A4186726649D8238 /* QuartzCore.framework in Frameworks */,
+				15EE5211294CD8BD19D6A2E5 /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4239,6 +4250,7 @@
 				28AA5808B4049585E32D125D /* AVFoundation.framework */,
 				B89CDA22E17F2A844DE048AE /* CoreMedia.framework */,
 				C89F2B1851D9065D1C86D52B /* CoreVideo.framework */,
+				4B4EF2397171FF0D95B6C47B /* BuddyBuildSDK.framework */,
 			);
 			name = Frameworks;
 			path = "shoutit-iphone";
