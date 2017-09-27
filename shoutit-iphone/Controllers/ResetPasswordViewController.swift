@@ -12,11 +12,7 @@ import RxCocoa
 import MBProgressHUD
 import Material
 
-extension Error {
-    public var message: String {
-        return self.localizedDescription
-    }
-}
+
 
 final class ResetPasswordViewController: UITableViewController {
     
@@ -51,7 +47,7 @@ final class ResetPasswordViewController: UITableViewController {
         
         resetPasswordButton.rx.tap.filter {
             if case .invalid(let errors) = ShoutitValidator.validateEmail(self.emailTextField.text) {
-                if let error = errors.first {
+                if let error = errors.first as? ShoutitValidator.ValidationError {
                     self.delegate?.showLoginErrorMessage(error.message)
                 }
                 return false

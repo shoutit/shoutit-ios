@@ -19,7 +19,7 @@ final class SecureCoder {
             NSKeyedArchiver.archiveRootObject(json, toFile: path)
         
         } catch let error {
-            assertionFailure(error.message)
+            assertionFailure(error.localizedDescription)
         }
         
     }

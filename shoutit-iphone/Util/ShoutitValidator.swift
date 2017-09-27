@@ -12,14 +12,14 @@ import Validator
 
 struct ShoutitValidator {
     
-    enum ValidationError: ShoutitError {
+    public enum ValidationError: ShoutitError {
         case invalidEmail
         case invalidEmailOrUsername
         case invalidFirstname
         case invalidLastname
         case invalidPassword
         
-        var message: String {
+        public var message: String {
             switch self {
             case .invalidEmail:
                 return NSLocalizedString("Enter valid email", comment: "Enter valid email.")
@@ -33,6 +33,7 @@ struct ShoutitValidator {
                 return NSLocalizedString("Password should have between 6 and 20 characters", comment: "Password characters number should be between 6-20")
             }
         }
+      
         
         public var userMessage: String {
             return message

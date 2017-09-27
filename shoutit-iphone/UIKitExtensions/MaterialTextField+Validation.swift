@@ -31,7 +31,9 @@ extension BorderedMaterialTextField {
                     self.detailLabelHidden = true
                 case .invalid(let error):
                     self.detailLabelHidden = false
-                    self.detailLabel?.text = error.first?.message
+                    if let er = error.first as? ShoutitValidator.ValidationError {
+                        self.detailLabel?.text = er.message
+                    }
                 }
             })
             .addDisposableTo(disposeBag)

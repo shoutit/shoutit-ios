@@ -78,7 +78,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>441111</string>
+	<string>441114</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -210,12 +210,18 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>This allows us to add pictures to your offers and requests</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This allows us to find your shoutit friends</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This allows us to show you nearby offers and requests</string>
 	<key>NSLocationUsageDescription</key>
 	<string>This allows us to show you nearby offers and requests</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This allows us to show you nearby offers and requests</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This allows us to make calls inside app</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This allows us to add pictures to your offers and requests</string>
 	<key>UILaunchStoryboardName</key>
@@ -241,5 +247,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

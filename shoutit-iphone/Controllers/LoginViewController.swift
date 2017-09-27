@@ -51,7 +51,7 @@ final class LoginViewController: UITableViewController {
             
             for validationResult in [ShoutitValidator.validateUniversalEmailOrUsernameField(self.emailTextField.text)] {
                 if case .invalid(let errors) = validationResult {
-                    if let error = errors.first {
+                    if let error = errors.first  as? ShoutitValidator.ValidationError {
                         self.delegate?.showLoginErrorMessage(error.message)
                     }
                     return false

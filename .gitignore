@@ -49,7 +49,9 @@ Temporary Items
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 Carthage/Checkouts
-!Carthage/Build
+Carthage/Build/Mac
+Carthage/Build/tvOS
+Carthage/Build/watchOS
 
 ### Objective-C ###
 # Xcode

@@ -1028,7 +1028,7 @@
 		24DC20B21CBFA51800ED6DA7 /* ProfileStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ProfileStats.swift; path = Model/ProfileStats.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		24E298911CF1F23700FDB055 /* Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Display.swift; path = Model/Display.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		28AA5808B4049585E32D125D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4B4EF2397171FF0D95B6C47B /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		4B4EF2397171FF0D95B6C47B /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		601EB8B91C2B922900D4C1AE /* DiscoverItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscoverItemCell.swift; path = View/tabs/home/DiscoverItemCell.swift; sourceTree = "<group>"; };
 		6027CF311BE74EAE00124C28 /* Shoutit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoutit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027CF341BE74EAE00124C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
@@ -5562,7 +5562,7 @@
 				TargetAttributes = {
 					6027CF301BE74EAE00124C28 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = E6WRHQXQE9;
+						DevelopmentTeam = 2857HUGC3W;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -10444,6 +10444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 2857HUGC3W;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -10573,6 +10574,8 @@
 					"-framework",
 					"\"SDWebImage\"",
 				);
+				PROVISIONING_PROFILE = "7734f011-17cf-4190-b1cb-6d0c673911ae";
+				PROVISIONING_PROFILE_SPECIFIER = "buddybuild Appstore - com.shoutit-iphone";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
