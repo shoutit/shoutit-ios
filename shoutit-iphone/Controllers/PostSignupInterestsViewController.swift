@@ -120,6 +120,7 @@ final class PostSignupInterestsViewController: UIViewController {
         
         nextTap
             .flatMapLatest{self.viewModel.listenToSelectedCategories()}
+                .debug("listen to selected categories", trimOutput: true)
                 .subscribe({[weak self] (event) in
                 if let view = self?.view {
                     MBProgressHUD.hide(for: view, animated: true)

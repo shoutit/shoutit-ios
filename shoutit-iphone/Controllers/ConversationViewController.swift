@@ -52,6 +52,12 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         NotificationCenter.default.addObserver(self, selector: #selector(unsubscribeSockets), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.textView.becomeFirstResponder()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -213,6 +219,9 @@ final class ConversationViewController: SLKTextViewController, ConversationPrese
         tableView.emptyDataSetDelegate = self
         tableView.emptyDataSetSource = self
         
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
     }
     
     fileprivate func customizeInputView() {

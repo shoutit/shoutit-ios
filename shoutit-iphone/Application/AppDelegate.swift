@@ -191,9 +191,9 @@ private extension AppDelegate {
         GIDSignIn.sharedInstance().clientID = Constants.Google.clientID
         GIDSignIn.sharedInstance().serverClientID = Constants.Google.serverClientID
         GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
-        GIDSignIn.sharedInstance().allowsSignInWithBrowser = true
+//        GIDSignIn.sharedInstance().allowsSignInWithBrowser = true
         GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
-        GIDSignIn.sharedInstance().allowsSignInWithWebView = false
+//        GIDSignIn.sharedInstance().allowsSignInWithWebView = false
     }
     
     func configureLoggingServices() {

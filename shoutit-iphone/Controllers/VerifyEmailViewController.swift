@@ -110,7 +110,10 @@ final class VerifyEmailViewController: UIViewController {
             .addDisposableTo(disposeBag)
         
         // text field
-        emailTextField.rx.text.asDriver().drive(onNext: { [weak self] (text) in
+        emailTextField.rx.text
+            .asDriver()
+            .startWith(viewModel.email.value)
+            .drive(onNext: { [weak self] (text) in
             self?.viewModel.email.value = text ?? ""
         }).addDisposableTo(disposeBag)
         

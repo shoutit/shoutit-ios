@@ -17,8 +17,6 @@ public struct MessageParams: Params, JSONEncodable {
     }
     
     public func toJSON() throws -> Any {
-        return try JSONEncoder.create({ (encoder) -> Void in
-            try encoder.encode(message, key: "message")
-        })
+        return try message.toJSON()
     }
 }

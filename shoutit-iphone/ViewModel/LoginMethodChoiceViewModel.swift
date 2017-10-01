@@ -14,7 +14,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import ShoutitKit
 
-final class LoginMethodChoiceViewModel {
+final class LoginMethodChoiceViewModel: NSObject {
     
     fileprivate let disposeBag = DisposeBag()
     let loginSuccessSubject = PublishSubject<Bool>()

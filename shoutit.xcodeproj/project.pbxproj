@@ -26,6 +26,10 @@
 		2437D97F1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D97E1C9027D700FCBFC5 /* CreateShoutPopupViewController.swift */; };
 		2437D9811C90365C00FCBFC5 /* OverlayAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9801C90365C00FCBFC5 /* OverlayAnimationController.swift */; };
 		2437D9831C90388E00FCBFC5 /* OverlayDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2437D9821C90388E00FCBFC5 /* OverlayDismissAnimationController.swift */; };
+		2445CA701F7BE67A00113F7C /* PaperTrailLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */; };
+		2445CA711F7BE67C00113F7C /* PaperTrailLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E911D40CD9A000B0FC6 /* PaperTrailLumberjack.framework */; };
+		2445CA721F7BE6C600113F7C /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */; };
+		2445CA731F7BE6C700113F7C /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE146E971D40D267000B0FC6 /* CocoaAsyncSocket.framework */; };
 		244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A11C7C79F30048CC82 /* DiscoverCollectionViewController.swift */; };
 		244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A31C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift */; };
 		244FD9A61C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FD9A51C7C7AAF0048CC82 /* DiscoverGeneralViewModel.swift */; };
@@ -106,6 +110,7 @@
 		24AEF78E1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */; };
 		24AEF7901CF755AA00C57C7C /* SuggestionsDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF78F1CF755AA00C57C7C /* SuggestionsDisplayable.swift */; };
 		24AEF7921CF759C500C57C7C /* SuggestedProfilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */; };
+		24C92AC01F7D257E0073F61C /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C92ABF1F7D223B0073F61C /* GoogleSignInDependencies.framework */; };
 		24D3B0BF1C9AA68E00DE1600 /* PusherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */; };
 		24D3B0C21C9AFCA400DE1600 /* PusherAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */; };
 		24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3B0C61C9C472D00DE1600 /* Twilio.swift */; };
@@ -273,11 +278,6 @@
 		AE6AF6601D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AF65F1D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift */; };
 		AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */; };
 		AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */; };
-		AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */; };
-		AE76E33A1D47506800C7F2CB /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3381D47506800C7F2CB /* GCDAsyncUdpSocket.m */; };
-		AE76E3681D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E35F1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m */; };
-		AE76E3691D4750B700C7F2CB /* RMPaperTrailLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3641D4750B700C7F2CB /* RMPaperTrailLogger.m */; };
-		AE76E36A1D4750B700C7F2CB /* RMSyslogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE76E3661D4750B700C7F2CB /* RMSyslogFormatter.m */; };
 		AE7AC1631CB3FBB400C9DEB6 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC1671CB3FBB400C9DEB6 /* Menu.storyboard */; };
 		AE7FFFE01CAC55A7009F3FBC /* TWCLocalMedia+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */; };
 		AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8351661C5F521B0055C71F /* TabbarButton.swift */; };
@@ -1021,6 +1021,7 @@
 		24AEF78D1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteFriendsTableViewController.swift; path = Controllers/InviteFriendsTableViewController.swift; sourceTree = "<group>"; };
 		24AEF78F1CF755AA00C57C7C /* SuggestionsDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestionsDisplayable.swift; path = FlowControl/SuggestionsDisplayable.swift; sourceTree = "<group>"; };
 		24AEF7911CF759C500C57C7C /* SuggestedProfilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedProfilesTableViewController.swift; path = Controllers/SuggestedProfilesTableViewController.swift; sourceTree = "<group>"; };
+		24C92ABF1F7D223B0073F61C /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignInDependencies.framework; path = InRepoFrameworks/GoogleSignIn/GoogleSignInDependencies.framework; sourceTree = SOURCE_ROOT; };
 		24D3B0BE1C9AA68E00DE1600 /* PusherClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherClient.swift; path = Networking/PusherClient.swift; sourceTree = "<group>"; };
 		24D3B0C11C9AFCA400DE1600 /* PusherAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PusherAdditions.swift; path = Networking/PusherAdditions.swift; sourceTree = "<group>"; };
 		24D3B0C31C9C3BFF00DE1600 /* TwilioAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TwilioAuth.swift; path = Model/TwilioAuth.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1254,22 +1255,6 @@
 		AE6AF65F1D58A2D80079A7B9 /* ConversationSpecialMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationSpecialMessageCell.swift; path = View/ConversationSpecialMessageCell.swift; sourceTree = "<group>"; };
 		AE6B1D081C6C7DB6002DFBFE /* APILocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APILocationService.swift; path = Networking/APILocationService.swift; sourceTree = "<group>"; };
 		AE6BABE51CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversationMemberCellConfigurator.swift; path = ViewModel/ConversationMemberCellConfigurator.swift; sourceTree = "<group>"; };
-		AE76E3331D47506800C7F2CB /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CocoaAsyncSocket-umbrella.h"; path = "CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/CocoaAsyncSocket-umbrella.h"; sourceTree = SOURCE_ROOT; };
-		AE76E3341D47506800C7F2CB /* CocoaAsyncSocket.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = CocoaAsyncSocket.modulemap; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/CocoaAsyncSocket.modulemap; sourceTree = SOURCE_ROOT; };
-		AE76E3351D47506800C7F2CB /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncSocket.h; sourceTree = SOURCE_ROOT; };
-		AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncSocket.m; sourceTree = SOURCE_ROOT; };
-		AE76E3371D47506800C7F2CB /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncUdpSocket.h; sourceTree = SOURCE_ROOT; };
-		AE76E3381D47506800C7F2CB /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = CopiedFilesFrameworks/PaperTrail/CocoaAsyncSocket/GCDAsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
-		AE76E35E1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+RMPaperTrailLumberjack.h"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/NSString+RMPaperTrailLumberjack.h"; sourceTree = SOURCE_ROOT; };
-		AE76E35F1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+RMPaperTrailLumberjack.m"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/NSString+RMPaperTrailLumberjack.m"; sourceTree = SOURCE_ROOT; };
-		AE76E3601D4750B700C7F2CB /* PaperTrailLumberjack-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PaperTrailLumberjack-umbrella.h"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/PaperTrailLumberjack-umbrella.h"; sourceTree = SOURCE_ROOT; };
-		AE76E3611D4750B700C7F2CB /* PaperTrailLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaperTrailLumberjack.h; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/PaperTrailLumberjack.h; sourceTree = SOURCE_ROOT; };
-		AE76E3621D4750B700C7F2CB /* PaperTrailLumberjack.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = PaperTrailLumberjack.modulemap; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/PaperTrailLumberjack.modulemap; sourceTree = SOURCE_ROOT; };
-		AE76E3631D4750B700C7F2CB /* RMPaperTrailLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMPaperTrailLogger.h; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMPaperTrailLogger.h; sourceTree = SOURCE_ROOT; };
-		AE76E3641D4750B700C7F2CB /* RMPaperTrailLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMPaperTrailLogger.m; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMPaperTrailLogger.m; sourceTree = SOURCE_ROOT; };
-		AE76E3651D4750B700C7F2CB /* RMSyslogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSyslogFormatter.h; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMSyslogFormatter.h; sourceTree = SOURCE_ROOT; };
-		AE76E3661D4750B700C7F2CB /* RMSyslogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSyslogFormatter.m; path = CopiedFilesFrameworks/PaperTrail/PaperTrail/RMSyslogFormatter.m; sourceTree = SOURCE_ROOT; };
-		AE76E3671D4750B700C7F2CB /* RMSyslogFormatter+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RMSyslogFormatter+Private.h"; path = "CopiedFilesFrameworks/PaperTrail/PaperTrail/RMSyslogFormatter+Private.h"; sourceTree = SOURCE_ROOT; };
 		AE7AC1661CB3FBB400C9DEB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Menu.storyboard; sourceTree = "<group>"; };
 		AE7FFFDE1CAC55A7009F3FBC /* TWCLocalMedia+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TWCLocalMedia+Additions.h"; path = "Other/TWCLocalMedia+Additions.h"; sourceTree = "<group>"; };
 		AE7FFFDF1CAC55A7009F3FBC /* TWCLocalMedia+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TWCLocalMedia+Additions.m"; path = "Other/TWCLocalMedia+Additions.m"; sourceTree = "<group>"; };
@@ -2471,6 +2456,7 @@
 				B21D8A8F1D0B3DC000EE1549 /* AWSCognito.framework in Frameworks */,
 				B2985FB01C7295CC00EEA9A2 /* QuartzCore.framework in Frameworks */,
 				B21D8A8D1D0B3D7C00EE1549 /* AmazonS3RequestManager.framework in Frameworks */,
+				24C92AC01F7D257E0073F61C /* GoogleSignInDependencies.framework in Frameworks */,
 				B2985FAE1C7295C200EEA9A2 /* OpenGLES.framework in Frameworks */,
 				B2415F571D009EA500669C52 /* MessageUI.framework in Frameworks */,
 				B2415F551D009E9D00669C52 /* Foundation.framework in Frameworks */,
@@ -2519,6 +2505,8 @@
 				B21D8A901D0B3DDB00EE1549 /* AWSCore.framework in Frameworks */,
 				B212D1391D0B27DF00E9E19D /* SocketRocket.framework in Frameworks */,
 				B2463C5B1D1025E00006BD6E /* FBSDKCoreKit.framework in Frameworks */,
+				2445CA711F7BE67C00113F7C /* PaperTrailLumberjack.framework in Frameworks */,
+				2445CA731F7BE6C700113F7C /* CocoaAsyncSocket.framework in Frameworks */,
 				B2463C5C1D1025E00006BD6E /* FBSDKLoginKit.framework in Frameworks */,
 				B2463C5D1D1025E00006BD6E /* FBSDKShareKit.framework in Frameworks */,
 				B2463C581D10259B0006BD6E /* Crashlytics.framework in Frameworks */,
@@ -2537,10 +2525,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2445CA721F7BE6C600113F7C /* CocoaAsyncSocket.framework in Frameworks */,
 				AED2919F1D086A87000F9DAF /* Alamofire.framework in Frameworks */,
 				AED291A31D086A8D000F9DAF /* RxCocoa.framework in Frameworks */,
 				AED291A41D086A8D000F9DAF /* RxSwift.framework in Frameworks */,
 				247D126E1F4EC7840077D8BB /* JSONCodable.framework in Frameworks */,
+				2445CA701F7BE67A00113F7C /* PaperTrailLumberjack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3324,45 +3314,6 @@
 				AE6AF6571D587A6D0079A7B9 /* StaticPageViewController.swift */,
 			);
 			name = StaticPage;
-			sourceTree = "<group>";
-		};
-		AE76E2A41D4749DC00C7F2CB /* PaperTrail */ = {
-			isa = PBXGroup;
-			children = (
-				AE76E2D61D474A7000C7F2CB /* CocoaAsyncSocket */,
-				AE76E2A51D4749E900C7F2CB /* PaperTrail */,
-			);
-			name = PaperTrail;
-			sourceTree = "<group>";
-		};
-		AE76E2A51D4749E900C7F2CB /* PaperTrail */ = {
-			isa = PBXGroup;
-			children = (
-				AE76E35E1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.h */,
-				AE76E35F1D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m */,
-				AE76E3601D4750B700C7F2CB /* PaperTrailLumberjack-umbrella.h */,
-				AE76E3611D4750B700C7F2CB /* PaperTrailLumberjack.h */,
-				AE76E3621D4750B700C7F2CB /* PaperTrailLumberjack.modulemap */,
-				AE76E3631D4750B700C7F2CB /* RMPaperTrailLogger.h */,
-				AE76E3641D4750B700C7F2CB /* RMPaperTrailLogger.m */,
-				AE76E3651D4750B700C7F2CB /* RMSyslogFormatter.h */,
-				AE76E3661D4750B700C7F2CB /* RMSyslogFormatter.m */,
-				AE76E3671D4750B700C7F2CB /* RMSyslogFormatter+Private.h */,
-			);
-			name = PaperTrail;
-			sourceTree = "<group>";
-		};
-		AE76E2D61D474A7000C7F2CB /* CocoaAsyncSocket */ = {
-			isa = PBXGroup;
-			children = (
-				AE76E3331D47506800C7F2CB /* CocoaAsyncSocket-umbrella.h */,
-				AE76E3341D47506800C7F2CB /* CocoaAsyncSocket.modulemap */,
-				AE76E3351D47506800C7F2CB /* GCDAsyncSocket.h */,
-				AE76E3361D47506800C7F2CB /* GCDAsyncSocket.m */,
-				AE76E3371D47506800C7F2CB /* GCDAsyncUdpSocket.h */,
-				AE76E3381D47506800C7F2CB /* GCDAsyncUdpSocket.m */,
-			);
-			name = CocoaAsyncSocket;
 			sourceTree = "<group>";
 		};
 		AE7FFFDA1CAC550C009F3FBC /* twilio wrapper */ = {
@@ -5357,7 +5308,6 @@
 		B2F719011D0ECC99002C1D74 /* CopiedFilesFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AE76E2A41D4749DC00C7F2CB /* PaperTrail */,
 				AEB3F3921D0995E800393428 /* DeeplinkKit */,
 				AEB3F3021D09950B00393428 /* Pusher */,
 				AEB3F4021D09A1BF00393428 /* ResponsiveLabel */,
@@ -5377,6 +5327,7 @@
 				AE0536B71D5B333D0049B479 /* NewRelicAgent.framework */,
 				B2C0E2E11D0EFB0200058FEF /* Crashlytics.framework */,
 				B2F7193F1D0EEDB3002C1D74 /* GoogleSignIn.framework */,
+				24C92ABF1F7D223B0073F61C /* GoogleSignInDependencies.framework */,
 				B2F7193B1D0EECEE002C1D74 /* Fabric.framework */,
 				B2F719351D0EEC99002C1D74 /* FBSDKCoreKit.framework */,
 				B2F719361D0EEC99002C1D74 /* FBSDKLoginKit.framework */,
@@ -5562,7 +5513,7 @@
 				TargetAttributes = {
 					6027CF301BE74EAE00124C28 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 2857HUGC3W;
+						DevelopmentTeam = E6WRHQXQE9;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -5797,6 +5748,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JSONCodable.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CocoaLumberjack.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CocoaLumberjackSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PaperTrailLumberjack.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CocoaAsyncSocket.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
@@ -5924,7 +5877,6 @@
 				246F25B61F4D7589002D510A /* EnumOperators.swift in Sources */,
 				B2C729CF1C62224A006F7D29 /* AboutDisplayable.swift in Sources */,
 				AEA599841C60DDE000015AA3 /* MenuCell.swift in Sources */,
-				AE76E3391D47506800C7F2CB /* GCDAsyncSocket.m in Sources */,
 				248329051C847D7E0042B0DB /* CreateShoutSelectCell.swift in Sources */,
 				B24E280B1C93410100EE85A0 /* ResetPasswordViewController.swift in Sources */,
 				B26CEE2F1C6E4B520091470D /* ProfileCollectionListenableCellViewModel.swift in Sources */,
@@ -5965,7 +5917,6 @@
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
 				BF5FB27C1D2FCD130078A57F /* EditPageTextFieldTableViewCell.swift in Sources */,
 				AE63FB151D12D271005A35CD /* PromotionLabelsViews.swift in Sources */,
-				AE76E3691D4750B700C7F2CB /* RMPaperTrailLogger.m in Sources */,
 				AE6B1D091C6C7DB6002DFBFE /* APILocationService.swift in Sources */,
 				B2AB73ED1CB5687600C2C0C0 /* ChangePasswordSettingsFormViewModel.swift in Sources */,
 				AE18BAD51CA2F86D001C73EC /* ConversationLocationCell.swift in Sources */,
@@ -6221,7 +6172,6 @@
 				AE4DB35F1C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
 				B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */,
 				AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */,
-				AE76E36A1D4750B700C7F2CB /* RMSyslogFormatter.m in Sources */,
 				B2F719FE1D0EF53A002C1D74 /* NSAttributedString+Processing.m in Sources */,
 				24826B401C969A1500032FC9 /* NotificationsTableViewController.swift in Sources */,
 				B27DF7891C591D1A006909D4 /* Wireframe.swift in Sources */,
@@ -6271,8 +6221,6 @@
 				B2778F951CAAF4E400BBDD5F /* VerifyEmailDisplayable.swift in Sources */,
 				244FD9A41C7C7A9B0048CC82 /* DiscoverGivenItemViewModel.swift in Sources */,
 				B227BFF51C57D9AA003A2D76 /* CustomUIButton.swift in Sources */,
-				AE76E3681D4750B700C7F2CB /* NSString+RMPaperTrailLumberjack.m in Sources */,
-				AE76E33A1D47506800C7F2CB /* GCDAsyncUdpSocket.m in Sources */,
 				B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */,
 				B22D908E1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift in Sources */,
 				244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */,
@@ -10073,6 +10021,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 10;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = E6WRHQXQE9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10260,6 +10209,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 10;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

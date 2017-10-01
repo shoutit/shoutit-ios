@@ -69,7 +69,8 @@ final class APIGenericService {
                         observer.onCompleted()
                         return
                     }
-                
+                    observer.onNext()
+                    observer.onCompleted()
                     
                 })
             
@@ -110,11 +111,13 @@ final class APIGenericService {
                 request.cancel()
             }
             
+            debugPrint(request)
+            
             request.responseJSON{ (response) in
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)
                     let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
-//                    debugPrint(json)
+                    debugPrint(json)
                     let object: T = try parseJson(json as! JSONObject)
                     observer.onNext(object)
                     observer.onCompleted()
@@ -160,11 +163,15 @@ final class APIGenericService {
                 request.cancel()
             }
             
+            debugPrint(request)
+            
             request.responseJSON{ (response) in
                 do {
                     let originalJson = try validateResponseAndExtractJson(response)
+                    debugPrint(originalJson)
                     let json = try extractJsonFromJson(originalJson, withPathComponents: responseJsonPath)
                     let object: [T] = try parseJsonArray(json as! [JSONObject])
+                    
                     observer.onNext(object)
                     observer.onCompleted()
                 } catch let error {
@@ -291,19 +298,13 @@ final class APIGenericService {
     }
     
     static func parseJson<T: JSONDecodable>(_ json: JSONObject, failureExpected: Bool = false) throws -> T {
-        print("======")
-        print(json)
-        print("======")
+     
         return try T(object: json)
     }
     
     static func parseJsonArray<T: JSONDecodable>(_ json: [JSONObject]) throws -> [T] {
-        print("======")
-        print(json)
-        print("======")
         
         let t: [T] = try Array<T>(JSONArray: json)
-        print(t)
         return t
     }
 }

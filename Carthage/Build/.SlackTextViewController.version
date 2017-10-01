@@ -1,8 +1,8 @@
 {
-  "commitish" : "v1.9.5",
+  "commitish" : "4c74cbab29408dda9af33633f86dcc983a3b5363",
   "iOS" : [
     {
-      "hash" : "0fe90efc7d402768dca7b12dc36e380c43408e3010c844bc86a3d33ce23d3a76",
+      "hash" : "d94fef6a10bfb5353d7324a67d1a165d3ddc849f1efc8a52ee327637525c0e5e",
       "name" : "SlackTextViewController"
     }
   ]

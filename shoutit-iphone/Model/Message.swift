@@ -53,8 +53,12 @@ extension Message: JSONCodable {
     
     public func toJSON() throws -> Any {
         return try JSONEncoder.create({ (encoder) -> Void in
-            try encoder.encode(text, key: "text")
-            try encoder.encode(attachments, key: "attachments")
+            if let text = text {
+                try encoder.encode(text, key: "text")
+            }
+            if let attachments = attachments {
+                try encoder.encode(attachments, key: "attachments")
+            }
         })
     }
 }
