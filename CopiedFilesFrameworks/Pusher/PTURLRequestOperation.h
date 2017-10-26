@@ -8,30 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface PTURLRequestOperation : NSOperation {
+@interface PTURLRequestOperation : NSOperation <NSURLSessionDelegate, NSURLSessionDataDelegate> {
   BOOL _isExecuting;
   BOOL _isFinished;
+
   NSURLRequest *URLRequest;
   NSURLResponse *URLResponse;
-  NSURLConnection *URLConnection;
   NSError *connectionError;
   NSMutableData *responseData;
 }
+
 @property (nonatomic, strong) NSURLRequest *URLRequest;
+@property (nonatomic, strong, readonly) NSURLSession *URLSession;
 @property (nonatomic, strong, readonly) NSURLResponse *URLResponse;
 @property (nonatomic, strong, readonly) NSError *connectionError;
 @property (nonatomic, strong, readonly) NSData *responseData;
 
-- (id)initWithURLRequest:(NSURLRequest *)request;
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithURLRequest:(NSURLRequest *)request;
 - (void)finish;
 - (void)cancelImmediately;
 - (void)checkForCancellation;
-@end
-
-@interface PTURLRequestOperation (NSURLConnectionDelegate)
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)theResponse;
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 @end

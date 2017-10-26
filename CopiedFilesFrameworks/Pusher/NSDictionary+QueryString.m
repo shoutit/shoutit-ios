@@ -11,7 +11,7 @@
 
 @implementation NSDictionary (QueryString)
 
-- (NSString *)sortedQueryString
+- (NSString *)sortedQueryString;
 {
   NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity:[[self allKeys] count]];
   NSArray *sortedKeys = [[self allKeys] sortedArrayUsingSelector:@selector(localizedCompare:)];

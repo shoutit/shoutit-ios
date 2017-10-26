@@ -8,10 +8,42 @@
 
 #import "PTURLRequestOperation.h"
 
+@interface PTURLRequestOperationURLSessionDelegate : NSObject <NSURLSessionDelegate, NSURLSessionDataDelegate>
+
+@property (nonatomic, weak, readwrite) id<NSURLSessionDelegate, NSURLSessionDataDelegate> delegate;
+
+@end
+
+@implementation PTURLRequestOperationURLSessionDelegate
+
+#pragma mark -
+#pragma mark NSURLSessionDelegate methods
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
+{
+  [self.delegate URLSession:session dataTask:dataTask didReceiveData:data];
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+  [self.delegate URLSession:session task:task didCompleteWithError:error];
+}
+
+#pragma mark -
+#pragma mark NSURLSessionDataDelegate methods
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+  [self.delegate URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
+}
+
+@end
+
 @interface PTURLRequestOperation ()
 @property (nonatomic, strong, readwrite) NSURLResponse *URLResponse;
 @property (nonatomic, strong, readwrite) NSError *connectionError;
 @property (nonatomic, strong, readwrite) NSData *responseData;
+@property (nonatomic, strong, readwrite) PTURLRequestOperationURLSessionDelegate *sessionDelegate;
 
 - (void)setExecuting:(BOOL)isExecuting;
 - (void)setFinished:(BOOL)isFinished;
@@ -26,7 +58,7 @@
 @synthesize connectionError;
 @synthesize responseData;
 
-- (id)initWithURLRequest:(NSURLRequest *)request
+- (instancetype)initWithURLRequest:(NSURLRequest *)request;
 {
   if ((self = [super init])) {
     URLRequest = request;
@@ -35,35 +67,41 @@
 }
 
 
-- (void)start 
+- (void)start
 {
   NSAssert(URLRequest, @"Cannot start URLRequestOperation without a NSURLRequest.");
-  
+
   if (![NSThread isMainThread]) {
     return [self performSelector:@selector(start) onThread:[NSThread mainThread] withObject:nil waitUntilDone:NO];
   }
-  
+
   if ([self isCancelled]) {
     [self finish];
     return;
   }
-  
+
   [self setExecuting:YES];
-  
-  URLConnection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self startImmediately:NO];
-  
-  if (URLConnection == nil) {
-    [self setFinished:YES]; 
+
+  self.sessionDelegate = [PTURLRequestOperationURLSessionDelegate new];
+  self.sessionDelegate.delegate = self;
+  NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+  _URLSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self.sessionDelegate delegateQueue:nil];
+  NSURLSessionDataTask *task = [_URLSession dataTaskWithRequest:URLRequest];
+
+  if (_URLSession == nil) {
+    [self setFinished:YES];
   }
-  
-  // Common modes instead of default so it won't stall uiscrollview scrolling
-  [URLConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-  [URLConnection start];
+
+  [task resume];
 }
 
 - (void)finish
 {
-  [self setFinished:YES];
+  [_URLSession invalidateAndCancel];
+  if (self.isExecuting) {
+    [self setExecuting:NO];
+    [self setFinished:YES];
+  }
 }
 
 - (BOOL)isConcurrent
@@ -82,33 +120,20 @@
 }
 
 #pragma mark -
-#pragma mark NSURLConnection delegate methods
+#pragma mark NSURLSessionDelegate methods
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)theResponse
-{ 
-  self.URLResponse = theResponse;
-  self.responseData = [NSMutableData data];
-  
-  [self checkForCancellation];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
 {
   if (self.responseData == nil) { // this might be called before didReceiveResponse
     self.responseData = [NSMutableData data];
   }
-  
+
   [responseData appendData:data];
-  
+
   [self checkForCancellation];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-  [self finish];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
   self.connectionError = error;
   [self finish];
@@ -116,7 +141,6 @@
 
 - (void)cancelImmediately
 {
-  [URLConnection cancel];
   [self finish];
 }
 
@@ -128,21 +152,37 @@
 }
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark NSURLSessionDataDelegate methods
 
-- (void)setExecuting:(BOOL)isExecuting
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
-  [self willChangeValueForKey:@"isExecuting"];
-  _isExecuting = isExecuting;
-  [self didChangeValueForKey:@"isExecuting"];
+  self.URLResponse = response;
+  self.responseData = [NSMutableData data];
+  completionHandler(NSURLSessionResponseAllow);
 }
 
-- (void)setFinished:(BOOL)isFinished
+#pragma mark -
+#pragma mark Private methods
+
+- (void)setExecuting:(BOOL)isExecuting;
 {
-  [self willChangeValueForKey:@"isFinished"];
-  [self setExecuting:NO];
-  _isFinished = isFinished;
-  [self didChangeValueForKey:@"isFinished"];
+  if (_isExecuting != isExecuting)
+  {
+    [self willChangeValueForKey:@"isExecuting"];
+    _isExecuting = isExecuting;
+    [self didChangeValueForKey:@"isExecuting"];
+  }
+}
+
+- (void)setFinished:(BOOL)isFinished;
+{
+  if (_isFinished != isFinished)
+  {
+    [self willChangeValueForKey:@"isFinished"];
+    [self setExecuting:NO];
+    _isFinished = isFinished;
+    [self didChangeValueForKey:@"isFinished"];
+  }
 }
 
 @end

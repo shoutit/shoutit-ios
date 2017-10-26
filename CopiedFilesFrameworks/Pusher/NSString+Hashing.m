@@ -4,7 +4,7 @@
 
 @implementation NSString (Hashing)
 
-- (NSString *)MD5Hash
+- (NSString *)MD5Hash;
 {
   const char *cStr = [self UTF8String];
   unsigned char result[CC_MD5_DIGEST_LENGTH];
@@ -29,7 +29,7 @@
   CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
   
   NSMutableString *result = [[NSMutableString alloc] init];
-  for (unsigned long i = 0; i < sizeof(cHMAC); i++) {
+  for (int i = 0; i < sizeof(cHMAC); i++) {
     [result appendFormat:@"%02x", cHMAC[i] & 0xff];
   }
   NSString *digest = [result copy];

@@ -824,21 +824,6 @@
 		B2F719FF1D0EF53A002C1D74 /* NSMutableAttributedString+BoundChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F719F71D0EF53A002C1D74 /* NSMutableAttributedString+BoundChecker.m */; };
 		B2F71A001D0EF53A002C1D74 /* PatternDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F719F91D0EF53A002C1D74 /* PatternDescriptor.m */; };
 		B2F71A011D0EF53A002C1D74 /* ResponsiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F719FB1D0EF53A002C1D74 /* ResponsiveLabel.m */; };
-		B2F71A281D0EF643002C1D74 /* NSDictionary+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A031D0EF643002C1D74 /* NSDictionary+QueryString.m */; };
-		B2F71A291D0EF643002C1D74 /* NSString+Hashing.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A051D0EF643002C1D74 /* NSString+Hashing.m */; };
-		B2F71A2A1D0EF643002C1D74 /* PTBlockEventListener.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A071D0EF643002C1D74 /* PTBlockEventListener.m */; };
-		B2F71A2B1D0EF643002C1D74 /* PTJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A0A1D0EF643002C1D74 /* PTJSON.m */; };
-		B2F71A2C1D0EF643002C1D74 /* PTPusher.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A0C1D0EF643002C1D74 /* PTPusher.m */; };
-		B2F71A2D1D0EF643002C1D74 /* PTPusher+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A0E1D0EF643002C1D74 /* PTPusher+Testing.m */; };
-		B2F71A2E1D0EF643002C1D74 /* PTPusherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A101D0EF643002C1D74 /* PTPusherAPI.m */; };
-		B2F71A2F1D0EF643002C1D74 /* PTPusherChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A131D0EF643002C1D74 /* PTPusherChannel.m */; };
-		B2F71A301D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A151D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.m */; };
-		B2F71A311D0EF643002C1D74 /* PTPusherConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A171D0EF643002C1D74 /* PTPusherConnection.m */; };
-		B2F71A321D0EF643002C1D74 /* PTPusherEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A1B1D0EF643002C1D74 /* PTPusherEvent.m */; };
-		B2F71A331D0EF643002C1D74 /* PTPusherEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A1D1D0EF643002C1D74 /* PTPusherEventDispatcher.m */; };
-		B2F71A341D0EF643002C1D74 /* PTPusherMockConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A211D0EF643002C1D74 /* PTPusherMockConnection.m */; };
-		B2F71A351D0EF643002C1D74 /* PTTargetActionEventListener.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A241D0EF643002C1D74 /* PTTargetActionEventListener.m */; };
-		B2F71A361D0EF643002C1D74 /* PTURLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A261D0EF643002C1D74 /* PTURLRequestOperation.m */; };
 		B2F71A5A1D0EF791002C1D74 /* DPLDeepLink.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A3C1D0EF791002C1D74 /* DPLDeepLink.m */; };
 		B2F71A5B1D0EF791002C1D74 /* DPLDeepLink+AppLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A3E1D0EF791002C1D74 /* DPLDeepLink+AppLinks.m */; };
 		B2F71A5C1D0EF791002C1D74 /* DPLDeepLinkRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F71A401D0EF791002C1D74 /* DPLDeepLinkRouter.m */; };
@@ -880,6 +865,21 @@
 		BF849AAA1D2A46B10017D26F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AA91D2A46B10017D26F /* AdSupport.framework */; };
 		BF849AAC1D2A46D00017D26F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF849AAB1D2A46D00017D26F /* CoreMotion.framework */; };
 		BF849AAF1D2A58F80017D26F /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF849AAE1D2A58F80017D26F /* AdManager.swift */; };
+		C2CCBDA41FA209E40091833E /* PTBlockEventListener.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD801FA209D80091833E /* PTBlockEventListener.m */; };
+		C2CCBDA51FA209E40091833E /* PTPusherConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD831FA209D90091833E /* PTPusherConnection.m */; };
+		C2CCBDA61FA209E40091833E /* NSDictionary+StringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD851FA209D90091833E /* NSDictionary+StringValue.m */; };
+		C2CCBDA71FA209E40091833E /* PTPusherEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD861FA209DA0091833E /* PTPusherEvent.m */; };
+		C2CCBDA81FA209E40091833E /* PTPusherEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD881FA209DA0091833E /* PTPusherEventDispatcher.m */; };
+		C2CCBDA91FA209E40091833E /* PTPusherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD891FA209DB0091833E /* PTPusherAPI.m */; };
+		C2CCBDAA1FA209E40091833E /* NSDictionary+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD8F1FA209DD0091833E /* NSDictionary+QueryString.m */; };
+		C2CCBDAB1FA209E40091833E /* PTJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD911FA209DE0091833E /* PTJSON.m */; };
+		C2CCBDAC1FA209E40091833E /* NSString+Hashing.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD951FA209DF0091833E /* NSString+Hashing.m */; };
+		C2CCBDAD1FA209E40091833E /* PTPusherMockConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD971FA209E00091833E /* PTPusherMockConnection.m */; };
+		C2CCBDAE1FA209E40091833E /* PTTargetActionEventListener.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD981FA209E00091833E /* PTTargetActionEventListener.m */; };
+		C2CCBDAF1FA209E40091833E /* PTPusherChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD991FA209E00091833E /* PTPusherChannel.m */; };
+		C2CCBDB01FA209E40091833E /* PTPusherChannelServerBasedAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD9B1FA209E10091833E /* PTPusherChannelServerBasedAuthorization.m */; };
+		C2CCBDB11FA209E40091833E /* PTPusher.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD9F1FA209E30091833E /* PTPusher.m */; };
+		C2CCBDB21FA209E40091833E /* PTURLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBDA21FA209E40091833E /* PTURLRequestOperation.m */; };
 		E166926EDBC110A17C4D079F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376F28A446969569A86D217 /* CoreTelephony.framework */; };
 		EED4F3E5A4186726649D8238 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F321E525C691DDCE65E75 /* QuartzCore.framework */; };
 		F085F12BF38931EB0607765F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0FB754506806CFD2A18E2F /* CoreText.framework */; };
@@ -2324,44 +2324,6 @@
 		B2F719F91D0EF53A002C1D74 /* PatternDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatternDescriptor.m; path = CopiedFilesFrameworks/ResponsiveLabel/PatternDescriptor.m; sourceTree = SOURCE_ROOT; };
 		B2F719FA1D0EF53A002C1D74 /* ResponsiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponsiveLabel.h; path = CopiedFilesFrameworks/ResponsiveLabel/ResponsiveLabel.h; sourceTree = SOURCE_ROOT; };
 		B2F719FB1D0EF53A002C1D74 /* ResponsiveLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponsiveLabel.m; path = CopiedFilesFrameworks/ResponsiveLabel/ResponsiveLabel.m; sourceTree = SOURCE_ROOT; };
-		B2F71A021D0EF643002C1D74 /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+QueryString.h"; path = "CopiedFilesFrameworks/Pusher/NSDictionary+QueryString.h"; sourceTree = SOURCE_ROOT; };
-		B2F71A031D0EF643002C1D74 /* NSDictionary+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+QueryString.m"; path = "CopiedFilesFrameworks/Pusher/NSDictionary+QueryString.m"; sourceTree = SOURCE_ROOT; };
-		B2F71A041D0EF643002C1D74 /* NSString+Hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Hashing.h"; path = "CopiedFilesFrameworks/Pusher/NSString+Hashing.h"; sourceTree = SOURCE_ROOT; };
-		B2F71A051D0EF643002C1D74 /* NSString+Hashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Hashing.m"; path = "CopiedFilesFrameworks/Pusher/NSString+Hashing.m"; sourceTree = SOURCE_ROOT; };
-		B2F71A061D0EF643002C1D74 /* PTBlockEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBlockEventListener.h; path = CopiedFilesFrameworks/Pusher/PTBlockEventListener.h; sourceTree = SOURCE_ROOT; };
-		B2F71A071D0EF643002C1D74 /* PTBlockEventListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBlockEventListener.m; path = CopiedFilesFrameworks/Pusher/PTBlockEventListener.m; sourceTree = SOURCE_ROOT; };
-		B2F71A081D0EF643002C1D74 /* PTEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTEventListener.h; path = CopiedFilesFrameworks/Pusher/PTEventListener.h; sourceTree = SOURCE_ROOT; };
-		B2F71A091D0EF643002C1D74 /* PTJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTJSON.h; path = CopiedFilesFrameworks/Pusher/PTJSON.h; sourceTree = SOURCE_ROOT; };
-		B2F71A0A1D0EF643002C1D74 /* PTJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTJSON.m; path = CopiedFilesFrameworks/Pusher/PTJSON.m; sourceTree = SOURCE_ROOT; };
-		B2F71A0B1D0EF643002C1D74 /* PTPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusher.h; path = CopiedFilesFrameworks/Pusher/PTPusher.h; sourceTree = SOURCE_ROOT; };
-		B2F71A0C1D0EF643002C1D74 /* PTPusher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusher.m; path = CopiedFilesFrameworks/Pusher/PTPusher.m; sourceTree = SOURCE_ROOT; };
-		B2F71A0D1D0EF643002C1D74 /* PTPusher+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PTPusher+Testing.h"; path = "CopiedFilesFrameworks/Pusher/PTPusher+Testing.h"; sourceTree = SOURCE_ROOT; };
-		B2F71A0E1D0EF643002C1D74 /* PTPusher+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PTPusher+Testing.m"; path = "CopiedFilesFrameworks/Pusher/PTPusher+Testing.m"; sourceTree = SOURCE_ROOT; };
-		B2F71A0F1D0EF643002C1D74 /* PTPusherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherAPI.h; path = CopiedFilesFrameworks/Pusher/PTPusherAPI.h; sourceTree = SOURCE_ROOT; };
-		B2F71A101D0EF643002C1D74 /* PTPusherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherAPI.m; path = CopiedFilesFrameworks/Pusher/PTPusherAPI.m; sourceTree = SOURCE_ROOT; };
-		B2F71A111D0EF643002C1D74 /* PTPusherChannel_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannel_Private.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannel_Private.h; sourceTree = SOURCE_ROOT; };
-		B2F71A121D0EF643002C1D74 /* PTPusherChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannel.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannel.h; sourceTree = SOURCE_ROOT; };
-		B2F71A131D0EF643002C1D74 /* PTPusherChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherChannel.m; path = CopiedFilesFrameworks/Pusher/PTPusherChannel.m; sourceTree = SOURCE_ROOT; };
-		B2F71A141D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannelAuthorizationOperation.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannelAuthorizationOperation.h; sourceTree = SOURCE_ROOT; };
-		B2F71A151D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherChannelAuthorizationOperation.m; path = CopiedFilesFrameworks/Pusher/PTPusherChannelAuthorizationOperation.m; sourceTree = SOURCE_ROOT; };
-		B2F71A161D0EF643002C1D74 /* PTPusherConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherConnection.h; path = CopiedFilesFrameworks/Pusher/PTPusherConnection.h; sourceTree = SOURCE_ROOT; };
-		B2F71A171D0EF643002C1D74 /* PTPusherConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherConnection.m; path = CopiedFilesFrameworks/Pusher/PTPusherConnection.m; sourceTree = SOURCE_ROOT; };
-		B2F71A181D0EF643002C1D74 /* PTPusherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherDelegate.h; path = CopiedFilesFrameworks/Pusher/PTPusherDelegate.h; sourceTree = SOURCE_ROOT; };
-		B2F71A191D0EF643002C1D74 /* PTPusherErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherErrors.h; path = CopiedFilesFrameworks/Pusher/PTPusherErrors.h; sourceTree = SOURCE_ROOT; };
-		B2F71A1A1D0EF643002C1D74 /* PTPusherEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherEvent.h; path = CopiedFilesFrameworks/Pusher/PTPusherEvent.h; sourceTree = SOURCE_ROOT; };
-		B2F71A1B1D0EF643002C1D74 /* PTPusherEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherEvent.m; path = CopiedFilesFrameworks/Pusher/PTPusherEvent.m; sourceTree = SOURCE_ROOT; };
-		B2F71A1C1D0EF643002C1D74 /* PTPusherEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherEventDispatcher.h; path = CopiedFilesFrameworks/Pusher/PTPusherEventDispatcher.h; sourceTree = SOURCE_ROOT; };
-		B2F71A1D1D0EF643002C1D74 /* PTPusherEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherEventDispatcher.m; path = CopiedFilesFrameworks/Pusher/PTPusherEventDispatcher.m; sourceTree = SOURCE_ROOT; };
-		B2F71A1E1D0EF643002C1D74 /* PTPusherEventPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherEventPublisher.h; path = CopiedFilesFrameworks/Pusher/PTPusherEventPublisher.h; sourceTree = SOURCE_ROOT; };
-		B2F71A1F1D0EF643002C1D74 /* PTPusherMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherMacros.h; path = CopiedFilesFrameworks/Pusher/PTPusherMacros.h; sourceTree = SOURCE_ROOT; };
-		B2F71A201D0EF643002C1D74 /* PTPusherMockConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherMockConnection.h; path = CopiedFilesFrameworks/Pusher/PTPusherMockConnection.h; sourceTree = SOURCE_ROOT; };
-		B2F71A211D0EF643002C1D74 /* PTPusherMockConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherMockConnection.m; path = CopiedFilesFrameworks/Pusher/PTPusherMockConnection.m; sourceTree = SOURCE_ROOT; };
-		B2F71A221D0EF643002C1D74 /* PTPusherPresenceChannelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherPresenceChannelDelegate.h; path = CopiedFilesFrameworks/Pusher/PTPusherPresenceChannelDelegate.h; sourceTree = SOURCE_ROOT; };
-		B2F71A231D0EF643002C1D74 /* PTTargetActionEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTTargetActionEventListener.h; path = CopiedFilesFrameworks/Pusher/PTTargetActionEventListener.h; sourceTree = SOURCE_ROOT; };
-		B2F71A241D0EF643002C1D74 /* PTTargetActionEventListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTTargetActionEventListener.m; path = CopiedFilesFrameworks/Pusher/PTTargetActionEventListener.m; sourceTree = SOURCE_ROOT; };
-		B2F71A251D0EF643002C1D74 /* PTURLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTURLRequestOperation.h; path = CopiedFilesFrameworks/Pusher/PTURLRequestOperation.h; sourceTree = SOURCE_ROOT; };
-		B2F71A261D0EF643002C1D74 /* PTURLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTURLRequestOperation.m; path = CopiedFilesFrameworks/Pusher/PTURLRequestOperation.m; sourceTree = SOURCE_ROOT; };
-		B2F71A271D0EF643002C1D74 /* Pusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pusher.h; path = CopiedFilesFrameworks/Pusher/Pusher.h; sourceTree = SOURCE_ROOT; };
 		B2F71A371D0EF791002C1D74 /* AppLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppLinks.h; path = CopiedFilesFrameworks/DeeplinkKit/AppLinks.h; sourceTree = SOURCE_ROOT; };
 		B2F71A381D0EF791002C1D74 /* DeepLinkKit_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeepLinkKit_Private.h; path = CopiedFilesFrameworks/DeeplinkKit/DeepLinkKit_Private.h; sourceTree = SOURCE_ROOT; };
 		B2F71A391D0EF791002C1D74 /* DeepLinkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeepLinkKit.h; path = CopiedFilesFrameworks/DeeplinkKit/DeepLinkKit.h; sourceTree = SOURCE_ROOT; };
@@ -2428,6 +2390,45 @@
 		BF849AA91D2A46B10017D26F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		BF849AAB1D2A46D00017D26F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		BF849AAE1D2A58F80017D26F /* AdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdManager.swift; path = Other/AdManager.swift; sourceTree = "<group>"; };
+		C2CCBD7D1FA209D60091833E /* NSDictionary+StringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+StringValue.h"; path = "CopiedFilesFrameworks/Pusher/NSDictionary+StringValue.h"; sourceTree = SOURCE_ROOT; };
+		C2CCBD7E1FA209D70091833E /* PTPusherEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherEventDispatcher.h; path = CopiedFilesFrameworks/Pusher/PTPusherEventDispatcher.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD7F1FA209D70091833E /* PTPusherMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherMacros.h; path = CopiedFilesFrameworks/Pusher/PTPusherMacros.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD801FA209D80091833E /* PTBlockEventListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBlockEventListener.m; path = CopiedFilesFrameworks/Pusher/PTBlockEventListener.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD811FA209D80091833E /* PTPusherChannelServerBasedAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannelServerBasedAuthorization.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannelServerBasedAuthorization.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD821FA209D80091833E /* PTBlockEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBlockEventListener.h; path = CopiedFilesFrameworks/Pusher/PTBlockEventListener.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD831FA209D90091833E /* PTPusherConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherConnection.m; path = CopiedFilesFrameworks/Pusher/PTPusherConnection.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD841FA209D90091833E /* NSString+Hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Hashing.h"; path = "CopiedFilesFrameworks/Pusher/NSString+Hashing.h"; sourceTree = SOURCE_ROOT; };
+		C2CCBD851FA209D90091833E /* NSDictionary+StringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+StringValue.m"; path = "CopiedFilesFrameworks/Pusher/NSDictionary+StringValue.m"; sourceTree = SOURCE_ROOT; };
+		C2CCBD861FA209DA0091833E /* PTPusherEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherEvent.m; path = CopiedFilesFrameworks/Pusher/PTPusherEvent.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD871FA209DA0091833E /* PTJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTJSON.h; path = CopiedFilesFrameworks/Pusher/PTJSON.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD881FA209DA0091833E /* PTPusherEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherEventDispatcher.m; path = CopiedFilesFrameworks/Pusher/PTPusherEventDispatcher.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD891FA209DB0091833E /* PTPusherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherAPI.m; path = CopiedFilesFrameworks/Pusher/PTPusherAPI.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD8A1FA209DB0091833E /* PTPusherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherAPI.h; path = CopiedFilesFrameworks/Pusher/PTPusherAPI.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD8B1FA209DB0091833E /* PTPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusher.h; path = CopiedFilesFrameworks/Pusher/PTPusher.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD8C1FA209DC0091833E /* PTPusherErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherErrors.h; path = CopiedFilesFrameworks/Pusher/PTPusherErrors.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD8D1FA209DC0091833E /* PTPusherEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherEvent.h; path = CopiedFilesFrameworks/Pusher/PTPusherEvent.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD8E1FA209DD0091833E /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+QueryString.h"; path = "CopiedFilesFrameworks/Pusher/NSDictionary+QueryString.h"; sourceTree = SOURCE_ROOT; };
+		C2CCBD8F1FA209DD0091833E /* NSDictionary+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+QueryString.m"; path = "CopiedFilesFrameworks/Pusher/NSDictionary+QueryString.m"; sourceTree = SOURCE_ROOT; };
+		C2CCBD901FA209DD0091833E /* PTEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTEventListener.h; path = CopiedFilesFrameworks/Pusher/PTEventListener.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD911FA209DE0091833E /* PTJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTJSON.m; path = CopiedFilesFrameworks/Pusher/PTJSON.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD921FA209DE0091833E /* PTPusherChannelAuthorizationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannelAuthorizationDelegate.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannelAuthorizationDelegate.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD931FA209DE0091833E /* PTPusherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherDelegate.h; path = CopiedFilesFrameworks/Pusher/PTPusherDelegate.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD941FA209DF0091833E /* Pusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pusher.h; path = CopiedFilesFrameworks/Pusher/Pusher.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD951FA209DF0091833E /* NSString+Hashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Hashing.m"; path = "CopiedFilesFrameworks/Pusher/NSString+Hashing.m"; sourceTree = SOURCE_ROOT; };
+		C2CCBD961FA209DF0091833E /* PTPusherConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherConnection.h; path = CopiedFilesFrameworks/Pusher/PTPusherConnection.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD971FA209E00091833E /* PTPusherMockConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherMockConnection.m; path = CopiedFilesFrameworks/Pusher/PTPusherMockConnection.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD981FA209E00091833E /* PTTargetActionEventListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTTargetActionEventListener.m; path = CopiedFilesFrameworks/Pusher/PTTargetActionEventListener.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD991FA209E00091833E /* PTPusherChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherChannel.m; path = CopiedFilesFrameworks/Pusher/PTPusherChannel.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD9A1FA209E10091833E /* PTTargetActionEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTTargetActionEventListener.h; path = CopiedFilesFrameworks/Pusher/PTTargetActionEventListener.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD9B1FA209E10091833E /* PTPusherChannelServerBasedAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusherChannelServerBasedAuthorization.m; path = CopiedFilesFrameworks/Pusher/PTPusherChannelServerBasedAuthorization.m; sourceTree = SOURCE_ROOT; };
+		C2CCBD9C1FA209E20091833E /* PTPusherChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannel.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannel.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD9D1FA209E20091833E /* PTURLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTURLRequestOperation.h; path = CopiedFilesFrameworks/Pusher/PTURLRequestOperation.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD9E1FA209E20091833E /* PTPusherChannel_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherChannel_Private.h; path = CopiedFilesFrameworks/Pusher/PTPusherChannel_Private.h; sourceTree = SOURCE_ROOT; };
+		C2CCBD9F1FA209E30091833E /* PTPusher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTPusher.m; path = CopiedFilesFrameworks/Pusher/PTPusher.m; sourceTree = SOURCE_ROOT; };
+		C2CCBDA01FA209E30091833E /* PTPusherEventPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherEventPublisher.h; path = CopiedFilesFrameworks/Pusher/PTPusherEventPublisher.h; sourceTree = SOURCE_ROOT; };
+		C2CCBDA11FA209E30091833E /* PTPusherPresenceChannelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherPresenceChannelDelegate.h; path = CopiedFilesFrameworks/Pusher/PTPusherPresenceChannelDelegate.h; sourceTree = SOURCE_ROOT; };
+		C2CCBDA21FA209E40091833E /* PTURLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTURLRequestOperation.m; path = CopiedFilesFrameworks/Pusher/PTURLRequestOperation.m; sourceTree = SOURCE_ROOT; };
+		C2CCBDA31FA209E40091833E /* PTPusherMockConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherMockConnection.h; path = CopiedFilesFrameworks/Pusher/PTPusherMockConnection.h; sourceTree = SOURCE_ROOT; };
 		C89F2B1851D9065D1C86D52B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		D68426E4FF3671D9E8A8EFD7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F8317A321EB92E1F40C2A541 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -3424,44 +3425,45 @@
 		AEB3F3021D09950B00393428 /* Pusher */ = {
 			isa = PBXGroup;
 			children = (
-				B2F71A021D0EF643002C1D74 /* NSDictionary+QueryString.h */,
-				B2F71A031D0EF643002C1D74 /* NSDictionary+QueryString.m */,
-				B2F71A041D0EF643002C1D74 /* NSString+Hashing.h */,
-				B2F71A051D0EF643002C1D74 /* NSString+Hashing.m */,
-				B2F71A061D0EF643002C1D74 /* PTBlockEventListener.h */,
-				B2F71A071D0EF643002C1D74 /* PTBlockEventListener.m */,
-				B2F71A081D0EF643002C1D74 /* PTEventListener.h */,
-				B2F71A091D0EF643002C1D74 /* PTJSON.h */,
-				B2F71A0A1D0EF643002C1D74 /* PTJSON.m */,
-				B2F71A0B1D0EF643002C1D74 /* PTPusher.h */,
-				B2F71A0C1D0EF643002C1D74 /* PTPusher.m */,
-				B2F71A0D1D0EF643002C1D74 /* PTPusher+Testing.h */,
-				B2F71A0E1D0EF643002C1D74 /* PTPusher+Testing.m */,
-				B2F71A0F1D0EF643002C1D74 /* PTPusherAPI.h */,
-				B2F71A101D0EF643002C1D74 /* PTPusherAPI.m */,
-				B2F71A111D0EF643002C1D74 /* PTPusherChannel_Private.h */,
-				B2F71A121D0EF643002C1D74 /* PTPusherChannel.h */,
-				B2F71A131D0EF643002C1D74 /* PTPusherChannel.m */,
-				B2F71A141D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.h */,
-				B2F71A151D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.m */,
-				B2F71A161D0EF643002C1D74 /* PTPusherConnection.h */,
-				B2F71A171D0EF643002C1D74 /* PTPusherConnection.m */,
-				B2F71A181D0EF643002C1D74 /* PTPusherDelegate.h */,
-				B2F71A191D0EF643002C1D74 /* PTPusherErrors.h */,
-				B2F71A1A1D0EF643002C1D74 /* PTPusherEvent.h */,
-				B2F71A1B1D0EF643002C1D74 /* PTPusherEvent.m */,
-				B2F71A1C1D0EF643002C1D74 /* PTPusherEventDispatcher.h */,
-				B2F71A1D1D0EF643002C1D74 /* PTPusherEventDispatcher.m */,
-				B2F71A1E1D0EF643002C1D74 /* PTPusherEventPublisher.h */,
-				B2F71A1F1D0EF643002C1D74 /* PTPusherMacros.h */,
-				B2F71A201D0EF643002C1D74 /* PTPusherMockConnection.h */,
-				B2F71A211D0EF643002C1D74 /* PTPusherMockConnection.m */,
-				B2F71A221D0EF643002C1D74 /* PTPusherPresenceChannelDelegate.h */,
-				B2F71A231D0EF643002C1D74 /* PTTargetActionEventListener.h */,
-				B2F71A241D0EF643002C1D74 /* PTTargetActionEventListener.m */,
-				B2F71A251D0EF643002C1D74 /* PTURLRequestOperation.h */,
-				B2F71A261D0EF643002C1D74 /* PTURLRequestOperation.m */,
-				B2F71A271D0EF643002C1D74 /* Pusher.h */,
+				C2CCBD8E1FA209DD0091833E /* NSDictionary+QueryString.h */,
+				C2CCBD8F1FA209DD0091833E /* NSDictionary+QueryString.m */,
+				C2CCBD7D1FA209D60091833E /* NSDictionary+StringValue.h */,
+				C2CCBD851FA209D90091833E /* NSDictionary+StringValue.m */,
+				C2CCBD841FA209D90091833E /* NSString+Hashing.h */,
+				C2CCBD951FA209DF0091833E /* NSString+Hashing.m */,
+				C2CCBD821FA209D80091833E /* PTBlockEventListener.h */,
+				C2CCBD801FA209D80091833E /* PTBlockEventListener.m */,
+				C2CCBD901FA209DD0091833E /* PTEventListener.h */,
+				C2CCBD871FA209DA0091833E /* PTJSON.h */,
+				C2CCBD911FA209DE0091833E /* PTJSON.m */,
+				C2CCBD8B1FA209DB0091833E /* PTPusher.h */,
+				C2CCBD9F1FA209E30091833E /* PTPusher.m */,
+				C2CCBD8A1FA209DB0091833E /* PTPusherAPI.h */,
+				C2CCBD891FA209DB0091833E /* PTPusherAPI.m */,
+				C2CCBD9E1FA209E20091833E /* PTPusherChannel_Private.h */,
+				C2CCBD9C1FA209E20091833E /* PTPusherChannel.h */,
+				C2CCBD991FA209E00091833E /* PTPusherChannel.m */,
+				C2CCBD921FA209DE0091833E /* PTPusherChannelAuthorizationDelegate.h */,
+				C2CCBD811FA209D80091833E /* PTPusherChannelServerBasedAuthorization.h */,
+				C2CCBD9B1FA209E10091833E /* PTPusherChannelServerBasedAuthorization.m */,
+				C2CCBD961FA209DF0091833E /* PTPusherConnection.h */,
+				C2CCBD831FA209D90091833E /* PTPusherConnection.m */,
+				C2CCBD931FA209DE0091833E /* PTPusherDelegate.h */,
+				C2CCBD8C1FA209DC0091833E /* PTPusherErrors.h */,
+				C2CCBD8D1FA209DC0091833E /* PTPusherEvent.h */,
+				C2CCBD861FA209DA0091833E /* PTPusherEvent.m */,
+				C2CCBD7E1FA209D70091833E /* PTPusherEventDispatcher.h */,
+				C2CCBD881FA209DA0091833E /* PTPusherEventDispatcher.m */,
+				C2CCBDA01FA209E30091833E /* PTPusherEventPublisher.h */,
+				C2CCBD7F1FA209D70091833E /* PTPusherMacros.h */,
+				C2CCBDA31FA209E40091833E /* PTPusherMockConnection.h */,
+				C2CCBD971FA209E00091833E /* PTPusherMockConnection.m */,
+				C2CCBDA11FA209E30091833E /* PTPusherPresenceChannelDelegate.h */,
+				C2CCBD9A1FA209E10091833E /* PTTargetActionEventListener.h */,
+				C2CCBD981FA209E00091833E /* PTTargetActionEventListener.m */,
+				C2CCBD9D1FA209E20091833E /* PTURLRequestOperation.h */,
+				C2CCBDA21FA209E40091833E /* PTURLRequestOperation.m */,
+				C2CCBD941FA209DF0091833E /* Pusher.h */,
 			);
 			name = Pusher;
 			sourceTree = "<group>";
@@ -5790,7 +5792,6 @@
 				B27AF9491C7B8D1000527306 /* IntroViewModel.swift in Sources */,
 				B27230581CE0E4A7003547EA /* ProfilesListViewModel.swift in Sources */,
 				B2F719EF1D0EF4C7002C1D74 /* Types.swift in Sources */,
-				B2F71A2D1D0EF643002C1D74 /* PTPusher+Testing.m in Sources */,
 				AE3DC4081D212ADB00C460CC /* PageCategoryCell.swift in Sources */,
 				B2778FA81CAD5D7A00BBDD5F /* FiltersViewController.swift in Sources */,
 				AEADF3431CA574BE0051DABA /* ConversationSelectShoutTableViewCell.swift in Sources */,
@@ -5803,7 +5804,6 @@
 				244FD9A81C7C7ABF0048CC82 /* DiscoverViewModel.swift in Sources */,
 				AE1516781D05A908009E8357 /* ShoutParams.swift in Sources */,
 				246F25C21F4D7589002D510A /* Operators.swift in Sources */,
-				B2F71A341D0EF643002C1D74 /* PTPusherMockConnection.m in Sources */,
 				B2B5D01D1C7F55250068A6AF /* CreateShoutDisplayable.swift in Sources */,
 				B27230761CE218E7003547EA /* ListenersProfilesListViewModel.swift in Sources */,
 				B2F719ED1D0EF4C7002C1D74 /* PlaceDetailsResponse.swift in Sources */,
@@ -5871,7 +5871,6 @@
 				B22CACEA1CBEB01900316E4B /* FiltersState.swift in Sources */,
 				B24E29FD1CBD24A100328503 /* FormTextView.swift in Sources */,
 				B22CACD91CBD506600316E4B /* ConversationPictureCell.swift in Sources */,
-				B2F71A2B1D0EF643002C1D74 /* PTJSON.m in Sources */,
 				B2C729B71C62216A006F7D29 /* APIManager.swift in Sources */,
 				24847E611C85E09E00C322A3 /* SelectShoutLocationViewController.swift in Sources */,
 				246F25B61F4D7589002D510A /* EnumOperators.swift in Sources */,
@@ -5883,6 +5882,7 @@
 				AE11DAE31D4B85B900EE4CCA /* ShoutDescriptionViewController.swift in Sources */,
 				B2B5D0361C7F89EB0068A6AF /* ShoutDetailImagesPageViewControllerDataSource.swift in Sources */,
 				B2F71A5D1D0EF791002C1D74 /* DPLMatchResult.m in Sources */,
+				C2CCBDAA1FA209E40091833E /* NSDictionary+QueryString.m in Sources */,
 				B2F71A601D0EF791002C1D74 /* DPLRegularExpression.m in Sources */,
 				B2A03E1F1C85C72100F5E257 /* UIViewController+Tabbar.swift in Sources */,
 				240F509A1C71C36F00AE4A76 /* ShoutsDisplayable.swift in Sources */,
@@ -5904,6 +5904,7 @@
 				B2D2C9DD1D23DEE20087E4FF /* MyPageCollectionViewModel.swift in Sources */,
 				B2F5247D1C9C61F300EA622F /* SearchShoutsResultsCollectionViewLayout.swift in Sources */,
 				B2B540DB1C6A69320075EDA6 /* PostSignupSuggestionsSectionHeader.swift in Sources */,
+				C2CCBDAB1FA209E40091833E /* PTJSON.m in Sources */,
 				2474E00C1D1C1A5D0085D9DD /* VerticalButton.swift in Sources */,
 				B2B5D0401C80AAE80068A6AF /* PageDisplayable.swift in Sources */,
 				B2F7199C1D0EEFAA002C1D74 /* MWPhotoBrowser.m in Sources */,
@@ -5912,6 +5913,7 @@
 				B27230521CE0DF6F003547EA /* UITableView+Reusables.swift in Sources */,
 				AE6BABE61CEC5D4F007A4811 /* ConversationMemberCellConfigurator.swift in Sources */,
 				B2FA5CD61D11C5EC007034F8 /* LocalizedString.swift in Sources */,
+				C2CCBDA51FA209E40091833E /* PTPusherConnection.m in Sources */,
 				AE6AF6581D587A6D0079A7B9 /* StaticPageViewController.swift in Sources */,
 				B2F7199B1D0EEFAA002C1D74 /* MWPhoto.m in Sources */,
 				B26CEE311C6E4B870091470D /* ProfileCollectionShoutCellViewModel.swift in Sources */,
@@ -5924,7 +5926,6 @@
 				AE83516C1C5F595C0055C71F /* TabbarController.swift in Sources */,
 				B2BB12BA1D130D6400708386 /* PromotedShoutViewController.swift in Sources */,
 				B2E715451C6D02FD007F95CF /* ProfileCollectionViewController.swift in Sources */,
-				B2F71A281D0EF643002C1D74 /* NSDictionary+QueryString.m in Sources */,
 				B272304B1CE0D9C7003547EA /* ProfilesListTableViewController.swift in Sources */,
 				242EE81B1C90626C00621A5E /* EditShoutParentViewController.swift in Sources */,
 				2463B6961C982A5A00BFE6BA /* ChatDisplayable.swift in Sources */,
@@ -5938,9 +5939,9 @@
 				B209C5371CF34F3800727095 /* TagsListCellViewModel.swift in Sources */,
 				B23CA24A1C8DEAF2008E85F9 /* EditProfileSelectButtonTableViewCell.swift in Sources */,
 				B2C8C2611CF8622B00E80C6A /* CreateShoutDetailsSectionViewModel.swift in Sources */,
+				C2CCBDB21FA209E40091833E /* PTURLRequestOperation.m in Sources */,
 				B2E715551C6E068D007F95CF /* ProfileCollectionInfoSupplementaryView.swift in Sources */,
 				B2C729DA1C6223FA006F7D29 /* LoginViewController.swift in Sources */,
-				B2F71A291D0EF643002C1D74 /* NSString+Hashing.m in Sources */,
 				AEBB69831C6B2F4800D48E4F /* ChangeLocationViewModel.swift in Sources */,
 				B2F719A01D0EEFAA002C1D74 /* UIImage+MWPhotoBrowser.m in Sources */,
 				246F25C11F4D7589002D510A /* NSDecimalNumberTransform.swift in Sources */,
@@ -5957,7 +5958,6 @@
 				B2B5D0341C7F88000068A6AF /* ShoutDetailRelatedShoutsCollectionViewDataSource.swift in Sources */,
 				B2E7154B1C6DF078007F95CF /* UIViewController+NavigationItems.swift in Sources */,
 				249F78271C99641D00FCB9A6 /* ConversationDayHeader.swift in Sources */,
-				B2F71A2E1D0EF643002C1D74 /* PTPusherAPI.m in Sources */,
 				AE1F29751CE9E05D00D1AA76 /* ConversationInfoViewModel.swift in Sources */,
 				247340961F5968FF00D4DA36 /* BorderedMaterialTextView.swift in Sources */,
 				B2B5D03E1C80AABC0068A6AF /* ShoutDisplayable.swift in Sources */,
@@ -5978,6 +5978,7 @@
 				B2082D731C62638C007EB2FB /* HTMLViewController.swift in Sources */,
 				B253A33C1C690EB200C8B8F9 /* PostSignupDisplayable.swift in Sources */,
 				2489CCF91CAD604100778630 /* IncomingCallController.swift in Sources */,
+				C2CCBDAD1FA209E40091833E /* PTPusherMockConnection.m in Sources */,
 				246F25BE1F4D7589002D510A /* MapError.swift in Sources */,
 				B2B9AA8A1C8DC8C700AFE67E /* EditProfileTableViewController.swift in Sources */,
 				B2F719E91D0EF4C7002C1D74 /* GoogleMapsService.swift in Sources */,
@@ -6000,7 +6001,6 @@
 				AE8351871C5F7DC50055C71F /* BrowseFlowController.swift in Sources */,
 				B2E107191C9700B200F7F4EF /* TagProfileCollectionViewModel.swift in Sources */,
 				B2CA5C431D1D7BD1009E164E /* AdminsListParentViewController.swift in Sources */,
-				B2F71A331D0EF643002C1D74 /* PTPusherEventDispatcher.m in Sources */,
 				24D3B0C71C9C472D00DE1600 /* Twilio.swift in Sources */,
 				B209AC0F1C6CB3A900EF2B8E /* SettingsTableViewController.swift in Sources */,
 				B294BC901CEB4CD000131B31 /* MessageAttachmentPhotoBrowserViewController.swift in Sources */,
@@ -6015,7 +6015,6 @@
 				B23CA24C1C8DEE3E008E85F9 /* EditProfileCellViewModel.swift in Sources */,
 				B22D90961CE9E47200D3C387 /* CreatePublicChatSectionViewModel.swift in Sources */,
 				B2C729D01C62224A006F7D29 /* FeedbackDisplayable.swift in Sources */,
-				B2F71A321D0EF643002C1D74 /* PTPusherEvent.m in Sources */,
 				AE5BF3931CBBB30600EB22B0 /* CreateShoutButton.swift in Sources */,
 				B2F71A631D0EF791002C1D74 /* NSObject+DPLJSONObject.m in Sources */,
 				AEADF3491CA58FF40051DABA /* ConversationShoutCell.swift in Sources */,
@@ -6068,11 +6067,11 @@
 				B272306D1CE10A25003547EA /* ConversationSelectProfileAttachmentViewController.swift in Sources */,
 				B271E5F51CF4A0F90038A02C /* SocialActionError.swift in Sources */,
 				246F25B71F4D7589002D510A /* EnumTransform.swift in Sources */,
+				C2CCBDA81FA209E40091833E /* PTPusherEventDispatcher.m in Sources */,
 				B2C2EBF11CC4FB7200ED7C7E /* DiscoverShoutsHeaderView.swift in Sources */,
 				B2F524881C9C7FB300EA622F /* SearchShoutsResultsShoutsHeaderSupplementeryView.swift in Sources */,
 				BF0B909F1D23F6EB006F8D8D /* MessageComposer.swift in Sources */,
 				AEE030751CFC34C600700FF2 /* MutualProfilesViewModel.swift in Sources */,
-				B2F71A2C1D0EF643002C1D74 /* PTPusher.m in Sources */,
 				AE8351831C5F7DB50055C71F /* DiscoverFlowController.swift in Sources */,
 				B272307C1CE34916003547EA /* Pager.swift in Sources */,
 				AEC852991D2E53F10060A32D /* CellViewModel.swift in Sources */,
@@ -6081,7 +6080,6 @@
 				AE0CD35C1CFC8387006B05FD /* FacebookFriendsListTableViewController.swift in Sources */,
 				B2B540D31C6A4E050075EDA6 /* PostSignupSuggestionsSectionViewModel.swift in Sources */,
 				24AEF78E1CF74F3A00C57C7C /* InviteFriendsTableViewController.swift in Sources */,
-				B2F71A311D0EF643002C1D74 /* PTPusherConnection.m in Sources */,
 				B2FE53931CA0841C007E23F5 /* SearchShoutsResultsViewModel.swift in Sources */,
 				AE4DB34B1C636FF8001EB84B /* SettingsFlowController.swift in Sources */,
 				B2E53E961CA1AA6F00F43481 /* PagedViewModelState.swift in Sources */,
@@ -6120,6 +6118,7 @@
 				AE2EB7CC1D057847000A324D /* AddressExtensions.swift in Sources */,
 				246F25B51F4D7589002D510A /* DictionaryTransform.swift in Sources */,
 				B22D907D1CE4DB6B00D3C387 /* PublicChatsListViewModel.swift in Sources */,
+				C2CCBDA91FA209E40091833E /* PTPusherAPI.m in Sources */,
 				B272306F1CE21701003547EA /* SelectProfileProfilesListEventHandler.swift in Sources */,
 				246F25C31F4D7589002D510A /* ToJSON.swift in Sources */,
 				B2AB73F11CB568C300C2C0C0 /* SettingsFormCellViewModel.swift in Sources */,
@@ -6127,6 +6126,7 @@
 				B2CA5C581D1D99EF009E164E /* ProfilesListDisplayable.swift in Sources */,
 				B2B540D11C6A4D420075EDA6 /* PostSignupSuggestionsCellViewModel.swift in Sources */,
 				B2778F8E1CAAEBB200BBDD5F /* VerifyEmailViewController.swift in Sources */,
+				C2CCBDB01FA209E40091833E /* PTPusherChannelServerBasedAuthorization.m in Sources */,
 				B2F719991D0EEFAA002C1D74 /* MWGridCell.m in Sources */,
 				B2190D841C5A3DC0007FF33B /* UIColorExtensions.swift in Sources */,
 				B27230741CE218D5003547EA /* ListeningProfilesListViewModel.swift in Sources */,
@@ -6165,11 +6165,14 @@
 				B2B5D00A1C7F23740068A6AF /* PhotoBrowserPageViewController.swift in Sources */,
 				AE63FB171D12D284005A35CD /* PromotionLabelView.swift in Sources */,
 				B2B345481CA5586E0066DF15 /* InternalParseError.swift in Sources */,
+				C2CCBDA71FA209E40091833E /* PTPusherEvent.m in Sources */,
 				B2F71A5A1D0EF791002C1D74 /* DPLDeepLink.m in Sources */,
 				B2F524721C9AFBA200EA622F /* SearchUserResultsViewModel.swift in Sources */,
 				BF5FB2771D2FCC370078A57F /* EditPageCellViewModel.swift in Sources */,
 				AEF1E66E1CA1D3780054640C /* ConversationAttachmentViewController.swift in Sources */,
 				AE4DB35F1C6485FA001EB84B /* MenuHeaderView.swift in Sources */,
+				C2CCBDA61FA209E40091833E /* NSDictionary+StringValue.m in Sources */,
+				C2CCBDAE1FA209E40091833E /* PTTargetActionEventListener.m in Sources */,
 				B2A101891C87113C005074C4 /* ProfileDisplayable.swift in Sources */,
 				AE8351671C5F521B0055C71F /* TabbarButton.swift in Sources */,
 				B2F719FE1D0EF53A002C1D74 /* NSAttributedString+Processing.m in Sources */,
@@ -6224,7 +6227,6 @@
 				B201A1EB1CB40776009DA966 /* FilterLocationChoiceWrapperViewController.swift in Sources */,
 				B22D908E1CE5EBAB00D3C387 /* CreatePublicChatWrappingViewController.swift in Sources */,
 				244FD9A21C7C79F30048CC82 /* DiscoverCollectionViewController.swift in Sources */,
-				B2F71A2F1D0EF643002C1D74 /* PTPusherChannel.m in Sources */,
 				B2F719BD1D0EF12F002C1D74 /* DictionaryUtils.swift in Sources */,
 				BF5FB2711D2FC72F0078A57F /* EditPageTableViewController.swift in Sources */,
 				B2ACBDF31C68D585000FA302 /* APIMiscService.swift in Sources */,
@@ -6241,7 +6243,6 @@
 				B253A33A1C68F94600C8B8F9 /* State.swift in Sources */,
 				B2B540D81C6A665E0075EDA6 /* CustomUIImageView.swift in Sources */,
 				246DEA731CA40637009DF436 /* ConversationLocationController.swift in Sources */,
-				B2F71A301D0EF643002C1D74 /* PTPusherChannelAuthorizationOperation.m in Sources */,
 				B2C729D51C6223DA006F7D29 /* LoginWithEmailViewController.swift in Sources */,
 				B227BFF61C57D9AD003A2D76 /* CustomUIView.swift in Sources */,
 				24AEF7901CF755AA00C57C7C /* SuggestionsDisplayable.swift in Sources */,
@@ -6265,9 +6266,8 @@
 				BF02B4391D37792300DDFBCE /* UISearchBarAppearance.m in Sources */,
 				BF5FB2751D2FCC190078A57F /* EditPageTableViewModel.swift in Sources */,
 				AE19FCEC1CC667CF00162C92 /* BadgeButton.swift in Sources */,
-				B2F71A351D0EF643002C1D74 /* PTTargetActionEventListener.m in Sources */,
-				B2F71A361D0EF643002C1D74 /* PTURLRequestOperation.m in Sources */,
 				AE8351761C5F6BC50055C71F /* Navigation.swift in Sources */,
+				C2CCBDAF1FA209E40091833E /* PTPusherChannel.m in Sources */,
 				B209C5301CF3411200727095 /* TagsListTableViewController.swift in Sources */,
 				BF0B909D1D23D2EB006F8D8D /* InviteContactsViewController.swift in Sources */,
 				B2956F031CDCEE020041C6CD /* PHAsset+MediaAttachment.swift in Sources */,
@@ -6278,7 +6278,9 @@
 				AE180F841C7F8DC70069BB1A /* DiscoverPreviewCollectionViewController.swift in Sources */,
 				AE21C6661D52004E000D8C82 /* HomeShoutsViewController.swift in Sources */,
 				B22D908A1CE4F77D00D3C387 /* LocationChoiceTableViewCell.swift in Sources */,
+				C2CCBDA41FA209E40091833E /* PTBlockEventListener.m in Sources */,
 				249671611C8758650011B078 /* EditShoutTableViewController.swift in Sources */,
+				C2CCBDAC1FA209E40091833E /* NSString+Hashing.m in Sources */,
 				B2E53E921CA1A80C00F43481 /* SearchShoutsResultsCategoryCellViewModel.swift in Sources */,
 				B20F47C81CAEBC410091899C /* MixpanelHelper.swift in Sources */,
 				B2F719FC1D0EF53A002C1D74 /* CustomLayoutManager.m in Sources */,
@@ -6308,6 +6310,7 @@
 				B2F719B91D0EF12F002C1D74 /* CNAddressBookQueryBuilder.swift in Sources */,
 				B28379A11C737950009AFF01 /* GradientView.swift in Sources */,
 				AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */,
+				C2CCBDB11FA209E40091833E /* PTPusher.m in Sources */,
 				B2956F011CDCEDBC0041C6CD /* UIImage+Resizing.swift in Sources */,
 				249FD6D21C7DA57400859851 /* DiscoverDisplayable.swift in Sources */,
 				B2B5D0171C7F29740068A6AF /* ShoutDetailCollectionViewContainerTableViewCell.swift in Sources */,
@@ -6332,7 +6335,6 @@
 				B209C5261CF3181E00727095 /* RecentPhotosCollectionViewControllerDelegate.swift in Sources */,
 				B22D90871CE4EF7000D3C387 /* CreatePublicChatDisplayable.swift in Sources */,
 				B2F719EC1D0EF4C7002C1D74 /* PlaceAutocompleteResponse.swift in Sources */,
-				B2F71A2A1D0EF643002C1D74 /* PTBlockEventListener.m in Sources */,
 				B209C5231CF3181E00727095 /* PhotosMenuController.swift in Sources */,
 				AED636251D3582C50005E1A5 /* PageVerificationParams.swift in Sources */,
 				AEADF3381CA545850051DABA /* ConversationTitleView.swift in Sources */,
@@ -10210,6 +10212,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 10;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E6WRHQXQE9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -10341,6 +10344,8 @@
 					"-framework",
 					"\"SDWebImage\"",
 				);
+				PROVISIONING_PROFILE = "a8443f1d-bf63-499f-83a6-ae0b52d0d918";
+				PROVISIONING_PROFILE_SPECIFIER = "Shoutit Development Provisioning";
 				SWIFT_OBJC_BRIDGING_HEADER = "shoutit-iphone/Application/shoutit-iphone-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
