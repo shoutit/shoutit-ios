@@ -47,6 +47,19 @@ final class MixpanelHelper {
         sendAppOpenEvent()
     }
     
+    static func handleDeeplinkDidOpenApp(queryParams: [String: String]) {
+        identifyUserIfLoggedIn()
+        
+        var properties = actionProperties
+        for deeplinkParam in queryParams {
+            if deeplinkParam.key.hasPrefix("utm_") {
+                properties[deeplinkParam.key] = deeplinkParam.value as AnyObject
+            }
+        }
+        
+        mixpanel.track(Actions.appOpen, properties: properties)
+    }
+    
     static func handleAppDidEnterBackground() {
         sendAppDidCloseEvent()
     }
