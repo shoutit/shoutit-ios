@@ -11,6 +11,7 @@ import Alamofire
 import Reachability
 import Kingfisher
 import ShoutitKit
+import AdSupport
 
 final class APIManager {
 
@@ -33,6 +34,9 @@ final class APIManager {
             var defaultHeaders =
                 Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders ?? [:]
             defaultHeaders["User-Agent"] = "Shoutit Staging/com.appunite.shoutit (42000; OS Version 9.3.2 (Build 13F69))"
+            if let deviceId = ASIdentifierManager.shared()?.advertisingIdentifier {
+                defaultHeaders["USER_DEVICE_ID"] = deviceId
+            }
             let configuration = URLSessionConfiguration.default
             configuration.httpAdditionalHeaders = defaultHeaders
             apiManager = Alamofire.SessionManager(configuration: configuration)
@@ -59,6 +63,9 @@ final class APIManager {
         defaultHeaders["Authorization"] = token
         defaultHeaders["Authorization-Page-Id"] = pageId
         defaultHeaders["User-Agent"] = "Shoutit Staging/com.appunite.shoutit (42000; OS Version 9.3.2 (Build 13F69))"
+        if let deviceId = ASIdentifierManager.shared()?.advertisingIdentifier {
+            defaultHeaders["USER_DEVICE_ID"] = deviceId
+        }
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = defaultHeaders
         apiManager = Alamofire.SessionManager(configuration: configuration)
@@ -68,6 +75,9 @@ final class APIManager {
             var headerFields = request.allHTTPHeaderFields ?? [String : String]()
             headerFields["Authorization"] = token
             headerFields["User-Agent"] = "Shoutit Staging/com.appunite.shoutit (42000; OS Version 9.3.2 (Build 13F69))"
+            if let deviceId = ASIdentifierManager.shared()?.advertisingIdentifier {
+                defaultHeaders["USER_DEVICE_ID"] = deviceId
+            }
             r.allHTTPHeaderFields = headerFields
             return r
         }

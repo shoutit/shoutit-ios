@@ -96,6 +96,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
         open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
+        if let deepLinkQueryItems = DeeplinkQueryParser().parse(url: url) {
+            MixpanelHelper.handleDeeplinkDidOpenApp(queryParams: deepLinkQueryItems)
+        }
+        
         if FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }

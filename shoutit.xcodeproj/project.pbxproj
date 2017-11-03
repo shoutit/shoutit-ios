@@ -880,6 +880,7 @@
 		C2CCBDB01FA209E40091833E /* PTPusherChannelServerBasedAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD9B1FA209E10091833E /* PTPusherChannelServerBasedAuthorization.m */; };
 		C2CCBDB11FA209E40091833E /* PTPusher.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBD9F1FA209E30091833E /* PTPusher.m */; };
 		C2CCBDB21FA209E40091833E /* PTURLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CCBDA21FA209E40091833E /* PTURLRequestOperation.m */; };
+		C20035EA1F9E2D1F00C21EF7 /* DeeplinkQueryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20035E91F9E2D1F00C21EF7 /* DeeplinkQueryParser.swift */; };
 		E166926EDBC110A17C4D079F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9376F28A446969569A86D217 /* CoreTelephony.framework */; };
 		EED4F3E5A4186726649D8238 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762F321E525C691DDCE65E75 /* QuartzCore.framework */; };
 		F085F12BF38931EB0607765F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0FB754506806CFD2A18E2F /* CoreText.framework */; };
@@ -2429,6 +2430,7 @@
 		C2CCBDA11FA209E30091833E /* PTPusherPresenceChannelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherPresenceChannelDelegate.h; path = CopiedFilesFrameworks/Pusher/PTPusherPresenceChannelDelegate.h; sourceTree = SOURCE_ROOT; };
 		C2CCBDA21FA209E40091833E /* PTURLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTURLRequestOperation.m; path = CopiedFilesFrameworks/Pusher/PTURLRequestOperation.m; sourceTree = SOURCE_ROOT; };
 		C2CCBDA31FA209E40091833E /* PTPusherMockConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTPusherMockConnection.h; path = CopiedFilesFrameworks/Pusher/PTPusherMockConnection.h; sourceTree = SOURCE_ROOT; };
+		C20035E91F9E2D1F00C21EF7 /* DeeplinkQueryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkQueryParser.swift; sourceTree = "<group>"; };
 		C89F2B1851D9065D1C86D52B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		D68426E4FF3671D9E8A8EFD7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F8317A321EB92E1F40C2A541 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -2979,6 +2981,7 @@
 				B21EA3B31C63DC3F0013E99F /* Location */,
 				AEA5997D1C60C55000015AA3 /* Protocols */,
 				6027CF691BE74FA100124C28 /* extensions */,
+				C20035E91F9E2D1F00C21EF7 /* DeeplinkQueryParser.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -6311,6 +6314,7 @@
 				B28379A11C737950009AFF01 /* GradientView.swift in Sources */,
 				AEA599761C609DA100015AA3 /* MenuTableViewController.swift in Sources */,
 				C2CCBDB11FA209E40091833E /* PTPusher.m in Sources */,
+				C20035EA1F9E2D1F00C21EF7 /* DeeplinkQueryParser.swift in Sources */,
 				B2956F011CDCEDBC0041C6CD /* UIImage+Resizing.swift in Sources */,
 				249FD6D21C7DA57400859851 /* DiscoverDisplayable.swift in Sources */,
 				B2B5D0171C7F29740068A6AF /* ShoutDetailCollectionViewContainerTableViewCell.swift in Sources */,
