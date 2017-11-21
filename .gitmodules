@@ -8,13 +8,13 @@
 	ignore = dirty
 [submodule "External/TwilioCommon"]
 	path = External/TwilioCommon
-	url = git@git.appunite.com:shoutit/TwilioCommon.git
+	url = https://git.appunite.com/shoutit/TwilioCommon.git
 	ignore = dirty
 [submodule "External/TwilioConversationsClient"]
 	path = External/TwilioConversationsClient
-	url = git@git.appunite.com:shoutit/TwilioConversationsClient.git
+	url = https://git.appunite.com/shoutit/TwilioConversationsClient.git
 	ignore = dirty
 [submodule "External/GoogleMaps"]
 	path = External/GoogleMaps
-	url = git@git.appunite.com:shoutit/GoogleMaps.git
+	url = https://git.appunite.com/shoutit/GoogleMaps.git
 	ignore = dirty
